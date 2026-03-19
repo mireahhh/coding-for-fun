@@ -9,37 +9,43 @@ function createPages(template, filename, chunks) {
 }
 
 const htmlPages = [
-  createPages("./src/index.html", "./index.html", ["index"]),
-  createPages("./src/pages/handbook.html", "./pages/handbook.html", ["index"]),
-  createPages("./src/pages/gallery.html", "./pages/gallery.html", ["index"]),
-  createPages("./src/pages/rules.html", "./pages/rules.html", ["index"]),
-  createPages("./src/pages/about.html", "./pages/about.html", ["index"]),
+  createPages("./src/index.html", "./index.html", ["main"]),
+  createPages("./src/pages/handbook.html", "./pages/handbook.html", [
+    "main"
+  ]),
+  createPages("./src/pages/gallery.html", "./pages/gallery.html", ["main"]),
+  createPages("./src/pages/about.html", "./pages/about.html", ["main"]),
+  createPages("./src/pages/add_work.html", "./pages/add_work.html", ["main"]),
+  createPages("./src/pages/add_tutorial.html", "./pages/add_tutorial.html", [
+    "main",
+  ]),
+  createPages("./src/pages/rules.html", "./pages/rules.html", ["main"]),
 
   // Галерея ./works
   createPages("./src/pages/works/work_1.html", "./pages/works/work_1.html", [
-    "index",
+    "main",
   ]),
 
   // Часть_1 Модуль_1 ./part_1/module_1
   createPages(
     "./src/pages/parts/part_1/module_1.html",
     "./pages/parts/part_1/module_1.html",
-    ["index"],
+    ["main"],
   ),
   createPages(
     "./src/pages/parts/part_1/module_1/tutorial_1.html",
     "./pages/parts/part_1/module_1/tutorial_1.html",
-    ["index"],
+    ["main"],
   ),
   createPages(
     "./src/pages/parts/part_1/module_1/tutorial_2.html",
     "./pages/parts/part_1/module_1/tutorial_2.html",
-    ["index"],
+    ["main"],
   ),
   createPages(
     "./src/pages/parts/part_1/module_1/tutorial_3.html",
     "./pages/parts/part_1/module_1/tutorial_3.html",
-    ["index"],
+    ["main"],
   ),
 ];
 

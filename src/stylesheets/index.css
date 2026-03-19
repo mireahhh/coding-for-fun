@@ -1,21 +1,4 @@
-@import 'reset.css';
-@import 'fonts.css';
-@import 'layout.css';
-
-
-html {
-    scroll-padding-top: 100px;
-    /* Высота вашей фиксированной шапки */
-    scroll-behavior: smooth;
-    /* Плавная прокрутка (красиво) */
-}
-
-
-:root {
-    --colors-neutrals-900: #1F1F1F;
-}
-
-
+/* этот h1 для всех h1 по умолчанию */
 h1 {
     color: var(--colors-neutrals-900);
     font-family: KairosSansW06-CondMedium;

@@ -1,0 +1,28 @@
+@import 'reset.css';
+@import 'fonts.css';
+@import 'layout.css';
+@import 'vars.css';
+
+
+html {
+    scroll-padding-top: 100px;
+    /* Высота вашей фиксированной шапки */
+    scroll-behavior: smooth;
+    /* Плавная прокрутка (красиво) */
+}
+
+h1 {
+    color: var(--colors-neutrals-900);
+    font-family: KairosSansW06-CondMedium;
+    font-size: 104px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    /* 104px */
+    letter-spacing: -5.2px;
+    text-transform: uppercase;
+    /* font-family: Arial, sans-serif;
+    font-family: 'Times New Roman', serif; */
+    /* TODO */
+    margin: 50px;
+}
