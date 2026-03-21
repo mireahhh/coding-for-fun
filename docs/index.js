@@ -1,6 +1,6 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 
-console.log("hey");
+console.log("css is entry");
 /******/ })()
 ;

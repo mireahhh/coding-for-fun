@@ -1,3 +1,3 @@
-import "../stylesheets/main.css";
+import "../stylesheets/index.css";
 
-console.log("hey");
+console.log("css is entry");

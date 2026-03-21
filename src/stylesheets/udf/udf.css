@@ -1,0 +1,52 @@
+.S_Header {
+    display: flex;
+    flex-direction: row;
+
+
+    .O_HeaderAllContent {
+        display: flex;
+        flex-direction: row;
+        padding-inline: 5%;
+
+        .W_HeaderTopNavigation {
+            display: flex;
+            flex-direction: row;
+            height: 40px;
+            padding-top: 40px;
+            padding-bottom: 20px;
+
+            .O_HeaderHandbookNavigation {
+                display: flex;
+                flex-direction: row;
+
+                .C_HeaderLinks {
+                    display: flex;
+                    flex-direction: row;
+                    column-gap: 1.25rem;
+                }
+
+                .M_HeaderSearchBar {
+                    display: flex;
+                    flex-direction: row;
+                }
+            }
+
+            .C_HeaderAddForms {
+                display: flex;
+                flex-direction: row;
+            }
+        }
+    }
+}
+
+.Test1 {
+    background-color: aqua;
+}
+
+.Test2 {
+    background-color: var(--colors-neutrals-opacity);
+}
+
+.Test3 {
+    background-color: var(--colors-neutrals-opacity);
+}

@@ -1,3 +1,21 @@
 :root {
-    --colors-neutrals-900: #1F1F1F;
+    
+/* colors */
+
+    /* brand */
+    --colors-brand-primary-DepthRose: #ff86db;
+    --colors-brand-primary-FlowCyan: #2fd3e6;
+    --colors-brand-primary-SeedGreen: #37e87a;
+    --colors-brand-primary-CoreSun: #ffc300;
+
+    /* neutrais */
+    --colors-neutrals-body: #f8f8f8;
+    --colors-neutrals-body: #cc00bb;
+    --colors-neutrals-50: #ffffff;
+    --colors-neutrals-50: #9e05a6;
+    --colors-neutrals-200: #cfcfcf;
+    --colors-neutrals-450: #858585;
+    --colors-neutrals-900: #1f1f1f;
+    /* TODO opacity * 20% ? */
+    --colors-neutrals-opacity: #d6d6d633;
 }

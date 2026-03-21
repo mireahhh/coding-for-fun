@@ -1,24 +1,151 @@
 @font-face {
-  font-family: 'PT Root UI';
-  src: url('../fonts/pt-root-ui_bold.woff'),
-    url('../fonts/pt-root-ui_bold.woff2');
-  font-weight: 700;
-}
-@font-face {
-  font-family: 'PT Root UI';
-  src: url('../fonts/pt-root-ui_medium.woff'),
-    url('../fonts/pt-root-ui_medium.woff2');
+  font-family: 'KairosSansW06-CondMedium';
+  src: url('../fonts/Kairos-Sans-W06-Cond-Medium.woff') format('woff'),
+    url('../fonts/Kairos-Sans-W06-Cond-Medium.woff2') format('woff2');
   font-weight: 500;
+  font-style: normal;
 }
+
 @font-face {
-  font-family: 'PT Root UI';
-  src: url('../fonts/pt-root-ui_regular.woff'),
-    url('../fonts/pt-root-ui_regular.woff2');
+  font-family: 'JetBrains-Mono';
+  src: url('../fonts/JetBrainsMono-Medium.ttf') format('ttf'),
+    url('../fonts/JetBrainsMono-Medium.woff2') format('woff2');
+  /* TODO weight */
   font-weight: 400;
+  font-style: normal;
 }
+
 @font-face {
-  font-family: 'PT Root UI';
-  src: url('../fonts/pt-root-ui_light.woff'),
-    url('../fonts/pt-root-ui_light.woff2');
-  font-weight: 300;
+  font-family: 'Open-Sans';
+  src: url('../fonts/OpenSans-Regular.woff') format('woff'),
+    url('../fonts/OpenSans-Regular.woff2') format('woff2');
+  /* TODO weight */
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+/* Heading */
+.H0 {
+  color: var(--colors-neutrals-900);
+  font-family: KairosSansW06-CondMedium;
+  font-size: 6.5rem;
+  letter-spacing: -0.325rem;
+  text-transform: uppercase;
+}
+
+.H1 {
+  color: var(--colors-neutrals-900);
+  font-family: KairosSansW06-CondMedium;
+  font-size: 4rem;
+  letter-spacing: -0.14rem;
+  text-transform: uppercase;
+}
+
+.H1-Mob {
+  color: var(--colors-neutrals-900);
+  font-family: KairosSansW06-CondMedium;
+  font-size: 3.5rem;
+  letter-spacing: -0.175rem;
+  text-transform: uppercase;
+}
+
+.H2 {
+  color: var(--colors-neutrals-900);
+  font-family: KairosSansW06-CondMedium;
+  font-size: 2.25rem;
+  line-height: 110%;
+  letter-spacing: -0.05625rem;
+}
+
+.H3 {
+  color: var(--colors-neutrals-900);
+  font-size: 2rem;
+  letter-spacing: -0.1rem;
+  line-height: 115%;
+}
+
+.H4 {
+  color: var(--colors-neutrals-900);
+  font-family: "Open-Sans";
+  font-size: 1.75rem;
+  letter-spacing: -0.14rem;
+  /* line-height: ?; TODO! */
+}
+
+/* Subtitle */
+.S1 {
+  color: var(--colors-neutrals-900);
+  font-family: "Open-Sans";
+  font-size: 1.5rem;
+  line-height: 130%;
+  letter-spacing: -0.0375rem;
+}
+
+.S2 {}
+
+.S3 {
+  color: var(--colors-neutrals-50);
+  font-family: "JetBrains-Mono";
+  font-size: 1.5rem;
+  line-height: 130%;
+  letter-spacing: -0.075rem;
+  text-transform: uppercase;
+}
+
+.B1 {
+  color: var(--colors-neutrals-900);
+  font-family: "Open-Sans";
+  font-size: 1.125rem;
+  line-height: 150%;
+}
+
+.B2 {
+  color: var(--colors-neutrals-50);
+  font-family: "JetBrains-Mono";
+  font-size: 1.125rem;
+  line-height: 150%;
+  letter-spacing: -0.05625rem;
+  text-transform: uppercase;
+}
+
+/* Caption */
+.C1 {
+  color: var(--colors-neutrals-900);
+  font-family: "Open-Sans";
+  font-size: 1rem;
+  line-height: 145%;
+}
+
+.C2 {
+  color: var(--colors-neutrals-900);
+  font-family: "JetBrains-Mono";
+  font-size: 1rem;
+  line-height: 145%;
+  letter-spacing: -0.05rem;
+  text-transform: uppercase;
+}
+
+.C2-Code {
+  color: var(--colors-neutrals-900);
+  font-family: "JetBrains-Mono";
+  font-size: 1rem;
+  line-height: 170%;
+  letter-spacing: -0.05rem;
+}
+
+.F1 {
+  color: var(--colors-neutrals-900);
+  font-family: "Open-Sans";
+  font-size: 0.875rem;
+  line-height: 140%;
+}
+
+.F2 {
+  color: var(--colors-neutrals-900);
+  font-family: "JetBrains-Mono";
+  font-size: 0.875rem;
+  line-height: 140%;
+  letter-spacing: -0.04375rem;
+  text-transform: uppercase;
 }
