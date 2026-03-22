@@ -38,15 +38,3 @@
         }
     }
 }
-
-.Test1 {
-    background-color: aqua;
-}
-
-.Test2 {
-    background-color: var(--colors-neutrals-opacity);
-}
-
-.Test3 {
-    background-color: var(--colors-neutrals-opacity);
-}

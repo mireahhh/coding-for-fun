@@ -1,6 +1,38 @@
 :root {
-    
-/* colors */
+    /* vars */
+
+    /* size */
+
+    /* spasing */
+    --size-spasing-0: 0rem;
+    --size-spasing-4: 0.25rem;
+    --size-spasing-8: 0.5rem;
+    --size-spasing-12: 0.75rem;
+    --size-spasing-16: 1rem;
+    --size-spasing-20: 1.25rem;
+    --size-spasing-24: 1.5rem;
+    --size-spasing-32: 2rem;
+    --size-spasing-36: 2.25rem;
+    --size-spasing-40: 2.5rem;
+    --size-spasing-48: 3rem;
+    --size-spasing-56: 3.5rem;
+    --size-spasing-64: 4rem;
+    --size-spasing-72: 4.5rem;
+    --size-spasing-80: 5rem;
+    --size-spasing-88: 5.5rem;
+    --size-spasing-96: 6rem;
+    --size-spasing-120: 7.5rem;
+    --size-spasing-132: 8.25rem;
+    --size-spasing-144: 9rem;
+    --size-spasing-152: 9.5rem;
+    --size-spasing-160: 10rem;
+
+    /* radius */
+    --size-radius-0: 0rem;
+    --size-radius-2: 0.125rem;
+    --size-radius-4: 0.25rem;
+
+    /* colors */
 
     /* brand */
     --colors-brand-primary-DepthRose: #ff86db;
@@ -16,6 +48,5 @@
     --colors-neutrals-200: #cfcfcf;
     --colors-neutrals-450: #858585;
     --colors-neutrals-900: #1f1f1f;
-    /* TODO opacity * 20% ? */
     --colors-neutrals-opacity: #d6d6d633;
 }

@@ -22,6 +22,14 @@ html {
 
 a {
     text-decoration: none;
+    color: var(--colors-neutrals-900);
+
+    link,
+    visited,
+    hover,
+    active {
+        color: var(--colors-neutrals-900);
+    }
 }
 
 h1 {

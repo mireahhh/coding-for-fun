@@ -28,7 +28,7 @@
 /* Heading */
 .H0 {
   color: var(--colors-neutrals-900);
-  font-family: KairosSansW06-CondMedium;
+  font-family: "KairosSansW06-CondMedium";
   font-size: 6.5rem;
   letter-spacing: -0.325rem;
   text-transform: uppercase;
@@ -36,7 +36,7 @@
 
 .H1 {
   color: var(--colors-neutrals-900);
-  font-family: KairosSansW06-CondMedium;
+  font-family: "KairosSansW06-CondMedium";
   font-size: 4rem;
   letter-spacing: -0.14rem;
   text-transform: uppercase;
@@ -44,7 +44,7 @@
 
 .H1-Mob {
   color: var(--colors-neutrals-900);
-  font-family: KairosSansW06-CondMedium;
+  font-family: "KairosSansW06-CondMedium";
   font-size: 3.5rem;
   letter-spacing: -0.175rem;
   text-transform: uppercase;
@@ -52,7 +52,7 @@
 
 .H2 {
   color: var(--colors-neutrals-900);
-  font-family: KairosSansW06-CondMedium;
+  font-family: "KairosSansW06-CondMedium";
   font-size: 2.25rem;
   line-height: 110%;
   letter-spacing: -0.05625rem;
@@ -60,6 +60,7 @@
 
 .H3 {
   color: var(--colors-neutrals-900);
+  font-family: "KairosSansW06-CondMedium";
   font-size: 2rem;
   letter-spacing: -0.1rem;
   line-height: 115%;
@@ -82,7 +83,9 @@
   letter-spacing: -0.0375rem;
 }
 
-.S2 {}
+.S2 {
+  /* TODO  */
+}
 
 .S3 {
   color: var(--colors-neutrals-50);
