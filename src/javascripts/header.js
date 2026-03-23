@@ -1,17 +1,41 @@
+// Получаем высоту хедера
+const header = document.querySelector(".S_Header");
+const headerHeight = header.offsetHeight;
+
+// Применяем отступ к контенту
+const mainContent = document.querySelector(".S_Main");
+mainContent.style.paddingTop = headerHeight + "px";
+
+// Обновляем при изменении размера окна
+window.addEventListener("resize", function () {
+  const newHeaderHeight = header.offsetHeight;
+  mainContent.style.paddingTop = newHeaderHeight + "px";
+});
+
 let isMenuOpen = false;
 
-function toggleMenu() {
-  isMenuOpen = !isMenuOpen;
+const headerBurgerButtom = document.querySelector(".А_HeaderBurgerButtom");
+headerBurgerButtom.addEventListener("click", () => {
+  isMenuOpen = true;
+  headerBurgerButtom.style.display = "none";
+  headerCrossButtom.style.display = "flex";
+});
 
-  if (isMenuOpen) {
-    console.log("Меню открыто");
-  } else {
-    console.log("Меню закрыто");
-  }
-}
+const headerCrossButtom = document.querySelector(".А_HeaderCrossButtom");
+headerCrossButtom.addEventListener("click", () => {
+  isMenuOpen = false;
+  headerCrossButtom.style.display = "none";
+  headerBurgerButtom.style.display = "flex";
+});
 
-const burgerButton = document.querySelector(".А_HeaderBurgerMenu");
+const input = document.getElementById("headerSearchBar");
+const btn = document.querySelector(".Q_HeaderSearchIcon");
 
-if (burgerButton) {
-  burgerButton.addEventListener("click", toggleMenu);
-}
+btn.addEventListener("click", () => {
+  input.value = "";
+  input.focus();
+});
+
+input.addEventListener("input", () => {
+  btn.style.opacity = input.value ? "1" : "0.5";
+});

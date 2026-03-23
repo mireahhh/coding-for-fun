@@ -1,3 +1,4 @@
 import "../stylesheets/index.css";
-
 console.log("css is entry");
+
+import "./header.js";

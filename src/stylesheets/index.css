@@ -1,19 +1,14 @@
 @import 'reset.css';
+@import 'reset2.css';
 @import 'fonts.css';
 @import 'layout.css';
 @import 'vars.css';
-
-@import 'udf/quarks.css';
-@import 'udf/atoms.css';
-@import 'udf/molecules.css';
-@import 'udf/wrappers.css';
-@import 'udf/collections.css';
-@import 'udf/organisms.css';
-@import 'udf/superorganisms.css';
-@import 'udf/udf.css';
+@import 'icons.css';
+@import 'test.css';
 
 
 html {
+    background-color: var(--colors-neutrals-body);
     scroll-padding-top: 100px;
     /* Высота вашей фиксированной шапки */
     scroll-behavior: smooth;
@@ -21,7 +16,6 @@ html {
 }
 
 a {
-    text-decoration: none;
     color: var(--colors-neutrals-900);
 
     link,
@@ -32,12 +26,28 @@ a {
     }
 }
 
-h1 {
-    /* TODO для теста! */
-    margin: 50px;
+a:hover {
+    opacity: var(--official-interaction-hover-opacity);
 }
 
-h2 {
-    /* TODO для теста! */
-    margin: 20px;
+a:active {
+    transform: scale(var(--official-interaction-link-active-transform));
 }
+
+a:focus-visible {
+    outline: var(--size-spacing-2) dashed var(--colors-neutrals-900);
+    outline-offset: var(--size-spacing-2);
+}
+
+
+@import 'udf/quarks.css';
+@import 'udf/atoms.css';
+@import 'udf/molecules.css';
+@import 'udf/wrappers.css';
+@import 'udf/collections.css';
+@import 'udf/organisms.css';
+@import 'udf/superorganisms.css';
+@import 'udf/udf.css';
+@import 'udf/header.css';
+@import 'udf/main.css';
+@import 'responsive.css';

@@ -12,7 +12,6 @@ const htmlPages = [
   createPages("./src/index.html", "./index.html", ["index", "header"]),
   createPages("./src/pages/handbook.html", "./pages/handbook.html", [
     "index",
-    "header",
   ]),
   createPages("./src/pages/gallery.html", "./pages/gallery.html", ["index"]),
   createPages("./src/pages/about.html", "./pages/about.html", ["index"]),

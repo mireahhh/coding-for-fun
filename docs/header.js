@@ -1,16 +1,38 @@
 /******/ (() => { // webpackBootstrap
+// Получаем высоту хедера
+var header = document.querySelector(".S_Header");
+var headerHeight = header.offsetHeight;
+
+// Применяем отступ к контенту
+var mainContent = document.querySelector(".S_Main");
+mainContent.style.paddingTop = headerHeight + "px";
+
+// Обновляем при изменении размера окна
+window.addEventListener("resize", function () {
+  var newHeaderHeight = header.offsetHeight;
+  mainContent.style.paddingTop = newHeaderHeight + "px";
+});
 var isMenuOpen = false;
-function toggleMenu() {
-  isMenuOpen = !isMenuOpen;
-  if (isMenuOpen) {
-    console.log("Меню открыто");
-  } else {
-    console.log("Меню закрыто");
-  }
-}
-var burgerButton = document.querySelector(".А_HeaderBurgerMenu");
-if (burgerButton) {
-  burgerButton.addEventListener("click", toggleMenu);
-}
+var headerBurgerButtom = document.querySelector(".А_HeaderBurgerButtom");
+headerBurgerButtom.addEventListener("click", function () {
+  isMenuOpen = true;
+  headerBurgerButtom.style.display = "none";
+  headerCrossButtom.style.display = "flex";
+});
+var headerCrossButtom = document.querySelector(".А_HeaderCrossButtom");
+headerCrossButtom.addEventListener("click", function () {
+  isMenuOpen = false;
+  headerCrossButtom.style.display = "none";
+  headerBurgerButtom.style.display = "flex";
+});
+var input = document.getElementById("headerSearchBar");
+var btn = document.querySelector(".Q_HeaderSearchIcon");
+btn.addEventListener("click", function () {
+  input.value = "";
+  input.focus();
+});
+input.addEventListener("input", function () {
+  btn.style.opacity = input.value ? "1" : "0.5";
+});
 /******/ })()
 ;

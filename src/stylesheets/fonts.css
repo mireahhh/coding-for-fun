@@ -26,7 +26,7 @@
 
 
 /* Heading */
-.H0 {
+.I_FontH0 {
   color: var(--colors-neutrals-900);
   font-family: "KairosSansW06-CondMedium";
   font-size: 6.5rem;
@@ -34,7 +34,7 @@
   text-transform: uppercase;
 }
 
-.H1 {
+.I_FontH1 {
   color: var(--colors-neutrals-900);
   font-family: "KairosSansW06-CondMedium";
   font-size: 4rem;
@@ -42,7 +42,7 @@
   text-transform: uppercase;
 }
 
-.H1-Mob {
+.I_FontH1-Mob {
   color: var(--colors-neutrals-900);
   font-family: "KairosSansW06-CondMedium";
   font-size: 3.5rem;
@@ -50,7 +50,7 @@
   text-transform: uppercase;
 }
 
-.H2 {
+.I_FontH2 {
   color: var(--colors-neutrals-900);
   font-family: "KairosSansW06-CondMedium";
   font-size: 2.25rem;
@@ -58,7 +58,7 @@
   letter-spacing: -0.05625rem;
 }
 
-.H3 {
+.I_FontH3 {
   color: var(--colors-neutrals-900);
   font-family: "KairosSansW06-CondMedium";
   font-size: 2rem;
@@ -66,7 +66,7 @@
   line-height: 115%;
 }
 
-.H4 {
+.I_FontH4 {
   color: var(--colors-neutrals-900);
   font-family: "Open-Sans";
   font-size: 1.75rem;
@@ -75,7 +75,7 @@
 }
 
 /* Subtitle */
-.S1 {
+.I_FontS1 {
   color: var(--colors-neutrals-900);
   font-family: "Open-Sans";
   font-size: 1.5rem;
@@ -83,11 +83,11 @@
   letter-spacing: -0.0375rem;
 }
 
-.S2 {
+.I_FontS2 {
   /* TODO  */
 }
 
-.S3 {
+.I_FontS3 {
   color: var(--colors-neutrals-50);
   font-family: "JetBrains-Mono";
   font-size: 1.5rem;
@@ -96,14 +96,14 @@
   text-transform: uppercase;
 }
 
-.B1 {
+.I_FontB1 {
   color: var(--colors-neutrals-900);
   font-family: "Open-Sans";
   font-size: 1.125rem;
   line-height: 150%;
 }
 
-.B2 {
+.I_FontB2 {
   color: var(--colors-neutrals-50);
   font-family: "JetBrains-Mono";
   font-size: 1.125rem;
@@ -113,14 +113,14 @@
 }
 
 /* Caption */
-.C1 {
+.I_FontC1 {
   color: var(--colors-neutrals-900);
   font-family: "Open-Sans";
   font-size: 1rem;
   line-height: 145%;
 }
 
-.C2 {
+.I_FontC2 {
   color: var(--colors-neutrals-900);
   font-family: "JetBrains-Mono";
   font-size: 1rem;
@@ -129,7 +129,7 @@
   text-transform: uppercase;
 }
 
-.C2-Code {
+.I_FontC2-Code {
   color: var(--colors-neutrals-900);
   font-family: "JetBrains-Mono";
   font-size: 1rem;
@@ -137,14 +137,14 @@
   letter-spacing: -0.05rem;
 }
 
-.F1 {
+.I_FontF1 {
   color: var(--colors-neutrals-900);
   font-family: "Open-Sans";
   font-size: 0.875rem;
   line-height: 140%;
 }
 
-.F2 {
+.I_FontF2 {
   color: var(--colors-neutrals-900);
   font-family: "JetBrains-Mono";
   font-size: 0.875rem;

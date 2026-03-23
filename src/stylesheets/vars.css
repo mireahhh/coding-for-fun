@@ -3,29 +3,30 @@
 
     /* size */
 
-    /* spasing */
-    --size-spasing-0: 0rem;
-    --size-spasing-4: 0.25rem;
-    --size-spasing-8: 0.5rem;
-    --size-spasing-12: 0.75rem;
-    --size-spasing-16: 1rem;
-    --size-spasing-20: 1.25rem;
-    --size-spasing-24: 1.5rem;
-    --size-spasing-32: 2rem;
-    --size-spasing-36: 2.25rem;
-    --size-spasing-40: 2.5rem;
-    --size-spasing-48: 3rem;
-    --size-spasing-56: 3.5rem;
-    --size-spasing-64: 4rem;
-    --size-spasing-72: 4.5rem;
-    --size-spasing-80: 5rem;
-    --size-spasing-88: 5.5rem;
-    --size-spasing-96: 6rem;
-    --size-spasing-120: 7.5rem;
-    --size-spasing-132: 8.25rem;
-    --size-spasing-144: 9rem;
-    --size-spasing-152: 9.5rem;
-    --size-spasing-160: 10rem;
+    /* spacing */
+    --size-spacing-0: 0rem;
+    --size-spacing-2: 0.125rem;
+    --size-spacing-4: 0.25rem;
+    --size-spacing-8: 0.5rem;
+    --size-spacing-12: 0.75rem;
+    --size-spacing-16: 1rem;
+    --size-spacing-20: 1.25rem;
+    --size-spacing-24: 1.5rem;
+    --size-spacing-32: 2rem;
+    --size-spacing-36: 2.25rem;
+    --size-spacing-40: 2.5rem;
+    --size-spacing-48: 3rem;
+    --size-spacing-56: 3.5rem;
+    --size-spacing-64: 4rem;
+    --size-spacing-72: 4.5rem;
+    --size-spacing-80: 5rem;
+    --size-spacing-88: 5.5rem;
+    --size-spacing-96: 6rem;
+    --size-spacing-120: 7.5rem;
+    --size-spacing-132: 8.25rem;
+    --size-spacing-144: 9rem;
+    --size-spacing-152: 9.5rem;
+    --size-spacing-160: 10rem;
 
     /* radius */
     --size-radius-0: 0rem;
@@ -41,12 +42,32 @@
     --colors-brand-primary-CoreSun: #ffc300;
 
     /* neutrais */
-    --colors-neutrals-body: #f8f8f8;
-    --colors-neutrals-body: #cc00bb;
+    /* 255 ff */
     --colors-neutrals-50: #ffffff;
     --colors-neutrals-50: #9e05a6;
+    /* 248 f8 */
+    --colors-neutrals-body: #f8f8f8;
+    /* 248   1% 03*/
+    --colors-neutrals-body-01: #f8f8f803;
+    /* 233   50% 7f */
+    --colors-neutrals-100-50: #e9e9e97f;
+    /* 214 d6   20% 33*/
+    --colors-neutrals-150-20: #d6d6d633;
+    /* 207 cf  */
     --colors-neutrals-200: #cfcfcf;
+    --colors-neutrals-200: #2ba605;
+    /* 133 85 */
     --colors-neutrals-450: #858585;
+    /* 31 1f */
     --colors-neutrals-900: #1f1f1f;
-    --colors-neutrals-opacity: #d6d6d633;
+    --colors-neutrals-opacity: var(--colors-neutrals-150-20);
+
+    /* 1% 0.01 = hex03 */
+
+    /* official */
+    --official-size-icons: 1.5rem;
+    --official-interaction-hover-opacity: 0.7;
+    --official-interaction-button-active-transform: 0.95;
+    --official-interaction-link-active-transform: 0.98;
+
 }

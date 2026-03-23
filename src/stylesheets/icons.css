@@ -1,0 +1,43 @@
+.I_ButtonIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: var(--official-size-icons);
+  height: var(--official-size-icons);
+
+  padding: 0;
+  border: none;
+  background: transparent;
+
+  flex-shrink: 0;
+  cursor: pointer;
+  outline: none;
+  transition: opacity 0.15s ease;
+}
+
+.I_ButtonIcon:hover {
+  opacity: var(--official-interaction-hover-opacity);
+}
+
+.I_ButtonIcon:active {
+  transform: scale(var(--official-interaction-button-active-transform));
+}
+
+/* .Q_ButtonIcon:focus {
+  outline: none;
+} */
+
+.I_ButtonIcon:focus-visible {
+  outline: var(--size-spacing-2) dashed var(--colors-neutrals-900);
+  outline-offset: var(--size-spacing-2);
+}
+
+
+.I_ImgIcon {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  display: block;
+}
