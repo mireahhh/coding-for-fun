@@ -93,8 +93,41 @@
             flex-direction: row;
         }
     }
+
+    .O_HeaderMenuNavigation {
+        display: none;
+        position: absolute;
+        flex-direction: column;
+        width: 100%;
+
+        .C_HeaderMenuLinks {
+            display: none;
+        }
+
+        .C_HeaderMenuAddForms {
+            display: none;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+
+            a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: var(--size-spacing-40);
+                box-sizing: border-box;
+                position: relative;
+                border-bottom: 1px solid var(--colors-neutrals-900);
+            }
+        }
+    }
 }
 
+
+/* m 4 -> 3 */
 @media (max-width: 1368px) {
     .S_Header .O_HeaderNavigation .A_HeaderLogo {
         .A_HeaderLogoText {
@@ -107,50 +140,64 @@
     }
 }
 
+/* m 3 -> 2 */
 @media (max-width: 1152px) {
-    .S_Header .O_HeaderNavigation .O_HeaderHandbookNavigation {
-        column-gap: var(--size-spacing-8);
+    .S_Header {
+        .O_HeaderNavigation .O_HeaderHandbookNavigation {
+            column-gap: var(--size-spacing-8);
 
-        .C_HeaderLinks {
-            display: none;
+            .C_HeaderLinks {
+                display: none;
+            }
+
+            .А_HeaderBurgerButtom {
+                display: flex;
+            }
+
         }
 
-        .А_HeaderBurgerButtom {
+        .O_HeaderMenuNavigation .C_HeaderMenuLinks {
             display: flex;
         }
     }
 }
 
-@media (max-width: 428px) {
-    .S_Header .O_HeaderNavigation {
-        flex-direction: column;
-        row-gap: var(--size-spacing-16);
-        /* height: var(--size-spacing-160); */
-        padding-top: var(--size-spacing-56);
-        padding-bottom: var(--size-spacing-16);
-        height: auto;
-        align-items: center;
+/* m 2 -> 1 428 */
+@media (max-width: 834px) {
+    .S_Header {
+        .O_HeaderNavigation {
+            flex-direction: column;
+            row-gap: var(--size-spacing-16);
+            /* height: var(--size-spacing-160); */
+            padding-top: var(--size-spacing-56);
+            padding-bottom: var(--size-spacing-16);
+            height: auto;
+            align-items: center;
 
-        .O_HeaderHandbookNavigation {
-            height: var(--size-spacing-40);
-        }
-
-        .A_HeaderLogo {
-            height: var(--size-spacing-36);
-        }
-
-        .A_HeaderLogo {
-            .A_HeaderLogoText {
-                display: block;
+            .O_HeaderHandbookNavigation {
+                height: var(--size-spacing-40);
+                width: auto;
             }
 
-            .A_HeaderLogoMin {
+            .A_HeaderLogo {
+                height: var(--size-spacing-32);
+
+                .A_HeaderLogoText {
+                    display: block;
+                }
+
+                .A_HeaderLogoMin {
+                    display: none;
+                }
+            }
+
+            .C_HeaderAddForms {
                 display: none;
             }
         }
 
-        .C_HeaderAddForms {
-            display: none;
+        .O_HeaderMenuNavigation .C_HeaderMenuAddForms {
+            display: flex;
         }
     }
 }

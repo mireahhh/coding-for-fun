@@ -17,7 +17,7 @@ html {
 
 a {
     color: var(--colors-neutrals-900);
-
+    cursor: pointer;
     link,
     visited,
     hover,
@@ -34,6 +34,10 @@ a:active {
     transform: scale(var(--official-interaction-link-active-transform));
 }
 
+a:focus {
+    outline: none;
+}
+
 a:focus-visible {
     outline: var(--size-spacing-2) dashed var(--colors-neutrals-900);
     outline-offset: var(--size-spacing-2);
@@ -48,6 +52,10 @@ a:focus-visible {
 @import 'udf/organisms.css';
 @import 'udf/superorganisms.css';
 @import 'udf/udf.css';
-@import 'udf/header.css';
-@import 'udf/main.css';
+
+@import 'sections/header.css';
+@import 'sections/main.css';
+@import 'sections/footer.css';
+
+@import 'pages/handbook.css';
 @import 'responsive.css';

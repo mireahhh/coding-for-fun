@@ -1,10 +1,7 @@
-.I_ButtonIcon {
+.U_ButtonIcon {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  width: var(--official-size-icons);
-  height: var(--official-size-icons);
 
   padding: 0;
   border: none;
@@ -13,30 +10,56 @@
   flex-shrink: 0;
   cursor: pointer;
   outline: none;
-  transition: opacity 0.15s ease;
+
+  transition: opacity 0.15s ease, transform 0.1s ease;
+  /* transition: opacity 0.15s ease, transform 0.1s ease; */
 }
 
-.I_ButtonIcon:hover {
+.U_ButtonIcon:hover {
   opacity: var(--official-interaction-hover-opacity);
 }
 
-.I_ButtonIcon:active {
+.U_ButtonIcon:active {
   transform: scale(var(--official-interaction-button-active-transform));
 }
 
-/* .Q_ButtonIcon:focus {
+.Q_ButtonIcon:focus {
   outline: none;
-} */
+}
 
-.I_ButtonIcon:focus-visible {
+.U_ButtonIcon:focus-visible {
   outline: var(--size-spacing-2) dashed var(--colors-neutrals-900);
   outline-offset: var(--size-spacing-2);
 }
 
 
-.I_ImgIcon {
-  width: 100%;
+.U_ImgIconSizeH {
+  height: var(--official-size-icons);
+  aspect-ratio: 1;
+
+  object-fit: contain;
+  display: block;
+}
+
+.U_ImgIconFullH {
   height: 100%;
+  aspect-ratio: 1;
+
+  object-fit: contain;
+  display: block;
+}
+
+.U_ImgIconSizeW {
+  width: var(--official-size-icons);
+  aspect-ratio: 1;
+
+  object-fit: contain;
+  display: block;
+}
+
+.U_ImgIconFullW {
+  width: 100%;
+  aspect-ratio: 1;
 
   object-fit: contain;
   display: block;

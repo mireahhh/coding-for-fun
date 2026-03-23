@@ -1,0 +1,8 @@
+.S_Main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    padding-inline: 5%;
+    background-color: var(--colors-neutrals-body);
+}

@@ -1,0 +1,10 @@
+.S_Footer {}
+
+/* m 4 -> 3 */
+@media (max-width: 1368px) {}
+
+/* m 3 -> 2 */
+@media (max-width: 1152px) {}
+
+/* m 2 -> 1 */
+@media (max-width: 834px) {}

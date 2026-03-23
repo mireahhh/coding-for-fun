@@ -44,7 +44,7 @@
     /* neutrais */
     /* 255 ff */
     --colors-neutrals-50: #ffffff;
-    --colors-neutrals-50: #9e05a6;
+    --colors-neutrals-50: #bde90a;
     /* 248 f8 */
     --colors-neutrals-body: #f8f8f8;
     /* 248   1% 03*/
@@ -65,6 +65,7 @@
     /* 1% 0.01 = hex03 */
 
     /* official */
+    --test: #bf069a;
     --official-size-icons: 1.5rem;
     --official-interaction-hover-opacity: 0.7;
     --official-interaction-button-active-transform: 0.95;
