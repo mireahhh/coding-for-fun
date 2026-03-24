@@ -16,7 +16,6 @@ a {
   text-decoration: none;
   cursor: pointer;
   display: inline-block;
-  transition: opacity 0.15s ease;
 }
 
 input[type="search"]::-webkit-search-cancel-button {

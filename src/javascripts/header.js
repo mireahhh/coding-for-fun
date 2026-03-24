@@ -1,31 +1,5 @@
-const headerHandbookNavigation = document.querySelector(
-  ".O_HeaderHandbookNavigation",
-);
-const headerMenuNavigation = document.querySelector(".O_HeaderMenuNavigation");
-const headerBurgerButtom = document.querySelector(".А_HeaderBurgerButtom");
-const headerCrossButtom = document.querySelector(".А_HeaderCrossButtom");
-const headerSearchBar = document.querySelector(".M_HeaderSearchBar");
-const header = document.querySelector(".S_Header");
-
-function syncHeaderMenuBounds() {
-  if (
-    !headerMenuNavigation ||
-    !headerBurgerButtom ||
-    !headerSearchBar ||
-    !header
-  )
-    return;
-
-  const headerHandbookNavigationRect =
-    headerHandbookNavigation.getBoundingClientRect();
-  const headerRect = headerHandbookNavigation.getBoundingClientRect();
-
-  headerMenuNavigation.style.left = headerHandbookNavigationRect.x + "px";
-  headerMenuNavigation.style.top = headerRect.bottom + "px";
-  headerMenuNavigation.style.width = headerHandbookNavigationRect.width + "px";
-}
-
 // Получаем высоту хедера
+const header = document.querySelector(".S_Header");
 const headerHeight = header.offsetHeight;
 
 // Применяем отступ к контенту
@@ -33,38 +7,28 @@ const mainContent = document.querySelector(".S_Main");
 mainContent.style.paddingTop = headerHeight + "px";
 
 // Обновляем при изменении размера окна
-window.addEventListener("resize", () => {
+window.addEventListener("resize", function () {
   const newHeaderHeight = header.offsetHeight;
   mainContent.style.paddingTop = newHeaderHeight + "px";
-
-  if (isMenuOpen) {
-    syncHeaderMenuBounds();
-  }
 });
 
+const headerMenuButtom = document.querySelector(".O_HeaderMenuNavigation");
 let isMenuOpen = false;
 
-// Получаем высоту меню
-const getMenuHeight = () => {
-  return headerMenuNavigation.offsetHeight;
-};
-
+const headerBurgerButtom = document.querySelector(".А_HeaderBurgerButtom");
 headerBurgerButtom.addEventListener("click", () => {
   isMenuOpen = true;
   headerBurgerButtom.style.display = "none";
   headerCrossButtom.style.display = "flex";
-  headerMenuNavigation.style.display = "flex";
-  syncHeaderMenuBounds();
-  const windowHeight = window.innerHeight;
-  mainContent.style.paddingTop = windowHeight + "px";
+  headerMenuButtom.style.display = "flex";
 });
 
+const headerCrossButtom = document.querySelector(".А_HeaderCrossButtom");
 headerCrossButtom.addEventListener("click", () => {
   isMenuOpen = false;
   headerCrossButtom.style.display = "none";
+  headerMenuButtom.style.display = "none";
   headerBurgerButtom.style.display = "flex";
-  headerMenuNavigation.style.display = "none";
-  mainContent.style.paddingTop = header.offsetHeight + "px";
 });
 
 const input = document.getElementById("headerSearchBar");

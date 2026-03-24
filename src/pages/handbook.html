@@ -10,72 +10,102 @@
 
 <body>
   <header class="S_Header">
-    <div class="U_FontC2 O_HeaderNavigation">
-      <div class="A_HeaderLogo">
-        <a href="../index.html">
-          <img class="A_HeaderLogoText" src="../images/brand/A_LogoText.svg" alt="Главная" />
-          <img class="A_HeaderLogoMin" src="../images/brand/A_Logo.svg" alt="Главная" />
-        </a>
-      </div>
+    <div class="C_HeaderAll">
+      <div class="U_FontC2 O_HeaderNavigation">
+        <div class="A_HeaderLogo">
+          <a class="U_ALink" href="../index.html">
+            <img class="A_HeaderLogoText" src="../images/brand/A_LogoText.svg" alt="Главная" />
+            <img class="A_HeaderLogoMin" src="../images/brand/A_Logo.svg" alt="Главная" />
+          </a>
+        </div>
 
-      <div class="U_FontC2 O_HeaderHandbookNavigation">
-        <button class="U_ButtonIcon А_HeaderBurgerButtom" aria-label="Меню">
-          <img class="U_ImgIconFullH" src="../images/icons/menu-01-h.svg" alt="" />
-        </button>
-        <button class="U_ButtonIcon А_HeaderCrossButtom" aria-label="Закрыть">
-          <img class="U_ImgIconFullH" src="../images/icons/x-01.svg" alt="" />
-        </button>
-        <nav class="U_FontC2 C_HeaderLinks">
-          <a href="../pages/handbook.html">Учебник</a>
-          <a href="../pages/gallery.html">Галерея</a>
-          <a href="../pages/about.html">О&nbsp;проекте</a>
-        </nav>
-        <div class="U_FontC2 M_HeaderSearchBar">
-          <input id="headerSearchBar" class="U_FontC2" placeholder="Тайлинг на p5.js" />
-          <button class="U_ButtonIcon Q_HeaderSearchIcon" aria-label="Найти">
-            <img class="U_ImgIconFullH" src="../images/icons/search-01-50.svg" alt="" />
+        <div class="U_FontC2 O_HeaderHandbookNavigation">
+          <button class="U_ButtonIcon А_HeaderBurgerButtom" aria-label="Меню">
+            <img class="U_ImgIconFullH" src="../images/icons/menu-01-h.svg" alt="" />
           </button>
+          <button class="U_ButtonIcon А_HeaderCrossButtom" aria-label="Закрыть">
+            <img class="U_ImgIconFullH" src="../images/icons/x-01.svg" alt="" />
+          </button>
+          <nav class="U_FontC2 C_HeaderLinks">
+            <a class="U_ALink" href="../pages/handbook.html">Учебник</a>
+            <a class="U_ALink" href="../pages/gallery.html">Галерея</a>
+            <a class="U_ALink" href="../pages/about.html">О&nbsp;проекте</a>
+          </nav>
+          <div class="U_FontC2 M_HeaderSearchBar">
+            <input id="headerSearchBar" class="U_FontC2" placeholder="Тайлинг на p5.js" />
+            <button class="U_ButtonIcon Q_HeaderSearchIcon" aria-label="Найти">
+              <img class="U_ImgIconFullH" src="../images/icons/search-01-50.svg" alt="" />
+            </button>
+          </div>
+        </div>
+
+        <div class="U_FontC2 C_HeaderAddForms">
+          <p>[</p>
+          <a class="U_ALink" href="../pages/add_tutorial.html">&nbsp;Туториал&nbsp;</a>
+          <p>/</p>
+          <a class="U_ALink" href="../pages/add_work.html">&nbsp;Работа&nbsp;</a>
+          <p>]</p>
         </div>
       </div>
 
-      <div class="U_FontC2 C_HeaderAddForms">
-        <p>[</p>
-        <a href="../pages/add_tutorial.html">&nbsp;Туториал&nbsp;</a>
-        <p>/</p>
-        <a href="../pages/add_work.html">&nbsp;Работа&nbsp;</a>
-        <p>]</p>
+      <div class="U_FontC2 O_HeaderMenuNavigation">
+        <nav class="U_FontC2 C_HeaderMenuLinks">
+          <a class="U_ALink" href="../pages/handbook.html">Учебник</a>
+          <a class="U_ALink" href="../pages/gallery.html">Галерея</a>
+          <a class="U_ALink" href="../pages/about.html">О&nbsp;проекте</a>
+        </nav>
+        <nav class="U_FontC2 C_HeaderMenuAddForms">
+          <a class="U_ALink" href="../pages/add_tutorial.html">Туториал</a>
+          <a class="U_ALink" href="../pages/add_work.html">Работа</a>
+        </nav>
       </div>
-    </div>
-
-    <div class="U_FontC2 O_HeaderMenuNavigation">
-      <nav class="U_FontC2 C_HeaderMenuLinks">
-        <a href="../pages/handbook.html">Учебник</a>
-        <a href="../pages/gallery.html">Галерея</a>
-        <a href="../pages/about.html">О&nbsp;проекте</a>
-      </nav>
-      <nav class="U_FontC2 C_HeaderMenuAddForms">
-        <a href="../pages/add_tutorial.html">Туториал</a>
-        <a href="../pages/add_work.html">Работа</a>
-      </nav>
     </div>
   </header>
 
-  <main class="S_Main S_MainHandbook">
-    <div class="O_HandbookIntroScreen">
-      <div class="C_HandbookIntroRainSquares"></div>
-      <div class="M_HandbookIntroHeading">
+  <main class="S_Main">
+    <section class="O_IntroScreen">
+      <div class="C_IntroRainSquares">
+        <p class="U_FontH2">.</p>
+        <p class="U_FontH1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        <p class="U_FontH2">.</p>
+        <p class="U_FontH1">&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        <p class="U_FontH2">.</p>
+        <p class="U_FontH2">.</p>
       </div>
-      <h1 class="U_FontH0">Учебник-энциклопедия<br>креативного кодинга</h1>
-      <div class="W_HandbookIntroHandbookFooter">
-        <div class="U_FontS1 A_HandbookIntroHandbookAbout">Учебник развивает визуальное мышление через код и
-          демонстрирует,
-          как же из простых структур рождается сложная система.
-          Вы научитесь понимать принципы и закономерности, чтобы создавать свои визуальные алгоритмы.
+      <div class="C_IntroHeading">
+        <p class="U_FontC2 A_IntroHeadingAbout">
+          3 раздела, 8 модулей и 33 интерактивных туториала с экспериментами
+        </p>
+        <p class="U_FontC2 A_IntroHeadingApdate">
+          Обновлено 14 мая 2026
+        </p>
+      </div>
+      <h1 class="U_FontH0 A_IntroHeading">
+        Учебник-энциклопедия<br>креативного кодинга
+      </h1>
+      <div class="O_IntroFooter">
+        <p class="U_FontS1 A_IntroFooterText">
+          Учебник развивает визуальное мышление через код и
+          демонстрирует, как же из простых структур рождается сложная система. Вы научитесь понимать принципы и
+          закономерности, чтобы создавать свои визуальные алгоритмы.
+        </p>
+        <div class="O_IntroButtoms">
+          <a class="U_ALink U_FontC2 M_IntroAddTutor"
+            href="../pages/add_tutorial.html">+&nbsp;Добавить&nbsp;туториал</a>
+          <button id="shareHandbookButton" class="U_ButtonIcon A_IntroShare">
+            <img class="U_ImgIconFullH" src="../images/icons/share+.svg" alt="Поделиться">
+          </button>
         </div>
-        <div class="O_HandbookIntroAddTutorAndShare">+ Добавить туториал</div>
       </div>
-      <div class="C_HandbookIntroRainSquares"></div>
-    </div>
+      <div class="C_IntroRainSquares">
+        <p class="U_FontH2">.</p>
+        <p class="U_FontH1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        <p class="U_FontH2">.</p>
+        <p class="U_FontH1">&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        <p class="U_FontH2">.</p>
+        <p class="U_FontH2">.</p>
+      </div>
+    </section>
 
     <ul>
       <h2 id="part_1">Раздел 1</h2>
@@ -85,8 +115,8 @@
         --Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>
       </p>
       <ul>
-        <li><a href="parts/part_1/module_1.html">Модуль 1</a></li>
-        <li><a href="parts/part_1/module_2.html">Модуль 2</a></li>
+        <li><a class="U_ALink" href="parts/part_1/module_1.html">Модуль 1</a></li>
+        <li><a class="U_ALink" href="parts/part_1/module_2.html">Модуль 2</a></li>
       </ul>
       <h2 id="part_2">Раздел 2</h2>
       <p>
@@ -95,9 +125,9 @@
         --Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>
       </p>
       <ul>
-        <li><a href="parts/part_2/module_1.html">Модуль 1</a></li>
-        <li><a href="parts/part_2/module_2.html">Модуль 2</a></li>
-        <li><a href="parts/part_2/module_2.html">Модуль 2</a></li>
+        <li><a class="U_ALink" href="parts/part_2/module_1.html">Модуль 1</a></li>
+        <li><a class="U_ALink" href="parts/part_2/module_2.html">Модуль 2</a></li>
+        <li><a class="U_ALink" href="parts/part_2/module_2.html">Модуль 2</a></li>
       </ul>
       <h2 id="part_3">Раздел 3</h2>
       <p>
@@ -106,9 +136,9 @@
         --Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>
       </p>
       <ul>
-        <li><a href="parts/part_3/module_1.html">Модуль 1</a></li>
-        <li><a href="parts/part_3/module_2.html">Модуль 2</a></li>
-        <li><a href="parts/part_3/module_2.html">Модуль 2</a></li>
+        <li><a class="U_ALink" href="parts/part_3/module_1.html">Модуль 1</a></li>
+        <li><a class="U_ALink" href="parts/part_3/module_2.html">Модуль 2</a></li>
+        <li><a class="U_ALink" href="parts/part_3/module_2.html">Модуль 2</a></li>
       </ul>
     </ul>
   </main>

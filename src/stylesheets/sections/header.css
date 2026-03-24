@@ -5,6 +5,7 @@
     top: 0;
     left: 0;
     width: 100%;
+    height: min-content;
     box-sizing: border-box;
     padding-inline: 5%;
     /* background-color: transparent // Прозрачный */
@@ -12,115 +13,123 @@
     backdrop-filter: blur(50px);
     z-index: 256;
 
-    .O_HeaderNavigation {
+    .C_HeaderAll {
         display: flex;
-        flex-direction: row;
-        width: 100%;
-        justify-content: space-between;
-        height: var(--size-spacing-40);
-        padding-top: var(--size-spacing-40);
-        padding-bottom: var(--size-spacing-12);
-        align-items: center;
-        align-content: center;
-
-        .A_HeaderLogo {
-            height: 100%;
-
-            a {
-                display: flex;
-                align-items: center;
-                height: 100%;
-            }
-
-            img {
-                height: 100%;
-                width: auto;
-                display: block;
-            }
-
-            .A_HeaderLogoMin {
-                display: none;
-            }
-        }
-
-        .O_HeaderHandbookNavigation {
-            display: flex;
-            flex-direction: row;
-            height: 100%;
-            align-items: center;
-            column-gap: var(--size-spacing-20);
-
-            .А_HeaderBurgerButtom,
-            .А_HeaderCrossButtom {
-                display: none;
-                height: 100%;
-                aspect-ratio: 1;
-                padding: 0;
-                border-radius: var(--size-radius-4);
-                background: var(--colors-neutrals-100-50);
-                align-items: center;
-                justify-content: center;
-                flex-shrink: 0;
-            }
-
-            .C_HeaderLinks {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                column-gap: var(--size-spacing-20);
-            }
-
-            .M_HeaderSearchBar {
-                display: flex;
-                flex-direction: row;
-                height: 100%;
-                padding: 0.3125rem 0.625rem;
-                min-width: 246px;
-                max-width: 388px;
-                justify-content: space-between;
-                align-items: center;
-                /* align-self: stretch; */
-                box-sizing: border-box;
-                border-radius: var(--size-radius-0);
-                background: var(--colors-neutrals-100-50);
-            }
-        }
-
-        .C_HeaderAddForms {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            flex-direction: row;
-        }
-    }
-
-    .O_HeaderMenuNavigation {
-        display: none;
-        position: absolute;
         flex-direction: column;
         width: 100%;
+        height: min-content;
 
-        .C_HeaderMenuLinks {
-            display: none;
-        }
-
-        .C_HeaderMenuAddForms {
-            display: none;
-        }
-
-        nav {
+        .O_HeaderNavigation {
             display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: space-between;
+            height: var(--size-spacing-40);
+            padding-top: var(--size-spacing-40);
+            padding-bottom: var(--size-spacing-12);
+            align-items: center;
+            align-content: center;
+
+            .A_HeaderLogo {
+                height: 100%;
+
+                a {
+                    display: flex;
+                    align-items: center;
+                    height: 100%;
+                }
+
+                img {
+                    height: 100%;
+                    width: auto;
+                    display: block;
+                }
+
+                .A_HeaderLogoMin {
+                    display: none;
+                }
+            }
+
+            .O_HeaderHandbookNavigation {
+                display: flex;
+                flex-direction: row;
+                height: 100%;
+                align-items: center;
+                column-gap: var(--size-spacing-20);
+
+                .А_HeaderBurgerButtom,
+                .А_HeaderCrossButtom {
+                    display: none;
+                    height: 100%;
+                    aspect-ratio: 1;
+                    padding: 0;
+                    border-radius: var(--size-radius-4);
+                    background: var(--colors-neutrals-100-50);
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                }
+
+                .C_HeaderLinks {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    column-gap: var(--size-spacing-20);
+                }
+
+                .M_HeaderSearchBar {
+                    display: flex;
+                    flex-direction: row;
+                    height: 100%;
+                    padding: 0.3125rem 0.625rem;
+                    min-width: 246px;
+                    max-width: 388px;
+                    justify-content: space-between;
+                    align-items: center;
+                    /* align-self: stretch; */
+                    box-sizing: border-box;
+                    border-radius: var(--size-radius-0);
+                    background: var(--colors-neutrals-100-50);
+                }
+            }
+
+            .C_HeaderAddForms {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                flex-direction: row;
+            }
+        }
+
+        .O_HeaderMenuNavigation {
+            display: none;
             flex-direction: column;
             width: 100%;
+            height: min-content;
+            padding-bottom: var(--size-spacing-12);
 
-            a {
+            .C_HeaderMenuLinks {
+                display: none;
+            }
+
+            .C_HeaderMenuAddForms {
+                display: none;
+            }
+
+            nav {
                 display: flex;
-                align-items: center;
-                justify-content: center;
-                height: var(--size-spacing-40);
-                box-sizing: border-box;
-                position: relative;
-                border-bottom: 1px solid var(--colors-neutrals-900);
+                flex-direction: column;
+                width: 100%;
+
+                a {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: var(--size-spacing-40);
+                    box-sizing: border-box;
+                    position: relative;
+                    border-bottom: 1px solid var(--colors-neutrals-900);
+                }
             }
         }
     }
@@ -129,7 +138,7 @@
 
 /* m 4 -> 3 */
 @media (max-width: 1368px) {
-    .S_Header .O_HeaderNavigation .A_HeaderLogo {
+    .S_Header .C_HeaderAll .O_HeaderNavigation .A_HeaderLogo {
         .A_HeaderLogoText {
             display: none;
         }
@@ -142,7 +151,7 @@
 
 /* m 3 -> 2 */
 @media (max-width: 1152px) {
-    .S_Header {
+    .S_Header .C_HeaderAll {
         .O_HeaderNavigation .O_HeaderHandbookNavigation {
             column-gap: var(--size-spacing-8);
 
@@ -153,7 +162,6 @@
             .А_HeaderBurgerButtom {
                 display: flex;
             }
-
         }
 
         .O_HeaderMenuNavigation .C_HeaderMenuLinks {
@@ -162,13 +170,12 @@
     }
 }
 
-/* m 2 -> 1 428 */
-@media (max-width: 834px) {
-    .S_Header {
+/* m 2 -> 1 */
+@media (max-width: 904px) {
+    .S_Header .C_HeaderAll {
         .O_HeaderNavigation {
             flex-direction: column;
             row-gap: var(--size-spacing-16);
-            /* height: var(--size-spacing-160); */
             padding-top: var(--size-spacing-56);
             padding-bottom: var(--size-spacing-16);
             height: auto;

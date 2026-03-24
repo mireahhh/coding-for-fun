@@ -1,3 +1,4 @@
+/* Buttom */
 .U_ButtonIcon {
   display: flex;
   align-items: center;
@@ -12,7 +13,6 @@
   outline: none;
 
   transition: opacity 0.15s ease, transform 0.1s ease;
-  /* transition: opacity 0.15s ease, transform 0.1s ease; */
 }
 
 .U_ButtonIcon:hover {
@@ -33,6 +33,39 @@
 }
 
 
+/* A Link */
+.U_ALink {
+  color: var(--colors-neutrals-900);
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+
+  link,
+  visited,
+  hover,
+  active {
+    color: var(--colors-neutrals-900);
+  }
+}
+
+.U_ALink:hover {
+  opacity: var(--official-interaction-hover-opacity);
+}
+
+.U_ALink:active {
+  transform: scale(var(--official-interaction-link-active-transform));
+}
+
+.U_ALink:focus {
+  outline: none;
+}
+
+.U_ALink:focus-visible {
+  outline: var(--size-spacing-2) dashed var(--colors-neutrals-900);
+  outline-offset: var(--size-spacing-2);
+}
+
+
+/* Img Icon */
 .U_ImgIconSizeH {
   height: var(--official-size-icons);
   aspect-ratio: 1;

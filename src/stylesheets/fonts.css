@@ -30,6 +30,7 @@
   color: var(--colors-neutrals-900);
   font-family: "KairosSansW06-CondMedium";
   font-size: 6.5rem;
+  line-height: auto;
   letter-spacing: -0.325rem;
   text-transform: uppercase;
 }
@@ -38,6 +39,7 @@
   color: var(--colors-neutrals-900);
   font-family: "KairosSansW06-CondMedium";
   font-size: 4rem;
+  line-height: auto;
   letter-spacing: -0.14rem;
   text-transform: uppercase;
 }
@@ -46,6 +48,7 @@
   color: var(--colors-neutrals-900);
   font-family: "KairosSansW06-CondMedium";
   font-size: 3.5rem;
+  line-height: auto;
   letter-spacing: -0.175rem;
   text-transform: uppercase;
 }
@@ -56,22 +59,25 @@
   font-size: 2.25rem;
   line-height: 110%;
   letter-spacing: -0.05625rem;
+  text-transform: auto;
 }
 
 .U_FontH3 {
   color: var(--colors-neutrals-900);
   font-family: "KairosSansW06-CondMedium";
   font-size: 2rem;
+  line-height: 115%; /* TODO! */
   letter-spacing: -0.1rem;
-  line-height: 115%;
+  text-transform: auto;
 }
 
 .U_FontH4 {
   color: var(--colors-neutrals-900);
   font-family: "Open-Sans";
   font-size: 1.75rem;
-  letter-spacing: -0.14rem;
   /* line-height: ?; TODO! */
+  letter-spacing: -0.14rem;
+  text-transform: auto;
 }
 
 /* Subtitle */
@@ -81,6 +87,7 @@
   font-size: 1.5rem;
   line-height: 130%;
   letter-spacing: -0.0375rem;
+  text-transform: auto;
 }
 
 .U_FontS2 {
@@ -101,6 +108,8 @@
   font-family: "Open-Sans";
   font-size: 1.125rem;
   line-height: 150%;
+  letter-spacing: auto;
+  text-transform: auto;
 }
 
 .U_FontB2 {
@@ -118,6 +127,8 @@
   font-family: "Open-Sans";
   font-size: 1rem;
   line-height: 145%;
+  letter-spacing: auto;
+  text-transform: auto;
 }
 
 .U_FontC2 {
@@ -135,6 +146,7 @@
   font-size: 1rem;
   line-height: 170%;
   letter-spacing: -0.05rem;
+  text-transform: auto;
 }
 
 .U_FontF1 {
@@ -142,6 +154,8 @@
   font-family: "Open-Sans";
   font-size: 0.875rem;
   line-height: 140%;
+  letter-spacing: auto;
+  text-transform: auto;
 }
 
 .U_FontF2 {

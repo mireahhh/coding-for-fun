@@ -1,0 +1,178 @@
+.O_IntroScreen {
+    display: flex;
+    flex-direction: column;
+    padding-block: var(--size-spacing-56);
+    padding-top: var(--size-spacing-20);
+    align-items: flex-start;
+    gap: var(--size-spacing-0);
+    align-self: stretch;
+
+    .C_IntroRainSquares {
+        display: flex;
+        flex-direction: row;
+        height: var(--size-spacing-40);
+        align-self: stretch;
+        justify-content: space-between;
+    }
+
+    .C_IntroHeading {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        align-content: flex-start;
+        gap: var(--size-spacing-12);
+        column-gap: var(--size-spacing-80);
+        align-self: stretch;
+        flex-wrap: wrap;
+        margin-bottom: var(--size-spacing-8);
+
+        .A_IntroHeadingAbout {
+            color: var(--colors-neutrals-450);
+        }
+
+        .A_IntroHeadingApdate {
+            color: var(--colors-neutrals-200);
+            text-align: right;
+            align-self: stretch;
+        }
+    }
+
+    .A_IntroHeading {
+        display: flex;
+        align-items: flex-end;
+        align-self: stretch;
+        margin-bottom: var(--size-spacing-32);
+        border-radius: var(--size-spacing-4);
+        backdrop-filter: blur(5px);
+    }
+
+    .O_IntroFooter {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        align-content: flex-end;
+        row-gap: var(--size-spacing-36);
+        column-gap: var(--size-spacing-132);
+        align-self: stretch;
+        justify-content: space-between;
+
+        .A_IntroFooterText {
+            display: flex;
+            align-items: flex-end;
+            align-content: flex-end;
+            gap: var(--size-spacing-24);
+            align-self: stretch;
+            flex-wrap: wrap;
+            max-width: 928px;
+            border-radius: var(--size-spacing-4);
+            backdrop-filter: blur(var(--size-spacing-5));
+        }
+
+        .O_IntroButtoms {
+            display: flex;
+            flex-direction: row;
+            width: min-content;
+            height: var(--size-spacing-50);
+            align-items: flex-end;
+            align-content: flex-end;
+            column-gap: var(--size-spacing-16);
+
+            .M_IntroAddTutor {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: var(--size-spacing-212);
+                min-height: var(--size-spacing-40);
+                padding: var(--size-spacing-4) var(--size-spacing-12);
+                margin: var(--size-radius-4) var(--size-radius-12);
+                justify-content: center;
+                align-items: center;
+                gap: var(--size-spacing-8);
+                flex-shrink: 0;
+                border-radius: var(--size-radius-00);
+                border: 1px solid var(--colors-neutrals-900);
+                background: var(--colors-neutrals-body-01);
+                backdrop-filter: blur(25px);
+            }
+
+            .A_IntroShare {
+                display: flex;
+                align-items: center;
+                height: 100%;
+            }
+        }
+    }
+}
+
+
+/* m 4 -> 3 */
+@media (max-width: 1368px) {}
+
+/* m 3 -> 2 */
+@media (max-width: 1152px) {
+
+    /* H0 -> H1 */
+    .U_FontH0 {
+        color: var(--colors-neutrals-900);
+        font-family: "KairosSansW06-CondMedium";
+        font-size: 4rem;
+        line-height: auto;
+        letter-spacing: -0.14rem;
+        text-transform: uppercase;
+    }
+
+    /* S1 -> B1 */
+    .U_FontS1 {
+        color: var(--colors-neutrals-900);
+        font-family: "Open-Sans";
+        font-size: 1.125rem;
+        line-height: 150%;
+        letter-spacing: auto;
+        text-transform: auto;
+    }
+}
+
+/* m 2 -> 1 */
+@media (max-width: 904px) {
+    .O_IntroScreen {
+        padding-block: var(--size-spacing-24);
+        padding-top: var(--size-spacing-4);
+
+        .C_IntroRainSquares p {
+            color: var(--colors-neutrals-200);
+        }
+
+        .O_IntroFooter {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .A_IntroHeading {
+            margin-bottom: var(--size-spacing-24);
+        }
+
+        .A_IntroHeading {
+            margin-bottom: var(--size-spacing-24);
+        }
+    }
+
+    /* H0 (H1) -> H1-mob */
+    .U_FontH0 {
+        color: var(--colors-neutrals-900);
+        font-family: "KairosSansW06-CondMedium";
+        font-size: 3.5rem;
+        line-height: auto;
+        letter-spacing: -0.175rem;
+        text-transform: uppercase;
+    }
+
+    /* S1 (B1) -> S1 */
+    .U_FontS1 {
+        color: var(--colors-neutrals-900);
+        font-family: "Open-Sans";
+        font-size: 1.5rem;
+        line-height: 130%;
+        letter-spacing: -0.0375rem;
+        text-transform: auto;
+    }
+}
