@@ -7,7 +7,7 @@
     width: 100%;
     height: min-content;
     box-sizing: border-box;
-    padding-inline: 5%;
+    padding-inline: 5vw;
     /* background-color: transparent // Прозрачный */
     background-color: var(--colors-neutrals-body-01);
     backdrop-filter: blur(50px);
@@ -23,6 +23,7 @@
             display: flex;
             flex-direction: row;
             width: 100%;
+            /* max-height: 25vh; */
             justify-content: space-between;
             height: var(--size-spacing-40);
             padding-top: var(--size-spacing-40);
@@ -175,19 +176,18 @@
     .S_Header .C_HeaderAll {
         .O_HeaderNavigation {
             flex-direction: column;
-            row-gap: var(--size-spacing-16);
-            padding-top: var(--size-spacing-56);
-            padding-bottom: var(--size-spacing-16);
+            row-gap: clamp(var(--size-spacing-1), var(--size-spacing-16), 3vh);
+            padding-block: clamp(var(--size-spacing-1), var(--size-spacing-16), 3vh);
             height: auto;
             align-items: center;
 
             .O_HeaderHandbookNavigation {
-                height: var(--size-spacing-40);
+                height: clamp(var(--size-spacing-4), var(--size-spacing-40), 10vh);
                 width: auto;
             }
 
             .A_HeaderLogo {
-                height: var(--size-spacing-32);
+                height: clamp(var(--size-spacing-3), var(--size-spacing-32), 8vh);
 
                 .A_HeaderLogoText {
                     display: block;

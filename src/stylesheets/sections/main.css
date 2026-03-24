@@ -4,8 +4,9 @@
     height: min-content;
     min-width: 88px;
     max-width: 1920px;
-    padding-inline: 5%;
-    width: 90%;
+    padding-inline: 5vw;
+    box-sizing: border-box;
+    width: 100%;
     flex-direction: column;
     gap: var(--size-spacing-0);
     background-color: var(--colors-neutrals-body);
@@ -20,7 +21,8 @@
 /* m 2 -> 1 */
 @media (max-width: 904px) {
     .S_Main {
-        padding-inline: 4%;
-        width: 92%;
+        padding-inline: 4vw;
+        box-sizing: border-box;
+        width: 100%;
     }
 }
