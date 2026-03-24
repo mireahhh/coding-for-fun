@@ -18,7 +18,7 @@ shareHandbookButton.addEventListener("click", /*#__PURE__*/_asyncToGenerator(/*#
         _context.n = 1;
         return navigator.share({
           title: "Coding for Fun!",
-          text: "Web-учебник креативного кода",
+          text: "Web-учебник креативного кода\n",
           url: "https://mireahhh.github.io/coding-for-fun/index.html"
         });
       case 1:
