@@ -240,7 +240,7 @@
       </div>
     </section>
 
-    <button class="bt1">Поменять</button>
+    <button class="bt1">Поменять1</button>
 
     <ol class="ol1">
       <li>Первый</li>
@@ -267,6 +267,8 @@
         transition.forEach(index => {
           list.appendChild(originalItems[index]);
         });
+
+        list.children[1].style.display = 'none';
       });
     </script>
 
