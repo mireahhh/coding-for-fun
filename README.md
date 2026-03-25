@@ -15,6 +15,9 @@
 Зарегаться в ГИТ на ПК
     git config --global user.name "mireahhh"
     git config --global user.email mireahhh@yandex.ru
+Проверить кто прописан
+    git config user.name
+    git config user.email
 В VS Code F1 -> Git:Clone
     git clone
 ```
