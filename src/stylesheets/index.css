@@ -28,6 +28,7 @@ html {
 @import 'sections/header.css';
 @import 'sections/main.css';
 @import 'sections/intro.css';
+@import 'sections/filter.css';
 @import 'sections/footer.css';
 
 @import 'pages/handbook.css';

@@ -66,6 +66,13 @@
 
 
 /* Img Icon */
+.U_ImgIcon {
+  aspect-ratio: 1;
+
+  object-fit: contain;
+  display: block;
+}
+
 .U_ImgIconSizeH {
   height: var(--official-size-icons);
   aspect-ratio: 1;

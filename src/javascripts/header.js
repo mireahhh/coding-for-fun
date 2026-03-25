@@ -12,33 +12,34 @@ window.addEventListener("resize", function () {
   mainContent.style.paddingTop = newHeaderHeight + "px";
 });
 
-const headerMenuButtom = document.querySelector(".O_HeaderMenuNavigation");
-let isMenuOpen = false;
 
-const headerBurgerButtom = document.querySelector(".А_HeaderBurgerButtom");
-headerBurgerButtom.addEventListener("click", () => {
-  isMenuOpen = true;
-  headerBurgerButtom.style.display = "none";
-  headerCrossButtom.style.display = "flex";
-  headerMenuButtom.style.display = "flex";
+let isHeaderMenuOpen = false;
+const headerMenuButton = document.querySelector(".O_HeaderMenuNavigation");
+
+const headerBurgerButton = document.querySelector(".А_HeaderBurgerButton");
+headerBurgerButton.addEventListener("click", () => {
+  isHeaderMenuOpen = true;
+  headerBurgerButton.style.display = "none";
+  headerCrossButton.style.display = "flex";
+  headerMenuButton.style.display = "flex";
 });
 
-const headerCrossButtom = document.querySelector(".А_HeaderCrossButtom");
-headerCrossButtom.addEventListener("click", () => {
-  isMenuOpen = false;
-  headerCrossButtom.style.display = "none";
-  headerMenuButtom.style.display = "none";
-  headerBurgerButtom.style.display = "flex";
+const headerCrossButton = document.querySelector(".А_HeaderCrossButton");
+headerCrossButton.addEventListener("click", () => {
+  isHeaderMenuOpen = false;
+  headerCrossButton.style.display = "none";
+  headerMenuButton.style.display = "none";
+  headerBurgerButton.style.display = "flex";
 });
 
-const input = document.getElementById("headerSearchBar");
-const btn = document.querySelector(".Q_HeaderSearchIcon");
+const headerSearchBar = document.getElementById("headerSearchBar");
+const headerSearchButton = document.querySelector(".Q_HeaderSearchIcon");
 
-btn.addEventListener("click", () => {
-  input.value = "";
-  input.focus();
+headerSearchButton.addEventListener("click", () => {
+  headerSearchBar.value = "";
+  headerSearchBar.focus();
 });
 
-input.addEventListener("input", () => {
-  btn.style.opacity = input.value ? "1" : "0.5";
+headerSearchBar.addEventListener("input", () => {
+  headerSearchButton.style.opacity = headerSearchBar.value ? "1" : "0.5";
 });

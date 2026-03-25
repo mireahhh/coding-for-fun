@@ -1,17 +1,21 @@
 :root {
     /* vars */
 
+    /* fonts */
+    --font-KairosSans: "KairosSansW06 CondMedium", "Impact", "Arial Black", Helvetica, sans-serif;
+    --font-JetBrains: "JetBrains Mono", "Courier New", Courier, monospace;
+    --font-OpenSans: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     /* size */
 
     /* spacing */
     --size-spacing-0: 0rem;
-    --size-spacing-1: 0.625rem;
+    --size-spacing-1: 0.0625rem;
     --size-spacing-2: 0.125rem;
     --size-spacing-3: 0.1875rem;
     --size-spacing-4: 0.25rem;
     --size-spacing-5: 0.3125rem;
     --size-spacing-8: 0.5rem;
-    --size-spacing-8: 0.625rem;
+    --size-spacing-10: 0.625rem;
     --size-spacing-12: 0.75rem;
     --size-spacing-16: 1rem;
     --size-spacing-20: 1.25rem;
@@ -32,7 +36,9 @@
     --size-spacing-144: 9rem;
     --size-spacing-152: 9.5rem;
     --size-spacing-160: 10rem;
+    --size-spacing-192: 12rem;
     --size-spacing-212: 13.25rem;
+    --size-spacing-240: 15rem;
 
     /* radius */
     --size-radius-0: 0rem;
@@ -56,7 +62,9 @@
     --colors-neutrals-body-01: #f8f8f803;
     /* 233   50% 7f */
     --colors-neutrals-100-50: #e9e9e97f;
-    /* 214 d6   20% 33*/
+    /* 214 d6 */
+    --colors-neutrals-150: #d6d6d6;
+    /* 214 d6   20% 33 */
     --colors-neutrals-150-20: #d6d6d633;
     /* 207 cf  */
     --colors-neutrals-200: #cfcfcf;

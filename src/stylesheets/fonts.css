@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'KairosSansW06-CondMedium';
+  font-family: "KairosSansW06 CondMedium";
   src: url('../fonts/Kairos-Sans-W06-Cond-Medium.woff') format('woff'),
     url('../fonts/Kairos-Sans-W06-Cond-Medium.woff2') format('woff2');
   font-weight: 500;
@@ -7,7 +7,7 @@
 }
 
 @font-face {
-  font-family: 'JetBrains-Mono';
+  font-family: "JetBrains Mono";
   src: url('../fonts/JetBrainsMono-Medium.ttf') format('ttf'),
     url('../fonts/JetBrainsMono-Medium.woff2') format('woff2');
   font-weight: 400;
@@ -15,7 +15,7 @@
 }
 
 @font-face {
-  font-family: 'Open-Sans';
+  font-family: "Open Sans";
   src: url('../fonts/OpenSans-Regular.woff') format('woff'),
     url('../fonts/OpenSans-Regular.woff2') format('woff2');
   font-weight: 400;
@@ -25,8 +25,9 @@
 
 /* Heading */
 .U_FontH0 {
+  /* U_FontH0 */
   color: var(--colors-neutrals-900);
-  font-family: "KairosSansW06-CondMedium";
+  font-family: var(--font-KairosSans);
   font-size: 6.5rem;
   line-height: auto;
   letter-spacing: -0.325rem;
@@ -34,8 +35,9 @@
 }
 
 .U_FontH1 {
+  /* U_FontH1 */
   color: var(--colors-neutrals-900);
-  font-family: "KairosSansW06-CondMedium";
+  font-family: var(--font-KairosSans);
   font-size: 4rem;
   line-height: auto;
   letter-spacing: -0.14rem;
@@ -43,8 +45,9 @@
 }
 
 .U_FontH1-Mob {
+  /* U_FontH1-Mob */
   color: var(--colors-neutrals-900);
-  font-family: "KairosSansW06-CondMedium";
+  font-family: var(--font-KairosSans);
   font-size: 3.5rem;
   line-height: auto;
   letter-spacing: -0.175rem;
@@ -52,8 +55,9 @@
 }
 
 .U_FontH2 {
+  /* U_FontH2 */
   color: var(--colors-neutrals-900);
-  font-family: "KairosSansW06-CondMedium";
+  font-family: var(--font-KairosSans);
   font-size: 2.25rem;
   line-height: 110%;
   letter-spacing: -0.05625rem;
@@ -61,17 +65,20 @@
 }
 
 .U_FontH3 {
+  /* U_FontH3 */
   color: var(--colors-neutrals-900);
-  font-family: "KairosSansW06-CondMedium";
+  font-family: var(--font-KairosSans);
   font-size: 2rem;
-  line-height: 115%; /* TODO! */
+  line-height: 115%;
+  /* TODO! */
   letter-spacing: -0.1rem;
   text-transform: auto;
 }
 
 .U_FontH4 {
+  /* U_FontH4 */
   color: var(--colors-neutrals-900);
-  font-family: "Open-Sans";
+  font-family: var(--font-OpenSans);
   font-size: 1.75rem;
   /* line-height: ?; TODO! */
   letter-spacing: -0.14rem;
@@ -80,8 +87,9 @@
 
 /* Subtitle */
 .U_FontS1 {
+  /* U_FontS1 */
   color: var(--colors-neutrals-900);
-  font-family: "Open-Sans";
+  font-family: var(--font-OpenSans);
   font-size: 1.5rem;
   line-height: 130%;
   letter-spacing: -0.0375rem;
@@ -89,12 +97,14 @@
 }
 
 .U_FontS2 {
+  /* U_FontS2 */
   /* TODO  */
 }
 
 .U_FontS3 {
+  /* U_FontS3 */
   color: var(--colors-neutrals-50);
-  font-family: "JetBrains-Mono";
+  font-family: var(--font-JetBrains);
   font-size: 1.5rem;
   line-height: 130%;
   letter-spacing: -0.075rem;
@@ -102,8 +112,9 @@
 }
 
 .U_FontB1 {
+  /* U_FontB1 */
   color: var(--colors-neutrals-900);
-  font-family: "Open-Sans";
+  font-family: var(--font-OpenSans);
   font-size: 1.125rem;
   line-height: 150%;
   letter-spacing: auto;
@@ -111,8 +122,9 @@
 }
 
 .U_FontB2 {
+  /* U_FontB2 */
   color: var(--colors-neutrals-50);
-  font-family: "JetBrains-Mono";
+  font-family: var(--font-JetBrains);
   font-size: 1.125rem;
   line-height: 150%;
   letter-spacing: -0.05625rem;
@@ -121,8 +133,9 @@
 
 /* Caption */
 .U_FontC1 {
+  /* U_FontC1 */
   color: var(--colors-neutrals-900);
-  font-family: "Open-Sans";
+  font-family: var(--font-OpenSans);
   font-size: 1rem;
   line-height: 145%;
   letter-spacing: auto;
@@ -130,8 +143,9 @@
 }
 
 .U_FontC2 {
+  /* U_FontC2 */
   color: var(--colors-neutrals-900);
-  font-family: "JetBrains-Mono";
+  font-family: var(--font-JetBrains);
   font-size: 1rem;
   line-height: 145%;
   letter-spacing: -0.05rem;
@@ -139,8 +153,9 @@
 }
 
 .U_FontC2-Code {
+  /* U_FontC2-Code */
   color: var(--colors-neutrals-900);
-  font-family: "JetBrains-Mono";
+  font-family: var(--font-JetBrains);
   font-size: 1rem;
   line-height: 170%;
   letter-spacing: -0.05rem;
@@ -148,8 +163,9 @@
 }
 
 .U_FontF1 {
+  /* U_FontF1 */
   color: var(--colors-neutrals-900);
-  font-family: "Open-Sans";
+  font-family: var(--font-OpenSans);
   font-size: 0.875rem;
   line-height: 140%;
   letter-spacing: auto;
@@ -157,8 +173,9 @@
 }
 
 .U_FontF2 {
+  /* U_FontF2 */
   color: var(--colors-neutrals-900);
-  font-family: "JetBrains-Mono";
+  font-family: var(--font-JetBrains);
   font-size: 0.875rem;
   line-height: 140%;
   letter-spacing: -0.04375rem;

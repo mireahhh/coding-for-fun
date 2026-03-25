@@ -12,30 +12,30 @@ window.addEventListener("resize", function () {
   var newHeaderHeight = header.offsetHeight;
   mainContent.style.paddingTop = newHeaderHeight + "px";
 });
-var headerMenuButtom = document.querySelector(".O_HeaderMenuNavigation");
-var isMenuOpen = false;
-var headerBurgerButtom = document.querySelector(".А_HeaderBurgerButtom");
-headerBurgerButtom.addEventListener("click", function () {
-  isMenuOpen = true;
-  headerBurgerButtom.style.display = "none";
-  headerCrossButtom.style.display = "flex";
-  headerMenuButtom.style.display = "flex";
+var isHeaderMenuOpen = false;
+var headerMenuButton = document.querySelector(".O_HeaderMenuNavigation");
+var headerBurgerButton = document.querySelector(".А_HeaderBurgerButton");
+headerBurgerButton.addEventListener("click", function () {
+  isHeaderMenuOpen = true;
+  headerBurgerButton.style.display = "none";
+  headerCrossButton.style.display = "flex";
+  headerMenuButton.style.display = "flex";
 });
-var headerCrossButtom = document.querySelector(".А_HeaderCrossButtom");
-headerCrossButtom.addEventListener("click", function () {
-  isMenuOpen = false;
-  headerCrossButtom.style.display = "none";
-  headerMenuButtom.style.display = "none";
-  headerBurgerButtom.style.display = "flex";
+var headerCrossButton = document.querySelector(".А_HeaderCrossButton");
+headerCrossButton.addEventListener("click", function () {
+  isHeaderMenuOpen = false;
+  headerCrossButton.style.display = "none";
+  headerMenuButton.style.display = "none";
+  headerBurgerButton.style.display = "flex";
 });
-var input = document.getElementById("headerSearchBar");
-var btn = document.querySelector(".Q_HeaderSearchIcon");
-btn.addEventListener("click", function () {
-  input.value = "";
-  input.focus();
+var headerSearchBar = document.getElementById("headerSearchBar");
+var headerSearchButton = document.querySelector(".Q_HeaderSearchIcon");
+headerSearchButton.addEventListener("click", function () {
+  headerSearchBar.value = "";
+  headerSearchBar.focus();
 });
-input.addEventListener("input", function () {
-  btn.style.opacity = input.value ? "1" : "0.5";
+headerSearchBar.addEventListener("input", function () {
+  headerSearchButton.style.opacity = headerSearchBar.value ? "1" : "0.5";
 });
 /******/ })()
 ;
