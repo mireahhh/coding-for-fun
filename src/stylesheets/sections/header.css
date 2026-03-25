@@ -1,24 +1,24 @@
 .S_Header {
     display: flex;
     flex-direction: column;
-    min-width: 88px;
-    max-width: 1920px;
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
-    left: 50%;
-    transform: translateX(-50%);
     height: min-content;
-    box-sizing: border-box;
-    padding-inline: 5vw;
     /* background-color: transparent // Прозрачный */
     background-color: var(--colors-neutrals-body-01);
     backdrop-filter: blur(50px);
+    align-items: center;
     z-index: 256;
 
     .C_HeaderAll {
         display: flex;
         flex-direction: column;
+        min-width: 88px;
+        max-width: 1920px;
+        padding-inline: 5%;
+        box-sizing: border-box;
         width: 100%;
         height: min-content;
 

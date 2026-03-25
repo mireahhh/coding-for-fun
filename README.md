@@ -24,7 +24,18 @@ cd new-static-site-boilerplate
 Установите node js (Решили, короче фронтэндеры писать бэкенд, а ничего кроме js не знают)))
 
 ```bash
+https://nodejs.org/en/download
+```
+
+Затем установите `yarn` через `npm`
+
+```bash
 npm install --global yarn
+```
+
+И установите зависимости `yarn`
+
+```bash
 yarn
 ```
 
