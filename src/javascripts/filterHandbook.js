@@ -43,7 +43,7 @@ const setFiltersPart1Module1Tutorial2 = new Set([
 const setFiltersPart1Module1Tutorial3 = new Set([
   "filterComplexityInitial",
   "filterLibraryVanillajs",
-  "filterComplexityAdvanced",
+  "filterFormatTask",
   "filterVerificationExpert",
 ]);
 const filtersPart1Module1 = [
@@ -88,21 +88,21 @@ const setFiltersPart1Module2 = new Set([
 const filtersPart1 = [setFiltersPart1Module1, setFiltersPart1Module2];
 // p2m1
 const setFiltersPart2Module1Tutorial1 = new Set([
-  "filterComplexityInitial",
+  "filterComplexityMiddle",
   "filterLibraryVanillajs",
   "filterFormatTechnique",
   "filterVerificationExpert",
 ]);
 const setFiltersPart2Module1Tutorial2 = new Set([
-  "filterComplexityInitial",
-  "filterLibraryP5js",
+  "filterComplexityMiddle",
+  "filterLibraryVanillajs",
   "filterFormatTechnique",
   "filterVerificationExpert",
 ]);
 const setFiltersPart2Module1Tutorial3 = new Set([
   "filterComplexityMiddle",
   "filterLibraryVanillajs",
-  "filterFormatTechnique",
+  "filterFormatTask",
   "filterVerificationExpert",
 ]);
 const filtersPart2Module1 = [
@@ -116,9 +116,24 @@ const setFiltersPart2Module1 = new Set([
   ...setFiltersPart2Module1Tutorial3,
 ]);
 // p2m2
-const setFiltersPart2Module2Tutorial1 = new Set(filtersAll.flat());
-const setFiltersPart2Module2Tutorial2 = new Set(filtersAll.flat());
-const setFiltersPart2Module2Tutorial3 = new Set(filtersAll.flat());
+const setFiltersPart2Module2Tutorial1 = new Set([
+  "filterComplexityMiddle",
+  "filterLibraryP5js",
+  "filterFormatVariation",
+  "filterVerificationExpert",
+]);
+const setFiltersPart2Module2Tutorial2 = new Set([
+  "filterComplexityMiddle",
+  "filterLibraryP5js",
+  "filterFormatVariation",
+  "filterVerificationExpert",
+]);
+const setFiltersPart2Module2Tutorial3 = new Set([
+  "filterComplexityMiddle",
+  "filterLibraryP5js",
+  "filterFormatTask",
+  "filterVerificationExpert",
+]);
 const filtersPart2Module2 = [
   setFiltersPart2Module2Tutorial1,
   setFiltersPart2Module2Tutorial2,
@@ -130,9 +145,24 @@ const setFiltersPart2Module2 = new Set([
   ...setFiltersPart2Module2Tutorial3,
 ]);
 // p2m3
-const setFiltersPart2Module3Tutorial1 = new Set(filtersAll.flat());
-const setFiltersPart2Module3Tutorial2 = new Set(filtersAll.flat());
-const setFiltersPart2Module3Tutorial3 = new Set(filtersAll.flat());
+const setFiltersPart2Module3Tutorial1 = new Set([
+  "filterComplexityMiddle",
+  "filterLibraryThreejs",
+  "filterFormatTask",
+  "filterVerificationExpert",
+]);
+const setFiltersPart2Module3Tutorial2 = new Set([
+  "filterComplexityMiddle",
+  "filterLibraryThreejs",
+  "filterFormatTask",
+  "filterVerificationExpert",
+]);
+const setFiltersPart2Module3Tutorial3 = new Set([
+  "filterComplexityMiddle",
+  "filterLibraryThreejs",
+  "filterFormatVariation",
+  "filterVerificationExpert",
+]);
 const filtersPart2Module3 = [
   setFiltersPart2Module3Tutorial1,
   setFiltersPart2Module3Tutorial2,
@@ -149,9 +179,24 @@ const filtersPart2 = [
   setFiltersPart2Module3,
 ];
 // p3m1
-const setFiltersPart3Module1Tutorial1 = new Set(filtersAll.flat());
-const setFiltersPart3Module1Tutorial2 = new Set(filtersAll.flat());
-const setFiltersPart3Module1Tutorial3 = new Set(filtersAll.flat());
+const setFiltersPart3Module1Tutorial1 = new Set([
+  "filterComplexityAdvanced",
+  "filterLibraryP5js",
+  "filterFormatVariation",
+  "filterVerificationExpert",
+]);
+const setFiltersPart3Module1Tutorial2 = new Set([
+  "filterComplexityAdvanced",
+  "filterLibraryThreejs",
+  "filterFormatTechnique",
+  "filterVerificationExpert",
+]);
+const setFiltersPart3Module1Tutorial3 = new Set([
+  "filterComplexityAdvanced",
+  "filterLibraryThreejs",
+  "filterFormatTask",
+  "filterVerificationExpert",
+]);
 const filtersPart3Module1 = [
   setFiltersPart3Module1Tutorial1,
   setFiltersPart3Module1Tutorial2,
@@ -163,9 +208,24 @@ const setFiltersPart3Module1 = new Set([
   ...setFiltersPart3Module1Tutorial3,
 ]);
 // p3m2
-const setFiltersPart3Module2Tutorial1 = new Set(filtersAll.flat());
-const setFiltersPart3Module2Tutorial2 = new Set(filtersAll.flat());
-const setFiltersPart3Module2Tutorial3 = new Set(filtersAll.flat());
+const setFiltersPart3Module2Tutorial1 = new Set([
+  "filterComplexityAdvanced",
+  "filterLibraryThreejs",
+  "filterFormatTask",
+  "filterVerificationExpert",
+]);
+const setFiltersPart3Module2Tutorial2 = new Set([
+  "filterComplexityAdvanced",
+  "filterLibraryVanillajs",
+  "filterFormatTechnique",
+  "filterVerificationExpert",
+]);
+const setFiltersPart3Module2Tutorial3 = new Set([
+  "filterComplexityAdvanced",
+  "filterLibraryThreejs",
+  "filterFormatVariation",
+  "filterVerificationExpert",
+]);
 const filtersPart3Module2 = [
   setFiltersPart3Module2Tutorial1,
   setFiltersPart3Module2Tutorial2,
@@ -177,9 +237,24 @@ const setFiltersPart3Module2 = new Set([
   ...setFiltersPart3Module2Tutorial3,
 ]);
 // p3m3
-const setFiltersPart3Module3Tutorial1 = new Set(filtersAll.flat());
-const setFiltersPart3Module3Tutorial2 = new Set(filtersAll.flat());
-const setFiltersPart3Module3Tutorial3 = new Set(filtersAll.flat());
+const setFiltersPart3Module3Tutorial1 = new Set([
+  "filterComplexityAdvanced",
+  "filterLibraryP5js",
+  "filterFormatTask",
+  "filterVerificationExpert",
+]);
+const setFiltersPart3Module3Tutorial2 = new Set([
+  "filterComplexityAdvanced",
+  "filterLibraryP5js",
+  "filterFormatTechnique",
+  "filterVerificationExpert",
+]);
+const setFiltersPart3Module3Tutorial3 = new Set([
+  "filterComplexityAdvanced",
+  "filterLibraryVanillajs",
+  "filterFormatVariation",
+  "filterVerificationExpert",
+]);
 const filtersPart3Module3 = [
   setFiltersPart3Module3Tutorial1,
   setFiltersPart3Module3Tutorial2,
@@ -196,29 +271,42 @@ const filtersPart3 = [
   setFiltersPart3Module3,
 ];
 const filtersPart = [filtersPart1, filtersPart2, filtersPart3];
+
 // Для отрисовки
 const handbookPart1Module1 = document.getElementById("handbookPart1Module1");
 const handbookPart1Module2 = document.getElementById("handbookPart1Module2");
-const hhandbookPart1Modules = [handbookPart1Module1, handbookPart1Module2];
-const handbookPart1 = document.getElementById("handbookPart1");
+const handbookPart1Modules = [handbookPart1Module1, handbookPart1Module2];
+const handbookPart1 = [
+  document.getElementById("handbookPart1"),
+  handbookPart1Modules,
+];
+
 const handbookPart2Module1 = document.getElementById("handbookPart2Module1");
 const handbookPart2Module2 = document.getElementById("handbookPart2Module2");
 const handbookPart2Module3 = document.getElementById("handbookPart2Module3");
-const hhandbookPart2Modules = [
+const handbookPart2Modules = [
   handbookPart2Module1,
   handbookPart2Module2,
   handbookPart2Module3,
 ];
-const handbookPart2 = document.getElementById("handbookPart2");
+const handbookPart2 = [
+  document.getElementById("handbookPart2"),
+  handbookPart2Modules,
+];
 const handbookPart3Module1 = document.getElementById("handbookPart3Module1");
 const handbookPart3Module2 = document.getElementById("handbookPart3Module2");
 const handbookPart3Module3 = document.getElementById("handbookPart3Module3");
-const hhandbookPart3Modules = [
+const handbookPart3Modules = [
   handbookPart3Module1,
   handbookPart3Module2,
   handbookPart3Module3,
 ];
-const handbookPart3 = document.getElementById("handbookPart3");
+const handbookPart3 = [
+  document.getElementById("handbookPart3"),
+  handbookPart3Modules,
+];
+const handbook = [handbookPart1, handbookPart2, handbookPart3];
+const handbookNoResults = document.getElementById("handbookNoResults");
 
 // Фильтры слева
 // Меню
@@ -298,36 +386,7 @@ const buttonsVerification = [
   filterVerificationExpert,
   filterVerificationAuthorial,
 ];
-
-// Операции над множествами
-// Объединение
-const union = (...sets) => new Set(sets.flatMap((set) => [...set]));
-// Пересечение
-const intersection = (a, b) => new Set([...a].filter((x) => b.has(x)));
-// Разность
-const difference = (a, b) => new Set([...a].filter((x) => !b.has(x)));
-
-// Список фильтров
-let matrFilters = [
-  [false, [false, false, false]],
-  [false, [false, false, false]],
-  [false, [false, false, false]],
-  [false, [false, false]],
-];
-let noneResults = false;
-let matrResults = [
-  [true, [true, true]],
-  [true, [true, true, true]],
-  [true, [true, true, true]],
-];
-let matrDraw = [
-  [handbookPart1, hhandbookPart1Modules],
-  [handbookPart2, hhandbookPart2Modules],
-  [handbookPart3, hhandbookPart3Modules],
-];
-let allowFilters = new Set(filtersAll.flat());
-let denyFilters = new Set();
-
+// Все кнопачки
 const buttonsFilters = [
   buttonsComplexity,
   buttonsLibrary,
@@ -335,84 +394,156 @@ const buttonsFilters = [
   buttonsVerification,
 ];
 
-// Применение фильтров
+// Операции над множествами
+// Объединение
+const setUnion = (...sets) => new Set(sets.flatMap((set) => [...set]));
+// Пересечение
+const setIntersection = (a, b) => new Set([...a].filter((x) => b.has(x)));
+// Разность
+const setDifference = (a, b) => new Set([...a].filter((x) => !b.has(x)));
+
+// Список фильтров
+const defMatrFilters = [
+  [false, [false, false, false]],
+  [false, [false, false, false]],
+  [false, [false, false, false]],
+  [false, [false, false]],
+];
+const defMatrDraw = [
+  [true, [true, true]],
+  [true, [true, true, true]],
+  [true, [true, true, true]],
+];
+const defNoResults = false;
+const defAllowFilters = new Set(filtersAll.flat());
+const defDenyFilters = new Set();
+const defApplyFilters = [new Set(), new Set(), new Set(), new Set()];
+
+let matrDraw = structuredClone(defMatrDraw);
+let matrFilters = structuredClone(defMatrFilters);
+let noResults = defNoResults;
+let allowFilters = new Set(defAllowFilters);
+let denyFilters = new Set(defDenyFilters);
+let applyFilters = structuredClone(defApplyFilters);
+
+function calcFilters() {
+  allowFilters = new Set(defAllowFilters);
+  denyFilters = new Set(defDenyFilters);
+  applyFilters = structuredClone(defApplyFilters);
+  matrDraw = structuredClone(defMatrDraw);
+
+  matrFilters.forEach((filter, indexFilter) => {
+    filter[1].forEach((setting, indexSetting) => {
+      if (matrFilters[indexFilter][1][indexSetting]) {
+        buttonsFilters[indexFilter][indexSetting].style.border =
+          "1.5px dashed var(--colors-neutrals-900)";
+
+        applyFilters[indexFilter] = setUnion(
+          applyFilters[indexFilter],
+          new Set([filtersAll[indexFilter][indexSetting]]),
+        );
+      } else {
+        buttonsFilters[indexFilter][indexSetting].style.border =
+          "1.5px dashed var(--colors-neutrals-200)";
+      }
+      // ?deny / ?alloy
+    });
+  });
+
+  // console.log("matrFilters", matrFilters, "apply", applyFilters);
+}
+
+function calcDrawParts() {
+  // Рисуем полашку по умолчанию - нет результатов
+  noResults = !defNoResults;
+  filtersPart.forEach((filterPart, indexPart) => {
+    // Раздел по умолчанию - не рисуем
+    matrDraw[indexPart][0] = false;
+
+    filterPart.forEach((filterModule, inedxModule) => {
+      // Модуль по умолчанию - рисуем
+      matrDraw[indexPart][1][inedxModule] = true;
+      //console.log(`p[${indexPart}]m[${inedxModule}]`, "filters", applyFilters);
+
+      for (const applyFilter of applyFilters) {
+        //Если фильтр - пустой
+        if (applyFilter.size == 0) {
+          continue;
+        }
+        // Если не подошёл хотя бы 1 - не подошёл
+        if (setIntersection(filterModule, applyFilter).size == 0) {
+          // Не рисуем модуль
+          matrDraw[indexPart][1][inedxModule] = false;
+          break;
+        }
+      }
+
+      // Раздел начинам отображать если хоть 1 модуль там рисуется
+      if (matrDraw[indexPart][1][inedxModule]) {
+        matrDraw[indexPart][0] = true;
+      }
+    });
+
+    // Убираем плашку Нет результатов если хоть 1 раздел рисуется
+    if (matrDraw[indexPart][0]) {
+      noResults = defNoResults;
+    }
+  });
+
+  // console.log("matrDraw", noResults, matrDraw);
+}
+
+function drawingParts() {
+  matrDraw.forEach((part, indexPart) => {
+    // Не рисуем весь раздел
+    if (!matrDraw[indexPart][0]) {
+      handbook[indexPart][0].style.display = "none";
+      return;
+    }
+    // Рисуем весь раздел
+    handbook[indexPart][0].style.display = "flex";
+    part.forEach((module, jnedxModule) => {
+      // Не рисуем модуль
+      if (!matrDraw[indexPart][1][jnedxModule]) {
+        handbook[indexPart][1][jnedxModule].style.display = "none";
+        return;
+      }
+      // Рисуем модуль
+      handbook[indexPart][1][jnedxModule].style.display = "flex";
+    });
+    // Плашка Нет результатов
+    if (noResults) {
+      handbookNoResults.style.display = "flex";
+    } else {
+      handbookNoResults.style.display = "none";
+    }
+  });
+}
+
+// Добавление клика настройки
 buttonsFilters.forEach((buttons, indexFilter) => {
   buttons.forEach((button, indexButton) => {
     button.addEventListener("click", () => {
       let buttonCondition = !matrFilters[indexFilter][1][indexButton];
       matrFilters[indexFilter][1][indexButton] = buttonCondition;
 
-      // Окрашивание кнопки и Вкл/Вык фильтра
+      // Вкл/Вык фильтра
       // Кнопка стала активна
       if (buttonCondition) {
-        button.style.border = "1.5px dashed var(--colors-neutrals-900)";
         // Фильр точно включился
         matrFilters[indexFilter][0] = true;
       }
       // Кнопка стала неактивна
       else {
-        button.style.border = "1.5px dashed var(--colors-neutrals-200)";
         // Фильтр либо отключился либо остался
         matrFilters[indexFilter][0] = matrFilters[indexFilter][1].some(
           (item) => item !== false,
         );
       }
 
-      // Операции над множеством настроек
-      // Если фильтр включён
-      if (matrFilters[indexFilter][0]) {
-        //
-        allowFilters = difference(
-          allowFilters,
-          new Set(filtersAll[indexFilter]),
-        );
-        denyFilters = union(denyFilters, new Set(filtersAll[indexFilter]));
-
-        //
-        matrFilters[indexFilter][1].forEach((button, indexButton) => {
-          if (button) {
-            denyFilters = difference(
-              denyFilters,
-              new Set([filtersAll[indexFilter][indexButton]]),
-            );
-          }
-        });
-      }
-      // Если фильтр выключен
-      else {
-        allowFilters = union(allowFilters, new Set(filtersAll[indexFilter]));
-        denyFilters = difference(denyFilters, new Set(filtersAll[indexFilter]));
-      }
-      console.log(
-        "serch set",
-        matrFilters,
-        "allow",
-        allowFilters,
-        "deny",
-        denyFilters,
-      );
-
-      // Расчёт сетов и применение фильтров TODO
-      filtersPart.forEach((part, i) => {
-        part.forEach((module, j) => {
-          // console.log(`fits [${i}][${j}]`, module);
-
-          // Если и разрешённый и запрещённый список
-          if (
-            intersection(allowFilters, module).size &&
-            !intersection(denyFilters, module).size
-          ) {
-            matrResults[i][1][j] = true;
-            matrDraw[i][1][j].style.display = "flex";
-          } else {
-            matrResults[i][1][j] = false;
-            matrDraw[i][1][j].style.display = "none";
-          }
-        });
-      });
-      noneResults = matrResults.every((item) => item[0] === false);
-
-      // console.log("draw matr", noneResults, matrResults);
+      calcFilters();
+      calcDrawParts();
+      drawingParts();
     });
   });
 });
@@ -527,7 +658,7 @@ function applyingSorting() {
 
   namesSort[numberSorting].style.display = "flex";
   pointsSort[numberSorting].style.display = "flex";
-  console.log(`"Сортировка ${numberSorting}`);
+  // console.log(`"Сортировка ${numberSorting}`);
 
   // Применение сортировки
   handbookModulesParts.forEach((handbookPart, jPart) => {
@@ -557,7 +688,10 @@ const resetButton = document.querySelector(".A_FilterResetButton");
 resetButton.addEventListener("click", () => {
   // Сброс фильтров
   closeMenuFilters();
-  //TODO фильтров
+  matrFilters = structuredClone(defMatrFilters);
+  calcFilters();
+  calcDrawParts();
+  drawingParts();
 
   // Сброс сортировки
   numberSorting = 0;
