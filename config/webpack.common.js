@@ -10,6 +10,7 @@ module.exports = {
   entry: {
     index: "./src/javascripts/index.js",
     header: "./src/javascripts/header.js",
+    filter: "./src/javascripts/filter.js",
   },
   output: {
     filename: "[name].js",

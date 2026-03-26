@@ -29,7 +29,7 @@
   color: var(--colors-neutrals-900);
   font-family: var(--font-KairosSans);
   font-size: 6.5rem;
-  line-height: auto;
+  line-height: 100%;
   letter-spacing: -0.325rem;
   text-transform: uppercase;
 }
@@ -39,7 +39,7 @@
   color: var(--colors-neutrals-900);
   font-family: var(--font-KairosSans);
   font-size: 4rem;
-  line-height: auto;
+  line-height: 100%;
   letter-spacing: -0.14rem;
   text-transform: uppercase;
 }
@@ -49,7 +49,7 @@
   color: var(--colors-neutrals-900);
   font-family: var(--font-KairosSans);
   font-size: 3.5rem;
-  line-height: auto;
+  line-height: 100%;
   letter-spacing: -0.175rem;
   text-transform: uppercase;
 }
@@ -61,7 +61,7 @@
   font-size: 2.25rem;
   line-height: 110%;
   letter-spacing: -0.05625rem;
-  text-transform: auto;
+  text-transform: none;
 }
 
 .U_FontH3 {
@@ -70,9 +70,8 @@
   font-family: var(--font-KairosSans);
   font-size: 2rem;
   line-height: 115%;
-  /* TODO! */
   letter-spacing: -0.1rem;
-  text-transform: auto;
+  text-transform: none;
 }
 
 .U_FontH4 {
@@ -82,7 +81,7 @@
   font-size: 1.75rem;
   /* line-height: ?; TODO! */
   letter-spacing: -0.14rem;
-  text-transform: auto;
+  text-transform: none;
 }
 
 /* Subtitle */
@@ -93,7 +92,7 @@
   font-size: 1.5rem;
   line-height: 130%;
   letter-spacing: -0.0375rem;
-  text-transform: auto;
+  text-transform: none;
 }
 
 .U_FontS2 {
@@ -117,8 +116,8 @@
   font-family: var(--font-OpenSans);
   font-size: 1.125rem;
   line-height: 150%;
-  letter-spacing: auto;
-  text-transform: auto;
+  letter-spacing: 0rem;
+  text-transform: none;
 }
 
 .U_FontB2 {
@@ -138,8 +137,8 @@
   font-family: var(--font-OpenSans);
   font-size: 1rem;
   line-height: 145%;
-  letter-spacing: auto;
-  text-transform: auto;
+  letter-spacing: 0rem;
+  text-transform: none;
 }
 
 .U_FontC2 {
@@ -159,7 +158,7 @@
   font-size: 1rem;
   line-height: 170%;
   letter-spacing: -0.05rem;
-  text-transform: auto;
+  text-transform: none;
 }
 
 .U_FontF1 {
@@ -168,8 +167,8 @@
   font-family: var(--font-OpenSans);
   font-size: 0.875rem;
   line-height: 140%;
-  letter-spacing: auto;
-  text-transform: auto;
+  letter-spacing: 0rem;
+  text-transform: none;
 }
 
 .U_FontF2 {

@@ -10,39 +10,39 @@ function createPages(template, filename, chunks) {
 
 const htmlPages = [
   createPages("./src/index.html", "./index.html", ["index"]),
-  createPages("./src/pages/handbook.html", "./pages/handbook.html", ["index"]),
+  createPages("./src/pages/handbook.html", "./pages/handbook.html", ["index","filter"]),
   createPages("./src/pages/gallery.html", "./pages/gallery.html", ["index"]),
   createPages("./src/pages/about.html", "./pages/about.html", ["index"]),
-  createPages("./src/pages/add_work.html", "./pages/add_work.html", ["index"]),
-  createPages("./src/pages/add_tutorial.html", "./pages/add_tutorial.html", [
+  createPages("./src/pages/addWork.html", "./pages/addWork.html", ["index"]),
+  createPages("./src/pages/addTutorial.html", "./pages/addTutorial.html", [
     "index",
   ]),
   createPages("./src/pages/rules.html", "./pages/rules.html", ["index"]),
 
   // Галерея ./works
-  createPages("./src/pages/works/work_1.html", "./pages/works/work_1.html", [
+  createPages("./src/pages/works/work1.html", "./pages/works/work1.html", [
     "index",
   ]),
 
-  // Часть_1 Модуль_1 ./part_1/module_1
+  // Часть1 Модуль1 ./part1/module1
   createPages(
-    "./src/pages/parts/part_1/module_1.html",
-    "./pages/parts/part_1/module_1.html",
+    "./src/pages/parts/part1/module1.html",
+    "./pages/parts/part1/module1.html",
     ["index"],
   ),
   createPages(
-    "./src/pages/parts/part_1/module_1/tutorial_1.html",
-    "./pages/parts/part_1/module_1/tutorial_1.html",
+    "./src/pages/parts/part1/module1/tutorial1.html",
+    "./pages/parts/part1/module1/tutorial1.html",
     ["index"],
   ),
   createPages(
-    "./src/pages/parts/part_1/module_1/tutorial_2.html",
-    "./pages/parts/part_1/module_1/tutorial_2.html",
+    "./src/pages/parts/part1/module1/tutorial2.html",
+    "./pages/parts/part1/module1/tutorial2.html",
     ["index"],
   ),
   createPages(
-    "./src/pages/parts/part_1/module_1/tutorial_3.html",
-    "./pages/parts/part_1/module_1/tutorial_3.html",
+    "./src/pages/parts/part1/module1/tutorial3.html",
+    "./pages/parts/part1/module1/tutorial3.html",
     ["index"],
   ),
 ];

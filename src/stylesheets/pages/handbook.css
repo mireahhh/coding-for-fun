@@ -1,3 +1,7 @@
+.NotResults{
+    display: none;
+}
+
 /* m 4 -> 3 */
 @media (max-width: 1368px) {}
 

@@ -135,7 +135,7 @@
         color: var(--colors-neutrals-900);
         font-family: var(--font-KairosSans);
         font-size: 4rem;
-        line-height: auto;
+        line-height: normal;
         letter-spacing: -0.14rem;
         text-transform: uppercase;
     }
@@ -147,8 +147,8 @@
         font-family: var(--font-OpenSans);
         font-size: 1.125rem;
         line-height: 150%;
-        letter-spacing: auto;
-        text-transform: auto;
+        letter-spacing: normal;
+        text-transform: none;
     }
 }
 
@@ -186,7 +186,7 @@
         color: var(--colors-neutrals-900);
         font-family: var(--font-KairosSans);
         font-size: 3.5rem;
-        line-height: auto;
+        line-height: normal;
         letter-spacing: -0.175rem;
         text-transform: uppercase;
     }
@@ -199,6 +199,6 @@
         font-size: 1.5rem;
         line-height: 130%;
         letter-spacing: -0.0375rem;
-        text-transform: auto;
+        text-transform: none;
     }
 }

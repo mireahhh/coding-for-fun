@@ -41,9 +41,9 @@
 
         <div class="U_FontC2 C_HeaderAddForms">
           <p>[</p>
-          <a class="U_ALink" href="../pages/add_tutorial.html">&nbsp;Туториал&nbsp;</a>
+          <a class="U_ALink" href="../pages/addTutorial.html">&nbsp;Туториал&nbsp;</a>
           <p>/</p>
-          <a class="U_ALink" href="../pages/add_work.html">&nbsp;Работа&nbsp;</a>
+          <a class="U_ALink" href="../pages/addWork.html">&nbsp;Работа&nbsp;</a>
           <p>]</p>
         </div>
       </div>
@@ -55,8 +55,8 @@
           <a class="U_ALink" href="../pages/about.html">О&nbsp;проекте</a>
         </nav>
         <nav class="C_HeaderMenuAddForms">
-          <a class="U_ALink" href="../pages/add_tutorial.html">Туториал</a>
-          <a class="U_ALink" href="../pages/add_work.html">Работа</a>
+          <a class="U_ALink" href="../pages/addTutorial.html">Туториал</a>
+          <a class="U_ALink" href="../pages/addWork.html">Работа</a>
         </nav>
       </div>
     </div>
@@ -102,8 +102,7 @@
           закономерности, чтобы создавать свои визуальные алгоритмы.
         </p>
         <div class="O_IntroButtoms">
-          <a class="U_ALink U_FontC2 M_IntroAddTutor"
-            href="../pages/add_tutorial.html">+&nbsp;Добавить&nbsp;туториал</a>
+          <a class="U_ALink U_FontC2 M_IntroAddTutor" href="../pages/addTutorial.html">+&nbsp;Добавить&nbsp;туториал</a>
           <button id="shareHandbookButton" class="U_ButtonIcon A_IntroShare">
             <img class="U_ImgIconFullH" src="../images/icons/intro-share.svg" alt="Поделиться">
           </button>
@@ -197,7 +196,7 @@
               <li><button id="filterVerificationExpert"
                   class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Экспертная</button></li>
               <li><button id="filterVerificationAuthorial"
-                  class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Автораская</button></li>
+                  class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Авторская</button></li>
             </ul>
           </li>
 
@@ -234,79 +233,43 @@
             </ul>
           </div>
         </div>
-        <button id="filterResetButton" class="U_ButtonIcon A_FilterResetButton" aria-label="Сброс">
+        <button class="U_ButtonIcon A_FilterResetButton" aria-label="Сброс">
           <p class="U_FontF2 A_FilterResetText">Сброс&nbsp;настроек</p>
         </button>
       </div>
     </section>
 
-    <button class="bt1">Поменять1</button>
-
-    <ol class="ol1">
-      <li>Первый</li>
-      <li>Второй</li>
-      <li>Третий</li>
-    </ol>
-
-    <script>
-      const button = document.querySelector('.bt1');
-      const list = document.querySelector('.ol1');
-
-      // 1. сохраняем исходное состояние
-      const originalItems = Array.from(list.children);
-
-      // 2. матрица переходов
-      const transition = [1, 2, 0];
-
-      // 3. обработчик
-      button.addEventListener('click', () => {
-        // очищаем список
-        list.innerHTML = '';
-
-        // пересобираем по матрице из ИСХОДНЫХ элементов
-        transition.forEach(index => {
-          list.appendChild(originalItems[index]);
-        });
-
-        list.children[1].style.display = 'none';
-      });
-    </script>
-
-    <section>
-      <ul>
-        <h2 id="part_1">Раздел 1</h2>
-        <p>
-          --Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>
-          --Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>
-          --Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>
-        </p>
-        <ul>
-          <li><a class="U_ALink" href="parts/part_1/module_1.html">Модуль 1</a></li>
-          <li><a class="U_ALink" href="parts/part_1/module_2.html">Модуль 2</a></li>
+    <section class="C_HandbookParts">
+      <li id="handbookPart1">
+        <h2 class="U_FontH1">Раздел 1</h2>
+        <ul id="handbookModulesPart1">
+          <a id="handbookPart1Module1" class="U_ALink U_FontH0" href="parts/part1/module1.html">1&nbsp;</a>
+          <a id="handbookPart1Module2" class="U_ALink U_FontH0" href="parts/part1/module2.html">2&nbsp;</a>
         </ul>
-        <h2 id="part_2">Раздел 2</h2>
-        <p>
-          --Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>
-          --Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>
-          --Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>
-        </p>
-        <ul>
-          <li><a class="U_ALink" href="parts/part_2/module_1.html">Модуль 1</a></li>
-          <li><a class="U_ALink" href="parts/part_2/module_2.html">Модуль 2</a></li>
-          <li><a class="U_ALink" href="parts/part_2/module_2.html">Модуль 2</a></li>
+      </li>
+
+      <li id="handbookPart2">
+        <h2 class="U_FontH1">Раздел 2</h2>
+        <ul id="handbookModulesPart2">
+          <a id="handbookPart2Module1" class="U_ALink U_FontH0" href="parts/part1/module1.html">1&nbsp;</a>
+          <a id="handbookPart2Module2" class="U_ALink U_FontH0" href="parts/part2/module2.html">2&nbsp;</a>
+          <a id="handbookPart2Module3" class="U_ALink U_FontH0" href="parts/part3/module3.html">3&nbsp;</a>
         </ul>
-        <h2 id="part_3">Раздел 3</h2>
-        <p>
-          --Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>
-          --Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>
-          --Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>--Сру текстом<br>
-        </p>
-        <ul>
-          <li><a class="U_ALink" href="parts/part_3/module_1.html">Модуль 1</a></li>
-          <li><a class="U_ALink" href="parts/part_3/module_2.html">Модуль 2</a></li>
-          <li><a class="U_ALink" href="parts/part_3/module_2.html">Модуль 2</a></li>
+      </li>
+
+      <li id="handbookPart3">
+        <h2 class="U_FontH1">Раздел 3</h2>
+        <ul id="handbookModulesPart3">
+          <a id="handbookPart3Module1" class="U_ALink U_FontH0" href="parts/part1/module1.html">1&nbsp;</a>
+          <a id="handbookPart3Module2" class="U_ALink U_FontH0" href="parts/part1/module2.html">2&nbsp;</a>
+          <a id="handbookPart3Module3" class="U_ALink U_FontH0" href="parts/part1/module3.html">3&nbsp;</a>
         </ul>
-      </ul>
+      </li>
+
+      <li id="handbookNoResults" class="NotResults">
+        <h2 class="U_FontH1">Нет результатов</h2>
+      </li>
+
     </section>
 
     <section>

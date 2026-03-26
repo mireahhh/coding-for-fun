@@ -9,6 +9,13 @@
     background-color: var(--colors-neutrals-body);
 }
 
+/* m 8 */
+@media (min-width: 7680px) {
+    .S_Main {
+        flex-direction: row;
+    }
+}
+
 /* m 4 -> 3 */
 @media (max-width: 1368px) {}
 

@@ -9,31 +9,33 @@ function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { 
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 var shareHandbookButton = document.getElementById("shareHandbookButton");
-shareHandbookButton.addEventListener("click", /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
-  var _t;
-  return _regenerator().w(function (_context) {
-    while (1) switch (_context.p = _context.n) {
-      case 0:
-        _context.p = 0;
-        _context.n = 1;
-        return navigator.share({
-          title: "Coding for Fun!",
-          text: "Web-учебник креативного кода\n",
-          url: "https://mireahhh.github.io/coding-for-fun/index.html"
-        });
-      case 1:
-        console.log("Поделились успешно");
-        _context.n = 3;
-        break;
-      case 2:
-        _context.p = 2;
-        _t = _context.v;
-        console.log("Ошибка при попытке поделиться:", _t);
-      case 3:
-        return _context.a(2);
-    }
-  }, _callee, null, [[0, 2]]);
-})));
+if (shareHandbookButton) {
+  shareHandbookButton.addEventListener("click", /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
+    var _t;
+    return _regenerator().w(function (_context) {
+      while (1) switch (_context.p = _context.n) {
+        case 0:
+          _context.p = 0;
+          _context.n = 1;
+          return navigator.share({
+            title: "Coding for Fun!",
+            text: "Web-учебник креативного кода\n",
+            url: "https://mireahhh.github.io/coding-for-fun/index.html"
+          });
+        case 1:
+          console.log("Поделились успешно");
+          _context.n = 3;
+          break;
+        case 2:
+          _context.p = 2;
+          _t = _context.v;
+          console.log("Ошибка при попытке поделиться:", _t);
+        case 3:
+          return _context.a(2);
+      }
+    }, _callee, null, [[0, 2]]);
+  })));
+}
 
 /***/ }),
 
@@ -77,102 +79,6 @@ headerSearchButton.addEventListener("click", function () {
 });
 headerSearchBar.addEventListener("input", function () {
   headerSearchButton.style.opacity = headerSearchBar.value ? "1" : "0.5";
-});
-
-/***/ }),
-
-/***/ 519:
-/***/ (() => {
-
-//filters
-var isOpenFilters = false;
-var filterFiltersButton = document.querySelector(".A_FilterFiltersButton");
-var filterFiltersMenu = document.querySelector(".C_FilterFiltersMenu");
-var filterFiltersOpenIcon = document.querySelector(".Q_FilterFiltersOpenIcon");
-var filterFiltersCloseIcon = document.querySelector(".Q_FilterFiltersCloseIcon");
-filterFiltersButton.addEventListener("click", function () {
-  //now is open ==> close
-  if (isOpenFilters) {
-    isOpenFilters = false;
-    filterFiltersMenu.style.display = "none";
-    filterFiltersOpenIcon.style.display = "flex";
-    filterFiltersCloseIcon.style.display = "none";
-  } else {
-    isOpenFilters = true;
-    filterFiltersMenu.style.display = "flex";
-    filterFiltersOpenIcon.style.display = "none";
-    filterFiltersCloseIcon.style.display = "flex";
-  }
-});
-
-//filterSearchBar
-var filterSearchBar = document.getElementById("filterSearchBar");
-var filterSearchButton = document.querySelector(".Q_FilterSearchIcon");
-filterSearchButton.addEventListener("click", function () {
-  filterSearchBar.value = "";
-  filterSearchBar.focus();
-});
-filterSearchBar.addEventListener("input", function () {
-  filterSearchButton.style.opacity = filterSearchBar.value ? "1" : "0.5";
-});
-
-//sorting
-isOpenSorting = false;
-var openSortsButton = document.querySelector(".A_FilterSortingOpenButton");
-var openSortsIcon = document.querySelector(".Q_FilterSortingOpenIcon");
-var closeSortsIcon = document.querySelector(".Q_FilterSortingCloseIcon");
-var sortingMenu = document.querySelector(".C_FilterSortingMenu");
-function openMenuSorting() {
-  isOpenSorting = true;
-  sortingMenu.style.display = "flex";
-  openSortsIcon.style.display = "none";
-  closeSortsIcon.style.display = "flex";
-}
-function closeMenuSorting() {
-  isOpenSorting = false;
-  sortingMenu.style.display = "none";
-  openSortsIcon.style.display = "flex";
-  closeSortsIcon.style.display = "none";
-}
-openSortsButton.addEventListener("click", function () {
-  if (isOpenSorting) {
-    closeMenuSorting();
-  } else {
-    openMenuSorting();
-  }
-});
-numberSorting = 0; // 0, 1, 2
-//name sort head
-var nameSort0 = document.querySelector(".A_FilterSortingByComplexityText");
-var nameSort1 = document.querySelector(".A_FilterSortingByDateText");
-var nameSort2 = document.querySelector(".A_FilterSortingByVerificationText");
-var namesSort = [nameSort0, nameSort1, nameSort2];
-
-//print sort point
-var pointSort0 = document.querySelector(".Q_FilterSortingByComplexityIcon");
-var pointSort1 = document.querySelector(".Q_FilterSortingByDateIcon");
-var pointSort2 = document.querySelector(".Q_FilterSortingByVerificationIcon");
-var pointsSort = [pointSort0, pointSort1, pointSort2];
-
-//button selest sort
-var buttonSort0 = document.getElementById("filterSortingByComplexityButton");
-var buttonSort1 = document.getElementById("filterSortingByDateButton");
-var buttonSort2 = document.getElementById("filterSortingByVerificationButton");
-var buttonsSort = [buttonSort0, buttonSort1, buttonSort2];
-buttonsSort.forEach(function (button, index) {
-  button.addEventListener("click", function () {
-    numberSorting = index;
-    closeMenuSorting();
-    namesSort.forEach(function (name) {
-      name.style.display = "none";
-    });
-    pointsSort.forEach(function (point) {
-      point.style.display = "none";
-    });
-    namesSort[numberSorting].style.display = "flex";
-    pointsSort[numberSorting].style.display = "flex";
-    console.log("Текущая сортировка:", numberSorting);
-  });
 });
 
 /***/ })
@@ -241,11 +147,8 @@ buttonsSort.forEach(function (button, index) {
 /* harmony import */ var _header_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_header_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _share_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(366);
 /* harmony import */ var _share_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_share_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _filter_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(519);
-/* harmony import */ var _filter_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_filter_js__WEBPACK_IMPORTED_MODULE_2__);
 
 console.log("css is entry");
-
 
 
 

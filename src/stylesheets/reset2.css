@@ -21,3 +21,12 @@ a {
 input[type="search"]::-webkit-search-cancel-button {
   display: none;
 }
+
+li::marker {
+  content: "";
+}
+
+ul, ol, li {
+  list-style: none;
+}
+
