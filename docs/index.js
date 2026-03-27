@@ -18,7 +18,7 @@ if (shareHandbookButton) {
           _context.p = 0;
           _context.n = 1;
           return navigator.share({
-            title: "Coding for Fun!",
+            title: "Coding for Fun!\n(Кодить - прикольно!)",
             text: "Web-учебник креативного кода\n",
             url: "https://mireahhh.github.io/coding-for-fun/index.html"
           });

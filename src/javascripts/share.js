@@ -4,7 +4,7 @@ if (shareHandbookButton) {
   shareHandbookButton.addEventListener("click", async () => {
     try {
       await navigator.share({
-        title: "Coding for Fun!",
+        title: "Coding for Fun!\n(Кодить - прикольно!)",
         text: "Web-учебник креативного кода\n",
         url: "https://mireahhh.github.io/coding-for-fun/index.html",
       });
