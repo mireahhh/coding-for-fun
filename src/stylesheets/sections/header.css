@@ -199,38 +199,44 @@
 
 /* m 2 -> 1 */
 @media (max-width: 904px) {
-    .S_Header .C_HeaderAll {
-        .O_HeaderNavigation {
-            flex-direction: column;
-            row-gap: clamp(var(--size-spacing-1), var(--size-spacing-16), 3vh);
-            padding-block: clamp(var(--size-spacing-1), var(--size-spacing-16), 3vh);
-            height: auto;
-            align-items: center;
+    .S_Header {
+        padding-inline: 4dvw;
+        box-sizing: border-box;
+        width: 100%;
 
-            .O_HeaderHandbookNavigation {
-                height: clamp(var(--size-spacing-4), var(--size-spacing-40), 10vh);
-                width: auto;
-            }
+        .C_HeaderAll {
+            .O_HeaderNavigation {
+                flex-direction: column;
+                row-gap: clamp(var(--size-spacing-1), var(--size-spacing-16), 3dvh);
+                padding-block: clamp(var(--size-spacing-1), var(--size-spacing-16), 3dvh);
+                height: auto;
+                align-items: center;
 
-            .A_HeaderLogo {
-                height: clamp(var(--size-spacing-3), var(--size-spacing-32), 8vh);
-
-                .A_HeaderLogoText {
-                    display: block;
+                .O_HeaderHandbookNavigation {
+                    height: clamp(var(--size-spacing-4), var(--size-spacing-40), 10dvh);
+                    width: auto;
                 }
 
-                .A_HeaderLogoMin {
+                .A_HeaderLogo {
+                    height: clamp(var(--size-spacing-3), var(--size-spacing-32), 8dvh);
+
+                    .A_HeaderLogoText {
+                        display: block;
+                    }
+
+                    .A_HeaderLogoMin {
+                        display: none;
+                    }
+                }
+
+                .C_HeaderAddForms {
                     display: none;
                 }
             }
 
-            .C_HeaderAddForms {
-                display: none;
+            .O_HeaderMenuNavigation .C_HeaderMenuAddForms {
+                display: flex;
             }
-        }
-
-        .O_HeaderMenuNavigation .C_HeaderMenuAddForms {
-            display: flex;
         }
     }
 }

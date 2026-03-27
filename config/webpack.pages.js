@@ -15,17 +15,13 @@ const htmlPages = [
     "filterHandbook",
   ]),
   createPages("./src/pages/gallery.html", "./pages/gallery.html", ["index"]),
+  createPages("./src/pages/work.html", "./pages/work.html", ["index"]),
   createPages("./src/pages/about.html", "./pages/about.html", ["index"]),
   createPages("./src/pages/addWork.html", "./pages/addWork.html", ["index"]),
   createPages("./src/pages/addTutorial.html", "./pages/addTutorial.html", [
     "index",
   ]),
   createPages("./src/pages/rules.html", "./pages/rules.html", ["index"]),
-
-  // Галерея ./works
-  createPages("./src/pages/works/work1.html", "./pages/works/work1.html", [
-    "index",
-  ]),
 
   // Часть1 Модуль1 ./part1/module1
   createPages(

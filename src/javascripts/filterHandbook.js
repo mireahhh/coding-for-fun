@@ -511,13 +511,14 @@ function drawingParts() {
       // Рисуем модуль
       handbook[indexPart][1][jnedxModule].style.display = "flex";
     });
-    // Плашка Нет результатов
-    if (noResults) {
-      handbookNoResults.style.display = "flex";
-    } else {
-      handbookNoResults.style.display = "none";
-    }
   });
+
+  // Плашка Нет результатов
+  if (noResults) {
+    handbookNoResults.style.display = "flex";
+  } else {
+    handbookNoResults.style.display = "none";
+  }
 }
 
 // Добавление клика настройки
@@ -594,10 +595,8 @@ openSortsButton.addEventListener("click", () => {
 
 // Применение сортировки
 numberSorting = 0; // 0, 1, 2
-const nameSort1 = document.querySelector(".A_FilterSortingByComplexityText");
-const nameSort2 = document.querySelector(".A_FilterSortingByDateText");
-const nameSort3 = document.querySelector(".A_FilterSortingByVerificationText");
-const namesSort = [nameSort1, nameSort2, nameSort3];
+const nameSort = document.querySelector(".A_FilterSortingByText");
+const namesSort = ["По сложности", "По дате обновления", "По проверенности"];
 
 const pointSort1 = document.querySelector(".Q_FilterSortingByComplexityIcon");
 const pointSort2 = document.querySelector(".Q_FilterSortingByDateIcon");
@@ -649,14 +648,12 @@ const transitionSorts = [
 ];
 
 function applyingSorting() {
-  namesSort.forEach((name) => {
-    name.style.display = "none";
-  });
   pointsSort.forEach((point) => {
     point.style.display = "none";
   });
 
-  namesSort[numberSorting].style.display = "flex";
+  nameSort.textContent = namesSort[numberSorting];
+  // nameSort.innerHTML = `${namesSort[numberSorting]}`;
   pointsSort[numberSorting].style.display = "flex";
   // console.log(`"Сортировка ${numberSorting}`);
 
@@ -684,17 +681,25 @@ buttonsSort.forEach((button, iSort) => {
 
 // Сброс настроек
 // Самое право
-const resetButton = document.querySelector(".A_FilterResetButton");
-resetButton.addEventListener("click", () => {
-  // Сброс фильтров
-  closeMenuFilters();
-  matrFilters = structuredClone(defMatrFilters);
-  calcFilters();
-  calcDrawParts();
-  drawingParts();
+const resetButton1 = document.querySelector(".A_FilterResetButton");
+// Скрытая снизу
+const resetButton2 = document.getElementById("filterResetButton2");
+const resetButtons = [resetButton1, resetButton2];
 
-  // Сброс сортировки
-  numberSorting = 0;
-  closeMenuSorting();
-  applyingSorting();
+resetButtons.forEach((resetButton) => {
+  if (resetButton) {
+    resetButton.addEventListener("click", () => {
+      // Сброс фильтров
+      closeMenuFilters();
+      matrFilters = structuredClone(defMatrFilters);
+      calcFilters();
+      calcDrawParts();
+      drawingParts();
+
+      // Сброс сортировки
+      numberSorting = 0;
+      closeMenuSorting();
+      applyingSorting();
+    });
+  }
 });

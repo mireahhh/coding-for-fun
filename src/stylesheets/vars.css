@@ -23,6 +23,8 @@
     --size-spacing-32: 2rem;
     --size-spacing-36: 2.25rem;
     --size-spacing-40: 2.5rem;
+    --size-spacing-42: 2.625rem;
+    --size-spacing-44: 2.75rem;
     --size-spacing-48: 3rem;
     --size-spacing-50: 3.125rem;
     --size-spacing-56: 3.5rem;
@@ -72,6 +74,8 @@
     --colors-neutrals-450: #858585;
     /* 31 1f */
     --colors-neutrals-900: #1f1f1f;
+    /* 31 1f20% 33 */
+    --colors-neutrals-900-20: #1f1f1f33;
     --colors-neutrals-opacity: var(--colors-neutrals-150-20);
 
     /* 1% 0.01 = hex03 */

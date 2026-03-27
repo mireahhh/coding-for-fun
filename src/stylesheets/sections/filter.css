@@ -1,7 +1,7 @@
 .O_Filter {
     display: flex;
     flex-direction: row;
-    padding-inline: 5vw;
+    padding-inline: 5dvw;
     box-sizing: border-box;
     width: 100%;
     padding-block: var(--size-spacing-32);
@@ -137,7 +137,7 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-start;
-        gap: var(--size-spacing-24);
+        gap: var(--size-spacing-32);
 
         .O_FilterSorting {
             display: flex;
@@ -248,7 +248,7 @@
 /* m 2 -> 1 */
 @media (max-width: 834px) {
     .O_Filter {
-        padding-inline: 4vw;
+        padding-inline: 4dvw;
         box-sizing: border-box;
         width: 100%;
         flex-direction: column;
@@ -268,6 +268,10 @@
                     }
                 }
             }
+        }
+
+        .O_FilterAllSorting {
+            flex-wrap: wrap;
         }
     }
 }

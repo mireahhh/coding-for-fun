@@ -252,13 +252,14 @@ function drawingParts() {
       // Рисуем модуль
       handbook[indexPart][1][jnedxModule].style.display = "flex";
     });
-    // Плашка Нет результатов
-    if (noResults) {
-      handbookNoResults.style.display = "flex";
-    } else {
-      handbookNoResults.style.display = "none";
-    }
   });
+
+  // Плашка Нет результатов
+  if (noResults) {
+    handbookNoResults.style.display = "flex";
+  } else {
+    handbookNoResults.style.display = "none";
+  }
 }
 
 // Добавление клика настройки
@@ -328,10 +329,8 @@ openSortsButton.addEventListener("click", function () {
 
 // Применение сортировки
 numberSorting = 0; // 0, 1, 2
-var nameSort1 = document.querySelector(".A_FilterSortingByComplexityText");
-var nameSort2 = document.querySelector(".A_FilterSortingByDateText");
-var nameSort3 = document.querySelector(".A_FilterSortingByVerificationText");
-var namesSort = [nameSort1, nameSort2, nameSort3];
+var nameSort = document.querySelector(".A_FilterSortingByText");
+var namesSort = ["По сложности", "По дате обновления", "По проверенности"];
 var pointSort1 = document.querySelector(".Q_FilterSortingByComplexityIcon");
 var pointSort2 = document.querySelector(".Q_FilterSortingByDateIcon");
 var pointSort3 = document.querySelector(".Q_FilterSortingByVerificationIcon");
@@ -352,13 +351,11 @@ var originalHandbookModulesParts = [originalHandbookModulesPart1, originalHandbo
 // Матрица переходов
 var transitionSorts = [[[0, 1], [0, 1, 2], [0, 1, 2]], [[1, 0], [2, 1, 0], [2, 1, 0]], [[1, 0], [1, 2, 0], [2, 0, 1]]];
 function applyingSorting() {
-  namesSort.forEach(function (name) {
-    name.style.display = "none";
-  });
   pointsSort.forEach(function (point) {
     point.style.display = "none";
   });
-  namesSort[numberSorting].style.display = "flex";
+  nameSort.textContent = namesSort[numberSorting];
+  // nameSort.innerHTML = `${namesSort[numberSorting]}`;
   pointsSort[numberSorting].style.display = "flex";
   // console.log(`"Сортировка ${numberSorting}`);
 
@@ -383,19 +380,26 @@ buttonsSort.forEach(function (button, iSort) {
 
 // Сброс настроек
 // Самое право
-var resetButton = document.querySelector(".A_FilterResetButton");
-resetButton.addEventListener("click", function () {
-  // Сброс фильтров
-  closeMenuFilters();
-  matrFilters = structuredClone(defMatrFilters);
-  calcFilters();
-  calcDrawParts();
-  drawingParts();
+var resetButton1 = document.querySelector(".A_FilterResetButton");
+// Скрытая снизу
+var resetButton2 = document.getElementById("filterResetButton2");
+var resetButtons = [resetButton1, resetButton2];
+resetButtons.forEach(function (resetButton) {
+  if (resetButton) {
+    resetButton.addEventListener("click", function () {
+      // Сброс фильтров
+      closeMenuFilters();
+      matrFilters = structuredClone(defMatrFilters);
+      calcFilters();
+      calcDrawParts();
+      drawingParts();
 
-  // Сброс сортировки
-  numberSorting = 0;
-  closeMenuSorting();
-  applyingSorting();
+      // Сброс сортировки
+      numberSorting = 0;
+      closeMenuSorting();
+      applyingSorting();
+    });
+  }
 });
 /******/ })()
 ;
