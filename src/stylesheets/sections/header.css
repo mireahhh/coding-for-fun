@@ -8,10 +8,10 @@
     height: min-content;
     /* background-color: transparent // Прозрачный */
     background-color: var(--colors-neutrals-body-01);
-    backdrop-filter: blur(50px);
+    backdrop-filter: blur(var(--size-spacing-50));
     align-items: center;
     z-index: 256;
-
+    
     .C_HeaderAll {
         display: flex;
         flex-direction: column;
@@ -105,11 +105,11 @@
 
                     input::placeholder {
                         color: var(--colors-neutrals-900);
-                        opacity: 0.5;
+                        opacity: var(--official-no-interaction-opacity);
                     }
 
                     .Q_HeaderSearchIcon {
-                        opacity: 0.5;
+                        opacity: var(--official-no-interaction-opacity);
                     }
                 }
             }

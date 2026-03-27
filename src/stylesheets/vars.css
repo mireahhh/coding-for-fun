@@ -8,7 +8,9 @@
     /* size */
 
     /* spacing */
+    --size-spacing-m8: -0.5rem;
     --size-spacing-0: 0rem;
+    --size-spacing-05: 0.03125rem;
     --size-spacing-1: 0.0625rem;
     --size-spacing-2: 0.125rem;
     --size-spacing-3: 0.1875rem;
@@ -41,6 +43,7 @@
     --size-spacing-192: 12rem;
     --size-spacing-212: 13.25rem;
     --size-spacing-240: 15rem;
+    --size-spacing-384: 24rem;
 
     /* radius */
     --size-radius-0: 0rem;
@@ -84,6 +87,7 @@
     --test: #bf069a;
     --official-size-icons: 1.5rem;
     --official-interaction-hover-opacity: 0.7;
+    --official-no-interaction-opacity: 0.52;
     --official-interaction-button-active-transform: 0.95;
     --official-interaction-link-active-transform: 0.98;
 

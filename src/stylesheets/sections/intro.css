@@ -9,16 +9,17 @@
   align-items: flex-start;
   gap: var(--size-spacing-0);
   align-self: stretch;
-  margin-bottom: var(--size-spacing-32);
+  margin-top: var(--size-spacing-0);
 
   .C_IntroRainSquares {
     display: flex;
     flex-direction: row;
-    height: var(--size-spacing-40);
+    height: var(--size-spacing-42);
     align-self: stretch;
     justify-content: space-between;
 
     p {
+      transform: translateY(var(--size-spacing-m8));
       /* U_FontH2 */
       color: var(--colors-neutrals-900);
     }
@@ -52,7 +53,6 @@
     align-self: stretch;
     margin-bottom: var(--size-spacing-32);
     border-radius: var(--size-radius-4);
-    backdrop-filter: blur(var(--size-spacing-5));
 
     /* U_FontC2 */
     color: var(--colors-neutrals-900);
@@ -77,7 +77,6 @@
       flex-wrap: wrap;
       max-width: 928px;
       border-radius: var(--size-radius-4);
-      backdrop-filter: blur(var(--size-spacing-5));
 
       /* U_FontS1 */
       color: var(--colors-neutrals-900);
@@ -107,7 +106,6 @@
         border-radius: var(--size-radius-0);
         border: var(--size-spacing-1) solid var(--colors-neutrals-900);
         background: var(--colors-neutrals-body-01);
-        backdrop-filter: blur(25px);
 
         /* U_FontC2 */
         color: var(--colors-neutrals-900);
@@ -123,11 +121,11 @@
 }
 
 /* m 4 -> 3 */
-@media (max-width: 1368px) {
-}
+@media (max-width: 1368px) {}
 
 /* m 3 -> 2 */
 @media (max-width: 1152px) {
+
   /* H0 -> H1 */
   .A_IntroHeading {
     /* U_FontH1 */
@@ -159,7 +157,7 @@
     width: 100%;
     padding-block: var(--size-spacing-24);
     padding-top: var(--size-spacing-4);
-    margin-bottom: var(--size-spacing-0);
+    margin-top: var(--size-spacing-0);
 
     .C_IntroRainSquares p {
       color: var(--colors-neutrals-200);
@@ -168,6 +166,7 @@
     .O_IntroFooter {
       flex-direction: column;
       align-items: flex-start;
+
       .O_IntroButtoms {
         flex-wrap: wrap;
         width: auto;
