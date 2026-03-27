@@ -1,30 +1,10 @@
 // Задание фильтров
 // Список доступных фильтров
-const filtersComplexity = [
-  "filterComplexityInitial",
-  "filterComplexityMiddle",
-  "filterComplexityAdvanced",
-];
-const filtersLibrary = [
-  "filterLibraryVanillajs",
-  "filterLibraryP5js",
-  "filterLibraryThreejs",
-];
-const filtersFormat = [
-  "filterFormatTechnique",
-  "filterFormatTask",
-  "filterFormatVariation",
-];
-const filtersVerification = [
-  "filterVerificationExpert",
-  "filterVerificationAuthorial",
-];
-const filtersAll = [
-  filtersComplexity,
-  filtersLibrary,
-  filtersFormat,
-  filtersVerification,
-];
+const filtersComplexity = ["filterComplexityInitial", "filterComplexityMiddle", "filterComplexityAdvanced"];
+const filtersLibrary = ["filterLibraryVanillajs", "filterLibraryP5js", "filterLibraryThreejs"];
+const filtersFormat = ["filterFormatTechnique", "filterFormatTask", "filterFormatVariation"];
+const filtersVerification = ["filterVerificationExpert", "filterVerificationAuthorial"];
+const filtersAll = [filtersComplexity, filtersLibrary, filtersFormat, filtersVerification];
 
 // Какие фильтры у каких модулей
 // p1m1
@@ -173,11 +153,7 @@ const setFiltersPart2Module3 = new Set([
   ...setFiltersPart2Module3Tutorial2,
   ...setFiltersPart2Module3Tutorial3,
 ]);
-const filtersPart2 = [
-  setFiltersPart2Module1,
-  setFiltersPart2Module2,
-  setFiltersPart2Module3,
-];
+const filtersPart2 = [setFiltersPart2Module1, setFiltersPart2Module2, setFiltersPart2Module3];
 // p3m1
 const setFiltersPart3Module1Tutorial1 = new Set([
   "filterComplexityAdvanced",
@@ -265,46 +241,25 @@ const setFiltersPart3Module3 = new Set([
   ...setFiltersPart3Module3Tutorial2,
   ...setFiltersPart3Module3Tutorial3,
 ]);
-const filtersPart3 = [
-  setFiltersPart3Module1,
-  setFiltersPart3Module2,
-  setFiltersPart3Module3,
-];
+const filtersPart3 = [setFiltersPart3Module1, setFiltersPart3Module2, setFiltersPart3Module3];
 const filtersPart = [filtersPart1, filtersPart2, filtersPart3];
 
 // Для отрисовки
 const handbookPart1Module1 = document.getElementById("handbookPart1Module1");
 const handbookPart1Module2 = document.getElementById("handbookPart1Module2");
 const handbookPart1Modules = [handbookPart1Module1, handbookPart1Module2];
-const handbookPart1 = [
-  document.getElementById("handbookPart1"),
-  handbookPart1Modules,
-];
+const handbookPart1 = [document.getElementById("handbookPart1"), handbookPart1Modules];
 
 const handbookPart2Module1 = document.getElementById("handbookPart2Module1");
 const handbookPart2Module2 = document.getElementById("handbookPart2Module2");
 const handbookPart2Module3 = document.getElementById("handbookPart2Module3");
-const handbookPart2Modules = [
-  handbookPart2Module1,
-  handbookPart2Module2,
-  handbookPart2Module3,
-];
-const handbookPart2 = [
-  document.getElementById("handbookPart2"),
-  handbookPart2Modules,
-];
+const handbookPart2Modules = [handbookPart2Module1, handbookPart2Module2, handbookPart2Module3];
+const handbookPart2 = [document.getElementById("handbookPart2"), handbookPart2Modules];
 const handbookPart3Module1 = document.getElementById("handbookPart3Module1");
 const handbookPart3Module2 = document.getElementById("handbookPart3Module2");
 const handbookPart3Module3 = document.getElementById("handbookPart3Module3");
-const handbookPart3Modules = [
-  handbookPart3Module1,
-  handbookPart3Module2,
-  handbookPart3Module3,
-];
-const handbookPart3 = [
-  document.getElementById("handbookPart3"),
-  handbookPart3Modules,
-];
+const handbookPart3Modules = [handbookPart3Module1, handbookPart3Module2, handbookPart3Module3];
+const handbookPart3 = [document.getElementById("handbookPart3"), handbookPart3Modules];
 const handbook = [handbookPart1, handbookPart2, handbookPart3];
 const handbookNoResults = document.getElementById("handbookNoResults");
 
@@ -313,12 +268,8 @@ const handbookNoResults = document.getElementById("handbookNoResults");
 let isOpenFilters = false;
 const filterFiltersButton = document.querySelector(".A_FilterFiltersButton");
 const filterFiltersMenu = document.querySelector(".C_FilterFiltersMenu");
-const filterFiltersOpenIcon = document.querySelector(
-  ".Q_FilterFiltersOpenIcon",
-);
-const filterFiltersCloseIcon = document.querySelector(
-  ".Q_FilterFiltersCloseIcon",
-);
+const filterFiltersOpenIcon = document.querySelector(".Q_FilterFiltersOpenIcon");
+const filterFiltersCloseIcon = document.querySelector(".Q_FilterFiltersCloseIcon");
 
 function openMenuFilters() {
   isOpenFilters = true;
@@ -344,55 +295,23 @@ filterFiltersButton.addEventListener("click", () => {
 
 // Применение фильтров
 // Кнопачки
-const filterComplexityInitial = document.getElementById(
-  "filterComplexityInitial",
-);
-const filterComplexityMiddle = document.getElementById(
-  "filterComplexityMiddle",
-);
-const filterComplexityAdvanced = document.getElementById(
-  "filterComplexityAdvanced",
-);
-const buttonsComplexity = [
-  filterComplexityInitial,
-  filterComplexityMiddle,
-  filterComplexityAdvanced,
-];
-const filterLibraryVanillajs = document.getElementById(
-  "filterLibraryVanillajs",
-);
+const filterComplexityInitial = document.getElementById("filterComplexityInitial");
+const filterComplexityMiddle = document.getElementById("filterComplexityMiddle");
+const filterComplexityAdvanced = document.getElementById("filterComplexityAdvanced");
+const buttonsComplexity = [filterComplexityInitial, filterComplexityMiddle, filterComplexityAdvanced];
+const filterLibraryVanillajs = document.getElementById("filterLibraryVanillajs");
 const filterLibraryP5js = document.getElementById("filterLibraryP5js");
 const filterLibraryThreejs = document.getElementById("filterLibraryThreejs");
-const buttonsLibrary = [
-  filterLibraryVanillajs,
-  filterLibraryP5js,
-  filterLibraryThreejs,
-];
+const buttonsLibrary = [filterLibraryVanillajs, filterLibraryP5js, filterLibraryThreejs];
 const filterFormatTechnique = document.getElementById("filterFormatTechnique");
 const filterFormatTask = document.getElementById("filterFormatTask");
 const filterFormatVariation = document.getElementById("filterFormatVariation");
-const buttonsFormat = [
-  filterFormatTechnique,
-  filterFormatTask,
-  filterFormatVariation,
-];
-const filterVerificationExpert = document.getElementById(
-  "filterVerificationExpert",
-);
-const filterVerificationAuthorial = document.getElementById(
-  "filterVerificationAuthorial",
-);
-const buttonsVerification = [
-  filterVerificationExpert,
-  filterVerificationAuthorial,
-];
+const buttonsFormat = [filterFormatTechnique, filterFormatTask, filterFormatVariation];
+const filterVerificationExpert = document.getElementById("filterVerificationExpert");
+const filterVerificationAuthorial = document.getElementById("filterVerificationAuthorial");
+const buttonsVerification = [filterVerificationExpert, filterVerificationAuthorial];
 // Все кнопачки
-const buttonsFilters = [
-  buttonsComplexity,
-  buttonsLibrary,
-  buttonsFormat,
-  buttonsVerification,
-];
+const buttonsFilters = [buttonsComplexity, buttonsLibrary, buttonsFormat, buttonsVerification];
 
 // Операции над множествами
 // Объединение
@@ -435,16 +354,14 @@ function calcFilters() {
   matrFilters.forEach((filter, indexFilter) => {
     filter[1].forEach((setting, indexSetting) => {
       if (matrFilters[indexFilter][1][indexSetting]) {
-        buttonsFilters[indexFilter][indexSetting].style.border =
-          "1.5px dashed var(--colors-neutrals-900)";
+        buttonsFilters[indexFilter][indexSetting].style.border = "1.5px dashed var(--colors-neutrals-900)";
 
         applyFilters[indexFilter] = setUnion(
           applyFilters[indexFilter],
           new Set([filtersAll[indexFilter][indexSetting]]),
         );
       } else {
-        buttonsFilters[indexFilter][indexSetting].style.border =
-          "1.5px dashed var(--colors-neutrals-200)";
+        buttonsFilters[indexFilter][indexSetting].style.border = "1.5px dashed var(--colors-neutrals-200)";
       }
       // ?deny / ?alloy
     });
@@ -537,9 +454,7 @@ buttonsFilters.forEach((buttons, indexFilter) => {
       // Кнопка стала неактивна
       else {
         // Фильтр либо отключился либо остался
-        matrFilters[indexFilter][0] = matrFilters[indexFilter][1].some(
-          (item) => item !== false,
-        );
+        matrFilters[indexFilter][0] = matrFilters[indexFilter][1].some((item) => item !== false);
       }
 
       calcFilters();
@@ -605,19 +520,13 @@ const pointsSort = [pointSort1, pointSort2, pointSort3];
 
 const buttonSort1 = document.getElementById("filterSortingByComplexityButton");
 const buttonSort2 = document.getElementById("filterSortingByDateButton");
-const buttonSort3 = document.getElementById(
-  "filterSortingByVerificationButton",
-);
+const buttonSort3 = document.getElementById("filterSortingByVerificationButton");
 const buttonsSort = [buttonSort1, buttonSort2, buttonSort3];
 
 const handbookModulesPart1 = document.getElementById("handbookModulesPart1");
 const handbookModulesPart2 = document.getElementById("handbookModulesPart2");
 const handbookModulesPart3 = document.getElementById("handbookModulesPart3");
-const handbookModulesParts = [
-  handbookModulesPart1,
-  handbookModulesPart2,
-  handbookModulesPart3,
-];
+const handbookModulesParts = [handbookModulesPart1, handbookModulesPart2, handbookModulesPart3];
 
 const originalHandbookModulesPart1 = Array.from(handbookModulesPart1.children);
 const originalHandbookModulesPart2 = Array.from(handbookModulesPart2.children);
@@ -662,9 +571,7 @@ function applyingSorting() {
     handbookPart.innerHTML = "";
 
     transitionSorts[numberSorting][jPart].forEach((kPosition) => {
-      handbookModulesParts[jPart].appendChild(
-        originalHandbookModulesParts[jPart][kPosition],
-      );
+      handbookModulesParts[jPart].appendChild(originalHandbookModulesParts[jPart][kPosition]);
     });
   });
 }
