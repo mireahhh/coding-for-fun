@@ -11,6 +11,7 @@ module.exports = {
     index: "./src/javascripts/index.js",
     header: "./src/javascripts/header.js",
     filterHandbook: "./src/javascripts/filterHandbook.js",
+    filterGallery: "./src/javascripts/filterGallery.js",
     filterModule: "./src/javascripts/filterModule.js",
   },
   output: {

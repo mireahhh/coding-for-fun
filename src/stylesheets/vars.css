@@ -103,4 +103,9 @@
     --official-interaction-button-active-transform: 0.95;
     --official-interaction-link-active-transform: 0.98;
 
+    /* layout */
+    --layout-computer: 1920px;
+    --layout-laptop: 1368px;
+    --layout-tablet: 1152px;
+    --layout-mobile: 428px;
 }

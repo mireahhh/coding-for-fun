@@ -14,7 +14,10 @@ const htmlPages = [
     "index",
     "filterHandbook",
   ]),
-  createPages("./src/pages/gallery.html", "./pages/gallery.html", ["index"]),
+  createPages("./src/pages/gallery.html", "./pages/gallery.html", [
+    "index",
+    "filterGallery",
+  ]),
   createPages("./src/pages/work.html", "./pages/work.html", ["index"]),
   createPages("./src/pages/about.html", "./pages/about.html", ["index"]),
   createPages("./src/pages/addWork.html", "./pages/addWork.html", ["index"]),

@@ -6,68 +6,6 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
 function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
-// Задание фильтров
-// Список доступных фильтров
-var filtersComplexity = ["filterComplexityInitial", "filterComplexityMiddle", "filterComplexityAdvanced"];
-var filtersLibrary = ["filterLibraryVanillajs", "filterLibraryP5js", "filterLibraryThreejs"];
-var filtersFormat = ["filterFormatTechnique", "filterFormatTask", "filterFormatVariation"];
-var filtersVerification = ["filterVerificationExpert", "filterVerificationAuthorial"];
-var filtersAll = [filtersComplexity, filtersLibrary, filtersFormat, filtersVerification];
-
-// Какие фильтры у каких модулей
-// p1m1
-var setFiltersPart1Module1Tutorial1 = new Set(["filterComplexityInitial", "filterLibraryVanillajs", "filterFormatTechnique", "filterVerificationExpert"]);
-var setFiltersPart1Module1Tutorial2 = new Set(["filterComplexityInitial", "filterLibraryVanillajs", "filterFormatTechnique", "filterVerificationExpert"]);
-var setFiltersPart1Module1Tutorial3 = new Set(["filterComplexityInitial", "filterLibraryVanillajs", "filterFormatTask", "filterVerificationExpert"]);
-var filtersPart1Module1 = [setFiltersPart1Module1Tutorial1, setFiltersPart1Module1Tutorial2, setFiltersPart1Module1Tutorial3];
-var setFiltersPart1Module1 = new Set([].concat(_toConsumableArray(setFiltersPart1Module1Tutorial1), _toConsumableArray(setFiltersPart1Module1Tutorial2), _toConsumableArray(setFiltersPart1Module1Tutorial3)));
-// p1m2
-var setFiltersPart1Module2Tutorial1 = new Set(["filterComplexityInitial", "filterLibraryP5js", "filterFormatTask", "filterVerificationExpert"]);
-var setFiltersPart1Module2Tutorial2 = new Set(["filterComplexityInitial", "filterLibraryP5js", "filterFormatTechnique", "filterVerificationExpert"]);
-var setFiltersPart1Module2Tutorial3 = new Set(["filterComplexityInitial", "filterLibraryVanillajs", "filterFormatTask", "filterVerificationExpert"]);
-var filtersPart1Module2 = [setFiltersPart1Module2Tutorial1, setFiltersPart1Module2Tutorial2, setFiltersPart1Module2Tutorial3];
-var setFiltersPart1Module2 = new Set([].concat(_toConsumableArray(setFiltersPart1Module2Tutorial1), _toConsumableArray(setFiltersPart1Module2Tutorial2), _toConsumableArray(setFiltersPart1Module2Tutorial3)));
-var filtersPart1 = [setFiltersPart1Module1, setFiltersPart1Module2];
-// p2m1
-var setFiltersPart2Module1Tutorial1 = new Set(["filterComplexityMiddle", "filterLibraryVanillajs", "filterFormatTechnique", "filterVerificationExpert"]);
-var setFiltersPart2Module1Tutorial2 = new Set(["filterComplexityMiddle", "filterLibraryVanillajs", "filterFormatTechnique", "filterVerificationExpert"]);
-var setFiltersPart2Module1Tutorial3 = new Set(["filterComplexityMiddle", "filterLibraryVanillajs", "filterFormatTask", "filterVerificationExpert"]);
-var filtersPart2Module1 = [setFiltersPart2Module1Tutorial1, setFiltersPart2Module1Tutorial2, setFiltersPart2Module1Tutorial3];
-var setFiltersPart2Module1 = new Set([].concat(_toConsumableArray(setFiltersPart2Module1Tutorial1), _toConsumableArray(setFiltersPart2Module1Tutorial2), _toConsumableArray(setFiltersPart2Module1Tutorial3)));
-// p2m2
-var setFiltersPart2Module2Tutorial1 = new Set(["filterComplexityMiddle", "filterLibraryP5js", "filterFormatVariation", "filterVerificationExpert"]);
-var setFiltersPart2Module2Tutorial2 = new Set(["filterComplexityMiddle", "filterLibraryP5js", "filterFormatVariation", "filterVerificationExpert"]);
-var setFiltersPart2Module2Tutorial3 = new Set(["filterComplexityMiddle", "filterLibraryP5js", "filterFormatTask", "filterVerificationExpert"]);
-var filtersPart2Module2 = [setFiltersPart2Module2Tutorial1, setFiltersPart2Module2Tutorial2, setFiltersPart2Module2Tutorial3];
-var setFiltersPart2Module2 = new Set([].concat(_toConsumableArray(setFiltersPart2Module2Tutorial1), _toConsumableArray(setFiltersPart2Module2Tutorial2), _toConsumableArray(setFiltersPart2Module2Tutorial3)));
-// p2m3
-var setFiltersPart2Module3Tutorial1 = new Set(["filterComplexityMiddle", "filterLibraryThreejs", "filterFormatTask", "filterVerificationExpert"]);
-var setFiltersPart2Module3Tutorial2 = new Set(["filterComplexityMiddle", "filterLibraryThreejs", "filterFormatTask", "filterVerificationExpert"]);
-var setFiltersPart2Module3Tutorial3 = new Set(["filterComplexityMiddle", "filterLibraryThreejs", "filterFormatVariation", "filterVerificationExpert"]);
-var filtersPart2Module3 = [setFiltersPart2Module3Tutorial1, setFiltersPart2Module3Tutorial2, setFiltersPart2Module3Tutorial3];
-var setFiltersPart2Module3 = new Set([].concat(_toConsumableArray(setFiltersPart2Module3Tutorial1), _toConsumableArray(setFiltersPart2Module3Tutorial2), _toConsumableArray(setFiltersPart2Module3Tutorial3)));
-var filtersPart2 = [setFiltersPart2Module1, setFiltersPart2Module2, setFiltersPart2Module3];
-// p3m1
-var setFiltersPart3Module1Tutorial1 = new Set(["filterComplexityAdvanced", "filterLibraryP5js", "filterFormatVariation", "filterVerificationExpert"]);
-var setFiltersPart3Module1Tutorial2 = new Set(["filterComplexityAdvanced", "filterLibraryThreejs", "filterFormatTechnique", "filterVerificationExpert"]);
-var setFiltersPart3Module1Tutorial3 = new Set(["filterComplexityAdvanced", "filterLibraryThreejs", "filterFormatTask", "filterVerificationExpert"]);
-var filtersPart3Module1 = [setFiltersPart3Module1Tutorial1, setFiltersPart3Module1Tutorial2, setFiltersPart3Module1Tutorial3];
-var setFiltersPart3Module1 = new Set([].concat(_toConsumableArray(setFiltersPart3Module1Tutorial1), _toConsumableArray(setFiltersPart3Module1Tutorial2), _toConsumableArray(setFiltersPart3Module1Tutorial3)));
-// p3m2
-var setFiltersPart3Module2Tutorial1 = new Set(["filterComplexityAdvanced", "filterLibraryThreejs", "filterFormatTask", "filterVerificationExpert"]);
-var setFiltersPart3Module2Tutorial2 = new Set(["filterComplexityAdvanced", "filterLibraryVanillajs", "filterFormatTechnique", "filterVerificationExpert"]);
-var setFiltersPart3Module2Tutorial3 = new Set(["filterComplexityAdvanced", "filterLibraryThreejs", "filterFormatVariation", "filterVerificationExpert"]);
-var filtersPart3Module2 = [setFiltersPart3Module2Tutorial1, setFiltersPart3Module2Tutorial2, setFiltersPart3Module2Tutorial3];
-var setFiltersPart3Module2 = new Set([].concat(_toConsumableArray(setFiltersPart3Module2Tutorial1), _toConsumableArray(setFiltersPart3Module2Tutorial2), _toConsumableArray(setFiltersPart3Module2Tutorial3)));
-// p3m3
-var setFiltersPart3Module3Tutorial1 = new Set(["filterComplexityAdvanced", "filterLibraryP5js", "filterFormatTask", "filterVerificationExpert"]);
-var setFiltersPart3Module3Tutorial2 = new Set(["filterComplexityAdvanced", "filterLibraryP5js", "filterFormatTechnique", "filterVerificationExpert"]);
-var setFiltersPart3Module3Tutorial3 = new Set(["filterComplexityAdvanced", "filterLibraryVanillajs", "filterFormatVariation", "filterVerificationExpert"]);
-var filtersPart3Module3 = [setFiltersPart3Module3Tutorial1, setFiltersPart3Module3Tutorial2, setFiltersPart3Module3Tutorial3];
-var setFiltersPart3Module3 = new Set([].concat(_toConsumableArray(setFiltersPart3Module3Tutorial1), _toConsumableArray(setFiltersPart3Module3Tutorial2), _toConsumableArray(setFiltersPart3Module3Tutorial3)));
-var filtersPart3 = [setFiltersPart3Module1, setFiltersPart3Module2, setFiltersPart3Module3];
-var filtersPart = [filtersPart1, filtersPart2, filtersPart3];
-
 // Для отрисовки
 var handbookPart1Module1 = document.getElementById("handbookPart1Module1");
 var handbookPart1Module2 = document.getElementById("handbookPart1Module2");

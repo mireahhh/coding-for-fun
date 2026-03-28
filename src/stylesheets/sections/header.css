@@ -11,7 +11,7 @@
     backdrop-filter: blur(var(--size-spacing-50));
     align-items: center;
     z-index: 256;
-    
+
     .C_HeaderAll {
         display: flex;
         flex-direction: column;
@@ -88,8 +88,8 @@
                     display: flex;
                     flex-direction: row;
                     height: 100%;
-                    padding: 0.3125rem 0.625rem;
-                    min-width: 246px;
+                    padding: var(--size-spacing-05) var(--size-spacing-1);
+                    /* min-width: 246px; */
                     max-width: 388px;
                     justify-content: space-between;
                     align-items: center;
@@ -100,6 +100,9 @@
 
                     input {
                         /* U_FontC2 */
+                        padding-inline: var(--size-spacing-14);
+                        box-sizing: border-box;
+                        width: 100%;
                         color: var(--colors-neutrals-900);
                     }
 
@@ -197,8 +200,24 @@
     }
 }
 
-/* m 2 -> 1 */
 @media (max-width: 904px) {
+    .S_Header {
+        .C_HeaderAll {
+            .O_HeaderNavigation {
+                .C_HeaderAddForms {
+                    display: none;
+                }
+            }
+
+            .O_HeaderMenuNavigation .C_HeaderMenuAddForms {
+                display: flex;
+            }
+        }
+    }
+}
+
+/* m 2 -> 1 */
+@media (max-width: 428px) {
     .S_Header {
         padding-inline: 4dvw;
         box-sizing: border-box;
@@ -208,20 +227,18 @@
             .O_HeaderNavigation {
                 flex-direction: column;
                 row-gap: clamp(var(--size-spacing-1), var(--size-spacing-16), 3dvh);
-                padding-block: clamp(var(--size-spacing-1), var(--size-spacing-16), 3dvh);
-                height: auto;
+                padding-block: clamp(var(--size-spacing-1), var(--size-spacing-32), 5dvh);
+                height: min-content;
                 align-items: center;
-
-                .O_HeaderHandbookNavigation {
-                    height: clamp(var(--size-spacing-4), var(--size-spacing-40), 10dvh);
-                    width: auto;
-                }
+                width: 100%;
 
                 .A_HeaderLogo {
-                    height: clamp(var(--size-spacing-3), var(--size-spacing-32), 8dvh);
+                    /* height: clamp(var(--size-spacing-4), var(--size-spacing-32), 10dvw); */
+                    width: 100%;
 
                     .A_HeaderLogoText {
                         display: block;
+                        width: 100%;
                     }
 
                     .A_HeaderLogoMin {
@@ -229,13 +246,15 @@
                     }
                 }
 
-                .C_HeaderAddForms {
-                    display: none;
-                }
-            }
+                .O_HeaderHandbookNavigation {
+                    width: 100%;
+                    height: clamp(var(--size-spacing-4), var(--size-spacing-40), 10dvh);
+                    justify-content: space-between;
 
-            .O_HeaderMenuNavigation .C_HeaderMenuAddForms {
-                display: flex;
+                    .M_HeaderSearchBar {
+                        width: 100%;
+                    }
+                }
             }
         }
     }
