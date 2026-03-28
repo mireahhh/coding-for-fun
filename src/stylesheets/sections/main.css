@@ -5,7 +5,6 @@
     height: min-content;
     min-width: 88px;
     width: 100%;
-    /* max-width: 1920px; */
     gap: var(--size-spacing-0);
     background-color: var(--colors-neutrals-body);
 }

@@ -142,7 +142,7 @@
             width: 100%;
             aspect-ratio: 1/1;
             border-radius: var(--size-radius-4);
-            border: 1px solid var(--colors-neutrals-200);
+            border: var(--size-spacing-1) solid var(--colors-neutrals-200);
             transition:
               transform 0.3s ease,
               opacity 0.3s ease;
@@ -166,7 +166,7 @@
         .HandbookPartNoActiveLink,
         .HandbookPartNoActiveLink:hover,
         .HandbookPartNoActiveLink:active {
-          
+
           transform: none;
           box-shadow: none;
           opacity: var(--official-no-interaction-opacity);
@@ -272,15 +272,15 @@
 
         .W_HandbookPartTexts {
 
-          /* H0 -> H1-mob */
           .M_HandbookPartHeading {
-            /* U_FontH1-Mob */
+            /* H0 -> H1-mob */
             color: var(--colors-neutrals-900);
             font-family: var(--font-KairosSans);
             font-size: 3.5rem;
             line-height: 100%;
             letter-spacing: -0.175rem;
             text-transform: uppercase;
+            /* U_FontH1-Mob */
           }
         }
 

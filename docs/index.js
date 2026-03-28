@@ -48,7 +48,9 @@ var headerHeight = header.offsetHeight;
 
 // Применяем отступ к контенту
 var mainContent = document.querySelector(".S_Main");
+var footerContent = document.querySelector(".S_Footer");
 mainContent.style.paddingTop = headerHeight + "px";
+footerContent.style.paddingTop = headerHeight + "px";
 
 // Обновляем при изменении размера окна
 window.addEventListener("resize", function () {
@@ -74,11 +76,27 @@ headerCrossButton.addEventListener("click", function () {
 var headerSearchBar = document.getElementById("headerSearchBar");
 var headerSearchButton = document.querySelector(".Q_HeaderSearchIcon");
 headerSearchButton.addEventListener("click", function () {
+  headerSearchButton.style.opacity = "0.52";
   headerSearchBar.value = "";
-  headerSearchBar.focus();
+  // headerSearchBar.focus();
 });
 headerSearchBar.addEventListener("input", function () {
-  headerSearchButton.style.opacity = headerSearchBar.value ? "1" : "0.5";
+  headerSearchButton.style.opacity = headerSearchBar.value ? "1" : "0.52";
+});
+
+/***/ }),
+
+/***/ 674:
+/***/ (() => {
+
+var footerSubscribeBar = document.getElementById("footerSubscribeBar");
+var footerSubscribeButton = document.getElementById("footerSubscribeButton");
+footerSubscribeButton.addEventListener("click", function () {
+  footerSubscribeButton.style.opacity = "0.52";
+  footerSubscribeBar.value = "";
+});
+footerSubscribeBar.addEventListener("input", function () {
+  footerSubscribeButton.style.opacity = footerSubscribeBar.value ? "1" : "0.52";
 });
 
 /***/ })
@@ -147,8 +165,11 @@ headerSearchBar.addEventListener("input", function () {
 /* harmony import */ var _header_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_header_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _share_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(366);
 /* harmony import */ var _share_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_share_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _footer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(674);
+/* harmony import */ var _footer_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_footer_js__WEBPACK_IMPORTED_MODULE_2__);
 
 console.log("css is entry");
+
 
 
 

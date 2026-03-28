@@ -5,7 +5,9 @@ var headerHeight = header.offsetHeight;
 
 // Применяем отступ к контенту
 var mainContent = document.querySelector(".S_Main");
+var footerContent = document.querySelector(".S_Footer");
 mainContent.style.paddingTop = headerHeight + "px";
+footerContent.style.paddingTop = headerHeight + "px";
 
 // Обновляем при изменении размера окна
 window.addEventListener("resize", function () {
@@ -31,11 +33,12 @@ headerCrossButton.addEventListener("click", function () {
 var headerSearchBar = document.getElementById("headerSearchBar");
 var headerSearchButton = document.querySelector(".Q_HeaderSearchIcon");
 headerSearchButton.addEventListener("click", function () {
+  headerSearchButton.style.opacity = "0.52";
   headerSearchBar.value = "";
-  headerSearchBar.focus();
+  // headerSearchBar.focus();
 });
 headerSearchBar.addEventListener("input", function () {
-  headerSearchButton.style.opacity = headerSearchBar.value ? "1" : "0.5";
+  headerSearchButton.style.opacity = headerSearchBar.value ? "1" : "0.52";
 });
 /******/ })()
 ;

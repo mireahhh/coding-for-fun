@@ -293,11 +293,11 @@ buttonsFilters.forEach(function (buttons, indexFilter) {
 var filterSearchBar = document.getElementById("filterSearchBar");
 var filterSearchButton = document.querySelector(".Q_FilterSearchIcon");
 filterSearchButton.addEventListener("click", function () {
+  filterSearchButton.style.opacity = "0.52";
   filterSearchBar.value = "";
-  filterSearchBar.focus();
 });
 filterSearchBar.addEventListener("input", function () {
-  filterSearchButton.style.opacity = filterSearchBar.value ? "1" : "0.5";
+  filterSearchButton.style.opacity = filterSearchBar.value ? "1" : "0.52";
 });
 
 // Сортировка справа

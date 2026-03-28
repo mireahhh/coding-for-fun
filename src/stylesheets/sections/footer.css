@@ -1,10 +1,222 @@
-.S_Footer {}
+.S_Footer {
+    display: flex;
+    flex-direction: row;
+    padding-inline: 5dvw;
+    padding-top: var(--size-spacing-56);
+    padding-bottom: var(--size-spacing-88);
+    /* height: calc(var(--size-spacing-256) + var(--size-spacing-56) + var(--size-spacing-88)); */
+    box-sizing: border-box;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: flex-start;
+    row-gap: var(--size-spacing-40, 40px);
+    align-self: stretch;
+    border-top: 1.5px dashed var(--colors-neutrals-450);
+    margin-top: var(--size-spacing-120);
+    column-gap: var(--size-spacing-80);
 
-/* m 4 -> 3 */
-@media (max-width: 1368px) {}
+    .A_FooterLogo {
+        display: flex;
+        align-items: center;
+        height: 100%;
 
-/* m 3 -> 2 */
-@media (max-width: 1152px) {}
+        .A_FooterLogoTextRow {
+            height: 100%;
+            width: auto;
+            display: block;
+        }
+    }
 
-/* m 2 -> 1 */
-@media (max-width: 904px) {}
+    .C_FooterLinks {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        column-gap: var(--size-spacing-68);
+        row-gap: var(--size-spacing-16);
+
+        .C_FooterNavigation {
+            display: flex;
+            flex-direction: column;
+            width: var(--size-spacing-92);
+            align-items: flex-start;
+            gap: var(--size-spacing-16);
+
+            a {
+                display: flex;
+                align-items: flex-start;
+                align-self: stretch;
+                color: var(--colors-neutrals-900);
+            }
+        }
+
+        .C_FooterOutside {
+            display: flex;
+            flex-direction: column;
+            width: var(--size-spacing-92);
+            align-items: flex-start;
+            gap: var(--size-spacing-16);
+
+            a {
+                display: flex;
+                align-items: flex-start;
+                align-self: stretch;
+                color: var(--colors-neutrals-900);
+            }
+        }
+    }
+
+    .W_FooterInformation {
+        display: flex;
+        flex-direction: column;
+        width: var(--size-spacing-528);
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: var(--size-spacing-56);
+
+        .W_FooterSubscribe {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: var(--size-spacing-16);
+
+            .A_FooterSubscribeText {
+                p {
+                    /* U_FontB1 */
+                    color: var(--colors-neutrals-900);
+                }
+
+                .A_FooterSubscribeText2 {
+                    display: none;
+                }
+            }
+
+
+            .M_FooterEmailAction {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                align-content: center;
+                gap: var(--size-spacing-8);
+                align-self: stretch;
+                height: min-content;
+
+                .A_FooterSubscribeBar {
+                    flex: 1;
+                    min-width: 0;
+                    width: 100%;
+                    height: var(--size-spacing-48);
+                    text-transform: none;
+                    background: var(--colors-neutrals-100-50);
+                    padding-inline: var(--size-spacing-14);
+                    box-sizing: border-box;
+                    align-content: center;
+
+                    input {
+                        /* U_FontC2 */
+                        color: var(--colors-neutrals-900);
+                    }
+                }
+
+                button {
+                    display: flex;
+                    height: var(--size-spacing-48);
+                    width: var(--size-spacing-208);
+                    justify-content: center;
+                    align-items: center;
+                    flex-shrink: 0;
+                    background: var(--colors-neutrals-900);
+                    opacity: var(--official-no-interaction-opacity);
+
+                    p {
+                        /* U_FontS3 */
+                        color: var(--colors-neutrals-50);
+                    }
+                }
+            }
+        }
+    }
+
+    .W_FooterAuthor {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        align-content: center;
+        column-gap: var(--size-spacing-32);
+        row-gap: var(--size-spacing-24);
+        align-self: stretch;
+
+        .A_FooterPeople {
+            display: block;
+            justify-content: center;
+            align-items: center;
+            /* U_FontC1 */
+            color: var(--colors-neutrals-900);
+        }
+
+        .A_FooterPlace {
+            display: block;
+            justify-content: center;
+            align-items: center;
+            /* U_FontC1 */
+            color: var(--colors-neutrals-900);
+        }
+    }
+}
+
+@media (max-width: 1604px) {
+    .S_Footer .A_FooterLogo {
+        display: none;
+    }
+}
+
+@media (max-width: 958px) {
+    .S_Footer {
+        flex-direction: column;
+        flex-wrap: wrap;
+
+        .W_FooterInformation {
+            flex: 1;
+            min-width: 0;
+            width: 100%;
+        }
+    }
+}
+
+@media (max-width: 594px) {
+    .S_Footer {
+        flex-direction: column;
+        flex-wrap: wrap;
+
+        .W_FooterInformation {
+            .W_FooterSubscribe {
+                .A_FooterSubscribeText {
+                    .A_FooterSubscribeText1 {
+                        display: none;
+                    }
+
+                    .A_FooterSubscribeText2 {
+                        display: flex;
+                    }
+                }
+
+                .M_FooterEmailAction {
+                    flex-direction: column;
+                    align-items: stretch;
+                    width: 100%;
+
+                    .A_FooterSubscribeBar input,
+                    button {
+                        width: 100%;
+                        height: var(--size-spacing-48);
+                    }
+                }
+            }
+        }
+    }
+}

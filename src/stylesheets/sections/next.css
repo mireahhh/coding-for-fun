@@ -58,9 +58,8 @@
 
         .A_NextButton {
             display: flex;
-            width: 271px;
-            height: 48px;
-            min-width: 110px;
+            width: var(--size-spacing-312);
+            height: var(--size-spacing-48);
             justify-content: center;
             align-items: center;
             gap: var(--size-spacing-8);

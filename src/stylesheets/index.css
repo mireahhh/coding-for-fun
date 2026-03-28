@@ -9,10 +9,8 @@
 
 html {
     background-color: var(--colors-neutrals-body);
-    scroll-padding-top: 100px;
-    /* Высота вашей фиксированной шапки */
+    scroll-padding-top: var(--size-spacing-100);
     scroll-behavior: smooth;
-    /* Плавная прокрутка (красиво) */
 }
 
 
