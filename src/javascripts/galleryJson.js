@@ -72,8 +72,8 @@ drawFlower(100, 100, 20, 6);`,
 <script>
     // Реализованный выше код JS для рисования цветка
 </script>`,
-    extension: "mp4",
-    canvasPreview: "1.mp4",
+    extension: "",
+    canvasPreview: "",
   },
   {
     id: 2,

@@ -1,6 +1,48 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
+/******/ 	// The require scope
+/******/ 	var __webpack_require__ = {};
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript && document.currentScript.tagName.toUpperCase() === 'SCRIPT')
+/******/ 				scriptUrl = document.currentScript.src;
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) {
+/******/ 					var i = scripts.length - 1;
+/******/ 					while (i > -1 && (!scriptUrl || !/^http(s?):/.test(scriptUrl))) scriptUrl = scripts[i--].src;
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/^blob:/, "").replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
+/******/ 	})();
+/******/ 	
+/************************************************************************/
 
+;// ./src/images/gallery/2.png
+const _2_namespaceObject = __webpack_require__.p + "images/4395368c4a6574b8e4df.png";
 ;// ./src/javascripts/galleryJson.js
 var works = [{
   id: 0,
@@ -34,8 +76,8 @@ var works = [{
   link: "https://geokash.com/flower-power/",
   codeRun: "const canvas = document.querySelector('canvas');\nconst ctx = canvas.getContext('2d');\n\nfunction drawFlower(x, y, radius, petals) {\n    for (let i = 0; i < petals; i++) {\n        ctx.beginPath();\n        ctx.arc(x, y, radius, (i * Math.PI) / 3, ((i + 1) * Math.PI) / 3);\n        ctx.fill();\n    }\n}\n\ndrawFlower(100, 100, 20, 6);",
   codePreview: "<canvas id=\"flowerCanvas\" width=\"400\" height=\"400\"></canvas>\n<script>\n    // \u0420\u0435\u0430\u043B\u0438\u0437\u043E\u0432\u0430\u043D\u043D\u044B\u0439 \u0432\u044B\u0448\u0435 \u043A\u043E\u0434 JS \u0434\u043B\u044F \u0440\u0438\u0441\u043E\u0432\u0430\u043D\u0438\u044F \u0446\u0432\u0435\u0442\u043A\u0430\n</script>",
-  extension: "mp4",
-  canvasPreview: "1.mp4"
+  extension: "",
+  canvasPreview: ""
 }, {
   id: 2,
   state: 0,
@@ -62,6 +104,8 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
 function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+
+
 // Задание фильтров
 // Список доступных фильтров
 var filtersComplexity = ["filterComplexityInitial", "filterComplexityMiddle", "filterComplexityAdvanced"];
@@ -433,7 +477,7 @@ resetButtons.forEach(function (resetButton) {
 
 // Видео и изображения
 // Запуск видео при наведении
-var videos = document.querySelectorAll(".A_GallaryWorkPreviewVideo");
+var videos = document.querySelectorAll(".A_GalleryWorkPreviewVideo");
 videos.forEach(function (video) {
   var playPromise = null;
   video.addEventListener("mouseenter", function () {
@@ -462,43 +506,55 @@ videos.forEach(function (video) {
 });
 
 // Загрузка галлереи
-var months = (/* unused pure expression or super */ null && (["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"]));
-var gallaryCapacity = 40;
+var months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
+var galleryCapacity = 40;
 
 var originalWorks = structuredClone(works);
-var gallaryWorks = Array.from(document.querySelectorAll(".C_GallaryWorks .W_GallaryWork")).slice(0, gallaryCapacity);
-var renderedWorks = structuredClone(originalWorks.slice(0, gallaryCapacity));
-
-// Сохранить переменную
-sessionStorage.setItem("tempData", "значение");
-sessionStorage.setItem("formData", JSON.stringify({
-  name: "John",
-  email: "john@mail.com"
-}));
-function cleanGallaryWorks() {
-  gallaryWorks.forEach(function (gallaryWork, indexGallaryWork) {
-    gallaryWork.style.display = "none";
-    gallaryWork.querySelector(".A_GallaryWorkPreviewImg").style.display = "none";
-    gallaryWork.querySelector(".A_GallaryWorkPreviewVideo").style.display = "none";
+var galleryWorks = Array.from(document.querySelectorAll(".C_GalleryWorks .W_GalleryWork")).slice(0, galleryCapacity);
+var renderedWorks = structuredClone(originalWorks.slice(0, galleryCapacity));
+galleryWorks.forEach(function (galleryWork, indexGalleryWork) {
+  galleryWork.querySelector(".A_GalleryWorkPreview").addEventListener("click", function () {
+    // Сохранить переменную
+    sessionStorage.setItem("indexWork", indexGalleryWork);
+    // sessionStorage.setItem(
+    //   "formData",
+    //   JSON.stringify({ name: "John", email: "john@mail.com" }),
+    // );
+  });
+});
+function cleanGalleryWorks() {
+  galleryWorks.forEach(function (galleryWork, indexGalleryWork) {
+    galleryWork.style.display = "none";
+    galleryWork.querySelector(".A_GalleryWorkPreviewImg").style.display = "none";
+    galleryWork.querySelector(".A_GalleryWorkPreviewVideo").style.display = "none";
   });
 }
 function drawWorks() {
-  cleanGallaryWorks();
-  renderedWorks = structuredClone(renderedWorks.slice(0, gallaryCapacity));
+  cleanGalleryWorks();
+  renderedWorks = structuredClone(renderedWorks.slice(0, galleryCapacity));
   renderedWorks.forEach(function (renderedWork, indexRenderedWork) {
     var id = renderedWork.id;
-    gallaryWorks[indexRenderedWork].querySelector(".M_GallaryWorkDescription").innerHTML = renderedWork.author + " / " + renderedWork.date[renderedWork.date.length - 1];
-    gallaryWorks[indexRenderedWork].querySelector(".A_GallaryWorkName").innerHTML = renderedWork.title;
+    var date = renderedWork.date[renderedWork.date.length - 1];
+    var day = date.slice(0, 2);
+    var month = parseInt(date.slice(2, 4));
+    var year = date.slice(4, 8);
+    galleryWorks[indexRenderedWork].querySelector(".M_GalleryWorkDescription").innerHTML = renderedWork.author + " / " + day + " " + months[month] + " " + year;
+    galleryWorks[indexRenderedWork].querySelector(".A_GalleryWorkName").innerHTML = renderedWork.title;
     if (renderedWork.extension == "png") {
-      var img = gallaryWorks[indexRenderedWork].querySelector(".A_GallaryWorkPreviewImg");
-      img.src = "../images/gallary/2.png"; // + id + ".png";
+      var img = galleryWorks[indexRenderedWork].querySelector(".A_GalleryWorkPreviewImg");
+      img.src = _2_namespaceObject; // + id + ".png";
       img.style.display = "flex";
     } else if (renderedWork.extension == "mp4") {
-      var video = gallaryWorks[indexRenderedWork].querySelector(".A_GallaryWorkPreviewVideo");
-      video.querySelector("source").src = "../images/gallary/" + id + ".mp4";
+      var video = galleryWorks[indexRenderedWork].querySelector(".A_GalleryWorkPreviewVideo");
+      video.querySelector("source").src = "../images/gallery/" + id + ".mp4";
       video.style.display = "flex";
+    } else {
+      console.log("non", indexRenderedWork);
+      var _video = galleryWorks[indexRenderedWork].querySelector(".A_GalleryWorkPreviewVideo");
+      _video.querySelector("source").src = "https://geokash.com/flower-power/";
+      https: _video.style.display = "flex";
     }
-    gallaryWorks[indexRenderedWork].style.display = "flex";
+    galleryWorks[indexRenderedWork].style.display = "flex";
   });
 }
 drawWorks();

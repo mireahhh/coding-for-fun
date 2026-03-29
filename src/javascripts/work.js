@@ -1,6 +1,9 @@
 // Получить переменную
-const tempData = sessionStorage.getItem("tempData");
-console.log("work", tempData);
+const indexWork = sessionStorage.getItem("indexWork");
+console.log("indexWork", indexWork);
 
-// Удалить
-sessionStorage.removeItem("tempData");
+const heading = document.querySelector(".Heading");
+heading.innerHTML = "Работа " + indexWork;
+
+// // Удалить
+// sessionStorage.removeItem("indexWork");

@@ -1,3 +1,5 @@
+import galleryImg2 from "../images/gallery/2.png";
+
 // Задание фильтров
 // Список доступных фильтров
 const filtersComplexity = [
@@ -456,7 +458,7 @@ resetButtons.forEach((resetButton) => {
 
 // Видео и изображения
 // Запуск видео при наведении
-const videos = document.querySelectorAll(".A_GallaryWorkPreviewVideo");
+const videos = document.querySelectorAll(".A_GalleryWorkPreviewVideo");
 
 videos.forEach((video) => {
   let playPromise = null;
@@ -491,65 +493,93 @@ videos.forEach((video) => {
 });
 
 // Загрузка галлереи
-const months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
-let gallaryCapacity = 40;
+const months = [
+  "Января",
+  "Февраля",
+  "Марта",
+  "Апреля",
+  "Мая",
+  "Июня",
+  "Июля",
+  "Августа",
+  "Сентября",
+  "Октября",
+  "Ноября",
+  "Декабря",
+];
+const galleryCapacity = 40;
 import { works } from "./galleryJson.js";
 const originalWorks = structuredClone(works);
-const gallaryWorks = Array.from(
-  document.querySelectorAll(".C_GallaryWorks .W_GallaryWork"),
-).slice(0, gallaryCapacity);
+const galleryWorks = Array.from(
+  document.querySelectorAll(".C_GalleryWorks .W_GalleryWork"),
+).slice(0, galleryCapacity);
 
-let renderedWorks = structuredClone(originalWorks.slice(0, gallaryCapacity));
+let renderedWorks = structuredClone(originalWorks.slice(0, galleryCapacity));
 
-// Сохранить переменную
-sessionStorage.setItem("tempData", "значение");
-sessionStorage.setItem(
-  "formData",
-  JSON.stringify({ name: "John", email: "john@mail.com" }),
-);
+galleryWorks.forEach((galleryWork, indexGalleryWork) => {
+  galleryWork
+    .querySelector(".A_GalleryWorkPreview")
+    .addEventListener("click", () => {
+      // Сохранить переменную
+      sessionStorage.setItem("indexWork", indexGalleryWork);
+      // sessionStorage.setItem(
+      //   "formData",
+      //   JSON.stringify({ name: "John", email: "john@mail.com" }),
+      // );
+    });
+});
 
-function cleanGallaryWorks() {
-  gallaryWorks.forEach((gallaryWork, indexGallaryWork) => {
-    gallaryWork.style.display = "none";
-    gallaryWork.querySelector(".A_GallaryWorkPreviewImg").style.display =
+function cleanGalleryWorks() {
+  galleryWorks.forEach((galleryWork, indexGalleryWork) => {
+    galleryWork.style.display = "none";
+    galleryWork.querySelector(".A_GalleryWorkPreviewImg").style.display =
       "none";
-    gallaryWork.querySelector(".A_GallaryWorkPreviewVideo").style.display =
+    galleryWork.querySelector(".A_GalleryWorkPreviewVideo").style.display =
       "none";
   });
 }
 
 function drawWorks() {
-  cleanGallaryWorks();
-  renderedWorks = structuredClone(renderedWorks.slice(0, gallaryCapacity));
+  cleanGalleryWorks();
+  renderedWorks = structuredClone(renderedWorks.slice(0, galleryCapacity));
 
   renderedWorks.forEach((renderedWork, indexRenderedWork) => {
     let id = renderedWork.id;
-    gallaryWorks[indexRenderedWork].querySelector(
-      ".M_GallaryWorkDescription",
-    ).innerHTML =
-      renderedWork.author +
-      " / " +
-      renderedWork.date[renderedWork.date.length - 1];
+    const date = renderedWork.date[renderedWork.date.length - 1];
+    const day = date.slice(0, 2);
+    const month = parseInt(date.slice(2, 4));
+    const year = date.slice(4, 8);
 
-    gallaryWorks[indexRenderedWork].querySelector(
-      ".A_GallaryWorkName",
+    galleryWorks[indexRenderedWork].querySelector(
+      ".M_GalleryWorkDescription",
+    ).innerHTML =
+      renderedWork.author + " / " + day + " " + months[month] + " " + year;
+    galleryWorks[indexRenderedWork].querySelector(
+      ".A_GalleryWorkName",
     ).innerHTML = renderedWork.title;
 
     if (renderedWork.extension == "png") {
-      let img = gallaryWorks[indexRenderedWork].querySelector(
-        ".A_GallaryWorkPreviewImg",
+      let img = galleryWorks[indexRenderedWork].querySelector(
+        ".A_GalleryWorkPreviewImg",
       );
-      img.src = "../images/gallary/2.png"; // + id + ".png";
+      img.src = galleryImg2; // + id + ".png";
       img.style.display = "flex";
     } else if (renderedWork.extension == "mp4") {
-      let video = gallaryWorks[indexRenderedWork].querySelector(
-        ".A_GallaryWorkPreviewVideo",
+      let video = galleryWorks[indexRenderedWork].querySelector(
+        ".A_GalleryWorkPreviewVideo",
       );
-      video.querySelector("source").src = "../images/gallary/" + id + ".mp4";
+      video.querySelector("source").src = "../images/gallery/" + id + ".mp4";
       video.style.display = "flex";
+    } else {
+      console.log("non", indexRenderedWork);
+      let video = galleryWorks[indexRenderedWork].querySelector(
+        ".A_GalleryWorkPreviewVideo",
+      );
+      video.querySelector("source").src = "https://geokash.com/flower-power/";
+      https: video.style.display = "flex";
     }
 
-    gallaryWorks[indexRenderedWork].style.display = "flex";
+    galleryWorks[indexRenderedWork].style.display = "flex";
   });
 }
 

@@ -1,4 +1,4 @@
-.O_GallaryWorks {
+.O_GalleryWorks {
   display: flex;
   flex-direction: column;
   padding-inline: 5dvw;
@@ -9,7 +9,7 @@
   margin-top: var(--size-spacing-96);
   height: min-content;
 
-  .C_GallaryWorks {
+  .C_GalleryWorks {
     display: flex;
     width: 100%;
     justify-content: center;
@@ -19,7 +19,7 @@
     align-self: stretch;
     flex-wrap: wrap;
 
-    .W_GallaryWork {
+    .W_GalleryWork {
       display: none;
       width: 100%;
       min-width: var(--size-spacing-268);
@@ -29,7 +29,7 @@
       gap: var(--size-spacing-20);
       flex: 1 0 0;
 
-      .M_GallaryWorkDescription {
+      .M_GalleryWorkDescription {
         display: flex;
         align-items: flex-start;
         flex: 1 0 0;
@@ -38,7 +38,7 @@
         color: var(--colors-neutrals-900);
       }
 
-      .A_GallaryWorkPreview {
+      .A_GalleryWorkPreview {
         display: flex;
         width: 100%;
         align-self: stretch;
@@ -46,18 +46,18 @@
         border-radius: var(--size-radius-4);
         border: 1px solid var(--colors-neutrals-200);
 
-        .A_GallaryWorkPreviewImg,
-        .A_GallaryWorkPreviewVideo {
+        .A_GalleryWorkPreviewImg,
+        .A_GalleryWorkPreviewVideo {
           display: none;
           width: 100%;
           height: 100%;
           object-fit: cover;
         }
 
-        .A_GallaryWorkPreviewVideo {}
+        .A_GalleryWorkPreviewVideo {}
       }
 
-      .A_GallaryWorkName {
+      .A_GalleryWorkName {
         display: flex;
         align-items: flex-start;
         align-self: stretch;
@@ -68,7 +68,7 @@
     }
   }
 
-  .W_GallaryScrollBar {
+  .W_GalleryScrollBar {
     display: flex;
     flex-direction: row;
     height: 100%;
@@ -78,7 +78,7 @@
     height: var(--size-spacing-40);
     align-self: center;
 
-    .A_GallaryScrollBarNumbers {
+    .A_GalleryScrollBarNumbers {
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -96,17 +96,17 @@
         color: var(--colors-neutrals-900);
       }
 
-      .A_GallaryScrollBarNumberHighlight {
+      .A_GalleryScrollBarNumberHighlight {
         opacity: 1;
         border: 1.5px dashed var(--colors-neutrals-900);
       }
 
-      .A_GallaryScrollBarNumberHide {
+      .A_GalleryScrollBarNumberHide {
         display: none;
       }
     }
 
-    .A_GallaryScrollBarArrows {
+    .A_GalleryScrollBarArrows {
       display: flex;
       height: 100%;
       color: var(--colors-neutrals-900, #1F1F1F);
@@ -119,21 +119,21 @@
       opacity: var(--official-no-interaction-opacity);
     }
 
-    .A_GallaryScrollBarNumbers {
+    .A_GalleryScrollBarNumbers {
       /* U_FontC2 */
       color: var(--colors-neutrals-900);
     }
   }
 }
 
-.A_GallaryWorkPreview:hover {
+.A_GalleryWorkPreview:hover {
   opacity: 0.97;
   transform: scale(1.03);
   box-shadow: none;
   /* box-shadow: 0px 4px 10px var(--colors-neutrals-900-20); */
 }
 
-.A_GallaryWorkPreview:active {
+.A_GalleryWorkPreview:active {
   opacity: 1;
   transform: scale(0.95);
   box-shadow: none;
@@ -141,55 +141,55 @@
 
 /* m 4 -> 3 */
 @media (max-width: 1368px) {
-  .O_GallaryWorks {
-    .C_GallaryWorks {
+  .O_GalleryWorks {
+    .C_GalleryWorks {
       column-gap: var(--size-spacing-36);
 
-      .W_GallaryWork {}
+      .W_GalleryWork {}
     }
   }
 }
 
 /* m 3 -> 2 */
 @media (max-width: 1152px) {
-  .O_GallaryWorks {
+  .O_GalleryWorks {
     margin-top: var(--size-spacing-72);
 
-    .C_GallaryWorks {
+    .C_GalleryWorks {
       column-gap: var(--size-spacing-20);
       row-gap: var(--size-spacing-72);
 
-      .W_GallaryWork {}
+      .W_GalleryWork {}
     }
   }
 
-  .O_GallaryWorks {
+  .O_GalleryWorks {
     gap: var(--size-spacing-72);
   }
 }
 
 /* m 2 -> 1 */
 @media (max-width: 904px) {
-  .O_GallaryWorks {
-    .C_GallaryWorks {
-      .W_GallaryWork {}
+  .O_GalleryWorks {
+    .C_GalleryWorks {
+      .W_GalleryWork {}
     }
   }
 }
 
 /* m 1 -> 0 */
 @media (max-width: 428px) {
-  .O_GallaryWorks {
+  .O_GalleryWorks {
     margin-top: var(--size-spacing-64);
 
-    .C_GallaryWorks {
-      .W_GallaryWork {
+    .C_GalleryWorks {
+      .W_GalleryWork {
         min-width: none;
       }
     }
   }
 
-  .O_GallaryWorks {
+  .O_GalleryWorks {
     gap: var(--size-spacing-64);
   }
 }
