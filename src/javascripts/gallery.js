@@ -14,11 +14,11 @@ const filtersVerification = [
   "filterVerificationExpert",
   "filterVerificationAuthorial",
 ];
-// const filtersAll = [
-//   filtersComplexity,
-//   filtersLibrary,
-//   filtersVerification,
-// ];
+const filtersAll = [
+  filtersComplexity,
+  filtersLibrary,
+  filtersVerification,
+];
 
 // async function getFiltersAll(path) {
 //   const response = await fetch(path);

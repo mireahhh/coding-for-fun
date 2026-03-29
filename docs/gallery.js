@@ -8,14 +8,10 @@ function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 // Задание фильтров
 // Список доступных фильтров
-var filtersComplexity = (/* unused pure expression or super */ null && (["filterComplexityInitial", "filterComplexityMiddle", "filterComplexityAdvanced"]));
-var filtersLibrary = (/* unused pure expression or super */ null && (["filterLibraryVanillajs", "filterLibraryP5js", "filterLibraryThreejs"]));
-var filtersVerification = (/* unused pure expression or super */ null && (["filterVerificationExpert", "filterVerificationAuthorial"]));
-// const filtersAll = [
-//   filtersComplexity,
-//   filtersLibrary,
-//   filtersVerification,
-// ];
+var filtersComplexity = ["filterComplexityInitial", "filterComplexityMiddle", "filterComplexityAdvanced"];
+var filtersLibrary = ["filterLibraryVanillajs", "filterLibraryP5js", "filterLibraryThreejs"];
+var filtersVerification = ["filterVerificationExpert", "filterVerificationAuthorial"];
+var filtersAll = [filtersComplexity, filtersLibrary, filtersVerification];
 
 // async function getFiltersAll(path) {
 //   const response = await fetch(path);
