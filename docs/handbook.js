@@ -288,7 +288,7 @@ filterSearchBar.addEventListener("input", function () {
 
 // Сортировка справа
 // Меню
-isOpenSorting = false;
+var isOpenSorting = false;
 var openSortsButton = document.querySelector(".A_FilterSortingOpenButton");
 var openSortsIcon = document.querySelector(".Q_FilterSortingOpenIcon");
 var closeSortsIcon = document.querySelector(".Q_FilterSortingCloseIcon");

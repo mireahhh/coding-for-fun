@@ -1,4 +1,60 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+
+;// ./src/javascripts/galleryJson.js
+var works = [{
+  id: 0,
+  state: 1,
+  official: "",
+  date: ["27032026"],
+  title: "Flower Power",
+  author: "Katarina Lingat",
+  complexity: "filterComplexityMiddle",
+  library: "filterLibraryVanillajs",
+  verification: "filterVerificationExpert",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"],
+  description: "Расслабляющее пространство, в котором вы можете взаимодействовать с окружающим миром. Выбирайте цветы, составляйте из них композиции и экспериментируйте с оттенками, создавая успокаивающую атмосферу. Цель проекта — способствовать спокойствию через взаимодействие, предоставляя пространство для творческого самовыражения и релаксации. Наслаждайтесь цветочной поляной, создавайте собственные визуальные комбинации и составлять композиции из одного цвета. В работе используется процедурная генерация случайных узоров и комбинаций цветов, а также HTML Canvas для динамического рендеринга графики.",
+  link: "https://geokash.com/flower-power/",
+  codeRun: "const canvas = document.querySelector('canvas');\nconst ctx = canvas.getContext('2d');\n\nfunction drawFlower(x, y, radius, petals) {\n    for (let i = 0; i < petals; i++) {\n        ctx.beginPath();\n        ctx.arc(x, y, radius, (i * Math.PI) / 3, ((i + 1) * Math.PI) / 3);\n        ctx.fill();\n    }\n}\n\ndrawFlower(100, 100, 20, 6);",
+  codePreview: "<canvas id=\"flowerCanvas\" width=\"400\" height=\"400\"></canvas>\n<script>\n    // \u0420\u0435\u0430\u043B\u0438\u0437\u043E\u0432\u0430\u043D\u043D\u044B\u0439 \u0432\u044B\u0448\u0435 \u043A\u043E\u0434 JS \u0434\u043B\u044F \u0440\u0438\u0441\u043E\u0432\u0430\u043D\u0438\u044F \u0446\u0432\u0435\u0442\u043A\u0430\n</script>",
+  canvasExtension: "png",
+  canvasPreviewName: "0.png"
+}, {
+  id: 1,
+  state: 1,
+  official: "",
+  date: ["27032026"],
+  title: "Flower Power",
+  author: "Katarina Lingat",
+  complexity: "filterComplexityMiddle",
+  library: "filterLibraryVanillajs",
+  verification: "filterVerificationExpert",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"],
+  description: "Расслабляющее пространство, в котором вы можете взаимодействовать с окружающим миром. Выбирайте цветы, составляйте из них композиции и экспериментируйте с оттенками, создавая успокаивающую атмосферу. Цель проекта — способствовать спокойствию через взаимодействие, предоставляя пространство для творческого самовыражения и релаксации. Наслаждайтесь цветочной поляной, создавайте собственные визуальные комбинации и составлять композиции из одного цвета. В работе используется процедурная генерация случайных узоров и комбинаций цветов, а также HTML Canvas для динамического рендеринга графики.",
+  link: "https://geokash.com/flower-power/",
+  codeRun: "const canvas = document.querySelector('canvas');\nconst ctx = canvas.getContext('2d');\n\nfunction drawFlower(x, y, radius, petals) {\n    for (let i = 0; i < petals; i++) {\n        ctx.beginPath();\n        ctx.arc(x, y, radius, (i * Math.PI) / 3, ((i + 1) * Math.PI) / 3);\n        ctx.fill();\n    }\n}\n\ndrawFlower(100, 100, 20, 6);",
+  codePreview: "<canvas id=\"flowerCanvas\" width=\"400\" height=\"400\"></canvas>\n<script>\n    // \u0420\u0435\u0430\u043B\u0438\u0437\u043E\u0432\u0430\u043D\u043D\u044B\u0439 \u0432\u044B\u0448\u0435 \u043A\u043E\u0434 JS \u0434\u043B\u044F \u0440\u0438\u0441\u043E\u0432\u0430\u043D\u0438\u044F \u0446\u0432\u0435\u0442\u043A\u0430\n</script>",
+  extension: "mp4",
+  canvasPreview: "1.mp4"
+}, {
+  id: 2,
+  state: 0,
+  official: "",
+  date: ["27032026"],
+  title: "Flower Power",
+  author: "Katarina Lingat",
+  complexity: "filterComplexityMiddle",
+  library: "filterLibraryVanillajs",
+  verification: "filterVerificationExpert",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"],
+  description: "Расслабляющее пространство, в котором вы можете взаимодействовать с окружающим миром. Выбирайте цветы, составляйте из них композиции и экспериментируйте с оттенками, создавая успокаивающую атмосферу. Цель проекта — способствовать спокойствию через взаимодействие, предоставляя пространство для творческого самовыражения и релаксации. Наслаждайтесь цветочной поляной, создавайте собственные визуальные комбинации и составлять композиции из одного цвета. В работе используется процедурная генерация случайных узоров и комбинаций цветов, а также HTML Canvas для динамического рендеринга графики.",
+  link: "https://geokash.com/flower-power/",
+  codeRun: "const canvas = document.querySelector('canvas');\nconst ctx = canvas.getContext('2d');\n\nfunction drawFlower(x, y, radius, petals) {\n    for (let i = 0; i < petals; i++) {\n        ctx.beginPath();\n        ctx.arc(x, y, radius, (i * Math.PI) / 3, ((i + 1) * Math.PI) / 3);\n        ctx.fill();\n    }\n}\n\ndrawFlower(100, 100, 20, 6);",
+  codePreview: "<canvas id=\"flowerCanvas\" width=\"400\" height=\"400\"></canvas>\n<script>\n    // \u0420\u0435\u0430\u043B\u0438\u0437\u043E\u0432\u0430\u043D\u043D\u044B\u0439 \u0432\u044B\u0448\u0435 \u043A\u043E\u0434 JS \u0434\u043B\u044F \u0440\u0438\u0441\u043E\u0432\u0430\u043D\u0438\u044F \u0446\u0432\u0435\u0442\u043A\u0430\n</script>",
+  extension: "png",
+  canvasPreview: "2.png"
+}];
+;// ./src/javascripts/gallery.js
 function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -265,7 +321,7 @@ filterSearchBar.addEventListener("input", function () {
 
 // Сортировка справа
 // Меню
-isOpenSorting = false;
+var isOpenSorting = false;
 var openSortsButton = document.querySelector(".A_FilterSortingOpenButton");
 var openSortsIcon = document.querySelector(".Q_FilterSortingOpenIcon");
 var closeSortsIcon = document.querySelector(".Q_FilterSortingCloseIcon");
@@ -291,7 +347,7 @@ openSortsButton.addEventListener("click", function () {
 });
 
 // Применение сортировки
-numberSorting = 0; // 0, 1, 2
+var numberSorting = 0; // 0, 1, 2
 var nameSort = document.querySelector(".A_FilterSortingByText");
 var namesSort = (/* unused pure expression or super */ null && (["По сложности", "По дате обновления", "По проверенности"]));
 var pointSort1 = document.querySelector(".Q_FilterSortingByComplexityIcon");
@@ -379,13 +435,72 @@ resetButtons.forEach(function (resetButton) {
 // Запуск видео при наведении
 var videos = document.querySelectorAll(".A_GallaryWorkPreviewVideo");
 videos.forEach(function (video) {
+  var playPromise = null;
   video.addEventListener("mouseenter", function () {
-    video.play();
+    playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise["catch"](function () {
+        // игнорируем ошибку (например, autoplay restrictions)
+      });
+    }
   });
   video.addEventListener("mouseleave", function () {
-    video.pause();
-    video.currentTime = 0;
+    if (playPromise !== undefined) {
+      playPromise.then(function () {
+        video.pause();
+        video.currentTime = 0;
+      })["catch"](function () {
+        // если play не успел — просто безопасно сбрасываем
+        video.pause();
+        video.currentTime = 0;
+      });
+    } else {
+      video.pause();
+      video.currentTime = 0;
+    }
   });
 });
+
+// Загрузка галлереи
+var months = (/* unused pure expression or super */ null && (["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"]));
+var gallaryCapacity = 40;
+
+var originalWorks = structuredClone(works);
+var gallaryWorks = Array.from(document.querySelectorAll(".C_GallaryWorks .W_GallaryWork")).slice(0, gallaryCapacity);
+var renderedWorks = structuredClone(originalWorks.slice(0, gallaryCapacity));
+
+// Сохранить переменную
+sessionStorage.setItem("tempData", "значение");
+sessionStorage.setItem("formData", JSON.stringify({
+  name: "John",
+  email: "john@mail.com"
+}));
+function cleanGallaryWorks() {
+  gallaryWorks.forEach(function (gallaryWork, indexGallaryWork) {
+    gallaryWork.style.display = "none";
+    gallaryWork.querySelector(".A_GallaryWorkPreviewImg").style.display = "none";
+    gallaryWork.querySelector(".A_GallaryWorkPreviewVideo").style.display = "none";
+  });
+}
+function drawWorks() {
+  cleanGallaryWorks();
+  renderedWorks = structuredClone(renderedWorks.slice(0, gallaryCapacity));
+  renderedWorks.forEach(function (renderedWork, indexRenderedWork) {
+    var id = renderedWork.id;
+    gallaryWorks[indexRenderedWork].querySelector(".M_GallaryWorkDescription").innerHTML = renderedWork.author + " / " + renderedWork.date[renderedWork.date.length - 1];
+    gallaryWorks[indexRenderedWork].querySelector(".A_GallaryWorkName").innerHTML = renderedWork.title;
+    if (renderedWork.extension == "png") {
+      var img = gallaryWorks[indexRenderedWork].querySelector(".A_GallaryWorkPreviewImg");
+      img.src = "../images/gallary/2.png"; // + id + ".png";
+      img.style.display = "flex";
+    } else if (renderedWork.extension == "mp4") {
+      var video = gallaryWorks[indexRenderedWork].querySelector(".A_GallaryWorkPreviewVideo");
+      video.querySelector("source").src = "../images/gallary/" + id + ".mp4";
+      video.style.display = "flex";
+    }
+    gallaryWorks[indexRenderedWork].style.display = "flex";
+  });
+}
+drawWorks();
 /******/ })()
 ;

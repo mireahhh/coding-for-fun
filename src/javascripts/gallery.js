@@ -14,11 +14,7 @@ const filtersVerification = [
   "filterVerificationExpert",
   "filterVerificationAuthorial",
 ];
-const filtersAll = [
-  filtersComplexity,
-  filtersLibrary,
-  filtersVerification,
-];
+const filtersAll = [filtersComplexity, filtersLibrary, filtersVerification];
 
 // async function getFiltersAll(path) {
 //   const response = await fetch(path);
@@ -318,7 +314,7 @@ filterSearchBar.addEventListener("input", () => {
 
 // Сортировка справа
 // Меню
-isOpenSorting = false;
+let isOpenSorting = false;
 
 const openSortsButton = document.querySelector(".A_FilterSortingOpenButton");
 const openSortsIcon = document.querySelector(".Q_FilterSortingOpenIcon");
@@ -348,7 +344,7 @@ openSortsButton.addEventListener("click", () => {
 });
 
 // Применение сортировки
-numberSorting = 0; // 0, 1, 2
+let numberSorting = 0; // 0, 1, 2
 const nameSort = document.querySelector(".A_FilterSortingByText");
 const namesSort = ["По сложности", "По дате обновления", "По проверенности"];
 
@@ -463,12 +459,98 @@ resetButtons.forEach((resetButton) => {
 const videos = document.querySelectorAll(".A_GallaryWorkPreviewVideo");
 
 videos.forEach((video) => {
+  let playPromise = null;
+
   video.addEventListener("mouseenter", () => {
-    video.play();
+    playPromise = video.play();
+
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // игнорируем ошибку (например, autoplay restrictions)
+      });
+    }
   });
 
   video.addEventListener("mouseleave", () => {
-    video.pause();
-    video.currentTime = 0;
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          video.pause();
+          video.currentTime = 0;
+        })
+        .catch(() => {
+          // если play не успел — просто безопасно сбрасываем
+          video.pause();
+          video.currentTime = 0;
+        });
+    } else {
+      video.pause();
+      video.currentTime = 0;
+    }
   });
 });
+
+// Загрузка галлереи
+const months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
+let gallaryCapacity = 40;
+import { works } from "./galleryJson.js";
+const originalWorks = structuredClone(works);
+const gallaryWorks = Array.from(
+  document.querySelectorAll(".C_GallaryWorks .W_GallaryWork"),
+).slice(0, gallaryCapacity);
+
+let renderedWorks = structuredClone(originalWorks.slice(0, gallaryCapacity));
+
+// Сохранить переменную
+sessionStorage.setItem("tempData", "значение");
+sessionStorage.setItem(
+  "formData",
+  JSON.stringify({ name: "John", email: "john@mail.com" }),
+);
+
+function cleanGallaryWorks() {
+  gallaryWorks.forEach((gallaryWork, indexGallaryWork) => {
+    gallaryWork.style.display = "none";
+    gallaryWork.querySelector(".A_GallaryWorkPreviewImg").style.display =
+      "none";
+    gallaryWork.querySelector(".A_GallaryWorkPreviewVideo").style.display =
+      "none";
+  });
+}
+
+function drawWorks() {
+  cleanGallaryWorks();
+  renderedWorks = structuredClone(renderedWorks.slice(0, gallaryCapacity));
+
+  renderedWorks.forEach((renderedWork, indexRenderedWork) => {
+    let id = renderedWork.id;
+    gallaryWorks[indexRenderedWork].querySelector(
+      ".M_GallaryWorkDescription",
+    ).innerHTML =
+      renderedWork.author +
+      " / " +
+      renderedWork.date[renderedWork.date.length - 1];
+
+    gallaryWorks[indexRenderedWork].querySelector(
+      ".A_GallaryWorkName",
+    ).innerHTML = renderedWork.title;
+
+    if (renderedWork.extension == "png") {
+      let img = gallaryWorks[indexRenderedWork].querySelector(
+        ".A_GallaryWorkPreviewImg",
+      );
+      img.src = "../images/gallary/2.png"; // + id + ".png";
+      img.style.display = "flex";
+    } else if (renderedWork.extension == "mp4") {
+      let video = gallaryWorks[indexRenderedWork].querySelector(
+        ".A_GallaryWorkPreviewVideo",
+      );
+      video.querySelector("source").src = "../images/gallary/" + id + ".mp4";
+      video.style.display = "flex";
+    }
+
+    gallaryWorks[indexRenderedWork].style.display = "flex";
+  });
+}
+
+drawWorks();

@@ -13,6 +13,7 @@ module.exports = {
     handbook: "./src/javascripts/handbook.js",
     gallery: "./src/javascripts/gallery.js",
     module: "./src/javascripts/module.js",
+    work: "./src/javascripts/work.js",
   },
   output: {
     filename: "[name].js",

@@ -518,7 +518,7 @@ filterSearchBar.addEventListener("input", () => {
 
 // Сортировка справа
 // Меню
-isOpenSorting = false;
+let isOpenSorting = false;
 
 const openSortsButton = document.querySelector(".A_FilterSortingOpenButton");
 const openSortsIcon = document.querySelector(".Q_FilterSortingOpenIcon");

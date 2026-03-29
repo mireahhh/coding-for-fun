@@ -31,6 +31,7 @@
     .W_NextAbout {
         display: flex;
         flex-direction: column;
+        width: 100%;
         gap: var(--size-spacing-64);
         align-items: center;
         align-self: stretch;
@@ -113,5 +114,15 @@
             /* U_FontH1-Mob */
         }
 
+    }
+}
+
+@media (max-width: 904px) {
+    .W_Next {
+        .W_NextAbout {
+            .A_NextButton {
+                width: 100%;
+            }
+        }
     }
 }
