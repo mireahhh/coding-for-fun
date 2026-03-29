@@ -46,11 +46,6 @@ const setFiltersPart1Module1Tutorial3 = new Set([
   "filterFormatTask",
   "filterVerificationExpert",
 ]);
-const filtersPart1Module1 = [
-  setFiltersPart1Module1Tutorial1,
-  setFiltersPart1Module1Tutorial2,
-  setFiltersPart1Module1Tutorial3,
-];
 const setFiltersPart1Module1 = new Set([
   ...setFiltersPart1Module1Tutorial1,
   ...setFiltersPart1Module1Tutorial2,
@@ -75,11 +70,6 @@ const setFiltersPart1Module2Tutorial3 = new Set([
   "filterFormatTask",
   "filterVerificationExpert",
 ]);
-const filtersPart1Module2 = [
-  setFiltersPart1Module2Tutorial1,
-  setFiltersPart1Module2Tutorial2,
-  setFiltersPart1Module2Tutorial3,
-];
 const setFiltersPart1Module2 = new Set([
   ...setFiltersPart1Module2Tutorial1,
   ...setFiltersPart1Module2Tutorial2,
@@ -105,11 +95,6 @@ const setFiltersPart2Module1Tutorial3 = new Set([
   "filterFormatTask",
   "filterVerificationExpert",
 ]);
-const filtersPart2Module1 = [
-  setFiltersPart2Module1Tutorial1,
-  setFiltersPart2Module1Tutorial2,
-  setFiltersPart2Module1Tutorial3,
-];
 const setFiltersPart2Module1 = new Set([
   ...setFiltersPart2Module1Tutorial1,
   ...setFiltersPart2Module1Tutorial2,
@@ -134,11 +119,6 @@ const setFiltersPart2Module2Tutorial3 = new Set([
   "filterFormatTask",
   "filterVerificationExpert",
 ]);
-const filtersPart2Module2 = [
-  setFiltersPart2Module2Tutorial1,
-  setFiltersPart2Module2Tutorial2,
-  setFiltersPart2Module2Tutorial3,
-];
 const setFiltersPart2Module2 = new Set([
   ...setFiltersPart2Module2Tutorial1,
   ...setFiltersPart2Module2Tutorial2,
@@ -163,11 +143,6 @@ const setFiltersPart2Module3Tutorial3 = new Set([
   "filterFormatVariation",
   "filterVerificationExpert",
 ]);
-const filtersPart2Module3 = [
-  setFiltersPart2Module3Tutorial1,
-  setFiltersPart2Module3Tutorial2,
-  setFiltersPart2Module3Tutorial3,
-];
 const setFiltersPart2Module3 = new Set([
   ...setFiltersPart2Module3Tutorial1,
   ...setFiltersPart2Module3Tutorial2,
@@ -197,11 +172,6 @@ const setFiltersPart3Module1Tutorial3 = new Set([
   "filterFormatTask",
   "filterVerificationExpert",
 ]);
-const filtersPart3Module1 = [
-  setFiltersPart3Module1Tutorial1,
-  setFiltersPart3Module1Tutorial2,
-  setFiltersPart3Module1Tutorial3,
-];
 const setFiltersPart3Module1 = new Set([
   ...setFiltersPart3Module1Tutorial1,
   ...setFiltersPart3Module1Tutorial2,
@@ -226,11 +196,6 @@ const setFiltersPart3Module2Tutorial3 = new Set([
   "filterFormatVariation",
   "filterVerificationExpert",
 ]);
-const filtersPart3Module2 = [
-  setFiltersPart3Module2Tutorial1,
-  setFiltersPart3Module2Tutorial2,
-  setFiltersPart3Module2Tutorial3,
-];
 const setFiltersPart3Module2 = new Set([
   ...setFiltersPart3Module2Tutorial1,
   ...setFiltersPart3Module2Tutorial2,
@@ -255,11 +220,6 @@ const setFiltersPart3Module3Tutorial3 = new Set([
   "filterFormatVariation",
   "filterVerificationExpert",
 ]);
-const filtersPart3Module3 = [
-  setFiltersPart3Module3Tutorial1,
-  setFiltersPart3Module3Tutorial2,
-  setFiltersPart3Module3Tutorial3,
-];
 const setFiltersPart3Module3 = new Set([
   ...setFiltersPart3Module3Tutorial1,
   ...setFiltersPart3Module3Tutorial2,
@@ -415,20 +375,14 @@ const defMatrDraw = [
   [true, [true, true, true]],
 ];
 const defNoResults = false;
-const defAllowFilters = new Set(filtersAll.flat());
-const defDenyFilters = new Set();
 const defApplyFilters = [new Set(), new Set(), new Set(), new Set()];
 
 let matrDraw = structuredClone(defMatrDraw);
 let matrFilters = structuredClone(defMatrFilters);
 let noResults = defNoResults;
-let allowFilters = new Set(defAllowFilters);
-let denyFilters = new Set(defDenyFilters);
 let applyFilters = structuredClone(defApplyFilters);
 
 function calcFilters() {
-  allowFilters = new Set(defAllowFilters);
-  denyFilters = new Set(defDenyFilters);
   applyFilters = structuredClone(defApplyFilters);
   matrDraw = structuredClone(defMatrDraw);
 

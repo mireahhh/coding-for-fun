@@ -192,6 +192,7 @@
     .S_Footer {
         flex-direction: column;
         flex-wrap: wrap;
+        margin-top: var(--size-spacing-64);
 
         .W_FooterInformation {
             .W_FooterSubscribe {

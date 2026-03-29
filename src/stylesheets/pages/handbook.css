@@ -7,24 +7,24 @@
   align-items: flex-start;
   gap: var(--size-spacing-120);
   margin-top: var(--size-spacing-72);
-  margin-bottom: var(--size-spacing-32);
 
   .O_HandbookPart {
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
     padding-bottom: var(--size-spacing-120);
     align-items: flex-start;
     align-content: flex-start;
-    gap: 8.75dvw;
+    gap: var(--size-spacing-168);
     align-self: stretch;
     border-bottom: 1.5px dashed var(--colors-neutrals-200);
 
     .W_HandbookPartAbout {
       display: flex;
       flex-direction: column;
-      height: 445px;
-      min-width: 344px;
-      max-width: 417px;
+      height: var(--size-spacing-448);
+      min-width: var(--size-spacing-344);
+      max-width: var(--size-spacing-416);
       gap: var(--size-spacing-36);
       align-items: flex-start;
       justify-content: space-between;
@@ -71,9 +71,9 @@
 
       .M_HandbookPartStartButton {
         display: flex;
-        width: 271px;
-        height: 48px;
-        min-width: 110px;
+        width: var(--size-spacing-272);
+        height: var(--size-spacing-48);
+        min-width: var(--size-spacing-110);
         justify-content: center;
         align-items: center;
         gap: var(--size-spacing-8);
@@ -103,19 +103,18 @@
     .C_HandbookModules {
       display: flex;
       flex-wrap: wrap;
-      /* justify-content: center; */
       align-items: flex-start;
       align-content: flex-start;
       gap: var(--size-spacing-56);
 
       .W_HandbookModule {
         display: flex;
-        width: 17.92dvw;
-        /* min-width: 275.5px;
-        max-width: 388px; */
+        min-width: var(--size-spacing-276);
+        max-width: var(--size-spacing-388);
         flex-direction: column;
         align-items: flex-start;
         gap: var(--size-spacing-20);
+        flex: 1 0 0;
 
         .A_HandbookModuleDate {
           display: flex;
@@ -133,7 +132,9 @@
           flex-direction: column;
           align-items: flex-end;
           align-self: stretch;
+          width: 100%;
           aspect-ratio: 1/1;
+          flex: 1 0 0;
           transition:
             transform 0.3s ease,
             opacity 0.3s ease;
@@ -141,6 +142,7 @@
           .A_HandbookModuleImage {
             width: 100%;
             aspect-ratio: 1/1;
+            flex: 1 0 0;
             border-radius: var(--size-radius-4);
             border: var(--size-spacing-1) solid var(--colors-neutrals-200);
             transition:
@@ -223,13 +225,7 @@
 @media (max-width: 1368px) {
   .C_HandbookParts {
     .O_HandbookPart {
-      gap: 5.26dvw;
-
-      .C_HandbookModules {
-        .W_HandbookModule {
-          width: 24.85dvw;
-        }
-      }
+      gap: var(--size-spacing-72);
     }
   }
 }
@@ -238,14 +234,10 @@
 @media (max-width: 1152px) {
   .C_HandbookParts {
     .O_HandbookPart {
-      gap: 2.78dvw;
+      gap: var(--size-spacing-32);
 
       .C_HandbookModules {
         gap: var(--size-spacing-48);
-
-        .W_HandbookModule {
-          width: 24.3dvw;
-        }
       }
     }
   }

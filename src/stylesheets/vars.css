@@ -40,27 +40,39 @@
     --size-spacing-92: 5.75rem;
     --size-spacing-96: 6rem;
     --size-spacing-100: 6.25rem;
+    --size-spacing-110: 6.875rem;
     --size-spacing-120: 7.5rem;
     --size-spacing-128: 8rem;
     --size-spacing-132: 8.25rem;
     --size-spacing-144: 9rem;
     --size-spacing-152: 9.5rem;
     --size-spacing-160: 10rem;
+    --size-spacing-168: 10.5rem;
     --size-spacing-192: 12rem;
     --size-spacing-208: 13rem;
     --size-spacing-212: 13.25rem;
     --size-spacing-220: 13.75rem;
+    --size-spacing-240: 15rem;
     --size-spacing-256: 16rem;
     --size-spacing-264: 16.5rem;
-    --size-spacing-240: 15rem;
+    --size-spacing-268: 16.75rem;
+    --size-spacing-272: 17rem;
+    --size-spacing-276: 17.25rem;
     --size-spacing-312: 19.5rem;
+    --size-spacing-344: 21.5rem;
+    --size-spacing-360: 22.5rem;
     --size-spacing-384: 24rem;
+    --size-spacing-388: 24.25rem;
+    --size-spacing-416: 26rem;
+    --size-spacing-448: 28rem;
     --size-spacing-528: 33rem;
+    --size-spacing-inf: 1000rem;
 
     /* radius */
     --size-radius-0: 0rem;
     --size-radius-2: 0.125rem;
     --size-radius-4: 0.25rem;
+    --size-radius-inf: 1000rem;
 
     /* colors */
 
@@ -87,10 +99,14 @@
     --colors-neutrals-200: #cfcfcf;
     /* 133 85 */
     --colors-neutrals-450: #858585;
+    /* 133 8520% 33 */
+    --colors-neutrals-450-20: #85858533;
     /* 31 1f */
     --colors-neutrals-900: #1f1f1f;
-    /* 31 1f20% 33 */
+    /* 31 1f   20% 33 */
     --colors-neutrals-900-20: #1f1f1f33;
+    /* 31 1f   80% b2 */
+    --colors-neutrals-900-20: #1f1f1fb2;
     --colors-neutrals-opacity: var(--colors-neutrals-150-20);
 
     /* 1% 0.01 = hex03 */

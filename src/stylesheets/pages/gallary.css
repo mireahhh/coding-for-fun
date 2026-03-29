@@ -1,0 +1,194 @@
+.O_GallaryWorks {
+  display: flex;
+  flex-direction: column;
+  padding-inline: 5dvw;
+  box-sizing: border-box;
+  width: 100%;
+  align-items: flex-start;
+  gap: var(--size-spacing-96);
+  margin-top: var(--size-spacing-96);
+  height: min-content;
+
+  .C_GallaryWorks {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: var(--size-spacing-88);
+    align-self: stretch;
+    flex-wrap: wrap;
+
+    .W_GallaryWork {
+      display: flex;
+      width: 100%;
+      min-width: var(--size-spacing-268);
+      max-width: var(--size-spacing-416);
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--size-spacing-20);
+      flex: 1 0 0;
+
+      .M_GallaryWorkDescription {
+        display: flex;
+        align-items: flex-start;
+        flex: 1 0 0;
+
+        /* U_FontC2 */
+        color: var(--colors-neutrals-900);
+      }
+
+      .A_GallaryWorkPreview {
+        display: flex;
+        width: 100%;
+        align-self: stretch;
+        aspect-ratio: 1/1;
+        border-radius: var(--size-radius-4);
+        border: 1px solid var(--colors-neutrals-200);
+
+        .A_GallaryWorkPreviewImg,
+        .A_GallaryWorkPreviewVideo {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .A_GallaryWorkPreviewVideo {}
+      }
+
+      .A_GallaryWorkName {
+        display: flex;
+        align-items: flex-start;
+        align-self: stretch;
+
+        /* U_FontH2 */
+        color: var(--colors-neutrals-900);
+      }
+    }
+  }
+
+  .W_GallaryScrollBar {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: var(--size-spacing-16);
+    height: var(--size-spacing-40);
+    align-self: center;
+
+    .A_GallaryScrollBarNumbers {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: var(--size-spacing-8);
+
+      buttom {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: var(--size-spacing-40);
+        width: var(--size-spacing-40);
+        border-radius: var(--size-radius-inf);
+        opacity: var(--official-no-interaction-opacity);
+        /* U_FontC2 */
+        color: var(--colors-neutrals-900);
+      }
+
+      .A_GallaryScrollBarNumberHighlight {
+        opacity: 1;
+        border: 1.5px dashed var(--colors-neutrals-900);
+      }
+
+      .A_GallaryScrollBarNumberHide {
+        display: none;
+      }
+    }
+
+    .A_GallaryScrollBarArrows {
+      display: flex;
+      height: 100%;
+      color: var(--colors-neutrals-900, #1F1F1F);
+      align-items: center;
+      font-family: var(--font-JetBrains);
+      font-size: var(--size-spacing-24);
+      font-style: normal;
+      font-weight: 200;
+      line-height: 130%;
+      opacity: var(--official-no-interaction-opacity);
+    }
+
+    .A_GallaryScrollBarNumbers {
+      /* U_FontC2 */
+      color: var(--colors-neutrals-900);
+    }
+  }
+}
+
+.A_GallaryWorkPreview:hover {
+  opacity: 0.97;
+  transform: scale(1.03);
+  box-shadow: none;
+  /* box-shadow: 0px 4px 10px var(--colors-neutrals-900-20); */
+}
+
+.A_GallaryWorkPreview:active {
+  opacity: 1;
+  transform: scale(0.95);
+  box-shadow: none;
+}
+
+/* m 4 -> 3 */
+@media (max-width: 1368px) {
+  .O_GallaryWorks {
+    .C_GallaryWorks {
+      column-gap: var(--size-spacing-36);
+
+      .W_GallaryWork {}
+    }
+  }
+}
+
+/* m 3 -> 2 */
+@media (max-width: 1152px) {
+  .O_GallaryWorks {
+    margin-top: var(--size-spacing-72);
+
+    .C_GallaryWorks {
+      column-gap: var(--size-spacing-20);
+      row-gap: var(--size-spacing-72);
+
+      .W_GallaryWork {}
+    }
+  }
+
+  .O_GallaryWorks {
+    gap: var(--size-spacing-72);
+  }
+}
+
+/* m 2 -> 1 */
+@media (max-width: 904px) {
+  .O_GallaryWorks {
+    .C_GallaryWorks {
+      .W_GallaryWork {}
+    }
+  }
+}
+
+/* m 1 -> 0 */
+@media (max-width: 428px) {
+  .O_GallaryWorks {
+    margin-top: var(--size-spacing-64);
+
+    .C_GallaryWorks {
+      .W_GallaryWork {
+        min-width: none;
+      }
+    }
+  }
+
+  .O_GallaryWorks {
+    gap: var(--size-spacing-64);
+  }
+}

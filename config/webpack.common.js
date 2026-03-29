@@ -10,9 +10,9 @@ module.exports = {
   entry: {
     index: "./src/javascripts/index.js",
     header: "./src/javascripts/header.js",
-    filterHandbook: "./src/javascripts/filterHandbook.js",
-    filterGallery: "./src/javascripts/filterGallery.js",
-    filterModule: "./src/javascripts/filterModule.js",
+    handbook: "./src/javascripts/handbook.js",
+    gallery: "./src/javascripts/gallery.js",
+    module: "./src/javascripts/module.js",
   },
   output: {
     filename: "[name].js",

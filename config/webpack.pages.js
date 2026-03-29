@@ -12,11 +12,11 @@ const htmlPages = [
   createPages("./src/index.html", "./index.html", ["index"]),
   createPages("./src/pages/handbook.html", "./pages/handbook.html", [
     "index",
-    "filterHandbook",
+    "handbook",
   ]),
   createPages("./src/pages/gallery.html", "./pages/gallery.html", [
     "index",
-    "filterGallery",
+    "gallery",
   ]),
   createPages("./src/pages/work.html", "./pages/work.html", ["index"]),
   createPages("./src/pages/about.html", "./pages/about.html", ["index"]),
@@ -24,7 +24,6 @@ const htmlPages = [
   createPages("./src/pages/addTutorial.html", "./pages/addTutorial.html", [
     "index",
   ]),
-  createPages("./src/pages/rules.html", "./pages/rules.html", ["index"]),
 
   // Часть1 Модуль1 ./part1/module1
   createPages(

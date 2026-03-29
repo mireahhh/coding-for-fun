@@ -1,3 +1,39 @@
+// Задание фильтров
+// Список доступных фильтров
+const filtersComplexity = [
+  "filterComplexityInitial",
+  "filterComplexityMiddle",
+  "filterComplexityAdvanced",
+];
+const filtersLibrary = [
+  "filterLibraryVanillajs",
+  "filterLibraryP5js",
+  "filterLibraryThreejs",
+];
+const filtersVerification = [
+  "filterVerificationExpert",
+  "filterVerificationAuthorial",
+];
+// const filtersAll = [
+//   filtersComplexity,
+//   filtersLibrary,
+//   filtersVerification,
+// ];
+
+// async function getFiltersAll(path) {
+//   const response = await fetch(path);
+//   const data = await response.json();
+
+//   const { complexity, library, verification } = data.filters;
+
+//   return [complexity, library, verification];
+// }
+
+// (async () => {
+//   const filtersAll = await getFiltersAll("/json/gallery.json");
+//   console.log(filtersAll);
+// })();
+
 // Для отрисовки
 const handbookPart1Module1 = document.getElementById("handbookPart1Module1");
 const handbookPart1Module2 = document.getElementById("handbookPart1Module2");
@@ -94,14 +130,14 @@ const buttonsLibrary = [
   filterLibraryP5js,
   filterLibraryThreejs,
 ];
-const filterFormatTechnique = document.getElementById("filterFormatTechnique");
-const filterFormatTask = document.getElementById("filterFormatTask");
-const filterFormatVariation = document.getElementById("filterFormatVariation");
-const buttonsFormat = [
-  filterFormatTechnique,
-  filterFormatTask,
-  filterFormatVariation,
-];
+// const filterFormatTechnique = document.getElementById("filterFormatTechnique");
+// const filterFormatTask = document.getElementById("filterFormatTask");
+// const filterFormatVariation = document.getElementById("filterFormatVariation");
+// const buttonsFormat = [
+//   filterFormatTechnique,
+//   filterFormatTask,
+//   filterFormatVariation,
+// ];
 const filterVerificationExpert = document.getElementById(
   "filterVerificationExpert",
 );
@@ -116,7 +152,7 @@ const buttonsVerification = [
 const buttonsFilters = [
   buttonsComplexity,
   buttonsLibrary,
-  buttonsFormat,
+  // buttonsFormat,
   buttonsVerification,
 ];
 
@@ -132,31 +168,24 @@ const setDifference = (a, b) => new Set([...a].filter((x) => !b.has(x)));
 const defMatrFilters = [
   [false, [false, false, false]],
   [false, [false, false, false]],
-  [false, [false, false, false]],
   [false, [false, false]],
 ];
-const defMatrDraw = [
-  [true, [true, true]],
-  [true, [true, true, true]],
-  [true, [true, true, true]],
-];
+// const defMatrDraw = [
+//   [true, [true, true]],
+//   [true, [true, true, true]],
+//   [true, [true, true, true]],
+// ];
 const defNoResults = false;
-const defAllowFilters = new Set(filtersAll.flat());
-const defDenyFilters = new Set();
 const defApplyFilters = [new Set(), new Set(), new Set(), new Set()];
 
-let matrDraw = structuredClone(defMatrDraw);
+// let matrDraw = structuredClone(defMatrDraw);
 let matrFilters = structuredClone(defMatrFilters);
 let noResults = defNoResults;
-let allowFilters = new Set(defAllowFilters);
-let denyFilters = new Set(defDenyFilters);
 let applyFilters = structuredClone(defApplyFilters);
 
 function calcFilters() {
-  allowFilters = new Set(defAllowFilters);
-  denyFilters = new Set(defDenyFilters);
   applyFilters = structuredClone(defApplyFilters);
-  matrDraw = structuredClone(defMatrDraw);
+  // matrDraw = structuredClone(defMatrDraw);
 
   matrFilters.forEach((filter, indexFilter) => {
     filter[1].forEach((setting, indexSetting) => {
@@ -172,11 +201,10 @@ function calcFilters() {
         buttonsFilters[indexFilter][indexSetting].style.border =
           "1.5px dashed var(--colors-neutrals-200)";
       }
-      // ?deny / ?alloy
     });
   });
 
-  // console.log("matrFilters", matrFilters, "apply", applyFilters);
+  console.log("matrFilters", matrFilters, "apply", applyFilters);
 }
 
 function calcDrawParts() {
@@ -269,8 +297,8 @@ buttonsFilters.forEach((buttons, indexFilter) => {
       }
 
       calcFilters();
-      calcDrawParts();
-      drawingParts();
+      // calcDrawParts();
+      // drawingParts();
     });
   });
 });
@@ -336,23 +364,23 @@ const buttonSort3 = document.getElementById(
 );
 const buttonsSort = [buttonSort1, buttonSort2, buttonSort3];
 
-const handbookModulesPart1 = document.getElementById("handbookModulesPart1");
-const handbookModulesPart2 = document.getElementById("handbookModulesPart2");
-const handbookModulesPart3 = document.getElementById("handbookModulesPart3");
-const handbookModulesParts = [
-  handbookModulesPart1,
-  handbookModulesPart2,
-  handbookModulesPart3,
-];
+// const handbookModulesPart1 = document.getElementById("handbookModulesPart1");
+// const handbookModulesPart2 = document.getElementById("handbookModulesPart2");
+// const handbookModulesPart3 = document.getElementById("handbookModulesPart3");
+// const handbookModulesParts = [
+//   handbookModulesPart1,
+//   handbookModulesPart2,
+//   handbookModulesPart3,
+// ];
 
-const originalHandbookModulesPart1 = Array.from(handbookModulesPart1.children);
-const originalHandbookModulesPart2 = Array.from(handbookModulesPart2.children);
-const originalHandbookModulesPart3 = Array.from(handbookModulesPart3.children);
-const originalHandbookModulesParts = [
-  originalHandbookModulesPart1,
-  originalHandbookModulesPart2,
-  originalHandbookModulesPart3,
-];
+// const originalHandbookModulesPart1 = Array.from(handbookModulesPart1.children);
+// const originalHandbookModulesPart2 = Array.from(handbookModulesPart2.children);
+// const originalHandbookModulesPart3 = Array.from(handbookModulesPart3.children);
+// const originalHandbookModulesParts = [
+//   originalHandbookModulesPart1,
+//   originalHandbookModulesPart2,
+//   originalHandbookModulesPart3,
+// ];
 
 // Матрица переходов
 const transitionSorts = [
@@ -401,7 +429,7 @@ buttonsSort.forEach((button, iSort) => {
     // Определение сортировки
     numberSorting = iSort;
     closeMenuSorting();
-    applyingSorting();
+    // applyingSorting();
   });
 });
 
@@ -419,13 +447,28 @@ resetButtons.forEach((resetButton) => {
       closeMenuFilters();
       matrFilters = structuredClone(defMatrFilters);
       calcFilters();
-      calcDrawParts();
-      drawingParts();
+      // calcDrawParts();
+      // drawingParts();
 
       // Сброс сортировки
       numberSorting = 0;
       closeMenuSorting();
-      applyingSorting();
+      // applyingSorting();
     });
   }
+});
+
+// Видео и изображения
+// Запуск видео при наведении
+const videos = document.querySelectorAll(".A_GallaryWorkPreviewVideo");
+
+videos.forEach((video) => {
+  video.addEventListener("mouseenter", () => {
+    video.play();
+  });
+
+  video.addEventListener("mouseleave", () => {
+    video.pause();
+    video.currentTime = 0;
+  });
 });

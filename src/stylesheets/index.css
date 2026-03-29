@@ -1,3 +1,4 @@
+/* system */
 @import 'reset.css';
 @import 'reset2.css';
 @import 'fonts.css';
@@ -11,9 +12,14 @@ html {
     background-color: var(--colors-neutrals-body);
     scroll-padding-top: var(--size-spacing-100);
     scroll-behavior: smooth;
+
+    ::selection {
+        background-color: var(--colors-neutrals-900-20);
+        color: var(--colors-neutrals-body);
+    }
 }
 
-
+/* udf */
 @import 'udf/quarks.css';
 @import 'udf/atoms.css';
 @import 'udf/molecules.css';
@@ -22,13 +28,15 @@ html {
 @import 'udf/organisms.css';
 @import 'udf/superorganisms.css';
 @import 'udf/udf.css';
-
+/* sections */
 @import 'sections/header.css';
 @import 'sections/main.css';
 @import 'sections/intro.css';
 @import 'sections/filter.css';
 @import 'sections/next.css';
 @import 'sections/footer.css';
-
+/* pages */
 @import 'pages/handbook.css';
+@import 'pages/gallary.css';
+/* responsive */
 @import 'responsive.css';
