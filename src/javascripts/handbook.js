@@ -508,12 +508,12 @@ const filterSearchBar = document.getElementById("filterSearchBar");
 const filterSearchButton = document.querySelector(".Q_FilterSearchIcon");
 
 filterSearchButton.addEventListener("click", () => {
-  filterSearchButton.style.opacity = "0.52";
+  filterSearchButton.style.opacity = "var(--official-no-interaction-opacity)";
   filterSearchBar.value = "";
 });
 
 filterSearchBar.addEventListener("input", () => {
-  filterSearchButton.style.opacity = filterSearchBar.value ? "1" : "0.52";
+  filterSearchButton.style.opacity = filterSearchBar.value ? "1" : "var(--official-no-interaction-opacity)";
 });
 
 // Сортировка справа

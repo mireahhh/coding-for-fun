@@ -1,10 +1,10 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
-const htmlPages = require('./webpack.pages.js')
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const htmlPages = require("./webpack.pages.js");
 
-const webpack = require('webpack')
-const path = require('path')
+const webpack = require("webpack");
+const path = require("path");
 
 module.exports = {
   entry: {
@@ -53,6 +53,10 @@ module.exports = {
         generator: {
           filename: "fonts/[hash][ext][query]",
         },
+      },
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)$/i,
+        type: "asset/resource",
       },
     ],
   },

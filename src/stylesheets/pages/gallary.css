@@ -109,15 +109,20 @@
     .A_GalleryScrollBarArrows {
       display: flex;
       height: 100%;
-      color: var(--colors-neutrals-900, #1F1F1F);
+      color: var(--colors-neutrals-900, #1f1f1f);
       align-items: center;
       font-family: var(--font-JetBrains);
       font-size: var(--size-spacing-24);
       font-style: normal;
       font-weight: 200;
       line-height: 130%;
+    }
+
+    .Q_GalleryScrollBarArrowLeft {
       opacity: var(--official-no-interaction-opacity);
     }
+
+    .Q_GalleryScrollBarArrowRight {}
 
     .A_GalleryScrollBarNumbers {
       /* U_FontC2 */

@@ -1,21 +1,26 @@
-import galleryImg2 from "../images/gallery/2.png";
+import img0 from "../images/gallery/0.png";
+import img2 from "../images/gallery/2.png";
+import img3 from "../images/gallery/3.png";
+import img5 from "../images/gallery/5.png";
+const galleryImages = {
+  0: img0,
+  2: img2,
+  3: img3,
+  5: img5,
+};
+
+import vid1 from "../images/gallery/1.mp4";
+import vid4 from "../images/gallery/4.mp4";
+const galleryVideos = {
+  1: vid1,
+  4: vid4,
+};
 
 // Задание фильтров
 // Список доступных фильтров
-const filtersComplexity = [
-  "filterComplexityInitial",
-  "filterComplexityMiddle",
-  "filterComplexityAdvanced",
-];
-const filtersLibrary = [
-  "filterLibraryVanillajs",
-  "filterLibraryP5js",
-  "filterLibraryThreejs",
-];
-const filtersVerification = [
-  "filterVerificationExpert",
-  "filterVerificationAuthorial",
-];
+const filtersComplexity = ["filterComplexityInitial", "filterComplexityMiddle", "filterComplexityAdvanced"];
+const filtersLibrary = ["filterLibraryVanillajs", "filterLibraryP5js", "filterLibraryThreejs"];
+const filtersVerification = ["filterVerificationExpert", "filterVerificationAuthorial"];
 const filtersAll = [filtersComplexity, filtersLibrary, filtersVerification];
 
 // async function getFiltersAll(path) {
@@ -36,35 +41,18 @@ const filtersAll = [filtersComplexity, filtersLibrary, filtersVerification];
 const handbookPart1Module1 = document.getElementById("handbookPart1Module1");
 const handbookPart1Module2 = document.getElementById("handbookPart1Module2");
 const handbookPart1Modules = [handbookPart1Module1, handbookPart1Module2];
-const handbookPart1 = [
-  document.getElementById("handbookPart1"),
-  handbookPart1Modules,
-];
+const handbookPart1 = [document.getElementById("handbookPart1"), handbookPart1Modules];
 
 const handbookPart2Module1 = document.getElementById("handbookPart2Module1");
 const handbookPart2Module2 = document.getElementById("handbookPart2Module2");
 const handbookPart2Module3 = document.getElementById("handbookPart2Module3");
-const handbookPart2Modules = [
-  handbookPart2Module1,
-  handbookPart2Module2,
-  handbookPart2Module3,
-];
-const handbookPart2 = [
-  document.getElementById("handbookPart2"),
-  handbookPart2Modules,
-];
+const handbookPart2Modules = [handbookPart2Module1, handbookPart2Module2, handbookPart2Module3];
+const handbookPart2 = [document.getElementById("handbookPart2"), handbookPart2Modules];
 const handbookPart3Module1 = document.getElementById("handbookPart3Module1");
 const handbookPart3Module2 = document.getElementById("handbookPart3Module2");
 const handbookPart3Module3 = document.getElementById("handbookPart3Module3");
-const handbookPart3Modules = [
-  handbookPart3Module1,
-  handbookPart3Module2,
-  handbookPart3Module3,
-];
-const handbookPart3 = [
-  document.getElementById("handbookPart3"),
-  handbookPart3Modules,
-];
+const handbookPart3Modules = [handbookPart3Module1, handbookPart3Module2, handbookPart3Module3];
+const handbookPart3 = [document.getElementById("handbookPart3"), handbookPart3Modules];
 const handbook = [handbookPart1, handbookPart2, handbookPart3];
 const handbookNoResults = document.getElementById("handbookNoResults");
 
@@ -73,12 +61,8 @@ const handbookNoResults = document.getElementById("handbookNoResults");
 let isOpenFilters = false;
 const filterFiltersButton = document.querySelector(".A_FilterFiltersButton");
 const filterFiltersMenu = document.querySelector(".C_FilterFiltersMenu");
-const filterFiltersOpenIcon = document.querySelector(
-  ".Q_FilterFiltersOpenIcon",
-);
-const filterFiltersCloseIcon = document.querySelector(
-  ".Q_FilterFiltersCloseIcon",
-);
+const filterFiltersOpenIcon = document.querySelector(".Q_FilterFiltersOpenIcon");
+const filterFiltersCloseIcon = document.querySelector(".Q_FilterFiltersCloseIcon");
 
 function openMenuFilters() {
   isOpenFilters = true;
@@ -104,30 +88,14 @@ filterFiltersButton.addEventListener("click", () => {
 
 // Применение фильтров
 // Кнопачки
-const filterComplexityInitial = document.getElementById(
-  "filterComplexityInitial",
-);
-const filterComplexityMiddle = document.getElementById(
-  "filterComplexityMiddle",
-);
-const filterComplexityAdvanced = document.getElementById(
-  "filterComplexityAdvanced",
-);
-const buttonsComplexity = [
-  filterComplexityInitial,
-  filterComplexityMiddle,
-  filterComplexityAdvanced,
-];
-const filterLibraryVanillajs = document.getElementById(
-  "filterLibraryVanillajs",
-);
+const filterComplexityInitial = document.getElementById("filterComplexityInitial");
+const filterComplexityMiddle = document.getElementById("filterComplexityMiddle");
+const filterComplexityAdvanced = document.getElementById("filterComplexityAdvanced");
+const buttonsComplexity = [filterComplexityInitial, filterComplexityMiddle, filterComplexityAdvanced];
+const filterLibraryVanillajs = document.getElementById("filterLibraryVanillajs");
 const filterLibraryP5js = document.getElementById("filterLibraryP5js");
 const filterLibraryThreejs = document.getElementById("filterLibraryThreejs");
-const buttonsLibrary = [
-  filterLibraryVanillajs,
-  filterLibraryP5js,
-  filterLibraryThreejs,
-];
+const buttonsLibrary = [filterLibraryVanillajs, filterLibraryP5js, filterLibraryThreejs];
 // const filterFormatTechnique = document.getElementById("filterFormatTechnique");
 // const filterFormatTask = document.getElementById("filterFormatTask");
 // const filterFormatVariation = document.getElementById("filterFormatVariation");
@@ -136,16 +104,9 @@ const buttonsLibrary = [
 //   filterFormatTask,
 //   filterFormatVariation,
 // ];
-const filterVerificationExpert = document.getElementById(
-  "filterVerificationExpert",
-);
-const filterVerificationAuthorial = document.getElementById(
-  "filterVerificationAuthorial",
-);
-const buttonsVerification = [
-  filterVerificationExpert,
-  filterVerificationAuthorial,
-];
+const filterVerificationExpert = document.getElementById("filterVerificationExpert");
+const filterVerificationAuthorial = document.getElementById("filterVerificationAuthorial");
+const buttonsVerification = [filterVerificationExpert, filterVerificationAuthorial];
 // Все кнопачки
 const buttonsFilters = [
   buttonsComplexity,
@@ -188,16 +149,14 @@ function calcFilters() {
   matrFilters.forEach((filter, indexFilter) => {
     filter[1].forEach((setting, indexSetting) => {
       if (matrFilters[indexFilter][1][indexSetting]) {
-        buttonsFilters[indexFilter][indexSetting].style.border =
-          "1.5px dashed var(--colors-neutrals-900)";
+        buttonsFilters[indexFilter][indexSetting].style.border = "1.5px dashed var(--colors-neutrals-900)";
 
         applyFilters[indexFilter] = setUnion(
           applyFilters[indexFilter],
           new Set([filtersAll[indexFilter][indexSetting]]),
         );
       } else {
-        buttonsFilters[indexFilter][indexSetting].style.border =
-          "1.5px dashed var(--colors-neutrals-200)";
+        buttonsFilters[indexFilter][indexSetting].style.border = "1.5px dashed var(--colors-neutrals-200)";
       }
     });
   });
@@ -289,9 +248,7 @@ buttonsFilters.forEach((buttons, indexFilter) => {
       // Кнопка стала неактивна
       else {
         // Фильтр либо отключился либо остался
-        matrFilters[indexFilter][0] = matrFilters[indexFilter][1].some(
-          (item) => item !== false,
-        );
+        matrFilters[indexFilter][0] = matrFilters[indexFilter][1].some((item) => item !== false);
       }
 
       calcFilters();
@@ -306,12 +263,12 @@ const filterSearchBar = document.getElementById("filterSearchBar");
 const filterSearchButton = document.querySelector(".Q_FilterSearchIcon");
 
 filterSearchButton.addEventListener("click", () => {
-  filterSearchButton.style.opacity = "0.52";
+  filterSearchButton.style.opacity = "var(--official-no-interaction-opacity)";
   filterSearchBar.value = "";
 });
 
 filterSearchBar.addEventListener("input", () => {
-  filterSearchButton.style.opacity = filterSearchBar.value ? "1" : "0.52";
+  filterSearchButton.style.opacity = filterSearchBar.value ? "1" : "var(--official-no-interaction-opacity)";
 });
 
 // Сортировка справа
@@ -357,9 +314,7 @@ const pointsSort = [pointSort1, pointSort2, pointSort3];
 
 const buttonSort1 = document.getElementById("filterSortingByComplexityButton");
 const buttonSort2 = document.getElementById("filterSortingByDateButton");
-const buttonSort3 = document.getElementById(
-  "filterSortingByVerificationButton",
-);
+const buttonSort3 = document.getElementById("filterSortingByVerificationButton");
 const buttonsSort = [buttonSort1, buttonSort2, buttonSort3];
 
 // const handbookModulesPart1 = document.getElementById("handbookModulesPart1");
@@ -414,9 +369,7 @@ function applyingSorting() {
     handbookPart.innerHTML = "";
 
     transitionSorts[numberSorting][jPart].forEach((kPosition) => {
-      handbookModulesParts[jPart].appendChild(
-        originalHandbookModulesParts[jPart][kPosition],
-      );
+      handbookModulesParts[jPart].appendChild(originalHandbookModulesParts[jPart][kPosition]);
     });
   });
 }
@@ -509,78 +462,130 @@ const months = [
 ];
 const galleryCapacity = 40;
 import { works } from "./galleryJson.js";
-const originalWorks = structuredClone(works);
-const galleryWorks = Array.from(
-  document.querySelectorAll(".C_GalleryWorks .W_GalleryWork"),
-).slice(0, galleryCapacity);
+const galleryWorks = structuredClone(works);
+let filteredWorks = structuredClone(galleryWorks);
+const galleryCanvases = Array.from(document.querySelectorAll(".C_GalleryWorks .W_GalleryWork")).slice(
+  0,
+  galleryCapacity,
+);
+// Пейдженация
+let galleryPage = 0;
+const galleryScrollBarArrowLeft = document.querySelector(".Q_GalleryScrollBarArrowLeft");
+const galleryScrollBarArrowRight = document.querySelector(".Q_GalleryScrollBarArrowRight");
+const galleryScrollBarNumbers = Array.from(document.querySelectorAll(".A_GalleryScrollBarNumbers .U_ButtonIcon"));
+const galleryScrollBarNumbersCount = galleryScrollBarNumbers.length;
+let galleryScrollBarNumbersCountDraw = galleryScrollBarNumbersCount;
 
-let renderedWorks = structuredClone(originalWorks.slice(0, galleryCapacity));
+galleryScrollBarArrowLeft.addEventListener("click", () => {
+  if (galleryPage - 1 == 0) {
+    galleryScrollBarArrowLeft.style.opacity = "var(--official-no-interaction-opacity)";
+  }
+  if (galleryPage == 0) {
+    return;
+  }
+  galleryScrollBarArrowRight.style.opacity = "1";
+  galleryScrollBarNumbers[galleryPage].style.opacity = "var(--official-no-interaction-opacity)";
+  galleryScrollBarNumbers[galleryPage].style.border = "none";
+  galleryPage -= 1;
+  galleryScrollBarNumbers[galleryPage].style.opacity = "1";
+  galleryScrollBarNumbers[galleryPage].style.border = "1.5px dashed var(--colors-neutrals-900)";
 
-galleryWorks.forEach((galleryWork, indexGalleryWork) => {
-  galleryWork
-    .querySelector(".A_GalleryWorkPreview")
-    .addEventListener("click", () => {
-      // Сохранить переменную
-      sessionStorage.setItem("indexWork", indexGalleryWork);
-      // sessionStorage.setItem(
-      //   "formData",
-      //   JSON.stringify({ name: "John", email: "john@mail.com" }),
-      // );
-    });
+  drawingWorks();
 });
 
-function cleanGalleryWorks() {
-  galleryWorks.forEach((galleryWork, indexGalleryWork) => {
-    galleryWork.style.display = "none";
-    galleryWork.querySelector(".A_GalleryWorkPreviewImg").style.display =
-      "none";
-    galleryWork.querySelector(".A_GalleryWorkPreviewVideo").style.display =
-      "none";
+galleryScrollBarArrowRight.addEventListener("click", () => {
+  if (galleryPage + 1 == galleryScrollBarNumbersCountDraw - 1) {
+    galleryScrollBarArrowRight.style.opacity = "var(--official-no-interaction-opacity)";
+  }
+  if (galleryPage == galleryScrollBarNumbersCountDraw - 1) {
+    return;
+  }
+  galleryScrollBarArrowLeft.style.opacity = "1";
+  galleryScrollBarNumbers[galleryPage].style.opacity = "var(--official-no-interaction-opacity)";
+  galleryScrollBarNumbers[galleryPage].style.border = "none";
+  galleryPage += 1;
+  galleryScrollBarNumbers[galleryPage].style.opacity = "1";
+  galleryScrollBarNumbers[galleryPage].style.border = "1.5px dashed var(--colors-neutrals-900)";
+
+  drawingWorks();
+});
+
+function calcPagenation() {
+  galleryScrollBarNumbersCountDraw = Math.ceil(filteredWorks.length / galleryCapacity);
+  galleryScrollBarNumbers.forEach((number) => {
+    number.style.opacity = "var(--official-no-interaction-opacity)";
+    number.style.border = "none";
+  });
+  galleryScrollBarNumbers[galleryPage].style.opacity = "1";
+  galleryScrollBarNumbers[galleryPage].style.border = "1.5px dashed var(--colors-neutrals-900)";
+  // TODO
+  // let end = false;
+  // galleryScrollBarNumbers[0].style.border = "1.5px dashed var(--colors-neutrals-900)";
+  // galleryScrollBarNumbers[0].style.opacity = "1";
+  // galleryScrollBarNumbers.forEach((number, index) => {
+  //   if (index == 0) {
+  //     return;
+  //   }
+  //   if
+  //   number.style.opacity = "var(--official-no-interaction-opacity)";
+  // });
+}
+
+// Сохранение номера работы
+galleryCanvases.forEach((galleryWork, indexGalleryWork) => {
+  galleryWork.querySelector(".A_GalleryWorkPreview").addEventListener("click", () => {
+    // Сохранить переменную
+    let id = filteredWorks[galleryPage * galleryCapacity + indexGalleryWork].id;
+    sessionStorage.setItem("indexWork", id);
+    // sessionStorage.setItem(
+    //   "formData",
+    //   JSON.stringify({ name: "John", email: "john@mail.com" }),
+    // );
+  });
+});
+
+// Очистка холста галереи
+function setNoneGalleryCanvases() {
+  galleryCanvases.forEach((canvas) => {
+    canvas.style.display = "none";
+    canvas.querySelector(".A_GalleryWorkPreviewImg").style.display = "none";
+    canvas.querySelector(".A_GalleryWorkPreviewVideo").style.display = "none";
   });
 }
 
-function drawWorks() {
-  cleanGalleryWorks();
-  renderedWorks = structuredClone(renderedWorks.slice(0, galleryCapacity));
+// Отрисовка работы
+async function drawingWorks() {
+  setNoneGalleryCanvases();
+  const drawWorks = structuredClone(
+    filteredWorks.slice(galleryCapacity * galleryPage, galleryCapacity * galleryPage + galleryCapacity),
+  );
 
-  renderedWorks.forEach((renderedWork, indexRenderedWork) => {
-    let id = renderedWork.id;
-    const date = renderedWork.date[renderedWork.date.length - 1];
-    const day = date.slice(0, 2);
-    const month = parseInt(date.slice(2, 4));
-    const year = date.slice(4, 8);
+  drawWorks.forEach((drawWork, indexDrawWork) => {
+    let id = drawWork.id;
+    const dateStr = String(drawWork.date);
+    const year = dateStr.slice(0, 4);
+    const month = parseInt(dateStr.slice(5, 6));
+    const day = dateStr.slice(7, 8);
 
-    galleryWorks[indexRenderedWork].querySelector(
-      ".M_GalleryWorkDescription",
-    ).innerHTML =
-      renderedWork.author + " / " + day + " " + months[month] + " " + year;
-    galleryWorks[indexRenderedWork].querySelector(
-      ".A_GalleryWorkName",
-    ).innerHTML = renderedWork.title;
+    galleryCanvases[indexDrawWork].querySelector(".M_GalleryWorkDescription").innerHTML =
+      drawWork.author + " /<br>" + day + " " + months[month] + " " + year;
+    galleryCanvases[indexDrawWork].querySelector(".A_GalleryWorkName").innerHTML = drawWork.title;
 
-    if (renderedWork.extension == "png") {
-      let img = galleryWorks[indexRenderedWork].querySelector(
-        ".A_GalleryWorkPreviewImg",
-      );
-      img.src = galleryImg2; // + id + ".png";
+    if (drawWork.extension == "png") {
+      const img = galleryCanvases[indexDrawWork].querySelector(".A_GalleryWorkPreviewImg");
+      img.src = galleryImages[drawWork.id];
       img.style.display = "flex";
-    } else if (renderedWork.extension == "mp4") {
-      let video = galleryWorks[indexRenderedWork].querySelector(
-        ".A_GalleryWorkPreviewVideo",
-      );
-      video.querySelector("source").src = "../images/gallery/" + id + ".mp4";
+    } else if (drawWork.extension == "mp4") {
+      const video = galleryCanvases[indexDrawWork].querySelector(".A_GalleryWorkPreviewVideo");
+      video.querySelector("source").src = galleryVideos[drawWork.id];
       video.style.display = "flex";
     } else {
-      console.log("non", indexRenderedWork);
-      let video = galleryWorks[indexRenderedWork].querySelector(
-        ".A_GalleryWorkPreviewVideo",
-      );
-      video.querySelector("source").src = "https://geokash.com/flower-power/";
-      https: video.style.display = "flex";
+      console.log("non", drawWork.id);
     }
 
-    galleryWorks[indexRenderedWork].style.display = "flex";
+    galleryCanvases[indexDrawWork].style.display = "flex";
   });
 }
 
-drawWorks();
+calcPagenation();
+drawingWorks();
