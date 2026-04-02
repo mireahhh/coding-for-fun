@@ -46,6 +46,17 @@ const htmlPages = [
     "./pages/parts/part1/module1/tutorial3.html",
     ["index"],
   ),
+  // Часть1 Модуль2 ./part1/module2
+  createPages(
+    "./src/pages/parts/part1/module2.html",
+    "./pages/parts/part1/module2.html",
+    ["index"],
+  ),
+  createPages(
+    "./src/pages/parts/part1/module2/tutorial1.html",
+    "./pages/parts/part1/module2/tutorial1.html",
+    ["index"],
+  ),
 ];
 
 module.exports = htmlPages;
