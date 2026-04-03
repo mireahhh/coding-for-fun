@@ -1,7 +1,7 @@
 import "../stylesheets/index.css";
 console.log("css is entry");
 
-import "./header.js";
-import "./share.js";
-import "./footer.js";
-import "./test.js";
+import "./sections/header.js";
+import "./sections/share.js";
+import "./sections/footer.js";
+import "./sections/test.js";

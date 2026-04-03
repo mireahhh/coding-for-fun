@@ -14,7 +14,7 @@ html {
     scroll-behavior: smooth;
 
     ::selection {
-        background-color: var(--colors-neutrals-900-20);
+        background-color: var(--colors-neutrals-900-80);
         color: var(--colors-neutrals-body);
     }
 }
@@ -37,6 +37,8 @@ html {
 @import 'sections/footer.css';
 /* pages */
 @import 'pages/handbook.css';
+@import 'pages/module.css';
 @import 'pages/gallary.css';
+@import 'pages/work.css';
 /* responsive */
 @import 'responsive.css';

@@ -1,5 +1,7 @@
 /******/ (() => { // webpackBootstrap
-function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+/******/ 	"use strict";
+
+;// ./src/javascripts/pages/tutorialsJson.js
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -17,49 +19,85 @@ var filtersAll = [filtersComplexity, filtersLibrary, filtersFormat, filtersVerif
 // Какие фильтры у каких модулей
 // p1m1
 var setFiltersPart1Module1Tutorial1 = new Set(["filterComplexityInitial", "filterLibraryVanillajs", "filterFormatTechnique", "filterVerificationExpert"]);
-var setFiltersPart1Module1Tutorial2 = new Set(["filterComplexityInitial", "filterLibraryVanillajs", "filterFormatTechnique", "filterVerificationExpert"]);
+var setFiltersPart1Module1Tutorial2 = new Set(["filterComplexityInitial", "filterLibraryP5js", "filterFormatTechnique", "filterVerificationExpert"]);
 var setFiltersPart1Module1Tutorial3 = new Set(["filterComplexityInitial", "filterLibraryVanillajs", "filterFormatTask", "filterVerificationExpert"]);
+// m-t
+var filtersPart1Module1 = [setFiltersPart1Module1Tutorial1, setFiltersPart1Module1Tutorial2, setFiltersPart1Module1Tutorial3];
+// p-m
 var setFiltersPart1Module1 = new Set([].concat(_toConsumableArray(setFiltersPart1Module1Tutorial1), _toConsumableArray(setFiltersPart1Module1Tutorial2), _toConsumableArray(setFiltersPart1Module1Tutorial3)));
 // p1m2
 var setFiltersPart1Module2Tutorial1 = new Set(["filterComplexityInitial", "filterLibraryP5js", "filterFormatTask", "filterVerificationExpert"]);
 var setFiltersPart1Module2Tutorial2 = new Set(["filterComplexityInitial", "filterLibraryP5js", "filterFormatTechnique", "filterVerificationExpert"]);
 var setFiltersPart1Module2Tutorial3 = new Set(["filterComplexityInitial", "filterLibraryVanillajs", "filterFormatTask", "filterVerificationExpert"]);
+// m-t
+var filtersPart1Module2 = [setFiltersPart1Module2Tutorial1, setFiltersPart1Module2Tutorial2, setFiltersPart1Module2Tutorial3];
+// p-m
 var setFiltersPart1Module2 = new Set([].concat(_toConsumableArray(setFiltersPart1Module2Tutorial1), _toConsumableArray(setFiltersPart1Module2Tutorial2), _toConsumableArray(setFiltersPart1Module2Tutorial3)));
 var filtersPart1 = [setFiltersPart1Module1, setFiltersPart1Module2];
 // p2m1
 var setFiltersPart2Module1Tutorial1 = new Set(["filterComplexityMiddle", "filterLibraryVanillajs", "filterFormatTechnique", "filterVerificationExpert"]);
 var setFiltersPart2Module1Tutorial2 = new Set(["filterComplexityMiddle", "filterLibraryVanillajs", "filterFormatTechnique", "filterVerificationExpert"]);
 var setFiltersPart2Module1Tutorial3 = new Set(["filterComplexityMiddle", "filterLibraryVanillajs", "filterFormatTask", "filterVerificationExpert"]);
+// m-t
+var filtersPart2Module1 = [setFiltersPart2Module1Tutorial1, setFiltersPart2Module1Tutorial2, setFiltersPart2Module1Tutorial3];
+//p-m
 var setFiltersPart2Module1 = new Set([].concat(_toConsumableArray(setFiltersPart2Module1Tutorial1), _toConsumableArray(setFiltersPart2Module1Tutorial2), _toConsumableArray(setFiltersPart2Module1Tutorial3)));
 // p2m2
 var setFiltersPart2Module2Tutorial1 = new Set(["filterComplexityMiddle", "filterLibraryP5js", "filterFormatVariation", "filterVerificationExpert"]);
 var setFiltersPart2Module2Tutorial2 = new Set(["filterComplexityMiddle", "filterLibraryP5js", "filterFormatVariation", "filterVerificationExpert"]);
 var setFiltersPart2Module2Tutorial3 = new Set(["filterComplexityMiddle", "filterLibraryP5js", "filterFormatTask", "filterVerificationExpert"]);
+// m-t
+var filtersPart2Module2 = [setFiltersPart2Module2Tutorial1, setFiltersPart2Module2Tutorial2, setFiltersPart2Module2Tutorial3];
+// p-m
 var setFiltersPart2Module2 = new Set([].concat(_toConsumableArray(setFiltersPart2Module2Tutorial1), _toConsumableArray(setFiltersPart2Module2Tutorial2), _toConsumableArray(setFiltersPart2Module2Tutorial3)));
 // p2m3
 var setFiltersPart2Module3Tutorial1 = new Set(["filterComplexityMiddle", "filterLibraryThreejs", "filterFormatTask", "filterVerificationExpert"]);
 var setFiltersPart2Module3Tutorial2 = new Set(["filterComplexityMiddle", "filterLibraryThreejs", "filterFormatTask", "filterVerificationExpert"]);
 var setFiltersPart2Module3Tutorial3 = new Set(["filterComplexityMiddle", "filterLibraryThreejs", "filterFormatVariation", "filterVerificationExpert"]);
+// m-t
+var filtersPart2Module3 = [setFiltersPart2Module3Tutorial1, setFiltersPart2Module3Tutorial2, setFiltersPart2Module3Tutorial3];
+// p-m
 var setFiltersPart2Module3 = new Set([].concat(_toConsumableArray(setFiltersPart2Module3Tutorial1), _toConsumableArray(setFiltersPart2Module3Tutorial2), _toConsumableArray(setFiltersPart2Module3Tutorial3)));
 var filtersPart2 = [setFiltersPart2Module1, setFiltersPart2Module2, setFiltersPart2Module3];
 // p3m1
 var setFiltersPart3Module1Tutorial1 = new Set(["filterComplexityAdvanced", "filterLibraryP5js", "filterFormatVariation", "filterVerificationExpert"]);
 var setFiltersPart3Module1Tutorial2 = new Set(["filterComplexityAdvanced", "filterLibraryThreejs", "filterFormatTechnique", "filterVerificationExpert"]);
 var setFiltersPart3Module1Tutorial3 = new Set(["filterComplexityAdvanced", "filterLibraryThreejs", "filterFormatTask", "filterVerificationExpert"]);
+// m-t
+var filtersPart3Module1 = [setFiltersPart3Module1Tutorial1, setFiltersPart3Module1Tutorial2, setFiltersPart3Module1Tutorial3];
+// p-m
 var setFiltersPart3Module1 = new Set([].concat(_toConsumableArray(setFiltersPart3Module1Tutorial1), _toConsumableArray(setFiltersPart3Module1Tutorial2), _toConsumableArray(setFiltersPart3Module1Tutorial3)));
 // p3m2
 var setFiltersPart3Module2Tutorial1 = new Set(["filterComplexityAdvanced", "filterLibraryThreejs", "filterFormatTask", "filterVerificationExpert"]);
 var setFiltersPart3Module2Tutorial2 = new Set(["filterComplexityAdvanced", "filterLibraryVanillajs", "filterFormatTechnique", "filterVerificationExpert"]);
 var setFiltersPart3Module2Tutorial3 = new Set(["filterComplexityAdvanced", "filterLibraryThreejs", "filterFormatVariation", "filterVerificationExpert"]);
+// m-t
+var filtersPart3Module2 = [setFiltersPart3Module2Tutorial1, setFiltersPart3Module2Tutorial2, setFiltersPart3Module2Tutorial3];
+// p-m
 var setFiltersPart3Module2 = new Set([].concat(_toConsumableArray(setFiltersPart3Module2Tutorial1), _toConsumableArray(setFiltersPart3Module2Tutorial2), _toConsumableArray(setFiltersPart3Module2Tutorial3)));
 // p3m3
 var setFiltersPart3Module3Tutorial1 = new Set(["filterComplexityAdvanced", "filterLibraryP5js", "filterFormatTask", "filterVerificationExpert"]);
 var setFiltersPart3Module3Tutorial2 = new Set(["filterComplexityAdvanced", "filterLibraryP5js", "filterFormatTechnique", "filterVerificationExpert"]);
 var setFiltersPart3Module3Tutorial3 = new Set(["filterComplexityAdvanced", "filterLibraryVanillajs", "filterFormatVariation", "filterVerificationExpert"]);
+// m-t
+var filtersPart3Module3 = [setFiltersPart3Module3Tutorial1, setFiltersPart3Module3Tutorial2, setFiltersPart3Module3Tutorial3];
+// p-m
 var setFiltersPart3Module3 = new Set([].concat(_toConsumableArray(setFiltersPart3Module3Tutorial1), _toConsumableArray(setFiltersPart3Module3Tutorial2), _toConsumableArray(setFiltersPart3Module3Tutorial3)));
 var filtersPart3 = [setFiltersPart3Module1, setFiltersPart3Module2, setFiltersPart3Module3];
-var filtersPart = [filtersPart1, filtersPart2, filtersPart3];
 
+// p
+var filtersParts = [filtersPart1, filtersPart2, filtersPart3];
+
+// m
+var filtersModules = [filtersPart1Module1, filtersPart1Module2, filtersPart2Module1, filtersPart2Module2, filtersPart2Module3, filtersPart3Module1, filtersPart3Module2, filtersPart3Module3];
+;// ./src/javascripts/pages/handbook.js
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = handbook_unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function handbook_toConsumableArray(r) { return handbook_arrayWithoutHoles(r) || handbook_iterableToArray(r) || handbook_unsupportedIterableToArray(r) || handbook_nonIterableSpread(); }
+function handbook_nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function handbook_unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return handbook_arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? handbook_arrayLikeToArray(r, a) : void 0; } }
+function handbook_iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function handbook_arrayWithoutHoles(r) { if (Array.isArray(r)) return handbook_arrayLikeToArray(r); }
+function handbook_arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 // Для отрисовки
 var handbookPart1Module1 = document.getElementById("handbookPart1Module1");
 var handbookPart1Module2 = document.getElementById("handbookPart1Module2");
@@ -76,7 +114,7 @@ var handbookPart3Module3 = document.getElementById("handbookPart3Module3");
 var handbookPart3Modules = [handbookPart3Module1, handbookPart3Module2, handbookPart3Module3];
 var handbookPart3 = [document.getElementById("handbookPart3"), handbookPart3Modules];
 var handbook = [handbookPart1, handbookPart2, handbookPart3];
-var handbookNoResults = document.getElementById("handbookNoResults");
+var handbookNoResults = document.querySelector(".NotResultsParts");
 
 // Фильтры слева
 // Меню
@@ -132,18 +170,18 @@ var setUnion = function setUnion() {
     sets[_key] = arguments[_key];
   }
   return new Set(sets.flatMap(function (set) {
-    return _toConsumableArray(set);
+    return handbook_toConsumableArray(set);
   }));
 };
 // Пересечение
 var setIntersection = function setIntersection(a, b) {
-  return new Set(_toConsumableArray(a).filter(function (x) {
+  return new Set(handbook_toConsumableArray(a).filter(function (x) {
     return b.has(x);
   }));
 };
 // Разность
 var setDifference = function setDifference(a, b) {
-  return new Set(_toConsumableArray(a).filter(function (x) {
+  return new Set(handbook_toConsumableArray(a).filter(function (x) {
     return !b.has(x);
   }));
 };
@@ -157,6 +195,7 @@ var matrDraw = structuredClone(defMatrDraw);
 var matrFilters = structuredClone(defMatrFilters);
 var noResults = defNoResults;
 var applyFilters = structuredClone(defApplyFilters);
+
 function calcFilters() {
   applyFilters = structuredClone(defApplyFilters);
   matrDraw = structuredClone(defMatrDraw);
@@ -177,13 +216,18 @@ function calcFilters() {
 function calcDrawParts() {
   // Рисуем полашку по умолчанию - нет результатов
   noResults = !defNoResults;
-  filtersPart.forEach(function (filterPart, indexPart) {
+  // Перебор разделов
+  filtersParts.forEach(function (filterPart, indexPart) {
     // Раздел по умолчанию - не рисуем
     matrDraw[indexPart][0] = false;
-    filterPart.forEach(function (filterModule, inedxModule) {
+
+    // Перебор модуля
+    filterPart.forEach(function (filtersModule, inedxModule) {
       // Модуль по умолчанию - рисуем
       matrDraw[indexPart][1][inedxModule] = true;
       //console.log(`p[${indexPart}]m[${inedxModule}]`, "filters", applyFilters);
+
+      // Перебор фильтров
       var _iterator = _createForOfIteratorHelper(applyFilters),
         _step;
       try {
@@ -194,7 +238,7 @@ function calcDrawParts() {
             continue;
           }
           // Если не подошёл хотя бы 1 - не подошёл
-          if (setIntersection(filterModule, applyFilter).size == 0) {
+          if (setIntersection(filtersModule, applyFilter).size == 0) {
             // Не рисуем модуль
             matrDraw[indexPart][1][inedxModule] = false;
             break;
@@ -314,7 +358,7 @@ openSortsButton.addEventListener("click", function () {
 });
 
 // Применение сортировки
-numberSorting = 0; // 0, 1, 2
+var numberSorting = 0; // 0, 1, 2
 var nameSort = document.querySelector(".A_FilterSortingByText");
 var namesSort = ["По сложности", "По дате обновления", "По проверенности"];
 var pointSort1 = document.querySelector(".Q_FilterSortingByComplexityIcon");

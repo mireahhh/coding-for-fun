@@ -29,7 +29,7 @@ const htmlPages = [
   createPages(
     "./src/pages/parts/part1/module1.html",
     "./pages/parts/part1/module1.html",
-    ["index"],
+    ["index", "module"],
   ),
   createPages(
     "./src/pages/parts/part1/module1/tutorial1.html",
@@ -50,7 +50,7 @@ const htmlPages = [
   createPages(
     "./src/pages/parts/part1/module2.html",
     "./pages/parts/part1/module2.html",
-    ["index"],
+    ["index", "module"],
   ),
   createPages(
     "./src/pages/parts/part1/module2/tutorial1.html",

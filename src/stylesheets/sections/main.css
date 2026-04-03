@@ -9,13 +9,6 @@
     background-color: var(--colors-neutrals-body);
 }
 
-/* m 8 */
-@media (min-width: 7680px) {
-    .S_Main {
-        flex-direction: row;
-    }
-}
-
 /* m 4 -> 3 */
 @media (max-width: 1368px) {}
 
@@ -23,6 +16,9 @@
 @media (max-width: 1152px) {}
 
 /* m 2 -> 1 */
-@media (max-width: 904px) {
+@media (max-width: 904px) {}
+
+/* m 1 -> 0 */
+@media (max-width: 428px) {
     .S_Main {}
 }

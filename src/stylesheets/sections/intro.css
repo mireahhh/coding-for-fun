@@ -19,7 +19,7 @@
     justify-content: space-between;
 
     p {
-      transform: translateY(var(--size-spacing-m8));
+      transform: translateY(calc(-1 * var(--size-spacing-8)));
       /* U_FontH2 */
       color: var(--colors-neutrals-900);
     }

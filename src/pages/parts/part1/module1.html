@@ -6,18 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="../../../images/brand/A_Logo.ico" />
   <!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108369792', 'ym');
+  <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+      m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+      m[i].l = 1 * new Date();
+      for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+      k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=108369792', 'ym');
 
-    ym(108369792, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/108369792" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
+    ym(108369792, 'init', { ssr: true, webvisor: true, clickmap: true, ecommerce: "dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce: true, trackLinks: true });
+  </script>
+  <noscript>
+    <div><img src="https://mc.yandex.ru/watch/108369792" style="position:absolute; left:-9999px;" alt="" /></div>
+  </noscript>
+  <!-- /Yandex.Metrika counter -->
   <title>Введение в тему</title>
 </head>
 
@@ -105,7 +107,7 @@
           Обновлено 14 мая 2026
         </p>
       </div>
-      <h1 class="U_FontH0 A_IntroHeading">
+      <h1 class="U_FontH0 A_IntroHeading" id="part1module1">
         Введение в тему
       </h1>
       <div class="O_IntroFooter">
@@ -146,10 +148,134 @@
       </ul>
     </section>
 
-    <h1 class="U_FontH0">Модуль 1.1</h1>
-    <a href="module1/tutorial1.html">Туториал 1</a>
-    <a href="module1/tutorial2.html">Туториал 2</a>
-    <a href="module1/tutorial3.html">Туториал 3</a>
+    <section class="O_Filter">
+      <div class="O_FilterFilters">
+
+        <div class="W_FilterFiltersHeader">
+          <div class="M_FilterFiltersHeaderOpen">
+            <button class="U_ButtonIcon A_FilterFiltersButton" aria-label="Фильтры">
+              <p class="U_FontC2 A_FilterFiltersHeaderName">Фильтрация</p>
+              <img class="U_ImgIconFullH Q_FilterFiltersOpenIcon" src="../../../images/icons/chevron-down.svg" alt="" />
+              <img class="U_ImgIconFullH Q_FilterFiltersCloseIcon" src="../../../images/icons/chevron-up.svg" alt="" />
+            </button>
+          </div>
+          <div class="M_FilterFiltersHeaderSearchBar">
+            <input id="filterSearchBar" class="U_FontC2" placeholder="Паттерны" />
+            <div class="C_FilterFiltersHeaderIcons">
+              <button class="U_ButtonIcon Q_FilterSearchIcon" aria-label="Найти">
+                <img class="U_ImgIconFullH" src="../../../images/icons/search-01.svg" alt="" />
+              </button>
+              <button class="U_ButtonIcon Q_FilterShuffleIcon" aria-label="Перемешать">
+                <img class="U_ImgIconFullH" src="../../../images/icons/shuffle.svg" alt="" />
+              </button>
+            </div>
+          </div>
+        </div>
+        <ul class="C_FilterFiltersMenu">
+
+          <li class="W_FilterFiltersMenuFilter">
+            <p class="U_FontF2 A_FilterFiltersMenuFilterName">Сложность</p>
+            <ul class="C_FilterFiltersMenuFilter">
+              <li><button id="filterComplexityInitial"
+                  class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Начальная</button></li>
+              <li><button id="filterComplexityMiddle"
+                  class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Средняя</button></li>
+              <li><button id="filterComplexityAdvanced"
+                  class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Продвинутая</button></li>
+            </ul>
+          </li>
+          <li class="W_FilterFiltersMenuFilter">
+            <p class="U_FontF2 A_FilterFiltersMenuFilterName">Библиотека</p>
+            <ul class="C_FilterFiltersMenuFilter">
+              <li><button id="filterLibraryVanillajs"
+                  class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Vanilla&nbsp;JS</button></li>
+              <li><button id="filterLibraryP5js"
+                  class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">P5.JS</button></li>
+              <li><button id="filterLibraryThreejs"
+                  class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Three.js</button></li>
+            </ul>
+          </li>
+
+          <li class="W_FilterFiltersMenuFilter">
+            <p class="U_FontF2 A_FilterFiltersMenuFilterName">Формат</p>
+            <ul class="C_FilterFiltersMenuFilter">
+              <li><button id="filterFormatTechnique"
+                  class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Техника</button></li>
+              <li><button id="filterFormatTask"
+                  class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Задача</button></li>
+              <li><button id="filterFormatVariation"
+                  class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Вариация</button></li>
+            </ul>
+          </li>
+
+          <li class="W_FilterFiltersMenuFilter" style="display: none;">
+            <p class="U_FontF2 A_FilterFiltersMenuFilterName">Проверенность</p>
+            <ul class="C_FilterFiltersMenuFilter">
+              <li><button id="filterVerificationExpert"
+                  class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Экспертная</button></li>
+              <li><button id="filterVerificationAuthorial"
+                  class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Авторская</button></li>
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+      <div class="O_FilterAllSorting">
+        <div class="O_FilterSorting">
+          <p class="U_FontC2 A_FilterSortingTitle">Сортировка:</p>
+          <div class="W_FilterSortingAllMenu">
+            <div class="A_FilterSortingBy">
+              <button class="U_ButtonIcon A_FilterSortingOpenButton" aria-label="Тип сортировки">
+                <p class="U_FontC2 A_FilterSortingByText">По&nbsp;сложности</p>
+                <img class="U_ImgIconFullH Q_FilterSortingOpenIcon" src="../../../images/icons/chevron-down.svg"
+                  alt="" />
+                <img class="U_ImgIconFullH Q_FilterSortingCloseIcon" src="../../../images/icons/chevron-up.svg"
+                  alt="" />
+              </button>
+            </div>
+            <ul class="C_FilterSortingMenu">
+              <button id="filterSortingByComplexityButton" class="U_ButtonIcon U_FontF2 A_FilterSortingButton"
+                style="border-bottom: 1.5px dashed var(--colors-neutrals-450);">
+                По&nbsp;сложности
+                <img class="U_ImgIcon Q_FilterSortingByComplexityIcon" src="../../../images/icons/point-sort.svg"
+                  alt="" />
+              </button>
+              <button id="filterSortingByDateButton" class="U_ButtonIcon U_FontF2 A_FilterSortingButton"
+                style="border-bottom: 1.5px dashed var(--colors-neutrals-450);">
+                По&nbsp;дате&nbsp;обновления
+                <img class="U_ImgIcon Q_FilterSortingByDateIcon" src="../../../images/icons/point-sort.svg" alt="" />
+              </button>
+              <button id="filterSortingByVerificationButton" class="U_ButtonIcon U_FontF2 A_FilterSortingButton">
+                По&nbsp;проверенности
+                <img class="U_ImgIcon Q_FilterSortingByVerificationIcon" src="../../../images/icons/point-sort.svg"
+                  alt="" />
+              </button>
+            </ul>
+          </div>
+        </div>
+        <button id="filterResetButton1" class="U_ButtonIcon A_FilterResetButton" aria-label="Сброс">
+          <p class="U_FontF2 A_FilterResetText">Сброс&nbsp;настроек</p>
+        </button>
+      </div>
+    </section>
+
+    <section class="C_ModuleTutorials">
+      <a id="moduleTutorial1" class="U_ALink W_ModuleTutorial" href="module1/tutorial1.html">
+        <div class="M_ModuleTutorialTitle">
+          <h2>Туториал 1</h2>
+        </div>
+        <div class="M_ModuleTutorialAboute">
+          1
+        </div>
+        <div class="A_ModuleTutorialArrow">
+          2
+        </div>
+      </a>
+      <a id="moduleTutorial2" class="W_ModuleTutorial" href="module1/tutorial2.html">Туториал 2</a>
+      <a id="moduleTutorial3" class="W_ModuleTutorial" href="module1/tutorial3.html">Туториал 3</a>
+
+      <a class="NotResultsTutorials">Нет результатов</a>
+    </section>
 
     <section class="W_Next">
       <div class="C_IntroRainSquaresBox">

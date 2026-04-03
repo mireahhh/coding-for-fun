@@ -12,6 +12,7 @@
   cursor: pointer;
   outline: none;
 
+  will-change: transform;
   transition: opacity 0.15s ease, transform 0.1s ease;
 }
 
@@ -37,6 +38,7 @@
 .U_ALink {
   color: var(--colors-neutrals-900);
   cursor: pointer;
+  will-change: transform;
   transition: opacity 0.15s ease, transform 0.1s ease;
 
   link,
@@ -71,6 +73,9 @@
 
   object-fit: contain;
   display: block;
+  
+  will-change: transform;
+  transition: opacity 0.15s ease, transform 0.1s ease;
 }
 
 .U_ImgIconSizeH {
@@ -79,6 +84,9 @@
 
   object-fit: contain;
   display: block;
+
+  will-change: transform;
+  transition: opacity 0.15s ease, transform 0.1s ease;
 }
 
 .U_ImgIconFullH {
@@ -87,6 +95,9 @@
 
   object-fit: contain;
   display: block;
+
+  will-change: transform;
+  transition: opacity 0.15s ease, transform 0.1s ease;
 }
 
 .U_ImgIconSizeW {
@@ -95,6 +106,9 @@
 
   object-fit: contain;
   display: block;
+
+  will-change: transform;
+  transition: opacity 0.15s ease, transform 0.1s ease;
 }
 
 .U_ImgIconFullW {
@@ -103,4 +117,7 @@
 
   object-fit: contain;
   display: block;
+
+  will-change: transform;
+  transition: opacity 0.15s ease, transform 0.1s ease;
 }

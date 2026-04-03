@@ -188,7 +188,7 @@
                     flex-direction: column;
                     position: absolute;
                     width: var(--size-spacing-192);
-                    /* (8 + 96 / 3) / 100 = 0.416 ~ 42% */
+                    /* (8 + 96 / 3) / 100 = 0.416 ~ 42% , 31.5*/
                     transform: translateY(31.5%);
                     z-index: 1;
                     align-items: flex-start;

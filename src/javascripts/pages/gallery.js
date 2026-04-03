@@ -1,7 +1,7 @@
-import img0 from "../images/gallery/0.png";
-import img2 from "../images/gallery/2.png";
-import img3 from "../images/gallery/3.png";
-import img5 from "../images/gallery/5.png";
+import img0 from "../../images/gallery/0.png";
+import img2 from "../../images/gallery/2.png";
+import img3 from "../../images/gallery/3.png";
+import img5 from "../../images/gallery/5.png";
 const galleryImages = {
   0: img0,
   2: img2,
@@ -9,8 +9,8 @@ const galleryImages = {
   5: img5,
 };
 
-import vid1 from "../images/gallery/1.mp4";
-import vid4 from "../images/gallery/4.mp4";
+import vid1 from "../../images/gallery/1.mp4";
+import vid4 from "../../images/gallery/4.mp4";
 const galleryVideos = {
   1: vid1,
   4: vid4,
@@ -135,7 +135,7 @@ const defMatrFilters = [
 //   [true, [true, true, true]],
 // ];
 const defNoResults = false;
-const defApplyFilters = [new Set(), new Set(), new Set(), new Set()];
+const defApplyFilters = [new Set(), new Set(), new Set()];
 
 // let matrDraw = structuredClone(defMatrDraw);
 let matrFilters = structuredClone(defMatrFilters);
@@ -431,19 +431,40 @@ videos.forEach((video) => {
       playPromise
         .then(() => {
           video.pause();
-          video.currentTime = 0;
+          // video.currentTime = 0;
+          // video.load();
         })
         .catch(() => {
           // если play не успел — просто безопасно сбрасываем
           video.pause();
-          video.currentTime = 0;
+          // video.currentTime = 0;
+          // video.load();
         });
     } else {
       video.pause();
-      video.currentTime = 0;
+      // video.currentTime = 0;
+      // video.load();
     }
   });
 });
+
+// galleryCanvases.forEach((card) => {
+//   const preview = card.querySelector(".A_GalleryWorkPreview");
+//   const video = card.querySelector(".A_GalleryWorkPreviewVideo");
+
+//   preview.addEventListener("mouseenter", () => {
+//     if (video.style.display !== "none") {
+//       video.play().catch(() => {});
+//     }
+//   });
+
+//   preview.addEventListener("mouseleave", () => {
+//     if (video.style.display !== "none") {
+//       video.pause();
+//       video.currentTime = 0;
+//     }
+//   });
+// });
 
 // Загрузка галлереи
 const months = [
@@ -460,7 +481,7 @@ const months = [
   "Ноября",
   "Декабря",
 ];
-const galleryCapacity = 40;
+const galleryCapacity = 20;
 import { works } from "./galleryJson.js";
 const galleryWorks = structuredClone(works);
 let filteredWorks = structuredClone(galleryWorks);
@@ -562,10 +583,10 @@ async function drawingWorks() {
 
   drawWorks.forEach((drawWork, indexDrawWork) => {
     let id = drawWork.id;
-    const dateStr = String(drawWork.date);
-    const year = dateStr.slice(0, 4);
-    const month = parseInt(dateStr.slice(5, 6));
-    const day = dateStr.slice(7, 8);
+    const date = (drawWork.date.at(-1));
+    const year = date.slice(0, 4);
+    const month = parseInt(date.slice(5, 6));
+    const day = date.slice(7, 8);
 
     galleryCanvases[indexDrawWork].querySelector(".M_GalleryWorkDescription").innerHTML =
       drawWork.author + " /<br>" + day + " " + months[month] + " " + year;
@@ -577,7 +598,8 @@ async function drawingWorks() {
       img.style.display = "flex";
     } else if (drawWork.extension == "mp4") {
       const video = galleryCanvases[indexDrawWork].querySelector(".A_GalleryWorkPreviewVideo");
-      video.querySelector("source").src = galleryVideos[drawWork.id];
+      video.src = galleryVideos[drawWork.id];
+      video.load();
       video.style.display = "flex";
     } else {
       console.log("non", drawWork.id);

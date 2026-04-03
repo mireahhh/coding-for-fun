@@ -8,7 +8,6 @@
     /* size */
 
     /* spacing */
-    --size-spacing-m8: -0.5rem;
     --size-spacing-0: 0rem;
     --size-spacing-05: 0.03125rem;
     --size-spacing-1: 0.0625rem;
@@ -84,9 +83,10 @@
 
     /* neutrais */
     /* 255 ff */
-    --colors-neutrals-50: #ffffff;
-    /* 248 f8 */
+    --colors-neutrals-0: #ffffff;
+    /* 248 f8 (50)*/
     --colors-neutrals-body: #f8f8f8;
+    /* --colors-neutrals-body: #000000; */
     /* 248   1% 03*/
     --colors-neutrals-body-01: #f8f8f803;
     /* 233   50% 7f */
@@ -106,8 +106,7 @@
     /* 31 1f   20% 33 */
     --colors-neutrals-900-20: #1f1f1f33;
     /* 31 1f   80% b2 */
-    --colors-neutrals-900-20: #1f1f1fb2;
-    --colors-neutrals-opacity: var(--colors-neutrals-150-20);
+    --colors-neutrals-900-80: #1f1f1fb2;
 
     /* 1% 0.01 = hex03 */
 

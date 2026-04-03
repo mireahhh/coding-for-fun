@@ -9,11 +9,10 @@ const path = require("path");
 module.exports = {
   entry: {
     index: "./src/javascripts/index.js",
-    header: "./src/javascripts/header.js",
-    handbook: "./src/javascripts/handbook.js",
-    gallery: "./src/javascripts/gallery.js",
-    module: "./src/javascripts/module.js",
-    work: "./src/javascripts/work.js",
+    handbook: "./src/javascripts/pages/handbook.js",
+    gallery: "./src/javascripts/pages/gallery.js",
+    module: "./src/javascripts/pages/module.js",
+    work: "./src/javascripts/pages/work.js",
   },
   output: {
     filename: "[name].js",

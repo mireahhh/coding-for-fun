@@ -82,7 +82,7 @@
         flex-shrink: 0;
 
         /* U_FontB2 */
-        color: var(--colors-neutrals-50);
+        color: var(--colors-neutrals-0);
       }
 
       .HandbookPartNoActiveStartButton,
@@ -145,9 +145,12 @@
             flex: 1 0 0;
             border-radius: var(--size-radius-4);
             border: var(--size-spacing-1) solid var(--colors-neutrals-200);
-            transition:
+            /* transition:
               transform 0.3s ease,
-              opacity 0.3s ease;
+              opacity 0.3s ease; */
+            will-change: transform;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.2s ease;
           }
         }
 
@@ -196,29 +199,28 @@
     }
   }
 
-  .NotResults {
+  .NotResultsParts {
     display: none;
   }
-}
 
-.A_HandbookModuleLink:hover,
-.A_HandbookModuleLink:active {
-  opacity: 1;
-  transform: none;
-  box-shadow: none;
-}
+  .A_HandbookModuleLink:hover,
+  .A_HandbookModuleLink:active {
+    opacity: 1;
+    transform: none;
+    box-shadow: none;
+  }
 
-.A_HandbookModuleImage:hover {
-  opacity: 0.97;
-  transform: scale(1.03);
-  box-shadow: none;
-  /* box-shadow: 0px 4px 10px var(--colors-neutrals-900-20); */
-}
+  .A_HandbookModuleImage:hover {
+    opacity: 0.97;
+    transform: scale(1.03);
+    box-shadow: none;
+  }
 
-.A_HandbookModuleImage:active {
-  opacity: 1;
-  transform: scale(0.93);
-  box-shadow: none;
+  .A_HandbookModuleImage:active {
+    opacity: 1;
+    transform: scale(0.95);
+    box-shadow: none;
+  }
 }
 
 /* m 4 -> 3 */

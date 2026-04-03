@@ -1,237 +1,3 @@
-// Задание фильтров
-// Список доступных фильтров
-const filtersComplexity = [
-  "filterComplexityInitial",
-  "filterComplexityMiddle",
-  "filterComplexityAdvanced",
-];
-const filtersLibrary = [
-  "filterLibraryVanillajs",
-  "filterLibraryP5js",
-  "filterLibraryThreejs",
-];
-const filtersFormat = [
-  "filterFormatTechnique",
-  "filterFormatTask",
-  "filterFormatVariation",
-];
-const filtersVerification = [
-  "filterVerificationExpert",
-  "filterVerificationAuthorial",
-];
-const filtersAll = [
-  filtersComplexity,
-  filtersLibrary,
-  filtersFormat,
-  filtersVerification,
-];
-
-// Какие фильтры у каких модулей
-// p1m1
-const setFiltersPart1Module1Tutorial1 = new Set([
-  "filterComplexityInitial",
-  "filterLibraryVanillajs",
-  "filterFormatTechnique",
-  "filterVerificationExpert",
-]);
-const setFiltersPart1Module1Tutorial2 = new Set([
-  "filterComplexityInitial",
-  "filterLibraryVanillajs",
-  "filterFormatTechnique",
-  "filterVerificationExpert",
-]);
-const setFiltersPart1Module1Tutorial3 = new Set([
-  "filterComplexityInitial",
-  "filterLibraryVanillajs",
-  "filterFormatTask",
-  "filterVerificationExpert",
-]);
-const setFiltersPart1Module1 = new Set([
-  ...setFiltersPart1Module1Tutorial1,
-  ...setFiltersPart1Module1Tutorial2,
-  ...setFiltersPart1Module1Tutorial3,
-]);
-// p1m2
-const setFiltersPart1Module2Tutorial1 = new Set([
-  "filterComplexityInitial",
-  "filterLibraryP5js",
-  "filterFormatTask",
-  "filterVerificationExpert",
-]);
-const setFiltersPart1Module2Tutorial2 = new Set([
-  "filterComplexityInitial",
-  "filterLibraryP5js",
-  "filterFormatTechnique",
-  "filterVerificationExpert",
-]);
-const setFiltersPart1Module2Tutorial3 = new Set([
-  "filterComplexityInitial",
-  "filterLibraryVanillajs",
-  "filterFormatTask",
-  "filterVerificationExpert",
-]);
-const setFiltersPart1Module2 = new Set([
-  ...setFiltersPart1Module2Tutorial1,
-  ...setFiltersPart1Module2Tutorial2,
-  ...setFiltersPart1Module2Tutorial3,
-]);
-const filtersPart1 = [setFiltersPart1Module1, setFiltersPart1Module2];
-// p2m1
-const setFiltersPart2Module1Tutorial1 = new Set([
-  "filterComplexityMiddle",
-  "filterLibraryVanillajs",
-  "filterFormatTechnique",
-  "filterVerificationExpert",
-]);
-const setFiltersPart2Module1Tutorial2 = new Set([
-  "filterComplexityMiddle",
-  "filterLibraryVanillajs",
-  "filterFormatTechnique",
-  "filterVerificationExpert",
-]);
-const setFiltersPart2Module1Tutorial3 = new Set([
-  "filterComplexityMiddle",
-  "filterLibraryVanillajs",
-  "filterFormatTask",
-  "filterVerificationExpert",
-]);
-const setFiltersPart2Module1 = new Set([
-  ...setFiltersPart2Module1Tutorial1,
-  ...setFiltersPart2Module1Tutorial2,
-  ...setFiltersPart2Module1Tutorial3,
-]);
-// p2m2
-const setFiltersPart2Module2Tutorial1 = new Set([
-  "filterComplexityMiddle",
-  "filterLibraryP5js",
-  "filterFormatVariation",
-  "filterVerificationExpert",
-]);
-const setFiltersPart2Module2Tutorial2 = new Set([
-  "filterComplexityMiddle",
-  "filterLibraryP5js",
-  "filterFormatVariation",
-  "filterVerificationExpert",
-]);
-const setFiltersPart2Module2Tutorial3 = new Set([
-  "filterComplexityMiddle",
-  "filterLibraryP5js",
-  "filterFormatTask",
-  "filterVerificationExpert",
-]);
-const setFiltersPart2Module2 = new Set([
-  ...setFiltersPart2Module2Tutorial1,
-  ...setFiltersPart2Module2Tutorial2,
-  ...setFiltersPart2Module2Tutorial3,
-]);
-// p2m3
-const setFiltersPart2Module3Tutorial1 = new Set([
-  "filterComplexityMiddle",
-  "filterLibraryThreejs",
-  "filterFormatTask",
-  "filterVerificationExpert",
-]);
-const setFiltersPart2Module3Tutorial2 = new Set([
-  "filterComplexityMiddle",
-  "filterLibraryThreejs",
-  "filterFormatTask",
-  "filterVerificationExpert",
-]);
-const setFiltersPart2Module3Tutorial3 = new Set([
-  "filterComplexityMiddle",
-  "filterLibraryThreejs",
-  "filterFormatVariation",
-  "filterVerificationExpert",
-]);
-const setFiltersPart2Module3 = new Set([
-  ...setFiltersPart2Module3Tutorial1,
-  ...setFiltersPart2Module3Tutorial2,
-  ...setFiltersPart2Module3Tutorial3,
-]);
-const filtersPart2 = [
-  setFiltersPart2Module1,
-  setFiltersPart2Module2,
-  setFiltersPart2Module3,
-];
-// p3m1
-const setFiltersPart3Module1Tutorial1 = new Set([
-  "filterComplexityAdvanced",
-  "filterLibraryP5js",
-  "filterFormatVariation",
-  "filterVerificationExpert",
-]);
-const setFiltersPart3Module1Tutorial2 = new Set([
-  "filterComplexityAdvanced",
-  "filterLibraryThreejs",
-  "filterFormatTechnique",
-  "filterVerificationExpert",
-]);
-const setFiltersPart3Module1Tutorial3 = new Set([
-  "filterComplexityAdvanced",
-  "filterLibraryThreejs",
-  "filterFormatTask",
-  "filterVerificationExpert",
-]);
-const setFiltersPart3Module1 = new Set([
-  ...setFiltersPart3Module1Tutorial1,
-  ...setFiltersPart3Module1Tutorial2,
-  ...setFiltersPart3Module1Tutorial3,
-]);
-// p3m2
-const setFiltersPart3Module2Tutorial1 = new Set([
-  "filterComplexityAdvanced",
-  "filterLibraryThreejs",
-  "filterFormatTask",
-  "filterVerificationExpert",
-]);
-const setFiltersPart3Module2Tutorial2 = new Set([
-  "filterComplexityAdvanced",
-  "filterLibraryVanillajs",
-  "filterFormatTechnique",
-  "filterVerificationExpert",
-]);
-const setFiltersPart3Module2Tutorial3 = new Set([
-  "filterComplexityAdvanced",
-  "filterLibraryThreejs",
-  "filterFormatVariation",
-  "filterVerificationExpert",
-]);
-const setFiltersPart3Module2 = new Set([
-  ...setFiltersPart3Module2Tutorial1,
-  ...setFiltersPart3Module2Tutorial2,
-  ...setFiltersPart3Module2Tutorial3,
-]);
-// p3m3
-const setFiltersPart3Module3Tutorial1 = new Set([
-  "filterComplexityAdvanced",
-  "filterLibraryP5js",
-  "filterFormatTask",
-  "filterVerificationExpert",
-]);
-const setFiltersPart3Module3Tutorial2 = new Set([
-  "filterComplexityAdvanced",
-  "filterLibraryP5js",
-  "filterFormatTechnique",
-  "filterVerificationExpert",
-]);
-const setFiltersPart3Module3Tutorial3 = new Set([
-  "filterComplexityAdvanced",
-  "filterLibraryVanillajs",
-  "filterFormatVariation",
-  "filterVerificationExpert",
-]);
-const setFiltersPart3Module3 = new Set([
-  ...setFiltersPart3Module3Tutorial1,
-  ...setFiltersPart3Module3Tutorial2,
-  ...setFiltersPart3Module3Tutorial3,
-]);
-const filtersPart3 = [
-  setFiltersPart3Module1,
-  setFiltersPart3Module2,
-  setFiltersPart3Module3,
-];
-const filtersPart = [filtersPart1, filtersPart2, filtersPart3];
-
 // Для отрисовки
 const handbookPart1Module1 = document.getElementById("handbookPart1Module1");
 const handbookPart1Module2 = document.getElementById("handbookPart1Module2");
@@ -266,7 +32,7 @@ const handbookPart3 = [
   handbookPart3Modules,
 ];
 const handbook = [handbookPart1, handbookPart2, handbookPart3];
-const handbookNoResults = document.getElementById("handbookNoResults");
+const handbookNoResults = document.querySelector(".NotResultsParts");
 
 // Фильтры слева
 // Меню
@@ -381,6 +147,7 @@ let matrDraw = structuredClone(defMatrDraw);
 let matrFilters = structuredClone(defMatrFilters);
 let noResults = defNoResults;
 let applyFilters = structuredClone(defApplyFilters);
+import { filtersAll, filtersParts } from "./tutorialsJson.js";
 
 function calcFilters() {
   applyFilters = structuredClone(defApplyFilters);
@@ -410,22 +177,25 @@ function calcFilters() {
 function calcDrawParts() {
   // Рисуем полашку по умолчанию - нет результатов
   noResults = !defNoResults;
-  filtersPart.forEach((filterPart, indexPart) => {
+  // Перебор разделов
+  filtersParts.forEach((filterPart, indexPart) => {
     // Раздел по умолчанию - не рисуем
     matrDraw[indexPart][0] = false;
 
-    filterPart.forEach((filterModule, inedxModule) => {
+    // Перебор модуля
+    filterPart.forEach((filtersModule, inedxModule) => {
       // Модуль по умолчанию - рисуем
       matrDraw[indexPart][1][inedxModule] = true;
       //console.log(`p[${indexPart}]m[${inedxModule}]`, "filters", applyFilters);
 
+      // Перебор фильтров
       for (const applyFilter of applyFilters) {
         //Если фильтр - пустой
         if (applyFilter.size == 0) {
           continue;
         }
         // Если не подошёл хотя бы 1 - не подошёл
-        if (setIntersection(filterModule, applyFilter).size == 0) {
+        if (setIntersection(filtersModule, applyFilter).size == 0) {
           // Не рисуем модуль
           matrDraw[indexPart][1][inedxModule] = false;
           break;
@@ -548,7 +318,7 @@ openSortsButton.addEventListener("click", () => {
 });
 
 // Применение сортировки
-numberSorting = 0; // 0, 1, 2
+let numberSorting = 0; // 0, 1, 2
 const nameSort = document.querySelector(".A_FilterSortingByText");
 const namesSort = ["По сложности", "По дате обновления", "По проверенности"];
 

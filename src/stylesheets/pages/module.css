@@ -1,0 +1,78 @@
+.C_ModuleTutorials {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  align-items: flex-start;
+  gap: var(--size-spacing-0);
+
+  .W_ModuleTutorial {
+    display: flex;
+    padding-block: var(--size-spacing-36);
+    padding-inline: 5dvw;
+    box-sizing: border-box;
+    width: 100%;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: var(--size-spacing-20) var(--size-spacing-96);
+    align-self: stretch;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--colors-neutrals-450);
+    will-change: transform;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.2s ease;
+
+    /* border-radius: var(--size-radius-0, 0);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.15) 100%), linear-gradient(90deg, #F372B5 0%, #F76479 12.5%, #FC7C56 25%, #FACE4E 37.5%, #97E954 50%, #5CD686 62.5%, #5DD6BD 75%, #5AD7E0 87.5%, #57B9E9 100%);
+    background-blend-mode: plus-lighter, normal; */
+
+    .M_ModuleTutorialTitle {
+      display: flex;
+      width: 37%;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--size-spacing-16);
+    }
+
+    .M_ModuleTutorialAboute {
+      display: flex;
+      max-width: 41%;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--size-spacing-16);
+    }
+
+    .A_ModuleTutorialArrow {}
+  }
+
+  .NotResultsTutorials {
+    display: none;
+  }
+
+  .W_ModuleTutorial:hover,
+  .W_ModuleTutorial:active {
+    opacity: 1;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .W_ModuleTutorial:hover {
+    transform: scale(1.03);
+  }
+
+  .W_ModuleTutorial:active {
+    transform: scale(1.0);
+  }
+}
+
+/* m 4 -> 3 */
+@media (max-width: 1368px) {}
+
+/* m 3 -> 2 */
+@media (max-width: 1152px) {}
+
+/* m 2 -> 1 */
+@media (max-width: 904px) {}
+
+/* m 1 -> 0 */
+@media (max-width: 428px) {}

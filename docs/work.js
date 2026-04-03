@@ -53,12 +53,12 @@ const _5_namespaceObject = __webpack_require__.p + "images/4395368c4a6574b8e4df.
 const _1_namespaceObject = __webpack_require__.p + "9cccdb429dcffb76b705.mp4";
 ;// ./src/images/gallery/4.mp4
 const _4_namespaceObject = __webpack_require__.p + "9cccdb429dcffb76b705.mp4";
-;// ./src/javascripts/galleryJson.js
+;// ./src/javascripts/pages/galleryJson.js
 var works = [{
   id: 0,
   state: 1,
   official: "",
-  date: 20260327,
+  date: ["20260327"],
   title: "Flower Power",
   author: "Katarina Lingat",
   complexity: "filterComplexityMiddle",
@@ -75,7 +75,7 @@ var works = [{
   id: 1,
   state: 1,
   official: "",
-  date: 20260327,
+  date: ["20260327"],
   title: "Flower Power",
   author: "Katarina Lingat",
   complexity: "filterComplexityMiddle",
@@ -92,7 +92,7 @@ var works = [{
   id: 2,
   state: 0,
   official: "",
-  date: 20260327,
+  date: ["20260327"],
   title: "Flower Power",
   author: "Katarina Lingat",
   complexity: "filterComplexityMiddle",
@@ -109,7 +109,7 @@ var works = [{
   id: 3,
   state: 1,
   official: "",
-  date: 20260327,
+  date: ["20260327"],
   title: "Flower Power",
   author: "Katarina Lingat",
   complexity: "filterComplexityMiddle",
@@ -126,7 +126,7 @@ var works = [{
   id: 4,
   state: 1,
   official: "",
-  date: 20260327,
+  date: ["20260327"],
   title: "Flower Power",
   author: "Katarina Lingat",
   complexity: "filterComplexityMiddle",
@@ -143,7 +143,7 @@ var works = [{
   id: 5,
   state: 0,
   official: "",
-  date: 20260327,
+  date: ["20260327"],
   title: "Flower Power",
   author: "Katarina Lingat",
   complexity: "filterComplexityMiddle",
@@ -157,7 +157,7 @@ var works = [{
   extension: "png",
   canvasPreview: ""
 }];
-;// ./src/javascripts/work.js
+;// ./src/javascripts/pages/work.js
 
 
 
@@ -195,17 +195,20 @@ var tags = document.querySelector(".tags");
 tags.innerHTML = works[indexWork].tags;
 var work_link = document.querySelector(".link");
 work_link.innerHTML = works[indexWork].link;
-var codePreview = document.querySelector(".codePreview");
-codePreview.innerHTML = works[indexWork].codePreview;
 if (works[indexWork].extension == "png") {
   var work_image = document.querySelector(".image");
   work_image.src = galleryImages[indexWork];
   work_image.style.display = "flex";
+  var video = document.querySelector(".video");
+  video.style.display = "none";
 }
 if (works[indexWork].extension == "mp4") {
-  var video = document.querySelector(".video");
-  video.querySelector("source").src = galleryVideos[indexWork];
-  video.style.display = "flex";
+  var _video = document.querySelector(".video");
+  _video.src = galleryVideos[indexWork];
+  _video.load();
+  _video.style.display = "flex";
+  var _image = document.querySelector(".image");
+  _image.style.display = "none";
 }
 
 // // Удалить
