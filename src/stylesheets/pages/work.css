@@ -26,7 +26,41 @@
     }
 
     .O_Work {
-        .W_WorkTitle {}
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--size-spacing-20);
+        align-self: stretch;
+
+        .W_WorkTitle {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            align-content: flex-start;
+            gap: var(--size-spacing-12);
+            align-self: stretch;
+            /* TODO */
+            flex-wrap: wrap;
+
+            .M_WorkTitlePath {
+                color: var(--colors-neutrals-450);
+            }
+
+            .A_WorkTitleDate {
+                text-align: right;
+                color: var(--colors-neutrals-200);
+            }
+        }
+
+        .O_WorkMain {
+            display: flex;
+            align-items: flex-start;
+            align-content: flex-start;
+            gap: var(--size-spacing-96);
+            align-self: stretch;
+            /* TODO */
+            flex-wrap: wrap;
+        }
     }
 }
 

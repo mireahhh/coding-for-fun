@@ -54,6 +54,7 @@ const _1_namespaceObject = __webpack_require__.p + "9cccdb429dcffb76b705.mp4";
 ;// ./src/images/gallery/4.mp4
 const _4_namespaceObject = __webpack_require__.p + "9cccdb429dcffb76b705.mp4";
 ;// ./src/javascripts/pages/galleryJson.js
+var months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
 var works = [{
   id: 0,
   state: 1,
@@ -607,7 +608,6 @@ videos.forEach(function (video) {
 // });
 
 // Загрузка галлереи
-var months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
 var galleryCapacity = 20;
 
 var galleryWorks = structuredClone(works);
@@ -709,9 +709,9 @@ function _drawingWorks() {
             var id = drawWork.id;
             var date = drawWork.date.at(-1);
             var year = date.slice(0, 4);
-            var month = parseInt(date.slice(5, 6));
-            var day = date.slice(7, 8);
-            galleryCanvases[indexDrawWork].querySelector(".M_GalleryWorkDescription").innerHTML = drawWork.author + " /<br>" + day + " " + months[month] + " " + year;
+            var month = parseInt(date.slice(4, 6));
+            var day = date.slice(6, 8);
+            galleryCanvases[indexDrawWork].querySelector(".M_GalleryWorkDescription").innerHTML = drawWork.author + " /<br>" + day + " " + months[month - 1] + " " + year;
             galleryCanvases[indexDrawWork].querySelector(".A_GalleryWorkName").innerHTML = drawWork.title;
             if (drawWork.extension == "png") {
               var img = galleryCanvases[indexDrawWork].querySelector(".A_GalleryWorkPreviewImg");

@@ -467,22 +467,8 @@ videos.forEach((video) => {
 // });
 
 // Загрузка галлереи
-const months = [
-  "Января",
-  "Февраля",
-  "Марта",
-  "Апреля",
-  "Мая",
-  "Июня",
-  "Июля",
-  "Августа",
-  "Сентября",
-  "Октября",
-  "Ноября",
-  "Декабря",
-];
 const galleryCapacity = 20;
-import { works } from "./galleryJson.js";
+import { months, works } from "./galleryJson.js";
 const galleryWorks = structuredClone(works);
 let filteredWorks = structuredClone(galleryWorks);
 const galleryCanvases = Array.from(document.querySelectorAll(".C_GalleryWorks .W_GalleryWork")).slice(
@@ -585,11 +571,11 @@ async function drawingWorks() {
     let id = drawWork.id;
     const date = (drawWork.date.at(-1));
     const year = date.slice(0, 4);
-    const month = parseInt(date.slice(5, 6));
-    const day = date.slice(7, 8);
+    const month = parseInt(date.slice(4, 6));
+    const day = date.slice(6, 8);
 
     galleryCanvases[indexDrawWork].querySelector(".M_GalleryWorkDescription").innerHTML =
-      drawWork.author + " /<br>" + day + " " + months[month] + " " + year;
+      drawWork.author + " /<br>" + day + " " + months[month - 1] + " " + year;
     galleryCanvases[indexDrawWork].querySelector(".A_GalleryWorkName").innerHTML = drawWork.title;
 
     if (drawWork.extension == "png") {

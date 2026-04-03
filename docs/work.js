@@ -54,6 +54,7 @@ const _1_namespaceObject = __webpack_require__.p + "9cccdb429dcffb76b705.mp4";
 ;// ./src/images/gallery/4.mp4
 const _4_namespaceObject = __webpack_require__.p + "9cccdb429dcffb76b705.mp4";
 ;// ./src/javascripts/pages/galleryJson.js
+var months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
 var works = [{
   id: 0,
   state: 1,
@@ -158,6 +159,8 @@ var works = [{
   canvasPreview: ""
 }];
 ;// ./src/javascripts/pages/work.js
+// Массивы с фонами
+// Изображения
 
 
 
@@ -168,50 +171,57 @@ var galleryImages = {
   3: _3_namespaceObject,
   5: _5_namespaceObject
 };
+// Видео
 
 
 var galleryVideos = {
   1: _1_namespaceObject,
   4: _4_namespaceObject
 };
+// Работы - данные
 
-// Получить переменную
-var indexWork = sessionStorage.getItem("indexWork");
-
-// Работы
-
-// Данные
-var heading = document.querySelector(".heading");
-heading.innerHTML = "Работа [" + indexWork + "]";
-var author = document.querySelector(".author");
-author.innerHTML = works[indexWork].author;
-var date = document.querySelector(".date");
-date.innerHTML = works[indexWork].date;
-var title = document.querySelector(".title");
-title.innerHTML = works[indexWork].title;
-var description = document.querySelector(".description");
-description.innerHTML = works[indexWork].description;
-var tags = document.querySelector(".tags");
-tags.innerHTML = works[indexWork].tags;
-var work_link = document.querySelector(".link");
-work_link.innerHTML = works[indexWork].link;
-if (works[indexWork].extension == "png") {
-  var work_image = document.querySelector(".image");
-  work_image.src = galleryImages[indexWork];
-  work_image.style.display = "flex";
-  var video = document.querySelector(".video");
-  video.style.display = "none";
+function showWork() {
+  // Получить переменную id работы
+  var indexWork = sessionStorage.getItem("indexWork");
+  // Данные
+  // Путь
+  var workTitlePath = document.querySelector(".M_WorkTitlePath");
+  workTitlePath.innerHTML = "Галерея / " + works[indexWork].title;
+  // Дата
+  var date = drawWork.date.at(-1);
+  var year = date.slice(0, 4);
+  var month = parseInt(date.slice(4, 6));
+  var day = date.slice(6, 8);
+  var workTitleDate = document.querySelector(".A_WorkTitleDate");
+  workTitleDate.innerHTML = "Обновлено" + day + months[month - 1] + year;
+  var heading = document.querySelector(".heading");
+  heading.innerHTML = "Работа [" + indexWork + "]";
+  var author = document.querySelector(".author");
+  author.innerHTML = works[indexWork].author;
+  var title = document.querySelector(".title");
+  title.innerHTML = works[indexWork].title;
+  var description = document.querySelector(".description");
+  description.innerHTML = works[indexWork].description;
+  var tags = document.querySelector(".tags");
+  tags.innerHTML = works[indexWork].tags;
+  var link = document.querySelector(".link");
+  link.innerHTML = works[indexWork].link;
+  if (works[indexWork].extension == "png") {
+    var image = document.querySelector(".image");
+    image.src = galleryImages[indexWork];
+    image.style.display = "flex";
+    var video = document.querySelector(".video");
+    video.style.display = "none";
+  }
+  if (works[indexWork].extension == "mp4") {
+    var _video = document.querySelector(".video");
+    _video.src = galleryVideos[indexWork];
+    _video.load();
+    _video.style.display = "flex";
+    var _image = document.querySelector(".image");
+    _image.style.display = "none";
+  }
 }
-if (works[indexWork].extension == "mp4") {
-  var _video = document.querySelector(".video");
-  _video.src = galleryVideos[indexWork];
-  _video.load();
-  _video.style.display = "flex";
-  var _image = document.querySelector(".image");
-  _image.style.display = "none";
-}
-
-// // Удалить
-// sessionStorage.removeItem("indexWork");
+showWork();
 /******/ })()
 ;
