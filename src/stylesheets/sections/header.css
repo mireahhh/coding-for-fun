@@ -60,8 +60,8 @@
                 align-items: center;
                 column-gap: var(--size-spacing-20);
 
-                .А_HeaderBurgerButton,
-                .А_HeaderCrossButton {
+                .A_HeaderBurgerButton,
+                .A_HeaderCrossButton {
                     display: none;
                     height: 100%;
                     aspect-ratio: 1;
@@ -190,7 +190,7 @@
                 display: none;
             }
 
-            .А_HeaderBurgerButton {
+            .A_HeaderBurgerButton {
                 display: flex;
             }
         }

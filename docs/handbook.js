@@ -114,7 +114,7 @@ var handbookPart3Module3 = document.getElementById("handbookPart3Module3");
 var handbookPart3Modules = [handbookPart3Module1, handbookPart3Module2, handbookPart3Module3];
 var handbookPart3 = [document.getElementById("handbookPart3"), handbookPart3Modules];
 var handbook = [handbookPart1, handbookPart2, handbookPart3];
-var handbookNoResults = document.querySelector(".NotResultsParts");
+var handbookNoResults = document.querySelector(".NoResultsParts");
 
 // Фильтры слева
 // Меню

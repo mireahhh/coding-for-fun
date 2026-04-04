@@ -55,6 +55,16 @@ const _1_namespaceObject = __webpack_require__.p + "9cccdb429dcffb76b705.mp4";
 const _4_namespaceObject = __webpack_require__.p + "9cccdb429dcffb76b705.mp4";
 ;// ./src/javascripts/pages/galleryJson.js
 var months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
+var filters = {
+  "filterComplexityInitial": "Начальная",
+  "filterComplexityMiddle": "Средняя",
+  "filterComplexityAdvanced": "Продвинутая",
+  "filterLibraryVanillajs": "Vanilla js",
+  "filterLibraryP5js": "P5.js",
+  "filterLibraryThreejs": "Three.js",
+  "filterVerificationExpert": "Экспертная",
+  "filterVerificationAuthorial": "Авторская"
+};
 var works = [{
   id: 0,
   state: 1,
@@ -62,9 +72,9 @@ var works = [{
   date: ["20260327"],
   title: "Flower Power",
   author: "Katarina Lingat",
-  complexity: "Средняя",
-  library: "Vanilla js",
-  verification: "Экспертная",
+  complexity: "filterComplexityMiddle",
+  library: "filterLibraryVanillajs",
+  verification: "filterVerificationExpert",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"],
   description: "Наслаждайтесь цветочной поляной, создавайте собственные визуальные комбинации и составляйте композиции из одного цвета. В работе используется процедурная генерация случайных узоров и комбинаций цветов, а также HTML Canvas для динамического рендеринга графики.",
   link: "https://geokash.com/flower-power/",

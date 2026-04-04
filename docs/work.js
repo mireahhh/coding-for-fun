@@ -55,6 +55,16 @@ const _1_namespaceObject = __webpack_require__.p + "9cccdb429dcffb76b705.mp4";
 const _4_namespaceObject = __webpack_require__.p + "9cccdb429dcffb76b705.mp4";
 ;// ./src/javascripts/pages/galleryJson.js
 var months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
+var filters = {
+  "filterComplexityInitial": "Начальная",
+  "filterComplexityMiddle": "Средняя",
+  "filterComplexityAdvanced": "Продвинутая",
+  "filterLibraryVanillajs": "Vanilla js",
+  "filterLibraryP5js": "P5.js",
+  "filterLibraryThreejs": "Three.js",
+  "filterVerificationExpert": "Экспертная",
+  "filterVerificationAuthorial": "Авторская"
+};
 var works = [{
   id: 0,
   state: 1,
@@ -62,9 +72,9 @@ var works = [{
   date: ["20260327"],
   title: "Flower Power",
   author: "Katarina Lingat",
-  complexity: "Средняя",
-  library: "Vanilla js",
-  verification: "Экспертная",
+  complexity: "filterComplexityMiddle",
+  library: "filterLibraryVanillajs",
+  verification: "filterVerificationExpert",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"],
   description: "Наслаждайтесь цветочной поляной, создавайте собственные визуальные комбинации и составляйте композиции из одного цвета. В работе используется процедурная генерация случайных узоров и комбинаций цветов, а также HTML Canvas для динамического рендеринга графики.",
   link: "https://geokash.com/flower-power/",
@@ -200,7 +210,7 @@ function showWork() {
   var month = parseInt(dateJs.slice(4, 6));
   var day = dateJs.slice(6, 8);
   var date = document.querySelector(".A_WorkDate");
-  date.innerHTML = "Обновлено" + day + months[month - 1] + year;
+  date.innerHTML = "Обновлено " + day + " " + months[month - 1] + " " + year;
   // Картинка
   if (drawWork.extension == "png") {
     var image = document.querySelector(".A_WorkPreviewImg");
@@ -232,14 +242,24 @@ function showWork() {
   Array.from(tagsPrimaryItems).forEach(function (item) {
     item.style.display = "none";
   });
+  // Ключи из work
   var data = {
     complexity: drawWork.complexity,
     library: drawWork.library,
     verification: drawWork.verification
   };
-  var libraries = Array.isArray(data.library) ? data.library : [data.library];
-  var values = [data.complexity].concat(_toConsumableArray(libraries), [data.verification]).slice(0, 3);
-  values.forEach(function (value, i) {
+  // library может быть строкой или массивом
+  var libraryKeys = Array.isArray(data.library) ? data.library : [data.library];
+  // Собираем ключи в нужном порядке
+  var primaryKeys = [data.complexity].concat(_toConsumableArray(libraryKeys), [data.verification]).filter(Boolean).slice(0, 3);
+  // Переводим ключи в подписи через словарь filters
+  var primaryValues = primaryKeys.map(function (key) {
+    var _filters$key;
+    return (_filters$key = filters[key]) !== null && _filters$key !== void 0 ? _filters$key : key;
+  });
+
+  // Заполняем видимые теги
+  primaryValues.forEach(function (value, i) {
     if (tagsPrimaryItems[i]) {
       tagsPrimaryItems[i].textContent = value;
       tagsPrimaryItems[i].style.display = "flex";

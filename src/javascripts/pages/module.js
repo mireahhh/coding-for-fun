@@ -40,7 +40,7 @@ const moduleTutorials = [
   moduleTutorial5,
 ];
 
-const moduleNoResults = document.querySelector(".NotResultsTutorials");
+const moduleNoResults = document.querySelector(".NoResultsTutorials");
 
 // Фильтры слева
 // Меню

@@ -32,7 +32,7 @@ const handbookPart3 = [
   handbookPart3Modules,
 ];
 const handbook = [handbookPart1, handbookPart2, handbookPart3];
-const handbookNoResults = document.querySelector(".NotResultsParts");
+const handbookNoResults = document.querySelector(".NoResultsParts");
 
 // Фильтры слева
 // Меню

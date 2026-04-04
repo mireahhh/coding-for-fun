@@ -67,13 +67,14 @@
 .U_FontH3 {
   /* U_FontH3 */
   color: var(--colors-neutrals-900);
-  font-family: var(--font-KairosSans);
+  font-family: var(--font-JetBrains);
   font-size: 2rem;
   line-height: 115%;
   letter-spacing: -0.1rem;
   text-transform: none;
 }
 
+/* TODO  */
 .U_FontH4 {
   /* U_FontH4 */
   color: var(--colors-neutrals-900);
@@ -97,7 +98,12 @@
 
 .U_FontS2 {
   /* U_FontS2 */
-  /* TODO  */
+  color: var(--colors-neutrals-900);
+  font-family: var(--font-JetBrains);
+  font-size: 1.5rem;
+  line-height: 130%;
+  letter-spacing: -0.075px;
+  text-transform: none;
 }
 
 .U_FontS3 {

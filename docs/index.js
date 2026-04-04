@@ -21,14 +21,14 @@ window.addEventListener("resize", function () {
 });
 var isHeaderMenuOpen = false;
 var headerMenuButton = document.querySelector(".O_HeaderMenuNavigation");
-var headerBurgerButton = document.querySelector(".А_HeaderBurgerButton");
+var headerBurgerButton = document.querySelector(".A_HeaderBurgerButton");
 headerBurgerButton.addEventListener("click", function () {
   isHeaderMenuOpen = true;
   headerBurgerButton.style.display = "none";
   headerCrossButton.style.display = "flex";
   headerMenuButton.style.display = "flex";
 });
-var headerCrossButton = document.querySelector(".А_HeaderCrossButton");
+var headerCrossButton = document.querySelector(".A_HeaderCrossButton");
 headerCrossButton.addEventListener("click", function () {
   isHeaderMenuOpen = false;
   headerCrossButton.style.display = "none";

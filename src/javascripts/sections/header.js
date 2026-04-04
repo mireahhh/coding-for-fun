@@ -18,7 +18,7 @@ window.addEventListener("resize", function () {
 let isHeaderMenuOpen = false;
 const headerMenuButton = document.querySelector(".O_HeaderMenuNavigation");
 
-const headerBurgerButton = document.querySelector(".А_HeaderBurgerButton");
+const headerBurgerButton = document.querySelector(".A_HeaderBurgerButton");
 headerBurgerButton.addEventListener("click", () => {
   isHeaderMenuOpen = true;
   headerBurgerButton.style.display = "none";
@@ -26,7 +26,7 @@ headerBurgerButton.addEventListener("click", () => {
   headerMenuButton.style.display = "flex";
 });
 
-const headerCrossButton = document.querySelector(".А_HeaderCrossButton");
+const headerCrossButton = document.querySelector(".A_HeaderCrossButton");
 headerCrossButton.addEventListener("click", () => {
   isHeaderMenuOpen = false;
   headerCrossButton.style.display = "none";

@@ -13,6 +13,17 @@ export const months = [
   "Декабря",
 ];
 
+export const filters = {
+  "filterComplexityInitial": "Начальная",
+  "filterComplexityMiddle": "Средняя",
+  "filterComplexityAdvanced": "Продвинутая",
+  "filterLibraryVanillajs": "Vanilla js",
+  "filterLibraryP5js": "P5.js",
+  "filterLibraryThreejs": "Three.js",
+  "filterVerificationExpert": "Экспертная",
+  "filterVerificationAuthorial": "Авторская",
+}
+
 export const works = [
   {
     id: 0,
@@ -21,9 +32,9 @@ export const works = [
     date: ["20260327"],
     title: "Flower Power",
     author: "Katarina Lingat",
-    complexity: "Средняя",
-    library: "Vanilla js",
-    verification: "Экспертная",
+    complexity: "filterComplexityMiddle",
+    library: "filterLibraryVanillajs",
+    verification: "filterVerificationExpert",
     tags: [
       "Генеративная графика",
       "Паттерны",
@@ -32,7 +43,7 @@ export const works = [
     ],
     description:
       "Наслаждайтесь цветочной поляной, создавайте собственные визуальные комбинации и составляйте композиции из одного цвета. В работе используется процедурная генерация случайных узоров и комбинаций цветов, а также HTML Canvas для динамического рендеринга графики.",
-      link: "https://geokash.com/flower-power/",
+    link: "https://geokash.com/flower-power/",
     codeRun: `const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 

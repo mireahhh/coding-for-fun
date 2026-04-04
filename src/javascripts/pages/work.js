@@ -18,7 +18,7 @@ const galleryVideos = {
   4: vid4,
 };
 // Работы - данные
-import { months, works } from "./galleryJson.js";
+import { months, filters, works } from "./galleryJson.js";
 
 function showWork() {
   // Получить переменную id работы
@@ -34,7 +34,7 @@ function showWork() {
   const month = parseInt(dateJs.slice(4, 6));
   const day = dateJs.slice(6, 8);
   const date = document.querySelector(".A_WorkDate");
-  date.innerHTML = "Обновлено" + day + months[month - 1] + year;
+  date.innerHTML = "Обновлено " + day + " " + months[month - 1] + " " + year;
   // Картинка
   if (drawWork.extension == "png") {
     const image = document.querySelector(".A_WorkPreviewImg");
@@ -68,21 +68,29 @@ function showWork() {
   Array.from(tagsPrimaryItems).forEach((item) => {
     item.style.display = "none";
   });
+  // Ключи из work
   const data = {
     complexity: drawWork.complexity,
     library: drawWork.library,
     verification: drawWork.verification,
   };
-  const libraries = Array.isArray(data.library)
+  // library может быть строкой или массивом
+  const libraryKeys = Array.isArray(data.library)
     ? data.library
     : [data.library];
-  const values = [
+  // Собираем ключи в нужном порядке
+  const primaryKeys = [
     data.complexity,
-    ...libraries,
+    ...libraryKeys,
     data.verification,
-  ].slice(0, 3);
+  ]
+    .filter(Boolean)
+    .slice(0, 3);
+  // Переводим ключи в подписи через словарь filters
+  const primaryValues = primaryKeys.map((key) => filters[key] ?? key);
 
-  values.forEach((value, i) => {
+  // Заполняем видимые теги
+  primaryValues.forEach((value, i) => {
     if (tagsPrimaryItems[i]) {
       tagsPrimaryItems[i].textContent = value;
       tagsPrimaryItems[i].style.display = "flex";

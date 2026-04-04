@@ -124,7 +124,7 @@ var moduleTutorial3 = document.getElementById("moduleTutorial3");
 var moduleTutorial4 = document.getElementById("moduleTutorial4");
 var moduleTutorial5 = document.getElementById("moduleTutorial5");
 var moduleTutorials = [moduleTutorial1, moduleTutorial2, moduleTutorial3, moduleTutorial4, moduleTutorial5];
-var moduleNoResults = document.querySelector(".NotResultsTutorials");
+var moduleNoResults = document.querySelector(".NoResultsTutorials");
 
 // Фильтры слева
 // Меню
