@@ -10,6 +10,8 @@
 
 # Клонировать репу
 ```
+Перевести Windows Powershell в CMD режим (корректный запуск git, nmp, yarn)
+    Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 Скачать ГИТ на ПК
     https://git-scm.com/install/windows
 Зарегаться в ГИТ на ПК
@@ -18,16 +20,14 @@
 Проверить кто прописан
     git config user.name
     git config user.email
-В VS Code F1 -> Git:Clone
+Зайти в VS Code и скопировать F1 -> Git:Clone, выбрав папку
     git clone
 ```
 
 # Установка необходимых yarn и node_modules:
 ```
-Скачать Node JS
+Скачать Node JS, при установке нажать галочку скачать доп. иснструменты
     https://nodejs.org/en/download
-Перевод Windows Powershell в CMD режим (nmp yarn)
-    Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 Установить `yarn` через `npm`
     npm install --global yarn
 Установить зависимости `yarn`
