@@ -28,6 +28,7 @@
     --size-spacing-40: 2.5rem;
     --size-spacing-42: 2.625rem;
     --size-spacing-44: 2.75rem;
+    --size-spacing-46: 2.875rem;
     --size-spacing-48: 3rem;
     --size-spacing-50: 3.125rem;
     --size-spacing-56: 3.5rem;
@@ -65,6 +66,8 @@
     --size-spacing-416: 26rem;
     --size-spacing-448: 28rem;
     --size-spacing-528: 33rem;
+    --size-spacing-552: 34.5rem;
+    --size-spacing-800: 50rem;
     --size-spacing-inf: 1000rem;
 
     /* radius */

@@ -23,49 +23,84 @@ import { months, works } from "./galleryJson.js";
 function showWork() {
   // Получить переменную id работы
   const indexWork = sessionStorage.getItem("indexWork");
+  const drawWork = works[indexWork];
   // Данные
   // Путь
-  const workTitlePath = document.querySelector(".M_WorkTitlePath");
-  workTitlePath.innerHTML = "Галерея / " + works[indexWork].title;
+  const path = document.querySelector(".M_WorkPath");
+  path.innerHTML = "Галерея / " + drawWork.title;
   // Дата
-  const date = (drawWork.date.at(-1));
-  const year = date.slice(0, 4);
-  const month = parseInt(date.slice(4, 6));
-  const day = date.slice(6, 8);
-  const workTitleDate = document.querySelector(".A_WorkTitleDate");
-  workTitleDate.innerHTML = "Обновлено" + day + months[month - 1] + year;
-
-  const heading = document.querySelector(".heading");
-  heading.innerHTML = "Работа [" + indexWork + "]";
-  const author = document.querySelector(".author");
-  author.innerHTML = works[indexWork].author;
-
-  const title = document.querySelector(".title");
-  title.innerHTML = works[indexWork].title;
-  const description = document.querySelector(".description");
-  description.innerHTML = works[indexWork].description;
-  const tags = document.querySelector(".tags");
-  tags.innerHTML = works[indexWork].tags;
-  const link = document.querySelector(".link");
-  link.innerHTML = works[indexWork].link;
-
-  if (works[indexWork].extension == "png") {
-    const image = document.querySelector(".image");
+  const dateJs = drawWork.date.at(-1);
+  const year = dateJs.slice(0, 4);
+  const month = parseInt(dateJs.slice(4, 6));
+  const day = dateJs.slice(6, 8);
+  const date = document.querySelector(".A_WorkDate");
+  date.innerHTML = "Обновлено" + day + months[month - 1] + year;
+  // Картинка
+  if (drawWork.extension == "png") {
+    const image = document.querySelector(".A_WorkPreviewImg");
     image.src = galleryImages[indexWork];
     image.style.display = "flex";
 
-    const video = document.querySelector(".video");
+    const video = document.querySelector(".A_WorkPreviewVideo");
     video.style.display = "none";
   }
-  if (works[indexWork].extension == "mp4") {
-    const video = document.querySelector(".video");
+  if (drawWork.extension == "mp4") {
+    const video = document.querySelector(".A_WorkPreviewVideo");
     video.src = galleryVideos[indexWork];
     video.load();
     video.style.display = "flex";
 
-    const image = document.querySelector(".image");
+    const image = document.querySelector(".A_WorkPreviewImg");
     image.style.display = "none";
   }
+  // Текстовые поля
+  const author = document.querySelector(".A_WorkMetaAuthor");
+  author.innerHTML = drawWork.author;
+  const title = document.querySelector(".A_WorkMetaTitle");
+  title.innerHTML = drawWork.title;
+  const description = document.querySelector(".A_WorkMetaDescription");
+  description.innerHTML = drawWork.description;
+  const link = document.querySelector(".A_WorkLink");
+  link.href = drawWork.link;
+  // Теги
+  // Главные
+  const tagsPrimaryItems = document.querySelector(".C_WorkMetaTagsPrimary").children;
+  Array.from(tagsPrimaryItems).forEach((item) => {
+    item.style.display = "none";
+  });
+  const data = {
+    complexity: drawWork.complexity,
+    library: drawWork.library,
+    verification: drawWork.verification,
+  };
+  const libraries = Array.isArray(data.library)
+    ? data.library
+    : [data.library];
+  const values = [
+    data.complexity,
+    ...libraries,
+    data.verification,
+  ].slice(0, 3);
+
+  values.forEach((value, i) => {
+    if (tagsPrimaryItems[i]) {
+      tagsPrimaryItems[i].textContent = value;
+      tagsPrimaryItems[i].style.display = "flex";
+    }
+  });
+  // Второстепенные
+  const tagsSecondaryItems = document.querySelector(".C_WorkMetaTagsSecondary").children;
+  Array.from(tagsSecondaryItems).forEach((item) => {
+    item.style.display = "none";
+  });
+  const secondaryTags = drawWork.tags || [];
+  const valuesSecondary = secondaryTags.slice(0, tagsSecondaryItems.length);
+  valuesSecondary.forEach((value, i) => {
+    if (tagsSecondaryItems[i]) {
+      tagsSecondaryItems[i].textContent = value;
+      tagsSecondaryItems[i].style.display = "flex";
+    }
+  });
 }
 
 showWork()

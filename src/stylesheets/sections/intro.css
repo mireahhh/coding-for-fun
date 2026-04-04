@@ -86,7 +86,7 @@
       display: flex;
       flex-direction: row;
       width: min-content;
-      height: var(--size-spacing-44);
+      height: var(--size-spacing-48);
       align-items: flex-end;
       align-content: flex-end;
       gap: var(--size-spacing-16);
@@ -96,7 +96,7 @@
         justify-content: center;
         align-items: center;
         width: var(--size-spacing-212);
-        height: var(--size-spacing-42);
+        height: var(--size-spacing-46);
         max-height: var(--size-spacing-50);
         margin: var(--size-radius-4) var(--size-radius-12);
         justify-content: center;
@@ -114,7 +114,7 @@
       .A_IntroShare {
         display: flex;
         align-items: center;
-        height: 100%;
+        height: var(--size-spacing-48);
       }
     }
   }
