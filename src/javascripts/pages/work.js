@@ -23,6 +23,9 @@ import { months, filters, works } from "./galleryJson.js";
 function showWork() {
   // Получить переменную id работы
   const indexWork = sessionStorage.getItem("indexWork");
+  if (!indexWork) {
+    indexWork = 0;
+  }
   const drawWork = works[indexWork];
   // Данные
   // Путь

@@ -175,6 +175,7 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
 function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _readOnlyError(r) { throw new TypeError('"' + r + '" is read-only'); }
 // Массивы с фонами
 // Изображения
 
@@ -199,6 +200,9 @@ var galleryVideos = {
 function showWork() {
   // Получить переменную id работы
   var indexWork = sessionStorage.getItem("indexWork");
+  if (!indexWork) {
+    0, _readOnlyError("indexWork");
+  }
   var drawWork = works[indexWork];
   // Данные
   // Путь

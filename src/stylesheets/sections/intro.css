@@ -11,18 +11,21 @@
   align-self: stretch;
   margin-top: var(--size-spacing-0);
 
-  .C_IntroRainSquares {
+  .C_IntroRainSquares,
+  .C_IntroRainSquaresTutorial {
     display: flex;
     flex-direction: row;
     height: var(--size-spacing-42);
     align-self: stretch;
     justify-content: space-between;
+    transform: translateY(calc(-1 * var(--size-spacing-8)));
 
-    p {
-      transform: translateY(calc(-1 * var(--size-spacing-8)));
-      /* U_FontH2 */
-      color: var(--colors-neutrals-900);
-    }
+    /* U_FontH2 */
+    color: var(--colors-neutrals-900);
+  }
+
+  .C_IntroRainSquaresTutorial {
+    color: var(--colors-neutrals-200);
   }
 
   .C_IntroHeading {
@@ -52,9 +55,18 @@
     align-items: flex-end;
     align-self: stretch;
     margin-bottom: var(--size-spacing-32);
-    border-radius: var(--size-radius-4);
 
-    /* U_FontC2 */
+    /* U_FontH0 */
+    color: var(--colors-neutrals-900);
+  }
+
+  .A_IntroHeadingTutorial {
+    display: flex;
+    align-items: flex-end;
+    align-self: stretch;
+    margin-bottom: var(--size-spacing-72);
+
+    /* U_FontH1 */
     color: var(--colors-neutrals-900);
   }
 
@@ -76,17 +88,61 @@
       align-self: stretch;
       flex-wrap: wrap;
       max-width: 928px;
-      border-radius: var(--size-radius-4);
 
       /* U_FontS1 */
       color: var(--colors-neutrals-900);
     }
 
-    .O_IntroButtoms {
+    .C_IntroTutorialTags {
+      display: flex;
+      align-items: center;
+      align-content: center;
+      gap: var(--size-spacing-8);
+      align-self: stretch;
+      flex-wrap: wrap;
+
+      .A_IntroTutorialTagPrimary,
+      .A_IntroTutorialTagSecondary {
+        display: flex;
+        padding: var(--size-spacing-4) var(--size-spacing-8);
+        justify-content: center;
+        align-items: center;
+        border-radius: var(--size-spacing-4);
+
+        /* U_FontC2 */
+        color: var(--colors-neutrals-900);
+      }
+
+      .A_IntroTutorialTagPrimary {
+        border: 1.5px dashed var(--colors-neutrals-900);
+      }
+
+      .A_IntroTutorialTagSecondary {
+        border: 1.5px dashed var(--colors-neutrals-200);
+      }
+    }
+
+    .O_IntroRight {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      align-content: flex-start;
+      gap: var(--size-spacing-12, 12px);
+      flex-wrap: wrap;
+
+      .A_IntroButtonsAuthor {
+        display: flex;
+        align-items: flex-start;
+
+        /* U_FontC2 */
+        color: var(--colors-neutrals-900);
+      }
+    }
+
+    .O_IntroButtons {
       display: flex;
       flex-direction: row;
       width: min-content;
-      height: var(--size-spacing-48);
       align-items: flex-end;
       align-content: flex-end;
       gap: var(--size-spacing-16);
@@ -103,7 +159,6 @@
         align-items: center;
         gap: var(--size-spacing-8);
         flex-shrink: 0;
-        border-radius: var(--size-radius-0);
         border: var(--size-spacing-1) solid var(--colors-neutrals-900);
         background: var(--colors-neutrals-body-01);
 
@@ -159,7 +214,7 @@
     padding-top: var(--size-spacing-4);
     margin-top: var(--size-spacing-0);
 
-    .C_IntroRainSquares p {
+    .C_IntroRainSquares {
       color: var(--colors-neutrals-200);
     }
 
@@ -167,7 +222,7 @@
       flex-direction: column;
       align-items: flex-start;
 
-      .O_IntroButtoms {
+      .O_IntroButtons {
         flex-wrap: wrap;
         width: auto;
         height: auto;
@@ -178,13 +233,14 @@
       margin-bottom: var(--size-spacing-24);
     }
 
-    .A_IntroHeading {
-      margin-bottom: var(--size-spacing-24);
+    .A_IntroHeadingTutorial {
+      margin-bottom: var(--size-spacing-36);
     }
   }
 
   /* H0 (H1) -> H1-mob */
-  .A_IntroHeading {
+  .A_IntroHeading,
+  .A_IntroHeadingTutorial {
     /* U_FontH1-Mob */
     color: var(--colors-neutrals-900);
     font-family: var(--font-KairosSans);
