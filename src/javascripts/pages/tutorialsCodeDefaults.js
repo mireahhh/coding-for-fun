@@ -41,12 +41,12 @@ function draw() {
 
 export const defaultCodeById = {
   patr1module1tutorial1code1: `function setup() {
-  createCanvas(320, 320); // создаём холст 320×320
+  createCanvas(windowWidth, windowHeight); // создаём холст размера окна
   noStroke(); // убираем обводку у фигур
 }
 
 function draw() {
-  background(255); // очищаем фон (белый)
+  background(144); // очищаем фон (белый)
 
   let step = 40; // шаг сетки — расстояние между элементами
 
@@ -64,7 +64,7 @@ function draw() {
 }
 
 function draw() {
-  background(255);
+  background(144);
 
   let step = 40;
 
@@ -86,7 +86,7 @@ patr1module1tutorial1code3: `function setup() {
 }
 
 function draw() {
-  background(255);
+  background(144);
 
   let step = 40;
 

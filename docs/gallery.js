@@ -41,19 +41,73 @@
 /******/ 	
 /************************************************************************/
 
-;// ./src/images/gallery/0.png
-const _0_namespaceObject = __webpack_require__.p + "images/4395368c4a6574b8e4df.png";
 ;// ./src/images/gallery/2.png
-const _2_namespaceObject = __webpack_require__.p + "images/f8ea853bc740f37351f4.png";
+const _2_namespaceObject = __webpack_require__.p + "images/f931559451b0d938da54.png";
 ;// ./src/images/gallery/3.png
-const _3_namespaceObject = __webpack_require__.p + "images/f8ea853bc740f37351f4.png";
-;// ./src/images/gallery/5.png
-const _5_namespaceObject = __webpack_require__.p + "images/4395368c4a6574b8e4df.png";
+const _3_namespaceObject = __webpack_require__.p + "images/eb5b44c6a2ad5c7465bc.png";
+;// ./src/images/gallery/4.png
+const _4_namespaceObject = __webpack_require__.p + "images/e0bfb8dbb50b7fca5862.png";
+;// ./src/images/gallery/6.png
+const _6_namespaceObject = __webpack_require__.p + "images/51f1bc02fd4172a7f8c4.png";
+;// ./src/images/gallery/7.png
+const _7_namespaceObject = __webpack_require__.p + "images/060383b41e2b53a9d21d.png";
+;// ./src/images/gallery/8.png
+const _8_namespaceObject = __webpack_require__.p + "images/a0cab31651150da61521.png";
+;// ./src/images/gallery/11.png
+const _11_namespaceObject = __webpack_require__.p + "images/9080b9ba0b38fccfea09.png";
+;// ./src/images/gallery/12.png
+const _12_namespaceObject = __webpack_require__.p + "images/b25f165118498a1b314f.png";
+;// ./src/images/gallery/15.png
+const _15_namespaceObject = __webpack_require__.p + "images/b093e381409b7701f4f4.png";
+;// ./src/images/gallery/16.png
+const _16_namespaceObject = __webpack_require__.p + "images/833205226849300caacd.png";
+;// ./src/images/gallery/17.png
+const _17_namespaceObject = __webpack_require__.p + "images/e09246c5ff8491ff92c4.png";
+;// ./src/images/gallery/19.png
+const _19_namespaceObject = __webpack_require__.p + "images/f6823c14589fa59ac57b.png";
+;// ./src/images/gallery/20.png
+const _20_namespaceObject = __webpack_require__.p + "images/36a16585ca0139a3e3ca.png";
+;// ./src/images/gallery/24.png
+const _24_namespaceObject = __webpack_require__.p + "images/0316108a88707f2c636d.png";
+;// ./src/images/gallery/26.png
+const _26_namespaceObject = __webpack_require__.p + "images/62f5c4d0479bb774caa5.png";
+;// ./src/images/gallery/28.png
+const _28_namespaceObject = __webpack_require__.p + "images/d596319b025226ab24cf.png";
+;// ./src/images/gallery/29.png
+const _29_namespaceObject = __webpack_require__.p + "images/08e8b6660eebf141717c.png";
+;// ./src/images/gallery/31.png
+const _31_namespaceObject = __webpack_require__.p + "images/52c426c8e5ed3953a9d2.png";
+;// ./src/images/gallery/32.png
+const _32_namespaceObject = __webpack_require__.p + "images/c24c7fbfb3318a1eb5c8.png";
+;// ./src/images/gallery/0.mp4
+const _0_namespaceObject = __webpack_require__.p + "21e70a670f469febaf68.mp4";
 ;// ./src/images/gallery/1.mp4
-const _1_namespaceObject = __webpack_require__.p + "9cccdb429dcffb76b705.mp4";
-;// ./src/images/gallery/4.mp4
-const _4_namespaceObject = __webpack_require__.p + "9cccdb429dcffb76b705.mp4";
-;// ./src/javascripts/pages/galleryJson.js
+const _1_namespaceObject = __webpack_require__.p + "653d693ae75a64cbfbfc.mp4";
+;// ./src/images/gallery/5.mp4
+const _5_namespaceObject = __webpack_require__.p + "7d0e8a4912e2f858b918.mp4";
+;// ./src/images/gallery/9.mp4
+const _9_namespaceObject = __webpack_require__.p + "0e4a219854d9d0664b9d.mp4";
+;// ./src/images/gallery/10.mp4
+const _10_namespaceObject = __webpack_require__.p + "8b5cc2487fe3a0ac1201.mp4";
+;// ./src/images/gallery/13.mp4
+const _13_namespaceObject = __webpack_require__.p + "e56d32e4a036b1182d4b.mp4";
+;// ./src/images/gallery/14.mp4
+const _14_namespaceObject = __webpack_require__.p + "155edf917ac386e9e355.mp4";
+;// ./src/images/gallery/18.mp4
+const _18_namespaceObject = __webpack_require__.p + "718dbf5f33f4fc5d9e98.mp4";
+;// ./src/images/gallery/21.mp4
+const _21_namespaceObject = __webpack_require__.p + "a614f9feb8e16bb1c2e5.mp4";
+;// ./src/images/gallery/22.mp4
+const _22_namespaceObject = __webpack_require__.p + "4671b52b84dd14c2de6f.mp4";
+;// ./src/images/gallery/23.mp4
+const _23_namespaceObject = __webpack_require__.p + "d57fa7ec668148fa45c7.mp4";
+;// ./src/images/gallery/25.mp4
+const _25_namespaceObject = __webpack_require__.p + "2d438ef83c06a465d03f.mp4";
+;// ./src/images/gallery/27.mp4
+const _27_namespaceObject = __webpack_require__.p + "c6b5ad76b978d3b848d0.mp4";
+;// ./src/images/gallery/30.mp4
+const _30_namespaceObject = __webpack_require__.p + "987726362f3de08dea36.mp4";
+;// ./src/javascripts/json/galleryJson.js
 var months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
 var filters = {
   "filterComplexityInitial": "Начальная",
@@ -65,114 +119,619 @@ var filters = {
   "filterVerificationExpert": "Экспертная",
   "filterVerificationAuthorial": "Авторская"
 };
-var works = [{
+var works = [
+// {
+//   id: -1,
+//   state: 1,
+//   official: "",
+//   date: ["20260327"],
+//   title: "Название работы",
+//   author: "Автор",
+//   complexity: "filterComplexityInitial; filterComplexityMiddle; filterComplexityAdvanced",
+//   library: ["filterLibraryVanillajs; filterLibraryP5js; filterLibraryThreejs"],
+//   verification: "filterVerificationAuthorial; filterVerificationExpert",
+//   tags: [
+//     "Генеративная графика",
+//     "Шум",
+//     "Фракталы",
+//     "Волны",
+//     "Частицы",
+//     "Паттерны",
+//     "Геометрические алгоритмы",
+//     "Параметрические системы",
+//     "Рекурсия",
+//     "Случайность",
+//     "Поля векторов",
+//     "Симуляции",
+//     "Клеточные автоматы",
+//     "L-системы",
+//     "Процедурная генерация",
+//     "Алгоритмическая анимация",
+//     "Интерактивные системы",
+//     "Аудиореактивная графика",
+//   ],
+//   description:
+//     "Авторское описание",
+//   link: "Ссылка на код",
+//   codeRun: `Исполняемый код`,
+//   codePreview: `Отображаемый код`,
+//   extension: "png/mp4",
+//   canvasPreview: "",
+// },
+
+{
   id: 0,
   state: 1,
   official: "",
-  date: ["20260327"],
+  date: ["20260415"],
   title: "Flower Power",
   author: "Katarina Lingat",
   complexity: "filterComplexityMiddle",
-  library: "filterLibraryVanillajs",
+  library: ["filterLibraryVanillajs"],
   verification: "filterVerificationExpert",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"],
-  description: "Наслаждайтесь цветочной поляной, создавайте собственные визуальные комбинации и составляйте композиции из одного цвета. В работе используется процедурная генерация случайных узоров и комбинаций цветов, а также HTML Canvas для динамического рендеринга графики.",
+  description: "Наслаждайся цветочной поляной, создавай собственные визуальные комбинации и составляй композиции из одного цвета. В работе используется процедурная генерация случайных узоров и комбинаций цветов, а также HTML Canvas для динамического рендеринга графики.",
   link: "https://geokash.com/flower-power/",
-  codeRun: "const canvas = document.querySelector('canvas');\nconst ctx = canvas.getContext('2d');\n\nfunction drawFlower(x, y, radius, petals) {\n    for (let i = 0; i < petals; i++) {\n        ctx.beginPath();\n        ctx.arc(x, y, radius, (i * Math.PI) / 3, ((i + 1) * Math.PI) / 3);\n        ctx.fill();\n    }\n}\n\ndrawFlower(100, 100, 20, 6);",
-  codePreview: "<canvas id=\"flowerCanvas\" width=\"400\" height=\"400\"></canvas>\n<script>\n    // \u0420\u0435\u0430\u043B\u0438\u0437\u043E\u0432\u0430\u043D\u043D\u044B\u0439 \u0432\u044B\u0448\u0435 \u043A\u043E\u0434 JS \u0434\u043B\u044F \u0440\u0438\u0441\u043E\u0432\u0430\u043D\u0438\u044F \u0446\u0432\u0435\u0442\u043A\u0430\n</script>",
-  extension: "png",
+  codeRun: "const canvas = document.querySelector('canvas');\nconst ctx = canvas.getContext('2d');\n\nfunction drawFlower(x, y, radius, petals) {\n  for (let i = 0; i < petals; i++) {\n    ctx.beginPath();\n    ctx.arc(x, y, radius, (i * Math.PI) / 3, ((i + 1) * Math.PI) / 3);\n    ctx.fill();\n  }\n}\n\ndrawFlower(100, 100, 20, 6);",
+  codePreview: "<canvas id=\"flowerCanvas\" width=\"400\" height=\"400\"></canvas>\n<script>\n  // \u0420\u0435\u0430\u043B\u0438\u0437\u043E\u0432\u0430\u043D\u043D\u044B\u0439 \u0432\u044B\u0448\u0435 \u043A\u043E\u0434 JS \u0434\u043B\u044F \u0440\u0438\u0441\u043E\u0432\u0430\u043D\u0438\u044F \u0446\u0432\u0435\u0442\u043A\u0430\n</script>",
+  extension: "mp4",
   canvasPreview: ""
 }, {
   id: 1,
   state: 1,
   official: "",
-  date: ["20260327"],
-  title: "Flower Power",
-  author: "Katarina Lingat",
+  date: ["20260414"],
+  title: "Sandspiel",
+  author: "digger21orange",
   complexity: "filterComplexityMiddle",
-  library: "filterLibraryVanillajs",
+  library: ["filterLibraryVanillajs"],
   verification: "filterVerificationExpert",
-  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"],
-  description: "Наслаждайтесь цветочной поляной, создавайте собственные визуальные комбинации и составляйте композиции из одного цвета. В работе используется процедурная генерация случайных узоров и комбинаций цветов, а также HTML Canvas для динамического рендеринга графики.",
-  link: "https://geokash.com/flower-power/",
-  codeRun: "const canvas = document.querySelector('canvas');\nconst ctx = canvas.getContext('2d');\n\nfunction drawFlower(x, y, radius, petals) {\n    for (let i = 0; i < petals; i++) {\n        ctx.beginPath();\n        ctx.arc(x, y, radius, (i * Math.PI) / 3, ((i + 1) * Math.PI) / 3);\n        ctx.fill();\n    }\n}\n\ndrawFlower(100, 100, 20, 6);",
-  codePreview: "<canvas id=\"flowerCanvas\" width=\"400\" height=\"400\"></canvas>\n<script>\n    // \u0420\u0435\u0430\u043B\u0438\u0437\u043E\u0432\u0430\u043D\u043D\u044B\u0439 \u0432\u044B\u0448\u0435 \u043A\u043E\u0434 JS \u0434\u043B\u044F \u0440\u0438\u0441\u043E\u0432\u0430\u043D\u0438\u044F \u0446\u0432\u0435\u0442\u043A\u0430\n</script>",
+  tags: ["Симуляции", "Клеточные автоматы", "Процедурная генерация", "Интерактивные системы", "Паттерны"],
+  description: "Интерактивная песочница с элементами клеточного автомата, где пользователь создает природные сцены: деревья, песок, воду и другие материалы. Используется моделирование поведения частиц и простые физические правила для генерации сложных визуальных эффектов.",
+  link: "https://studio.sandspiel.club/post/7247",
+  codeRun: "function updateSand(grid, x, y) {\n  if (grid[y + 1] && grid[y + 1][x] === 0) {\n    grid[y + 1][x] = 1;\n    grid[y][x] = 0;\n  }\n}",
+  codePreview: "<canvas id=\"sand\"></canvas>\n<script>\n  // \u0431\u0430\u0437\u043E\u0432\u0430\u044F \u0441\u0438\u043C\u0443\u043B\u044F\u0446\u0438\u044F \u043F\u0435\u0441\u043A\u0430\n</script>",
   extension: "mp4",
   canvasPreview: ""
 }, {
   id: 2,
-  state: 0,
+  state: 1,
   official: "",
-  date: ["20260327"],
-  title: "Flower Power",
-  author: "Katarina Lingat",
+  date: ["20260413"],
+  title: "SPACE TYPE",
+  author: "kielm",
   complexity: "filterComplexityMiddle",
-  library: "filterLibraryVanillajs",
+  library: ["filterLibraryP5js"],
   verification: "filterVerificationExpert",
-  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"],
-  description: "Наслаждайтесь цветочной поляной, создавайте собственные визуальные комбинации и составляйте композиции из одного цвета. В работе используется процедурная генерация случайных узоров и комбинаций цветов, а также HTML Canvas для динамического рендеринга графики.",
-  link: "https://geokash.com/flower-power/",
-  codeRun: "const canvas = document.querySelector('canvas');\nconst ctx = canvas.getContext('2d');\n\nfunction drawFlower(x, y, radius, petals) {\n    for (let i = 0; i < petals; i++) {\n        ctx.beginPath();\n        ctx.arc(x, y, radius, (i * Math.PI) / 3, ((i + 1) * Math.PI) / 3);\n        ctx.fill();\n    }\n}\n\ndrawFlower(100, 100, 20, 6);",
-  codePreview: "<canvas id=\"flowerCanvas\" width=\"400\" height=\"400\"></canvas>\n<script>\n    // \u0420\u0435\u0430\u043B\u0438\u0437\u043E\u0432\u0430\u043D\u043D\u044B\u0439 \u0432\u044B\u0448\u0435 \u043A\u043E\u0434 JS \u0434\u043B\u044F \u0440\u0438\u0441\u043E\u0432\u0430\u043D\u0438\u044F \u0446\u0432\u0435\u0442\u043A\u0430\n</script>",
+  tags: ["Генеративная графика", "Параметрические системы", "Интерактивные системы", "Алгоритмическая анимация", "Паттерны"],
+  description: "Генеративная типографика, где текст формируется и искажается параметрическими правилами. Работа исследует визуальные структуры букв через алгоритмы и интерактивное управление параметрами.",
+  link: "https://spacetypegenerator.com/field.html",
+  codeRun: "function setup() {\n  createCanvas(400, 400);\n  textAlign(CENTER, CENTER);\n}\n\nfunction draw() {\n  background(255);\n  textSize(random(10, 20));\n  text(\"TYPE\", width / 2, height / 2);\n}",
+  codePreview: "<script src=\"p5.js\"></script>\n<script>\n  // \u0433\u0435\u043D\u0435\u0440\u0430\u0446\u0438\u044F \u0442\u0438\u043F\u043E\u0433\u0440\u0430\u0444\u0438\u043A\u0438\n</script>",
   extension: "png",
   canvasPreview: ""
 }, {
   id: 3,
   state: 1,
   official: "",
-  date: ["20260327"],
-  title: "Flower Power",
-  author: "Katarina Lingat",
-  complexity: "filterComplexityMiddle",
-  library: "filterLibraryVanillajs",
+  date: ["20260412"],
+  title: "The Game of Life",
+  author: "Sam Twidale",
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryVanillajs"],
   verification: "filterVerificationExpert",
-  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"],
-  description: "Расслабляющее пространство, в котором вы можете взаимодействовать с окружающим миром. Выбирайте цветы, составляйте из них композиции и экспериментируйте с оттенками, создавая успокаивающую атмосферу. Цель проекта — способствовать спокойствию через взаимодействие, предоставляя пространство для творческого самовыражения и релаксации. Наслаждайтесь цветочной поляной, создавайте собственные визуальные комбинации и составлять композиции из одного цвета. В работе используется процедурная генерация случайных узоров и комбинаций цветов, а также HTML Canvas для динамического рендеринга графики.",
-  link: "https://geokash.com/flower-power/",
-  codeRun: "const canvas = document.querySelector('canvas');\nconst ctx = canvas.getContext('2d');\n\nfunction drawFlower(x, y, radius, petals) {\n    for (let i = 0; i < petals; i++) {\n        ctx.beginPath();\n        ctx.arc(x, y, radius, (i * Math.PI) / 3, ((i + 1) * Math.PI) / 3);\n        ctx.fill();\n    }\n}\n\ndrawFlower(100, 100, 20, 6);",
-  codePreview: "<canvas id=\"flowerCanvas\" width=\"400\" height=\"400\"></canvas>\n<script>\n    // \u0420\u0435\u0430\u043B\u0438\u0437\u043E\u0432\u0430\u043D\u043D\u044B\u0439 \u0432\u044B\u0448\u0435 \u043A\u043E\u0434 JS \u0434\u043B\u044F \u0440\u0438\u0441\u043E\u0432\u0430\u043D\u0438\u044F \u0446\u0432\u0435\u0442\u043A\u0430\n</script>",
+  tags: ["Клеточные автоматы", "Симуляции", "Паттерны", "Процедурная генерация"],
+  description: "Классическая реализация клеточного автомата «Игра жизни» Конвея. Система эволюционирует по заданным правилам, создавая сложные самоорганизующиеся паттерны из простых состояний.",
+  link: "https://www.samcodes.co.uk/project/game-of-life/",
+  codeRun: "function nextGen(grid) {\n  const next = grid.map(row => [...row]);\n\n  for (let y = 0; y < grid.length; y++) {\n    for (let x = 0; x < grid[y].length; x++) {\n      let neighbors = 0;\n\n      for (let j = -1; j <= 1; j++) {\n        for (let i = -1; i <= 1; i++) {\n          if (i === 0 && j === 0) continue;\n          const ny = y + j;\n          const nx = x + i;\n\n          if (grid[ny] && grid[ny][nx]) neighbors++;\n        }\n      }\n\n      if (grid[y][x] && (neighbors < 2 || neighbors > 3)) next[y][x] = 0;\n      if (!grid[y][x] && neighbors === 3) next[y][x] = 1;\n    }\n  }\n\n  return next;\n}",
+  codePreview: "<canvas id=\"life\"></canvas>\n<script>\n  // \u0440\u0435\u0430\u043B\u0438\u0437\u0430\u0446\u0438\u044F Game of Life\n</script>",
   extension: "png",
   canvasPreview: ""
 }, {
   id: 4,
   state: 1,
   official: "",
-  date: ["20260327"],
-  title: "Flower Power",
-  author: "Katarina Lingat",
-  complexity: "filterComplexityMiddle",
-  library: "filterLibraryVanillajs",
+  date: ["20260411"],
+  title: "Cell Cycle",
+  author: "Nervous System",
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryVanillajs"],
   verification: "filterVerificationExpert",
-  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"],
-  description: "Расслабляющее пространство, в котором вы можете взаимодействовать с окружающим миром. Выбирайте цветы, составляйте из них композиции и экспериментируйте с оттенками, создавая успокаивающую атмосферу. Цель проекта — способствовать спокойствию через взаимодействие, предоставляя пространство для творческого самовыражения и релаксации. Наслаждайтесь цветочной поляной, создавайте собственные визуальные комбинации и составлять композиции из одного цвета. В работе используется процедурная генерация случайных узоров и комбинаций цветов, а также HTML Canvas для динамического рендеринга графики.",
-  link: "https://geokash.com/flower-power/",
-  codeRun: "const canvas = document.querySelector('canvas');\nconst ctx = canvas.getContext('2d');\n\nfunction drawFlower(x, y, radius, petals) {\n    for (let i = 0; i < petals; i++) {\n        ctx.beginPath();\n        ctx.arc(x, y, radius, (i * Math.PI) / 3, ((i + 1) * Math.PI) / 3);\n        ctx.fill();\n    }\n}\n\ndrawFlower(100, 100, 20, 6);",
-  codePreview: "<canvas id=\"flowerCanvas\" width=\"400\" height=\"400\"></canvas>\n<script>\n    // \u0420\u0435\u0430\u043B\u0438\u0437\u043E\u0432\u0430\u043D\u043D\u044B\u0439 \u0432\u044B\u0448\u0435 \u043A\u043E\u0434 JS \u0434\u043B\u044F \u0440\u0438\u0441\u043E\u0432\u0430\u043D\u0438\u044F \u0446\u0432\u0435\u0442\u043A\u0430\n</script>",
-  extension: "mp4",
+  tags: ["Генеративная графика", "Параметрические системы", "Процедурная генерация", "Геометрические алгоритмы", "Алгоритмическая анимация"],
+  description: "Генеративная система создания органических форм, вдохновлённая клеточным делением. Алгоритмы роста и повторения формируют сложные замкнутые структуры с высокой степенью детализации.",
+  link: "https://n-e-r-v-o-u-s.com/cellCycle/",
+  codeRun: "function generateRing(points) {\n  const ring = [];\n\n  for (let i = 0; i < points.length; i++) {\n    const current = points[i];\n    const next = points[(i + 1) % points.length];\n\n    ring.push(current);\n    ring.push({\n      x: (current.x + next.x) / 2 + Math.random() * 8 - 4,\n      y: (current.y + next.y) / 2 + Math.random() * 8 - 4,\n    });\n  }\n\n  return ring;\n}",
+  codePreview: "<canvas id=\"cell\"></canvas>\n<script>\n  // \u0433\u0435\u043D\u0435\u0440\u0430\u0442\u0438\u0432\u043D\u044B\u0435 \u0444\u043E\u0440\u043C\u044B\n</script>",
+  extension: "png",
   canvasPreview: ""
 }, {
   id: 5,
-  state: 0,
+  state: 1,
   official: "",
-  date: ["20260327"],
-  title: "Flower Power",
-  author: "Katarina Lingat",
+  date: ["20260410"],
+  title: "Untitled",
+  author: "Tdimby",
   complexity: "filterComplexityMiddle",
-  library: "filterLibraryVanillajs",
+  library: ["filterLibraryVanillajs"],
+  verification: "filterVerificationAuthorial",
+  tags: ["Шум", "Генеративная графика", "Случайность", "Поля векторов", "Паттерны"],
+  description: "Абстрактная генеративная текстура, основанная на шуме и случайных значениях. Цветовые поля формируются через псевдослучайные распределения, создавая эффект органического градиента.",
+  link: "https://studio.sandspiel.club/post/7102",
+  codeRun: "for (let x = 0; x < width; x++) {\n  for (let y = 0; y < height; y++) {\n    const n = noise(x * 0.01, y * 0.01);\n    set(x, y, color(n * 255));\n  }\n}",
+  codePreview: "<canvas id=\"noise\"></canvas>\n<script>\n  // \u0433\u0435\u043D\u0435\u0440\u0430\u0446\u0438\u044F \u0448\u0443\u043C\u0430\n</script>",
+  extension: "mp4",
+  canvasPreview: ""
+}, {
+  id: 6,
+  state: 1,
+  official: "",
+  date: ["20260409"],
+  title: "a bunch of cool elements",
+  author: "cyclecrash",
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryVanillajs"],
+  verification: "filterVerificationAuthorial",
+  tags: ["Симуляции", "Частицы", "Паттерны", "Случайность", "Генеративная графика"],
+  description: "Набор различных визуальных элементов, демонстрирующих поведение частиц, текстур и простых симуляций. Работа представляет собой экспериментальную коллекцию эффектов, основанных на случайности и взаимодействии пиксельных структур.",
+  link: "https://studio.sandspiel.club/post/7111",
+  codeRun: "function update() {\n  particles.forEach(p => {\n    p.y += Math.random() * 2;\n  });\n}",
+  codePreview: "<canvas id=\"elements\"></canvas>\n<script>\n  // \u0433\u0435\u043D\u0435\u0440\u0430\u0446\u0438\u044F \u0440\u0430\u0437\u043D\u044B\u0445 \u044D\u0444\u0444\u0435\u043A\u0442\u043E\u0432\n</script>",
+  extension: "png",
+  canvasPreview: ""
+}, {
+  id: 7,
+  state: 1,
+  official: "",
+  date: ["20260408"],
+  title: "Reflecting on the nature of the human experience",
+  author: "Ana Montiel",
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryThreejs"],
+  verification: "filterVerificationExpert",
+  tags: ["Генеративная графика", "Поля векторов", "Параметрические системы", "Алгоритмическая анимация", "Интерактивные системы"],
+  description: "Абстрактная интерактивная визуализация с мягкими градиентными переходами и органическими искажениями формы. Используются шейдеры и параметрические поля для создания текучих визуальных состояний, отражающих эмоциональные состояния.",
+  link: "https://anamontiel.com/",
+  codeRun: "uniform float time;\n\nvoid main() {\n  vec2 uv = gl_FragCoord.xy / vec2(800.0, 600.0);\n  float wave = sin(uv.y * 10.0 + time) * 0.5 + 0.5;\n  gl_FragColor = vec4(vec3(wave), 1.0);\n}",
+  codePreview: "<canvas id=\"shader\"></canvas>\n<script>\n  // shader-based animation\n</script>",
+  extension: "png",
+  canvasPreview: ""
+}, {
+  id: 8,
+  state: 1,
+  official: "",
+  date: ["20260407"],
+  title: "When We Love",
+  author: "Chia Amisola",
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryP5js"],
+  verification: "filterVerificationExpert",
+  tags: ["Интерактивные системы", "Генеративная графика", "Алгоритмическая анимация", "Параметрические системы"],
+  description: "Интерактивный поэтический интерфейс, где визуальные элементы и текст реагируют на действия пользователя. Комбинирует генеративную графику, текст и мягкие визуальные эффекты для создания эмоционального опыта.",
+  link: "https://whenwe.love/",
+  codeRun: "function draw() {\n  background(240);\n  ellipse(mouseX, mouseY, 50);\n}",
+  codePreview: "<script src=\"p5.js\"></script>\n<script>\n  // \u0438\u043D\u0442\u0435\u0440\u0430\u043A\u0442\u0438\u0432\u043D\u0430\u044F \u0441\u0446\u0435\u043D\u0430\n</script>",
+  extension: "png",
+  canvasPreview: ""
+}, {
+  id: 9,
+  state: 1,
+  official: "",
+  date: ["20260406"],
+  title: "Raising Questions",
+  author: "Munken",
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryVanillajs"],
   verification: "filterVerificationExpert",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"],
-  description: "Расслабляющее пространство, в котором вы можете взаимодействовать с окружающим миром. Выбирайте цветы, составляйте из них композиции и экспериментируйте с оттенками, создавая успокаивающую атмосферу. Цель проекта — способствовать спокойствию через взаимодействие, предоставляя пространство для творческого самовыражения и релаксации. Наслаждайтесь цветочной поляной, создавайте собственные визуальные комбинации и составлять композиции из одного цвета. В работе используется процедурная генерация случайных узоров и комбинаций цветов, а также HTML Canvas для динамического рендеринга графики.",
-  link: "https://geokash.com/flower-power/",
-  codeRun: "const canvas = document.querySelector('canvas');\nconst ctx = canvas.getContext('2d');\n\nfunction drawFlower(x, y, radius, petals) {\n    for (let i = 0; i < petals; i++) {\n        ctx.beginPath();\n        ctx.arc(x, y, radius, (i * Math.PI) / 3, ((i + 1) * Math.PI) / 3);\n        ctx.fill();\n    }\n}\n\ndrawFlower(100, 100, 20, 6);",
-  codePreview: "<canvas id=\"flowerCanvas\" width=\"400\" height=\"400\"></canvas>\n<script>\n    // \u0420\u0435\u0430\u043B\u0438\u0437\u043E\u0432\u0430\u043D\u043D\u044B\u0439 \u0432\u044B\u0448\u0435 \u043A\u043E\u0434 JS \u0434\u043B\u044F \u0440\u0438\u0441\u043E\u0432\u0430\u043D\u0438\u044F \u0446\u0432\u0435\u0442\u043A\u0430\n</script>",
+  description: "Типографическая генеративная система, где текст динамически размножается, масштабируется и искажается, создавая хаотичные композиции. Исследует поведение текста как визуального материала.",
+  link: "https://colab.munken.com/munkencreator",
+  codeRun: "function drawText() {\n  ctx.fillText(\"Questions\", Math.random() * 300, Math.random() * 300);\n}",
+  codePreview: "<canvas id=\"type\"></canvas>\n<script>\n  // \u0433\u0435\u043D\u0435\u0440\u0430\u0442\u0438\u0432\u043D\u0430\u044F \u0442\u0438\u043F\u043E\u0433\u0440\u0430\u0444\u0438\u043A\u0430\n</script>",
+  extension: "mp4",
+  canvasPreview: ""
+}, {
+  id: 10,
+  state: 1,
+  official: "",
+  date: ["20260405"],
+  title: "patterns A v1.0",
+  author: "Eri_pl",
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryVanillajs"],
+  verification: "filterVerificationAuthorial",
+  tags: ["Паттерны", "Генеративная графика", "Шум", "Процедурная генерация", "Геометрические алгоритмы"],
+  description: "Коллаж из различных процедурно сгенерированных паттернов и текстур. Работа демонстрирует разнообразие алгоритмов — от шума и градиентов до геометрических разбиений.",
+  link: "https://studio.sandspiel.club/post/3801",
+  codeRun: "for (let i = 0; i < 1000; i++) {\n  ctx.fillRect(Math.random() * w, Math.random() * h, 2, 2);\n}",
+  codePreview: "<canvas id=\"patterns\"></canvas>\n<script>\n  // \u0433\u0435\u043D\u0435\u0440\u0430\u0446\u0438\u044F \u043F\u0430\u0442\u0442\u0435\u0440\u043D\u043E\u0432\n</script>",
+  extension: "mp4",
+  canvasPreview: ""
+}, {
+  id: 11,
+  state: 1,
+  official: "",
+  date: ["20260404"],
+  title: "a website could be",
+  author: "polina",
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryVanillajs"],
+  verification: "filterVerificationExpert",
+  tags: ["Генеративная графика", "Параметрические системы", "Интерактивные системы", "Паттерны"],
+  description: "Экспериментальный веб-интерфейс, где элементы страницы трансформируются в генеративную систему. Работа исследует, как сайт может быть не статичной структурой, а изменяемым визуальным пространством.",
+  link: "https://the-personalized-web.digitale-grafik.com/polina/",
+  codeRun: "document.querySelectorAll('div').forEach(el => {\n  el.style.transform = `scale(${Math.random()})`;\n});",
+  codePreview: "<div class=\"grid\"></div>\n<script>\n  // \u0433\u0435\u043D\u0435\u0440\u0430\u0442\u0438\u0432\u043D\u044B\u0439 \u0438\u043D\u0442\u0435\u0440\u0444\u0435\u0439\u0441\n</script>",
+  extension: "png",
+  canvasPreview: ""
+}, {
+  id: 12,
+  state: 1,
+  official: "",
+  date: ["20260403"],
+  title: "dumpling huge home-caption",
+  author: "Vera van de Seyp",
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryP5js"],
+  verification: "filterVerificationExpert",
+  tags: ["Генеративная графика", "Геометрические алгоритмы", "Паттерны", "Алгоритмическая анимация"],
+  description: "Генеративная типографика с использованием модульных форм, создающих сложные визуальные структуры. Алгоритм повторяет и масштабирует элементы, формируя ритмичные композиции.",
+  link: "https://veravandeseyp.com/",
+  codeRun: "for (let x = 0; x < width; x += 20) {\n  rect(x, 0, 10, height);\n}",
+  codePreview: "<script src=\"p5.js\"></script>\n<script>\n  // \u0433\u0435\u043D\u0435\u0440\u0430\u0446\u0438\u044F \u043C\u043E\u0434\u0443\u043B\u044C\u043D\u044B\u0445 \u0444\u043E\u0440\u043C\n</script>",
+  extension: "png",
+  canvasPreview: ""
+}, {
+  id: 13,
+  state: 1,
+  official: "",
+  date: ["20260402"],
+  title: "No Archive Will Restore You",
+  author: "fernanda",
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryVanillajs"],
+  verification: "filterVerificationExpert",
+  tags: ["Интерактивные системы", "Генеративная графика", "Паттерны"],
+  description: "Текстово-визуальный проект, исследующий тему архивирования и памяти. Контент страницы динамически компонуется, создавая ощущение фрагментированного цифрового архива.",
+  link: "https://the-personalized-web.digitale-grafik.com/fernanda/",
+  codeRun: "document.body.innerHTML += \"<p>\" + Math.random() + \"</p>\";",
+  codePreview: "<div id=\"text\"></div>\n<script>\n  // \u0433\u0435\u043D\u0435\u0440\u0430\u0446\u0438\u044F \u0442\u0435\u043A\u0441\u0442\u0430\n</script>",
+  extension: "mp4",
+  canvasPreview: ""
+}, {
+  id: 14,
+  state: 1,
+  official: "",
+  date: ["20260401"],
+  title: "Lines",
+  author: "TheBoxCreeper",
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryVanillajs"],
+  verification: "filterVerificationAuthorial",
+  tags: ["Поля векторов", "Паттерны", "Генеративная графика", "Алгоритмическая анимация"],
+  description: "Генерация линий на основе направленных полей, формирующих органические структуры, напоминающие карты или контуры. Используются алгоритмы трассировки и шумовые функции.",
+  link: "https://studio.sandspiel.club/post/20149",
+  codeRun: "function drawLine(x, y) {\n  ctx.beginPath();\n  ctx.moveTo(x, y);\n  ctx.lineTo(x + Math.random() * 10, y + Math.random() * 10);\n  ctx.stroke();\n}",
+  codePreview: "<canvas id=\"lines\"></canvas>\n<script>\n  // \u0433\u0435\u043D\u0435\u0440\u0430\u0446\u0438\u044F \u043B\u0438\u043D\u0438\u0439\n</script>",
+  extension: "mp4",
+  canvasPreview: ""
+}, {
+  id: 15,
+  state: 1,
+  official: "",
+  date: ["20260331"],
+  title: "Night Voyagers",
+  author: "Andy Wallace",
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryThreejs"],
+  verification: "filterVerificationExpert",
+  tags: ["Генеративная графика", "Шум", "Поля векторов", "Алгоритмическая анимация"],
+  description: "Глитч-эстетика и процедурные текстуры формируют динамическую визуальную среду. Используются шумовые функции и постобработка для создания цифровых артефактов.",
+  link: "https://taper.badquar.to/7/night_voyagers.html",
+  codeRun: "float noiseValue = sin(x * 10.0 + time);\ncolor += noiseValue;",
+  codePreview: "<canvas id=\"glitch\"></canvas>\n<script>\n  // shader/glitch \u044D\u0444\u0444\u0435\u043A\u0442\n</script>",
+  extension: "png",
+  canvasPreview: ""
+}, {
+  id: 16,
+  state: 1,
+  official: "",
+  date: ["20260330"],
+  title: "Vector Halftone",
+  author: "Xoihazard",
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryVanillajs"],
+  verification: "filterVerificationExpert",
+  tags: ["Генеративная графика", "Геометрические алгоритмы", "Паттерны", "Параметрические системы"],
+  description: "Инструмент для создания векторного халфтон-эффекта, где изображение преобразуется в набор точек разного размера. Основан на анализе яркости и параметрическом управлении формами.",
+  link: "https://halftone.xoihazard.com/",
+  codeRun: "let size = brightness(pixel) / 255 * maxSize;\nctx.beginPath();\nctx.arc(x, y, size, 0, Math.PI * 2);\nctx.fill();",
+  codePreview: "<canvas id=\"halftone\"></canvas>\n<script>\n  // \u0433\u0435\u043D\u0435\u0440\u0430\u0446\u0438\u044F \u0442\u043E\u0447\u0435\u043A\n</script>",
+  extension: "png",
+  canvasPreview: ""
+}, {
+  id: 17,
+  state: 1,
+  official: "",
+  date: ["20260329"],
+  title: "people as computers; poetry as code",
+  author: "poetic computer",
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryVanillajs"],
+  verification: "filterVerificationExpert",
+  tags: ["Интерактивные системы", "Генеративная графика", "Параметрические системы"],
+  description: "Исследовательский проект, соединяющий поэзию и программирование. Интерфейс объединяет текст, схемы и визуальные элементы, формируя нелинейное повествование.",
+  link: "https://poetic.computer/",
+  codeRun: "function showNode(node) {\n  node.style.display = \"block\";\n}",
+  codePreview: "<div class=\"node\"></div>\n<script>\n  // \u0438\u043D\u0442\u0435\u0440\u0430\u043A\u0442\u0438\u0432\u043D\u0430\u044F \u0441\u0442\u0440\u0443\u043A\u0442\u0443\u0440\u0430\n</script>",
+  extension: "png",
+  canvasPreview: ""
+}, {
+  id: 18,
+  state: 1,
+  official: "",
+  date: ["20260328"],
+  title: "Life Universe",
+  author: "Rezmason",
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryThreejs"],
+  verification: "filterVerificationExpert",
+  tags: ["Клеточные автоматы", "Симуляции", "Процедурная генерация", "Алгоритмическая анимация"],
+  description: "Расширенная визуализация клеточного автомата с многослойной структурой. Система создает сложные эволюционные паттерны, напоминающие цифровую вселенную.",
+  link: "https://oimo.io/works/life/",
+  codeRun: "function step(grid) {\n  const next = [];\n\n  for (let y = 0; y < grid.length; y++) {\n    next[y] = [];\n    for (let x = 0; x < grid[y].length; x++) {\n      next[y][x] = grid[y][x];\n    }\n  }\n\n  return next;\n}",
+  codePreview: "<canvas id=\"lifeUniverse\"></canvas>\n<script>\n  // \u0441\u043B\u043E\u0436\u043D\u0430\u044F \u0441\u0438\u043C\u0443\u043B\u044F\u0446\u0438\u044F\n</script>",
+  extension: "mp4",
+  canvasPreview: ""
+}, {
+  id: 19,
+  state: 1,
+  official: "",
+  date: ["20260327"],
+  title: "I Heard It In A Magazine",
+  author: "One Thousand Birds",
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryVanillajs"],
+  verification: "filterVerificationExpert",
+  tags: ["Интерактивные системы", "Паттерны", "Генеративная графика", "Параметрические системы"],
+  description: "Интерактивный архив звуковых и текстовых фрагментов, представленный в виде цветной сетки. Пользователь исследует контент через визуальную структуру, где каждый элемент связан с медиа.",
+  link: "https://hii-mag.com/",
+  codeRun: "document.querySelectorAll(\".cell\").forEach(el => {\n  el.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;\n});",
+  codePreview: "<div class=\"grid\"></div>\n<script>\n  // \u0446\u0432\u0435\u0442\u043D\u0430\u044F \u0441\u0435\u0442\u043A\u0430\n</script>",
+  extension: "png",
+  canvasPreview: ""
+}, {
+  id: 20,
+  state: 1,
+  official: "",
+  date: ["20260326"],
+  title: "THE HTML REVIEW",
+  author: "Shelby Wilson",
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryVanillajs"],
+  verification: "filterVerificationExpert",
+  tags: ["Интерактивные системы", "Генеративная графика", "Параметрические системы", "Алгоритмическая анимация"],
+  description: "Типографический интерфейс, где текстовые элементы динамически перемещаются и трансформируются. Создаёт ощущение живого цифрового журнала с нелинейной навигацией.",
+  link: "https://thehtml.review/03/",
+  codeRun: "elements.forEach(el => {\n  el.style.transform = `rotate(${Math.random() * 360}deg)`;\n});",
+  codePreview: "<div class=\"text\"></div>\n<script>\n  // \u0434\u0438\u043D\u0430\u043C\u0438\u0447\u0435\u0441\u043A\u0430\u044F \u0442\u0438\u043F\u043E\u0433\u0440\u0430\u0444\u0438\u043A\u0430\n</script>",
+  extension: "png",
+  canvasPreview: ""
+}, {
+  id: 21,
+  state: 1,
+  official: "",
+  date: ["20260325"],
+  title: "Infinite loop",
+  author: "Shadow_moom27",
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryVanillajs"],
+  verification: "filterVerificationAuthorial",
+  tags: ["Симуляции", "Шум", "Частицы", "Случайность", "Генеративная графика"],
+  description: "Абстрактная симуляция с повторяющимися всплесками цвета, создающими эффект бесконечного процесса. Используются шумовые функции и итеративное обновление состояния.",
+  link: "https://studio.sandspiel.club/post/10581",
+  codeRun: "for (let i = 0; i < particles.length; i++) {\n  particles[i].x += Math.random() - 0.5;\n}",
+  codePreview: "<canvas id=\"loop\"></canvas>\n<script>\n  // \u0446\u0438\u043A\u043B \u0441\u0438\u043C\u0443\u043B\u044F\u0446\u0438\u0438\n</script>",
+  extension: "mp4",
+  canvasPreview: ""
+}, {
+  id: 22,
+  state: 1,
+  official: "",
+  date: ["20260324"],
+  title: "spider of sleep paralysis",
+  author: "maker of cool stuff",
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryVanillajs"],
+  verification: "filterVerificationAuthorial",
+  tags: ["Поля векторов", "Алгоритмическая анимация", "Симуляции", "Генеративная графика"],
+  description: "Органическая структура, напоминающая паука, формируется за счёт движения линий по полю. Алгоритм создаёт ветвящиеся формы с эффектом роста.",
+  link: "https://studio.sandspiel.club/post/18593",
+  codeRun: "function step(x, y) {\n  return [x + Math.random() * 2, y + Math.random() * 2];\n}",
+  codePreview: "<canvas id=\"spider\"></canvas>\n<script>\n  // \u0433\u0435\u043D\u0435\u0440\u0430\u0446\u0438\u044F \u0432\u0435\u0442\u0432\u043B\u0435\u043D\u0438\u0439\n</script>",
+  extension: "mp4",
+  canvasPreview: ""
+}, {
+  id: 23,
+  state: 1,
+  official: "",
+  date: ["20260323"],
+  title: "distorted dog",
+  author: "Nicki Minaj",
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryVanillajs"],
+  verification: "filterVerificationAuthorial",
+  tags: ["Шум", "Генеративная графика", "Паттерны", "Алгоритмическая анимация"],
+  description: "Искажение изображения с помощью алгоритмических преобразований и глитч-эффектов. Пиксели смещаются и деформируются, создавая цифровые артефакты.",
+  link: "https://studio.sandspiel.club/post/10582",
+  codeRun: "let offset = Math.sin(y * 0.1) * 10;\nctx.drawImage(img, x + offset, y);",
+  codePreview: "<canvas id=\"distort\"></canvas>\n<script>\n  // glitch \u044D\u0444\u0444\u0435\u043A\u0442\n</script>",
+  extension: "mp4",
+  canvasPreview: ""
+}, {
+  id: 24,
+  state: 1,
+  official: "",
+  date: ["20260322"],
+  title: "svg.wtf",
+  author: "Amelia Wattenberger",
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryVanillajs"],
+  verification: "filterVerificationExpert",
+  tags: ["Геометрические алгоритмы", "Параметрические системы", "Интерактивные системы", "Генеративная графика"],
+  description: "Интерактивный инструмент для изучения SVG-графики, позволяющий создавать и изменять формы через параметры. Визуализирует принципы построения векторных элементов.",
+  link: "https://svg.wtf/",
+  codeRun: "const svg = document.querySelector(\"svg\");\nconst circle = document.createElementNS(\"http://www.w3.org/2000/svg\", \"circle\");\ncircle.setAttribute(\"cx\", 120);\ncircle.setAttribute(\"cy\", 80);\ncircle.setAttribute(\"r\", 40);\nsvg.appendChild(circle);",
+  codePreview: "<svg width=\"300\" height=\"200\"></svg>\n<script>\n  // \u0433\u0435\u043D\u0435\u0440\u0430\u0446\u0438\u044F svg\n</script>",
+  extension: "png",
+  canvasPreview: ""
+}, {
+  id: 25,
+  state: 1,
+  official: "",
+  date: ["20260321"],
+  title: "radix sort or something",
+  author: "&lt;Sava&gt;",
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryVanillajs"],
+  verification: "filterVerificationAuthorial",
+  tags: ["Алгоритмическая анимация", "Паттерны", "Генеративная графика", "Параметрические системы"],
+  description: "Визуализация алгоритма сортировки, где данные представлены в виде вертикальных линий. Изменение структуры отражает процесс вычисления и упорядочивания.",
+  link: "https://studio.sandspiel.club/post/21859",
+  codeRun: "function radixSort(arr) {\n  const max = Math.max(...arr);\n  let digit = 1;\n\n  while (Math.floor(max / digit) > 0) {\n    const buckets = Array.from({ length: 10 }, () => []);\n\n    for (const num of arr) {\n      buckets[Math.floor(num / digit) % 10].push(num);\n    }\n\n    arr = buckets.flat();\n    digit *= 10;\n  }\n\n  return arr;\n}",
+  codePreview: "<canvas id=\"sort\"></canvas>\n<script>\n  // \u0432\u0438\u0437\u0443\u0430\u043B\u0438\u0437\u0430\u0446\u0438\u044F \u0441\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u043A\u0438\n</script>",
+  extension: "mp4",
+  canvasPreview: ""
+}, {
+  id: 26,
+  state: 1,
+  official: "",
+  date: ["20260320"],
+  title: "Computer Drive",
+  author: "Crypto",
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryVanillajs"],
+  verification: "filterVerificationAuthorial",
+  tags: ["Генеративная графика", "Шум", "Паттерны", "Алгоритмическая анимация"],
+  description: "Абстрактная работа с вертикальными зелёными линиями и шумовой структурой, напоминающей цифровой сигнал или сбой жёсткого диска. Визуал строится через повторение линий, случайные отклонения и процедурную текстуру.",
+  link: "https://studio.sandspiel.club/post/17846",
+  codeRun: "for (let x = 0; x < width; x++) {\n  const h = random(height);\n  ctx.fillRect(x, height - h, 1, h);\n}",
+  codePreview: "<canvas id=\"drive\"></canvas>\n<script>\n  // \u0433\u0435\u043D\u0435\u0440\u0430\u0446\u0438\u044F \u0432\u0435\u0440\u0442\u0438\u043A\u0430\u043B\u044C\u043D\u044B\u0445 \u0448\u0443\u043C\u043E\u0432\u044B\u0445 \u043B\u0438\u043D\u0438\u0439\n</script>",
+  extension: "png",
+  canvasPreview: ""
+}, {
+  id: 27,
+  state: 1,
+  official: "",
+  date: ["20260319"],
+  title: "running car",
+  author: ":>",
+  complexity: "filterComplexityInitial",
+  library: ["filterLibraryVanillajs"],
+  verification: "filterVerificationAuthorial",
+  tags: ["Алгоритмическая анимация", "Интерактивные системы", "Паттерны"],
+  description: "Пиксельная сцена с движущейся машиной на дороге. Работа использует простую покадровую анимацию и базовое смещение объектов, чтобы создать ощущение движения.",
+  link: "https://studio.sandspiel.club/post/4939",
+  codeRun: "let x = 0;\n\nfunction animate() {\n  ctx.clearRect(0, 0, canvas.width, canvas.height);\n  drawCar(x, 120);\n  x += 2;\n  requestAnimationFrame(animate);\n}",
+  codePreview: "<canvas id=\"carScene\" width=\"300\" height=\"200\"></canvas>\n<script>\n  // \u043F\u0440\u043E\u0441\u0442\u0430\u044F \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u044F \u043C\u0430\u0448\u0438\u043D\u044B\n</script>",
+  extension: "mp4",
+  canvasPreview: ""
+}, {
+  id: 28,
+  state: 1,
+  official: "",
+  date: ["20260318"],
+  title: "Topographic (Contour) Map",
+  author: ">LOPPY<",
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryVanillajs"],
+  verification: "filterVerificationExpert",
+  tags: ["Генеративная графика", "Шум", "Поля векторов", "Геометрические алгоритмы", "Паттерны"],
+  description: "Процедурная карта высот с цветными контурными линиями, напоминающая топографическую визуализацию рельефа. Работа создаётся на основе шумового поля и алгоритмов построения изолиний.",
+  link: "https://studio.sandspiel.club/post/21977",
+  codeRun: "for (let y = 0; y < rows; y++) {\n  for (let x = 0; x < cols; x++) {\n    field[y][x] = noise(x * 0.05, y * 0.05);\n  }\n}\n\n// \u0434\u0430\u043B\u0435\u0435 \u043F\u043E\u0441\u0442\u0440\u043E\u0435\u043D\u0438\u0435 contour lines \u043F\u043E \u0443\u0440\u043E\u0432\u043D\u044F\u043C",
+  codePreview: "<canvas id=\"contourMap\"></canvas>\n<script>\n  // \u0448\u0443\u043C\u043E\u0432\u043E\u0435 \u043F\u043E\u043B\u0435 + \u0438\u0437\u043E\u043B\u0438\u043D\u0438\u0438\n</script>",
+  extension: "png",
+  canvasPreview: ""
+}, {
+  id: 29,
+  state: 1,
+  official: "",
+  date: ["20260317"],
+  title: "Ungainly movements",
+  author: "dongseok",
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryVanillajs"],
+  verification: "filterVerificationExpert",
+  tags: ["Интерактивные системы", "Генеративная графика", "Алгоритмическая анимация", "Паттерны"],
+  description: "Экспериментальная типографическая работа, где текстовые элементы смещаются, наслаиваются и теряют устойчивость. Проект исследует неуклюжее движение через поведение шрифта и композиции в веб-среде.",
+  link: "https://the-personalized-web.digitale-grafik.com/dongseok/",
+  codeRun: "document.querySelectorAll(\".word\").forEach((el, i) => {\n  el.style.transform = `translate(${Math.sin(i) * 20}px, ${Math.cos(i) * 10}px) rotate(${i * 4}deg)`;\n});",
+  codePreview: "<div class=\"word\">Ungainly movements</div>\n<script>\n  // \u0441\u043C\u0435\u0449\u0435\u043D\u0438\u0435 \u0438 \u0434\u0435\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F \u0442\u0435\u043A\u0441\u0442\u0430\n</script>",
+  extension: "png",
+  canvasPreview: ""
+}, {
+  id: 30,
+  state: 1,
+  official: "",
+  date: ["20260316"],
+  title: "(e)motion",
+  author: "very",
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryVanillajs"],
+  verification: "filterVerificationExpert",
+  tags: ["Интерактивные системы", "Генеративная графика", "Алгоритмическая анимация", "Параметрические системы"],
+  description: "Кинетическая типографика с крупным текстом и плавающими формами, реагирующими на композицию страницы. Работа соединяет эмоциональное высказывание и программное поведение интерфейса.",
+  link: "https://the-personalized-web.digitale-grafik.com/very/",
+  codeRun: "function floatShape(el, t) {\n  el.style.transform = `translate(${Math.sin(t) * 30}px, ${Math.cos(t * 0.7) * 20}px)`;\n}",
+  codePreview: "<div class=\"headline\">(e)motion</div>\n<div class=\"blob\"></div>\n<script>\n  // \u043F\u043B\u0430\u0432\u0430\u044E\u0449\u0438\u0435 \u0444\u043E\u0440\u043C\u044B \u0438 \u0430\u043D\u0438\u043C\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u044B\u0439 \u0442\u0435\u043A\u0441\u0442\n</script>",
+  extension: "mp4",
+  canvasPreview: ""
+}, {
+  id: 31,
+  state: 1,
+  official: "",
+  date: ["20260315"],
+  title: "MegaPixels",
+  author: "Adam Harvey",
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryVanillajs"],
+  verification: "filterVerificationExpert",
+  tags: ["Интерактивные системы", "Генеративная графика", "Геометрические алгоритмы", "Параметрические системы"],
+  description: "Интерактивный проект о компьютерном зрении, где лицо представляется через ключевые точки и упрощённые геометрические формы. Работа визуализирует принципы распознавания изображений и переводит данные в выразительную графику.",
+  link: "https://exposing.ai/",
+  codeRun: "const points = detectFaceLandmarks(image);\n\npoints.forEach(p => {\n  ctx.beginPath();\n  ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);\n  ctx.fill();\n});",
+  codePreview: "<canvas id=\"facePoints\"></canvas>\n<script>\n  // \u043E\u0442\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u0435 facial landmarks\n</script>",
+  extension: "png",
+  canvasPreview: ""
+}, {
+  id: 32,
+  state: 1,
+  official: "",
+  date: ["20260314"],
+  title: "sandspiel.club",
+  author: "Sandspiel",
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryVanillajs"],
+  verification: "filterVerificationExpert",
+  tags: ["Симуляции", "Клеточные автоматы", "Интерактивные системы", "Процедурная генерация", "Паттерны"],
+  description: "Официальная веб-песочница Sandspiel, в которой пользователь может рисовать материалами и наблюдать за их взаимодействием в реальном времени. Работа основана на пиксельной симуляции частиц, правилах поведения веществ и интерактивном управлении через браузер.",
+  link: "https://sandspiel.club/",
+  codeRun: "function updateParticle(grid, x, y) {\n  if (grid[y + 1] && grid[y + 1][x] === EMPTY) {\n    grid[y + 1][x] = grid[y][x];\n    grid[y][x] = EMPTY;\n  }\n}",
+  codePreview: "<canvas id=\"sandspielCanvas\" width=\"400\" height=\"400\"></canvas>\n<script>\n  // \u0431\u0430\u0437\u043E\u0432\u0430\u044F \u0441\u0438\u043C\u0443\u043B\u044F\u0446\u0438\u044F \u0447\u0430\u0441\u0442\u0438\u0446 \u0438 \u043C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\u043E\u0432\n</script>",
   extension: "png",
   canvasPreview: ""
 }];
 ;// ./src/javascripts/pages/gallery.js
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
 function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -184,17 +743,71 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var galleryImages = {
-  0: _0_namespaceObject,
   2: _2_namespaceObject,
   3: _3_namespaceObject,
-  5: _5_namespaceObject
+  4: _4_namespaceObject,
+  6: _6_namespaceObject,
+  7: _7_namespaceObject,
+  8: _8_namespaceObject,
+  11: _11_namespaceObject,
+  12: _12_namespaceObject,
+  15: _15_namespaceObject,
+  16: _16_namespaceObject,
+  17: _17_namespaceObject,
+  19: _19_namespaceObject,
+  20: _20_namespaceObject,
+  24: _24_namespaceObject,
+  26: _26_namespaceObject,
+  28: _28_namespaceObject,
+  29: _29_namespaceObject,
+  31: _31_namespaceObject,
+  32: _32_namespaceObject
 };
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 var galleryVideos = {
+  0: _0_namespaceObject,
   1: _1_namespaceObject,
-  4: _4_namespaceObject
+  5: _5_namespaceObject,
+  9: _9_namespaceObject,
+  10: _10_namespaceObject,
+  13: _13_namespaceObject,
+  14: _14_namespaceObject,
+  18: _18_namespaceObject,
+  21: _21_namespaceObject,
+  22: _22_namespaceObject,
+  23: _23_namespaceObject,
+  25: _25_namespaceObject,
+  27: _27_namespaceObject,
+  30: _30_namespaceObject
 };
 
 // Задание фильтров
@@ -320,103 +933,55 @@ var defMatrFilters = [[false, [false, false, false]], [false, [false, false, fal
 //   [true, [true, true, true]],
 // ];
 var defNoResults = false;
-var defApplyFilters = [new Set(), new Set(), new Set()];
+var defAppliedFilters = [new Set(), new Set(), new Set()];
 
 // let matrDraw = structuredClone(defMatrDraw);
 var matrFilters = structuredClone(defMatrFilters);
 var noResults = (/* unused pure expression or super */ null && (defNoResults));
-var applyFilters = structuredClone(defApplyFilters);
+var appliedFilters = structuredClone(defAppliedFilters);
 function calcFilters() {
-  applyFilters = structuredClone(defApplyFilters);
-  // matrDraw = structuredClone(defMatrDraw);
-
+  appliedFilters = structuredClone(defAppliedFilters);
   matrFilters.forEach(function (filter, indexFilter) {
-    filter[1].forEach(function (setting, indexSetting) {
-      if (matrFilters[indexFilter][1][indexSetting]) {
+    filter[1].forEach(function (isActive, indexSetting) {
+      if (isActive) {
         buttonsFilters[indexFilter][indexSetting].style.border = "1.5px dashed var(--colors-neutrals-900)";
-        applyFilters[indexFilter] = setUnion(applyFilters[indexFilter], new Set([filtersAll[indexFilter][indexSetting]]));
+        appliedFilters[indexFilter] = setUnion(appliedFilters[indexFilter], new Set([filtersAll[indexFilter][indexSetting]]));
       } else {
         buttonsFilters[indexFilter][indexSetting].style.border = "1.5px dashed var(--colors-neutrals-200)";
       }
     });
   });
-  console.log("matrFilters", matrFilters, "apply", applyFilters);
+
+  // console.log("matrFilters", matrFilters, "appliedFilters", appliedFilters);
 }
-function calcDrawParts() {
-  // Рисуем полашку по умолчанию - нет результатов
-  noResults = !defNoResults;
-  filtersPart.forEach(function (filterPart, indexPart) {
-    // Раздел по умолчанию - не рисуем
-    matrDraw[indexPart][0] = false;
-    filterPart.forEach(function (filterModule, inedxModule) {
-      // Модуль по умолчанию - рисуем
-      matrDraw[indexPart][1][inedxModule] = true;
-      //console.log(`p[${indexPart}]m[${inedxModule}]`, "filters", applyFilters);
-      var _iterator = _createForOfIteratorHelper(applyFilters),
-        _step;
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var applyFilter = _step.value;
-          //Если фильтр - пустой
-          if (applyFilter.size == 0) {
-            continue;
-          }
-          // Если не подошёл хотя бы 1 - не подошёл
-          if (setIntersection(filterModule, applyFilter).size == 0) {
-            // Не рисуем модуль
-            matrDraw[indexPart][1][inedxModule] = false;
-            break;
-          }
+function applyFilters() {
+  filteredWorks = sortedWorks.filter(function (work) {
+    var _iterator = _createForOfIteratorHelper(appliedFilters),
+      _step;
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var appliedFilter = _step.value;
+        // если группа фильтров пустая — пропускаем
+        if (appliedFilter.size === 0) {
+          continue;
         }
 
-        // Раздел начинам отображать если хоть 1 модуль там рисуется
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
+        // если работа не подходит хотя бы под одну группу — исключаем
+        if (setIntersection(work.filterTags, appliedFilter).size === 0) {
+          return false;
+        }
       }
-      if (matrDraw[indexPart][1][inedxModule]) {
-        matrDraw[indexPart][0] = true;
-      }
-    });
-
-    // Убираем плашку Нет результатов если хоть 1 раздел рисуется
-    if (matrDraw[indexPart][0]) {
-      noResults = defNoResults;
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
     }
+    return true;
   });
-
-  // console.log("matrDraw", noResults, matrDraw);
-}
-function drawingParts() {
-  matrDraw.forEach(function (part, indexPart) {
-    // Не рисуем весь раздел
-    if (!matrDraw[indexPart][0]) {
-      handbook[indexPart][0].style.display = "none";
-      return;
-    }
-    // Рисуем весь раздел
-    handbook[indexPart][0].style.display = "flex";
-    part.forEach(function (module, jnedxModule) {
-      // Не рисуем модуль
-      if (!matrDraw[indexPart][1][jnedxModule]) {
-        handbook[indexPart][1][jnedxModule].style.display = "none";
-        return;
-      }
-      // Рисуем модуль
-      handbook[indexPart][1][jnedxModule].style.display = "flex";
-    });
-  });
-
-  // Плашка Нет результатов
-  if (noResults) {
-    handbookNoResults.style.display = "flex";
-  } else {
-    handbookNoResults.style.display = "none";
-  }
+  calcPagenation();
 }
 
-// Добавление клика настройки
+// Добавление клика фильтра
 buttonsFilters.forEach(function (buttons, indexFilter) {
   buttons.forEach(function (button, indexButton) {
     button.addEventListener("click", function () {
@@ -437,6 +1002,9 @@ buttonsFilters.forEach(function (buttons, indexFilter) {
         });
       }
       calcFilters();
+      applyFilters();
+      drawingWorks();
+      calcPagenation();
       // calcDrawParts();
       // drawingParts();
     });
@@ -482,9 +1050,12 @@ openSortsButton.addEventListener("click", function () {
 });
 
 // Применение сортировки
-var numberSorting = 0; // 0, 1, 2
+var numberSorting = sessionStorage.getItem("numberSortingWork"); // 0, 1, 2
+if (!numberSorting) {
+  numberSorting = 1;
+}
 var nameSort = document.querySelector(".A_FilterSortingByText");
-var namesSort = (/* unused pure expression or super */ null && (["По сложности", "По дате обновления", "По проверенности"]));
+var namesSort = ["По сложности", "По дате обновления", "По проверенности"];
 var pointSort1 = document.querySelector(".Q_FilterSortingByComplexityIcon");
 var pointSort2 = document.querySelector(".Q_FilterSortingByDateIcon");
 var pointSort3 = document.querySelector(".Q_FilterSortingByVerificationIcon");
@@ -512,33 +1083,49 @@ var buttonsSort = [buttonSort1, buttonSort2, buttonSort3];
 //   originalHandbookModulesPart3,
 // ];
 
-// Матрица переходов
-var transitionSorts = (/* unused pure expression or super */ null && ([[[0, 1], [0, 1, 2], [0, 1, 2]], [[1, 0], [0, 1, 2], [0, 1, 2]], [[0, 1], [0, 1, 2], [0, 1, 2]]]));
-function applyingSorting() {
+function applySorting() {
   pointsSort.forEach(function (point) {
     point.style.display = "none";
   });
   nameSort.textContent = namesSort[numberSorting];
-  // nameSort.innerHTML = `${namesSort[numberSorting]}`;
   pointsSort[numberSorting].style.display = "flex";
-  // console.log(`"Сортировка ${numberSorting}`);
+  if (numberSorting === 0) {
+    // По сложности: начальная -> средняя -> продвинутая
+    sortedWorks = structuredClone(galleryWorks).sort(function (a, b) {
+      var diff = complexityOrder[a.complexity] - complexityOrder[b.complexity];
+      if (diff !== 0) return diff;
 
-  // Применение сортировки
-  handbookModulesParts.forEach(function (handbookPart, jPart) {
-    handbookPart.innerHTML = "";
-    transitionSorts[numberSorting][jPart].forEach(function (kPosition) {
-      handbookModulesParts[jPart].appendChild(originalHandbookModulesParts[jPart][kPosition]);
+      // если сложность одинаковая — более новые выше
+      return b.dateNumber - a.dateNumber;
     });
-  });
+  } else if (numberSorting === 1) {
+    // По дате обновления: новые сверху
+    sortedWorks = structuredClone(galleryWorks).sort(function (a, b) {
+      return b.dateNumber - a.dateNumber;
+    });
+  } else if (numberSorting === 2) {
+    // По проверенности: экспертная выше авторской
+    sortedWorks = structuredClone(galleryWorks).sort(function (a, b) {
+      var diff = verificationOrder[b.verification] - verificationOrder[a.verification];
+      if (diff !== 0) return diff;
+
+      // если проверенность одинаковая — более новые выше
+      return b.dateNumber - a.dateNumber;
+    });
+  }
+  calcFilters();
+  applyFilters();
+  drawingWorks();
+  calcPagenation();
 }
 
 // Приминение вызовов сортировок к кнопкам
 buttonsSort.forEach(function (button, iSort) {
   button.addEventListener("click", function () {
-    // Определение сортировки
     numberSorting = iSort;
     closeMenuSorting();
-    // applyingSorting();
+    applySorting();
+    drawingWorks();
   });
 });
 
@@ -548,21 +1135,22 @@ var resetButton1 = document.querySelector(".A_FilterResetButton");
 // Скрытая снизу
 var resetButton2 = document.getElementById("filterResetButton2");
 var resetButtons = [resetButton1, resetButton2];
+function resetWorks() {
+  closeMenuFilters();
+  matrFilters = structuredClone(defMatrFilters);
+  numberSorting = sessionStorage.getItem("numberSortingWork");
+  if (!numberSorting) {
+    numberSorting = 1;
+  }
+  closeMenuSorting();
+  applySorting();
+  applyFilters();
+  drawingWorks();
+  calcPagenation();
+}
 resetButtons.forEach(function (resetButton) {
   if (resetButton) {
-    resetButton.addEventListener("click", function () {
-      // Сброс фильтров
-      closeMenuFilters();
-      matrFilters = structuredClone(defMatrFilters);
-      calcFilters();
-      // calcDrawParts();
-      // drawingParts();
-
-      // Сброс сортировки
-      numberSorting = 0;
-      closeMenuSorting();
-      // applyingSorting();
-    });
+    resetButton.addEventListener("click", resetWorks);
   }
 });
 
@@ -618,10 +1206,26 @@ videos.forEach(function (video) {
 // });
 
 // Загрузка галлереи
-var galleryCapacity = 20;
+var galleryCapacity = 12;
 
-var galleryWorks = structuredClone(works);
-var filteredWorks = structuredClone(galleryWorks);
+var complexityOrder = {
+  filterComplexityInitial: 0,
+  filterComplexityMiddle: 1,
+  filterComplexityAdvanced: 2
+};
+var verificationOrder = {
+  filterVerificationAuthorial: 0,
+  filterVerificationExpert: 1
+};
+var galleryWorks = works.map(function (work) {
+  var lastDate = work.date.at(-1);
+  return _objectSpread(_objectSpread({}, work), {}, {
+    dateNumber: Number(lastDate),
+    filterTags: new Set([work.complexity].concat(_toConsumableArray(Array.isArray(work.library) ? work.library : [work.library]), [work.verification]))
+  });
+});
+var sortedWorks = structuredClone(galleryWorks);
+var filteredWorks = structuredClone(sortedWorks);
 var galleryCanvases = Array.from(document.querySelectorAll(".C_GalleryWorks .W_GalleryWork")).slice(0, galleryCapacity);
 // Пейдженация
 var galleryPage = 0;
@@ -630,6 +1234,17 @@ var galleryScrollBarArrowRight = document.querySelector(".Q_GalleryScrollBarArro
 var galleryScrollBarNumbers = Array.from(document.querySelectorAll(".A_GalleryScrollBarNumbers .U_ButtonIcon"));
 var galleryScrollBarNumbersCount = galleryScrollBarNumbers.length;
 var galleryScrollBarNumbersCountDraw = galleryScrollBarNumbersCount;
+// Галерея вверх
+function scrollToGallery() {
+  var gallery = document.getElementById("gallery");
+  if (gallery) {
+    gallery.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
+}
+// Влево
 galleryScrollBarArrowLeft.addEventListener("click", function () {
   if (galleryPage - 1 == 0) {
     galleryScrollBarArrowLeft.style.opacity = "var(--official-no-interaction-opacity)";
@@ -644,7 +1259,9 @@ galleryScrollBarArrowLeft.addEventListener("click", function () {
   galleryScrollBarNumbers[galleryPage].style.opacity = "1";
   galleryScrollBarNumbers[galleryPage].style.border = "1.5px dashed var(--colors-neutrals-900)";
   drawingWorks();
+  scrollToGallery();
 });
+// Вправо
 galleryScrollBarArrowRight.addEventListener("click", function () {
   if (galleryPage + 1 == galleryScrollBarNumbersCountDraw - 1) {
     galleryScrollBarArrowRight.style.opacity = "var(--official-no-interaction-opacity)";
@@ -659,26 +1276,52 @@ galleryScrollBarArrowRight.addEventListener("click", function () {
   galleryScrollBarNumbers[galleryPage].style.opacity = "1";
   galleryScrollBarNumbers[galleryPage].style.border = "1.5px dashed var(--colors-neutrals-900)";
   drawingWorks();
+  scrollToGallery();
 });
-function calcPagenation() {
-  galleryScrollBarNumbersCountDraw = Math.ceil(filteredWorks.length / galleryCapacity);
-  galleryScrollBarNumbers.forEach(function (number) {
-    number.style.opacity = "var(--official-no-interaction-opacity)";
-    number.style.border = "none";
-  });
+// Цифры
+function handleGalleryNumberClick(index) {
+  if (index === galleryPage) return;
+
+  // сброс текущей активной
+  galleryScrollBarNumbers[galleryPage].style.opacity = "var(--official-no-interaction-opacity)";
+  galleryScrollBarNumbers[galleryPage].style.border = "none";
+  galleryPage = index;
+
+  // установка новой активной
   galleryScrollBarNumbers[galleryPage].style.opacity = "1";
   galleryScrollBarNumbers[galleryPage].style.border = "1.5px dashed var(--colors-neutrals-900)";
-  // TODO
-  // let end = false;
-  // galleryScrollBarNumbers[0].style.border = "1.5px dashed var(--colors-neutrals-900)";
-  // galleryScrollBarNumbers[0].style.opacity = "1";
-  // galleryScrollBarNumbers.forEach((number, index) => {
-  //   if (index == 0) {
-  //     return;
-  //   }
-  //   if
-  //   number.style.opacity = "var(--official-no-interaction-opacity)";
-  // });
+
+  // обновление стрелок
+  galleryScrollBarArrowLeft.style.opacity = galleryPage === 0 ? "var(--official-no-interaction-opacity)" : "1";
+  galleryScrollBarArrowRight.style.opacity = galleryPage === galleryScrollBarNumbersCountDraw - 1 ? "var(--official-no-interaction-opacity)" : "1";
+  drawingWorks();
+  scrollToGallery();
+}
+// Обработчики цифор
+galleryScrollBarNumbers.forEach(function (btn, index) {
+  btn.addEventListener("click", function () {
+    handleGalleryNumberClick(index);
+  });
+});
+// Пересчитать пейдженацию (после сортировки)
+function calcPagenation() {
+  galleryScrollBarNumbersCountDraw = Math.ceil(filteredWorks.length / galleryCapacity);
+  galleryPage = 0;
+  galleryScrollBarNumbers.forEach(function (number, index) {
+    number.style.opacity = "var(--official-no-interaction-opacity)";
+    number.style.border = "none";
+    if (index < galleryScrollBarNumbersCountDraw) {
+      number.style.display = "inline-flex";
+    } else {
+      number.style.display = "none";
+    }
+  });
+  if (galleryScrollBarNumbersCountDraw > 0) {
+    galleryScrollBarNumbers[galleryPage].style.opacity = "1";
+    galleryScrollBarNumbers[galleryPage].style.border = "1.5px dashed var(--colors-neutrals-900)";
+  }
+  galleryScrollBarArrowLeft.style.opacity = "var(--official-no-interaction-opacity)";
+  galleryScrollBarArrowRight.style.opacity = galleryScrollBarNumbersCountDraw > 1 ? "1" : "var(--official-no-interaction-opacity)";
 }
 
 // Сохранение номера работы
@@ -687,6 +1330,7 @@ galleryCanvases.forEach(function (galleryWork, indexGalleryWork) {
     // Сохранить переменную
     var id = filteredWorks[galleryPage * galleryCapacity + indexGalleryWork].id;
     sessionStorage.setItem("indexWork", id);
+    sessionStorage.setItem("numberSortingWork", numberSorting);
     // sessionStorage.setItem(
     //   "formData",
     //   JSON.stringify({ name: "John", email: "john@mail.com" }),
@@ -744,7 +1388,6 @@ function _drawingWorks() {
   }));
   return _drawingWorks.apply(this, arguments);
 }
-calcPagenation();
-drawingWorks();
+resetWorks();
 /******/ })()
 ;

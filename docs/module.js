@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 
-;// ./src/javascripts/pages/tutorialsJson.js
+;// ./src/javascripts/json/tutorialsJson.js
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -29,8 +29,10 @@ var setFiltersPart1Module1 = new Set([].concat(_toConsumableArray(setFiltersPart
 var setFiltersPart1Module2Tutorial1 = new Set(["filterComplexityInitial", "filterLibraryP5js", "filterFormatTask", "filterVerificationExpert"]);
 var setFiltersPart1Module2Tutorial2 = new Set(["filterComplexityInitial", "filterLibraryP5js", "filterFormatTechnique", "filterVerificationExpert"]);
 var setFiltersPart1Module2Tutorial3 = new Set(["filterComplexityInitial", "filterLibraryVanillajs", "filterFormatTask", "filterVerificationExpert"]);
+var setFiltersPart1Module2Tutorial4 = new Set(["filterComplexityInitial", "filterLibraryVanillajs", "filterFormatTask", "filterVerificationExpert"]);
+var setFiltersPart1Module2Tutorial5 = new Set(["filterComplexityInitial", "filterLibraryVanillajs", "filterFormatTask", "filterVerificationExpert"]);
 // m-t
-var filtersPart1Module2 = [setFiltersPart1Module2Tutorial1, setFiltersPart1Module2Tutorial2, setFiltersPart1Module2Tutorial3];
+var filtersPart1Module2 = [setFiltersPart1Module2Tutorial1, setFiltersPart1Module2Tutorial2, setFiltersPart1Module2Tutorial3, setFiltersPart1Module2Tutorial4, setFiltersPart1Module2Tutorial5];
 // p-m
 var setFiltersPart1Module2 = new Set([].concat(_toConsumableArray(setFiltersPart1Module2Tutorial1), _toConsumableArray(setFiltersPart1Module2Tutorial2), _toConsumableArray(setFiltersPart1Module2Tutorial3)));
 var filtersPart1 = [setFiltersPart1Module1, setFiltersPart1Module2];
