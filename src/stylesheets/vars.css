@@ -31,6 +31,7 @@
     --size-spacing-46: 2.875rem;
     --size-spacing-48: 3rem;
     --size-spacing-50: 3.125rem;
+    --size-spacing-54: 3.375rem;
     --size-spacing-56: 3.5rem;
     --size-spacing-64: 4rem;
     --size-spacing-68: 4.25rem;
@@ -101,6 +102,8 @@
     --colors-neutrals-150: #d6d6d6;
     /* 214 d6   20% 33 */
     --colors-neutrals-150-20: #d6d6d633;
+    /* 214 d6   60% 99 */
+    --colors-neutrals-150-60: #d6d6d699;
     /* 207 cf  */
     --colors-neutrals-200: #cfcfcf;
     /* 133 85 */

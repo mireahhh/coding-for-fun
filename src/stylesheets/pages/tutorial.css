@@ -1,0 +1,390 @@
+.S_Tutorial {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    align-items: flex-start;
+    min-width: 88px;
+    width: 100%;
+    background-color: var(--colors-neutrals-body);
+
+    .O_TutorialNavigation {
+        display: flex;
+        width: 23%;
+        box-sizing: border-box;
+        padding-top: var(--size-spacing-120);
+        padding-inline: 5%;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        border-left: 16px solid #F372B5;
+    }
+
+    .O_TutorialMain {
+        display: flex;
+        width: 60%;
+        min-width: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--size-spacing-80);
+        flex: 1 0 0;
+        margin-top: var(--size-spacing-56);
+
+        .O_TutorialSection {
+            display: flex;
+            padding-bottom: var(--size-spacing-96);
+            width: 100%;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: var(--size-spacing-32);
+            border-bottom: 1.5px dashed var(--colors-neutrals-200);
+
+            .A_TutorialTitle {
+                display: flex;
+                align-items: flex-end;
+                align-self: stretch;
+                width: fit-content;
+
+                /* U_FontH3 */
+                color: var(--colors-neutrals-900);
+            }
+
+            .A_TutorialText {
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                align-self: stretch;
+                padding-right: 25.5%;
+                box-sizing: border-box;
+                width: 100%;
+
+                /* U_FontB1 */
+                color: var(--colors-neutrals-900);
+            }
+
+            .M_TutorialQuote {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding-right: 25.5%;
+                box-sizing: border-box;
+                width: 100%;
+                gap: 8px;
+
+                p {
+                    position: relative;
+                    padding: var(--size-spacing-20);
+                    text-align: center;
+
+                    /* U_FontS2 */
+                    color: var(--colors-neutrals-900);
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        inset: 0;
+                        pointer-events: none;
+
+                        background:
+                            linear-gradient(black, black) top left,
+                            linear-gradient(black, black) top right,
+                            linear-gradient(black, black) bottom left,
+                            linear-gradient(black, black) bottom right;
+
+                        background-size: var(--size-spacing-6) var(--size-spacing-6);
+                        background-repeat: no-repeat;
+                    }
+                }
+            }
+
+            .A_TutorialSingleImage {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+                gap: var(--size-spacing-12);
+                align-self: stretch;
+                min-width: 0px;
+                flex: 1 0 0;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    overflow: hidden;
+                    border-radius: var(--size-radius-4);
+                    border: 1px solid var(--colors-neutrals-200);
+                }
+
+                p {
+                    display: flex;
+                    align-items: flex-start;
+                    align-self: stretch;
+                    color: var(--colors-neutrals-450);
+                }
+            }
+
+            .A_TutorialMultipleImage {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                gap: var(--size-spacing-20);
+
+                img {
+                    height: auto;
+                    aspect-ratio: 1/1;
+                }
+            }
+
+            .C_TutorialTextList {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--size-spacing-8);
+                counter-reset: item;
+                padding-right: 25.5%;
+                box-sizing: border-box;
+                width: 100%;
+
+                li {
+                    display: flex;
+                    align-items: flex-start;
+                    align-self: stretch;
+                    counter-increment: item;
+
+                    /* U_FontB1 */
+                    color: var(--colors-neutrals-900);
+
+                    &::before {
+                        content: counter(item) ".\A0";
+                    }
+                }
+            }
+
+            .C_TutorialCopyList {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--size-spacing-16);
+                align-self: stretch;
+                box-sizing: border-box;
+                width: 100%;
+
+                .W_TutorialCopyItem {
+                    position: relative;
+                    display: flex;
+                    padding: var(--size-spacing-16);
+                    box-sizing: border-box;
+                    width: 100%;
+                    align-items: flex-start;
+                    align-self: stretch;
+
+                    background: var(--colors-neutrals-0);
+
+                    /* U_FontC2-Code */
+                    color: var(--colors-neutrals-450);
+
+                    .A_TutorialCopyText {
+                        display: block;
+                        padding-right: var(--size-spacing-32);
+                        color: var(--colors-neutrals-450);
+                    }
+
+                    .A_TutorialCopyButton {
+                        position: absolute;
+                        top: var(--size-spacing-14);
+                        right: var(--size-spacing-14);
+                        z-index: 2;
+
+                        width: var(--size-spacing-32);
+                        height: var(--size-spacing-32);
+
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        border-radius: 50%;
+                        background: var(--colors-neutrals-150-60);
+
+                        .Q_TutorialCopyIcon {
+                            width: var(--size-spacing-16);
+                            height: var(--size-spacing-16);
+                        }
+
+                        &.is-copied {
+                            filter: invert(1);
+                            opacity: var(--official-interaction-hover-opacity);
+                        }
+                    }
+                }
+            }
+
+            /* Код */
+            .O_TutorialSingleCode {
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                align-items: flex-start;
+                align-content: flex-start;
+                gap: var(--size-spacing-20);
+                align-self: stretch;
+
+                .W_TutorialSingleCodeExecution {
+                    position: relative;
+
+                    display: flex;
+                    height: var(--size-spacing-272);
+                    align-items: flex-start;
+                    aspect-ratio: 1/1;
+
+                    border-radius: var(--size-radius-4);
+                    border: 1px solid var(--colors-neutrals-200);
+                    background-color: var(--colors-neutrals-0);
+                    overflow: hidden;
+
+                    .A_TutorialSingleCodeExecutionCanvas {
+                        display: block;
+                        height: 100%;
+                        width: 100%;
+                        z-index: 1;
+                    }
+
+                    .A_TutorialSingleCodeExecutionButton {
+                        position: absolute;
+                        top: var(--size-spacing-14);
+                        right: var(--size-spacing-14);
+                        z-index: 2;
+
+                        width: var(--size-spacing-32);
+                        height: var(--size-spacing-32);
+
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        border-radius: 50%;
+                        background: var(--colors-neutrals-150-60);
+
+                        .Q_TutorialSingleCodeExecutionIconRun,
+                        .Q_TutorialSingleCodeExecutionIconStop {
+                            width: var(--size-spacing-16);
+                            height: var(--size-spacing-16);
+                        }
+
+                        .Q_TutorialSingleCodeExecutionIconStop {
+                            display: none;
+                        }
+                    }
+                }
+
+                &.is-running {
+                    .A_TutorialSingleCodeExecutionButton {
+                        .Q_TutorialSingleCodeExecutionIconRun {
+                            display: none;
+                        }
+
+                        .Q_TutorialSingleCodeExecutionIconStop {
+                            display: block;
+                        }
+                    }
+                }
+
+                .O_TutorialSingleCodeTexts {
+                    display: flex;
+                    flex: 1;
+                    width: 100%;
+                    flex-direction: column;
+                    align-items: flex-end;
+                    gap: var(--size-spacing-20);
+
+                    .W_TutorialSingleCodeTextArea {
+                        position: relative;
+
+                        display: flex;
+                        width: 100%;
+                        box-sizing: border-box;
+                        align-items: flex-start;
+                        align-self: stretch;
+                        min-height: var(--size-spacing-272);
+                        max-height: calc(2 * var(--size-spacing-272));
+                        height: auto;
+
+                        border-radius: var(--size-radius-4);
+                        background: var(--colors-neutrals-0);
+                        overflow: hidden;
+
+                        .W_TutorialSingleCodeTextRun {
+                            min-height: var(--size-spacing-272);
+                            max-height: calc(2 * var(--size-spacing-272));
+                            height: auto;
+                            resize: none;
+                            width: 100%;
+                            box-sizing: border-box;
+                            padding: var(--size-spacing-16);
+                            padding-right: calc(2 * var(--size-spacing-32) + 2 * var(--size-spacing-12));
+                            overflow: auto;
+                            white-space: pre;
+
+                            /* U_FontC2-Code */
+                            color: var(--colors-neutrals-450);
+                        }
+
+                        .M_TutorialSingleCodeTextButtons {
+                            position: absolute;
+                            top: var(--size-spacing-14);
+                            right: var(--size-spacing-14);
+
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            gap: var(--size-spacing-12);
+
+                            .A_TutorialSingleCodeTextButtonRestart,
+                            .A_TutorialSingleCodeTextButtonCopy {
+                                width: var(--size-spacing-32);
+                                height: var(--size-spacing-32);
+
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+
+                                border-radius: 50%;
+                                background: var(--colors-neutrals-150-60);
+                            }
+
+                            .A_TutorialSingleCodeTextButtonCopy.is-copied {
+                                filter: invert(1);
+                                opacity: var(--official-interaction-hover-opacity);
+                            }
+
+                            .Q_TutorialSingleCodeExecutionIconRestart,
+                            .Q_TutorialSingleCodeExecutionIconCopy {
+                                width: var(--size-spacing-16);
+                                height: var(--size-spacing-16);
+                            }
+                        }
+                    }
+
+                    .A_TutorialSingleCodeTextDescription {
+                        display: flex;
+                        align-items: flex-start;
+                        align-self: stretch;
+
+                        /* U_FontB1 */
+                        color: var(--colors-neutrals-900);
+                    }
+                }
+            }
+        }
+    }
+
+    .A_TutorialButtonUp {
+        display: flex;
+        padding-inline: 5%;
+        margin-top: var(--size-spacing-120);
+        width: 2.8%;
+        height: min-content;
+        justify-content: center;
+        align-items: center;
+    }
+}

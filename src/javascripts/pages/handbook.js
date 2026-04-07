@@ -147,7 +147,7 @@ let matrDraw = structuredClone(defMatrDraw);
 let matrFilters = structuredClone(defMatrFilters);
 let noResults = defNoResults;
 let applyFilters = structuredClone(defApplyFilters);
-import { filtersAll, filtersParts } from "./tutorialsJson.js";
+import { filtersAll, filtersParts } from "../json/tutorialsJson.js";
 
 function calcFilters() {
   applyFilters = structuredClone(defApplyFilters);

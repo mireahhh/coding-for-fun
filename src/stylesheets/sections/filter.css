@@ -48,6 +48,8 @@
 
             .M_FilterFiltersHeaderSearchBar {
                 display: flex;
+                /* TODO */
+                visibility: hidden;
                 flex-direction: row;
                 padding: var(--size-spacing-5);
                 padding-top: var(--size-spacing-0);

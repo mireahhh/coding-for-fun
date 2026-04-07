@@ -14,23 +14,23 @@
 
   will-change: transform;
   transition: opacity 0.15s ease, transform 0.1s ease;
-}
 
-.U_ButtonIcon:hover {
-  opacity: var(--official-interaction-hover-opacity);
-}
+  &:hover {
+    opacity: var(--official-interaction-hover-opacity);
+  }
 
-.U_ButtonIcon:active {
-  transform: scale(var(--official-interaction-button-active-transform));
-}
+  &:active {
+    transform: scale(var(--official-interaction-button-active-transform));
+  }
 
-.Q_ButtonIcon:focus {
-  outline: none;
-}
+  &:focus {
+    outline: none;
+  }
 
-.U_ButtonIcon:focus-visible {
-  outline: var(--size-spacing-2) dashed var(--colors-neutrals-900);
-  outline-offset: var(--size-spacing-2);
+  &:focus-visible {
+    outline: var(--size-spacing-2) dashed var(--colors-neutrals-900);
+    outline-offset: var(--size-spacing-2);
+  }
 }
 
 
@@ -47,25 +47,24 @@
   active {
     color: var(--colors-neutrals-900);
   }
-}
 
-.U_ALink:hover {
-  opacity: var(--official-interaction-hover-opacity);
-}
+  &:hover {
+    opacity: var(--official-interaction-hover-opacity);
+  }
 
-.U_ALink:active {
-  transform: scale(var(--official-interaction-link-active-transform));
-}
+  &:active {
+    transform: scale(var(--official-interaction-link-active-transform));
+  }
 
-.U_ALink:focus {
-  outline: none;
-}
+  &:focus {
+    outline: none;
+  }
 
-.U_ALink:focus-visible {
-  outline: var(--size-spacing-2) dashed var(--colors-neutrals-900);
-  outline-offset: var(--size-spacing-2);
+  &:focus-visible {
+    outline: var(--size-spacing-2) dashed var(--colors-neutrals-900);
+    outline-offset: var(--size-spacing-2);
+  }
 }
-
 
 /* Img Icon */
 .U_ImgIcon {
@@ -73,7 +72,7 @@
 
   object-fit: contain;
   display: block;
-  
+
   will-change: transform;
   transition: opacity 0.15s ease, transform 0.1s ease;
 }

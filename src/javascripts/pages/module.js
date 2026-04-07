@@ -146,7 +146,7 @@ const defMatrFilters = [
 const defApplyFilters = [new Set(), new Set(), new Set(), new Set()];
 let matrFilters = structuredClone(defMatrFilters);
 let applyFilters = structuredClone(defApplyFilters);
-import { filtersAll, filtersModules } from "./tutorialsJson.js";
+import { filtersAll, filtersModules } from "../json/tutorialsJson.js";
 
 function calcFilters() {
   applyFilters = structuredClone(defApplyFilters);

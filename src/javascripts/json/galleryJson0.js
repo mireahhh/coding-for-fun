@@ -33,7 +33,7 @@ export const works = [
     title: "Flower Power",
     author: "Katarina Lingat",
     complexity: "filterComplexityMiddle",
-    library: "filterLibraryVanillajs",
+    library: ["filterLibraryVanillajs"],
     verification: "filterVerificationExpert",
     tags: [
       "Генеративная графика",

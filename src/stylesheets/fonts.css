@@ -160,7 +160,7 @@
 
 .U_FontC2-Code {
   /* U_FontC2-Code */
-  color: var(--colors-neutrals-900);
+  color: var(--colors-neutrals-450);
   font-family: var(--font-JetBrains);
   font-size: 1rem;
   line-height: 170%;

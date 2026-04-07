@@ -25,6 +25,11 @@ const htmlPages = [
     "index",
   ]),
 
+  createPages(
+    "./src/pages/parts/part1/module1/tutorial0.html",
+    "./pages/parts/part1/module1/tutorial0.html",
+    ["index", "tutorial"],
+  ),
   // Часть1 Модуль1 ./part1/module1
   createPages(
     "./src/pages/parts/part1/module1.html",
@@ -34,7 +39,7 @@ const htmlPages = [
   createPages(
     "./src/pages/parts/part1/module1/tutorial1.html",
     "./pages/parts/part1/module1/tutorial1.html",
-    ["index"],
+    ["index", "tutorial"],
   ),
   createPages(
     "./src/pages/parts/part1/module1/tutorial2.html",

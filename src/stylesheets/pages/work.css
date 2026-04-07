@@ -136,6 +136,9 @@
                         align-content: flex-start;
                         gap: var(--size-spacing-12);
                         align-self: stretch;
+                        padding-right: 25.5%;
+                        box-sizing: border-box;
+                        width: 100%;
 
                         .C_WorkMetaTagsPrimary,
                         .C_WorkMetaTagsSecondary {
@@ -173,6 +176,9 @@
                         justify-content: center;
                         align-items: center;
                         align-self: stretch;
+                        padding-right: 25.5%;
+                        box-sizing: border-box;
+                        width: 100%;
 
                         /* U_FontB1 */
                         color: var(--colors-neutrals-900);
@@ -237,6 +243,13 @@
                     width: 100%;
                     flex: none;
                     aspect-ratio: auto;
+
+                    .W_WorkMeta {
+                        .W_WorkMetaTags,
+                        .A_WorkMetaDescription {
+                            padding-right: 0;
+                        }
+                    }
                 }
             }
         }

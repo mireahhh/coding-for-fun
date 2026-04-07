@@ -77,11 +77,25 @@ const setFiltersPart1Module2Tutorial3 = new Set([
   "filterFormatTask",
   "filterVerificationExpert",
 ]);
+const setFiltersPart1Module2Tutorial4 = new Set([
+  "filterComplexityInitial",
+  "filterLibraryVanillajs",
+  "filterFormatTask",
+  "filterVerificationExpert",
+]);
+const setFiltersPart1Module2Tutorial5 = new Set([
+  "filterComplexityInitial",
+  "filterLibraryVanillajs",
+  "filterFormatTask",
+  "filterVerificationExpert",
+]);
 // m-t
 const filtersPart1Module2 = [
   setFiltersPart1Module2Tutorial1,
   setFiltersPart1Module2Tutorial2,
   setFiltersPart1Module2Tutorial3,
+  setFiltersPart1Module2Tutorial4,
+  setFiltersPart1Module2Tutorial5,
 ];
 // p-m
 const setFiltersPart1Module2 = new Set([

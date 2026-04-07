@@ -1,19 +1,75 @@
-import img0 from "../../images/gallery/0.png";
 import img2 from "../../images/gallery/2.png";
 import img3 from "../../images/gallery/3.png";
-import img5 from "../../images/gallery/5.png";
+import img4 from "../../images/gallery/4.png";
+import img6 from "../../images/gallery/6.png";
+import img7 from "../../images/gallery/7.png";
+import img8 from "../../images/gallery/8.png";
+import img11 from "../../images/gallery/11.png";
+import img12 from "../../images/gallery/12.png";
+import img15 from "../../images/gallery/15.png";
+import img16 from "../../images/gallery/16.png";
+import img17 from "../../images/gallery/17.png";
+import img19 from "../../images/gallery/19.png";
+import img20 from "../../images/gallery/20.png";
+import img24 from "../../images/gallery/24.png";
+import img26 from "../../images/gallery/26.png";
+import img28 from "../../images/gallery/28.png";
+import img29 from "../../images/gallery/29.png";
+import img31 from "../../images/gallery/31.png";
+import img32 from "../../images/gallery/32.png";
+
 const galleryImages = {
-  0: img0,
   2: img2,
   3: img3,
-  5: img5,
+  4: img4,
+  6: img6,
+  7: img7,
+  8: img8,
+  11: img11,
+  12: img12,
+  15: img15,
+  16: img16,
+  17: img17,
+  19: img19,
+  20: img20,
+  24: img24,
+  26: img26,
+  28: img28,
+  29: img29,
+  31: img31,
+  32: img32,
 };
 
+import vid0 from "../../images/gallery/0.mp4";
 import vid1 from "../../images/gallery/1.mp4";
-import vid4 from "../../images/gallery/4.mp4";
+import vid5 from "../../images/gallery/5.mp4";
+import vid9 from "../../images/gallery/9.mp4";
+import vid10 from "../../images/gallery/10.mp4";
+import vid13 from "../../images/gallery/13.mp4";
+import vid14 from "../../images/gallery/14.mp4";
+import vid18 from "../../images/gallery/18.mp4";
+import vid21 from "../../images/gallery/21.mp4";
+import vid22 from "../../images/gallery/22.mp4";
+import vid23 from "../../images/gallery/23.mp4";
+import vid25 from "../../images/gallery/25.mp4";
+import vid27 from "../../images/gallery/27.mp4";
+import vid30 from "../../images/gallery/30.mp4";
+
 const galleryVideos = {
+  0: vid0,
   1: vid1,
-  4: vid4,
+  5: vid5,
+  9: vid9,
+  10: vid10,
+  13: vid13,
+  14: vid14,
+  18: vid18,
+  21: vid21,
+  22: vid22,
+  23: vid23,
+  25: vid25,
+  27: vid27,
+  30: vid30,
 };
 
 // Задание фильтров
@@ -135,104 +191,57 @@ const defMatrFilters = [
 //   [true, [true, true, true]],
 // ];
 const defNoResults = false;
-const defApplyFilters = [new Set(), new Set(), new Set()];
+const defAppliedFilters = [new Set(), new Set(), new Set()];
 
 // let matrDraw = structuredClone(defMatrDraw);
 let matrFilters = structuredClone(defMatrFilters);
 let noResults = defNoResults;
-let applyFilters = structuredClone(defApplyFilters);
+let appliedFilters = structuredClone(defAppliedFilters);
 
 function calcFilters() {
-  applyFilters = structuredClone(defApplyFilters);
-  // matrDraw = structuredClone(defMatrDraw);
+  appliedFilters = structuredClone(defAppliedFilters);
 
   matrFilters.forEach((filter, indexFilter) => {
-    filter[1].forEach((setting, indexSetting) => {
-      if (matrFilters[indexFilter][1][indexSetting]) {
-        buttonsFilters[indexFilter][indexSetting].style.border = "1.5px dashed var(--colors-neutrals-900)";
+    filter[1].forEach((isActive, indexSetting) => {
+      if (isActive) {
+        buttonsFilters[indexFilter][indexSetting].style.border =
+          "1.5px dashed var(--colors-neutrals-900)";
 
-        applyFilters[indexFilter] = setUnion(
-          applyFilters[indexFilter],
+        appliedFilters[indexFilter] = setUnion(
+          appliedFilters[indexFilter],
           new Set([filtersAll[indexFilter][indexSetting]]),
         );
       } else {
-        buttonsFilters[indexFilter][indexSetting].style.border = "1.5px dashed var(--colors-neutrals-200)";
+        buttonsFilters[indexFilter][indexSetting].style.border =
+          "1.5px dashed var(--colors-neutrals-200)";
       }
     });
   });
 
-  console.log("matrFilters", matrFilters, "apply", applyFilters);
+  // console.log("matrFilters", matrFilters, "appliedFilters", appliedFilters);
 }
 
-function calcDrawParts() {
-  // Рисуем полашку по умолчанию - нет результатов
-  noResults = !defNoResults;
-  filtersPart.forEach((filterPart, indexPart) => {
-    // Раздел по умолчанию - не рисуем
-    matrDraw[indexPart][0] = false;
-
-    filterPart.forEach((filterModule, inedxModule) => {
-      // Модуль по умолчанию - рисуем
-      matrDraw[indexPart][1][inedxModule] = true;
-      //console.log(`p[${indexPart}]m[${inedxModule}]`, "filters", applyFilters);
-
-      for (const applyFilter of applyFilters) {
-        //Если фильтр - пустой
-        if (applyFilter.size == 0) {
-          continue;
-        }
-        // Если не подошёл хотя бы 1 - не подошёл
-        if (setIntersection(filterModule, applyFilter).size == 0) {
-          // Не рисуем модуль
-          matrDraw[indexPart][1][inedxModule] = false;
-          break;
-        }
+function applyFilters() {
+  filteredWorks = sortedWorks.filter((work) => {
+    for (const appliedFilter of appliedFilters) {
+      // если группа фильтров пустая — пропускаем
+      if (appliedFilter.size === 0) {
+        continue;
       }
 
-      // Раздел начинам отображать если хоть 1 модуль там рисуется
-      if (matrDraw[indexPart][1][inedxModule]) {
-        matrDraw[indexPart][0] = true;
+      // если работа не подходит хотя бы под одну группу — исключаем
+      if (setIntersection(work.filterTags, appliedFilter).size === 0) {
+        return false;
       }
-    });
-
-    // Убираем плашку Нет результатов если хоть 1 раздел рисуется
-    if (matrDraw[indexPart][0]) {
-      noResults = defNoResults;
     }
+
+    return true;
   });
 
-  // console.log("matrDraw", noResults, matrDraw);
+  calcPagenation();
 }
 
-function drawingParts() {
-  matrDraw.forEach((part, indexPart) => {
-    // Не рисуем весь раздел
-    if (!matrDraw[indexPart][0]) {
-      handbook[indexPart][0].style.display = "none";
-      return;
-    }
-    // Рисуем весь раздел
-    handbook[indexPart][0].style.display = "flex";
-    part.forEach((module, jnedxModule) => {
-      // Не рисуем модуль
-      if (!matrDraw[indexPart][1][jnedxModule]) {
-        handbook[indexPart][1][jnedxModule].style.display = "none";
-        return;
-      }
-      // Рисуем модуль
-      handbook[indexPart][1][jnedxModule].style.display = "flex";
-    });
-  });
-
-  // Плашка Нет результатов
-  if (noResults) {
-    handbookNoResults.style.display = "flex";
-  } else {
-    handbookNoResults.style.display = "none";
-  }
-}
-
-// Добавление клика настройки
+// Добавление клика фильтра
 buttonsFilters.forEach((buttons, indexFilter) => {
   buttons.forEach((button, indexButton) => {
     button.addEventListener("click", () => {
@@ -252,6 +261,9 @@ buttonsFilters.forEach((buttons, indexFilter) => {
       }
 
       calcFilters();
+      applyFilters();
+      drawingWorks();
+      calcPagenation();
       // calcDrawParts();
       // drawingParts();
     });
@@ -303,7 +315,10 @@ openSortsButton.addEventListener("click", () => {
 });
 
 // Применение сортировки
-let numberSorting = 0; // 0, 1, 2
+let numberSorting = sessionStorage.getItem("numberSortingWork"); // 0, 1, 2
+  if (!numberSorting) {
+    numberSorting = 1;
+  }
 const nameSort = document.querySelector(".A_FilterSortingByText");
 const namesSort = ["По сложности", "По дате обновления", "По проверенности"];
 
@@ -335,52 +350,52 @@ const buttonsSort = [buttonSort1, buttonSort2, buttonSort3];
 //   originalHandbookModulesPart3,
 // ];
 
-// Матрица переходов
-const transitionSorts = [
-  [
-    [0, 1],
-    [0, 1, 2],
-    [0, 1, 2],
-  ],
-  [
-    [1, 0],
-    [0, 1, 2],
-    [0, 1, 2],
-  ],
-  [
-    [0, 1],
-    [0, 1, 2],
-    [0, 1, 2],
-  ],
-];
-
-function applyingSorting() {
+function applySorting() {
   pointsSort.forEach((point) => {
     point.style.display = "none";
   });
 
   nameSort.textContent = namesSort[numberSorting];
-  // nameSort.innerHTML = `${namesSort[numberSorting]}`;
   pointsSort[numberSorting].style.display = "flex";
-  // console.log(`"Сортировка ${numberSorting}`);
 
-  // Применение сортировки
-  handbookModulesParts.forEach((handbookPart, jPart) => {
-    handbookPart.innerHTML = "";
+  if (numberSorting === 0) {
+    // По сложности: начальная -> средняя -> продвинутая
+    sortedWorks = structuredClone(galleryWorks).sort((a, b) => {
+      const diff = complexityOrder[a.complexity] - complexityOrder[b.complexity];
+      if (diff !== 0) return diff;
 
-    transitionSorts[numberSorting][jPart].forEach((kPosition) => {
-      handbookModulesParts[jPart].appendChild(originalHandbookModulesParts[jPart][kPosition]);
+      // если сложность одинаковая — более новые выше
+      return b.dateNumber - a.dateNumber;
     });
-  });
+  } else if (numberSorting === 1) {
+    // По дате обновления: новые сверху
+    sortedWorks = structuredClone(galleryWorks).sort((a, b) => {
+      return b.dateNumber - a.dateNumber;
+    });
+  } else if (numberSorting === 2) {
+    // По проверенности: экспертная выше авторской
+    sortedWorks = structuredClone(galleryWorks).sort((a, b) => {
+      const diff = verificationOrder[b.verification] - verificationOrder[a.verification];
+      if (diff !== 0) return diff;
+
+      // если проверенность одинаковая — более новые выше
+      return b.dateNumber - a.dateNumber;
+    });
+  }
+
+  calcFilters();
+  applyFilters();
+  drawingWorks();
+  calcPagenation();
 }
 
 // Приминение вызовов сортировок к кнопкам
 buttonsSort.forEach((button, iSort) => {
   button.addEventListener("click", () => {
-    // Определение сортировки
     numberSorting = iSort;
     closeMenuSorting();
-    // applyingSorting();
+    applySorting();
+    drawingWorks();
   });
 });
 
@@ -391,21 +406,26 @@ const resetButton1 = document.querySelector(".A_FilterResetButton");
 const resetButton2 = document.getElementById("filterResetButton2");
 const resetButtons = [resetButton1, resetButton2];
 
+function resetWorks() {
+  closeMenuFilters();
+  matrFilters = structuredClone(defMatrFilters);
+
+  numberSorting = sessionStorage.getItem("numberSortingWork");
+  if (!numberSorting) {
+    numberSorting = 1;
+  }
+
+  closeMenuSorting();
+
+  applySorting();
+  applyFilters();
+  drawingWorks();
+  calcPagenation();
+}
+
 resetButtons.forEach((resetButton) => {
   if (resetButton) {
-    resetButton.addEventListener("click", () => {
-      // Сброс фильтров
-      closeMenuFilters();
-      matrFilters = structuredClone(defMatrFilters);
-      calcFilters();
-      // calcDrawParts();
-      // drawingParts();
-
-      // Сброс сортировки
-      numberSorting = 0;
-      closeMenuSorting();
-      // applyingSorting();
-    });
+    resetButton.addEventListener("click", resetWorks);
   }
 });
 
@@ -467,10 +487,36 @@ videos.forEach((video) => {
 // });
 
 // Загрузка галлереи
-const galleryCapacity = 20;
-import { months, works } from "./galleryJson.js";
-const galleryWorks = structuredClone(works);
-let filteredWorks = structuredClone(galleryWorks);
+const galleryCapacity = 12;
+import { months, works } from "../json/galleryJson.js";
+
+const complexityOrder = {
+  filterComplexityInitial: 0,
+  filterComplexityMiddle: 1,
+  filterComplexityAdvanced: 2,
+};
+
+const verificationOrder = {
+  filterVerificationAuthorial: 0,
+  filterVerificationExpert: 1,
+};
+
+const galleryWorks = works.map((work) => {
+  const lastDate = work.date.at(-1);
+
+  return {
+    ...work,
+    dateNumber: Number(lastDate),
+    filterTags: new Set([
+      work.complexity,
+      ...(Array.isArray(work.library) ? work.library : [work.library]),
+      work.verification,
+    ]),
+  };
+});
+
+let sortedWorks = structuredClone(galleryWorks);
+let filteredWorks = structuredClone(sortedWorks);
 const galleryCanvases = Array.from(document.querySelectorAll(".C_GalleryWorks .W_GalleryWork")).slice(
   0,
   galleryCapacity,
@@ -482,7 +528,14 @@ const galleryScrollBarArrowRight = document.querySelector(".Q_GalleryScrollBarAr
 const galleryScrollBarNumbers = Array.from(document.querySelectorAll(".A_GalleryScrollBarNumbers .U_ButtonIcon"));
 const galleryScrollBarNumbersCount = galleryScrollBarNumbers.length;
 let galleryScrollBarNumbersCountDraw = galleryScrollBarNumbersCount;
-
+// Галерея вверх
+function scrollToGallery() {
+  const gallery = document.getElementById("gallery");
+  if (gallery) {
+    gallery.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+// Влево
 galleryScrollBarArrowLeft.addEventListener("click", () => {
   if (galleryPage - 1 == 0) {
     galleryScrollBarArrowLeft.style.opacity = "var(--official-no-interaction-opacity)";
@@ -498,8 +551,9 @@ galleryScrollBarArrowLeft.addEventListener("click", () => {
   galleryScrollBarNumbers[galleryPage].style.border = "1.5px dashed var(--colors-neutrals-900)";
 
   drawingWorks();
+  scrollToGallery();
 });
-
+// Вправо
 galleryScrollBarArrowRight.addEventListener("click", () => {
   if (galleryPage + 1 == galleryScrollBarNumbersCountDraw - 1) {
     galleryScrollBarArrowRight.style.opacity = "var(--official-no-interaction-opacity)";
@@ -515,27 +569,66 @@ galleryScrollBarArrowRight.addEventListener("click", () => {
   galleryScrollBarNumbers[galleryPage].style.border = "1.5px dashed var(--colors-neutrals-900)";
 
   drawingWorks();
+  scrollToGallery();
 });
+// Цифры
+function handleGalleryNumberClick(index) {
+  if (index === galleryPage) return;
 
-function calcPagenation() {
-  galleryScrollBarNumbersCountDraw = Math.ceil(filteredWorks.length / galleryCapacity);
-  galleryScrollBarNumbers.forEach((number) => {
-    number.style.opacity = "var(--official-no-interaction-opacity)";
-    number.style.border = "none";
-  });
+  // сброс текущей активной
+  galleryScrollBarNumbers[galleryPage].style.opacity = "var(--official-no-interaction-opacity)";
+  galleryScrollBarNumbers[galleryPage].style.border = "none";
+
+  galleryPage = index;
+
+  // установка новой активной
   galleryScrollBarNumbers[galleryPage].style.opacity = "1";
   galleryScrollBarNumbers[galleryPage].style.border = "1.5px dashed var(--colors-neutrals-900)";
-  // TODO
-  // let end = false;
-  // galleryScrollBarNumbers[0].style.border = "1.5px dashed var(--colors-neutrals-900)";
-  // galleryScrollBarNumbers[0].style.opacity = "1";
-  // galleryScrollBarNumbers.forEach((number, index) => {
-  //   if (index == 0) {
-  //     return;
-  //   }
-  //   if
-  //   number.style.opacity = "var(--official-no-interaction-opacity)";
-  // });
+
+  // обновление стрелок
+  galleryScrollBarArrowLeft.style.opacity =
+    galleryPage === 0 ? "var(--official-no-interaction-opacity)" : "1";
+
+  galleryScrollBarArrowRight.style.opacity =
+    galleryPage === galleryScrollBarNumbersCountDraw - 1
+      ? "var(--official-no-interaction-opacity)"
+      : "1";
+
+  drawingWorks();
+  scrollToGallery();
+}
+// Обработчики цифор
+galleryScrollBarNumbers.forEach((btn, index) => {
+  btn.addEventListener("click", () => {
+    handleGalleryNumberClick(index);
+  });
+});
+// Пересчитать пейдженацию (после сортировки)
+function calcPagenation() {
+  galleryScrollBarNumbersCountDraw = Math.ceil(filteredWorks.length / galleryCapacity);
+  galleryPage = 0;
+
+  galleryScrollBarNumbers.forEach((number, index) => {
+    number.style.opacity = "var(--official-no-interaction-opacity)";
+    number.style.border = "none";
+
+    if (index < galleryScrollBarNumbersCountDraw) {
+      number.style.display = "inline-flex";
+    } else {
+      number.style.display = "none";
+    }
+  });
+
+  if (galleryScrollBarNumbersCountDraw > 0) {
+    galleryScrollBarNumbers[galleryPage].style.opacity = "1";
+    galleryScrollBarNumbers[galleryPage].style.border = "1.5px dashed var(--colors-neutrals-900)";
+  }
+
+  galleryScrollBarArrowLeft.style.opacity = "var(--official-no-interaction-opacity)";
+  galleryScrollBarArrowRight.style.opacity =
+    galleryScrollBarNumbersCountDraw > 1
+      ? "1"
+      : "var(--official-no-interaction-opacity)";
 }
 
 // Сохранение номера работы
@@ -544,6 +637,7 @@ galleryCanvases.forEach((galleryWork, indexGalleryWork) => {
     // Сохранить переменную
     let id = filteredWorks[galleryPage * galleryCapacity + indexGalleryWork].id;
     sessionStorage.setItem("indexWork", id);
+    sessionStorage.setItem("numberSortingWork", numberSorting);
     // sessionStorage.setItem(
     //   "formData",
     //   JSON.stringify({ name: "John", email: "john@mail.com" }),
@@ -595,5 +689,5 @@ async function drawingWorks() {
   });
 }
 
-calcPagenation();
-drawingWorks();
+
+resetWorks();

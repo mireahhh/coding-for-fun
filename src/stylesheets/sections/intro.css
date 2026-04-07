@@ -132,6 +132,7 @@
 
       .A_IntroButtonsAuthor {
         display: flex;
+        flex-direction: row;
         align-items: flex-start;
 
         /* U_FontC2 */
@@ -148,7 +149,8 @@
       gap: var(--size-spacing-16);
 
       .M_IntroAddTutor {
-        display: flex;
+        display: none;
+        /* display: flex; TODO */
         justify-content: center;
         align-items: center;
         width: var(--size-spacing-212);

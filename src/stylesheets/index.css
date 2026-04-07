@@ -38,6 +38,7 @@ html {
 /* pages */
 @import 'pages/handbook.css';
 @import 'pages/module.css';
+@import 'pages/tutorial.css';
 @import 'pages/gallary.css';
 @import 'pages/work.css';
 /* responsive */

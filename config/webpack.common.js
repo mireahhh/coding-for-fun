@@ -12,6 +12,7 @@ module.exports = {
     handbook: "./src/javascripts/pages/handbook.js",
     gallery: "./src/javascripts/pages/gallery.js",
     module: "./src/javascripts/pages/module.js",
+    tutorial: "./src/javascripts/pages/tutorial.js",
     work: "./src/javascripts/pages/work.js",
   },
   output: {
