@@ -23,7 +23,7 @@ const tagsPart1Module1Tutorial2 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20260129"],
-  title: "Инструменты и среда",
+  title: "Инструменты и\u00A0среда",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: [
@@ -39,7 +39,7 @@ const tagsPart1Module1Tutorial3 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20260213"],
-  title: "Цвет, форма и композиция",
+  title: "Цвет, форма и\u00A0композиция",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: [
@@ -57,7 +57,7 @@ const tagsPart1Module2Tutorial1 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20260220"],
-  title: "Переменные и условия",
+  title: "Переменные и\u00A0условия",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: [
@@ -73,7 +73,7 @@ const tagsPart1Module2Tutorial2 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20260227"],
-  title: "Циклы: ритм и структура",
+  title: "Циклы: ритм и\u00A0структура",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: [
@@ -89,7 +89,7 @@ const tagsPart1Module2Tutorial3 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20260309"],
-  title: "Массивы и объекты",
+  title: "Массивы и\u00A0объекты",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: [
@@ -140,7 +140,7 @@ const tagsPart2Module1Tutorial1 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20260327"],
-  title: "Создание и удаление элементов",
+  title: "Создание и\u00A0удаление элементов",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: [
@@ -156,7 +156,7 @@ const tagsPart2Module1Tutorial2 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20260327"],
-  title: "Стили и трансформации",
+  title: "Стили и\u00A0трансформации",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: [
@@ -172,7 +172,7 @@ const tagsPart2Module1Tutorial3 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20260327"],
-  title: "Анимации и события",
+  title: "Анимации и\u00A0события",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: [
@@ -190,7 +190,7 @@ const tagsPart2Module2Tutorial1 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "Цикл отрисовки и фигуры",
+  title: "Цикл отрисовки и\u00A0фигуры",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: [
@@ -206,7 +206,7 @@ const tagsPart2Module2Tutorial2 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "Интерактив с мышью и клавиатурой",
+  title: "Интерактив с\u00A0мышью и\u00A0клавиатурой",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: [
@@ -222,7 +222,7 @@ const tagsPart2Module2Tutorial3 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "Тайлинг и дисплейсмент",
+  title: "Тайлинг и\u00A0дисплейсмент",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: [
@@ -272,7 +272,7 @@ const tagsPart2Module3Tutorial1 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "Сцена, камера и рендерер",
+  title: "Сцена, камера и\u00A0рендерер",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: [
@@ -288,7 +288,7 @@ const tagsPart2Module3Tutorial2 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "Геометрии и материалы",
+  title: "Геометрии и\u00A0материалы",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: [
@@ -304,7 +304,7 @@ const tagsPart2Module3Tutorial3 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "Свет и текстуры",
+  title: "Свет и\u00A0текстуры",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: [
@@ -320,7 +320,7 @@ const tagsPart2Module3Tutorial4 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "Анимация и управление камерой",
+  title: "Анимация и\u00A0управление камерой",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: [
@@ -355,7 +355,7 @@ const tagsPart3Module1Tutorial1 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "random() и noise()",
+  title: "random() и\u00A0noise()",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: [
@@ -437,7 +437,7 @@ const tagsPart3Module2Tutorial2 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "Фракталы и L-системы",
+  title: "Фракталы и\u00A0L-системы",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: [
@@ -453,7 +453,7 @@ const tagsPart3Module2Tutorial3 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "Мозаики и сетки",
+  title: "Мозаики и\u00A0сетки",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: [
@@ -535,7 +535,7 @@ const tagsPart3Module3Tutorial3 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "Сообщества и ресурсы",
+  title: "Сообщества и\u00A0ресурсы",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: [

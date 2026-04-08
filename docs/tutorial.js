@@ -82,7 +82,7 @@ var tagsPart1Module1Tutorial2 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20260129"],
-  title: "Инструменты и среда",
+  title: "\u0418\u043D\u0441\u0442\u0440\u0443\u043C\u0435\u043D\u0442\u044B \u0438\xA0\u0441\u0440\u0435\u0434\u0430",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
@@ -93,7 +93,7 @@ var tagsPart1Module1Tutorial3 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20260213"],
-  title: "Цвет, форма и композиция",
+  title: "\u0426\u0432\u0435\u0442, \u0444\u043E\u0440\u043C\u0430 \u0438\xA0\u043A\u043E\u043C\u043F\u043E\u0437\u0438\u0446\u0438\u044F",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
@@ -106,7 +106,7 @@ var tagsPart1Module2Tutorial1 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20260220"],
-  title: "Переменные и условия",
+  title: "\u041F\u0435\u0440\u0435\u043C\u0435\u043D\u043D\u044B\u0435 \u0438\xA0\u0443\u0441\u043B\u043E\u0432\u0438\u044F",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
@@ -117,7 +117,7 @@ var tagsPart1Module2Tutorial2 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20260227"],
-  title: "Циклы: ритм и структура",
+  title: "\u0426\u0438\u043A\u043B\u044B: \u0440\u0438\u0442\u043C \u0438\xA0\u0441\u0442\u0440\u0443\u043A\u0442\u0443\u0440\u0430",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
@@ -128,7 +128,7 @@ var tagsPart1Module2Tutorial3 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20260309"],
-  title: "Массивы и объекты",
+  title: "\u041C\u0430\u0441\u0441\u0438\u0432\u044B \u0438\xA0\u043E\u0431\u044A\u0435\u043A\u0442\u044B",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
@@ -164,7 +164,7 @@ var tagsPart2Module1Tutorial1 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20260327"],
-  title: "Создание и удаление элементов",
+  title: "\u0421\u043E\u0437\u0434\u0430\u043D\u0438\u0435 \u0438\xA0\u0443\u0434\u0430\u043B\u0435\u043D\u0438\u0435 \u044D\u043B\u0435\u043C\u0435\u043D\u0442\u043E\u0432",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
@@ -175,7 +175,7 @@ var tagsPart2Module1Tutorial2 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20260327"],
-  title: "Стили и трансформации",
+  title: "\u0421\u0442\u0438\u043B\u0438 \u0438\xA0\u0442\u0440\u0430\u043D\u0441\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u0438",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
@@ -186,7 +186,7 @@ var tagsPart2Module1Tutorial3 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20260327"],
-  title: "Анимации и события",
+  title: "\u0410\u043D\u0438\u043C\u0430\u0446\u0438\u0438 \u0438\xA0\u0441\u043E\u0431\u044B\u0442\u0438\u044F",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
@@ -199,7 +199,7 @@ var tagsPart2Module2Tutorial1 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "Цикл отрисовки и фигуры",
+  title: "\u0426\u0438\u043A\u043B \u043E\u0442\u0440\u0438\u0441\u043E\u0432\u043A\u0438 \u0438\xA0\u0444\u0438\u0433\u0443\u0440\u044B",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
@@ -210,7 +210,7 @@ var tagsPart2Module2Tutorial2 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "Интерактив с мышью и клавиатурой",
+  title: "\u0418\u043D\u0442\u0435\u0440\u0430\u043A\u0442\u0438\u0432 \u0441\xA0\u043C\u044B\u0448\u044C\u044E \u0438\xA0\u043A\u043B\u0430\u0432\u0438\u0430\u0442\u0443\u0440\u043E\u0439",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
@@ -221,7 +221,7 @@ var tagsPart2Module2Tutorial3 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "Тайлинг и дисплейсмент",
+  title: "\u0422\u0430\u0439\u043B\u0438\u043D\u0433 \u0438\xA0\u0434\u0438\u0441\u043F\u043B\u0435\u0439\u0441\u043C\u0435\u043D\u0442",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
@@ -256,7 +256,7 @@ var tagsPart2Module3Tutorial1 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "Сцена, камера и рендерер",
+  title: "\u0421\u0446\u0435\u043D\u0430, \u043A\u0430\u043C\u0435\u0440\u0430 \u0438\xA0\u0440\u0435\u043D\u0434\u0435\u0440\u0435\u0440",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
@@ -267,7 +267,7 @@ var tagsPart2Module3Tutorial2 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "Геометрии и материалы",
+  title: "\u0413\u0435\u043E\u043C\u0435\u0442\u0440\u0438\u0438 \u0438\xA0\u043C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\u044B",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
@@ -278,7 +278,7 @@ var tagsPart2Module3Tutorial3 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "Свет и текстуры",
+  title: "\u0421\u0432\u0435\u0442 \u0438\xA0\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
@@ -289,7 +289,7 @@ var tagsPart2Module3Tutorial4 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "Анимация и управление камерой",
+  title: "\u0410\u043D\u0438\u043C\u0430\u0446\u0438\u044F \u0438\xA0\u0443\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u0435 \u043A\u0430\u043C\u0435\u0440\u043E\u0439",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
@@ -314,7 +314,7 @@ var tagsPart3Module1Tutorial1 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "random() и noise()",
+  title: "random() \u0438\xA0noise()",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
@@ -371,7 +371,7 @@ var tagsPart3Module2Tutorial2 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "Фракталы и L-системы",
+  title: "\u0424\u0440\u0430\u043A\u0442\u0430\u043B\u044B \u0438\xA0L-\u0441\u0438\u0441\u0442\u0435\u043C\u044B",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
@@ -382,7 +382,7 @@ var tagsPart3Module2Tutorial3 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "Мозаики и сетки",
+  title: "\u041C\u043E\u0437\u0430\u0438\u043A\u0438 \u0438\xA0\u0441\u0435\u0442\u043A\u0438",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
@@ -439,7 +439,7 @@ var tagsPart3Module3Tutorial3 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "Сообщества и ресурсы",
+  title: "\u0421\u043E\u043E\u0431\u0449\u0435\u0441\u0442\u0432\u0430 \u0438\xA0\u0440\u0435\u0441\u0443\u0440\u0441\u044B",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
