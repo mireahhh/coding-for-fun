@@ -74,24 +74,11 @@ const galleryVideos = {
 
 // Задание фильтров
 // Список доступных фильтров
+// ! filtersAll в Галерее - друго! Он без 1 фильтра! Поэтому собираем заново !
 const filtersComplexity = ["filterComplexityInitial", "filterComplexityMiddle", "filterComplexityAdvanced"];
 const filtersLibrary = ["filterLibraryVanillajs", "filterLibraryP5js", "filterLibraryThreejs"];
 const filtersVerification = ["filterVerificationExpert", "filterVerificationAuthorial"];
 const filtersAll = [filtersComplexity, filtersLibrary, filtersVerification];
-
-// async function getFiltersAll(path) {
-//   const response = await fetch(path);
-//   const data = await response.json();
-
-//   const { complexity, library, verification } = data.filters;
-
-//   return [complexity, library, verification];
-// }
-
-// (async () => {
-//   const filtersAll = await getFiltersAll("/json/gallery.json");
-//   console.log(filtersAll);
-// })();
 
 // Для отрисовки
 const handbookPart1Module1 = document.getElementById("handbookPart1Module1");
@@ -315,10 +302,11 @@ openSortsButton.addEventListener("click", () => {
 });
 
 // Применение сортировки
-let numberSorting = sessionStorage.getItem("numberSortingWork"); // 0, 1, 2
-  if (!numberSorting) {
-    numberSorting = 1;
-  }
+let numberSorting = Number(sessionStorage.getItem("numberSortingGallery")); // 0, 1, 2
+if (Number.isNaN(numberSorting)) {
+  numberSorting = 1;
+}
+
 const nameSort = document.querySelector(".A_FilterSortingByText");
 const namesSort = ["По сложности", "По дате обновления", "По проверенности"];
 
@@ -331,24 +319,6 @@ const buttonSort1 = document.getElementById("filterSortingByComplexityButton");
 const buttonSort2 = document.getElementById("filterSortingByDateButton");
 const buttonSort3 = document.getElementById("filterSortingByVerificationButton");
 const buttonsSort = [buttonSort1, buttonSort2, buttonSort3];
-
-// const handbookModulesPart1 = document.getElementById("handbookModulesPart1");
-// const handbookModulesPart2 = document.getElementById("handbookModulesPart2");
-// const handbookModulesPart3 = document.getElementById("handbookModulesPart3");
-// const handbookModulesParts = [
-//   handbookModulesPart1,
-//   handbookModulesPart2,
-//   handbookModulesPart3,
-// ];
-
-// const originalHandbookModulesPart1 = Array.from(handbookModulesPart1.children);
-// const originalHandbookModulesPart2 = Array.from(handbookModulesPart2.children);
-// const originalHandbookModulesPart3 = Array.from(handbookModulesPart3.children);
-// const originalHandbookModulesParts = [
-//   originalHandbookModulesPart1,
-//   originalHandbookModulesPart2,
-//   originalHandbookModulesPart3,
-// ];
 
 function applySorting() {
   pointsSort.forEach((point) => {
@@ -392,7 +362,9 @@ function applySorting() {
 // Приминение вызовов сортировок к кнопкам
 buttonsSort.forEach((button, iSort) => {
   button.addEventListener("click", () => {
+    // Определение сортировки
     numberSorting = iSort;
+    sessionStorage.setItem("numberSortingGallery", numberSorting);
     closeMenuSorting();
     applySorting();
     drawingWorks();
@@ -410,10 +382,8 @@ function resetWorks() {
   closeMenuFilters();
   matrFilters = structuredClone(defMatrFilters);
 
-  numberSorting = sessionStorage.getItem("numberSortingWork");
-  if (!numberSorting) {
-    numberSorting = 1;
-  }
+  numberSorting = 1;
+  sessionStorage.setItem("numberSortingGallery", numberSorting);
 
   closeMenuSorting();
 
@@ -468,27 +438,10 @@ videos.forEach((video) => {
   });
 });
 
-// galleryCanvases.forEach((card) => {
-//   const preview = card.querySelector(".A_GalleryWorkPreview");
-//   const video = card.querySelector(".A_GalleryWorkPreviewVideo");
-
-//   preview.addEventListener("mouseenter", () => {
-//     if (video.style.display !== "none") {
-//       video.play().catch(() => {});
-//     }
-//   });
-
-//   preview.addEventListener("mouseleave", () => {
-//     if (video.style.display !== "none") {
-//       video.pause();
-//       video.currentTime = 0;
-//     }
-//   });
-// });
-
 // Загрузка галлереи
 const galleryCapacity = 12;
-import { months, works } from "../json/galleryJson.js";
+import { months } from "../json/otherJson.js";
+import { works } from "../json/galleryJson.js";
 
 const complexityOrder = {
   filterComplexityInitial: 0,
@@ -637,7 +590,6 @@ galleryCanvases.forEach((galleryWork, indexGalleryWork) => {
     // Сохранить переменную
     let id = filteredWorks[galleryPage * galleryCapacity + indexGalleryWork].id;
     sessionStorage.setItem("indexWork", id);
-    sessionStorage.setItem("numberSortingWork", numberSorting);
     // sessionStorage.setItem(
     //   "formData",
     //   JSON.stringify({ name: "John", email: "john@mail.com" }),

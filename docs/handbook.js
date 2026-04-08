@@ -1,6 +1,29 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 
+;// ./src/javascripts/json/otherJson.js
+var months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
+var filtersName = {
+  "filterComplexityInitial": "Начальная",
+  "filterComplexityMiddle": "Средняя",
+  "filterComplexityAdvanced": "Продвинутая",
+  "filterLibraryVanillajs": "Vanilla js",
+  "filterLibraryP5js": "P5.js",
+  "filterLibraryThreejs": "Three.js",
+  "filterFormatTechnique": "Техника",
+  "filterFormatTask": "Задача",
+  "filterFormatVariation": "Вариация",
+  "filterVerificationExpert": "Экспертная",
+  "filterVerificationAuthorial": "Авторская"
+};
+
+// Задание фильтров
+// Список доступных фильтров
+var filtersComplexity = ["filterComplexityInitial", "filterComplexityMiddle", "filterComplexityAdvanced"];
+var filtersLibrary = ["filterLibraryVanillajs", "filterLibraryP5js", "filterLibraryThreejs"];
+var filtersFormat = ["filterFormatTechnique", "filterFormatTask", "filterFormatVariation"];
+var filtersVerification = ["filterVerificationAuthorial", "filterVerificationExpert"];
+var filtersAll = [filtersComplexity, filtersLibrary, filtersFormat, filtersVerification];
 ;// ./src/javascripts/json/tutorialsJson.js
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -8,90 +31,228 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
 function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
-// Задание фильтров
-// Список доступных фильтров
-var filtersComplexity = ["filterComplexityInitial", "filterComplexityMiddle", "filterComplexityAdvanced"];
-var filtersLibrary = ["filterLibraryVanillajs", "filterLibraryP5js", "filterLibraryThreejs"];
-var filtersFormat = ["filterFormatTechnique", "filterFormatTask", "filterFormatVariation"];
-var filtersVerification = ["filterVerificationExpert", "filterVerificationAuthorial"];
-var filtersAll = [filtersComplexity, filtersLibrary, filtersFormat, filtersVerification];
-
 // Какие фильтры у каких модулей
 // p1m1
-var setFiltersPart1Module1Tutorial1 = new Set(["filterComplexityInitial", "filterLibraryVanillajs", "filterFormatTechnique", "filterVerificationExpert"]);
-var setFiltersPart1Module1Tutorial2 = new Set(["filterComplexityInitial", "filterLibraryP5js", "filterFormatTechnique", "filterVerificationExpert"]);
-var setFiltersPart1Module1Tutorial3 = new Set(["filterComplexityInitial", "filterLibraryVanillajs", "filterFormatTask", "filterVerificationExpert"]);
-// m-t
-var filtersPart1Module1 = [setFiltersPart1Module1Tutorial1, setFiltersPart1Module1Tutorial2, setFiltersPart1Module1Tutorial3];
-// p-m
-var setFiltersPart1Module1 = new Set([].concat(_toConsumableArray(setFiltersPart1Module1Tutorial1), _toConsumableArray(setFiltersPart1Module1Tutorial2), _toConsumableArray(setFiltersPart1Module1Tutorial3)));
-// p1m2
-var setFiltersPart1Module2Tutorial1 = new Set(["filterComplexityInitial", "filterLibraryP5js", "filterFormatTask", "filterVerificationExpert"]);
-var setFiltersPart1Module2Tutorial2 = new Set(["filterComplexityInitial", "filterLibraryP5js", "filterFormatTechnique", "filterVerificationExpert"]);
-var setFiltersPart1Module2Tutorial3 = new Set(["filterComplexityInitial", "filterLibraryVanillajs", "filterFormatTask", "filterVerificationExpert"]);
-var setFiltersPart1Module2Tutorial4 = new Set(["filterComplexityInitial", "filterLibraryVanillajs", "filterFormatTask", "filterVerificationExpert"]);
-var setFiltersPart1Module2Tutorial5 = new Set(["filterComplexityInitial", "filterLibraryVanillajs", "filterFormatTask", "filterVerificationExpert"]);
-// m-t
-var filtersPart1Module2 = [setFiltersPart1Module2Tutorial1, setFiltersPart1Module2Tutorial2, setFiltersPart1Module2Tutorial3, setFiltersPart1Module2Tutorial4, setFiltersPart1Module2Tutorial5];
-// p-m
-var setFiltersPart1Module2 = new Set([].concat(_toConsumableArray(setFiltersPart1Module2Tutorial1), _toConsumableArray(setFiltersPart1Module2Tutorial2), _toConsumableArray(setFiltersPart1Module2Tutorial3)));
-var filtersPart1 = [setFiltersPart1Module1, setFiltersPart1Module2];
-// p2m1
-var setFiltersPart2Module1Tutorial1 = new Set(["filterComplexityMiddle", "filterLibraryVanillajs", "filterFormatTechnique", "filterVerificationExpert"]);
-var setFiltersPart2Module1Tutorial2 = new Set(["filterComplexityMiddle", "filterLibraryVanillajs", "filterFormatTechnique", "filterVerificationExpert"]);
-var setFiltersPart2Module1Tutorial3 = new Set(["filterComplexityMiddle", "filterLibraryVanillajs", "filterFormatTask", "filterVerificationExpert"]);
-// m-t
-var filtersPart2Module1 = [setFiltersPart2Module1Tutorial1, setFiltersPart2Module1Tutorial2, setFiltersPart2Module1Tutorial3];
-//p-m
-var setFiltersPart2Module1 = new Set([].concat(_toConsumableArray(setFiltersPart2Module1Tutorial1), _toConsumableArray(setFiltersPart2Module1Tutorial2), _toConsumableArray(setFiltersPart2Module1Tutorial3)));
-// p2m2
-var setFiltersPart2Module2Tutorial1 = new Set(["filterComplexityMiddle", "filterLibraryP5js", "filterFormatVariation", "filterVerificationExpert"]);
-var setFiltersPart2Module2Tutorial2 = new Set(["filterComplexityMiddle", "filterLibraryP5js", "filterFormatVariation", "filterVerificationExpert"]);
-var setFiltersPart2Module2Tutorial3 = new Set(["filterComplexityMiddle", "filterLibraryP5js", "filterFormatTask", "filterVerificationExpert"]);
-// m-t
-var filtersPart2Module2 = [setFiltersPart2Module2Tutorial1, setFiltersPart2Module2Tutorial2, setFiltersPart2Module2Tutorial3];
-// p-m
-var setFiltersPart2Module2 = new Set([].concat(_toConsumableArray(setFiltersPart2Module2Tutorial1), _toConsumableArray(setFiltersPart2Module2Tutorial2), _toConsumableArray(setFiltersPart2Module2Tutorial3)));
-// p2m3
-var setFiltersPart2Module3Tutorial1 = new Set(["filterComplexityMiddle", "filterLibraryThreejs", "filterFormatTask", "filterVerificationExpert"]);
-var setFiltersPart2Module3Tutorial2 = new Set(["filterComplexityMiddle", "filterLibraryThreejs", "filterFormatTask", "filterVerificationExpert"]);
-var setFiltersPart2Module3Tutorial3 = new Set(["filterComplexityMiddle", "filterLibraryThreejs", "filterFormatVariation", "filterVerificationExpert"]);
-// m-t
-var filtersPart2Module3 = [setFiltersPart2Module3Tutorial1, setFiltersPart2Module3Tutorial2, setFiltersPart2Module3Tutorial3];
-// p-m
-var setFiltersPart2Module3 = new Set([].concat(_toConsumableArray(setFiltersPart2Module3Tutorial1), _toConsumableArray(setFiltersPart2Module3Tutorial2), _toConsumableArray(setFiltersPart2Module3Tutorial3)));
-var filtersPart2 = [setFiltersPart2Module1, setFiltersPart2Module2, setFiltersPart2Module3];
-// p3m1
-var setFiltersPart3Module1Tutorial1 = new Set(["filterComplexityAdvanced", "filterLibraryP5js", "filterFormatVariation", "filterVerificationExpert"]);
-var setFiltersPart3Module1Tutorial2 = new Set(["filterComplexityAdvanced", "filterLibraryThreejs", "filterFormatTechnique", "filterVerificationExpert"]);
-var setFiltersPart3Module1Tutorial3 = new Set(["filterComplexityAdvanced", "filterLibraryThreejs", "filterFormatTask", "filterVerificationExpert"]);
-// m-t
-var filtersPart3Module1 = [setFiltersPart3Module1Tutorial1, setFiltersPart3Module1Tutorial2, setFiltersPart3Module1Tutorial3];
-// p-m
-var setFiltersPart3Module1 = new Set([].concat(_toConsumableArray(setFiltersPart3Module1Tutorial1), _toConsumableArray(setFiltersPart3Module1Tutorial2), _toConsumableArray(setFiltersPart3Module1Tutorial3)));
-// p3m2
-var setFiltersPart3Module2Tutorial1 = new Set(["filterComplexityAdvanced", "filterLibraryThreejs", "filterFormatTask", "filterVerificationExpert"]);
-var setFiltersPart3Module2Tutorial2 = new Set(["filterComplexityAdvanced", "filterLibraryVanillajs", "filterFormatTechnique", "filterVerificationExpert"]);
-var setFiltersPart3Module2Tutorial3 = new Set(["filterComplexityAdvanced", "filterLibraryThreejs", "filterFormatVariation", "filterVerificationExpert"]);
-// m-t
-var filtersPart3Module2 = [setFiltersPart3Module2Tutorial1, setFiltersPart3Module2Tutorial2, setFiltersPart3Module2Tutorial3];
-// p-m
-var setFiltersPart3Module2 = new Set([].concat(_toConsumableArray(setFiltersPart3Module2Tutorial1), _toConsumableArray(setFiltersPart3Module2Tutorial2), _toConsumableArray(setFiltersPart3Module2Tutorial3)));
-// p3m3
-var setFiltersPart3Module3Tutorial1 = new Set(["filterComplexityAdvanced", "filterLibraryP5js", "filterFormatTask", "filterVerificationExpert"]);
-var setFiltersPart3Module3Tutorial2 = new Set(["filterComplexityAdvanced", "filterLibraryP5js", "filterFormatTechnique", "filterVerificationExpert"]);
-var setFiltersPart3Module3Tutorial3 = new Set(["filterComplexityAdvanced", "filterLibraryVanillajs", "filterFormatVariation", "filterVerificationExpert"]);
-// m-t
-var filtersPart3Module3 = [setFiltersPart3Module3Tutorial1, setFiltersPart3Module3Tutorial2, setFiltersPart3Module3Tutorial3];
-// p-m
-var setFiltersPart3Module3 = new Set([].concat(_toConsumableArray(setFiltersPart3Module3Tutorial1), _toConsumableArray(setFiltersPart3Module3Tutorial2), _toConsumableArray(setFiltersPart3Module3Tutorial3)));
-var filtersPart3 = [setFiltersPart3Module1, setFiltersPart3Module2, setFiltersPart3Module3];
+var tagsPart1Module1Tutorial1 = {
+  complexity: "filterComplexityInitial",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20251227"],
+  title: "Определение креативного кода",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"],
+  textFirst: ""
+};
+var tagsPart1Module1Tutorial2 = {
+  complexity: "filterComplexityInitial",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20260129"],
+  title: "Инструменты и среда",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart1Module1Tutorial3 = {
+  complexity: "filterComplexityInitial",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20260213"],
+  title: "Цвет, форма и композиция",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart1Module1 = [tagsPart1Module1Tutorial1, tagsPart1Module1Tutorial2, tagsPart1Module1Tutorial3];
+// p1 m2
+var tagsPart1Module2Tutorial1 = {
+  complexity: "filterComplexityInitial",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20260220"],
+  title: "Переменные и условия",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart1Module2Tutorial2 = {
+  complexity: "filterComplexityInitial",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20260227"],
+  title: "Циклы: ритм и структура",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart1Module2Tutorial3 = {
+  complexity: "filterComplexityInitial",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20260309"],
+  title: "Массивы и объекты",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart1Module2Tutorial4 = {
+  complexity: "filterComplexityInitial",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20260315"],
+  title: "Генерация случайности",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart1Module2Tutorial5 = {
+  complexity: "filterComplexityInitial",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20260315"],
+  title: "Паттерны повторов",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart1Module2 = [tagsPart1Module2Tutorial1, tagsPart1Module2Tutorial2, tagsPart1Module2Tutorial3, tagsPart1Module2Tutorial4, tagsPart1Module2Tutorial5];
+var tagsPart1 = [tagsPart1Module1, tagsPart1Module2];
+// p2 m1
+var tagsPart2Module1Tutorial1 = {
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20260327"],
+  title: "Создание и удаление элементов",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart2Module1 = [tagsPart2Module1Tutorial1];
+// p2 m2
+var tagsPart2Module2Tutorial1 = {
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20251227"],
+  title: "Определение креативного кода",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart2Module2 = [tagsPart2Module2Tutorial1];
+// p2 m3
+var tagsPart2Module3Tutorial1 = {
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20251227"],
+  title: "Определение креативного кода",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart2Module3 = [tagsPart2Module3Tutorial1];
+var tagsPart2 = [tagsPart2Module1, tagsPart2Module2, tagsPart2Module3];
+// p3 m1
+var tagsPart3Module1Tutorial1 = {
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20251227"],
+  title: "Определение креативного кода",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart3Module1 = [tagsPart3Module1Tutorial1];
+// p3 m2
+var tagsPart3Module2Tutorial1 = {
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20251227"],
+  title: "Определение креативного кода",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart3Module2 = [tagsPart3Module2Tutorial1];
+// p3 m3
+var tagsPart3Module3Tutorial1 = {
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20251227"],
+  title: "Определение креативного кода",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart3Module3 = [tagsPart3Module3Tutorial1];
+var tagsPart3 = [tagsPart3Module1, tagsPart3Module2, tagsPart3Module3];
+var tagsHandbook = [tagsPart1, tagsPart2, tagsPart3];
 
-// p
-var filtersParts = [filtersPart1, filtersPart2, filtersPart3];
+// helpers
+var toArray = function toArray(value) {
+  if (Array.isArray(value)) {
+    return value;
+  }
+  if (value === undefined || value === null || value === "") {
+    return [];
+  }
+  return [value];
+};
 
-// m
-var filtersModules = [filtersPart1Module1, filtersPart1Module2, filtersPart2Module1, filtersPart2Module2, filtersPart2Module3, filtersPart3Module1, filtersPart3Module2, filtersPart3Module3];
+// tutorial -> Set фильтров
+var tutorialToFilterSet = function tutorialToFilterSet(tutorial) {
+  return new Set([].concat(_toConsumableArray(toArray(tutorial.complexity)), _toConsumableArray(toArray(tutorial.library)), _toConsumableArray(toArray(tutorial.format)), _toConsumableArray(toArray(tutorial.verification))));
+};
+
+// module -> Array<Set>
+var moduleToTutorialSets = function moduleToTutorialSets(moduleTutorials) {
+  return moduleTutorials.map(function (tutorial) {
+    return tutorialToFilterSet(tutorial);
+  });
+};
+
+// module -> Set
+var moduleToModuleSet = function moduleToModuleSet(moduleTutorials) {
+  var tutorialSets = moduleToTutorialSets(moduleTutorials);
+  return new Set(tutorialSets.flatMap(function (tutorialSet) {
+    return _toConsumableArray(tutorialSet);
+  }));
+};
+
+// part -> Array<Set модулей>
+var partToModuleSets = function partToModuleSets(partModules) {
+  return partModules.map(function (moduleTutorials) {
+    return moduleToModuleSet(moduleTutorials);
+  });
+};
+var filtersModules = tagsHandbook.flatMap(function (partModules) {
+  return partModules.map(function (moduleTutorials) {
+    return moduleToTutorialSets(moduleTutorials);
+  });
+});
+var filtersParts = tagsHandbook.map(function (partModules) {
+  return partToModuleSets(partModules);
+});
 ;// ./src/javascripts/pages/handbook.js
 function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = handbook_unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
 function handbook_toConsumableArray(r) { return handbook_arrayWithoutHoles(r) || handbook_iterableToArray(r) || handbook_unsupportedIterableToArray(r) || handbook_nonIterableSpread(); }
@@ -198,6 +359,134 @@ var matrFilters = structuredClone(defMatrFilters);
 var noResults = defNoResults;
 var applyFilters = structuredClone(defApplyFilters);
 
+
+
+// Сортировка и баллы
+var complexityOrder = {
+  filterComplexityInitial: 0,
+  filterComplexityMiddle: 1,
+  filterComplexityAdvanced: 2
+};
+var verificationOrder = {
+  filterVerificationAuthorial: 0,
+  filterVerificationExpert: 1
+};
+function formatDate(dateJs) {
+  if (!dateJs) return "";
+  var year = dateJs.slice(0, 4);
+  var month = parseInt(dateJs.slice(4, 6), 10);
+  var day = dateJs.slice(6, 8);
+  return "".concat(day, " ").concat(months[month - 1], " ").concat(year);
+}
+function getLastTutorialDate(tutorial) {
+  if (!(tutorial !== null && tutorial !== void 0 && tutorial.date) || tutorial.date.length === 0) {
+    return "";
+  }
+  return tutorial.date.at(-1);
+}
+function average(values) {
+  if (!values.length) return 0;
+  return values.reduce(function (sum, value) {
+    return sum + value;
+  }, 0) / values.length;
+}
+function handbook_tutorialToFilterSet(tutorial) {
+  var toArray = function toArray(value) {
+    if (Array.isArray(value)) return value;
+    if (value === undefined || value === null || value === "") return [];
+    return [value];
+  };
+  return new Set([].concat(handbook_toConsumableArray(toArray(tutorial.complexity)), handbook_toConsumableArray(toArray(tutorial.library)), handbook_toConsumableArray(toArray(tutorial.format)), handbook_toConsumableArray(toArray(tutorial.verification))));
+}
+
+// Вычисление метаданных модулей для сортировки
+var handbookIntroDate = document.querySelector(".A_IntroHeadingApdate");
+
+// Метаданные модулей:
+// [partIndex][moduleIndex] -> объект с данными модуля
+var moduleMeta = tagsHandbook.map(function (partModules, partIndex) {
+  return partModules.map(function (moduleTutorials, moduleIndex) {
+    var tutorialDates = moduleTutorials.map(function (tutorial) {
+      return getLastTutorialDate(tutorial);
+    }).filter(Boolean);
+    var date = tutorialDates.sort().at(-1) || "";
+    var dateNumber = Number(date || 0);
+    var complexityValues = moduleTutorials.map(function (tutorial) {
+      return complexityOrder[tutorial.complexity];
+    }).filter(function (value) {
+      return value !== undefined;
+    });
+    var verificationValues = moduleTutorials.map(function (tutorial) {
+      return verificationOrder[tutorial.verification];
+    }).filter(function (value) {
+      return value !== undefined;
+    });
+    return {
+      partIndex: partIndex,
+      moduleIndex: moduleIndex,
+      originalIndex: moduleIndex,
+      tutorialCount: moduleTutorials.length,
+      date: date,
+      dateNumber: dateNumber,
+      complexityAvg: average(complexityValues),
+      verificationAvg: average(verificationValues),
+      filterSet: new Set(moduleTutorials.flatMap(function (tutorial) {
+        return handbook_toConsumableArray(handbook_tutorialToFilterSet(tutorial));
+      }))
+    };
+  });
+});
+var partMeta = moduleMeta.map(function (partModules, partIndex) {
+  var moduleDates = partModules.map(function (module) {
+    return module.date;
+  }).filter(Boolean);
+  return {
+    partIndex: partIndex,
+    moduleCount: partModules.length,
+    tutorialCount: partModules.reduce(function (sum, module) {
+      return sum + module.tutorialCount;
+    }, 0),
+    date: moduleDates.sort().at(-1) || "",
+    dateNumber: Number(moduleDates.sort().at(-1) || 0),
+    complexityAvg: average(partModules.map(function (module) {
+      return module.complexityAvg;
+    })),
+    verificationAvg: average(partModules.map(function (module) {
+      return module.verificationAvg;
+    }))
+  };
+});
+var handbookMeta = {
+  partCount: partMeta.length,
+  moduleCount: moduleMeta.flat().length,
+  tutorialCount: partMeta.reduce(function (sum, part) {
+    return sum + part.tutorialCount;
+  }, 0),
+  date: partMeta.map(function (part) {
+    return part.date;
+  }).filter(Boolean).sort().at(-1) || "",
+  dateNumber: Number(partMeta.map(function (part) {
+    return part.date;
+  }).filter(Boolean).sort().at(-1) || 0),
+  complexityAvg: average(partMeta.map(function (part) {
+    return part.complexityAvg;
+  })),
+  verificationAvg: average(partMeta.map(function (part) {
+    return part.verificationAvg;
+  }))
+};
+
+// Старый аналог filtersParts, но уже из tagsHandbook
+var handbook_filtersParts = moduleMeta.map(function (partModules) {
+  return partModules.map(function (module) {
+    return module.filterSet;
+  });
+});
+
+// Дата учебника = максимальная дата среди всех модулей
+if (handbookIntroDate && handbookMeta.date) {
+  handbookIntroDate.textContent = "\u041E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u043E ".concat(formatDate(handbookMeta.date));
+}
 function calcFilters() {
   applyFilters = structuredClone(defApplyFilters);
   matrDraw = structuredClone(defMatrDraw);
@@ -219,7 +508,7 @@ function calcDrawParts() {
   // Рисуем полашку по умолчанию - нет результатов
   noResults = !defNoResults;
   // Перебор разделов
-  filtersParts.forEach(function (filterPart, indexPart) {
+  handbook_filtersParts.forEach(function (filterPart, indexPart) {
     // Раздел по умолчанию - не рисуем
     matrDraw[indexPart][0] = false;
 
@@ -360,7 +649,10 @@ openSortsButton.addEventListener("click", function () {
 });
 
 // Применение сортировки
-var numberSorting = 0; // 0, 1, 2
+var numberSorting = Number(sessionStorage.getItem("numberSortingHandbook")); // 0, 1, 2
+if (Number.isNaN(numberSorting)) {
+  numberSorting = 0;
+}
 var nameSort = document.querySelector(".A_FilterSortingByText");
 var namesSort = ["По сложности", "По дате обновления", "По проверенности"];
 var pointSort1 = document.querySelector(".Q_FilterSortingByComplexityIcon");
@@ -375,27 +667,70 @@ var handbookModulesPart1 = document.getElementById("handbookModulesPart1");
 var handbookModulesPart2 = document.getElementById("handbookModulesPart2");
 var handbookModulesPart3 = document.getElementById("handbookModulesPart3");
 var handbookModulesParts = [handbookModulesPart1, handbookModulesPart2, handbookModulesPart3];
-var originalHandbookModulesPart1 = Array.from(handbookModulesPart1.children);
-var originalHandbookModulesPart2 = Array.from(handbookModulesPart2.children);
-var originalHandbookModulesPart3 = Array.from(handbookModulesPart3.children);
-var originalHandbookModulesParts = [originalHandbookModulesPart1, originalHandbookModulesPart2, originalHandbookModulesPart3];
 
-// Матрица переходов
-var transitionSorts = [[[0, 1], [0, 1, 2], [0, 1, 2]], [[1, 0], [0, 1, 2], [0, 1, 2]], [[0, 1], [0, 1, 2], [0, 1, 2]]];
+// Разделение на пустые и заполненные модули
+var realHandbookModulesParts = handbookModulesParts.map(function (part) {
+  return Array.from(part.children).filter(function (item) {
+    return item.id;
+  });
+});
+var fillerHandbookModulesParts = handbookModulesParts.map(function (part) {
+  return Array.from(part.children).filter(function (item) {
+    return !item.id;
+  });
+});
+
+// Вычисление сортировки
+function getSortedModulesForPart(partIndex) {
+  var modules = handbook_toConsumableArray(moduleMeta[partIndex]);
+  if (numberSorting === 0) {
+    // По сложности: initial -> middle -> advanced
+    modules.sort(function (a, b) {
+      var diff = a.complexityAvg - b.complexityAvg;
+      if (diff !== 0) return diff;
+      return a.originalIndex - b.originalIndex;
+    });
+  } else if (numberSorting === 1) {
+    // По дате: новые сверху
+    modules.sort(function (a, b) {
+      var diff = b.dateNumber - a.dateNumber;
+      if (diff !== 0) return diff;
+      return a.originalIndex - b.originalIndex;
+    });
+  } else if (numberSorting === 2) {
+    // По проверенности: экспертная выше авторской
+    modules.sort(function (a, b) {
+      var diff = b.verificationAvg - a.verificationAvg;
+      if (diff !== 0) return diff;
+      return a.originalIndex - b.originalIndex;
+    });
+  }
+  return modules;
+}
+
+// Применение сортировки
 function applyingSorting() {
   pointsSort.forEach(function (point) {
     point.style.display = "none";
   });
   nameSort.textContent = namesSort[numberSorting];
-  // nameSort.innerHTML = `${namesSort[numberSorting]}`;
   pointsSort[numberSorting].style.display = "flex";
-  // console.log(`"Сортировка ${numberSorting}`);
-
-  // Применение сортировки
-  handbookModulesParts.forEach(function (handbookPart, jPart) {
+  handbookModulesParts.forEach(function (handbookPart, partIndex) {
+    var sortedModules = getSortedModulesForPart(partIndex);
+    var fillers = fillerHandbookModulesParts[partIndex];
     handbookPart.innerHTML = "";
-    transitionSorts[numberSorting][jPart].forEach(function (kPosition) {
-      handbookModulesParts[jPart].appendChild(originalHandbookModulesParts[jPart][kPosition]);
+
+    // Сначала реальные модули
+    sortedModules.forEach(function (module) {
+      var moduleNode = handbook[partIndex][1][module.originalIndex];
+      if (moduleNode) {
+        handbookPart.appendChild(moduleNode);
+      }
+    });
+
+    // Потом пустые плейсхолдеры
+    fillers.forEach(function (filler) {
+      handbookPart.appendChild(filler);
     });
   });
 }
@@ -405,6 +740,7 @@ buttonsSort.forEach(function (button, iSort) {
   button.addEventListener("click", function () {
     // Определение сортировки
     numberSorting = iSort;
+    sessionStorage.setItem("numberSortingHandbook", numberSorting);
     closeMenuSorting();
     applyingSorting();
   });
@@ -428,10 +764,37 @@ resetButtons.forEach(function (resetButton) {
 
       // Сброс сортировки
       numberSorting = 0;
+      sessionStorage.setItem("numberSortingHandbook", numberSorting);
       closeMenuSorting();
       applyingSorting();
     });
   }
 });
+
+// Динамическое обновление даты
+function drawModuleDates() {
+  moduleMeta.forEach(function (partModules, partIndex) {
+    partModules.forEach(function (module, moduleIndex) {
+      var moduleCard = handbook[partIndex][1][moduleIndex];
+      if (!moduleCard) return;
+      var dateNode = moduleCard.querySelector(".A_HandbookModuleDate");
+      if (!dateNode || !module.date) return;
+      dateNode.textContent = formatDate(module.date);
+    });
+  });
+}
+var handbookIntroAbout = document.querySelector(".A_IntroHeadingAbout");
+
+// Динамический счётчик
+function drawContTutorials() {
+  handbookIntroAbout.innerHTML = "".concat(handbookMeta.partCount, "&nbsp;\u0440\u0430\u0437\u0434\u0435\u043B\u0430, ") + "".concat(handbookMeta.moduleCount, "&nbsp;\u043C\u043E\u0434\u0443\u043B\u0435\u0439 \u0438 ") + "".concat(handbookMeta.tutorialCount, "&nbsp;\u0438\u043D\u0442\u0435\u0440\u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0445 \u0442\u0443\u0442\u043E\u0440\u0438\u0430\u043B\u0430 \u0441&nbsp;\u044D\u043A\u0441\u043F\u0435\u0440\u0438\u043C\u0435\u043D\u0442\u0430\u043C\u0438");
+  // console.log("pC", handbookMeta.partCount, "mC", handbookMeta.moduleCount, "tC", handbookMeta.tutorialCount);
+}
+calcFilters();
+calcDrawParts();
+applyingSorting();
+drawingParts();
+drawModuleDates();
+// drawContTutorials();
 /******/ })()
 ;

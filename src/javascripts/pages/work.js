@@ -72,100 +72,118 @@ const galleryVideos = {
   30: vid30,
 };
 // Работы - данные
-import { months, filters, works } from "../json/galleryJson.js";
+import { months, filtersName } from "../json/otherJson.js";
+import { works } from "../json/galleryJson.js";
 
-function showWork() {
-  // Получить переменную id работы
-  const indexWork = sessionStorage.getItem("indexWork");
+function getCurrentWork() {
+  let indexWork = sessionStorage.getItem("indexWork");
+
   if (!indexWork) {
     indexWork = 0;
   }
-  const drawWork = works[indexWork];
-  // Данные
-  // Путь
+
+  return works[indexWork];
+}
+
+function formatWorkDate(dateJs) {
+  const year = dateJs.slice(0, 4);
+  const month = parseInt(dateJs.slice(4, 6), 10);
+  const day = dateJs.slice(6, 8);
+
+  return day + " " + months[month - 1] + " " + year;
+}
+
+function drawWorkTextData(drawWork) {
   const path = document.querySelector(".M_WorkPath");
   path.innerHTML = "Галерея / " + drawWork.title;
-  // Дата
-  const dateJs = drawWork.date.at(-1);
-  const year = dateJs.slice(0, 4);
-  const month = parseInt(dateJs.slice(4, 6));
-  const day = dateJs.slice(6, 8);
+
   const date = document.querySelector(".A_WorkDate");
-  date.innerHTML = "Обновлено " + day + " " + months[month - 1] + " " + year;
-  // Картинка
-  if (drawWork.extension == "png") {
-    const image = document.querySelector(".A_WorkPreviewImg");
-    image.src = galleryImages[indexWork];
+  date.innerHTML = "Обновлено " + formatWorkDate(drawWork.date.at(-1));
+
+  const author = document.querySelector(".A_WorkMetaAuthor");
+  author.innerHTML = drawWork.author;
+
+  const title = document.querySelector(".A_WorkMetaTitle");
+  title.innerHTML = drawWork.title;
+
+  const description = document.querySelector(".A_WorkMetaDescription");
+  description.innerHTML = drawWork.description;
+
+  const link = document.querySelector(".A_WorkLink");
+  link.href = drawWork.link;
+}
+
+function drawWorkPreview(drawWork) {
+  const image = document.querySelector(".A_WorkPreviewImg");
+  const video = document.querySelector(".A_WorkPreviewVideo");
+
+  if (drawWork.extension === "png") {
+    image.src = galleryImages[drawWork.id];
     image.style.display = "flex";
 
-    const video = document.querySelector(".A_WorkPreviewVideo");
     video.style.display = "none";
-  }
-  if (drawWork.extension == "mp4") {
-    const video = document.querySelector(".A_WorkPreviewVideo");
-    video.src = galleryVideos[indexWork];
+    video.pause();
+    video.removeAttribute("src");
+  } else if (drawWork.extension === "mp4") {
+    video.src = galleryVideos[drawWork.id];
     video.load();
     video.style.display = "flex";
 
-    const image = document.querySelector(".A_WorkPreviewImg");
     image.style.display = "none";
+    image.removeAttribute("src");
+  } else {
+    image.style.display = "none";
+    video.style.display = "none";
   }
-  // Текстовые поля
-  const author = document.querySelector(".A_WorkMetaAuthor");
-  author.innerHTML = drawWork.author;
-  const title = document.querySelector(".A_WorkMetaTitle");
-  title.innerHTML = drawWork.title;
-  const description = document.querySelector(".A_WorkMetaDescription");
-  description.innerHTML = drawWork.description;
-  const link = document.querySelector(".A_WorkLink");
-  link.href = drawWork.link;
-  // Теги
-  // Главные
-  const tagsPrimaryItems = document.querySelector(".C_WorkMetaTagsPrimary").children;
-  Array.from(tagsPrimaryItems).forEach((item) => {
-    item.style.display = "none";
-  });
-  // Ключи из work
-  const data = {
-    complexity: drawWork.complexity,
-    library: drawWork.library,
-    verification: drawWork.verification,
-  };
-  // library может быть строкой или массивом
-  const libraryKeys = Array.isArray(data.library)
-    ? data.library
-    : [data.library];
-  // Собираем ключи в нужном порядке
-  const primaryKeys = [
-    data.complexity,
-    ...libraryKeys,
-    data.verification,
-  ]
-    .filter(Boolean)
-    .slice(0, 3);
-  // Переводим ключи в подписи через словарь filters
-  const primaryValues = primaryKeys.map((key) => filters[key] ?? key);
+}
 
-  // Заполняем видимые теги
-  primaryValues.forEach((value, i) => {
-    if (tagsPrimaryItems[i]) {
-      tagsPrimaryItems[i].textContent = value;
-      tagsPrimaryItems[i].style.display = "flex";
-    }
+function drawWorkTags(drawWork) {
+  const primaryContainer = document.querySelector(".C_WorkMetaTagsPrimary");
+  const secondaryContainer = document.querySelector(".C_WorkMetaTagsSecondary");
+
+  if (!primaryContainer || !secondaryContainer) return;
+
+  // Очищаем контейнеры
+  primaryContainer.innerHTML = "";
+  secondaryContainer.innerHTML = "";
+
+  // Основные теги
+  const libraryKeys = Array.isArray(drawWork.library)
+    ? drawWork.library
+    : [drawWork.library];
+
+  const primaryKeys = [
+    drawWork.complexity,
+    ...libraryKeys,
+    drawWork.verification,
+  ].filter(Boolean);
+
+  const primaryValues = primaryKeys.map((key) => filtersName[key] ?? key);
+
+  primaryValues.forEach((value) => {
+    const li = document.createElement("li");
+    li.className = "A_WorkMetaTagPrimary";
+    li.textContent = value;
+    primaryContainer.appendChild(li);
   });
-  // Второстепенные
-  const tagsSecondaryItems = document.querySelector(".C_WorkMetaTagsSecondary").children;
-  Array.from(tagsSecondaryItems).forEach((item) => {
-    item.style.display = "none";
-  });
+
+  // Второстепенные теги
   const secondaryTags = drawWork.tags || [];
-  const valuesSecondary = secondaryTags.slice(0, tagsSecondaryItems.length);
-  valuesSecondary.forEach((value, i) => {
-    if (tagsSecondaryItems[i]) {
-      tagsSecondaryItems[i].textContent = value;
-      tagsSecondaryItems[i].style.display = "flex";
-    }
+
+  secondaryTags.forEach((value) => {
+    const li = document.createElement("li");
+    li.className = "A_WorkMetaTagSecondary";
+    li.textContent = value;
+    secondaryContainer.appendChild(li);
   });
+}
+
+function showWork() {
+  const drawWork = getCurrentWork();
+
+  drawWorkTextData(drawWork);
+  drawWorkPreview(drawWork);
+  drawWorkTags(drawWork);
 }
 
 showWork()

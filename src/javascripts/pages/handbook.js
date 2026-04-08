@@ -147,7 +147,147 @@ let matrDraw = structuredClone(defMatrDraw);
 let matrFilters = structuredClone(defMatrFilters);
 let noResults = defNoResults;
 let applyFilters = structuredClone(defApplyFilters);
-import { filtersAll, filtersParts } from "../json/tutorialsJson.js";
+
+import { months, filtersAll } from "../json/otherJson.js";
+import { tagsHandbook } from "../json/tutorialsJson.js";
+
+// Сортировка и баллы
+const complexityOrder = {
+  filterComplexityInitial: 0,
+  filterComplexityMiddle: 1,
+  filterComplexityAdvanced: 2,
+};
+
+const verificationOrder = {
+  filterVerificationAuthorial: 0,
+  filterVerificationExpert: 1,
+};
+
+function formatDate(dateJs) {
+  if (!dateJs) return "";
+
+  const year = dateJs.slice(0, 4);
+  const month = parseInt(dateJs.slice(4, 6), 10);
+  const day = dateJs.slice(6, 8);
+
+  return `${day} ${months[month - 1]} ${year}`;
+}
+
+function getLastTutorialDate(tutorial) {
+  if (!tutorial?.date || tutorial.date.length === 0) {
+    return "";
+  }
+  return tutorial.date.at(-1);
+}
+
+function average(values) {
+  if (!values.length) return 0;
+  return values.reduce((sum, value) => sum + value, 0) / values.length;
+}
+
+function tutorialToFilterSet(tutorial) {
+  const toArray = (value) => {
+    if (Array.isArray(value)) return value;
+    if (value === undefined || value === null || value === "") return [];
+    return [value];
+  };
+
+  return new Set([
+    ...toArray(tutorial.complexity),
+    ...toArray(tutorial.library),
+    ...toArray(tutorial.format),
+    ...toArray(tutorial.verification),
+  ]);
+}
+
+// Вычисление метаданных модулей для сортировки
+const handbookIntroDate = document.querySelector(".A_IntroHeadingApdate");
+
+// Метаданные модулей:
+// [partIndex][moduleIndex] -> объект с данными модуля
+const moduleMeta = tagsHandbook.map((partModules, partIndex) => {
+  return partModules.map((moduleTutorials, moduleIndex) => {
+    const tutorialDates = moduleTutorials
+      .map((tutorial) => getLastTutorialDate(tutorial))
+      .filter(Boolean);
+
+    const date = tutorialDates.sort().at(-1) || "";
+    const dateNumber = Number(date || 0);
+
+    const complexityValues = moduleTutorials
+      .map((tutorial) => complexityOrder[tutorial.complexity])
+      .filter((value) => value !== undefined);
+
+    const verificationValues = moduleTutorials
+      .map((tutorial) => verificationOrder[tutorial.verification])
+      .filter((value) => value !== undefined);
+
+    return {
+      partIndex,
+      moduleIndex,
+      originalIndex: moduleIndex,
+      tutorialCount: moduleTutorials.length,
+      date,
+      dateNumber,
+      complexityAvg: average(complexityValues),
+      verificationAvg: average(verificationValues),
+      filterSet: new Set(
+        moduleTutorials.flatMap((tutorial) => [...tutorialToFilterSet(tutorial)])
+      ),
+    };
+  });
+});
+
+const partMeta = moduleMeta.map((partModules, partIndex) => {
+  const moduleDates = partModules
+    .map((module) => module.date)
+    .filter(Boolean);
+
+  return {
+    partIndex,
+    moduleCount: partModules.length,
+    tutorialCount: partModules.reduce(
+      (sum, module) => sum + module.tutorialCount,
+      0,
+    ),
+    date: moduleDates.sort().at(-1) || "",
+    dateNumber: Number(moduleDates.sort().at(-1) || 0),
+    complexityAvg: average(partModules.map((module) => module.complexityAvg)),
+    verificationAvg: average(
+      partModules.map((module) => module.verificationAvg),
+    ),
+  };
+});
+
+const handbookMeta = {
+  partCount: partMeta.length,
+  moduleCount: moduleMeta.flat().length,
+  tutorialCount: partMeta.reduce((sum, part) => sum + part.tutorialCount, 0),
+  date: partMeta
+    .map((part) => part.date)
+    .filter(Boolean)
+    .sort()
+    .at(-1) || "",
+  dateNumber: Number(
+    partMeta
+      .map((part) => part.date)
+      .filter(Boolean)
+      .sort()
+      .at(-1) || 0,
+  ),
+  complexityAvg: average(partMeta.map((part) => part.complexityAvg)),
+  verificationAvg: average(partMeta.map((part) => part.verificationAvg)),
+};
+
+// Старый аналог filtersParts, но уже из tagsHandbook
+const filtersParts = moduleMeta.map((partModules) => {
+  return partModules.map((module) => module.filterSet);
+});
+
+// Дата учебника = максимальная дата среди всех модулей
+if (handbookIntroDate && handbookMeta.date) {
+  handbookIntroDate.textContent = `Обновлено ${formatDate(handbookMeta.date)}`;
+}
 
 function calcFilters() {
   applyFilters = structuredClone(defApplyFilters);
@@ -318,7 +458,11 @@ openSortsButton.addEventListener("click", () => {
 });
 
 // Применение сортировки
-let numberSorting = 0; // 0, 1, 2
+let numberSorting = Number(sessionStorage.getItem("numberSortingHandbook")); // 0, 1, 2
+if (Number.isNaN(numberSorting)) {
+  numberSorting = 0;
+}
+
 const nameSort = document.querySelector(".A_FilterSortingByText");
 const namesSort = ["По сложности", "По дате обновления", "По проверенности"];
 
@@ -343,52 +487,73 @@ const handbookModulesParts = [
   handbookModulesPart3,
 ];
 
-const originalHandbookModulesPart1 = Array.from(handbookModulesPart1.children);
-const originalHandbookModulesPart2 = Array.from(handbookModulesPart2.children);
-const originalHandbookModulesPart3 = Array.from(handbookModulesPart3.children);
-const originalHandbookModulesParts = [
-  originalHandbookModulesPart1,
-  originalHandbookModulesPart2,
-  originalHandbookModulesPart3,
-];
+// Разделение на пустые и заполненные модули
+const realHandbookModulesParts = handbookModulesParts.map((part) =>
+  Array.from(part.children).filter((item) => item.id)
+);
+const fillerHandbookModulesParts = handbookModulesParts.map((part) =>
+  Array.from(part.children).filter((item) => !item.id)
+);
 
-// Матрица переходов
-const transitionSorts = [
-  [
-    [0, 1],
-    [0, 1, 2],
-    [0, 1, 2],
-  ],
-  [
-    [1, 0],
-    [0, 1, 2],
-    [0, 1, 2],
-  ],
-  [
-    [0, 1],
-    [0, 1, 2],
-    [0, 1, 2],
-  ],
-];
+// Вычисление сортировки
+function getSortedModulesForPart(partIndex) {
+  const modules = [...moduleMeta[partIndex]];
 
+  if (numberSorting === 0) {
+    // По сложности: initial -> middle -> advanced
+    modules.sort((a, b) => {
+      const diff = a.complexityAvg - b.complexityAvg;
+      if (diff !== 0) return diff;
+
+      return a.originalIndex - b.originalIndex;
+    });
+  } else if (numberSorting === 1) {
+    // По дате: новые сверху
+    modules.sort((a, b) => {
+      const diff = b.dateNumber - a.dateNumber;
+      if (diff !== 0) return diff;
+
+      return a.originalIndex - b.originalIndex;
+    });
+  } else if (numberSorting === 2) {
+    // По проверенности: экспертная выше авторской
+    modules.sort((a, b) => {
+      const diff = b.verificationAvg - a.verificationAvg;
+      if (diff !== 0) return diff;
+
+      return a.originalIndex - b.originalIndex;
+    });
+  }
+
+  return modules;
+}
+
+// Применение сортировки
 function applyingSorting() {
   pointsSort.forEach((point) => {
     point.style.display = "none";
   });
 
   nameSort.textContent = namesSort[numberSorting];
-  // nameSort.innerHTML = `${namesSort[numberSorting]}`;
   pointsSort[numberSorting].style.display = "flex";
-  // console.log(`"Сортировка ${numberSorting}`);
 
-  // Применение сортировки
-  handbookModulesParts.forEach((handbookPart, jPart) => {
+  handbookModulesParts.forEach((handbookPart, partIndex) => {
+    const sortedModules = getSortedModulesForPart(partIndex);
+    const fillers = fillerHandbookModulesParts[partIndex];
+
     handbookPart.innerHTML = "";
 
-    transitionSorts[numberSorting][jPart].forEach((kPosition) => {
-      handbookModulesParts[jPart].appendChild(
-        originalHandbookModulesParts[jPart][kPosition],
-      );
+    // Сначала реальные модули
+    sortedModules.forEach((module) => {
+      const moduleNode = handbook[partIndex][1][module.originalIndex];
+      if (moduleNode) {
+        handbookPart.appendChild(moduleNode);
+      }
+    });
+
+    // Потом пустые плейсхолдеры
+    fillers.forEach((filler) => {
+      handbookPart.appendChild(filler);
     });
   });
 }
@@ -398,6 +563,7 @@ buttonsSort.forEach((button, iSort) => {
   button.addEventListener("click", () => {
     // Определение сортировки
     numberSorting = iSort;
+    sessionStorage.setItem("numberSortingHandbook", numberSorting);
     closeMenuSorting();
     applyingSorting();
   });
@@ -422,8 +588,42 @@ resetButtons.forEach((resetButton) => {
 
       // Сброс сортировки
       numberSorting = 0;
+      sessionStorage.setItem("numberSortingHandbook", numberSorting);
       closeMenuSorting();
       applyingSorting();
     });
   }
 });
+
+// Динамическое обновление даты
+function drawModuleDates() {
+  moduleMeta.forEach((partModules, partIndex) => {
+    partModules.forEach((module, moduleIndex) => {
+      const moduleCard = handbook[partIndex][1][moduleIndex];
+      if (!moduleCard) return;
+
+      const dateNode = moduleCard.querySelector(".A_HandbookModuleDate");
+      if (!dateNode || !module.date) return;
+
+      dateNode.textContent = formatDate(module.date);
+    });
+  });
+}
+
+const handbookIntroAbout = document.querySelector(".A_IntroHeadingAbout");
+
+// Динамический счётчик
+function drawContTutorials() {
+  handbookIntroAbout.innerHTML =
+    `${handbookMeta.partCount}&nbsp;раздела, ` +
+    `${handbookMeta.moduleCount}&nbsp;модулей и ` +
+    `${handbookMeta.tutorialCount}&nbsp;интерактивных туториала с&nbsp;экспериментами`;
+  // console.log("pC", handbookMeta.partCount, "mC", handbookMeta.moduleCount, "tC", handbookMeta.tutorialCount);
+}
+
+calcFilters();
+calcDrawParts();
+applyingSorting();
+drawingParts();
+drawModuleDates();
+// drawContTutorials();

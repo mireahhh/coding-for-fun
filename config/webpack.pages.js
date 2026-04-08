@@ -26,8 +26,8 @@ const htmlPages = [
   ]),
 
   createPages(
-    "./src/pages/parts/part1/module1/tutorial0.html",
-    "./pages/parts/part1/module1/tutorial0.html",
+    "./src/pages/parts/part0/module0/tutorial0.html",
+    "./pages/parts/part0/module0/tutorial0.html",
     ["index", "tutorial"],
   ),
   // Часть1 Модуль1 ./part1/module1
@@ -44,12 +44,12 @@ const htmlPages = [
   createPages(
     "./src/pages/parts/part1/module1/tutorial2.html",
     "./pages/parts/part1/module1/tutorial2.html",
-    ["index"],
+    ["index", "tutorial"],
   ),
   createPages(
     "./src/pages/parts/part1/module1/tutorial3.html",
     "./pages/parts/part1/module1/tutorial3.html",
-    ["index"],
+    ["index", "tutorial"],
   ),
   // Часть1 Модуль2 ./part1/module2
   createPages(
@@ -60,7 +60,7 @@ const htmlPages = [
   createPages(
     "./src/pages/parts/part1/module2/tutorial1.html",
     "./pages/parts/part1/module2/tutorial1.html",
-    ["index"],
+    ["index", "tutorial"],
   ),
 ];
 

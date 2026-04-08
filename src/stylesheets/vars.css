@@ -9,8 +9,9 @@
 
     /* spacing */
     --size-spacing-0: 0rem;
-    --size-spacing-05: 0.03125rem;
+    --size-spacing-0-5: 0.03125rem;
     --size-spacing-1: 0.0625rem;
+    --size-spacing-1-5: 0.09375rem;
     --size-spacing-2: 0.125rem;
     --size-spacing-3: 0.1875rem;
     --size-spacing-4: 0.25rem;

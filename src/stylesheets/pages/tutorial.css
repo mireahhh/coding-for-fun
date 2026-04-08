@@ -248,45 +248,6 @@
                         width: 100%;
                         z-index: 1;
                     }
-
-                    .A_TutorialSingleCodeExecutionButton {
-                        position: absolute;
-                        top: var(--size-spacing-14);
-                        right: var(--size-spacing-14);
-                        z-index: 2;
-
-                        width: var(--size-spacing-32);
-                        height: var(--size-spacing-32);
-
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-
-                        border-radius: 50%;
-                        background: var(--colors-neutrals-150-60);
-
-                        .Q_TutorialSingleCodeExecutionIconRun,
-                        .Q_TutorialSingleCodeExecutionIconStop {
-                            width: var(--size-spacing-16);
-                            height: var(--size-spacing-16);
-                        }
-
-                        .Q_TutorialSingleCodeExecutionIconStop {
-                            display: none;
-                        }
-                    }
-                }
-
-                &.is-running {
-                    .A_TutorialSingleCodeExecutionButton {
-                        .Q_TutorialSingleCodeExecutionIconRun {
-                            display: none;
-                        }
-
-                        .Q_TutorialSingleCodeExecutionIconStop {
-                            display: block;
-                        }
-                    }
                 }
 
                 .O_TutorialSingleCodeTexts {
@@ -321,11 +282,9 @@
                             width: 100%;
                             box-sizing: border-box;
                             padding: var(--size-spacing-16);
-                            padding-right: calc(2 * var(--size-spacing-32) + 2 * var(--size-spacing-12));
+                            /* padding-right: calc(3 * var(--size-spacing-32) + 3 * var(--size-spacing-12)); */
                             overflow: auto;
                             white-space: pre;
-
-                            /* U_FontC2-Code */
                             color: var(--colors-neutrals-450);
                         }
 
@@ -337,8 +296,9 @@
                             display: flex;
                             flex-direction: row;
                             align-items: center;
-                            gap: var(--size-spacing-12);
+                            gap: var(--size-spacing-8);
 
+                            .A_TutorialSingleCodeTextButtonRunStop,
                             .A_TutorialSingleCodeTextButtonRestart,
                             .A_TutorialSingleCodeTextButtonCopy {
                                 width: var(--size-spacing-32);
@@ -357,10 +317,17 @@
                                 opacity: var(--official-interaction-hover-opacity);
                             }
 
-                            .Q_TutorialSingleCodeExecutionIconRestart,
-                            .Q_TutorialSingleCodeExecutionIconCopy {
+                            .Q_TutorialSingleCodeIconRun,
+                            .Q_TutorialSingleCodeIconStop,
+                            .Q_TutorialSingleCodeIconRestart,
+                            .Q_TutorialSingleCodeIconCopy {
+                                display: flex;
                                 width: var(--size-spacing-16);
                                 height: var(--size-spacing-16);
+                            }
+
+                            .Q_TutorialSingleCodeIconStop {
+                                display: none;
                             }
                         }
                     }
@@ -369,9 +336,17 @@
                         display: flex;
                         align-items: flex-start;
                         align-self: stretch;
-
-                        /* U_FontB1 */
                         color: var(--colors-neutrals-900);
+                    }
+                }
+
+                &.is-running {
+                    .Q_TutorialSingleCodeIconRun {
+                        display: none;
+                    }
+
+                    .Q_TutorialSingleCodeIconStop {
+                        display: flex;
                     }
                 }
             }

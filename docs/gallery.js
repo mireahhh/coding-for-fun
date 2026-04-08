@@ -107,24 +107,36 @@ const _25_namespaceObject = __webpack_require__.p + "2d438ef83c06a465d03f.mp4";
 const _27_namespaceObject = __webpack_require__.p + "c6b5ad76b978d3b848d0.mp4";
 ;// ./src/images/gallery/30.mp4
 const _30_namespaceObject = __webpack_require__.p + "987726362f3de08dea36.mp4";
-;// ./src/javascripts/json/galleryJson.js
+;// ./src/javascripts/json/otherJson.js
 var months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
-var filters = {
+var filtersName = {
   "filterComplexityInitial": "Начальная",
   "filterComplexityMiddle": "Средняя",
   "filterComplexityAdvanced": "Продвинутая",
   "filterLibraryVanillajs": "Vanilla js",
   "filterLibraryP5js": "P5.js",
   "filterLibraryThreejs": "Three.js",
+  "filterFormatTechnique": "Техника",
+  "filterFormatTask": "Задача",
+  "filterFormatVariation": "Вариация",
   "filterVerificationExpert": "Экспертная",
   "filterVerificationAuthorial": "Авторская"
 };
+
+// Задание фильтров
+// Список доступных фильтров
+var filtersComplexity = ["filterComplexityInitial", "filterComplexityMiddle", "filterComplexityAdvanced"];
+var filtersLibrary = ["filterLibraryVanillajs", "filterLibraryP5js", "filterLibraryThreejs"];
+var filtersFormat = ["filterFormatTechnique", "filterFormatTask", "filterFormatVariation"];
+var filtersVerification = ["filterVerificationAuthorial", "filterVerificationExpert"];
+var filtersAll = [filtersComplexity, filtersLibrary, filtersFormat, filtersVerification];
+;// ./src/javascripts/json/galleryJson.js
 var works = [
 // {
 //   id: -1,
 //   state: 1,
 //   official: "",
-//   date: ["20260327"],
+//   date: ["20260227"],
 //   title: "Название работы",
 //   author: "Автор",
 //   complexity: "filterComplexityInitial; filterComplexityMiddle; filterComplexityAdvanced",
@@ -163,7 +175,7 @@ var works = [
   id: 0,
   state: 1,
   official: "",
-  date: ["20260415"],
+  date: ["20260315"],
   title: "Flower Power",
   author: "Katarina Lingat",
   complexity: "filterComplexityMiddle",
@@ -180,7 +192,7 @@ var works = [
   id: 1,
   state: 1,
   official: "",
-  date: ["20260414"],
+  date: ["20260314"],
   title: "Sandspiel",
   author: "digger21orange",
   complexity: "filterComplexityMiddle",
@@ -197,7 +209,7 @@ var works = [
   id: 2,
   state: 1,
   official: "",
-  date: ["20260413"],
+  date: ["20260313"],
   title: "SPACE TYPE",
   author: "kielm",
   complexity: "filterComplexityMiddle",
@@ -214,7 +226,7 @@ var works = [
   id: 3,
   state: 1,
   official: "",
-  date: ["20260412"],
+  date: ["20260312"],
   title: "The Game of Life",
   author: "Sam Twidale",
   complexity: "filterComplexityAdvanced",
@@ -231,7 +243,7 @@ var works = [
   id: 4,
   state: 1,
   official: "",
-  date: ["20260411"],
+  date: ["20260311"],
   title: "Cell Cycle",
   author: "Nervous System",
   complexity: "filterComplexityAdvanced",
@@ -248,7 +260,7 @@ var works = [
   id: 5,
   state: 1,
   official: "",
-  date: ["20260410"],
+  date: ["20260310"],
   title: "Untitled",
   author: "Tdimby",
   complexity: "filterComplexityMiddle",
@@ -265,7 +277,7 @@ var works = [
   id: 6,
   state: 1,
   official: "",
-  date: ["20260409"],
+  date: ["20260309"],
   title: "a bunch of cool elements",
   author: "cyclecrash",
   complexity: "filterComplexityMiddle",
@@ -282,7 +294,7 @@ var works = [
   id: 7,
   state: 1,
   official: "",
-  date: ["20260408"],
+  date: ["20260308"],
   title: "Reflecting on the nature of the human experience",
   author: "Ana Montiel",
   complexity: "filterComplexityAdvanced",
@@ -299,7 +311,7 @@ var works = [
   id: 8,
   state: 1,
   official: "",
-  date: ["20260407"],
+  date: ["20260307"],
   title: "When We Love",
   author: "Chia Amisola",
   complexity: "filterComplexityMiddle",
@@ -316,7 +328,7 @@ var works = [
   id: 9,
   state: 1,
   official: "",
-  date: ["20260406"],
+  date: ["20260306"],
   title: "Raising Questions",
   author: "Munken",
   complexity: "filterComplexityMiddle",
@@ -333,7 +345,7 @@ var works = [
   id: 10,
   state: 1,
   official: "",
-  date: ["20260405"],
+  date: ["20260305"],
   title: "patterns A v1.0",
   author: "Eri_pl",
   complexity: "filterComplexityMiddle",
@@ -350,7 +362,7 @@ var works = [
   id: 11,
   state: 1,
   official: "",
-  date: ["20260404"],
+  date: ["20260304"],
   title: "a website could be",
   author: "polina",
   complexity: "filterComplexityMiddle",
@@ -367,7 +379,7 @@ var works = [
   id: 12,
   state: 1,
   official: "",
-  date: ["20260403"],
+  date: ["20260303"],
   title: "dumpling huge home-caption",
   author: "Vera van de Seyp",
   complexity: "filterComplexityAdvanced",
@@ -384,7 +396,7 @@ var works = [
   id: 13,
   state: 1,
   official: "",
-  date: ["20260402"],
+  date: ["20260302"],
   title: "No Archive Will Restore You",
   author: "fernanda",
   complexity: "filterComplexityMiddle",
@@ -401,7 +413,7 @@ var works = [
   id: 14,
   state: 1,
   official: "",
-  date: ["20260401"],
+  date: ["20260301"],
   title: "Lines",
   author: "TheBoxCreeper",
   complexity: "filterComplexityMiddle",
@@ -418,7 +430,7 @@ var works = [
   id: 15,
   state: 1,
   official: "",
-  date: ["20260331"],
+  date: ["20260231"],
   title: "Night Voyagers",
   author: "Andy Wallace",
   complexity: "filterComplexityAdvanced",
@@ -435,7 +447,7 @@ var works = [
   id: 16,
   state: 1,
   official: "",
-  date: ["20260330"],
+  date: ["20260230"],
   title: "Vector Halftone",
   author: "Xoihazard",
   complexity: "filterComplexityMiddle",
@@ -452,7 +464,7 @@ var works = [
   id: 17,
   state: 1,
   official: "",
-  date: ["20260329"],
+  date: ["20260229"],
   title: "people as computers; poetry as code",
   author: "poetic computer",
   complexity: "filterComplexityMiddle",
@@ -469,7 +481,7 @@ var works = [
   id: 18,
   state: 1,
   official: "",
-  date: ["20260328"],
+  date: ["20260228"],
   title: "Life Universe",
   author: "Rezmason",
   complexity: "filterComplexityAdvanced",
@@ -486,7 +498,7 @@ var works = [
   id: 19,
   state: 1,
   official: "",
-  date: ["20260327"],
+  date: ["20260227"],
   title: "I Heard It In A Magazine",
   author: "One Thousand Birds",
   complexity: "filterComplexityMiddle",
@@ -503,7 +515,7 @@ var works = [
   id: 20,
   state: 1,
   official: "",
-  date: ["20260326"],
+  date: ["20260226"],
   title: "THE HTML REVIEW",
   author: "Shelby Wilson",
   complexity: "filterComplexityMiddle",
@@ -520,7 +532,7 @@ var works = [
   id: 21,
   state: 1,
   official: "",
-  date: ["20260325"],
+  date: ["20260225"],
   title: "Infinite loop",
   author: "Shadow_moom27",
   complexity: "filterComplexityMiddle",
@@ -537,7 +549,7 @@ var works = [
   id: 22,
   state: 1,
   official: "",
-  date: ["20260324"],
+  date: ["20260224"],
   title: "spider of sleep paralysis",
   author: "maker of cool stuff",
   complexity: "filterComplexityMiddle",
@@ -554,7 +566,7 @@ var works = [
   id: 23,
   state: 1,
   official: "",
-  date: ["20260323"],
+  date: ["20260223"],
   title: "distorted dog",
   author: "Nicki Minaj",
   complexity: "filterComplexityMiddle",
@@ -571,7 +583,7 @@ var works = [
   id: 24,
   state: 1,
   official: "",
-  date: ["20260322"],
+  date: ["20260222"],
   title: "svg.wtf",
   author: "Amelia Wattenberger",
   complexity: "filterComplexityMiddle",
@@ -588,7 +600,7 @@ var works = [
   id: 25,
   state: 1,
   official: "",
-  date: ["20260321"],
+  date: ["20260221"],
   title: "radix sort or something",
   author: "&lt;Sava&gt;",
   complexity: "filterComplexityAdvanced",
@@ -605,7 +617,7 @@ var works = [
   id: 26,
   state: 1,
   official: "",
-  date: ["20260320"],
+  date: ["20260220"],
   title: "Computer Drive",
   author: "Crypto",
   complexity: "filterComplexityMiddle",
@@ -622,7 +634,7 @@ var works = [
   id: 27,
   state: 1,
   official: "",
-  date: ["20260319"],
+  date: ["20260219"],
   title: "running car",
   author: ":>",
   complexity: "filterComplexityInitial",
@@ -639,7 +651,7 @@ var works = [
   id: 28,
   state: 1,
   official: "",
-  date: ["20260318"],
+  date: ["20260218"],
   title: "Topographic (Contour) Map",
   author: ">LOPPY<",
   complexity: "filterComplexityAdvanced",
@@ -656,7 +668,7 @@ var works = [
   id: 29,
   state: 1,
   official: "",
-  date: ["20260317"],
+  date: ["20260217"],
   title: "Ungainly movements",
   author: "dongseok",
   complexity: "filterComplexityMiddle",
@@ -673,7 +685,7 @@ var works = [
   id: 30,
   state: 1,
   official: "",
-  date: ["20260316"],
+  date: ["20260216"],
   title: "(e)motion",
   author: "very",
   complexity: "filterComplexityMiddle",
@@ -690,7 +702,7 @@ var works = [
   id: 31,
   state: 1,
   official: "",
-  date: ["20260315"],
+  date: ["20260215"],
   title: "MegaPixels",
   author: "Adam Harvey",
   complexity: "filterComplexityAdvanced",
@@ -707,7 +719,7 @@ var works = [
   id: 32,
   state: 1,
   official: "",
-  date: ["20260314"],
+  date: ["20260214"],
   title: "sandspiel.club",
   author: "Sandspiel",
   complexity: "filterComplexityMiddle",
@@ -812,24 +824,11 @@ var galleryVideos = {
 
 // Задание фильтров
 // Список доступных фильтров
-var filtersComplexity = ["filterComplexityInitial", "filterComplexityMiddle", "filterComplexityAdvanced"];
-var filtersLibrary = ["filterLibraryVanillajs", "filterLibraryP5js", "filterLibraryThreejs"];
-var filtersVerification = ["filterVerificationExpert", "filterVerificationAuthorial"];
-var filtersAll = [filtersComplexity, filtersLibrary, filtersVerification];
-
-// async function getFiltersAll(path) {
-//   const response = await fetch(path);
-//   const data = await response.json();
-
-//   const { complexity, library, verification } = data.filters;
-
-//   return [complexity, library, verification];
-// }
-
-// (async () => {
-//   const filtersAll = await getFiltersAll("/json/gallery.json");
-//   console.log(filtersAll);
-// })();
+// ! filtersAll в Галерее - друго! Он без 1 фильтра! Поэтому собираем заново !
+var gallery_filtersComplexity = ["filterComplexityInitial", "filterComplexityMiddle", "filterComplexityAdvanced"];
+var gallery_filtersLibrary = ["filterLibraryVanillajs", "filterLibraryP5js", "filterLibraryThreejs"];
+var gallery_filtersVerification = ["filterVerificationExpert", "filterVerificationAuthorial"];
+var gallery_filtersAll = [gallery_filtersComplexity, gallery_filtersLibrary, gallery_filtersVerification];
 
 // Для отрисовки
 var handbookPart1Module1 = document.getElementById("handbookPart1Module1");
@@ -945,7 +944,7 @@ function calcFilters() {
     filter[1].forEach(function (isActive, indexSetting) {
       if (isActive) {
         buttonsFilters[indexFilter][indexSetting].style.border = "1.5px dashed var(--colors-neutrals-900)";
-        appliedFilters[indexFilter] = setUnion(appliedFilters[indexFilter], new Set([filtersAll[indexFilter][indexSetting]]));
+        appliedFilters[indexFilter] = setUnion(appliedFilters[indexFilter], new Set([gallery_filtersAll[indexFilter][indexSetting]]));
       } else {
         buttonsFilters[indexFilter][indexSetting].style.border = "1.5px dashed var(--colors-neutrals-200)";
       }
@@ -1050,8 +1049,8 @@ openSortsButton.addEventListener("click", function () {
 });
 
 // Применение сортировки
-var numberSorting = sessionStorage.getItem("numberSortingWork"); // 0, 1, 2
-if (!numberSorting) {
+var numberSorting = Number(sessionStorage.getItem("numberSortingGallery")); // 0, 1, 2
+if (Number.isNaN(numberSorting)) {
   numberSorting = 1;
 }
 var nameSort = document.querySelector(".A_FilterSortingByText");
@@ -1064,25 +1063,6 @@ var buttonSort1 = document.getElementById("filterSortingByComplexityButton");
 var buttonSort2 = document.getElementById("filterSortingByDateButton");
 var buttonSort3 = document.getElementById("filterSortingByVerificationButton");
 var buttonsSort = [buttonSort1, buttonSort2, buttonSort3];
-
-// const handbookModulesPart1 = document.getElementById("handbookModulesPart1");
-// const handbookModulesPart2 = document.getElementById("handbookModulesPart2");
-// const handbookModulesPart3 = document.getElementById("handbookModulesPart3");
-// const handbookModulesParts = [
-//   handbookModulesPart1,
-//   handbookModulesPart2,
-//   handbookModulesPart3,
-// ];
-
-// const originalHandbookModulesPart1 = Array.from(handbookModulesPart1.children);
-// const originalHandbookModulesPart2 = Array.from(handbookModulesPart2.children);
-// const originalHandbookModulesPart3 = Array.from(handbookModulesPart3.children);
-// const originalHandbookModulesParts = [
-//   originalHandbookModulesPart1,
-//   originalHandbookModulesPart2,
-//   originalHandbookModulesPart3,
-// ];
-
 function applySorting() {
   pointsSort.forEach(function (point) {
     point.style.display = "none";
@@ -1122,7 +1102,9 @@ function applySorting() {
 // Приминение вызовов сортировок к кнопкам
 buttonsSort.forEach(function (button, iSort) {
   button.addEventListener("click", function () {
+    // Определение сортировки
     numberSorting = iSort;
+    sessionStorage.setItem("numberSortingGallery", numberSorting);
     closeMenuSorting();
     applySorting();
     drawingWorks();
@@ -1138,10 +1120,8 @@ var resetButtons = [resetButton1, resetButton2];
 function resetWorks() {
   closeMenuFilters();
   matrFilters = structuredClone(defMatrFilters);
-  numberSorting = sessionStorage.getItem("numberSortingWork");
-  if (!numberSorting) {
-    numberSorting = 1;
-  }
+  numberSorting = 1;
+  sessionStorage.setItem("numberSortingGallery", numberSorting);
   closeMenuSorting();
   applySorting();
   applyFilters();
@@ -1187,26 +1167,9 @@ videos.forEach(function (video) {
   });
 });
 
-// galleryCanvases.forEach((card) => {
-//   const preview = card.querySelector(".A_GalleryWorkPreview");
-//   const video = card.querySelector(".A_GalleryWorkPreviewVideo");
-
-//   preview.addEventListener("mouseenter", () => {
-//     if (video.style.display !== "none") {
-//       video.play().catch(() => {});
-//     }
-//   });
-
-//   preview.addEventListener("mouseleave", () => {
-//     if (video.style.display !== "none") {
-//       video.pause();
-//       video.currentTime = 0;
-//     }
-//   });
-// });
-
 // Загрузка галлереи
 var galleryCapacity = 12;
+
 
 var complexityOrder = {
   filterComplexityInitial: 0,
@@ -1330,7 +1293,6 @@ galleryCanvases.forEach(function (galleryWork, indexGalleryWork) {
     // Сохранить переменную
     var id = filteredWorks[galleryPage * galleryCapacity + indexGalleryWork].id;
     sessionStorage.setItem("indexWork", id);
-    sessionStorage.setItem("numberSortingWork", numberSorting);
     // sessionStorage.setItem(
     //   "formData",
     //   JSON.stringify({ name: "John", email: "john@mail.com" }),

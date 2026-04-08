@@ -50,6 +50,7 @@ function runCode(codeBlock, iframe, textarea, runtime) {
   const code = textarea.value;
   iframe.srcdoc = buildRuntimeHtml(runtime, code);
   codeBlock.classList.add("is-running");
+  console.log(codeBlock.classList)
 }
 
 function stopCode(codeBlock, iframe) {
@@ -72,12 +73,12 @@ document.querySelectorAll(".O_TutorialSingleCode").forEach((codeBlock) => {
   const runtime = codeBlock.dataset.runtime;
 
   const iframe = codeBlock.querySelector(".A_TutorialSingleCodeExecutionCanvas");
-  const runButton = codeBlock.querySelector(".A_TutorialSingleCodeExecutionButton");
+  const runStopButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonRunStop");
   const resetButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonRestart");
   const copyButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonCopy");
   const textarea = codeBlock.querySelector(".W_TutorialSingleCodeTextRun");
 
-  if (!iframe || !runButton || !resetButton || !copyButton || !textarea) return;
+  if (!iframe || !runStopButton || !resetButton || !copyButton || !textarea) return;
 
   const defaultCode = getDefaultCode(codeBlockId, runtime);
   textarea.value = defaultCode;
@@ -98,7 +99,7 @@ document.querySelectorAll(".O_TutorialSingleCode").forEach((codeBlock) => {
 
   autoResizeTextarea(textarea);
 
-  runButton.addEventListener("click", () => {
+  runStopButton.addEventListener("click", () => {
     if (codeBlock.classList.contains("is-running")) {
       stopCode(codeBlock, iframe);
     } else {
@@ -122,6 +123,112 @@ document.querySelectorAll(".O_TutorialSingleCode").forEach((codeBlock) => {
   }
 });
 
+const heading = document.querySelector(".A_IntroHeadingTutorial");
+
+const part = Number(heading.dataset.part);
+const module = Number(heading.dataset.module);
+const tutorial = Number(heading.dataset.tutorial);
+
+import { months, filtersName } from "../json/otherJson.js";
+import { tagsHandbook } from "../json/tutorialsJson.js";
+
+function formatTutorialDate(dateJs) {
+  if (!dateJs) return "";
+
+  const year = dateJs.slice(0, 4);
+  const month = parseInt(dateJs.slice(4, 6), 10);
+  const day = dateJs.slice(6, 8);
+
+  return `${day} ${months[month - 1]} ${year}`;
+}
+
+function toArray(value) {
+  if (Array.isArray(value)) {
+    return value;
+  }
+  if (value === undefined || value === null || value === "") {
+    return [];
+  }
+  return [value];
+}
+
+function drawTutorialMeta() {
+  const tutorialData = tagsHandbook?.[part - 1]?.[module - 1]?.[tutorial - 1];
+  if (!tutorialData) return;
+
+  // Название вкладки
+  if (tutorialData.title) {
+    document.title = tutorialData.title;
+  }
+
+  // Хлебная строка
+  const headingAbout = document.querySelector(".A_IntroHeadingAbout");
+  if (headingAbout && tutorialData.title) {
+    const baseText = headingAbout.textContent.trim();
+    const cleanedBaseText = baseText.endsWith("/")
+      ? `${baseText} `
+      : `${baseText} / `;
+
+    headingAbout.textContent = `${cleanedBaseText}${tutorialData.title}`;
+  }
+
+  // Дата
+  const headingUpdate = document.querySelector(".A_IntroHeadingApdate");
+  const lastDate = tutorialData.date?.at(-1);
+
+  if (headingUpdate && lastDate) {
+    headingUpdate.textContent = `Опубликовано ${formatTutorialDate(lastDate)}`;
+  }
+
+  // Заголовок статьи
+  const headingTitle = document.querySelector(".A_IntroHeadingTutorial");
+  if (headingTitle && tutorialData.title) {
+    headingTitle.textContent = tutorialData.title;
+  }
+
+  // Автор
+  const headingAuthor = document.querySelector(".A_IntroAuthor");
+  if (headingAuthor) {
+    headingAuthor.innerHTML = `Автор:&nbsp;<u>${tutorialData.author ?? ""}</u>`;
+    headingAuthor.href = tutorialData.link;
+  }
+
+  // Теги
+  const tagsContainer = document.querySelector(".C_IntroTutorialTags");
+  if (tagsContainer) {
+    tagsContainer.innerHTML = "";
+
+    // Главные теги: complexity + library + format + verification
+    const primaryKeys = [
+      tutorialData.complexity,
+      ...toArray(tutorialData.library),
+      ...toArray(tutorialData.format),
+      tutorialData.verification,
+    ].filter(Boolean);
+
+    const primaryValues = primaryKeys.map((key) => filtersName[key] ?? key);
+
+    primaryValues.forEach((value) => {
+      const li = document.createElement("li");
+      li.className = "A_IntroTutorialTagPrimary";
+      li.textContent = value;
+      tagsContainer.appendChild(li);
+    });
+
+    // Второстепенные теги: tutorialData.tags
+    const secondaryValues = toArray(tutorialData.tags).filter(Boolean);
+
+    secondaryValues.forEach((value) => {
+      const li = document.createElement("li");
+      li.className = "A_IntroTutorialTagSecondary";
+      li.textContent = value;
+      tagsContainer.appendChild(li);
+    });
+  }
+}
+
+drawTutorialMeta();
+
 document.querySelectorAll(".A_TutorialCopyButton").forEach((button) => {
   button.addEventListener("click", async () => {
     const text = button
@@ -134,13 +241,3 @@ document.querySelectorAll(".A_TutorialCopyButton").forEach((button) => {
   });
 });
 
-// function autoResizeTextarea(textarea) {
-//   textarea.style.height = "auto";
-//   textarea.style.height = textarea.scrollHeight + "px";
-// }
-
-// textarea.addEventListener("input", () => {
-//   autoResizeTextarea(textarea);
-// });
-
-// autoResizeTextarea(textarea);

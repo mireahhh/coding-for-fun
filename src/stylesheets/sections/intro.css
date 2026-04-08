@@ -73,7 +73,8 @@
   .O_IntroFooter {
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    /* TODO с кнопкой добавить вернуть это! */
+    /* align-items: flex-end; */
     align-content: flex-end;
     row-gap: var(--size-spacing-36);
     column-gap: var(--size-spacing-132);
@@ -99,6 +100,9 @@
       align-content: center;
       gap: var(--size-spacing-8);
       align-self: stretch;
+      padding-right: 25.5%;
+      box-sizing: border-box;
+      width: 100%;
       flex-wrap: wrap;
 
       .A_IntroTutorialTagPrimary,
@@ -130,7 +134,7 @@
       gap: var(--size-spacing-12, 12px);
       flex-wrap: wrap;
 
-      .A_IntroButtonsAuthor {
+      .A_IntroAuthor {
         display: flex;
         flex-direction: row;
         align-items: flex-start;

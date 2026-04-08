@@ -107,24 +107,36 @@ const _25_namespaceObject = __webpack_require__.p + "2d438ef83c06a465d03f.mp4";
 const _27_namespaceObject = __webpack_require__.p + "c6b5ad76b978d3b848d0.mp4";
 ;// ./src/images/gallery/30.mp4
 const _30_namespaceObject = __webpack_require__.p + "987726362f3de08dea36.mp4";
-;// ./src/javascripts/json/galleryJson.js
+;// ./src/javascripts/json/otherJson.js
 var months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
-var filters = {
+var filtersName = {
   "filterComplexityInitial": "Начальная",
   "filterComplexityMiddle": "Средняя",
   "filterComplexityAdvanced": "Продвинутая",
   "filterLibraryVanillajs": "Vanilla js",
   "filterLibraryP5js": "P5.js",
   "filterLibraryThreejs": "Three.js",
+  "filterFormatTechnique": "Техника",
+  "filterFormatTask": "Задача",
+  "filterFormatVariation": "Вариация",
   "filterVerificationExpert": "Экспертная",
   "filterVerificationAuthorial": "Авторская"
 };
+
+// Задание фильтров
+// Список доступных фильтров
+var filtersComplexity = ["filterComplexityInitial", "filterComplexityMiddle", "filterComplexityAdvanced"];
+var filtersLibrary = ["filterLibraryVanillajs", "filterLibraryP5js", "filterLibraryThreejs"];
+var filtersFormat = ["filterFormatTechnique", "filterFormatTask", "filterFormatVariation"];
+var filtersVerification = ["filterVerificationAuthorial", "filterVerificationExpert"];
+var filtersAll = [filtersComplexity, filtersLibrary, filtersFormat, filtersVerification];
+;// ./src/javascripts/json/galleryJson.js
 var works = [
 // {
 //   id: -1,
 //   state: 1,
 //   official: "",
-//   date: ["20260327"],
+//   date: ["20260227"],
 //   title: "Название работы",
 //   author: "Автор",
 //   complexity: "filterComplexityInitial; filterComplexityMiddle; filterComplexityAdvanced",
@@ -163,7 +175,7 @@ var works = [
   id: 0,
   state: 1,
   official: "",
-  date: ["20260415"],
+  date: ["20260315"],
   title: "Flower Power",
   author: "Katarina Lingat",
   complexity: "filterComplexityMiddle",
@@ -180,7 +192,7 @@ var works = [
   id: 1,
   state: 1,
   official: "",
-  date: ["20260414"],
+  date: ["20260314"],
   title: "Sandspiel",
   author: "digger21orange",
   complexity: "filterComplexityMiddle",
@@ -197,7 +209,7 @@ var works = [
   id: 2,
   state: 1,
   official: "",
-  date: ["20260413"],
+  date: ["20260313"],
   title: "SPACE TYPE",
   author: "kielm",
   complexity: "filterComplexityMiddle",
@@ -214,7 +226,7 @@ var works = [
   id: 3,
   state: 1,
   official: "",
-  date: ["20260412"],
+  date: ["20260312"],
   title: "The Game of Life",
   author: "Sam Twidale",
   complexity: "filterComplexityAdvanced",
@@ -231,7 +243,7 @@ var works = [
   id: 4,
   state: 1,
   official: "",
-  date: ["20260411"],
+  date: ["20260311"],
   title: "Cell Cycle",
   author: "Nervous System",
   complexity: "filterComplexityAdvanced",
@@ -248,7 +260,7 @@ var works = [
   id: 5,
   state: 1,
   official: "",
-  date: ["20260410"],
+  date: ["20260310"],
   title: "Untitled",
   author: "Tdimby",
   complexity: "filterComplexityMiddle",
@@ -265,7 +277,7 @@ var works = [
   id: 6,
   state: 1,
   official: "",
-  date: ["20260409"],
+  date: ["20260309"],
   title: "a bunch of cool elements",
   author: "cyclecrash",
   complexity: "filterComplexityMiddle",
@@ -282,7 +294,7 @@ var works = [
   id: 7,
   state: 1,
   official: "",
-  date: ["20260408"],
+  date: ["20260308"],
   title: "Reflecting on the nature of the human experience",
   author: "Ana Montiel",
   complexity: "filterComplexityAdvanced",
@@ -299,7 +311,7 @@ var works = [
   id: 8,
   state: 1,
   official: "",
-  date: ["20260407"],
+  date: ["20260307"],
   title: "When We Love",
   author: "Chia Amisola",
   complexity: "filterComplexityMiddle",
@@ -316,7 +328,7 @@ var works = [
   id: 9,
   state: 1,
   official: "",
-  date: ["20260406"],
+  date: ["20260306"],
   title: "Raising Questions",
   author: "Munken",
   complexity: "filterComplexityMiddle",
@@ -333,7 +345,7 @@ var works = [
   id: 10,
   state: 1,
   official: "",
-  date: ["20260405"],
+  date: ["20260305"],
   title: "patterns A v1.0",
   author: "Eri_pl",
   complexity: "filterComplexityMiddle",
@@ -350,7 +362,7 @@ var works = [
   id: 11,
   state: 1,
   official: "",
-  date: ["20260404"],
+  date: ["20260304"],
   title: "a website could be",
   author: "polina",
   complexity: "filterComplexityMiddle",
@@ -367,7 +379,7 @@ var works = [
   id: 12,
   state: 1,
   official: "",
-  date: ["20260403"],
+  date: ["20260303"],
   title: "dumpling huge home-caption",
   author: "Vera van de Seyp",
   complexity: "filterComplexityAdvanced",
@@ -384,7 +396,7 @@ var works = [
   id: 13,
   state: 1,
   official: "",
-  date: ["20260402"],
+  date: ["20260302"],
   title: "No Archive Will Restore You",
   author: "fernanda",
   complexity: "filterComplexityMiddle",
@@ -401,7 +413,7 @@ var works = [
   id: 14,
   state: 1,
   official: "",
-  date: ["20260401"],
+  date: ["20260301"],
   title: "Lines",
   author: "TheBoxCreeper",
   complexity: "filterComplexityMiddle",
@@ -418,7 +430,7 @@ var works = [
   id: 15,
   state: 1,
   official: "",
-  date: ["20260331"],
+  date: ["20260231"],
   title: "Night Voyagers",
   author: "Andy Wallace",
   complexity: "filterComplexityAdvanced",
@@ -435,7 +447,7 @@ var works = [
   id: 16,
   state: 1,
   official: "",
-  date: ["20260330"],
+  date: ["20260230"],
   title: "Vector Halftone",
   author: "Xoihazard",
   complexity: "filterComplexityMiddle",
@@ -452,7 +464,7 @@ var works = [
   id: 17,
   state: 1,
   official: "",
-  date: ["20260329"],
+  date: ["20260229"],
   title: "people as computers; poetry as code",
   author: "poetic computer",
   complexity: "filterComplexityMiddle",
@@ -469,7 +481,7 @@ var works = [
   id: 18,
   state: 1,
   official: "",
-  date: ["20260328"],
+  date: ["20260228"],
   title: "Life Universe",
   author: "Rezmason",
   complexity: "filterComplexityAdvanced",
@@ -486,7 +498,7 @@ var works = [
   id: 19,
   state: 1,
   official: "",
-  date: ["20260327"],
+  date: ["20260227"],
   title: "I Heard It In A Magazine",
   author: "One Thousand Birds",
   complexity: "filterComplexityMiddle",
@@ -503,7 +515,7 @@ var works = [
   id: 20,
   state: 1,
   official: "",
-  date: ["20260326"],
+  date: ["20260226"],
   title: "THE HTML REVIEW",
   author: "Shelby Wilson",
   complexity: "filterComplexityMiddle",
@@ -520,7 +532,7 @@ var works = [
   id: 21,
   state: 1,
   official: "",
-  date: ["20260325"],
+  date: ["20260225"],
   title: "Infinite loop",
   author: "Shadow_moom27",
   complexity: "filterComplexityMiddle",
@@ -537,7 +549,7 @@ var works = [
   id: 22,
   state: 1,
   official: "",
-  date: ["20260324"],
+  date: ["20260224"],
   title: "spider of sleep paralysis",
   author: "maker of cool stuff",
   complexity: "filterComplexityMiddle",
@@ -554,7 +566,7 @@ var works = [
   id: 23,
   state: 1,
   official: "",
-  date: ["20260323"],
+  date: ["20260223"],
   title: "distorted dog",
   author: "Nicki Minaj",
   complexity: "filterComplexityMiddle",
@@ -571,7 +583,7 @@ var works = [
   id: 24,
   state: 1,
   official: "",
-  date: ["20260322"],
+  date: ["20260222"],
   title: "svg.wtf",
   author: "Amelia Wattenberger",
   complexity: "filterComplexityMiddle",
@@ -588,7 +600,7 @@ var works = [
   id: 25,
   state: 1,
   official: "",
-  date: ["20260321"],
+  date: ["20260221"],
   title: "radix sort or something",
   author: "&lt;Sava&gt;",
   complexity: "filterComplexityAdvanced",
@@ -605,7 +617,7 @@ var works = [
   id: 26,
   state: 1,
   official: "",
-  date: ["20260320"],
+  date: ["20260220"],
   title: "Computer Drive",
   author: "Crypto",
   complexity: "filterComplexityMiddle",
@@ -622,7 +634,7 @@ var works = [
   id: 27,
   state: 1,
   official: "",
-  date: ["20260319"],
+  date: ["20260219"],
   title: "running car",
   author: ":>",
   complexity: "filterComplexityInitial",
@@ -639,7 +651,7 @@ var works = [
   id: 28,
   state: 1,
   official: "",
-  date: ["20260318"],
+  date: ["20260218"],
   title: "Topographic (Contour) Map",
   author: ">LOPPY<",
   complexity: "filterComplexityAdvanced",
@@ -656,7 +668,7 @@ var works = [
   id: 29,
   state: 1,
   official: "",
-  date: ["20260317"],
+  date: ["20260217"],
   title: "Ungainly movements",
   author: "dongseok",
   complexity: "filterComplexityMiddle",
@@ -673,7 +685,7 @@ var works = [
   id: 30,
   state: 1,
   official: "",
-  date: ["20260316"],
+  date: ["20260216"],
   title: "(e)motion",
   author: "very",
   complexity: "filterComplexityMiddle",
@@ -690,7 +702,7 @@ var works = [
   id: 31,
   state: 1,
   official: "",
-  date: ["20260315"],
+  date: ["20260215"],
   title: "MegaPixels",
   author: "Adam Harvey",
   complexity: "filterComplexityAdvanced",
@@ -707,7 +719,7 @@ var works = [
   id: 32,
   state: 1,
   official: "",
-  date: ["20260314"],
+  date: ["20260214"],
   title: "sandspiel.club",
   author: "Sandspiel",
   complexity: "filterComplexityMiddle",
@@ -728,7 +740,6 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
 function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
-function _readOnlyError(r) { throw new TypeError('"' + r + '" is read-only'); }
 // Массивы с фонами
 // Изображения
 
@@ -804,41 +815,25 @@ var galleryVideos = {
 };
 // Работы - данные
 
-function showWork() {
-  // Получить переменную id работы
+
+function getCurrentWork() {
   var indexWork = sessionStorage.getItem("indexWork");
   if (!indexWork) {
-    0, _readOnlyError("indexWork");
+    indexWork = 0;
   }
-  var drawWork = works[indexWork];
-  // Данные
-  // Путь
+  return works[indexWork];
+}
+function formatWorkDate(dateJs) {
+  var year = dateJs.slice(0, 4);
+  var month = parseInt(dateJs.slice(4, 6), 10);
+  var day = dateJs.slice(6, 8);
+  return day + " " + months[month - 1] + " " + year;
+}
+function drawWorkTextData(drawWork) {
   var path = document.querySelector(".M_WorkPath");
   path.innerHTML = "Галерея / " + drawWork.title;
-  // Дата
-  var dateJs = drawWork.date.at(-1);
-  var year = dateJs.slice(0, 4);
-  var month = parseInt(dateJs.slice(4, 6));
-  var day = dateJs.slice(6, 8);
   var date = document.querySelector(".A_WorkDate");
-  date.innerHTML = "Обновлено " + day + " " + months[month - 1] + " " + year;
-  // Картинка
-  if (drawWork.extension == "png") {
-    var image = document.querySelector(".A_WorkPreviewImg");
-    image.src = galleryImages[indexWork];
-    image.style.display = "flex";
-    var video = document.querySelector(".A_WorkPreviewVideo");
-    video.style.display = "none";
-  }
-  if (drawWork.extension == "mp4") {
-    var _video = document.querySelector(".A_WorkPreviewVideo");
-    _video.src = galleryVideos[indexWork];
-    _video.load();
-    _video.style.display = "flex";
-    var _image = document.querySelector(".A_WorkPreviewImg");
-    _image.style.display = "none";
-  }
-  // Текстовые поля
+  date.innerHTML = "Обновлено " + formatWorkDate(drawWork.date.at(-1));
   var author = document.querySelector(".A_WorkMetaAuthor");
   author.innerHTML = drawWork.author;
   var title = document.querySelector(".A_WorkMetaTitle");
@@ -847,48 +842,64 @@ function showWork() {
   description.innerHTML = drawWork.description;
   var link = document.querySelector(".A_WorkLink");
   link.href = drawWork.link;
-  // Теги
-  // Главные
-  var tagsPrimaryItems = document.querySelector(".C_WorkMetaTagsPrimary").children;
-  Array.from(tagsPrimaryItems).forEach(function (item) {
-    item.style.display = "none";
-  });
-  // Ключи из work
-  var data = {
-    complexity: drawWork.complexity,
-    library: drawWork.library,
-    verification: drawWork.verification
-  };
-  // library может быть строкой или массивом
-  var libraryKeys = Array.isArray(data.library) ? data.library : [data.library];
-  // Собираем ключи в нужном порядке
-  var primaryKeys = [data.complexity].concat(_toConsumableArray(libraryKeys), [data.verification]).filter(Boolean).slice(0, 3);
-  // Переводим ключи в подписи через словарь filters
+}
+function drawWorkPreview(drawWork) {
+  var image = document.querySelector(".A_WorkPreviewImg");
+  var video = document.querySelector(".A_WorkPreviewVideo");
+  if (drawWork.extension === "png") {
+    image.src = galleryImages[drawWork.id];
+    image.style.display = "flex";
+    video.style.display = "none";
+    video.pause();
+    video.removeAttribute("src");
+  } else if (drawWork.extension === "mp4") {
+    video.src = galleryVideos[drawWork.id];
+    video.load();
+    video.style.display = "flex";
+    image.style.display = "none";
+    image.removeAttribute("src");
+  } else {
+    image.style.display = "none";
+    video.style.display = "none";
+  }
+}
+function drawWorkTags(drawWork) {
+  var primaryContainer = document.querySelector(".C_WorkMetaTagsPrimary");
+  var secondaryContainer = document.querySelector(".C_WorkMetaTagsSecondary");
+  if (!primaryContainer || !secondaryContainer) return;
+
+  // Очищаем контейнеры
+  primaryContainer.innerHTML = "";
+  secondaryContainer.innerHTML = "";
+
+  // Основные теги
+  var libraryKeys = Array.isArray(drawWork.library) ? drawWork.library : [drawWork.library];
+  var primaryKeys = [drawWork.complexity].concat(_toConsumableArray(libraryKeys), [drawWork.verification]).filter(Boolean);
   var primaryValues = primaryKeys.map(function (key) {
-    var _filters$key;
-    return (_filters$key = filters[key]) !== null && _filters$key !== void 0 ? _filters$key : key;
+    var _filtersName$key;
+    return (_filtersName$key = filtersName[key]) !== null && _filtersName$key !== void 0 ? _filtersName$key : key;
+  });
+  primaryValues.forEach(function (value) {
+    var li = document.createElement("li");
+    li.className = "A_WorkMetaTagPrimary";
+    li.textContent = value;
+    primaryContainer.appendChild(li);
   });
 
-  // Заполняем видимые теги
-  primaryValues.forEach(function (value, i) {
-    if (tagsPrimaryItems[i]) {
-      tagsPrimaryItems[i].textContent = value;
-      tagsPrimaryItems[i].style.display = "flex";
-    }
-  });
-  // Второстепенные
-  var tagsSecondaryItems = document.querySelector(".C_WorkMetaTagsSecondary").children;
-  Array.from(tagsSecondaryItems).forEach(function (item) {
-    item.style.display = "none";
-  });
+  // Второстепенные теги
   var secondaryTags = drawWork.tags || [];
-  var valuesSecondary = secondaryTags.slice(0, tagsSecondaryItems.length);
-  valuesSecondary.forEach(function (value, i) {
-    if (tagsSecondaryItems[i]) {
-      tagsSecondaryItems[i].textContent = value;
-      tagsSecondaryItems[i].style.display = "flex";
-    }
+  secondaryTags.forEach(function (value) {
+    var li = document.createElement("li");
+    li.className = "A_WorkMetaTagSecondary";
+    li.textContent = value;
+    secondaryContainer.appendChild(li);
   });
+}
+function showWork() {
+  var drawWork = getCurrentWork();
+  drawWorkTextData(drawWork);
+  drawWorkPreview(drawWork);
+  drawWorkTags(drawWork);
 }
 showWork();
 /******/ })()

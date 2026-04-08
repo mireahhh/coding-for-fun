@@ -1,30 +1,10 @@
-// Для отрисовки
-const part1module1 = document.getElementById("part1module1");
-const part1module2 = document.getElementById("part1module2");
-const part2module1 = document.getElementById("part2module1");
-const part2module2 = document.getElementById("part2module2");
-const part2module3 = document.getElementById("part2module3");
-const part3module1 = document.getElementById("part3module1");
-const part3module2 = document.getElementById("part3module2");
-const part3module3 = document.getElementById("part3module3");
-const modules = [
-  part1module1,
-  part1module2,
-  part2module1,
-  part2module2,
-  part2module3,
-  part3module1,
-  part3module2,
-  part3module3,
-];
+const heading = document.querySelector(".A_IntroHeading");
+if (!heading) {
+  throw new Error("Не найден .A_IntroHeading");
+}
 
-// Номер модуля
-let moduleId;
-modules.forEach((module, id) => {
-  if (module) {
-    moduleId = id;
-  }
-});
+const part = Number(heading.dataset.part);
+const module = Number(heading.dataset.module);
 
 // Туториалы для отрисовки
 const moduleTutorial1 = document.getElementById("moduleTutorial1");
@@ -146,7 +126,232 @@ const defMatrFilters = [
 const defApplyFilters = [new Set(), new Set(), new Set(), new Set()];
 let matrFilters = structuredClone(defMatrFilters);
 let applyFilters = structuredClone(defApplyFilters);
-import { filtersAll, filtersModules } from "../json/tutorialsJson.js";
+import { months, filtersName, filtersAll } from "../json/otherJson.js";
+import { tagsHandbook } from "../json/tutorialsJson.js";
+
+// helpers
+const toArray = (value) => {
+  if (Array.isArray(value)) {
+    return value;
+  }
+  if (value === undefined || value === null || value === "") {
+    return [];
+  }
+  return [value];
+};
+
+const tutorialToFilterSet = (tutorial) => {
+  return new Set([
+    ...toArray(tutorial.complexity),
+    ...toArray(tutorial.library),
+    ...toArray(tutorial.format),
+    ...toArray(tutorial.verification),
+  ]);
+};
+
+// туториалы текущего модуля
+const currentModuleTutorials = tagsHandbook?.[part - 1]?.[module - 1] ?? [];
+
+// переводим в старую структуру
+const currentModuleFilters = currentModuleTutorials.map((tutorial) =>
+  tutorialToFilterSet(tutorial),
+);
+
+// Формат даты из "20251227" -> "27 декабря 2025"
+function formatTutorialDate(dateJs) {
+  if (!dateJs) return "";
+
+  const year = dateJs.slice(0, 4);
+  const month = parseInt(dateJs.slice(4, 6), 10);
+  const day = dateJs.slice(6, 8);
+
+  return `${day} ${months[month - 1]} ${year}`;
+}
+
+// Последняя дата статьи
+function getLastTutorialDate(tutorial) {
+  if (!tutorial?.date || tutorial.date.length === 0) {
+    return "";
+  }
+  return tutorial.date.at(-1);
+}
+
+// Один tutorial -> список подписей тегов
+// Используем всё, кроме date/title/author/tags:
+// complexity + library + format + verification
+function getTutorialTagValues(tutorial) {
+  const libraryKeys = Array.isArray(tutorial.library)
+    ? tutorial.library
+    : tutorial.library
+      ? [tutorial.library]
+      : [];
+
+  const formatKeys = Array.isArray(tutorial.format)
+    ? tutorial.format
+    : tutorial.format
+      ? [tutorial.format]
+      : [];
+
+  const rawKeys = [
+    tutorial.complexity,
+    ...libraryKeys,
+    ...formatKeys,
+    tutorial.verification,
+  ].filter(Boolean);
+
+  return rawKeys.map((key) => filtersName[key] ?? key);
+}
+
+// Перерисовка тегов карточки статьи
+function drawTutorialTags(tutorial, tagsContainer) {
+  if (!tagsContainer) return;
+
+  tagsContainer.innerHTML = "";
+
+  const tagValues = getTutorialTagValues(tutorial);
+
+  tagValues.forEach((value) => {
+    const li = document.createElement("li");
+    li.className = "A_ModuleTutorialTag";
+    li.textContent = value;
+    tagsContainer.appendChild(li);
+  });
+}
+
+// Главная функция отрисовки данных модуля
+function drawModuleMeta() {
+  if (!heading) return;
+
+  const moduleTutorialsData = tagsHandbook?.[part - 1]?.[module - 1];
+  if (!moduleTutorialsData || !Array.isArray(moduleTutorialsData)) return;
+
+  // 1) Обновляем дату модуля
+  const moduleDateEl = document.querySelector(".A_IntroHeadingApdate");
+  if (moduleDateEl) {
+    const lastModuleDate = moduleTutorialsData
+      .map((tutorial) => getLastTutorialDate(tutorial))
+      .filter(Boolean)
+      .sort()
+      .at(-1);
+
+    if (lastModuleDate) {
+      moduleDateEl.textContent = `Обновлено ${formatTutorialDate(lastModuleDate)}`;
+    }
+  }
+
+  // 2) Обновляем карточки статей
+  const tutorialCards = document.querySelectorAll(
+    ".C_ModuleTutorials .W_ModuleTutorial:not(#noResultsTutorials)"
+  );
+
+  tutorialCards.forEach((card, index) => {
+    const tutorial = moduleTutorialsData[index];
+    if (!tutorial) return;
+
+    const subtitle = card.querySelector(".A_ModuleTutorialsubtitle");
+    const title = card.querySelector(".A_ModuleTutorialTitle");
+    const tagsContainer = card.querySelector(".C_ModuleTutorialTags");
+
+    const tutorialDate = getLastTutorialDate(tutorial);
+    const formattedDate = tutorialDate
+      ? formatTutorialDate(tutorialDate)
+      : "";
+
+    // author / date
+    if (subtitle) {
+      if (tutorial.author && formattedDate) {
+        subtitle.textContent = `${tutorial.author} / ${formattedDate}`;
+      } else if (tutorial.author) {
+        subtitle.textContent = tutorial.author;
+      } else if (formattedDate) {
+        subtitle.textContent = formattedDate;
+      } else {
+        subtitle.textContent = "";
+      }
+    }
+
+    // title
+    if (title) {
+      title.textContent = tutorial.title ?? "";
+    }
+
+    // tags
+    drawTutorialTags(tutorial, tagsContainer);
+  });
+}
+
+async function loadTutorialFirstText(moduleNumber, tutorialIndex) {
+  const tutorialNumber = tutorialIndex + 1;
+  const tutorialPath = `./module${moduleNumber}/tutorial${tutorialNumber}.html`;
+
+  try {
+    const response = await fetch(tutorialPath);
+
+    if (!response.ok) {
+      throw new Error(`Не удалось загрузить ${tutorialPath}`);
+    }
+
+    const html = await response.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+
+    const firstText = doc.getElementById("TutorialTextFirst");
+
+    if (!firstText) {
+      return "";
+    }
+
+    return firstText.innerHTML.trim();
+  } catch (error) {
+    console.error("Ошибка загрузки текста туториала:", error);
+    return "";
+  }
+}
+
+async function drawTutorialDescriptions() {
+  const heading = document.querySelector(".A_IntroHeading");
+  if (!heading) return;
+
+  const moduleNumber = Number(heading.dataset.module);
+
+  const tutorialCards = document.querySelectorAll(
+    ".C_ModuleTutorials .W_ModuleTutorial:not(#noResultsTutorials)"
+  );
+
+  for (const [index, card] of Array.from(tutorialCards).entries()) {
+    const description = card.querySelector(".A_ModuleTutorialDescription");
+    if (!description) continue;
+
+    const tutorialText = await loadTutorialFirstText(moduleNumber, index);
+
+    if (tutorialText) {
+      description.innerHTML = tutorialText;
+    }
+  }
+}
+
+const complexityOrder = {
+  filterComplexityInitial: 0,
+  filterComplexityMiddle: 1,
+  filterComplexityAdvanced: 2,
+};
+
+const verificationOrder = {
+  filterVerificationAuthorial: 0,
+  filterVerificationExpert: 1,
+};
+
+const tutorialMeta = currentModuleTutorials.map((tutorial, index) => {
+  const lastDate = getLastTutorialDate(tutorial);
+
+  return {
+    originalIndex: index,
+    date: lastDate,
+    dateNumber: Number(lastDate || 0),
+    complexityValue: complexityOrder[tutorial.complexity] ?? 0,
+    verificationValue: verificationOrder[tutorial.verification] ?? 0,
+  };
+});
 
 function calcFilters() {
   applyFilters = structuredClone(defApplyFilters);
@@ -183,7 +388,7 @@ function calcAndDrawingTutorials() {
   });
 
   // Перебор модуля
-  filtersModules[moduleId].forEach((filtersTutorial, indexTutorial) => {
+  currentModuleFilters.forEach((filtersTutorial, indexTutorial) => {
     // Перебор фильтров
     for (const applyFilter of applyFilters) {
       //Если фильтр - пустой
@@ -191,11 +396,11 @@ function calcAndDrawingTutorials() {
         continue;
       }
       // Если не подошёл хотя бы 1 - не подошёл
-      console.log("fT", filtersTutorial, "aF", applyFilter);
+      // console.log("fT", filtersTutorial, "aF", applyFilter);
       if (setIntersection(filtersTutorial, applyFilter).size == 0) {
         // Не рисуем туториал
         moduleTutorials[indexTutorial].style.display = "none";
-        console.log("nD t", indexTutorial, "f", applyFilter);
+        // console.log("nD t", indexTutorial, "f", applyFilter);
         break;
       }
     }
@@ -280,7 +485,11 @@ openSortsButton.addEventListener("click", () => {
 });
 
 // Применение сортировки
-let numberSorting = 0; // 0, 1, 2
+let numberSorting = Number(sessionStorage.getItem("numberSortingHandbook")); // 0, 1, 2
+if (Number.isNaN(numberSorting)) {
+  numberSorting = 0;
+}
+
 const nameSort = document.querySelector(".A_FilterSortingByText");
 const namesSort = ["По сложности", "По дате обновления", "По проверенности"];
 
@@ -296,42 +505,34 @@ const buttonSort3 = document.getElementById(
 );
 const buttonsSort = [buttonSort1, buttonSort2, buttonSort3];
 
-const handbookModulesPart1 = document.getElementById("handbookModulesPart1");
-const handbookModulesPart2 = document.getElementById("handbookModulesPart2");
-const handbookModulesPart3 = document.getElementById("handbookModulesPart3");
-const handbookModulesParts = [
-  handbookModulesPart1,
-  handbookModulesPart2,
-  handbookModulesPart3,
-];
+function getSortedTutorials() {
+  const tutorials = [...tutorialMeta];
 
-const originalHandbookModulesPart1 = Array.from(handbookModulesPart1.children);
-const originalHandbookModulesPart2 = Array.from(handbookModulesPart2.children);
-const originalHandbookModulesPart3 = Array.from(handbookModulesPart3.children);
-const originalHandbookModulesParts = [
-  originalHandbookModulesPart1,
-  originalHandbookModulesPart2,
-  originalHandbookModulesPart3,
-];
+  if (numberSorting === 0) {
+    tutorials.sort((a, b) => {
+      const diff = a.complexityValue - b.complexityValue;
+      if (diff !== 0) return diff;
 
-// Матрица переходов
-const transitionSorts = [
-  [
-    [0, 1],
-    [0, 1, 2],
-    [0, 1, 2],
-  ],
-  [
-    [1, 0],
-    [0, 1, 2],
-    [0, 1, 2],
-  ],
-  [
-    [0, 1],
-    [0, 1, 2],
-    [0, 1, 2],
-  ],
-];
+      return a.originalIndex - b.originalIndex;
+    });
+  } else if (numberSorting === 1) {
+    tutorials.sort((a, b) => {
+      const diff = b.dateNumber - a.dateNumber;
+      if (diff !== 0) return diff;
+
+      return a.originalIndex - b.originalIndex;
+    });
+  } else if (numberSorting === 2) {
+    tutorials.sort((a, b) => {
+      const diff = b.verificationValue - a.verificationValue;
+      if (diff !== 0) return diff;
+
+      return a.originalIndex - b.originalIndex;
+    });
+  }
+
+  return tutorials;
+}
 
 function applyingSorting() {
   pointsSort.forEach((point) => {
@@ -339,53 +540,56 @@ function applyingSorting() {
   });
 
   nameSort.textContent = namesSort[numberSorting];
-  // nameSort.innerHTML = `${namesSort[numberSorting]}`;
   pointsSort[numberSorting].style.display = "flex";
-  // console.log(`"Сортировка ${numberSorting}`);
 
-  // Применение сортировки
-  handbookModulesParts.forEach((handbookPart, jPart) => {
-    handbookPart.innerHTML = "";
+  const tutorialsContainer = document.querySelector(".C_ModuleTutorials");
+  if (!tutorialsContainer) return;
 
-    transitionSorts[numberSorting][jPart].forEach((kPosition) => {
-      handbookModulesParts[jPart].appendChild(
-        originalHandbookModulesParts[jPart][kPosition],
-      );
-    });
+  const noResultsCard = document.getElementById("noResultsTutorials");
+
+  const sortedTutorials = getSortedTutorials();
+
+  sortedTutorials.forEach((tutorial) => {
+    const tutorialNode = moduleTutorials[tutorial.originalIndex];
+    if (tutorialNode) {
+      tutorialsContainer.appendChild(tutorialNode);
+    }
   });
+
+  if (noResultsCard) {
+    tutorialsContainer.appendChild(noResultsCard);
+  }
 }
 
-// Приминение вызовов сортировок к кнопкам
+// Нажатие кнопок сортировки
 buttonsSort.forEach((button, iSort) => {
   button.addEventListener("click", () => {
-    // Определение сортировки
     numberSorting = iSort;
+    sessionStorage.setItem("numberSortingHandbook", numberSorting);
     closeMenuSorting();
     applyingSorting();
   });
 });
 
 // Сброс настроек
-// Самое право
-const resetButton1 = document.querySelector(".A_FilterResetButton");
-// Скрытая снизу
-const resetButton2 = document.getElementById("filterResetButton2");
-const resetButtons = [resetButton1, resetButton2];
+const resetButton = document.querySelector(".A_FilterResetButton");
 
-resetButtons.forEach((resetButton) => {
-  if (resetButton) {
-    resetButton.addEventListener("click", () => {
-      // Сброс фильтров
-      closeMenuFilters();
-      matrFilters = structuredClone(defMatrFilters);
-      calcFilters();
-      calcDrawParts();
-      drawingParts();
+if (resetButton) {
+  resetButton.addEventListener("click", () => {
+    closeMenuFilters();
+    matrFilters = structuredClone(defMatrFilters);
+    calcFilters();
+    calcAndDrawingTutorials();
 
-      // Сброс сортировки
-      numberSorting = 0;
-      closeMenuSorting();
-      applyingSorting();
-    });
-  }
-});
+    numberSorting = 0;
+    sessionStorage.setItem("numberSortingHandbook", numberSorting);
+    closeMenuSorting();
+    applyingSorting();
+  });
+}
+
+drawModuleMeta();
+drawTutorialDescriptions();
+calcFilters();
+applyingSorting();
+calcAndDrawingTutorials();
