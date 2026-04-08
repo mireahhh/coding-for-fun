@@ -163,3 +163,66 @@ export function getP5Html(code) {
 </body>
 </html>`;
 }
+
+export function getThreeHtml(code) {
+  return `
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    ${getBaseStyles("#FFFFFF")}
+
+    #app {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #FFFFFF;
+      position: relative;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script>
+    window.onerror = function(message, source, lineno, colno, error) {
+      document.body.innerHTML = "<pre>" + String(message) + "</pre>";
+      console.error(error || message);
+    };
+  <\/script>
+
+  <script type="module">
+    import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.182.0/build/three.module.js";
+
+    const app = document.getElementById("app");
+
+    let renderer = null;
+    let animationId = null;
+    let cleanup = null;
+
+    try {
+      const userFunction = new Function("THREE", "app", \`
+        ${code}
+      \`);
+
+      cleanup = userFunction(THREE, app);
+    } catch (error) {
+      document.body.innerHTML = "<pre>" + String(error) + "</pre>";
+      console.error(error);
+    }
+
+    window.addEventListener("beforeunload", () => {
+      if (animationId) cancelAnimationFrame(animationId);
+      if (typeof cleanup === "function") cleanup();
+    });
+  <\/script>
+</body>
+</html>`;
+}

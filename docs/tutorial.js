@@ -4,7 +4,8 @@
 ;// ./src/javascripts/pages/tutorialsCodeDefaults.js
 var defaultCodeByRuntime = {
   vanilla: "const app = document.getElementById(\"app\");\n\napp.innerHTML = \"\";\napp.style.width = \"100%\";\napp.style.height = \"100%\";\napp.style.display = \"flex\";\napp.style.alignItems = \"center\";\napp.style.justifyContent = \"center\";\napp.style.background = \"#F3F4F6\";\n\nconst box = document.createElement(\"div\");\nbox.textContent = \"Vanilla JS works\";\nbox.style.padding = \"16px 20px\";\nbox.style.borderRadius = \"16px\";\nbox.style.background = \"#111827\";\nbox.style.color = \"#FFFFFF\";\nbox.style.fontFamily = \"sans-serif\";\nbox.style.fontSize = \"18px\";\n\napp.appendChild(box);",
-  p5: "function setup() {\n  createCanvas(windowWidth, windowHeight);\n  noStroke();\n}\n\nfunction draw() {\n  background(255);\n\n  let step = 40;\n\n  for (let y = 0; y < height; y += step) {\n    for (let x = 0; x < width; x += step) {\n      fill(20);\n      rect(x, y, step * 0.8, step * 0.8);\n    }\n  }\n}"
+  p5: "function setup() {\n  createCanvas(windowWidth, windowHeight);\n  noStroke();\n}\n\nfunction draw() {\n  background(255);\n\n  let step = 40;\n\n  for (let y = 0; y < height; y += step) {\n    for (let x = 0; x < width; x += step) {\n      fill(20);\n      rect(x, y, step * 0.8, step * 0.8);\n    }\n  }\n}",
+  three: "const width = app.clientWidth;\nconst height = app.clientHeight;\n\n// \u0441\u0446\u0435\u043D\u0430\nconst scene = new THREE.Scene();\nscene.background = new THREE.Color(0xffffff);\n\n// \u043A\u0430\u043C\u0435\u0440\u0430\nconst camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);\ncamera.position.z = 3;\n\n// \u0440\u0435\u043D\u0434\u0435\u0440\u0435\u0440\nconst renderer = new THREE.WebGLRenderer({ antialias: true });\nrenderer.setSize(width, height);\nrenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));\n\napp.innerHTML = \"\";\napp.appendChild(renderer.domElement);\n\n// \u043E\u0431\u044A\u0435\u043A\u0442\nconst geometry = new THREE.BoxGeometry(1, 1, 1);\nconst material = new THREE.MeshNormalMaterial();\nconst cube = new THREE.Mesh(geometry, material);\nscene.add(cube);\n\n// resize\nfunction onResize() {\n  const width = app.clientWidth;\n  const height = app.clientHeight;\n\n  camera.aspect = width / height;\n  camera.updateProjectionMatrix();\n  renderer.setSize(width, height);\n}\n\nwindow.addEventListener(\"resize\", onResize);\n\n// \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u044F\nlet animationId;\n\nfunction animate() {\n  cube.rotation.x += 0.01;\n  cube.rotation.y += 0.02;\n\n  renderer.render(scene, camera);\n  animationId = requestAnimationFrame(animate);\n}\n\nanimate();\n\n// cleanup\nreturn () => {\n  cancelAnimationFrame(animationId);\n  window.removeEventListener(\"resize\", onResize);\n\n  geometry.dispose();\n  material.dispose();\n  renderer.dispose();\n};"
 };
 var defaultCodeById = {
   patr1module1tutorial1code1: "function setup() {\n  createCanvas(windowWidth, windowHeight); // \u0441\u043E\u0437\u0434\u0430\u0451\u043C \u0445\u043E\u043B\u0441\u0442 \u0440\u0430\u0437\u043C\u0435\u0440\u0430 \u043E\u043A\u043D\u0430\n  noStroke(); // \u0443\u0431\u0438\u0440\u0430\u0435\u043C \u043E\u0431\u0432\u043E\u0434\u043A\u0443 \u0443 \u0444\u0438\u0433\u0443\u0440\n}\n\nfunction draw() {\n  background(144); // \u043E\u0447\u0438\u0449\u0430\u0435\u043C \u0444\u043E\u043D (\u0431\u0435\u043B\u044B\u0439)\n\n  let step = 40; // \u0448\u0430\u0433 \u0441\u0435\u0442\u043A\u0438 \u2014 \u0440\u0430\u0441\u0441\u0442\u043E\u044F\u043D\u0438\u0435 \u043C\u0435\u0436\u0434\u0443 \u044D\u043B\u0435\u043C\u0435\u043D\u0442\u0430\u043C\u0438\n\n  // \u0438\u0434\u0451\u043C \u043F\u043E \u0432\u0435\u0440\u0442\u0438\u043A\u0430\u043B\u0438\n  for (let y = 0; y < height; y += step) {\n    // \u0434\u043B\u044F \u043A\u0430\u0436\u0434\u043E\u0439 \u0441\u0442\u0440\u043E\u043A\u0438 \u0438\u0434\u0451\u043C \u043F\u043E \u0433\u043E\u0440\u0438\u0437\u043E\u043D\u0442\u0430\u043B\u0438\n    for (let x = 0; x < width; x += step) {\n      rect(x, y, step * 0.8); // \u0440\u0438\u0441\u0443\u0435\u043C \u043A\u0432\u0430\u0434\u0440\u0430\u0442 \u0447\u0443\u0442\u044C \u043C\u0435\u043D\u044C\u0448\u0435 \u0448\u0430\u0433\u0430\n    }\n  }\n}",
@@ -27,6 +28,9 @@ function getVanillaHtml(code) {
 }
 function getP5Html(code) {
   return "\n<!doctype html>\n<html lang=\"ru\">\n<head>\n  <meta charset=\"UTF-8\">\n  <style>\n    ".concat(getBaseStyles("#FFFFFF"), "\n\n    html, body {\n      margin: 0 !important;\n      padding: 0 !important;\n    }\n\n    #app {\n      width: 100%;\n      height: 100%;\n      margin: 0;\n      padding: 0;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      overflow: hidden;\n      background: #FFFFFF;\n    }\n\n    canvas {\n      display: block;\n      max-width: 100%;\n      max-height: 100%;\n      margin: 0 !important;\n      padding: 0 !important;\n    }\n  </style>\n</head>\n<body>\n  <div id=\"app\"></div>\n\n  <script>\n    window.onerror = function(message, source, lineno, colno, error) {\n      document.body.innerHTML = \"<pre>\" + String(message) + \"</pre>\";\n      console.error(error || message);\n    };\n  </script>\n\n  <script src=\"https://cdn.jsdelivr.net/npm/p5/lib/p5.min.js\"></script>\n\n  <script>\n    try {\n      ").concat(code, "\n\n      if (typeof window.setup === \"function\") {\n        const userSetup = window.setup;\n        window.setup = function () {\n          const result = userSetup();\n\n          const canvas = document.querySelector(\"canvas\");\n          const app = document.getElementById(\"app\");\n\n          if (canvas && app && canvas.parentElement !== app) {\n            app.appendChild(canvas);\n          }\n\n          return result;\n        };\n      }\n    } catch (error) {\n      document.body.innerHTML = \"<pre>\" + String(error) + \"</pre>\";\n      console.error(error);\n    }\n  </script>\n</body>\n</html>");
+}
+function getThreeHtml(code) {
+  return "\n<!doctype html>\n<html lang=\"ru\">\n<head>\n  <meta charset=\"UTF-8\">\n  <style>\n    ".concat(getBaseStyles("#FFFFFF"), "\n\n    #app {\n      width: 100%;\n      height: 100%;\n      overflow: hidden;\n      background: #FFFFFF;\n      position: relative;\n    }\n\n    canvas {\n      display: block;\n      width: 100%;\n      height: 100%;\n    }\n  </style>\n</head>\n<body>\n  <div id=\"app\"></div>\n\n  <script>\n    window.onerror = function(message, source, lineno, colno, error) {\n      document.body.innerHTML = \"<pre>\" + String(message) + \"</pre>\";\n      console.error(error || message);\n    };\n  </script>\n\n  <script type=\"module\">\n    import * as THREE from \"https://cdn.jsdelivr.net/npm/three@0.182.0/build/three.module.js\";\n\n    const app = document.getElementById(\"app\");\n\n    let renderer = null;\n    let animationId = null;\n    let cleanup = null;\n\n    try {\n      const userFunction = new Function(\"THREE\", \"app\", `\n        ").concat(code, "\n      `);\n\n      cleanup = userFunction(THREE, app);\n    } catch (error) {\n      document.body.innerHTML = \"<pre>\" + String(error) + \"</pre>\";\n      console.error(error);\n    }\n\n    window.addEventListener(\"beforeunload\", () => {\n      if (animationId) cancelAnimationFrame(animationId);\n      if (typeof cleanup === \"function\") cleanup();\n    });\n  </script>\n</body>\n</html>");
 }
 ;// ./src/javascripts/json/otherJson.js
 var months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
@@ -165,7 +169,29 @@ var tagsPart2Module1Tutorial1 = {
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
 };
-var tagsPart2Module1 = [tagsPart2Module1Tutorial1];
+var tagsPart2Module1Tutorial2 = {
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20260327"],
+  title: "Стили и трансформации",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart2Module1Tutorial3 = {
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20260327"],
+  title: "Анимации и события",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart2Module1 = [tagsPart2Module1Tutorial1, tagsPart2Module1Tutorial2, tagsPart2Module1Tutorial3];
 // p2 m2
 var tagsPart2Module2Tutorial1 = {
   complexity: "filterComplexityMiddle",
@@ -173,12 +199,56 @@ var tagsPart2Module2Tutorial1 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "Определение креативного кода",
+  title: "Цикл отрисовки и фигуры",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
 };
-var tagsPart2Module2 = [tagsPart2Module2Tutorial1];
+var tagsPart2Module2Tutorial2 = {
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20251227"],
+  title: "Интерактив с мышью и клавиатурой",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart2Module2Tutorial3 = {
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20251227"],
+  title: "Тайлинг и дисплейсмент",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart2Module2Tutorial4 = {
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20251227"],
+  title: "Эффекты движения",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart2Module2Tutorial5 = {
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20251227"],
+  title: "Рисование шумом",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart2Module2 = [tagsPart2Module2Tutorial1, tagsPart2Module2Tutorial2, tagsPart2Module2Tutorial3, tagsPart2Module2Tutorial4, tagsPart2Module2Tutorial5];
 // p2 m3
 var tagsPart2Module3Tutorial1 = {
   complexity: "filterComplexityMiddle",
@@ -186,12 +256,56 @@ var tagsPart2Module3Tutorial1 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "Определение креативного кода",
+  title: "Сцена, камера и рендерер",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
 };
-var tagsPart2Module3 = [tagsPart2Module3Tutorial1];
+var tagsPart2Module3Tutorial2 = {
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20251227"],
+  title: "Геометрии и материалы",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart2Module3Tutorial3 = {
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20251227"],
+  title: "Свет и текстуры",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart2Module3Tutorial4 = {
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20251227"],
+  title: "Анимация и управление камерой",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart2Module3Tutorial5 = {
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20251227"],
+  title: "Импорт моделей",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart2Module3 = [tagsPart2Module3Tutorial1, tagsPart2Module3Tutorial2, tagsPart2Module3Tutorial3, tagsPart2Module3Tutorial4, tagsPart2Module3Tutorial5];
 var tagsPart2 = [tagsPart2Module1, tagsPart2Module2, tagsPart2Module3];
 // p3 m1
 var tagsPart3Module1Tutorial1 = {
@@ -200,12 +314,45 @@ var tagsPart3Module1Tutorial1 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "Определение креативного кода",
+  title: "random() и noise()",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
 };
-var tagsPart3Module1 = [tagsPart3Module1Tutorial1];
+var tagsPart3Module1Tutorial2 = {
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20251227"],
+  title: "Контроль повторяемости",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart3Module1Tutorial3 = {
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20251227"],
+  title: "Распределения рандомных величин",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart3Module1Tutorial4 = {
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20251227"],
+  title: "Шумовые текстуры",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart3Module1 = [tagsPart3Module1Tutorial1, tagsPart3Module1Tutorial2, tagsPart3Module1Tutorial3, tagsPart3Module1Tutorial4];
 // p3 m2
 var tagsPart3Module2Tutorial1 = {
   complexity: "filterComplexityAdvanced",
@@ -213,12 +360,56 @@ var tagsPart3Module2Tutorial1 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "Определение креативного кода",
+  title: "Рекурсия",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
 };
-var tagsPart3Module2 = [tagsPart3Module2Tutorial1];
+var tagsPart3Module2Tutorial2 = {
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20251227"],
+  title: "Фракталы и L-системы",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart3Module2Tutorial3 = {
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20251227"],
+  title: "Мозаики и сетки",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart3Module2Tutorial4 = {
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20251227"],
+  title: "Векторные поля",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart3Module2Tutorial5 = {
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20251227"],
+  title: "Диаграммы Вороного",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart3Module2 = [tagsPart3Module2Tutorial1, tagsPart3Module2Tutorial2, tagsPart3Module2Tutorial3, tagsPart3Module2Tutorial4, tagsPart3Module2Tutorial5];
 // p3 m3
 var tagsPart3Module3Tutorial1 = {
   complexity: "filterComplexityAdvanced",
@@ -226,12 +417,34 @@ var tagsPart3Module3Tutorial1 = {
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
-  title: "Определение креативного кода",
+  title: "Сторонние библиотеки",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
 };
-var tagsPart3Module3 = [tagsPart3Module3Tutorial1];
+var tagsPart3Module3Tutorial2 = {
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20251227"],
+  title: "Применение шейдеров",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart3Module3Tutorial3 = {
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  date: ["20251227"],
+  title: "Сообщества и ресурсы",
+  author: "digitalnaya",
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: ["Генеративная графика", "Паттерны", "Алгоритмическая анимация", "Интерактивные системы"]
+};
+var tagsPart3Module3 = [tagsPart3Module3Tutorial1, tagsPart3Module3Tutorial2, tagsPart3Module3Tutorial3];
 var tagsPart3 = [tagsPart3Module1, tagsPart3Module2, tagsPart3Module3];
 var tagsHandbook = [tagsPart1, tagsPart2, tagsPart3];
 
@@ -297,11 +510,14 @@ function getDefaultCode(blockId, runtime) {
   return defaultCodeById[blockId] || defaultCodeByRuntime[runtime] || "";
 }
 function buildRuntimeHtml(runtime, code) {
+  if (runtime === "vanilla") {
+    return getVanillaHtml(code);
+  }
   if (runtime === "p5") {
     return getP5Html(code);
   }
-  if (runtime === "vanilla") {
-    return getVanillaHtml(code);
+  if (runtime === "three") {
+    return getThreeHtml(code);
   }
   return getUnknownRuntimeHtml(runtime);
 }
@@ -352,7 +568,6 @@ function runCode(codeBlock, iframe, textarea, runtime) {
   var code = textarea.value;
   iframe.srcdoc = buildRuntimeHtml(runtime, code);
   codeBlock.classList.add("is-running");
-  console.log(codeBlock.classList);
 }
 function stopCode(codeBlock, iframe) {
   clearFrame(iframe);
@@ -386,7 +601,7 @@ document.querySelectorAll(".O_TutorialSingleCode").forEach(function (codeBlock) 
   var runtime = codeBlock.dataset.runtime;
   var iframe = codeBlock.querySelector(".A_TutorialSingleCodeExecutionCanvas");
   var runStopButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonRunStop");
-  var resetButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonRestart");
+  var resetButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonClean");
   var copyButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonCopy");
   var textarea = codeBlock.querySelector(".W_TutorialSingleCodeTextRun");
   if (!iframe || !runStopButton || !resetButton || !copyButton || !textarea) return;

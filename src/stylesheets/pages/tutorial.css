@@ -299,7 +299,7 @@
                             gap: var(--size-spacing-8);
 
                             .A_TutorialSingleCodeTextButtonRunStop,
-                            .A_TutorialSingleCodeTextButtonRestart,
+                            .A_TutorialSingleCodeTextButtonClean,
                             .A_TutorialSingleCodeTextButtonCopy {
                                 width: var(--size-spacing-32);
                                 height: var(--size-spacing-32);
@@ -319,7 +319,7 @@
 
                             .Q_TutorialSingleCodeIconRun,
                             .Q_TutorialSingleCodeIconStop,
-                            .Q_TutorialSingleCodeIconRestart,
+                            .Q_TutorialSingleCodeIconClean,
                             .Q_TutorialSingleCodeIconCopy {
                                 display: flex;
                                 width: var(--size-spacing-16);
@@ -341,13 +341,16 @@
                 }
 
                 &.is-running {
-                    .Q_TutorialSingleCodeIconRun {
-                        display: none;
+                    .O_TutorialSingleCodeTexts .W_TutorialSingleCodeTextArea .M_TutorialSingleCodeTextButtons .A_TutorialSingleCodeTextButtonRunStop {
+                        .Q_TutorialSingleCodeIconRun {
+                            display: none;
+                        }
+
+                        .Q_TutorialSingleCodeIconStop {
+                            display: flex;
+                        }
                     }
 
-                    .Q_TutorialSingleCodeIconStop {
-                        display: flex;
-                    }
                 }
             }
         }

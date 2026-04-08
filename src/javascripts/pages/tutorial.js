@@ -3,7 +3,8 @@ import {
   getEmptyHtml,
   getUnknownRuntimeHtml,
   getVanillaHtml,
-  getP5Html
+  getP5Html,
+  getThreeHtml
 } from "./tutorialsCodeRuntimes";
 
 function getDefaultCode(blockId, runtime) {
@@ -11,12 +12,16 @@ function getDefaultCode(blockId, runtime) {
 }
 
 function buildRuntimeHtml(runtime, code) {
+  if (runtime === "vanilla") {
+    return getVanillaHtml(code);
+  }
+
   if (runtime === "p5") {
     return getP5Html(code);
   }
 
-  if (runtime === "vanilla") {
-    return getVanillaHtml(code);
+  if (runtime === "three") {
+    return getThreeHtml(code);
   }
 
   return getUnknownRuntimeHtml(runtime);
@@ -50,7 +55,6 @@ function runCode(codeBlock, iframe, textarea, runtime) {
   const code = textarea.value;
   iframe.srcdoc = buildRuntimeHtml(runtime, code);
   codeBlock.classList.add("is-running");
-  console.log(codeBlock.classList)
 }
 
 function stopCode(codeBlock, iframe) {
@@ -74,7 +78,7 @@ document.querySelectorAll(".O_TutorialSingleCode").forEach((codeBlock) => {
 
   const iframe = codeBlock.querySelector(".A_TutorialSingleCodeExecutionCanvas");
   const runStopButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonRunStop");
-  const resetButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonRestart");
+  const resetButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonClean");
   const copyButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonCopy");
   const textarea = codeBlock.querySelector(".W_TutorialSingleCodeTextRun");
 

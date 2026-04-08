@@ -36,7 +36,67 @@ function draw() {
       rect(x, y, step * 0.8, step * 0.8);
     }
   }
-}`
+}`,
+
+  three: `const width = app.clientWidth;
+const height = app.clientHeight;
+
+// сцена
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xffffff);
+
+// камера
+const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+camera.position.z = 3;
+
+// рендерер
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+// объект
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const material = new THREE.MeshNormalMaterial();
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+
+// resize
+function onResize() {
+  const width = app.clientWidth;
+  const height = app.clientHeight;
+
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+  renderer.setSize(width, height);
+}
+
+window.addEventListener("resize", onResize);
+
+// анимация
+let animationId;
+
+function animate() {
+  cube.rotation.x += 0.01;
+  cube.rotation.y += 0.02;
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+animate();
+
+// cleanup
+return () => {
+  cancelAnimationFrame(animationId);
+  window.removeEventListener("resize", onResize);
+
+  geometry.dispose();
+  material.dispose();
+  renderer.dispose();
+};`,
 };
 
 export const defaultCodeById = {
@@ -80,7 +140,7 @@ function draw() {
 
   noLoop();
 }`,
-patr1module1tutorial1code3: `function setup() {
+  patr1module1tutorial1code3: `function setup() {
   createCanvas(320, 320);
   noStroke();
 }
