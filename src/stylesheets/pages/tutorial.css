@@ -355,7 +355,15 @@
                             display: flex;
                         }
                     }
+                }
+            }
 
+            .O_TutorialSingleCode--Large {
+                flex-direction: column;
+
+                .W_TutorialSingleCodeExecution {
+                    margin: auto;
+                    height: var(--size-spacing-416);
                 }
             }
         }
@@ -418,7 +426,20 @@
                     .W_TutorialSingleCodeExecution {
                         margin: auto;
                         height: auto;
+                        width: 100%;
                         max-width: var(--size-spacing-272);
+                        flex: 1;
+                    }
+                }
+
+                .O_TutorialSingleCode--Large {
+                    flex-direction: column;
+
+                    .W_TutorialSingleCodeExecution {
+                        margin: auto;
+                        height: auto;
+                        width: 100%;
+                        max-width: var(--size-spacing-416);
                         flex: 1;
                     }
                 }

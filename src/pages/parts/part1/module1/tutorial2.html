@@ -149,15 +149,12 @@
       </ul>
     </section>
 
-    <section class="S_Tutorial">
+    <section id="tutorial" class="S_Tutorial">
+      <div class="O_TutorialNavigation"></div>
       <div class="O_TutorialMain">
         <section class="O_TutorialSection">
 
-          <h3 class="U_FontH3 A_TutorialTitle">
-            Практика
-          </h3>
-
-          <div class="O_TutorialSingleCode" data-runtime="three" data-autostart="true">
+          <div class="O_TutorialSingleCode O_TutorialSingleCode--Large" data-runtime="three" data-autostart="true">
             <div class="W_TutorialSingleCodeExecution">
               <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
                 allow="accelerometer; gyroscope; magnetometer">
@@ -182,7 +179,8 @@
               </div>
               <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
                 Сначала создаётся холст&nbsp;— это&nbsp;область, в&nbsp;которой мы&nbsp;рисуем. Затем в&nbsp;функции
-                draw очищается&nbsp;фон, чтобы&nbsp;каждый запуск начинался с&nbsp;чистого состояния. Переменная step
+                draw очищается&nbsp;фон, чтобы&nbsp;каждый запуск начинался с&nbsp;чистого состояния. Переменная
+                <tx-sl>step</tx-sl>
                 задаёт расстояние между элементами и&nbsp;фактически определяет плотность сетки.
                 <br><br>
                 Дальше запускаются два&nbsp;вложенных цикла. Первый отвечает за&nbsp;движение по&nbsp;вертикали,
@@ -191,8 +189,12 @@
               </p>
             </div>
           </div>
+
         </section>
       </div>
+      <a class="A_TutorialButtonUp" href="#tutorial">
+        <img class="U_ImgIcon" src="../../../../images/icons/arrow-up.svg" alt="Вверх">
+      </a>
     </section>
 
     <section class="W_Next">
