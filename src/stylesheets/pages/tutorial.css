@@ -1,4 +1,6 @@
 .S_Tutorial {
+    position: relative;
+
     display: flex;
     flex-direction: row;
     margin: auto;
@@ -7,26 +9,179 @@
     width: 100%;
     background-color: var(--colors-neutrals-body);
 
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 16px;
+        height: 100%;
+
+        background:
+            linear-gradient(0deg,
+                var(--colors-neutrals-0-15),
+                var(--colors-neutrals-0-30)),
+            linear-gradient(180deg,
+                #F372B5 0%,
+                #F76479 12.5%,
+                #FC7C56 25%,
+                #FACE4E 37.5%,
+                #97E954 50%,
+                #5CD686 62.5%,
+                #5DD6BD 75%,
+                #5AD7E0 87.5%,
+                #57B9E9 100%);
+
+        filter: saturate(1.2) brightness(1.05);
+        pointer-events: none;
+    }
+
     .O_TutorialNavigation {
+        position: sticky;
+        top: var(--size-spacing-92);
+        align-self: flex-start;
+
         display: flex;
-        width: 23%;
+        flex-direction: column;
+        min-width: 0;
+        flex: 23 1 0;
         box-sizing: border-box;
-        padding-top: var(--size-spacing-120);
-        padding-inline: 5%;
+        padding-top: var(--size-spacing-56);
+        padding-bottom: var(--size-spacing-96);
+        padding-left: 5%;
+        row-gap: var(--size-spacing-56);
         justify-content: space-between;
         align-items: flex-start;
 
-        border-left: 16px solid #F372B5;
+        .W_TutorialNavigationPage,
+        .W_TutorialNavigationPart {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            row-gap: var(--size-spacing-16);
+        }
+
+        .W_TutorialNavigationPage .A_TutorialNavigationTitle {
+            color: var(--colors-neutrals-450);
+        }
+
+        .W_TutorialNavigationPart .A_TutorialNavigationTitle {
+            color: var(--colors-neutrals-200);
+        }
+
+        .W_TutorialNavigationPage {
+            .C_TutorialNavigationPageList {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--size-spacing-4);
+                align-self: stretch;
+
+                border-left: var(--size-spacing-1-5) dashed var(--colors-neutrals-450);
+
+                li {
+                    width: 100%;
+                    list-style: none;
+                }
+
+                .A_TutorialNavigationPageLink {
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    min-height: var(--size-spacing-32);
+                    box-sizing: border-box;
+                    padding: var(--size-spacing-4) var(--size-spacing-12);
+
+                    color: var(--colors-neutrals-450);
+                    border-left: var(--size-spacing-1-5) solid transparent;
+                    background: transparent;
+
+                    transition:
+                        color 0.15s ease,
+                        background 0.15s ease,
+                        border-color 0.15s ease;
+                }
+
+                .A_TutorialNavigationPageLink.is-current {
+                    color: var(--colors-neutrals-900);
+                    background: var(--colors-neutrals-150-60);
+                    /* border-left: var(--size-spacing-1-5) solid var(--colors-neutrals-900); */
+                }
+            }
+        }
+
+        .W_TutorialNavigationPart {
+            align-self: stretch;
+
+            .C_TutorialNavigationModules {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--size-spacing-12);
+
+                border-left: var(--size-spacing-1-5) dashed var(--colors-neutrals-200);
+
+                .W_TutorialNavigationModule {
+                    display: flex;
+                    padding-left: var(--size-spacing-16);
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: var(--size-spacing-8);
+                    align-self: stretch;
+
+                    .A_TutorialNavigationModuleTitle {
+                        color: var(--colors-neutrals-200);
+                    }
+
+                    .A_TutorialNavigationModuleTitle.is-current {}
+
+                    .C_TutorialNavigationTutorialsList {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        gap: var(--size-spacing-4);
+
+                        border-left: var(--size-spacing-1-5) dashed var(--colors-neutrals-200);
+
+                        li {
+                            width: 100%;
+                            list-style: none;
+                        }
+
+                        .A_TutorialNavigationTutorialLink {
+                            display: flex;
+                            align-items: center;
+                            width: 100%;
+                            min-height: var(--size-spacing-24);
+                            box-sizing: border-box;
+                            padding-inline: var(--size-spacing-12);
+
+                            color: var(--colors-neutrals-200);
+                            border-left: var(--size-spacing-1-5) solid transparent;
+                            background: transparent;
+
+                            transition:
+                                color 0.15s ease,
+                                background 0.15s ease,
+                                border-color 0.15s ease;
+                        }
+
+                        .A_TutorialNavigationTutorialLink.is-current {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     .O_TutorialMain {
         display: flex;
-        width: 60%;
         min-width: 0;
+        flex: 60 1 0;
         flex-direction: column;
         align-items: flex-start;
         gap: var(--size-spacing-80);
-        flex: 1 0 0;
         margin-top: var(--size-spacing-56);
 
         .O_TutorialSection {
@@ -243,7 +398,7 @@
                     aspect-ratio: 1/1;
 
                     border-radius: var(--size-radius-4);
-                    border: 1px solid var(--colors-neutrals-200);
+                    border: var(--size-spacing-1) solid var(--colors-neutrals-200);
                     background-color: var(--colors-neutrals-0);
                     overflow: hidden;
 
@@ -287,7 +442,7 @@
                             width: 100%;
                             box-sizing: border-box;
                             padding: var(--size-spacing-16);
-                            /* padding-right: calc(3 * var(--size-spacing-32) + 3 * var(--size-spacing-12)); */
+                            padding-right: calc(3 * var(--size-spacing-32) + 3 * var(--size-spacing-12));
                             overflow: auto;
                             white-space: pre;
                             color: var(--colors-neutrals-450);
@@ -296,7 +451,7 @@
                         .M_TutorialSingleCodeTextButtons {
                             position: absolute;
                             top: var(--size-spacing-14);
-                            right: var(--size-spacing-14);
+                            right: calc(var(--size-spacing-14) + var(--size-spacing-8));
 
                             display: flex;
                             flex-direction: row;
@@ -362,18 +517,37 @@
                 flex-direction: column;
 
                 .W_TutorialSingleCodeExecution {
-                    margin: auto;
-                    height: var(--size-spacing-416);
+                    border: var(--size-spacing-1-5) dashed var(--colors-neutrals-450);
+                    width: 100%;
+                    height: auto;
+                    aspect-ratio: auto;
+                    justify-content: center;
+                    background-color: var(--colors-neutrals-body);
+                    padding-block: var(--size-spacing-32);
+
+                    .A_TutorialSingleCodeExecutionCanvas {
+                        height: var(--size-spacing-416);
+                        width: auto;
+                        aspect-ratio: 1/1;
+                        border-radius: var(--size-radius-4);
+                        border: var(--size-spacing-1) solid var(--colors-neutrals-200);
+                        background-color: var(--colors-neutrals-0);
+                    }
                 }
             }
         }
     }
 
     .A_TutorialButtonUp {
+        position: sticky;
+        top: var(--size-spacing-92);
+        align-self: flex-start;
+
         display: flex;
-        padding-inline: 5%;
-        margin-top: var(--size-spacing-120);
-        width: 2.8%;
+        min-width: 0;
+        flex: 17 1 0;
+        padding-top: var(--size-spacing-56);
+        padding-bottom: var(--size-spacing-96);
         height: min-content;
         justify-content: center;
         align-items: center;

@@ -5,6 +5,7 @@
     box-sizing: border-box;
     width: 100%;
     padding-block: var(--size-spacing-32);
+    background-color: var(--colors-neutrals-body);
     justify-content: space-between;
     align-items: flex-start;
     align-content: flex-start;

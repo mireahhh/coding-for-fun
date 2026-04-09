@@ -1,3 +1,9 @@
+const heading = document.querySelector(".A_IntroHeadingTutorial");
+
+const part = Number(heading.dataset.part);
+const module = Number(heading.dataset.module);
+const tutorial = Number(heading.dataset.tutorial);
+
 import { defaultCodeByRuntime, defaultCodeById } from "./tutorialsCodeDefaults";
 import {
   getEmptyHtml,
@@ -72,66 +78,62 @@ async function copyCodeFromTextarea(textarea, copyButton) {
   showCopyFeedback(copyButton);
 }
 
-document.querySelectorAll(".O_TutorialSingleCode").forEach((codeBlock) => {
-  const codeBlockId = codeBlock.id;
-  const runtime = codeBlock.dataset.runtime;
+function initTutorialCodeBlocks() {
+  document.querySelectorAll(".O_TutorialSingleCode").forEach((codeBlock) => {
+    const codeBlockId = codeBlock.id;
+    const runtime = codeBlock.dataset.runtime;
 
-  const iframe = codeBlock.querySelector(".A_TutorialSingleCodeExecutionCanvas");
-  const runStopButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonRunStop");
-  const resetButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonClean");
-  const copyButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonCopy");
-  const textarea = codeBlock.querySelector(".W_TutorialSingleCodeTextRun");
+    const iframe = codeBlock.querySelector(".A_TutorialSingleCodeExecutionCanvas");
+    const runStopButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonRunStop");
+    const resetButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonClean");
+    const copyButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonCopy");
+    const textarea = codeBlock.querySelector(".W_TutorialSingleCodeTextRun");
 
-  if (!iframe || !runStopButton || !resetButton || !copyButton || !textarea) return;
+    if (!iframe || !runStopButton || !resetButton || !copyButton || !textarea) return;
 
-  const defaultCode = getDefaultCode(codeBlockId, runtime);
-  textarea.value = defaultCode;
+    const defaultCode = getDefaultCode(codeBlockId, runtime);
+    textarea.value = defaultCode;
 
-  function autoResizeTextarea(textarea) {
-    textarea.style.height = "auto";
+    function autoResizeTextarea(textarea) {
+      textarea.style.height = "auto";
 
-    const minHeight = 272;
-    const maxHeight = 544;
-    const nextHeight = Math.min(Math.max(textarea.scrollHeight, minHeight), maxHeight);
+      const minHeight = 272;
+      const maxHeight = 544;
+      const nextHeight = Math.min(Math.max(textarea.scrollHeight, minHeight), maxHeight);
 
-    textarea.style.height = `${nextHeight}px`;
-  }
+      textarea.style.height = `${nextHeight}px`;
+    }
 
-  textarea.addEventListener("input", () => {
+    textarea.addEventListener("input", () => {
+      autoResizeTextarea(textarea);
+    });
+
     autoResizeTextarea(textarea);
-  });
 
-  autoResizeTextarea(textarea);
+    runStopButton.addEventListener("click", () => {
+      if (codeBlock.classList.contains("is-running")) {
+        stopCode(codeBlock, iframe);
+      } else {
+        runCode(codeBlock, iframe, textarea, runtime);
+      }
+    });
 
-  runStopButton.addEventListener("click", () => {
-    if (codeBlock.classList.contains("is-running")) {
-      stopCode(codeBlock, iframe);
-    } else {
+    resetButton.addEventListener("click", () => {
+      resetCode(textarea, defaultCode, codeBlock, iframe);
+      autoResizeTextarea(textarea);
+    });
+
+    copyButton.addEventListener("click", async () => {
+      await copyCodeFromTextarea(textarea, copyButton);
+    });
+
+    clearFrame(iframe);
+
+    if (codeBlock.dataset.autostart === "true") {
       runCode(codeBlock, iframe, textarea, runtime);
     }
   });
-
-  resetButton.addEventListener("click", () => {
-    resetCode(textarea, defaultCode, codeBlock, iframe);
-    autoResizeTextarea(textarea);
-  });
-
-  copyButton.addEventListener("click", async () => {
-    await copyCodeFromTextarea(textarea, copyButton);
-  });
-
-  clearFrame(iframe);
-
-  if (codeBlock.dataset.autostart === "true") {
-    runCode(codeBlock, iframe, textarea, runtime);
-  }
-});
-
-const heading = document.querySelector(".A_IntroHeadingTutorial");
-
-const part = Number(heading.dataset.part);
-const module = Number(heading.dataset.module);
-const tutorial = Number(heading.dataset.tutorial);
+}
 
 import { months, filtersName } from "../json/otherJson.js";
 import { tagsHandbook } from "../json/tutorialsJson.js";
@@ -231,17 +233,158 @@ function drawTutorialMeta() {
   }
 }
 
-drawTutorialMeta();
+function initTutorialCopyButtons() {
+  document.querySelectorAll(".A_TutorialCopyButton").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const text = button
+        .closest(".W_TutorialCopyItem")
+        .querySelector(".A_TutorialCopyText")
+        .innerText;
 
-document.querySelectorAll(".A_TutorialCopyButton").forEach((button) => {
-  button.addEventListener("click", async () => {
-    const text = button
-      .closest(".W_TutorialCopyItem")
-      .querySelector(".A_TutorialCopyText")
-      .innerText;
-
-    await copyText(text);
-    showCopyFeedback(button);
+      await copyText(text);
+      showCopyFeedback(button);
+    });
   });
-});
+}
 
+// Навигация
+// Динамическая по странице
+function initTutorialPageNavigation() {
+  const navList = document.querySelector(".C_TutorialNavigationPageList");
+  if (!navList) return;
+
+  const tutorialMain = document.querySelector(".O_TutorialMain");
+  if (!tutorialMain) return;
+
+  // Берём только h3 внутри урока
+  const tutorialHeadings = Array.from(tutorialMain.querySelectorAll("h3[id]"));
+
+  // Добавляем "Следующий материал" отдельно
+  const nextHeading = document.getElementById("nav6");
+
+  const allHeadings = [...tutorialHeadings];
+  if (nextHeading) {
+    allHeadings.push(nextHeading);
+  }
+
+  if (!allHeadings.length) return;
+
+  navList.innerHTML = "";
+
+  const navItems = allHeadings.map((heading) => {
+    const li = document.createElement("li");
+    const link = document.createElement("a");
+
+    link.className = "U_ALink A_TutorialNavigationPageLink";
+    link.href = `#${heading.id}`;
+    link.textContent = heading.textContent.trim();
+
+    li.appendChild(link);
+    navList.appendChild(li);
+
+    return { heading, link };
+  });
+
+  function updateCurrentSection() {
+    const headerOffset = 120;
+    const triggerLine = window.innerHeight * 0.28;
+
+    let currentItem = navItems[0];
+
+    navItems.forEach((item) => {
+      const rect = item.heading.getBoundingClientRect();
+
+      if (rect.top - headerOffset <= triggerLine) {
+        currentItem = item;
+      }
+    });
+
+    navItems.forEach((item) => {
+      item.link.classList.remove("is-current");
+    });
+
+    if (currentItem) {
+      currentItem.link.classList.add("is-current");
+
+      const currentHash = `#${currentItem.heading.id}`;
+      if (location.hash !== currentHash) {
+        history.replaceState(null, "", currentHash);
+      }
+    }
+  }
+
+  navItems.forEach((item) => {
+    item.link.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const headerOffset = 120;
+      const top =
+        item.heading.getBoundingClientRect().top +
+        window.scrollY -
+        headerOffset;
+
+      window.scrollTo({
+        top,
+        behavior: "smooth",
+      });
+    });
+  });
+
+  updateCurrentSection();
+  window.addEventListener("scroll", updateCurrentSection, { passive: true });
+  window.addEventListener("resize", updateCurrentSection);
+}
+
+// Навигация
+// Динамическая по учебнику
+function drawTutorialPartNavigation() {
+  const navigationPart = document.querySelector(".W_TutorialNavigationPart");
+  if (!navigationPart) return;
+
+  const partData = tagsHandbook?.[part - 1];
+  if (!Array.isArray(partData)) return;
+
+  const moduleElements = navigationPart.querySelectorAll(".W_TutorialNavigationModule");
+
+  moduleElements.forEach((moduleElement, moduleIndex) => {
+    const moduleData = partData[moduleIndex];
+    if (!Array.isArray(moduleData)) return;
+
+    const moduleNumber = moduleIndex + 1;
+
+    const moduleTitle = moduleElement.querySelector(".A_TutorialNavigationModuleTitle");
+
+    if (moduleNumber === module) {
+      moduleTitle?.classList.add("is-current");
+    }
+
+    const tutorialsList = moduleElement.querySelector(".C_TutorialNavigationTutorialsList");
+    if (!tutorialsList) return;
+
+    tutorialsList.innerHTML = "";
+
+    moduleData.forEach((tutorialData, tutorialIndex) => {
+      const tutorialNumber = tutorialIndex + 1;
+
+      const li = document.createElement("li");
+      const link = document.createElement("a");
+
+      link.className = "A_TutorialNavigationTutorialLink";
+      link.href = `../module${moduleNumber}/tutorial${tutorialNumber}.html`;
+      link.innerHTML = tutorialData?.title || `Туториал ${tutorialNumber}`;
+
+      if (moduleNumber === module && tutorialNumber === tutorial) {
+        link.classList.add("is-current");
+      }
+
+      li.appendChild(link);
+      tutorialsList.appendChild(li);
+    });
+  });
+}
+
+initTutorialCodeBlocks();
+initTutorialCopyButtons();
+drawTutorialMeta();
+initTutorialPageNavigation();
+drawTutorialPartNavigation();

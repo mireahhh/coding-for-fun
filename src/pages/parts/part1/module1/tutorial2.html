@@ -150,9 +150,38 @@
     </section>
 
     <section id="tutorial" class="S_Tutorial">
-      <div class="O_TutorialNavigation"></div>
+      <div class="O_TutorialNavigation">
+        <div class="W_TutorialNavigationPage">
+          <p class="U_FontS1 A_TutorialNavigationTitle">Содержание</p>
+          <ol class="U_FontF1 C_TutorialNavigationPageList">
+            <li><a class="A_TutorialNavigationPageLink" href=""></a></li>
+          </ol>
+        </div>
+        <div class="W_TutorialNavigationPart">
+          <p class="U_FontS1 A_TutorialNavigationTitle">Базовые знания</p>
+          <div class="C_TutorialNavigationModules">
+            <div class="W_TutorialNavigationModule">
+              <a class="U_FontB1 A_TutorialNavigationModuleTitle" href="../module1.html">Введение в&nbsp;тему</a>
+              <ol class="U_FontF1 C_TutorialNavigationTutorialsList">
+                <li><a class="A_TutorialNavigationTutorialLink" href="../module1/tutorial1.html"></a></li>
+              </ol>
+            </div>
+            <div class="W_TutorialNavigationModule">
+              <a class="U_FontB1 A_TutorialNavigationModuleTitle" href="../module2.html">Алгоритмы и&nbsp;данные</a>
+              <ol class="U_FontF1 C_TutorialNavigationTutorialsList">
+                <li><a class="A_TutorialNavigationTutorialLink" href="../module2/tutorial1.html"></a></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="O_TutorialMain">
         <section class="O_TutorialSection">
+
+          <h3 id="nav1" class="U_FontH3 A_TutorialTitle">
+            Кубик
+          </h3>
 
           <div class="O_TutorialSingleCode O_TutorialSingleCode--Large" data-runtime="three" data-autostart="true">
             <div class="W_TutorialSingleCodeExecution">
@@ -178,14 +207,7 @@
                 </div>
               </div>
               <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
-                Сначала создаётся холст&nbsp;— это&nbsp;область, в&nbsp;которой мы&nbsp;рисуем. Затем в&nbsp;функции
-                draw очищается&nbsp;фон, чтобы&nbsp;каждый запуск начинался с&nbsp;чистого состояния. Переменная
-                <tx-sl>step</tx-sl>
-                задаёт расстояние между элементами и&nbsp;фактически определяет плотность сетки.
-                <br><br>
-                Дальше запускаются два&nbsp;вложенных цикла. Первый отвечает за&nbsp;движение по&nbsp;вертикали,
-                второй&nbsp;— по&nbsp;горизонтали. Вместе они&nbsp;перебирают все&nbsp;координаты сетки. В&nbsp;каждой
-                точке рисуется прямоугольник, и&nbsp;благодаря этому из&nbsp;одной команды получается целая структура.
+                Мой любимый кубик
               </p>
             </div>
           </div>
@@ -210,7 +232,7 @@
       </div>
       <div class="W_NextAbout">
         <div class="M_NextTexts">
-          <p class="U_FontS1 A_NextTitle">Следующий материал</p>
+          <h3 id="nav6" class="U_FontS1 A_NextTitle">Следующий материал</h3>
           <h2 class="U_FontH0 A_NextHeading">
             Цвет, форма и&nbsp;композиция
           </h2>

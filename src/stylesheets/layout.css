@@ -4,13 +4,42 @@ body {
 
 html {
   background-color: var(--colors-neutrals-body);
-  scroll-padding-top: var(--size-spacing-100);
+  scroll-padding-top: var(--size-spacing-92);
   scroll-behavior: smooth;
 
+  /* Выделение текста */
   ::selection {
     background-color: var(--colors-neutrals-900-80);
     color: var(--colors-neutrals-body);
   }
+}
+
+/* Sscrollbar */
+/* Firefox */
+*:not(html):not(body) {
+  scrollbar-width: thin;
+  scrollbar-color: var(--colors-neutrals-150-60) transparent;
+}
+/* Chrome / Edge / Safari */
+*:not(html):not(body)::-webkit-scrollbar {
+  width: var(--size-spacing-6);
+  height: var(--size-spacing-6);
+}
+*:not(html):not(body)::-webkit-scrollbar-track {
+  background: transparent;
+}
+*:not(html):not(body)::-webkit-scrollbar-thumb {
+  background: var(--colors-neutrals-150-60);
+  border-radius: 0;
+}
+*:not(html):not(body)::-webkit-scrollbar-thumb:hover {
+  background: var(--colors-neutrals-200);
+}
+*:not(html):not(body)::-webkit-scrollbar-button {
+  display: none;
+}
+*:not(html):not(body)::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 tx-sl {

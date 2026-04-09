@@ -92,6 +92,10 @@
     /* neutrais */
     /* 255 ff */
     --colors-neutrals-0: #ffffff;
+    /* 255 ff   15% 26*/
+    --colors-neutrals-0-15: #ffffff26;
+    /* 255 ff   30% 4d*/
+    --colors-neutrals-0-30: #ffffff4d;
     /* 248 f8 (50)*/
     --colors-neutrals-body: #f8f8f8;
     /* --colors-neutrals-body: #000000; */

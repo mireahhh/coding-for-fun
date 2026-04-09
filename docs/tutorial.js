@@ -146,10 +146,10 @@ var tagsPart1Module2Tutorial4 = {
 };
 var tagsPart1Module2Tutorial5 = {
   complexity: "filterComplexityInitial",
-  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  library: ["filterLibraryP5js", "filterLibraryVanillajs", "filterLibraryThreejs"],
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
-  date: ["20260315"],
+  date: ["20260319"],
   title: "Паттерны повторов",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
@@ -504,6 +504,10 @@ function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present,
 function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+var heading = document.querySelector(".A_IntroHeadingTutorial");
+var part = Number(heading.dataset.part);
+var tutorial_module = Number(heading.dataset.module);
+var tutorial = Number(heading.dataset.tutorial);
 
 
 function getDefaultCode(blockId, runtime) {
@@ -596,59 +600,57 @@ function _copyCodeFromTextarea() {
   }));
   return _copyCodeFromTextarea.apply(this, arguments);
 }
-document.querySelectorAll(".O_TutorialSingleCode").forEach(function (codeBlock) {
-  var codeBlockId = codeBlock.id;
-  var runtime = codeBlock.dataset.runtime;
-  var iframe = codeBlock.querySelector(".A_TutorialSingleCodeExecutionCanvas");
-  var runStopButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonRunStop");
-  var resetButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonClean");
-  var copyButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonCopy");
-  var textarea = codeBlock.querySelector(".W_TutorialSingleCodeTextRun");
-  if (!iframe || !runStopButton || !resetButton || !copyButton || !textarea) return;
-  var defaultCode = getDefaultCode(codeBlockId, runtime);
-  textarea.value = defaultCode;
-  function autoResizeTextarea(textarea) {
-    textarea.style.height = "auto";
-    var minHeight = 272;
-    var maxHeight = 544;
-    var nextHeight = Math.min(Math.max(textarea.scrollHeight, minHeight), maxHeight);
-    textarea.style.height = "".concat(nextHeight, "px");
-  }
-  textarea.addEventListener("input", function () {
+function initTutorialCodeBlocks() {
+  document.querySelectorAll(".O_TutorialSingleCode").forEach(function (codeBlock) {
+    var codeBlockId = codeBlock.id;
+    var runtime = codeBlock.dataset.runtime;
+    var iframe = codeBlock.querySelector(".A_TutorialSingleCodeExecutionCanvas");
+    var runStopButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonRunStop");
+    var resetButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonClean");
+    var copyButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonCopy");
+    var textarea = codeBlock.querySelector(".W_TutorialSingleCodeTextRun");
+    if (!iframe || !runStopButton || !resetButton || !copyButton || !textarea) return;
+    var defaultCode = getDefaultCode(codeBlockId, runtime);
+    textarea.value = defaultCode;
+    function autoResizeTextarea(textarea) {
+      textarea.style.height = "auto";
+      var minHeight = 272;
+      var maxHeight = 544;
+      var nextHeight = Math.min(Math.max(textarea.scrollHeight, minHeight), maxHeight);
+      textarea.style.height = "".concat(nextHeight, "px");
+    }
+    textarea.addEventListener("input", function () {
+      autoResizeTextarea(textarea);
+    });
     autoResizeTextarea(textarea);
-  });
-  autoResizeTextarea(textarea);
-  runStopButton.addEventListener("click", function () {
-    if (codeBlock.classList.contains("is-running")) {
-      stopCode(codeBlock, iframe);
-    } else {
+    runStopButton.addEventListener("click", function () {
+      if (codeBlock.classList.contains("is-running")) {
+        stopCode(codeBlock, iframe);
+      } else {
+        runCode(codeBlock, iframe, textarea, runtime);
+      }
+    });
+    resetButton.addEventListener("click", function () {
+      resetCode(textarea, defaultCode, codeBlock, iframe);
+      autoResizeTextarea(textarea);
+    });
+    copyButton.addEventListener("click", /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
+      return _regenerator().w(function (_context) {
+        while (1) switch (_context.n) {
+          case 0:
+            _context.n = 1;
+            return copyCodeFromTextarea(textarea, copyButton);
+          case 1:
+            return _context.a(2);
+        }
+      }, _callee);
+    })));
+    clearFrame(iframe);
+    if (codeBlock.dataset.autostart === "true") {
       runCode(codeBlock, iframe, textarea, runtime);
     }
   });
-  resetButton.addEventListener("click", function () {
-    resetCode(textarea, defaultCode, codeBlock, iframe);
-    autoResizeTextarea(textarea);
-  });
-  copyButton.addEventListener("click", /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
-    return _regenerator().w(function (_context) {
-      while (1) switch (_context.n) {
-        case 0:
-          _context.n = 1;
-          return copyCodeFromTextarea(textarea, copyButton);
-        case 1:
-          return _context.a(2);
-      }
-    }, _callee);
-  })));
-  clearFrame(iframe);
-  if (codeBlock.dataset.autostart === "true") {
-    runCode(codeBlock, iframe, textarea, runtime);
-  }
-});
-var heading = document.querySelector(".A_IntroHeadingTutorial");
-var part = Number(heading.dataset.part);
-var tutorial_module = Number(heading.dataset.module);
-var tutorial = Number(heading.dataset.tutorial);
+}
 
 
 function formatTutorialDate(dateJs) {
@@ -734,23 +736,135 @@ function drawTutorialMeta() {
     });
   }
 }
-drawTutorialMeta();
-document.querySelectorAll(".A_TutorialCopyButton").forEach(function (button) {
-  button.addEventListener("click", /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
-    var text;
-    return _regenerator().w(function (_context2) {
-      while (1) switch (_context2.n) {
-        case 0:
-          text = button.closest(".W_TutorialCopyItem").querySelector(".A_TutorialCopyText").innerText;
-          _context2.n = 1;
-          return copyText(text);
-        case 1:
-          showCopyFeedback(button);
-        case 2:
-          return _context2.a(2);
+function initTutorialCopyButtons() {
+  document.querySelectorAll(".A_TutorialCopyButton").forEach(function (button) {
+    button.addEventListener("click", /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
+      var text;
+      return _regenerator().w(function (_context2) {
+        while (1) switch (_context2.n) {
+          case 0:
+            text = button.closest(".W_TutorialCopyItem").querySelector(".A_TutorialCopyText").innerText;
+            _context2.n = 1;
+            return copyText(text);
+          case 1:
+            showCopyFeedback(button);
+          case 2:
+            return _context2.a(2);
+        }
+      }, _callee2);
+    })));
+  });
+}
+
+// Навигация
+// Динамическая по странице
+function initTutorialPageNavigation() {
+  var navList = document.querySelector(".C_TutorialNavigationPageList");
+  if (!navList) return;
+  var tutorialMain = document.querySelector(".O_TutorialMain");
+  if (!tutorialMain) return;
+
+  // Берём только h3 внутри урока
+  var tutorialHeadings = Array.from(tutorialMain.querySelectorAll("h3[id]"));
+
+  // Добавляем "Следующий материал" отдельно
+  var nextHeading = document.getElementById("nav6");
+  var allHeadings = [].concat(tutorialHeadings);
+  if (nextHeading) {
+    allHeadings.push(nextHeading);
+  }
+  if (!allHeadings.length) return;
+  navList.innerHTML = "";
+  var navItems = allHeadings.map(function (heading) {
+    var li = document.createElement("li");
+    var link = document.createElement("a");
+    link.className = "U_ALink A_TutorialNavigationPageLink";
+    link.href = "#".concat(heading.id);
+    link.textContent = heading.textContent.trim();
+    li.appendChild(link);
+    navList.appendChild(li);
+    return {
+      heading: heading,
+      link: link
+    };
+  });
+  function updateCurrentSection() {
+    var headerOffset = 120;
+    var triggerLine = window.innerHeight * 0.28;
+    var currentItem = navItems[0];
+    navItems.forEach(function (item) {
+      var rect = item.heading.getBoundingClientRect();
+      if (rect.top - headerOffset <= triggerLine) {
+        currentItem = item;
       }
-    }, _callee2);
-  })));
-});
+    });
+    navItems.forEach(function (item) {
+      item.link.classList.remove("is-current");
+    });
+    if (currentItem) {
+      currentItem.link.classList.add("is-current");
+      var currentHash = "#".concat(currentItem.heading.id);
+      if (location.hash !== currentHash) {
+        history.replaceState(null, "", currentHash);
+      }
+    }
+  }
+  navItems.forEach(function (item) {
+    item.link.addEventListener("click", function (e) {
+      e.preventDefault();
+      var headerOffset = 120;
+      var top = item.heading.getBoundingClientRect().top + window.scrollY - headerOffset;
+      window.scrollTo({
+        top: top,
+        behavior: "smooth"
+      });
+    });
+  });
+  updateCurrentSection();
+  window.addEventListener("scroll", updateCurrentSection, {
+    passive: true
+  });
+  window.addEventListener("resize", updateCurrentSection);
+}
+
+// Навигация
+// Динамическая по учебнику
+function drawTutorialPartNavigation() {
+  var navigationPart = document.querySelector(".W_TutorialNavigationPart");
+  if (!navigationPart) return;
+  var partData = tagsHandbook === null || tagsHandbook === void 0 ? void 0 : tagsHandbook[part - 1];
+  if (!Array.isArray(partData)) return;
+  var moduleElements = navigationPart.querySelectorAll(".W_TutorialNavigationModule");
+  moduleElements.forEach(function (moduleElement, moduleIndex) {
+    var moduleData = partData[moduleIndex];
+    if (!Array.isArray(moduleData)) return;
+    var moduleNumber = moduleIndex + 1;
+    var moduleTitle = moduleElement.querySelector(".A_TutorialNavigationModuleTitle");
+    if (moduleNumber === tutorial_module) {
+      moduleTitle === null || moduleTitle === void 0 || moduleTitle.classList.add("is-current");
+    }
+    var tutorialsList = moduleElement.querySelector(".C_TutorialNavigationTutorialsList");
+    if (!tutorialsList) return;
+    tutorialsList.innerHTML = "";
+    moduleData.forEach(function (tutorialData, tutorialIndex) {
+      var tutorialNumber = tutorialIndex + 1;
+      var li = document.createElement("li");
+      var link = document.createElement("a");
+      link.className = "A_TutorialNavigationTutorialLink";
+      link.href = "../module".concat(moduleNumber, "/tutorial").concat(tutorialNumber, ".html");
+      link.innerHTML = (tutorialData === null || tutorialData === void 0 ? void 0 : tutorialData.title) || "\u0422\u0443\u0442\u043E\u0440\u0438\u0430\u043B ".concat(tutorialNumber);
+      if (moduleNumber === tutorial_module && tutorialNumber === tutorial) {
+        link.classList.add("is-current");
+      }
+      li.appendChild(link);
+      tutorialsList.appendChild(li);
+    });
+  });
+}
+initTutorialCodeBlocks();
+initTutorialCopyButtons();
+drawTutorialMeta();
+initTutorialPageNavigation();
+drawTutorialPartNavigation();
 /******/ })()
 ;

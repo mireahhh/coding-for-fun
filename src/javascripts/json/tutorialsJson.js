@@ -117,10 +117,10 @@ const tagsPart1Module2Tutorial4 = {
 };
 const tagsPart1Module2Tutorial5 = {
   complexity: "filterComplexityInitial",
-  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  library: ["filterLibraryP5js", "filterLibraryVanillajs", "filterLibraryThreejs"],
   format: ["filterFormatTechnique", "filterFormatTask"],
   verification: "filterVerificationExpert",
-  date: ["20260315"],
+  date: ["20260319"],
   title: "Паттерны повторов",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
