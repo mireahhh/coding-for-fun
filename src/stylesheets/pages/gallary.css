@@ -11,6 +11,7 @@
 
   .C_GalleryWorks {
     display: flex;
+    flex-direction: row;
     width: 100%;
     justify-content: center;
     align-items: flex-start;
@@ -191,8 +192,10 @@
     margin-top: var(--size-spacing-64);
 
     .C_GalleryWorks {
+      flex-direction: column;
+      flex-wrap: nowrap;
       .W_GalleryWork {
-        min-width: none;
+        min-width: 0;
       }
     }
   }
