@@ -44,11 +44,10 @@
         display: flex;
         flex-direction: column;
         min-width: 0;
-        flex: 23 1 0;
-        box-sizing: border-box;
+        flex: 24 1 0;
         padding-top: var(--size-spacing-56);
         padding-bottom: var(--size-spacing-96);
-        padding-left: 5%;
+        padding-inline: 5%;
         row-gap: var(--size-spacing-56);
         justify-content: space-between;
         align-items: flex-start;
@@ -62,11 +61,11 @@
         }
 
         .W_TutorialNavigationPage .A_TutorialNavigationTitle {
-            color: var(--colors-neutrals-450);
+            color: var(--colors-neutrals-900);
         }
 
         .W_TutorialNavigationPart .A_TutorialNavigationTitle {
-            color: var(--colors-neutrals-200);
+            color: var(--colors-neutrals-450);
         }
 
         .W_TutorialNavigationPage {
@@ -88,11 +87,10 @@
                     display: flex;
                     align-items: center;
                     width: 100%;
-                    min-height: var(--size-spacing-32);
                     box-sizing: border-box;
-                    padding: var(--size-spacing-4) var(--size-spacing-12);
+                    padding: var(--size-spacing-2) var(--size-spacing-12);
 
-                    color: var(--colors-neutrals-450);
+                    color: var(--colors-neutrals-900);
                     border-left: var(--size-spacing-1-5) solid transparent;
                     background: transparent;
 
@@ -119,7 +117,7 @@
                 align-items: flex-start;
                 gap: var(--size-spacing-12);
 
-                border-left: var(--size-spacing-1-5) dashed var(--colors-neutrals-200);
+                border-left: var(--size-spacing-1-5) dashed var(--colors-neutrals-450);
 
                 .W_TutorialNavigationModule {
                     display: flex;
@@ -130,7 +128,7 @@
                     align-self: stretch;
 
                     .A_TutorialNavigationModuleTitle {
-                        color: var(--colors-neutrals-200);
+                        color: var(--colors-neutrals-450);
                     }
 
                     .A_TutorialNavigationModuleTitle.is-current {}
@@ -141,7 +139,7 @@
                         align-items: flex-start;
                         gap: var(--size-spacing-4);
 
-                        border-left: var(--size-spacing-1-5) dashed var(--colors-neutrals-200);
+                        border-left: var(--size-spacing-1-5) dashed var(--colors-neutrals-450);
 
                         li {
                             width: 100%;
@@ -156,7 +154,7 @@
                             box-sizing: border-box;
                             padding-inline: var(--size-spacing-12);
 
-                            color: var(--colors-neutrals-200);
+                            color: var(--colors-neutrals-450);
                             border-left: var(--size-spacing-1-5) solid transparent;
                             background: transparent;
 
@@ -545,7 +543,7 @@
 
         display: flex;
         min-width: 0;
-        flex: 17 1 0;
+        flex: 16 1 0;
         padding-top: var(--size-spacing-56);
         padding-bottom: var(--size-spacing-96);
         height: min-content;
