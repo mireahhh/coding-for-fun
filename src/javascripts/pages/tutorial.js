@@ -98,7 +98,7 @@ function initTutorialCodeBlocks() {
       textarea.style.height = "auto";
 
       const minHeight = 272;
-      const maxHeight = 544;
+      const maxHeight = minHeight * 2;
       const nextHeight = Math.min(Math.max(textarea.scrollHeight, minHeight), maxHeight);
 
       textarea.style.height = `${nextHeight}px`;

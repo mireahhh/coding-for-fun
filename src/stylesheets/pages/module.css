@@ -209,7 +209,8 @@
 }
 
 .S_ModuleResources {
-  display: flex;
+  /* TODO display: none; */
+  display: none;
   flex-direction: row;
   padding-inline: 5dvw;
   box-sizing: border-box;

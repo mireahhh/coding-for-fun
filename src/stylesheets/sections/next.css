@@ -9,7 +9,8 @@
     gap: var(--size-spacing-0);
     align-self: stretch;
     border-radius: var(--size-radius-0);
-    margin-top: var(--size-spacing-32);
+    /* TODO  было 32, изменили из-за модуля */
+    margin-top: var(--size-spacing-56);
 
     .C_IntroRainSquaresBox {
         display: flex;

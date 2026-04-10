@@ -316,6 +316,60 @@
                 }
             }
 
+            .W_TutorialCopyItem {
+                position: relative;
+                
+                display: flex;
+                padding: var(--size-spacing-16);
+                box-sizing: border-box;
+                width: 100%;
+                align-items: flex-start;
+                align-self: stretch;
+
+                background: var(--colors-neutrals-0);
+
+                /* U_FontC2-Code */
+                color: var(--colors-neutrals-450);
+
+                .A_TutorialCopyText {
+                    display: block;
+                    padding-right: var(--size-spacing-32);
+                    box-sizing: border-box;
+                    color: var(--colors-neutrals-450);
+                    min-width: 0;
+                    flex: 1;
+                    overflow-x: auto;
+                    white-space: nowrap;
+                }
+
+                .A_TutorialCopyButton {
+                    position: absolute;
+                    top: var(--size-spacing-14);
+                    right: var(--size-spacing-14);
+                    z-index: 2;
+
+                    width: var(--size-spacing-32);
+                    height: var(--size-spacing-32);
+
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    border-radius: 50%;
+                    background: var(--colors-neutrals-150-60);
+
+                    .Q_TutorialCopyIcon {
+                        width: var(--size-spacing-16);
+                        height: var(--size-spacing-16);
+                    }
+
+                    &.is-copied {
+                        filter: invert(1);
+                        opacity: var(--official-interaction-hover-opacity);
+                    }
+                }
+            }
+
             .C_TutorialCopyList {
                 display: flex;
                 flex-direction: column;
@@ -324,59 +378,6 @@
                 align-self: stretch;
                 box-sizing: border-box;
                 width: 100%;
-
-                .W_TutorialCopyItem {
-                    position: relative;
-                    display: flex;
-                    padding: var(--size-spacing-16);
-                    box-sizing: border-box;
-                    width: 100%;
-                    align-items: flex-start;
-                    align-self: stretch;
-
-                    background: var(--colors-neutrals-0);
-
-                    /* U_FontC2-Code */
-                    color: var(--colors-neutrals-450);
-
-                    .A_TutorialCopyText {
-                        display: block;
-                        padding-right: var(--size-spacing-32);
-                        box-sizing: border-box;
-                        color: var(--colors-neutrals-450);
-                        min-width: 0;
-                        flex: 1;
-                        overflow-x: auto;
-                        white-space: nowrap;
-                    }
-
-                    .A_TutorialCopyButton {
-                        position: absolute;
-                        top: var(--size-spacing-14);
-                        right: var(--size-spacing-14);
-                        z-index: 2;
-
-                        width: var(--size-spacing-32);
-                        height: var(--size-spacing-32);
-
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-
-                        border-radius: 50%;
-                        background: var(--colors-neutrals-150-60);
-
-                        .Q_TutorialCopyIcon {
-                            width: var(--size-spacing-16);
-                            height: var(--size-spacing-16);
-                        }
-
-                        &.is-copied {
-                            filter: invert(1);
-                            opacity: var(--official-interaction-hover-opacity);
-                        }
-                    }
-                }
             }
 
             /* Код */
@@ -568,6 +569,11 @@
 /* m 3 -> 2 */
 @media (max-width: 1152px) {
     .S_Tutorial {
+
+        &::before {
+            display: none;
+        }
+
         .O_TutorialNavigation {
             display: none;
         }

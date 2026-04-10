@@ -615,7 +615,7 @@ function initTutorialCodeBlocks() {
     function autoResizeTextarea(textarea) {
       textarea.style.height = "auto";
       var minHeight = 272;
-      var maxHeight = 544;
+      var maxHeight = minHeight * 2;
       var nextHeight = Math.min(Math.max(textarea.scrollHeight, minHeight), maxHeight);
       textarea.style.height = "".concat(nextHeight, "px");
     }
