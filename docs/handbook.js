@@ -1180,6 +1180,11 @@ function drawContTutorials() {
   handbookIntroAbout.innerHTML = "".concat(handbookMeta.partCount, "&nbsp;\u0440\u0430\u0437\u0434\u0435\u043B\u0430, ") + "".concat(handbookMeta.moduleCount, "&nbsp;\u043C\u043E\u0434\u0443\u043B\u0435\u0439 \u0438 ") + "".concat(handbookMeta.tutorialCount, "&nbsp;\u0438\u043D\u0442\u0435\u0440\u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0445 \u0442\u0443\u0442\u043E\u0440\u0438\u0430\u043B\u0430 \u0441&nbsp;\u044D\u043A\u0441\u043F\u0435\u0440\u0438\u043C\u0435\u043D\u0442\u0430\u043C\u0438");
   // console.log("pC", handbookMeta.partCount, "mC", handbookMeta.moduleCount, "tC", handbookMeta.tutorialCount);
 }
+function showWidth() {
+  document.getElementById("width-value").textContent = window.innerWidth;
+}
+showWidth();
+window.addEventListener("resize", showWidth);
 calcFilters();
 calcDrawParts();
 applyingSorting();

@@ -639,6 +639,8 @@
 
             .W_LandingBoringCard {
                 flex-direction: column;
+                flex: auto;
+                width: 100%;
 
                 .W_LandingBoringTexts .A_LandingBoringTitle {
                     /* U_FontH1-Mob */

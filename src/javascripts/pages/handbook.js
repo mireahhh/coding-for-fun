@@ -621,6 +621,13 @@ function drawContTutorials() {
   // console.log("pC", handbookMeta.partCount, "mC", handbookMeta.moduleCount, "tC", handbookMeta.tutorialCount);
 }
 
+function showWidth() {
+  document.getElementById("width-value").textContent = window.innerWidth;
+}
+
+showWidth();
+window.addEventListener("resize", showWidth);
+
 calcFilters();
 calcDrawParts();
 applyingSorting();
