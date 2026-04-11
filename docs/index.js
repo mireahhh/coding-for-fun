@@ -17,7 +17,7 @@ function applyHeaderOffset() {
   var headerHeight = header.offsetHeight;
   if (isLanding) {
     var landingIntro = document.querySelector(".O_LandingIntro");
-    landingIntro.style.paddingTop = headerHeight + "px";
+    landingIntro.style.marginTop = headerHeight + "px";
     return;
   }
   mainContent.style.paddingTop = headerHeight + "px";
