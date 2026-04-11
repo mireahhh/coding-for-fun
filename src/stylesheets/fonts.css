@@ -188,3 +188,7 @@
   letter-spacing: -0.04375rem;
   text-transform: uppercase;
 }
+
+@media (max-width: 428px) {
+
+}

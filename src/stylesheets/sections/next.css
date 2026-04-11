@@ -107,13 +107,12 @@
 
         .W_NextAbout .M_NextText .A_NextHeading {
             /* H0 -> H1-Mob */
-            color: var(--colors-neutrals-900);
+            /* color: var(--colors-neutrals-900);
             font-family: var(--font-KairosSans);
             font-size: 3.5rem;
-            font-size: 7.6429vw;
-            line-height: 100%;
+                        line-height: 100%;
             letter-spacing: -0.175rem;
-            text-transform: uppercase;
+            text-transform: uppercase; */
             /* U_FontH1-Mob */
         }
 
