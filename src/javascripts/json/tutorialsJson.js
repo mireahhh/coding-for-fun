@@ -137,32 +137,70 @@ const tagsPart1Module2 = [tagsPart1Module2Tutorial1, tagsPart1Module2Tutorial2, 
 const tagsPart1 = [tagsPart1Module1, tagsPart1Module2]
 // p2 m1
 const tagsPart2Module1Tutorial1 = {
+  complexity: "filterComplexityInitial",
+  library: ["filterLibraryVanillajs", "filterLibraryP5js"],
+  format: ["filterFormatVariation"],
+  verification: "filterVerificationExpert",
   date: ["20260327"],
   title: "Создание и\u00A0удаление элементов",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: [
+    "Интерактивные системы",
+    "Генеративная графика",
+  ],
 };
+
 const tagsPart2Module1Tutorial2 = {
+  complexity: "filterComplexityInitial",
+  library: ["filterLibraryVanillajs"],
+  format: ["filterFormatTask"],
+  verification: "filterVerificationExpert",
   date: ["20260401"],
   title: "Стили и\u00A0трансформации",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: [
+    "Интерактивные системы",
+    "Параметрические системы",
+    "Генеративная графика",
+  ],
 };
+
 const tagsPart2Module1Tutorial3 = {
+  complexity: "filterComplexityInitial",
+  library: ["filterLibraryVanillajs"],
+  format: ["filterFormatTechnique"],
+  verification: "filterVerificationExpert",
   date: ["20260403"],
   title: "Анимации и\u00A0события",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
+  tags: [
+    "Алгоритмическая анимация",
+    "Интерактивные системы",
+    "Генеративная графика",
+  ],
 };
+
 const tagsPart2Module1 = [tagsPart2Module1Tutorial1, tagsPart2Module1Tutorial2, tagsPart2Module1Tutorial3];
 // p2 m2
 const tagsPart2Module2Tutorial1 = {
+  complexity: "filterComplexityInitial",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatVariation"],
+  verification: "filterVerificationExpert",
   date: ["20260411"],
   title: "Цикл отрисовки и\u00A0фигуры",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
-
+  tags: [
+    "Алгоритмическая анимация",
+    "Параметрические системы",
+    "Генеративная графика",
+  ],
 };
+
 const tagsPart2Module2Tutorial2 = {
   title: "Интерактив с\u00A0мышью и\u00A0клавиатурой",
   author: "digitalnaya",

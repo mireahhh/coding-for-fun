@@ -130,6 +130,8 @@ var filtersLibrary = ["filterLibraryVanillajs", "filterLibraryP5js", "filterLibr
 var filtersFormat = ["filterFormatTechnique", "filterFormatTask", "filterFormatVariation"];
 var filtersVerification = ["filterVerificationAuthorial", "filterVerificationExpert"];
 var filtersAll = [filtersComplexity, filtersLibrary, filtersFormat, filtersVerification];
+// Теги
+var tags = (/* unused pure expression or super */ null && (["Генеративная графика", "Шум", "Геометрические алгоритмы", "Фракталы", "Параметрические системы", "Волны", "Рекурсия", "Случайность", "Поля векторов", "Симуляции", "Клеточные автоматы", "L-системы", "Процедурная генерация", "Паттерны", "Алгоритмическая анимация", "Частицы", "Интерактивные системы", "Аудиореактивная графика"]));
 
 // Массивы с фонами
 // Изображения
@@ -204,7 +206,6 @@ var galleryVideos = {
   27: _27_namespaceObject,
   30: _30_namespaceObject
 };
-var tags = (/* unused pure expression or super */ null && (["Генеративная графика", "Шум", "Геометрические алгоритмы", "Фракталы", "Параметрические системы", "Волны", "Рекурсия", "Случайность", "Поля векторов", "Симуляции", "Клеточные автоматы", "L-системы", "Процедурная генерация", "Паттерны", "Алгоритмическая анимация", "Частицы", "Интерактивные системы", "Аудиореактивная графика"]));
 ;// ./src/javascripts/json/galleryJson.js
 var works = [
 // {
