@@ -79,7 +79,9 @@ export function getVanillaHtml(code) {
 
   <script>
     try {
+    (function () {
       ${code}
+    })();
     } catch (error) {
       document.body.innerHTML = "<pre>" + String(error) + "</pre>";
       console.error(error);

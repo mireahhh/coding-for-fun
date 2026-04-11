@@ -158,23 +158,26 @@
           </ol>
         </div>
         <div class="W_TutorialNavigationPart">
-          <p class="U_FontS1 A_TutorialNavigationTitle">Принципы креативного кода</p>
+          <p class="U_FontS1 A_TutorialNavigationTitle">
+            Принципы креативного кода</p>
           <div class="C_TutorialNavigationModules">
             <div class="W_TutorialNavigationModule">
-              <a class="U_FontB1 A_TutorialNavigationModuleTitle" href="../module1.html">JS&nbsp;+
-                DOM&nbsp;(Vanilla)</a>
+              <a class="U_FontB1 A_TutorialNavigationModuleTitle" href="../module1.html">
+                JS&nbsp;+ DOM&nbsp;(Vanilla)</a>
               <ol class="U_FontF1 C_TutorialNavigationTutorialsList">
                 <li><a class="A_TutorialNavigationTutorialLink" href="../module1/tutorial1.html"></a></li>
               </ol>
             </div>
             <div class="W_TutorialNavigationModule">
-              <a class="U_FontB1 A_TutorialNavigationModuleTitle" href="../module1.html">Интерактив на&nbsp;p5.js</a>
+              <a class="U_FontB1 A_TutorialNavigationModuleTitle" href="../module2.html">
+                Интерактив на&nbsp;p5.js</a>
               <ol class="U_FontF1 C_TutorialNavigationTutorialsList">
                 <li><a class="A_TutorialNavigationTutorialLink" href="../module1/tutorial1.html"></a></li>
               </ol>
             </div>
             <div class="W_TutorialNavigationModule">
-              <a class="U_FontB1 A_TutorialNavigationModuleTitle" href="../module1.html">3D с&nbsp;Three.js</a>
+              <a class="U_FontB1 A_TutorialNavigationModuleTitle" href="../module3.html">
+                3D с&nbsp;Three.js</a>
               <ol class="U_FontF1 C_TutorialNavigationTutorialsList">
                 <li><a class="A_TutorialNavigationTutorialLink" href="../module1/tutorial1.html"></a></li>
               </ol>
@@ -186,14 +189,225 @@
       <div class="O_TutorialMain">
         <section class="O_TutorialSection">
 
-        </section>
-        <section class="O_TutorialSection">
+          <h3 id="nav1" class="U_FontH3 A_TutorialTitle">
+            Теория
+          </h3>
+
+          <p id="TutorialTextFirst" class="U_FontB1 A_TutorialText">
+            Анимация делает интерфейс живым.
+            События позволяют реагировать на&nbsp;действия пользователя: клик, наведение, движение мыши или нажатие
+            клавиши.
+            Вместе они создают <tx-sl>интерактивные системы</tx-sl>, в&nbsp;которых экран уже не&nbsp;остаётся
+            статичным.
+            В&nbsp;этом уроке ты&nbsp;свяжешь событие и&nbsp;движение: элемент будет перемещаться по&nbsp;клику.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Событие&nbsp;— это&nbsp;сигнал о&nbsp;том, что что-то произошло.
+            Например, пользователь нажал мышью, и&nbsp;код получил команду среагировать.
+            В&nbsp;<tx-sl>Vanilla JS</tx-sl> это обычно делается через <tx-sl>addEventListener()</tx-sl>.
+            Так программа начинает не&nbsp;просто показывать элементы, а&nbsp;взаимодействовать с&nbsp;человеком.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Само по&nbsp;себе изменение координат происходит мгновенно.
+            Чтобы движение выглядело плавно, используется свойство <tx-sl>transition</tx-sl>.
+            Оно задаёт, как быстро и&nbsp;каким образом будет меняться стиль элемента.
+            За&nbsp;счёт этого интерфейс начинает реагировать не&nbsp;резко, а&nbsp;мягко и&nbsp;заметно.
+          </p>
+
+          <div class="U_FontC2-Code W_TutorialCopyItem">
+            <p class="A_TutorialCopyText">
+              app.addEventListener("click", (event) =&gt; {<br>
+              &nbsp;&nbsp;ball.style.left = event.clientX + "px";<br>
+              &nbsp;&nbsp;ball.style.top = event.clientY + "px";<br>
+              });
+            </p>
+            <button class="U_ButtonIcon A_TutorialCopyButton">
+              <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+            </button>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Здесь контейнер слушает событие <tx-sl>click</tx-sl>.
+            Когда пользователь нажимает внутри области, код получает координаты этого клика и&nbsp;переносит элемент
+            в&nbsp;новую точку.
+            Если у&nbsp;элемента уже задан <tx-sl>transition</tx-sl>, перемещение будет выглядеть как анимация.
+            Так одно событие превращается в&nbsp;видимое поведение.
+          </p>
+
+          <div class="M_TutorialQuote">
+            <p class="U_FontS2">
+              Событие запускает действие, а анимация делает это действие ощутимым
+            </p>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Ниже ты&nbsp;сначала увидишь самый простой вариант: элемент перемещается по&nbsp;клику.
+            Потом к&nbsp;движению добавится изменение масштаба и&nbsp;цвета.
+            Так одна простая техника постепенно превратится в&nbsp;более выразительное интерактивное поведение.
+          </p>
 
         </section>
         <section class="O_TutorialSection">
 
+          <h3 id="nav2" class="U_FontH3 A_TutorialTitle">
+            Техника
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Начнём с&nbsp;одного элемента.
+            По&nbsp;клику внутри области он&nbsp;будет плавно перемещаться в&nbsp;новую точку.
+            Это базовая связка из&nbsp;события и&nbsp;анимации.
+          </p>
+
+          <div id="patr2module1tutorial3code1" class="O_TutorialSingleCode" data-runtime="vanilla"
+            data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Здесь внутри <tx-sl>app</tx-sl> создаётся один круглый элемент.
+                Контейнер слушает клик и&nbsp;получает координаты курсора, а&nbsp;элемент плавно переезжает в&nbsp;новую
+                точку.
+                Анимация возникает не&nbsp;сама по&nbsp;себе, а&nbsp;за&nbsp;счёт свойства <tx-sl>transition</tx-sl>.
+                Это самый простой способ сделать интерфейс живым.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Теперь добавим дополнительную реакцию.
+            Пусть при каждом клике элемент не&nbsp;только двигается, но&nbsp;и&nbsp;слегка меняет масштаб и&nbsp;цвет.
+            Так интерактивность станет более выразительной.
+          </p>
+
+          <div id="patr2module1tutorial3code2" class="O_TutorialSingleCode" data-runtime="vanilla"
+            data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Здесь по&nbsp;клику меняется не&nbsp;только положение, но&nbsp;и&nbsp;визуальное состояние элемента.
+                Круг слегка увеличивается, а&nbsp;затем возвращается к&nbsp;исходному масштабу.
+                Дополнительно меняется цвет, поэтому реакция становится более заметной.
+                Один и&nbsp;тот&nbsp;же жест пользователя теперь запускает сразу несколько изменений.
+              </p>
+            </div>
+          </div>
+
         </section>
         <section class="O_TutorialSection">
+
+          <h3 id="nav3" class="U_FontH3 A_TutorialTitle">
+            Вывод
+          </h3>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              Событие <tx-sl>click</tx-sl> позволяет запускать действие по&nbsp;жесту пользователя
+            </li>
+            <li>
+              Свойство <tx-sl>transition</tx-sl> превращает мгновенное изменение в&nbsp;анимацию
+            </li>
+            <li>
+              Даже один элемент может стать интерактивной системой, если связать событие и&nbsp;стиль
+            </li>
+          </ol>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav4" class="U_FontH3 A_TutorialTitle">
+            Задание
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Попробуй изменить характер движения самостоятельно.
+            В&nbsp;коде ниже уже есть несколько вариантов для эксперимента&nbsp;— тебе нужно раскомментировать строки
+            и&nbsp;посмотреть, как меняется поведение элемента.
+            Обрати внимание на&nbsp;скорость, форму и&nbsp;визуальную реакцию.
+          </p>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              Раскомментируй изменение <tx-sl>borderRadius</tx-sl>, чтобы круг становился квадратом
+            </li>
+            <li>
+              Попробуй изменить <tx-sl>transition</tx-sl>, чтобы движение стало быстрее или медленнее
+            </li>
+            <li>
+              Раскомментируй <tx-sl>rotate()</tx-sl>, чтобы элемент поворачивался при каждом клике
+            </li>
+            <li>
+              Попробуй заменить цвет и&nbsp;посмотреть, как меняется характер интерфейса
+            </li>
+          </ol>
+
+          <div id="patr2module1tutorial3code3" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="vanilla" data-autostart="false">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
 
         </section>
         <section class="O_TutorialSection">

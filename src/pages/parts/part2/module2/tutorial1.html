@@ -158,23 +158,26 @@
           </ol>
         </div>
         <div class="W_TutorialNavigationPart">
-          <p class="U_FontS1 A_TutorialNavigationTitle">Принципы креативного кода</p>
+          <p class="U_FontS1 A_TutorialNavigationTitle">
+            Принципы креативного кода</p>
           <div class="C_TutorialNavigationModules">
             <div class="W_TutorialNavigationModule">
-              <a class="U_FontB1 A_TutorialNavigationModuleTitle" href="../module1.html">JS&nbsp;+
-                DOM&nbsp;(Vanilla)</a>
+              <a class="U_FontB1 A_TutorialNavigationModuleTitle" href="../module1.html">
+                JS&nbsp;+ DOM&nbsp;(Vanilla)</a>
               <ol class="U_FontF1 C_TutorialNavigationTutorialsList">
                 <li><a class="A_TutorialNavigationTutorialLink" href="../module1/tutorial1.html"></a></li>
               </ol>
             </div>
             <div class="W_TutorialNavigationModule">
-              <a class="U_FontB1 A_TutorialNavigationModuleTitle" href="../module1.html">Интерактив на&nbsp;p5.js</a>
+              <a class="U_FontB1 A_TutorialNavigationModuleTitle" href="../module2.html">
+                Интерактив на&nbsp;p5.js</a>
               <ol class="U_FontF1 C_TutorialNavigationTutorialsList">
                 <li><a class="A_TutorialNavigationTutorialLink" href="../module1/tutorial1.html"></a></li>
               </ol>
             </div>
             <div class="W_TutorialNavigationModule">
-              <a class="U_FontB1 A_TutorialNavigationModuleTitle" href="../module1.html">3D с&nbsp;Three.js</a>
+              <a class="U_FontB1 A_TutorialNavigationModuleTitle" href="../module3.html">
+                3D с&nbsp;Three.js</a>
               <ol class="U_FontF1 C_TutorialNavigationTutorialsList">
                 <li><a class="A_TutorialNavigationTutorialLink" href="../module1/tutorial1.html"></a></li>
               </ol>
@@ -186,17 +189,195 @@
       <div class="O_TutorialMain">
         <section class="O_TutorialSection">
 
-        </section>
-        <section class="O_TutorialSection">
+          <h3 id="nav1" class="U_FontH3 A_TutorialTitle">
+            Теория
+          </h3>
+
+          <p id="TutorialTextFirst" class="U_FontB1 A_TutorialText">
+            В&nbsp;<tx-sl>p5.js</tx-sl> всё строится вокруг цикла <tx-sl>draw()</tx-sl>.
+            Он&nbsp;постоянно перерисовывает сцену, создавая поток кадров.
+            Это и&nbsp;есть основа анимации: изображение обновляется много раз в&nbsp;секунду.
+            В&nbsp;этом уроке ты&nbsp;сравнишь два подхода: автоматический цикл в&nbsp;p5 и&nbsp;ручное управление
+            в&nbsp;Vanilla JS.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;<tx-sl>p5.js</tx-sl> есть встроенный цикл <tx-sl>draw()</tx-sl>.
+            Он&nbsp;запускается примерно 60 раз в&nbsp;секунду и&nbsp;каждый раз заново рисует сцену.
+            Это удобно: тебе не&nbsp;нужно думать о&nbsp;таймерах или обновлении кадров.
+            Достаточно описать, что должно происходить в&nbsp;каждом кадре.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;обычном JavaScript такого цикла нет.
+            Чтобы создать анимацию, нужно запускать обновление вручную.
+            Чаще всего используется <tx-sl>requestAnimationFrame()</tx-sl>.
+            Это даёт больше контроля, но требует явного управления временем.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Получается два разных подхода.
+            В&nbsp;p5 цикл уже встроен и&nbsp;работает автоматически.
+            В&nbsp;Vanilla JS ты&nbsp;сам создаёшь этот цикл.
+            Но&nbsp;в&nbsp;основе в&nbsp;обоих случаях лежит одно и&nbsp;то&nbsp;же: постоянная перерисовка сцены.
+          </p>
+
+          <div class="M_TutorialQuote">
+            <p class="U_FontS2">
+              Анимация — это не движение, а последовательность кадров
+            </p>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Ниже ты&nbsp;увидишь одну и&nbsp;ту&nbsp;же задачу: нарисовать фигуру и&nbsp;оживить её.
+            Сначала это будет сделано через <tx-sl>p5.js</tx-sl>, затем — через Vanilla JS разными способами.
+          </p>
 
         </section>
         <section class="O_TutorialSection">
 
-        </section>
-        <section class="O_TutorialSection">
+          <h3 id="nav2" class="U_FontH3 A_TutorialTitle">
+            Вариация
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;p5.js достаточно описать сцену внутри <tx-sl>draw()</tx-sl>.
+            Библиотека сама будет перерисовывать её много раз в&nbsp;секунду.
+          </p>
+
+          <div id="patr2module1tutorial4code1" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Здесь создаётся холст, и&nbsp;в&nbsp;каждом кадре сцена очищается.
+                Круг рисуется в&nbsp;позиции, зависящей от&nbsp;времени, поэтому он&nbsp;движется.
+                Всё происходит внутри <tx-sl>draw()</tx-sl>, который запускается автоматически.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;Vanilla JS нужно самому создать цикл отрисовки.
+            Для этого используется <tx-sl>requestAnimationFrame()</tx-sl>.
+          </p>
+
+          <div id="patr2module1tutorial4code2" class="O_TutorialSingleCode" data-runtime="vanilla"
+            data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Здесь создаётся элемент и&nbsp;запускается функция, которая вызывает сама себя.
+                Это и&nbsp;есть цикл отрисовки.
+                На&nbsp;каждом шаге обновляется позиция элемента, создавая движение.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Анимацию можно сделать и&nbsp;без JavaScript-цикла — через CSS.
+            В&nbsp;этом случае браузер сам управляет движением.
+          </p>
+
+          <div id="patr2module1tutorial4code3" class="O_TutorialSingleCode" data-runtime="vanilla"
+            data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Здесь движение задаётся через <tx-sl>keyframes</tx-sl>.
+                JavaScript только создаёт элемент, а&nbsp;анимация происходит за&nbsp;счёт CSS.
+                Это другой подход: не&nbsp;перерисовка, а&nbsp;заранее описанное поведение.
+              </p>
+            </div>
+          </div>
 
         </section>
         <section class="O_TutorialSection">
+
+          <h3 id="nav3" class="U_FontH3 A_TutorialTitle">
+            Вывод
+          </h3>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              В&nbsp;<tx-sl>p5.js</tx-sl> цикл <tx-sl>draw()</tx-sl> уже встроен и&nbsp;работает автоматически
+            </li>
+            <li>
+              В&nbsp;Vanilla JS цикл нужно создавать вручную через <tx-sl>requestAnimationFrame()</tx-sl>
+            </li>
+            <li>
+              Альтернативно можно использовать CSS-анимации без JavaScript-цикла
+            </li>
+            <li>
+              Во&nbsp;всех случаях анимация&nbsp;— это обновление состояния во&nbsp;времени
+            </li>
+          </ol>
+
+          <p class="U_FontB1 A_TutorialText">
+            Попробуй изменить амплитуду движения круга.
+            Увеличь или уменьши значение <tx-sl>120</tx-sl> в&nbsp;коде.
+            Затем попробуй изменить скорость, изменив шаг времени.
+            Так ты&nbsp;увидишь, как параметры влияют на&nbsp;характер анимации.
+          </p>
 
         </section>
       </div>
@@ -223,7 +404,7 @@
             Подробнее о&nbsp;проекте
           </h2>
         </div>
-        <a class="U_ALink U_FontS3 A_NextButton" href="../../../about.html">Перейти к&nbsp;разделу</a>
+        <a class="U_ALink U_FontS3 A_NextButton" href="../../../handbook.html">Перейти к&nbsp;разделу</a>
       </div>
       <div class="C_IntroRainSquaresBox">
         <div class="U_FontH2 A_IntroRainSquares">

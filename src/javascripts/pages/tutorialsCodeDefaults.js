@@ -925,5 +925,351 @@ setTimeout(() => {
 setTimeout(() => {
   app.innerHTML = "";
 }, 1200);`,
+patr2module1tutorial2code1: `if (!app) {
+let app = document.getElementById("app");
+}
+app.innerHTML = "";
+app.style.position = "relative";
+app.style.background = "#f8f8f8";
+app.style.overflow = "hidden";
+
+const cardsCount = 5;
+
+for (let i = 0; i < cardsCount; i++) {
+  const card = document.createElement("div");
+
+  const offsetX = i * 36 - 72;
+  const offsetY = i * 8;
+  const angle = i * 6 - 12;
+
+  card.style.position = "absolute";
+  card.style.width = "140px";
+  card.style.height = "180px";
+  card.style.left = "50%";
+  card.style.top = "50%";
+  card.style.borderRadius = "24px";
+  card.style.background = i % 2 === 0 ? "#1f1f1f" : "#d6d6d6";
+  card.style.boxShadow = "0 12px 32px rgba(31, 31, 31, 0.12)";
+  card.style.transform =
+    "translate(calc(-50% + " + offsetX + "px), calc(-50% + " + offsetY + "px)) rotate(" + angle + "deg)";
+  card.style.transition = "transform 0.3s ease";
+
+  card.addEventListener("mouseenter", () => {
+    card.style.transform =
+      "translate(calc(-50% + " + offsetX + "px), calc(-50% + " + offsetY + "px)) rotate(" + angle + "deg) scale(1.05)";
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.transform =
+      "translate(calc(-50% + " + offsetX + "px), calc(-50% + " + offsetY + "px)) rotate(" + angle + "deg)";
+  });
+
+  app.appendChild(card);
+}`,
+patr2module1tutorial2code2: `const app = document.getElementById("app");
+app.innerHTML = "";
+app.style.position = "relative";
+app.style.background = "#f8f8f8";
+
+const card = document.createElement("div");
+card.style.position = "absolute";
+card.style.width = "140px";
+card.style.height = "180px";
+card.style.left = "50%";
+card.style.top = "50%";
+card.style.transform = "translate(-50%, -50%)";
+card.style.borderRadius = "24px";
+card.style.background = "#1f1f1f";
+card.style.boxShadow = "0 12px 32px rgba(31, 31, 31, 0.12)";
+
+app.appendChild(card);`,
+patr2module1tutorial2code3: `const app = document.getElementById("app");
+app.innerHTML = "";
+app.style.position = "relative";
+app.style.background = "#f8f8f8";
+app.style.overflow = "hidden";
+
+const cardsCount = 5;
+
+for (let i = 0; i < cardsCount; i++) {
+  const card = document.createElement("div");
+
+  card.style.position = "absolute";
+  card.style.width = "140px";
+  card.style.height = "180px";
+  card.style.left = "50%";
+  card.style.top = "50%";
+  card.style.borderRadius = "24px";
+  card.style.background = "#858585";
+  card.style.transform = \`translate(calc(-50% + \${i * 36 - 72}px), calc(-50% + \${i * 8}px))\`;
+
+  app.appendChild(card);
+}`,
+patr2module1tutorial2code4: `const app = document.getElementById("app");
+app.innerHTML = "";
+app.style.position = "relative";
+app.style.background = "#f8f8f8";
+app.style.overflow = "hidden";
+
+const cardsCount = 5;
+
+for (let i = 0; i < cardsCount; i++) {
+  const card = document.createElement("div");
+
+  card.style.position = "absolute";
+  card.style.width = "140px";
+  card.style.height = "180px";
+  card.style.left = "50%";
+  card.style.top = "50%";
+  card.style.borderRadius = "24px";
+  card.style.background = i % 2 === 0 ? "#1f1f1f" : "#d6d6d6";
+  card.style.boxShadow = "0 12px 32px rgba(31, 31, 31, 0.12)";
+  card.style.transform = \`translate(calc(-50% + \${i * 36 - 72}px), calc(-50% + \${i * 8}px)) rotate(\${i * 6 - 12}deg)\`;
+  card.style.transition = "transform 0.3s ease";
+
+  card.addEventListener("mouseenter", () => {
+    card.style.transform = \`translate(calc(-50% + \${i * 36 - 72}px), calc(-50% + \${i * 8}px)) rotate(\${i * 6 - 12}deg) scale(1.05)\`;
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = \`translate(calc(-50% + \${i * 36 - 72}px), calc(-50% + \${i * 8}px)) rotate(\${i * 6 - 12}deg)\`;
+  });
+
+  app.appendChild(card);
+}`,
+patr2module1tutorial2code5: `if (!app) {
+let app = document.getElementById("app");
+}
+app.innerHTML = "";
+app.style.position = "relative";
+app.style.background = "#f8f8f8";
+app.style.overflow = "hidden";
+
+const cardsCount = 5;
+
+for (let i = 0; i < cardsCount; i++) {
+  const card = document.createElement("div");
+
+  card.style.position = "absolute";
+  card.style.width = "140px";
+  card.style.height = "180px";
+  card.style.left = "50%";
+  card.style.top = "50%";
+  card.style.borderRadius = "24px";
+  card.style.background = "#858585";
+  card.style.boxShadow = "0 12px 32px rgba(31, 31, 31, 0.12)";
+  card.style.transition = "transform 0.3s ease, background 0.3s ease";
+
+  let offsetX = i * 32 - 64;
+  let offsetY = i * 10;
+  let angle = i * 5 - 10;
+
+  // попробуй раскомментировать:
+  // angle = i * 10 - 20;
+  // offsetX = i * 24 - 48;
+  // card.style.background = i % 2 === 0 ? "#1f1f1f" : "#d6d6d6";
+
+  card.style.transform = \`translate(calc(-50% + \${offsetX}px), calc(-50% + \${offsetY}px)) rotate(\${angle}deg)\`;
+
+  card.addEventListener("mouseenter", () => {
+    // попробуй раскомментировать:
+    // card.style.background = "#1f1f1f";
+    // card.style.transform = \`translate(calc(-50% + \${offsetX}px), calc(-50% + \${offsetY}px)) rotate(\${angle}deg) scale(1.08)\`;
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = \`translate(calc(-50% + \${offsetX}px), calc(-50% + \${offsetY}px)) rotate(\${angle}deg)\`;
+  });
+
+  app.appendChild(card);
+}`,
+patr2module1tutorial3code1: `(function () {
+  const app = document.getElementById("app");
+  app.innerHTML = "";
+  app.style.position = "relative";
+  app.style.background = "#f8f8f8";
+  app.style.overflow = "hidden";
+  app.style.cursor = "pointer";
+
+  const ball = document.createElement("div");
+  ball.style.position = "absolute";
+  ball.style.width = "64px";
+  ball.style.height = "64px";
+  ball.style.left = "50%";
+  ball.style.top = "50%";
+  ball.style.borderRadius = "999px";
+  ball.style.background = "#1f1f1f";
+  ball.style.transform = "translate(-50%, -50%)";
+  ball.style.transition = "left 0.4s ease, top 0.4s ease";
+
+  app.appendChild(ball);
+
+  app.addEventListener("click", (event) => {
+    const rect = app.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    ball.style.left = x + "px";
+    ball.style.top = y + "px";
+  });
+})();`,
+patr2module1tutorial3code2: `(function () {
+  const app = document.getElementById("app");
+  app.innerHTML = "";
+  app.style.position = "relative";
+  app.style.background = "#f8f8f8";
+  app.style.overflow = "hidden";
+  app.style.cursor = "pointer";
+
+  const ball = document.createElement("div");
+  ball.style.position = "absolute";
+  ball.style.width = "64px";
+  ball.style.height = "64px";
+  ball.style.left = "50%";
+  ball.style.top = "50%";
+  ball.style.borderRadius = "999px";
+  ball.style.background = "#858585";
+  ball.style.transform = "translate(-50%, -50%) scale(1)";
+  ball.style.transition = "left 0.45s ease, top 0.45s ease, transform 0.25s ease, background 0.25s ease";
+
+  app.appendChild(ball);
+
+  app.addEventListener("click", (event) => {
+    const rect = app.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    ball.style.left = x + "px";
+    ball.style.top = y + "px";
+    ball.style.background = "#1f1f1f";
+    ball.style.transform = "translate(-50%, -50%) scale(1.18)";
+
+    setTimeout(() => {
+      ball.style.background = "#858585";
+      ball.style.transform = "translate(-50%, -50%) scale(1)";
+    }, 220);
+  });
+})();`,
+patr2module1tutorial3code3: `(function () {
+  const app = document.getElementById("app");
+  app.innerHTML = "";
+  app.style.position = "relative";
+  app.style.background = "#f8f8f8";
+  app.style.overflow = "hidden";
+  app.style.cursor = "pointer";
+
+  const ball = document.createElement("div");
+  ball.style.position = "absolute";
+  ball.style.width = "64px";
+  ball.style.height = "64px";
+  ball.style.left = "50%";
+  ball.style.top = "50%";
+  ball.style.borderRadius = "999px";
+  ball.style.background = "#858585";
+  ball.style.transform = "translate(-50%, -50%) scale(1)";
+  ball.style.transition = "left 0.45s ease, top 0.45s ease, transform 0.25s ease, background 0.25s ease";
+
+  // попробуй раскомментировать:
+  // ball.style.transition = "left 0.2s ease, top 0.2s ease, transform 0.2s ease, background 0.2s ease";
+  // ball.style.borderRadius = "18px";
+
+  app.appendChild(ball);
+
+  app.addEventListener("click", (event) => {
+    const rect = app.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    ball.style.left = x + "px";
+    ball.style.top = y + "px";
+    ball.style.background = "#1f1f1f";
+    ball.style.transform = "translate(-50%, -50%) scale(1.18)";
+
+    // попробуй раскомментировать:
+    // ball.style.transform = "translate(-50%, -50%) rotate(18deg) scale(1.12)";
+    // ball.style.background = "#d6d6d6";
+
+    setTimeout(() => {
+      ball.style.background = "#858585";
+      ball.style.transform = "translate(-50%, -50%) scale(1)";
+    }, 220);
+  });
+})();`,
+patr2module1tutorial4code1: `function setup() {
+  createCanvas(windowWidth, windowHeight);
+  noStroke();
+}
+
+function draw() {
+  background(248);
+
+  let x = width / 2 + sin(frameCount * 0.05) * 120;
+  let y = height / 2;
+
+  fill(30);
+  ellipse(x, y, 80);
+}`,
+patr2module1tutorial4code2: `(function () {
+  const app = document.getElementById("app");
+  app.innerHTML = "";
+  app.style.position = "relative";
+  app.style.background = "#f8f8f8";
+  app.style.overflow = "hidden";
+
+  const ball = document.createElement("div");
+  ball.style.position = "absolute";
+  ball.style.width = "80px";
+  ball.style.height = "80px";
+  ball.style.borderRadius = "999px";
+  ball.style.background = "#1f1f1f";
+
+  app.appendChild(ball);
+
+  let t = 0;
+
+  function draw() {
+    const x = app.clientWidth / 2 + Math.sin(t) * 120;
+    const y = app.clientHeight / 2;
+
+    ball.style.left = x + "px";
+    ball.style.top = y + "px";
+    ball.style.transform = "translate(-50%, -50%)";
+
+    t += 0.05;
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+})();`,
+patr2module1tutorial4code3: `(function () {
+  const app = document.getElementById("app");
+  app.innerHTML = "";
+  app.style.position = "relative";
+  app.style.background = "#f8f8f8";
+  app.style.overflow = "hidden";
+
+  const style = document.createElement("style");
+  style.innerHTML = \`
+    @keyframes move {
+      0% { transform: translate(-50%, -50%) translateX(-120px); }
+      50% { transform: translate(-50%, -50%) translateX(120px); }
+      100% { transform: translate(-50%, -50%) translateX(-120px); }
+    }
+  \`;
+  document.head.appendChild(style);
+
+  const ball = document.createElement("div");
+  ball.style.position = "absolute";
+  ball.style.left = "50%";
+  ball.style.top = "50%";
+  ball.style.width = "80px";
+  ball.style.height = "80px";
+  ball.style.borderRadius = "999px";
+  ball.style.background = "#1f1f1f";
+  ball.style.animation = "move 2s ease-in-out infinite";
+
+  app.appendChild(ball);
+})();`,
 
 };

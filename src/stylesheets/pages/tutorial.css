@@ -591,6 +591,12 @@
                     flex-wrap: wrap;
                 }
 
+                .A_TutorialText,
+                .M_TutorialQuote,
+                .C_TutorialTextList {
+                    padding-right: 0;
+                }
+
                 .O_TutorialSingleCode {
                     flex-direction: column;
 
@@ -633,12 +639,6 @@
             width: 100%;
 
             .O_TutorialSection {
-
-                .A_TutorialText,
-                .M_TutorialQuote,
-                .C_TutorialTextList {
-                    padding-right: 0;
-                }
 
                 .A_TutorialSingleImage {
                     min-width: 0;
