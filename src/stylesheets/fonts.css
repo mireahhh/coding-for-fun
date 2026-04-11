@@ -49,7 +49,6 @@
   color: var(--colors-neutrals-900);
   font-family: var(--font-KairosSans);
   font-size: 3.5rem;
-  font-size: 7.6429vw;
   line-height: 100%;
   letter-spacing: -0.175rem;
   text-transform: uppercase;
@@ -189,6 +188,11 @@
   text-transform: uppercase;
 }
 
+/* m 1 -> 0 */
 @media (max-width: 428px) {
 
+  .U_FontH0,
+  .U_FontH1 {
+    font-size: 14vw !important;
+  }
 }
