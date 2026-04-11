@@ -9,6 +9,7 @@ const path = require("path");
 module.exports = {
   entry: {
     index: "./src/javascripts/index.js",
+    landing: "./src/javascripts/pages/landing.js",
     handbook: "./src/javascripts/pages/handbook.js",
     gallery: "./src/javascripts/pages/gallery.js",
     module: "./src/javascripts/pages/module.js",

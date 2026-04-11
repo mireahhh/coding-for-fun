@@ -4,20 +4,29 @@
 /***/ 149:
 /***/ (() => {
 
+// Сдвинуть на хедер
+// Не лендинг ли
+var isLanding = document.getElementById("landing");
 // Получаем высоту хедера
 var header = document.querySelector(".S_Header");
-var headerHeight = header.offsetHeight;
-
 // Применяем отступ к контенту
 var mainContent = document.querySelector(".S_Main");
 var footerContent = document.querySelector(".S_Footer");
-mainContent.style.paddingTop = headerHeight + "px";
-footerContent.style.paddingTop = headerHeight + "px";
+//Функция 
+function applyHeaderOffset() {
+  var headerHeight = header.offsetHeight;
+  if (isLanding) {
+    var landingIntro = document.querySelector(".O_LandingIntro");
+    landingIntro.style.paddingTop = headerHeight + "px";
+    return;
+  }
+  mainContent.style.paddingTop = headerHeight + "px";
+  //footerContent.style.paddingTop = headerHeight + "px";
+}
 
 // Обновляем при изменении размера окна
 window.addEventListener("resize", function () {
-  var newHeaderHeight = header.offsetHeight;
-  mainContent.style.paddingTop = newHeaderHeight + "px";
+  applyHeaderOffset();
 });
 var isHeaderMenuOpen = false;
 var headerMenuButton = document.querySelector(".O_HeaderMenuNavigation");
@@ -45,6 +54,7 @@ headerSearchButton.addEventListener("click", function () {
 headerSearchBar.addEventListener("input", function () {
   headerSearchButton.style.opacity = headerSearchBar.value ? "1" : "0.52";
 });
+applyHeaderOffset();
 
 /***/ }),
 

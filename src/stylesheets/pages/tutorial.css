@@ -19,18 +19,9 @@
 
         background:
             linear-gradient(0deg,
-                var(--colors-neutrals-0-15),
-                var(--colors-neutrals-0-30)),
+                var(--colors-brand-rainbow-subtrate)),
             linear-gradient(180deg,
-                #F372B5 0%,
-                #F76479 12.5%,
-                #FC7C56 25%,
-                #FACE4E 37.5%,
-                #97E954 50%,
-                #5CD686 62.5%,
-                #5DD6BD 75%,
-                #5AD7E0 87.5%,
-                #57B9E9 100%);
+                var(--colors-brand-rainbow));
 
         filter: saturate(1.2) brightness(1.05);
         pointer-events: none;
@@ -225,8 +216,9 @@
                 gap: 8px;
 
                 p {
-                    display: inline-block;
                     position: relative;
+
+                    display: inline-block;
                     padding: var(--size-spacing-20);
                     text-align: center;
 
@@ -318,7 +310,7 @@
 
             .W_TutorialCopyItem {
                 position: relative;
-                
+
                 display: flex;
                 padding: var(--size-spacing-16);
                 box-sizing: border-box;
@@ -630,7 +622,7 @@
 @media (max-width: 428px) {
     .S_Tutorial {
         .O_TutorialMain {
-            padding-inline: 4dvw;
+            padding-inline: 4%;
             box-sizing: border-box;
             width: 100%;
 

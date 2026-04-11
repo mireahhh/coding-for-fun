@@ -12,7 +12,7 @@
     display: flex;
     flex-direction: row;
     padding-block: var(--size-spacing-36);
-    padding-inline: 5dvw;
+    padding-inline: 5%;
     box-sizing: border-box;
     width: 100%;
     align-items: flex-start;
@@ -25,14 +25,6 @@
     transition:
       transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
       opacity 0.2s ease;
-
-    &>* {
-      position: relative;
-      z-index: 2;
-    }
-
-    /* background: linear-gradient(0deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.15) 100%), linear-gradient(90deg, #F372B5 0%, #F76479 12.5%, #FC7C56 25%, #FACE4E 37.5%, #97E954 50%, #5CD686 62.5%, #5DD6BD 75%, #5AD7E0 87.5%, #57B9E9 100%);
-    background-blend-mode: plus-lighter, normal; */
 
     .W_ModuleTutorialHangle {
       display: flex;
@@ -133,6 +125,11 @@
       }
     }
 
+    &>* {
+      position: relative;
+      z-index: 2;
+    }
+
     &::before {
       content: "";
       position: absolute;
@@ -142,18 +139,9 @@
 
       background:
         linear-gradient(0deg,
-          var(--colors-neutrals-0-15),
-          var(--colors-neutrals-0-30)),
+          var(--colors-brand-rainbow-subtrate)),
         linear-gradient(90deg,
-          #f372b5 0%,
-          #f76479 12.5%,
-          #fc7c56 25%,
-          #face4e 37.5%,
-          #97e954 50%,
-          #5cd686 62.5%,
-          #5dd6bd 75%,
-          #5ad7e0 87.5%,
-          #57b9e9 100%);
+          var(--colors-brand-rainbow));
 
       /* background-size: 200% 100%; */
       /* background-position: 100% 0; */
@@ -212,7 +200,7 @@
   /* TODO display: none; */
   display: none;
   flex-direction: row;
-  padding-inline: 5dvw;
+  padding-inline: 5%;
   box-sizing: border-box;
   width: 100%;
   justify-content: space-between;
@@ -338,7 +326,7 @@
     .W_ModuleTutorial {
       flex-direction: column;
       padding-block: var(--size-spacing-64);
-      padding-inline: 4dvw;
+      padding-inline: 4%;
       box-sizing: border-box;
       width: 100%;
       gap: var(--size-spacing-20);
@@ -351,7 +339,7 @@
 
   .S_ModuleResources {
     flex-direction: column;
-    padding-inline: 4dvw;
+    padding-inline: 4%;
     box-sizing: border-box;
     width: 100%;
     gap: var(--size-spacing-32);

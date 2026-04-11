@@ -9,7 +9,7 @@ function createPages(template, filename, chunks) {
 }
 
 const htmlPages = [
-  createPages("./src/index.html", "./index.html", ["index"]),
+  createPages("./src/index.html", "./index.html", ["index", "landing"]),
   createPages("./src/pages/handbook.html", "./pages/handbook.html", [
     "index",
     "handbook",

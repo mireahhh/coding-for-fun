@@ -1,0 +1,52 @@
+.A_BrightTitle {
+    padding: var(--size-spacing-32) 5%;
+    align-items: center;
+    align-self: stretch;
+    text-align: center;
+
+    background:
+        linear-gradient(0deg,
+            var(--colors-brand-rainbow-subtrate)),
+        linear-gradient(90deg,
+            var(--colors-brand-rainbow));
+    background-blend-mode: plus-lighter, normal;
+
+    /* U_FontH0 */
+    color: var(--colors-neutrals-900);
+}
+
+/* m 4 -> 3 */
+@media (max-width: 1368px) {}
+
+/* m 3 -> 2 */
+@media (max-width: 1152px) {
+    .A_BrightTitle {
+        /* U_FontH1 */
+        color: var(--colors-neutrals-900);
+        font-family: var(--font-KairosSans);
+        font-size: 4rem;
+        line-height: 100%;
+        letter-spacing: -0.14rem;
+        text-transform: uppercase;
+
+        padding-inline: 5%;
+    }
+}
+
+/* m 2 -> 1 */
+@media (max-width: 904px) {}
+
+/* m 1 -> 0 */
+@media (max-width: 428px) {
+    .A_BrightTitle {
+        /* U_FontH1-Mob */
+        color: var(--colors-neutrals-900);
+        font-family: var(--font-KairosSans);
+        font-size: 3.5rem;
+        line-height: 100%;
+        letter-spacing: -0.175rem;
+        text-transform: uppercase;
+
+        padding-inline: 4%;
+    }
+}

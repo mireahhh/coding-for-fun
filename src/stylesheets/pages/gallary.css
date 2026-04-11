@@ -1,7 +1,7 @@
 .O_GalleryWorks {
   display: flex;
   flex-direction: column;
-  padding-inline: 5dvw;
+  padding-inline: 5%;
   box-sizing: border-box;
   width: 100%;
   align-items: flex-start;

@@ -1,17 +1,26 @@
+// Сдвинуть на хедер
+// Не лендинг ли
+const isLanding = document.getElementById("landing");
 // Получаем высоту хедера
 const header = document.querySelector(".S_Header");
-const headerHeight = header.offsetHeight;
-
 // Применяем отступ к контенту
 const mainContent = document.querySelector(".S_Main");
 const footerContent = document.querySelector(".S_Footer");
-mainContent.style.paddingTop = headerHeight + "px";
-footerContent.style.paddingTop = headerHeight + "px";
+//Функция 
+function applyHeaderOffset() {
+  const headerHeight = header.offsetHeight;
+  if (isLanding) {
+    const landingIntro = document.querySelector(".O_LandingIntro");
+    landingIntro.style.paddingTop = headerHeight + "px";
+    return;
+  }
+  mainContent.style.paddingTop = headerHeight + "px";
+  //footerContent.style.paddingTop = headerHeight + "px";
+}
 
 // Обновляем при изменении размера окна
 window.addEventListener("resize", function () {
-  const newHeaderHeight = header.offsetHeight;
-  mainContent.style.paddingTop = newHeaderHeight + "px";
+  applyHeaderOffset();
 });
 
 
@@ -46,3 +55,5 @@ headerSearchButton.addEventListener("click", () => {
 headerSearchBar.addEventListener("input", () => {
   headerSearchButton.style.opacity = headerSearchBar.value ? "1" : "0.52";
 });
+
+applyHeaderOffset();

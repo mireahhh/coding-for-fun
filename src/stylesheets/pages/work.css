@@ -1,7 +1,7 @@
 .S_Work {
     display: flex;
     flex-direction: column;
-    padding-inline: 5dvw;
+    padding-inline: 5%;
     box-sizing: border-box;
     width: 100%;
     padding-block: var(--size-spacing-56);

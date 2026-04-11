@@ -54,6 +54,7 @@
     --size-spacing-208: 13rem;
     --size-spacing-212: 13.25rem;
     --size-spacing-220: 13.75rem;
+    --size-spacing-224: 14rem;
     --size-spacing-240: 15rem;
     --size-spacing-256: 16rem;
     --size-spacing-264: 16.5rem;
@@ -64,12 +65,14 @@
     --size-spacing-312: 19.5rem;
     --size-spacing-344: 21.5rem;
     --size-spacing-360: 22.5rem;
+    --size-spacing-380: 23.75rem;
     --size-spacing-384: 24rem;
     --size-spacing-388: 24.25rem;
     --size-spacing-416: 26rem;
     --size-spacing-448: 28rem;
     --size-spacing-528: 33rem;
     --size-spacing-552: 34.5rem;
+    --size-spacing-558: 34.75rem;
     --size-spacing-704: 44rem;
     --size-spacing-780: 48.75rem;
     --size-spacing-800: 50rem;
@@ -88,18 +91,34 @@
     --colors-brand-primary-FlowCyan: #2fd3e6;
     --colors-brand-primary-SeedGreen: #37e87a;
     --colors-brand-primary-CoreSun: #ffc300;
+    /* rainbow */
+    --colors-brand-rainbow:
+        #F372B5 0%,
+        #F76479 12.5%,
+        #FC7C56 25%,
+        #FACE4E 37.5%,
+        #97E954 50%,
+        #5CD686 62.5%,
+        #5DD6BD 75%,
+        #5AD7E0 87.5%,
+        #57B9E9 100%;
+    --colors-brand-rainbow-subtrate:
+        var(--colors-neutrals-0-15),
+        var(--colors-neutrals-0-30);
 
     /* neutrais */
     /* 255 ff */
     --colors-neutrals-0: #ffffff;
-    /* 255 ff   15% 26*/
+    /* 255 ff   15% 26 */
     --colors-neutrals-0-15: #ffffff26;
-    /* 255 ff   30% 4d*/
+    /* 255 ff   30% 4d */
     --colors-neutrals-0-30: #ffffff4d;
-    /* 248 f8 (50)*/
+    /* 248 f8 (50) */
     --colors-neutrals-body: #f8f8f8;
     /* --colors-neutrals-body: #000000; */
-    /* 248   1% 03*/
+    /* 248   0% 0 */
+    --colors-neutrals-body-0: #f8f8f800;
+    /* 248   1% 03 */
     --colors-neutrals-body-01: #f8f8f803;
     /* 233   50% 7f */
     --colors-neutrals-100-50: #e9e9e97f;

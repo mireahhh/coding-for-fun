@@ -130,6 +130,81 @@ var filtersLibrary = ["filterLibraryVanillajs", "filterLibraryP5js", "filterLibr
 var filtersFormat = ["filterFormatTechnique", "filterFormatTask", "filterFormatVariation"];
 var filtersVerification = ["filterVerificationAuthorial", "filterVerificationExpert"];
 var filtersAll = [filtersComplexity, filtersLibrary, filtersFormat, filtersVerification];
+
+// Массивы с фонами
+// Изображения
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var galleryImages = {
+  2: _2_namespaceObject,
+  3: _3_namespaceObject,
+  4: _4_namespaceObject,
+  6: _6_namespaceObject,
+  7: _7_namespaceObject,
+  8: _8_namespaceObject,
+  11: _11_namespaceObject,
+  12: _12_namespaceObject,
+  15: _15_namespaceObject,
+  16: _16_namespaceObject,
+  17: _17_namespaceObject,
+  19: _19_namespaceObject,
+  20: _20_namespaceObject,
+  24: _24_namespaceObject,
+  26: _26_namespaceObject,
+  28: _28_namespaceObject,
+  29: _29_namespaceObject,
+  31: _31_namespaceObject,
+  32: _32_namespaceObject
+};
+// Видео
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var galleryVideos = {
+  0: _0_namespaceObject,
+  1: _1_namespaceObject,
+  5: _5_namespaceObject,
+  9: _9_namespaceObject,
+  10: _10_namespaceObject,
+  13: _13_namespaceObject,
+  14: _14_namespaceObject,
+  18: _18_namespaceObject,
+  21: _21_namespaceObject,
+  22: _22_namespaceObject,
+  23: _23_namespaceObject,
+  25: _25_namespaceObject,
+  27: _27_namespaceObject,
+  30: _30_namespaceObject
+};
+var tags = (/* unused pure expression or super */ null && (["Генеративная графика", "Шум", "Геометрические алгоритмы", "Фракталы", "Параметрические системы", "Волны", "Рекурсия", "Случайность", "Поля векторов", "Симуляции", "Клеточные автоматы", "L-системы", "Процедурная генерация", "Паттерны", "Алгоритмическая анимация", "Частицы", "Интерактивные системы", "Аудиореактивная графика"]));
 ;// ./src/javascripts/json/galleryJson.js
 var works = [
 // {
@@ -751,77 +826,6 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
 function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var galleryImages = {
-  2: _2_namespaceObject,
-  3: _3_namespaceObject,
-  4: _4_namespaceObject,
-  6: _6_namespaceObject,
-  7: _7_namespaceObject,
-  8: _8_namespaceObject,
-  11: _11_namespaceObject,
-  12: _12_namespaceObject,
-  15: _15_namespaceObject,
-  16: _16_namespaceObject,
-  17: _17_namespaceObject,
-  19: _19_namespaceObject,
-  20: _20_namespaceObject,
-  24: _24_namespaceObject,
-  26: _26_namespaceObject,
-  28: _28_namespaceObject,
-  29: _29_namespaceObject,
-  31: _31_namespaceObject,
-  32: _32_namespaceObject
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var galleryVideos = {
-  0: _0_namespaceObject,
-  1: _1_namespaceObject,
-  5: _5_namespaceObject,
-  9: _9_namespaceObject,
-  10: _10_namespaceObject,
-  13: _13_namespaceObject,
-  14: _14_namespaceObject,
-  18: _18_namespaceObject,
-  21: _21_namespaceObject,
-  22: _22_namespaceObject,
-  23: _23_namespaceObject,
-  25: _25_namespaceObject,
-  27: _27_namespaceObject,
-  30: _30_namespaceObject
-};
-
 // Задание фильтров
 // Список доступных фильтров
 // ! filtersAll в Галерее - друго! Он без 1 фильтра! Поэтому собираем заново !

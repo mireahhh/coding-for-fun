@@ -1,7 +1,7 @@
 .C_HandbookParts {
   display: flex;
   flex-direction: column;
-  padding-inline: 5dvw;
+  padding-inline: 5%;
   box-sizing: border-box;
   width: 100%;
   align-items: flex-start;
@@ -74,11 +74,9 @@
         display: flex;
         width: var(--size-spacing-272);
         height: var(--size-spacing-48);
-        min-width: var(--size-spacing-110);
         justify-content: center;
         align-items: center;
         gap: var(--size-spacing-8);
-        border-radius: var(--size-radius-0);
         background: var(--colors-neutrals-900);
         flex-shrink: 0;
 
@@ -250,7 +248,7 @@
 /* m 2 -> 1 */
 @media (max-width: 904px) {
   .C_HandbookParts {
-    padding-inline: 4dvw;
+    padding-inline: 4%;
     box-sizing: border-box;
     width: 100%;
     margin-top: var(--size-spacing-36);

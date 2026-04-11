@@ -1,7 +1,7 @@
 .O_Filter {
     display: flex;
     flex-direction: row;
-    padding-inline: 5dvw;
+    padding-inline: 5%;
     box-sizing: border-box;
     width: 100%;
     padding-block: var(--size-spacing-32);
@@ -251,9 +251,8 @@
 
 /* m 1 -> 0 */
 @media (max-width: 428px) {
-
     .O_Filter {
-        padding-inline: 4dvw;
+        padding-inline: 4%;
         box-sizing: border-box;
         width: 100%;
         flex-direction: column;

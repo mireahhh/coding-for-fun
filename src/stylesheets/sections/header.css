@@ -189,6 +189,15 @@
     }
 }
 
+.S_Header--Landing {
+    backdrop-filter: blur(var(--size-spacing-50));
+    box-shadow: none;
+
+    &::before {
+        display: none;
+    }
+}
+
 /* m 4 -> 3 */
 @media (max-width: 1368px) {
     .S_Header .C_HeaderAll .O_HeaderNavigation .A_HeaderLogo {
@@ -208,18 +217,9 @@
         &::before {
             background:
                 linear-gradient(0deg,
-                    var(--colors-neutrals-0-15),
-                    var(--colors-neutrals-0-30)),
+                    var(--colors-brand-rainbow-subtrate)),
                 linear-gradient(90deg,
-                    #F372B5 0%,
-                    #F76479 12.5%,
-                    #FC7C56 25%,
-                    #FACE4E 37.5%,
-                    #97E954 50%,
-                    #5CD686 62.5%,
-                    #5DD6BD 75%,
-                    #5AD7E0 87.5%,
-                    #57B9E9 100%);
+                    var(--colors-brand-rainbow));
 
             filter: saturate(1.2) brightness(1.05);
             mix-blend-mode: plus-lighter;
@@ -268,7 +268,7 @@
 /* m 2 -> 1 */
 @media (max-width: 428px) {
     .S_Header {
-        padding-inline: 4dvw;
+        padding-inline: 4%;
         box-sizing: border-box;
         width: 100%;
 
@@ -282,7 +282,7 @@
                 width: 100%;
 
                 .A_HeaderLogo {
-                    /* height: clamp(var(--size-spacing-4), var(--size-spacing-32), 10dvw); */
+                    /* height: clamp(var(--size-spacing-4), var(--size-spacing-32), 10%); */
                     width: 100%;
 
                     .A_HeaderLogoText {

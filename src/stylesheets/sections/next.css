@@ -1,7 +1,7 @@
 .W_Next {
     display: flex;
     flex-direction: column;
-    padding-inline: 5dvw;
+    padding-inline: 5%;
     box-sizing: border-box;
     width: 100%;
     padding-block: var(--size-spacing-56);
@@ -95,12 +95,13 @@
 /* m 2 -> 1 */
 @media (max-width: 904px) {
     .W_Next {
-        padding-inline: 4dvw;
+        padding-inline: 4%;
         box-sizing: border-box;
         width: 100%;
         margin-top: var(--size-spacing-64);
 
         .C_IntroRainSquaresBox .A_IntroRainSquares {
+            /* TODO dvw */
             width: 44dvw;
         }
 

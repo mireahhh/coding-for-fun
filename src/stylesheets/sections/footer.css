@@ -4,7 +4,7 @@
 
     display: flex;
     flex-direction: row;
-    padding-inline: 5dvw;
+    padding-inline: 5%;
     padding-top: var(--size-spacing-56);
     padding-bottom: var(--size-spacing-88);
     /* height: calc(var(--size-spacing-256) + var(--size-spacing-56) + var(--size-spacing-88)); */
@@ -213,18 +213,9 @@
         &::before {
             background:
                 linear-gradient(0deg,
-                    var(--colors-neutrals-0-15),
-                    var(--colors-neutrals-0-30)),
+                    var(--colors-brand-rainbow-subtrate)),
                 linear-gradient(90deg,
-                    #F372B5 0%,
-                    #F76479 12.5%,
-                    #FC7C56 25%,
-                    #FACE4E 37.5%,
-                    #97E954 50%,
-                    #5CD686 62.5%,
-                    #5DD6BD 75%,
-                    #5AD7E0 87.5%,
-                    #57B9E9 100%);
+                    var(--colors-brand-rainbow));
 
             filter: saturate(1.2) brightness(1.05);
             mix-blend-mode: plus-lighter;
