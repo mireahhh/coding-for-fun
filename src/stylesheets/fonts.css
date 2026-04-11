@@ -49,6 +49,7 @@
   color: var(--colors-neutrals-900);
   font-family: var(--font-KairosSans);
   font-size: 3.5rem;
+  font-size: 7.6429vw;
   line-height: 100%;
   letter-spacing: -0.175rem;
   text-transform: uppercase;
