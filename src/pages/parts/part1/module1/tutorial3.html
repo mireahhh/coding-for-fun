@@ -180,10 +180,183 @@
         <section class="O_TutorialSection">
 
           <h3 id="nav1" class="U_FontH3 A_TutorialTitle">
-            Кубик
+            Теория
           </h3>
 
-          <div class="O_TutorialSingleCode O_TutorialSingleCode--Large" data-runtime="three" data-autostart="true">
+          <p id="TutorialTextFirst" class="U_FontB1 A_TutorialText">
+            Любая визуальная работа строится из&nbsp;простых элементов: <tx-sl>цвета</tx-sl>, <tx-sl>формы</tx-sl>
+            и&nbsp;их&nbsp;расположения.
+            В&nbsp;коде эти элементы задаются через параметры и&nbsp;координаты.
+            Ты&nbsp;не&nbsp;двигаешь объекты вручную, а&nbsp;описываешь, где они должны появиться, какого они размера
+            и&nbsp;какого цвета.
+            Даже из&nbsp;самых простых фигур можно собрать выразительную композицию.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            У&nbsp;каждой фигуры есть форма, позиция и&nbsp;размер.
+            Например, круг можно нарисовать в&nbsp;определённой точке, а&nbsp;его диаметр задать числом.
+            Если менять только один параметр, изображение уже начинает перестраиваться.
+            Так код превращается в&nbsp;инструмент управления композицией.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Цвет в&nbsp;коде тоже задаётся как параметр.
+            Он&nbsp;может быть постоянным, а&nbsp;может меняться от&nbsp;элемента к&nbsp;элементу.
+            Когда ты&nbsp;сочетаешь цвет с&nbsp;повторением и&nbsp;изменением размера, появляется визуальный ритм.
+            Именно из&nbsp;таких связей собирается ощущение баланса.
+          </p>
+
+          <div class="U_FontC2-Code W_TutorialCopyItem">
+            <p class="A_TutorialCopyText">
+              fill('#ff86db');<br>
+              ellipse(x, y, 80);<br>
+              rect(x, y, 60, 60);
+            </p>
+            <button class="U_ButtonIcon A_TutorialCopyButton">
+              <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+            </button>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Функция <tx-sl>fill()</tx-sl> задаёт цвет фигуры.
+            <tx-sl>ellipse()</tx-sl> рисует круг или овал, а&nbsp;<tx-sl>rect()</tx-sl>&nbsp;— прямоугольник.
+            Первые два значения внутри функции обычно отвечают за&nbsp;позицию, а&nbsp;следующие&nbsp;— за&nbsp;размер.
+            Из&nbsp;этих простых команд и&nbsp;собирается визуальная сцена.
+          </p>
+
+          <div class="M_TutorialQuote">
+            <p class="U_FontS2">
+              Даже простая фигура становится выразительной, когда ты&nbsp;управляешь её&nbsp;цветом, размером
+              и&nbsp;местом в&nbsp;композиции
+            </p>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Ниже ты&nbsp;увидишь, как из&nbsp;простых кругов и&nbsp;прямоугольников можно собрать ритмичную композицию.
+            Сначала форма и&nbsp;цвет будут фиксированными, а&nbsp;потом ты&nbsp;сможешь добавить вариацию.
+            Так будет легче заметить, как меняется визуальный баланс.
+          </p>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav2" class="U_FontH3 A_TutorialTitle">
+            Практика
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;первом примере используется простая сетка кругов одного цвета.
+            Это&nbsp;базовая композиция, в&nbsp;которой важны повторение и&nbsp;равный шаг между элементами.
+            Попробуй сначала просто посмотреть на&nbsp;неё, а&nbsp;потом менять размер и&nbsp;цвет.
+          </p>
+
+          <div id="patr1module1tutorial3code1" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/eraser.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Здесь все элементы одинаковые: у&nbsp;них один цвет, один размер и&nbsp;одинаковый шаг.
+                За&nbsp;счёт этого появляется спокойная и&nbsp;ровная структура.
+                Переменная <tx-sl>step</tx-sl> задаёт расстояние между кругами, а&nbsp;<tx-sl>size</tx-sl>&nbsp;—
+                их&nbsp;размер.
+                Это&nbsp;самый простой способ собрать композицию через повторение.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Теперь можно усложнить композицию.
+            Если изменить форму и&nbsp;добавить второй цвет, изображение станет более динамичным.
+            Сам принцип останется тем&nbsp;же, но&nbsp;визуальное впечатление изменится.
+          </p>
+
+          <div id="patr1module1tutorial3code2" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/eraser.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Здесь композиция строится уже из&nbsp;двух форм: прямоугольника и&nbsp;круга.
+                Розовая форма создаёт основу, а&nbsp;голубой круг добавляет акцент в&nbsp;центр.
+                За&nbsp;счёт наложения появляется более сложный визуальный ритм.
+                Так даже простая сетка начинает выглядеть как собранная графическая система.
+              </p>
+            </div>
+          </div>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav3" class="U_FontH3 A_TutorialTitle">
+            Вывод
+          </h3>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              Композиция может строиться из&nbsp;самых простых фигур
+            </li>
+            <li>
+              Цвет, размер и&nbsp;расположение напрямую влияют на&nbsp;визуальный баланс
+            </li>
+            <li>
+              Даже повторяющаяся сетка может выглядеть по-разному, если менять параметры
+            </li>
+          </ol>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav4" class="U_FontH3 A_TutorialTitle">
+            Задание
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Теперь попробуй сам изменить композицию.
+            В&nbsp;коде ниже уже подготовлены разные варианты&nbsp;— тебе нужно раскомментировать строки
+            и&nbsp;посмотреть, как меняется результат.
+            Обращай внимание не&nbsp;только на&nbsp;отдельные фигуры, но&nbsp;и&nbsp;на&nbsp;общее ощущение
+            от&nbsp;сетки.
+          </p>
+
+          <div id="patr1module1tutorial3code3" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="p5" data-autostart="false">
             <div class="W_TutorialSingleCodeExecution">
               <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
                 allow="accelerometer; gyroscope; magnetometer">
@@ -211,6 +384,21 @@
               </p>
             </div>
           </div>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              Раскомментируй <tx-sl>rect()</tx-sl>, чтобы заменить круги на&nbsp;квадраты
+            </li>
+            <li>
+              Раскомментируй строку с&nbsp;<tx-sl>x / width</tx-sl>, чтобы размер менялся по&nbsp;горизонтали
+            </li>
+            <li>
+              Раскомментируй строку с&nbsp;<tx-sl>y / height</tx-sl>, чтобы получить изменение по&nbsp;вертикали
+            </li>
+            <li>
+              Раскомментируй новый <tx-sl>fill()</tx-sl>, чтобы сменить цвет всей композиции
+            </li>
+          </ol>
 
         </section>
       </div>

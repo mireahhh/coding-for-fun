@@ -15,11 +15,8 @@ var footerContent = document.querySelector(".S_Footer");
 //Функция 
 function applyHeaderOffset() {
   var headerHeight = header.offsetHeight;
-  if (isLanding) {
-    var landingIntro = document.querySelector(".O_LandingIntro");
-    landingIntro.style.marginTop = headerHeight + "px";
-    return;
-  }
+  if (isLanding && false) // removed by dead control flow
+{ var landingIntro; }
   mainContent.style.paddingTop = headerHeight + "px";
   //footerContent.style.paddingTop = headerHeight + "px";
 }

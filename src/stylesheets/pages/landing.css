@@ -68,7 +68,6 @@
             flex-direction: column;
             align-items: center;
             align-self: stretch;
-            margin-top: var(--size-spacing-92);
 
             .W_LandingIntroTitleAndButtons {
                 display: flex;

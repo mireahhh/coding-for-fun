@@ -9,7 +9,7 @@ const footerContent = document.querySelector(".S_Footer");
 //Функция 
 function applyHeaderOffset() {
   const headerHeight = header.offsetHeight;
-  if (isLanding) {
+  if (isLanding && false) {
     const landingIntro = document.querySelector(".O_LandingIntro");
     landingIntro.style.marginTop = headerHeight + "px";
     return;
