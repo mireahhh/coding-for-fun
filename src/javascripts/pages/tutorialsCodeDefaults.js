@@ -233,7 +233,7 @@ function draw() {
   // speed = 1;
   // speed = random(1, 5);
 }`,
-patr1module1tutorial3code1: `function setup() {
+  patr1module1tutorial3code1: `function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
 }
@@ -253,7 +253,7 @@ function draw() {
 
   noLoop();
 }`,
-patr1module1tutorial3code2: `function setup() {
+  patr1module1tutorial3code2: `function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
 }
@@ -278,7 +278,7 @@ function draw() {
 
   noLoop();
 }`,
-patr1module1tutorial3code3: `function setup() {
+  patr1module1tutorial3code3: `function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
 }
@@ -308,5 +308,128 @@ function draw() {
   }
 
   noLoop();
+}`,
+  patr1module2tutorial1code1: `const app = document.getElementById("app");
+app.innerHTML = "";
+
+const canvas = document.createElement("canvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = app.clientWidth;
+canvas.height = app.clientHeight;
+app.appendChild(canvas);
+
+let step = canvas.width / 6;
+let size = step * 0.6;
+
+for (let y = 0; y < canvas.height; y += step) {
+  for (let x = 0; x < canvas.width; x += step) {
+    ctx.fillStyle = "#2c2c2c";
+    ctx.beginPath();
+    ctx.arc(x + step / 2, y + step / 2, size / 2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}`,
+  patr1module2tutorial1code2: `const app = document.getElementById("app");
+app.innerHTML = "";
+
+const canvas = document.createElement("canvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = app.clientWidth;
+canvas.height = app.clientHeight;
+app.appendChild(canvas);
+
+let step = canvas.width / 6;
+let size = step * 0.6;
+
+for (let y = 0; y < canvas.height; y += step) {
+  for (let x = 0; x < canvas.width; x += step) {
+    if (x < canvas.width / 2) {
+      ctx.fillStyle = "#bdbdbd";
+    } else {
+      ctx.fillStyle = "#2c2c2c";
+    }
+
+    ctx.beginPath();
+    ctx.arc(x + step / 2, y + step / 2, size / 2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}`,
+patr1module2tutorial1code3: `function setup() {
+  createCanvas(windowWidth, windowHeight);
+  noStroke();
+}
+
+function draw() {
+  background(248);
+
+  let step = width / 6;
+
+  for (let y = 0; y < height; y += step) {
+    for (let x = 0; x < width; x += step) {
+      fill('#2c2c2c');
+      ellipse(x + step / 2, y + step / 2, step * 0.6);
+    }
+  }
+
+  noLoop();
+}`,
+patr1module2tutorial1code4: `const app = document.getElementById("app");
+app.innerHTML = "";
+
+const canvas = document.createElement("canvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = app.clientWidth;
+canvas.height = app.clientHeight;
+app.appendChild(canvas);
+
+let step = canvas.width / 6;
+
+for (let y = 0; y < canvas.height; y += step) {
+  for (let x = 0; x < canvas.width; x += step) {
+    ctx.fillStyle = "#2c2c2c";
+    ctx.beginPath();
+    ctx.arc(x + step / 2, y + step / 2, (step * 0.6) / 2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}`,
+  patr1module2tutorial1code5: `const app = document.getElementById("app");
+app.innerHTML = "";
+
+const canvas = document.createElement("canvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = app.clientWidth;
+canvas.height = app.clientHeight;
+app.appendChild(canvas);
+
+let step = canvas.width / 6;
+let baseSize = step * 0.6;
+
+for (let y = 0; y < canvas.height; y += step) {
+  for (let x = 0; x < canvas.width; x += step) {
+    let size = baseSize;
+    ctx.fillStyle = "#2c2c2c";
+
+    // попробуй раскомментировать:
+
+    // if (y < canvas.height / 2) {
+    //   ctx.fillStyle = "#858585";
+    // }
+
+    // if ((x + y) % (step * 2) === 0) {
+    //   ctx.fillStyle = "#cfcfcf";
+    // }
+
+    // if (x > canvas.width / 2) {
+    //   size = step * 0.3;
+    // }
+
+    ctx.beginPath();
+    ctx.arc(x + step / 2, y + step / 2, size / 2, 0, Math.PI * 2);
+    ctx.fill();
+  }
 }`,
 };

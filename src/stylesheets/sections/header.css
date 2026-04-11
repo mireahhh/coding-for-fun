@@ -141,8 +141,7 @@
             }
 
             .C_HeaderAddForms {
-                display: flex;
-                visibility: hidden;
+                display: none;
                 justify-content: flex-end;
                 align-items: center;
                 flex-direction: row;
@@ -215,13 +214,13 @@
 @media (max-width: 1152px) {
     .S_Header {
         &::before {
-            background: linear-gradient(0deg,
+            /* background: linear-gradient(0deg,
                     var(--colors-brand-rainbow-subtrate)),
                 linear-gradient(90deg,
                     var(--colors-brand-rainbow));
 
             filter: saturate(1.2) brightness(1.05);
-            mix-blend-mode: plus-lighter;
+            mix-blend-mode: plus-lighter; */
         }
 
         .C_HeaderAll {
@@ -274,8 +273,8 @@
         .C_HeaderAll {
             .O_HeaderNavigation {
                 flex-direction: column;
-                row-gap: clamp(var(--size-spacing-1), var(--size-spacing-16), 3dvh);
-                padding-block: clamp(var(--size-spacing-1), var(--size-spacing-32), 5dvh);
+                row-gap: var(--size-spacing-16);
+                padding-block: var(--size-spacing-32);
                 height: min-content;
                 align-items: center;
                 width: 100%;
@@ -296,7 +295,7 @@
 
                 .O_HeaderHandbookNavigation {
                     width: 100%;
-                    height: clamp(var(--size-spacing-4), var(--size-spacing-40), 10dvh);
+                    height: var(--size-spacing-40);
                     justify-content: space-between;
 
                     .M_HeaderSearchBar {

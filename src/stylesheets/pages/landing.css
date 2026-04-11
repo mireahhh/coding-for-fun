@@ -102,7 +102,7 @@
                     .A_LandingIntroButtonOpacity {
                         display: flex;
                         margin: auto;
-                        width: var(--size-spacing-272);
+                        width: var(--size-spacing-274);
                         height: var(--size-spacing-48);
                         justify-content: center;
                         align-items: center;
@@ -116,8 +116,7 @@
                     }
 
                     .A_LandingIntroButtonOpacity {
-                        /* TODO display: none; */
-                        display: none;
+                        display: flex;
                         box-sizing: border-box;
                         border: var(--size-spacing-1) solid var(--colors-neutrals-900);
                         background: var(--colors-neutrals-body-01);
@@ -250,13 +249,21 @@
         flex-direction: column;
         align-items: flex-start;
 
-        .A_LandingInfoText {
+        .A_LandingInfoText,
+        .A_LandingInfoText--Mobile {
             display: inline;
             text-align: justify;
             text-align-last: justify;
             /* U_FontH0 */
             color: var(--colors-neutrals-900);
         }
+
+        .A_LandingInfoText--Mobile {
+            display: none;
+            text-align: center;
+            text-align-last: center;
+        }
+
 
         .W_LandingInfo {
             display: flex;
@@ -529,7 +536,8 @@
         .O_LandingInfo {
             padding-block: var(--size-spacing-64);
 
-            .A_LandingInfoText {
+            .A_LandingInfoText,
+            .A_LandingInfoText--Mobile {
                 /* U_FontH1 */
                 color: var(--colors-neutrals-900);
                 font-family: var(--font-KairosSans);
@@ -610,7 +618,8 @@
         .O_LandingInfo {
             padding-block: var(--size-spacing-56);
 
-            .A_LandingInfoText {
+            .A_LandingInfoText,
+            .A_LandingInfoText--Mobile {
                 /* U_FontH1-Mob */
                 color: var(--colors-neutrals-900);
                 font-family: var(--font-KairosSans);
@@ -618,6 +627,14 @@
                 line-height: 100%;
                 letter-spacing: -0.175rem;
                 text-transform: uppercase;
+            }
+
+            .A_LandingInfoText {
+                display: none;
+            }
+
+            .A_LandingInfoText--Mobile {
+                display: flex;
             }
 
             .W_LandingInfo .C_LandingInfo {

@@ -180,10 +180,89 @@
         <section class="O_TutorialSection">
 
           <h3 id="nav1" class="U_FontH3 A_TutorialTitle">
-            Кубик
+            Теория
           </h3>
 
-          <div class="O_TutorialSingleCode O_TutorialSingleCode--Large" data-runtime="three" data-autostart="true">
+          <p id="TutorialTextFirst" class="U_FontB1 A_TutorialText">
+            Переменные позволяют хранить значения и&nbsp;управлять параметрами.
+            Вместо того чтобы жёстко задавать числа, ты&nbsp;можешь вынести их&nbsp;в&nbsp;отдельные сущности
+            и&nbsp;менять в&nbsp;одном месте.
+            Это делает код гибким и&nbsp;управляемым.
+            Даже простая сцена начинает работать как система, а&nbsp;не&nbsp;как набор фиксированных фигур.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;этом уроке код на&nbsp;<tx-sl>Vanilla JS</tx-sl> рисует не&nbsp;по&nbsp;всей странице, а&nbsp;внутри
+            специальной области.
+            Для этого в&nbsp;рантайме уже есть контейнер с&nbsp;id <tx-sl>app</tx-sl>.
+            Именно в&nbsp;него добавляются элементы, которые ты&nbsp;создаёшь через код.
+            Так каждый пример остаётся изолированным и&nbsp;не&nbsp;ломает остальную страницу.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;начале примера обычно используется строка <tx-sl>app.innerHTML = ""</tx-sl>.
+            Она очищает контейнер перед новым запуском.
+            Это нужно для того, чтобы старый результат не&nbsp;накладывался на&nbsp;новый.
+            Иначе после каждого перезапуска в&nbsp;области вывода оставались&nbsp;бы предыдущие элементы.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Условия добавляют в&nbsp;код логику.
+            С&nbsp;их помощью можно задать разные правила поведения: например, часть элементов будет одного цвета,
+            а&nbsp;часть другого.
+            Это позволяет разбивать композицию на&nbsp;зоны и&nbsp;создавать контраст.
+            Так появляется первый уровень алгоритмического мышления.
+          </p>
+
+          <div class="U_FontC2-Code W_TutorialCopyItem">
+            <p class="A_TutorialCopyText">
+              const app = document.getElementById("app");<br>
+              app.innerHTML = "";<br><br>
+              let size = 40;<br>
+              if (x &gt; 200) {<br>
+              &nbsp;&nbsp;size = 20;<br>
+              }
+            </p>
+            <button class="U_ButtonIcon A_TutorialCopyButton">
+              <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+            </button>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Сначала код получает контейнер через <tx-sl>document.getElementById("app")</tx-sl>.
+            Затем область вывода очищается, чтобы начать с&nbsp;чистого состояния.
+            После этого можно объявлять переменные через <tx-sl>let</tx-sl> и&nbsp;добавлять условия через
+            <tx-sl>if</tx-sl>.
+            Такая структура делает пример управляемым и&nbsp;предсказуемым.
+          </p>
+
+          <div class="M_TutorialQuote">
+            <p class="U_FontS2">
+              Переменные дают контроль, а&nbsp;условия добавляют поведение
+            </p>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Ниже ты&nbsp;увидишь, как внутри контейнера <tx-sl>app</tx-sl> создаётся простая сцена.
+            Сначала все элементы будут одинаковыми, а&nbsp;потом условие разделит их&nbsp;по&nbsp;правилу.
+            Так ты&nbsp;увидишь, как переменные и&nbsp;условия меняют поведение системы.
+          </p>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav2" class="U_FontH3 A_TutorialTitle">
+            Практика
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Начнём с&nbsp;простой сетки.
+            Здесь используется переменная для управления размером фигур.
+            Пока всё выглядит одинаково, но&nbsp;это база для дальнейших изменений.
+          </p>
+
+          <div id="patr1module2tutorial1code1" class="O_TutorialSingleCode" data-runtime="vanilla"
+            data-autostart="true">
             <div class="W_TutorialSingleCodeExecution">
               <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
                 allow="accelerometer; gyroscope; magnetometer">
@@ -199,7 +278,7 @@
                     <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
                   </button>
                   <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
-                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/eraser.svg" alt="Очистить">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
                   </button>
                   <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
                     <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
@@ -207,10 +286,222 @@
                 </div>
               </div>
               <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
-                Мой любимый кубик
+                Сначала код получает контейнер <tx-sl>app</tx-sl>, очищает его и&nbsp;создаёт внутри холст.
+                Затем переменная <tx-sl>size</tx-sl> задаёт размер всех кругов сразу.
+                Если изменить её&nbsp;значение, изменится вся композиция.
+                Это и&nbsp;есть главный смысл переменных&nbsp;— централизованный контроль над параметрами сцены.
               </p>
             </div>
           </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Теперь добавим условие.
+            Пусть элементы слева и&nbsp;справа будут отличаться.
+            Это простейший способ разбить композицию на&nbsp;части.
+          </p>
+
+          <div id="patr1module2tutorial1code2" class="O_TutorialSingleCode" data-runtime="vanilla"
+            data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Здесь всё так&nbsp;же начинается с&nbsp;контейнера <tx-sl>app</tx-sl>, но&nbsp;дальше добавляется
+                условие <tx-sl>if</tx-sl>.
+                Оно проверяет положение круга по&nbsp;оси&nbsp;X и&nbsp;в&nbsp;зависимости от&nbsp;этого меняет цвет.
+                Так композиция делится на&nbsp;две части и&nbsp;становится более выразительной.
+                Даже простое условие уже создаёт визуальное различие между элементами.
+              </p>
+            </div>
+          </div>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav5" class="U_FontH3 A_TutorialTitle">
+            Вариация
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Один и&nbsp;тот&nbsp;же результат можно получить разными способами.
+            Ниже показана одна и&nbsp;та&nbsp;же задача&nbsp;— сетка кругов, реализованная через <tx-sl>p5.js</tx-sl>
+            и&nbsp;через <tx-sl>Vanilla JS</tx-sl>.
+            Сравни не&nbsp;только код, но&nbsp;и&nbsp;то, как ты&nbsp;о&nbsp;нём думаешь.
+          </p>
+
+          <!-- TODO Double Code -->
+          <div id="patr1module2tutorial1code3" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                В&nbsp;<tx-sl>p5.js</tx-sl> многие вещи уже настроены заранее.
+                Есть готовый холст, функции рисования и&nbsp;цикл отрисовки.
+                Ты&nbsp;сразу работаешь с&nbsp;формами и&nbsp;координатами, почти не&nbsp;думая о&nbsp;DOM.
+                Это делает вход быстрым и&nbsp;интуитивным.
+              </p>
+            </div>
+          </div>
+
+          <div id="patr1module2tutorial1code4" class="O_TutorialSingleCode" data-runtime="vanilla"
+            data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                В&nbsp;Vanilla JS ты&nbsp;сам создаёшь холст, получаешь контекст рисования и&nbsp;управляешь всем
+                вручную.
+                Здесь больше кода, но&nbsp;он&nbsp;прозрачнее&nbsp;— ты&nbsp;видишь, как именно всё устроено.
+                Это даёт больше контроля, но&nbsp;требует лучше понимать структуру среды.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;<tx-sl>p5.js</tx-sl> ты&nbsp;работаешь на&nbsp;уровне идей: форма, цвет, позиция.
+            Библиотека скрывает технические детали и&nbsp;позволяет быстро получать результат.
+            В&nbsp;<tx-sl>Vanilla JS</tx-sl> наоборот&nbsp;— ты&nbsp;управляешь всем процессом: создаёшь холст,
+            настраиваешь контекст и&nbsp;сам описываешь отрисовку.
+            Это медленнее, но&nbsp;глубже.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Оба подхода решают одну и&nbsp;ту&nbsp;же задачу, но&nbsp;по-разному.
+            <tx-sl>p5.js</tx-sl> подходит для быстрых экспериментов и&nbsp;визуального поиска.
+            <tx-sl>Vanilla JS</tx-sl> даёт полный контроль и&nbsp;лучше показывает, как работает код.
+            Умение использовать оба подхода расширяет возможности в&nbsp;креативном кодинге.
+          </p>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav4" class="U_FontH3 A_TutorialTitle">
+            Вывод
+          </h3>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              Переменные позволяют управлять параметрами всей сцены
+            </li>
+            <li>
+              Условия добавляют различия между элементами
+            </li>
+            <li>
+              Даже простая логика создаёт визуальную структуру
+            </li>
+          </ol>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav5" class="U_FontH3 A_TutorialTitle">
+            Задание
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Попробуй изменить поведение элементов с&nbsp;помощью условий.
+            В&nbsp;коде ниже есть несколько вариантов&nbsp;— раскомментируй их&nbsp;и&nbsp;посмотри, как меняется
+            композиция.
+            Старайся понять, какое правило стоит за&nbsp;каждым изменением.
+          </p>
+
+          <div id="patr1module2tutorial1code5" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="vanilla" data-autostart="false">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+              </p>
+            </div>
+          </div>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              Раскомментируй условие с&nbsp;<tx-sl>y</tx-sl>, чтобы разделить экран по&nbsp;горизонтали
+            </li>
+            <li>
+              Попробуй вариант с&nbsp;<tx-sl>(x + y)</tx-sl>, чтобы получить шахматный паттерн
+            </li>
+            <li>
+              Измени размер фигур через условие справа
+            </li>
+          </ol>
 
         </section>
       </div>
