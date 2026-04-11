@@ -161,7 +161,8 @@
           <p class="U_FontS1 A_TutorialNavigationTitle">Принципы креативного кода</p>
           <div class="C_TutorialNavigationModules">
             <div class="W_TutorialNavigationModule">
-              <a class="U_FontB1 A_TutorialNavigationModuleTitle" href="../module1.html">JS&nbsp;+ DOM&nbsp;(Vanilla)</a>
+              <a class="U_FontB1 A_TutorialNavigationModuleTitle" href="../module1.html">JS&nbsp;+
+                DOM&nbsp;(Vanilla)</a>
               <ol class="U_FontF1 C_TutorialNavigationTutorialsList">
                 <li><a class="A_TutorialNavigationTutorialLink" href="../module1/tutorial1.html"></a></li>
               </ol>
@@ -186,10 +187,83 @@
         <section class="O_TutorialSection">
 
           <h3 id="nav1" class="U_FontH3 A_TutorialTitle">
-            Кубик
+            Теория
           </h3>
 
-          <div class="O_TutorialSingleCode O_TutorialSingleCode--Large" data-runtime="three" data-autostart="true">
+          <p id="TutorialTextFirst" class="U_FontB1 A_TutorialText">
+            В&nbsp;<tx-sl>Vanilla JS</tx-sl> элементы можно создавать и&nbsp;удалять прямо через код.
+            Это значит, что интерфейс перестаёт быть фиксированным: он&nbsp;может меняться во&nbsp;время работы
+            программы.
+            Элементы появляются, исчезают и&nbsp;перестраиваются по&nbsp;правилу.
+            Именно так начинается работа с&nbsp;интерактивными системами.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Когда ты&nbsp;работаешь с&nbsp;<tx-sl>DOM</tx-sl>, ты&nbsp;управляешь не&nbsp;рисунком, а&nbsp;самой
+            структурой страницы.
+            Через код можно создать новый <tx-sl>div</tx-sl>, изменить его стиль, добавить в&nbsp;контейнер или удалить.
+            Это делает интерфейс динамическим.
+            Важно понять, что здесь код управляет уже не&nbsp;только графикой, но&nbsp;и&nbsp;элементами среды.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Создание элемента обычно начинается с&nbsp;<tx-sl>document.createElement()</tx-sl>.
+            После этого элементу можно задать текст, размер, цвет и&nbsp;позицию, а&nbsp;затем добавить его
+            в&nbsp;<tx-sl>app</tx-sl>.
+            Удаление работает так же явно: элемент можно убрать из&nbsp;контейнера или очистить всю область целиком.
+            За&nbsp;счёт этого код начинает работать как система управления интерфейсом.
+          </p>
+
+          <div class="U_FontC2-Code W_TutorialCopyItem">
+            <p class="A_TutorialCopyText">
+              const block = document.createElement("div");<br>
+              block.textContent = "●";<br>
+              app.appendChild(block);<br><br>
+              block.remove();
+            </p>
+            <button class="U_ButtonIcon A_TutorialCopyButton">
+              <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+            </button>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Сначала создаётся новый элемент, затем ему задаются свойства, и&nbsp;после этого он&nbsp;добавляется
+            в&nbsp;контейнер.
+            Когда элемент больше не&nbsp;нужен, его можно удалить.
+            Это простая, но&nbsp;очень важная логика: интерфейс собирается и&nbsp;разбирается прямо во&nbsp;время
+            работы.
+            Так появляется настоящая динамика.
+          </p>
+
+          <div class="M_TutorialQuote">
+            <p class="U_FontS2">
+              В&nbsp;интерактивной системе элементы не&nbsp;заданы навсегда&nbsp;— они появляются и&nbsp;исчезают
+              по&nbsp;правилу
+            </p>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Ниже ты&nbsp;увидишь одну и&nbsp;ту&nbsp;же идею в&nbsp;двух средах.
+            Сначала элемент будет создаваться и&nbsp;удаляться через <tx-sl>Vanilla JS</tx-sl>, а&nbsp;потом похожее
+            поведение появится в&nbsp;<tx-sl>p5.js</tx-sl>.
+            Это поможет увидеть разницу между управлением DOM и&nbsp;управлением графическим холстом.
+          </p>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav2" class="U_FontH3 A_TutorialTitle">
+            Практика
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Начнём с&nbsp;<tx-sl>Vanilla JS</tx-sl>.
+            Здесь элементы будут создаваться как настоящие DOM-объекты.
+            Они появятся внутри контейнера <tx-sl>app</tx-sl>, а&nbsp;через время исчезнут.
+            Это простой пример динамического интерфейса.
+          </p>
+
+          <div id="patr2module1tutorial1code1" class="O_TutorialSingleCode" data-runtime="vanilla" data-autostart="false">
             <div class="W_TutorialSingleCodeExecution">
               <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
                 allow="accelerometer; gyroscope; magnetometer">
@@ -213,8 +287,137 @@
                 </div>
               </div>
               <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
-                Мой любимый кубик
+                Здесь код создаёт несколько новых элементов и&nbsp;добавляет их&nbsp;в&nbsp;<tx-sl>app</tx-sl>.
+                Каждый элемент получает свою позицию и&nbsp;стиль.
+                Через небольшую задержку элементы удаляются.
+                Так одна и&nbsp;та&nbsp;же область вывода сначала заполняется, а&nbsp;потом очищается.
               </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Теперь посмотрим на&nbsp;похожую идею в&nbsp;<tx-sl>p5.js</tx-sl>.
+            Здесь элементы не&nbsp;существуют как DOM-объекты, а&nbsp;рисуются на&nbsp;холсте заново в&nbsp;каждом
+            кадре.
+            Это другой тип динамики: не&nbsp;создание узлов страницы, а&nbsp;постоянная перерисовка сцены.
+          </p>
+
+          <div id="patr2module1tutorial1code2" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                В&nbsp;этом примере круги постепенно появляются на&nbsp;сцене, а&nbsp;потом исчезают, потому что список
+                элементов очищается и&nbsp;заполняется заново.
+                Здесь движение и&nbsp;изменение происходят не&nbsp;через DOM, а&nbsp;через цикл <tx-sl>draw()</tx-sl>.
+                Это показывает, что динамика может строиться по-разному.
+                В&nbsp;обоих случаях код управляет поведением системы, но&nbsp;среда работы отличается.
+              </p>
+            </div>
+          </div>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav3" class="U_FontH3 A_TutorialTitle">
+            Вариация
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;<tx-sl>Vanilla JS</tx-sl> ты&nbsp;создаёшь и&nbsp;удаляешь реальные элементы страницы.
+            Это удобно, когда работаешь с&nbsp;интерфейсом, кнопками, карточками и&nbsp;другими блоками.
+            В&nbsp;<tx-sl>p5.js</tx-sl> элементы не&nbsp;живут как отдельные объекты DOM&nbsp;— они заново рисуются
+            на&nbsp;холсте.
+            Поэтому одна и&nbsp;та&nbsp;же задача решается двумя разными способами мышления.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Если тебе нужно управлять структурой страницы, лучше подходит <tx-sl>Vanilla JS</tx-sl>.
+            Если важнее визуальное движение и&nbsp;постоянное обновление сцены, естественнее использовать
+            <tx-sl>p5.js</tx-sl>.
+            Оба подхода важны, потому что креативный код работает и&nbsp;с&nbsp;интерфейсом, и&nbsp;с&nbsp;графикой.
+          </p>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav4" class="U_FontH3 A_TutorialTitle">
+            Вывод
+          </h3>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              В&nbsp;Vanilla JS элементы можно создавать и&nbsp;удалять как части DOM-структуры
+            </li>
+            <li>
+              В&nbsp;p5.js похожее поведение создаётся через постоянную перерисовку сцены
+            </li>
+            <li>
+              Одна задача может решаться по-разному в&nbsp;зависимости от&nbsp;среды
+            </li>
+          </ol>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav5" class="U_FontH3 A_TutorialTitle">
+            Задание
+          </h3>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              Измени количество элементов, чтобы сцена стала плотнее
+            </li>
+            <li>
+              Попробуй изменить размер или цвет создаваемых блоков
+            </li>
+            <li>
+              Раскомментируй дополнительные строки и&nbsp;посмотри, как меняется поведение системы
+            </li>
+          </ol>
+
+          <div id="patr2module1tutorial1code3" class="O_TutorialSingleCode O_TutorialSingleCode--Large" data-runtime="vanilla" data-autostart="false">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 

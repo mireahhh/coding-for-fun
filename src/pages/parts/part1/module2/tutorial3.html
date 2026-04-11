@@ -180,10 +180,78 @@
         <section class="O_TutorialSection">
 
           <h3 id="nav1" class="U_FontH3 A_TutorialTitle">
-            Кубик
+            Теория
           </h3>
 
-          <div class="O_TutorialSingleCode O_TutorialSingleCode--Large" data-runtime="three" data-autostart="true">
+          <p id="TutorialTextFirst" class="U_FontB1 A_TutorialText">
+            Массивы позволяют работать сразу с&nbsp;несколькими элементами, а&nbsp;объекты&nbsp;— описывать
+            их&nbsp;свойства.
+            Вместо одной фигуры появляется набор элементов, каждый из&nbsp;которых может отличаться.
+            Это&nbsp;переход от&nbsp;простого повторения к&nbsp;управляемой системе.
+            Код&nbsp;начинает работать не&nbsp;с&nbsp;отдельной формой, а&nbsp;с&nbsp;коллекцией.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Массив&nbsp;— это&nbsp;список значений.
+            Он&nbsp;позволяет хранить несколько элементов в&nbsp;одной переменной и&nbsp;перебирать
+            их&nbsp;в&nbsp;цикле.
+            Вместо того чтобы вручную создавать каждую фигуру, можно описать правило и&nbsp;применить его&nbsp;ко&nbsp;всему
+            списку.
+            Это&nbsp;упрощает код и&nbsp;делает его&nbsp;гибким.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Объект описывает свойства одного элемента.
+            Например, у&nbsp;фигуры могут быть координаты, размер и&nbsp;цвет.
+            Когда каждый элемент хранит свои параметры, поведение становится разнообразным.
+            Так&nbsp;появляется возможность управлять не&nbsp;только формой, но&nbsp;и&nbsp;характером всей композиции.
+          </p>
+
+          <div class="U_FontC2-Code W_TutorialCopyItem">
+            <p class="A_TutorialCopyText">
+              let items = [<br>
+              &nbsp;&nbsp;{ x: 100, y: 100, size: 40 },<br>
+              &nbsp;&nbsp;{ x: 200, y: 150, size: 60 }<br>
+              ];
+            </p>
+            <button class="U_ButtonIcon A_TutorialCopyButton">
+              <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+            </button>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Массив хранит набор объектов.
+            Каждый объект содержит свойства: позицию, размер или&nbsp;цвет.
+            В&nbsp;цикле можно пройтись по&nbsp;всем элементам и&nbsp;отрисовать&nbsp;их.
+            Это позволяет создавать сложные сцены из&nbsp;простых правил.
+          </p>
+
+          <div class="M_TutorialQuote">
+            <p class="U_FontS2">
+              Один элемент&nbsp;— это&nbsp;форма, множество элементов&nbsp;— это&nbsp;система
+            </p>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Ниже ты&nbsp;увидишь, как&nbsp;из&nbsp;массива объектов создаётся сцена.
+            Сначала все&nbsp;элементы будут одинаковыми, а&nbsp;потом у&nbsp;каждого появятся свои параметры.
+            Так&nbsp;ты&nbsp;увидишь, как&nbsp;коллекция начинает управлять визуальным результатом.
+          </p>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav2" class="U_FontH3 A_TutorialTitle">
+            Практика
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Начнём с&nbsp;простого массива.
+            В&nbsp;нём хранится несколько элементов, и&nbsp;каждый из&nbsp;них будет отрисован.
+            Пока все&nbsp;параметры одинаковые, но&nbsp;уже появляется структура.
+          </p>
+
+          <div id="patr1module2tutorial3code1" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
             <div class="W_TutorialSingleCodeExecution">
               <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
                 allow="accelerometer; gyroscope; magnetometer">
@@ -207,10 +275,122 @@
                 </div>
               </div>
               <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
-                Мой любимый кубик
+                Здесь создаётся массив элементов с&nbsp;одинаковыми параметрами.
+                Затем цикл проходит по&nbsp;каждому элементу и&nbsp;рисует круг.
+                Даже при одинаковых значениях уже появляется система, потому что код работает с&nbsp;набором данных.
+                Это первый шаг к&nbsp;управляемым сценам.
               </p>
             </div>
           </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Теперь добавим различия между элементами.
+            Каждый объект будет иметь свои координаты и&nbsp;размер.
+            Это&nbsp;сделает композицию более живой.
+          </p>
+
+          <div id="patr1module2tutorial3code2" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Здесь каждый объект хранит собственные параметры.
+                Размер и&nbsp;позиция больше не&nbsp;одинаковые, поэтому композиция становится разнообразной.
+                Массив задаёт структуру, а&nbsp;объекты&nbsp;— индивидуальность элементов.
+                Так&nbsp;код&nbsp;начинает работать как&nbsp;система с&nbsp;множеством состояний.
+              </p>
+            </div>
+          </div>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav3" class="U_FontH3 A_TutorialTitle">
+            Вывод
+          </h3>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              Массивы позволяют работать с&nbsp;множеством элементов
+            </li>
+            <li>
+              Объекты описывают свойства каждого элемента
+            </li>
+            <li>
+              Вместе они&nbsp;позволяют создавать сложные визуальные системы
+            </li>
+          </ol>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav4" class="U_FontH3 A_TutorialTitle">
+            Задание
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Попробуй изменить параметры элементов внутри массива.
+            В&nbsp;коде ниже есть варианты, которые можно раскомментировать.
+            Обрати внимание, как&nbsp;изменения отдельных элементов влияют на&nbsp;всю&nbsp;композицию.
+          </p>
+
+          <div id="patr1module2tutorial3code3" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              Измени размер элементов через случайное значение
+            </li>
+            <li>
+              Добавь разный цвет для&nbsp;каждого объекта
+            </li>
+            <li>
+              Попробуй изменить координаты, чтобы получить новую композицию
+            </li>
+          </ol>
 
         </section>
       </div>

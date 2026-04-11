@@ -180,10 +180,76 @@
         <section class="O_TutorialSection">
 
           <h3 id="nav1" class="U_FontH3 A_TutorialTitle">
-            Кубик
+            Теория
           </h3>
 
-          <div class="O_TutorialSingleCode O_TutorialSingleCode--Large" data-runtime="three" data-autostart="true">
+          <p id="TutorialTextFirst" class="U_FontB1 A_TutorialText">
+            Циклы&nbsp;— это&nbsp;основа генерации.
+            Они позволяют повторять одно и&nbsp;то&nbsp;же действие много раз, не&nbsp;копируя код вручную.
+            Именно через <tx-sl>циклы</tx-sl> создаются сетки, паттерны и&nbsp;структуры.
+            Простая форма, повторённая по&nbsp;правилу, превращается в&nbsp;цельную композицию.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Когда фигуры повторяются с&nbsp;одинаковым шагом, возникает визуальный <tx-sl>ритм</tx-sl>.
+            Он&nbsp;может быть ровным, плотным, редким или&nbsp;нарушенным.
+            В&nbsp;коде этот ритм задаётся числами: расстоянием между элементами, их&nbsp;размером и&nbsp;позицией.
+            Поэтому цикл&nbsp;— это&nbsp;не&nbsp;только технический приём, но&nbsp;и&nbsp;инструмент композиции.
+          </p>
+
+          <div class="U_FontC2-Code W_TutorialCopyItem">
+            <p class="A_TutorialCopyText">
+              for (let x = 0; x &lt; width; x += step) {<br>
+              &nbsp;&nbsp;ellipse(x, 100, 40);<br>
+              }
+            </p>
+            <button class="U_ButtonIcon A_TutorialCopyButton">
+              <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+            </button>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Цикл <tx-sl>for</tx-sl> состоит из&nbsp;трёх частей: начального значения, условия и&nbsp;шага.
+            Сначала задаётся переменная, потом проверяется, можно&nbsp;ли продолжать повторение, и&nbsp;в&nbsp;конце
+            указывается, как&nbsp;значение должно изменяться.
+            Пока условие остаётся истинным, код&nbsp;внутри фигурных скобок будет выполняться снова и&nbsp;снова.
+            Именно так&nbsp;из&nbsp;одной команды появляется целый ряд элементов.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Один цикл создаёт повторение в&nbsp;одном направлении&nbsp;— например, по&nbsp;горизонтали.
+            Если вложить один цикл в&nbsp;другой, получится повторение сразу по&nbsp;двум осям.
+            Так&nbsp;строятся сетки, которые особенно важны для&nbsp;генеративной графики.
+            Внутренний цикл отвечает за&nbsp;строку, а&nbsp;внешний&nbsp;— за&nbsp;переход к&nbsp;следующей строке.
+          </p>
+
+          <div class="M_TutorialQuote">
+            <p class="U_FontS2">
+              Цикл превращает одну форму в&nbsp;систему, а&nbsp;повторение превращает систему в&nbsp;композицию
+            </p>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Ниже ты&nbsp;увидишь, как&nbsp;один цикл создаёт ряд&nbsp;фигур, а&nbsp;два вложенных цикла&nbsp;— целую
+            сетку.
+            Сначала структура будет очень простой, а&nbsp;потом в&nbsp;неё добавится небольшое изменение ритма.
+            Так&nbsp;будет легче почувствовать, как&nbsp;именно цикл управляет изображением.
+          </p>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav2" class="U_FontH3 A_TutorialTitle">
+            Практика
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Начнём с&nbsp;одного цикла.
+            Он&nbsp;создаёт горизонтальный ряд одинаковых кругов.
+            Здесь особенно хорошо видно, как&nbsp;шаг между элементами формирует ритм.
+          </p>
+
+          <div id="patr1module2tutorial2code1" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
             <div class="W_TutorialSingleCodeExecution">
               <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
                 allow="accelerometer; gyroscope; magnetometer">
@@ -207,10 +273,135 @@
                 </div>
               </div>
               <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
-                Мой любимый кубик
+                Здесь работает один <tx-sl>цикл</tx-sl>, который идёт по&nbsp;оси <tx-sl>x</tx-sl>.
+                На&nbsp;каждом шаге он&nbsp;рисует круг в&nbsp;новой позиции.
+                Переменная <tx-sl>step</tx-sl> задаёт расстояние между элементами, а&nbsp;значит и&nbsp;общий ритм
+                композиции.
+                Чем&nbsp;меньше шаг, тем&nbsp;плотнее выглядит&nbsp;ряд.
               </p>
             </div>
           </div>
+
+
+          <p class="U_FontB1 A_TutorialText">
+            Теперь добавим второй цикл.
+            Он&nbsp;позволит повторять фигуры не&nbsp;только по&nbsp;горизонтали, но&nbsp;и&nbsp;по&nbsp;вертикали.
+            Так&nbsp;из&nbsp;одного ряда получится полноценная сетка.
+          </p>
+
+          <div id="patr1module2tutorial2code2" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Здесь используются два&nbsp;вложенных цикла.
+                Один отвечает за&nbsp;строки, второй&nbsp;— за&nbsp;элементы внутри строки.
+                Вместе они&nbsp;собирают сетку из&nbsp;повторяющихся фигур.
+                Это&nbsp;один из&nbsp;самых базовых и&nbsp;важных приёмов в&nbsp;креативном коде.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Даже если структура строится по&nbsp;строгому правилу, ритм можно слегка изменить.
+            Например, уменьшить элементы в&nbsp;одной части экрана или&nbsp;сдвинуть их&nbsp;по&nbsp;условию.
+            Тогда композиция сохранит порядок, но&nbsp;станет более живой.
+          </p>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav3" class="U_FontH3 A_TutorialTitle">
+            Вывод
+          </h3>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              Цикл позволяет повторять одно действие много раз без&nbsp;копирования кода
+            </li>
+            <li>
+              Один цикл создаёт ряд, а&nbsp;два вложенных цикла&nbsp;— сетку
+            </li>
+            <li>
+              Шаг&nbsp;цикла напрямую влияет на&nbsp;ритм и&nbsp;плотность композиции
+            </li>
+          </ol>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav4" class="U_FontH3 A_TutorialTitle">
+            Задание
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Попробуй изменить ритм сетки самостоятельно.
+            В&nbsp;коде ниже уже подготовлены несколько вариантов&nbsp;— тебе нужно раскомментировать строки
+            и&nbsp;посмотреть, как&nbsp;перестраивается композиция.
+            Обращай внимание на&nbsp;то, как&nbsp;меняется не&nbsp;одна фигура, а&nbsp;вся система целиком.
+          </p>
+
+          <div id="patr1module2tutorial2code3" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              Раскомментируй строку с&nbsp;<tx-sl>step = width / 8</tx-sl>, чтобы сделать сетку плотнее
+            </li>
+            <li>
+              Раскомментируй строку с&nbsp;<tx-sl>size = step * 0.4</tx-sl>, чтобы уменьшить все элементы
+            </li>
+            <li>
+              Раскомментируй условие с&nbsp;<tx-sl>x &gt; width / 2</tx-sl>, чтобы изменить ритм в&nbsp;правой части
+              экрана
+            </li>
+            <li>
+              Попробуй комбинировать изменения и&nbsp;наблюдать, как меняется общий баланс
+            </li>
+          </ol>
 
         </section>
       </div>

@@ -20,7 +20,7 @@
     <div><img src="https://mc.yandex.ru/watch/108369792" style="position:absolute; left:-9999px;" alt="" /></div>
   </noscript>
   <!-- /Yandex.Metrika counter -->
-  <title>Инструменты и среда</title>
+  <title>Переменные и&nbsp;условия</title>
 </head>
 
 <body>
@@ -101,13 +101,13 @@
       </ul>
       <div class="U_FontC2 C_IntroHeading">
         <p class="A_IntroHeadingAbout">
-          Учебник: Базовые знания&nbsp;/ Введение в&nbsp;тему&nbsp;/
+          Учебник: Принципы креативного кода&nbsp;/ JS&nbsp;+ DOM&nbsp;(Vanilla)&nbsp;/
         </p>
         <p class="A_IntroHeadingApdate">
           Опубликовано 00 месяц 2026
         </p>
       </div>
-      <h1 class="U_FontH1 A_IntroHeadingTutorial" data-part="1" data-module="1" data-tutorial="2">
+      <h1 class="U_FontH1 A_IntroHeadingTutorial" data-part="2" data-module="1" data-tutorial="2">
         title
       </h1>
       <div class="O_IntroFooter">
@@ -158,18 +158,25 @@
           </ol>
         </div>
         <div class="W_TutorialNavigationPart">
-          <p class="U_FontS1 A_TutorialNavigationTitle">Базовые знания</p>
+          <p class="U_FontS1 A_TutorialNavigationTitle">Принципы креативного кода</p>
           <div class="C_TutorialNavigationModules">
             <div class="W_TutorialNavigationModule">
-              <a class="U_FontB1 A_TutorialNavigationModuleTitle" href="../module1.html">Введение в&nbsp;тему</a>
+              <a class="U_FontB1 A_TutorialNavigationModuleTitle" href="../module1.html">JS&nbsp;+
+                DOM&nbsp;(Vanilla)</a>
               <ol class="U_FontF1 C_TutorialNavigationTutorialsList">
                 <li><a class="A_TutorialNavigationTutorialLink" href="../module1/tutorial1.html"></a></li>
               </ol>
             </div>
             <div class="W_TutorialNavigationModule">
-              <a class="U_FontB1 A_TutorialNavigationModuleTitle" href="../module2.html">Алгоритмы и&nbsp;данные</a>
+              <a class="U_FontB1 A_TutorialNavigationModuleTitle" href="../module1.html">Интерактив на&nbsp;p5.js</a>
               <ol class="U_FontF1 C_TutorialNavigationTutorialsList">
-                <li><a class="A_TutorialNavigationTutorialLink" href="../module2/tutorial1.html"></a></li>
+                <li><a class="A_TutorialNavigationTutorialLink" href="../module1/tutorial1.html"></a></li>
+              </ol>
+            </div>
+            <div class="W_TutorialNavigationModule">
+              <a class="U_FontB1 A_TutorialNavigationModuleTitle" href="../module1.html">3D с&nbsp;Three.js</a>
+              <ol class="U_FontF1 C_TutorialNavigationTutorialsList">
+                <li><a class="A_TutorialNavigationTutorialLink" href="../module1/tutorial1.html"></a></li>
               </ol>
             </div>
           </div>
@@ -184,189 +191,125 @@
           </h3>
 
           <p id="TutorialTextFirst" class="U_FontB1 A_TutorialText">
-            Для креативного кодинга не&nbsp;нужны сложные инструменты.
-            В&nbsp;этом курсе весь код выполняется прямо в&nbsp;<tx-sl>браузере</tx-sl>.
-            Это&nbsp;значит, что ты&nbsp;сразу видишь результат своих действий.
-            Такой подход позволяет сосредоточиться на&nbsp;визуале, а&nbsp;не&nbsp;на&nbsp;настройке среды.
+            Через <tx-sl>стили</tx-sl> можно управлять внешним видом элементов, а через <tx-sl>трансформации</tx-sl> —
+            их положением, масштабом и вращением.
+            Это приближает код к визуальному дизайну: ты работаешь не только с логикой, но и с композицией, ритмом и
+            акцентами.
+            В <tx-sl>Vanilla JS</tx-sl> стили можно задавать прямо из кода, без отдельного CSS-файла.
+            Благодаря этому интерфейс становится не просто динамическим, а выразительным.
           </p>
 
           <p class="U_FontB1 A_TutorialText">
-            Код&nbsp;в&nbsp;этом учебнике запускается в&nbsp;отдельной области&nbsp;— <tx-sl>canvas</tx-sl>.
-            Это&nbsp;специальная поверхность, на&nbsp;которой рисуется графика.
-            Каждый&nbsp;раз, когда ты&nbsp;нажимаешь кнопку запуска, код&nbsp;выполняется заново.
-            Это&nbsp;позволяет быстро проверять идеи и&nbsp;экспериментировать.
+            Когда элемент уже создан, через JavaScript можно менять его свойства так же, как в CSS: цвет, размер,
+            скругление, тень или прозрачность.
+            Для этого используется объект <tx-sl>style</tx-sl>.
+            Например, ты можешь задать <tx-sl>background</tx-sl>, <tx-sl>borderRadius</tx-sl> или
+            <tx-sl>boxShadow</tx-sl> прямо в коде.
+            Это позволяет собирать визуальную сцену программно.
           </p>
 
           <p class="U_FontB1 A_TutorialText">
-            У&nbsp;тебя есть несколько базовых действий: запустить код, остановить его и&nbsp;изменить.
-            Кнопка <tx-sl>run</tx-sl> запускает выполнение, а&nbsp;<tx-sl>stop</tx-sl> останавливает его.
-            После изменений код&nbsp;можно запустить снова и&nbsp;сразу увидеть результат.
-            Такой цикл&nbsp;— основа работы с&nbsp;креативным кодом.
+            Свойство <tx-sl>transform</tx-sl> отвечает за перемещение, масштаб и вращение.
+            Через него можно сдвинуть элемент, повернуть его под углом или сделать больше и меньше.
+            Даже простая форма начинает выглядеть интереснее, если у неё появляется положение и характер.
+            Именно так код начинает работать как инструмент композиции.
+          </p>
+
+          <div class="U_FontC2-Code W_TutorialCopyItem">
+            <p class="A_TutorialCopyText">
+              card.style.background = "#1f1f1f";<br>
+              card.style.borderRadius = "20px";<br>
+              card.style.transform = "translate(40px, 0) rotate(-8deg)";<br>
+              card.style.boxShadow = "0 12px 32px rgba(31, 31, 31, 0.12)";
+            </p>
+            <button class="U_ButtonIcon A_TutorialCopyButton">
+              <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+            </button>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Здесь один и тот же элемент получает сразу несколько визуальных свойств.
+            Цвет задаёт его характер, скругление влияет на форму, а <tx-sl>transform</tx-sl> меняет положение и угол.
+            Тень добавляет глубину и делает композицию более материальной.
+            В сумме это уже не просто блок, а визуальный объект.
           </p>
 
           <div class="M_TutorialQuote">
             <p class="U_FontS2">
-              Код здесь&nbsp;— это&nbsp;инструмент, который сразу показывает результат твоих действий
+              Стили делают элемент видимым, а трансформации дают ему положение и характер
             </p>
           </div>
 
           <p class="U_FontB1 A_TutorialText">
-            Ниже ты&nbsp;можешь попробовать этот процесс на&nbsp;практике.
-            Обрати внимание не&nbsp;только на&nbsp;картинку, но&nbsp;и&nbsp;на&nbsp;сам процесс: запуск, изменение
-            и&nbsp;перезапуск.
+            Ниже ты соберёшь композицию из нескольких карточек.
+            Сначала увидишь финальный результат, а затем разберёшь, как он строится шаг за шагом: от простого блока до
+            сцены с ритмом, углами и глубиной.
+            Это поможет увидеть, как стиль и трансформация работают вместе.
           </p>
 
         </section>
         <section class="O_TutorialSection">
 
           <h3 id="nav2" class="U_FontH3 A_TutorialTitle">
-            Практика
+            Задача
           </h3>
 
           <p class="U_FontB1 A_TutorialText">
-            Этот пример показывает простую анимацию.
-            Круг движется по&nbsp;экрану, потому что его позиция меняется со&nbsp;временем.
-            Попробуй запустить код, затем остановить и&nbsp;изменить параметры.
+            В финальном варианте на экране появляется веер из карточек.
+            Они отличаются положением, поворотом и цветом, поэтому композиция выглядит живой и собранной.
+            Здесь нет сложной графики — только DOM-элементы, стили и трансформации.
+            Но именно из этого и собирается визуальный язык интерфейса.
           </p>
 
-          <div id="patr1module1tutorial2code1" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="false">
-            <div class="W_TutorialSingleCodeExecution">
-              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
-                allow="accelerometer; gyroscope; magnetometer">
-              </iframe>
-            </div>
-            <div class="O_TutorialSingleCodeTexts">
-              <div class="W_TutorialSingleCodeTextArea">
-                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
-                  aria-label="Поле кода"></textarea>
-                <div class="M_TutorialSingleCodeTextButtons">
-                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
-                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
-                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
-                  </button>
-                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
-                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
-                  </button>
-                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
-                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
-                  </button>
-                </div>
-              </div>
-              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
-                Переменная <tx-sl>x</tx-sl> отвечает за&nbsp;позицию круга.
-                В&nbsp;каждом кадре она&nbsp;увеличивается, поэтому круг движется вправо.
-                Так&nbsp;работает анимация: значения изменяются со&nbsp;временем.
-                Функция <tx-sl>draw()</tx-sl> выполняется постоянно, создавая движение.
-              </p>
-            </div>
-          </div>
-
-          <div id="patr1module1tutorial2code2" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="false">
-            <div class="W_TutorialSingleCodeExecution">
-              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
-                allow="accelerometer; gyroscope; magnetometer">
-              </iframe>
-            </div>
-            <div class="O_TutorialSingleCodeTexts">
-              <div class="W_TutorialSingleCodeTextArea">
-                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
-                  aria-label="Поле кода"></textarea>
-                <div class="M_TutorialSingleCodeTextButtons">
-                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
-                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
-                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
-                  </button>
-                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
-                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
-                  </button>
-                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
-                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
-                  </button>
-                </div>
-              </div>
-              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
-                Теперь движение управляется переменной <tx-sl>speed</tx-sl>.
-                Попробуй изменить её&nbsp;значение и&nbsp;перезапустить код.
-                Это&nbsp;показывает, как&nbsp;параметры влияют на&nbsp;поведение системы.
-                Ты&nbsp;управляешь не&nbsp;движением напрямую, а&nbsp;его скоростью.
-              </p>
-            </div>
-          </div>
+          CODE
+          <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+            Здесь код создаёт несколько карточек и задаёт каждой собственные стили.
+            Положение и угол меняются в зависимости от индекса, поэтому элементы собираются в ритмичную композицию.
+            Дополнительно добавлены тени, скругления и плавные переходы.
+            За счёт этого простые блоки начинают выглядеть как законченная визуальная сцена.
+          </p>
 
         </section>
         <section class="O_TutorialSection">
 
           <h3 id="nav3" class="U_FontH3 A_TutorialTitle">
-            Задание
+            Сборка
           </h3>
 
           <p class="U_FontB1 A_TutorialText">
-            Попробуй изменить поведение анимации.
-            Ниже&nbsp;есть готовые варианты&nbsp;— раскомментируй строки и&nbsp;посмотри результат.
-            Не&nbsp;забывай перезапускать код&nbsp;после изменений.
+            Сначала создаётся один базовый блок.
+            На этом этапе важнее всего понять, как задаются размеры, цвет и скругление.
+            Пока композиции нет, но уже появляется сам визуальный объект.
           </p>
 
-          <div id="patr1module1tutorial2code3" class="O_TutorialSingleCode O_TutorialSingleCode--Large" data-runtime="p5" data-autostart="true">
-            <div class="W_TutorialSingleCodeExecution">
-              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
-                allow="accelerometer; gyroscope; magnetometer">
-              </iframe>
-            </div>
-            <div class="O_TutorialSingleCodeTexts">
-              <div class="W_TutorialSingleCodeTextArea">
-                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
-                  aria-label="Поле кода"></textarea>
-                <div class="M_TutorialSingleCodeTextButtons">
-                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
-                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
-                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
-                  </button>
-                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
-                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
-                  </button>
-                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
-                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+          CODE
+          <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+            Этот код создаёт одну карточку и задаёт ей базовый стиль.
+            Здесь ещё нет сложного расположения, но уже видна связь между JavaScript и визуальным результатом.
+            Как только меняются свойства <tx-sl>style</tx-sl>, меняется и сам элемент.
+          </p>
 
-          <ol class="U_FontB1 C_TutorialTextList">
-            <li>
-              Раскомментируй <tx-sl>mouseY</tx-sl>, чтобы управлять движением мышью
-            </li>
-            <li>
-              Раскомментируй <tx-sl>sin()</tx-sl>, чтобы получить плавное колебание
-            </li>
-            <li>
-              Измени <tx-sl>speed</tx-sl>, чтобы ускорить или замедлить движение
-            </li>
-            <li>
-              Попробуй комбинировать изменения
-            </li>
-          </ol>
+          <p class="U_FontB1 A_TutorialText">
+            Теперь один блок превращается в несколько.
+            Через цикл создаются карточки, а через индекс каждой задаётся своё положение.
+            Так появляется ритм и начинается работа с композицией.
+          </p>
+
+          CODE
+          <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+            Здесь карточки уже не просто копируются, а получают разные координаты.
+            За счёт этого они не лежат друг на друге одинаково, а собираются в систему.
+            Это первый шаг от одиночного элемента к визуальной сцене.
+          </p>
 
         </section>
         <section class="O_TutorialSection">
 
-          <h3 id="nav4" class="U_FontH3 A_TutorialTitle">
-            Вывод
-          </h3>
-
-          <ol class="U_FontB1 C_TutorialTextList">
-            <li>
-              Код выполняется прямо в&nbsp;<tx-sl>браузере</tx-sl>
-            </li>
-            <li>
-              Функция <tx-sl>draw()</tx-sl> создаёт анимацию
-            </li>
-            <li>
-              Изменение параметров влияет на&nbsp;поведение системы
-            </li>
-          </ol>
+        </section>
+        <section class="O_TutorialSection">
 
         </section>
+
       </div>
       <a class="A_TutorialButtonUp" href="#tutorial">
         <img class="U_ImgIcon" src="../../../../images/icons/arrow-up.svg" alt="Вверх">
@@ -388,7 +331,7 @@
         <div class="M_NextTexts">
           <h3 class="U_FontS1 A_NextTitle">Следующий материал</h3>
           <h2 class="U_FontH0 A_NextHeading">
-            Цвет, форма и&nbsp;композиция
+            Анимации и&nbsp;события
           </h2>
         </div>
         <a class="U_ALink U_FontS3 A_NextButton" href="./tutorial3.html">Перейти к&nbsp;статье</a>

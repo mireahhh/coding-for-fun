@@ -62,27 +62,27 @@ const htmlPages = [
     "./pages/parts/part1/module2/tutorial1.html",
     ["index", "tutorial"],
   ),
-    createPages(
+  createPages(
     "./src/pages/parts/part1/module2/tutorial2.html",
     "./pages/parts/part1/module2/tutorial2.html",
     ["index", "tutorial"],
   ),
-    createPages(
+  createPages(
     "./src/pages/parts/part1/module2/tutorial3.html",
     "./pages/parts/part1/module2/tutorial3.html",
     ["index", "tutorial"],
   ),
-    createPages(
+  createPages(
     "./src/pages/parts/part1/module2/tutorial4.html",
     "./pages/parts/part1/module2/tutorial4.html",
     ["index", "tutorial"],
   ),
-    createPages(
+  createPages(
     "./src/pages/parts/part1/module2/tutorial5.html",
     "./pages/parts/part1/module2/tutorial5.html",
     ["index", "tutorial"],
   ),
-    // Часть2 Модуль1 ./part2/module1
+  // Часть2 Модуль1 ./part2/module1
   createPages(
     "./src/pages/parts/part2/module1.html",
     "./pages/parts/part2/module1.html",
@@ -91,6 +91,27 @@ const htmlPages = [
   createPages(
     "./src/pages/parts/part2/module1/tutorial1.html",
     "./pages/parts/part2/module1/tutorial1.html",
+    ["index", "tutorial"],
+  ),
+  createPages(
+    "./src/pages/parts/part2/module1/tutorial2.html",
+    "./pages/parts/part2/module1/tutorial2.html",
+    ["index", "tutorial"],
+  ),
+  createPages(
+    "./src/pages/parts/part2/module1/tutorial3.html",
+    "./pages/parts/part2/module1/tutorial3.html",
+    ["index", "tutorial"],
+  ),
+  // Часть2 Модуль2 ./part2/module2
+  createPages(
+    "./src/pages/parts/part2/module2.html",
+    "./pages/parts/part2/module2.html",
+    ["index", "module"],
+  ),
+  createPages(
+    "./src/pages/parts/part2/module2/tutorial1.html",
+    "./pages/parts/part2/module2/tutorial1.html",
     ["index", "tutorial"],
   ),
 ];

@@ -297,6 +297,10 @@
 @media (max-width: 1152px) {
   .C_ModuleTutorials {
     .W_ModuleTutorial {
+      &::before {
+        background: none;
+      }
+
       gap: var(--size-spacing-72);
 
       .W_ModuleTutorialHangle {

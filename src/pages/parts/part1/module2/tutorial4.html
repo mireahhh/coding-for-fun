@@ -180,10 +180,57 @@
         <section class="O_TutorialSection">
 
           <h3 id="nav1" class="U_FontH3 A_TutorialTitle">
-            Кубик
+            Теория
           </h3>
 
-          <div class="O_TutorialSingleCode O_TutorialSingleCode--Large" data-runtime="three" data-autostart="true">
+          <p id="TutorialTextFirst" class="U_FontB1 A_TutorialText">
+            Случайность добавляет вариативность и&nbsp;делает изображение живым.
+            Один и&nbsp;тот&nbsp;же алгоритм может давать разные результаты при&nbsp;каждом запуске.
+            Это&nbsp;один из&nbsp;ключевых принципов генеративного дизайна.
+            Но&nbsp;важно не&nbsp;просто добавлять случайность, а&nbsp;уметь её&nbsp;контролировать.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Случайные значения могут использоваться по-разному.
+            Можно менять только один параметр, а&nbsp;можно&nbsp;— сразу несколько.
+            Чем&nbsp;больше свободы у&nbsp;случайности, тем хаотичнее становится результат.
+            Поэтому задача не&nbsp;в&nbsp;том, чтобы убрать порядок, а&nbsp;в&nbsp;том, чтобы управлять диапазоном
+            значений.
+          </p>
+
+          <div class="U_FontC2-Code W_TutorialCopyItem">
+            <p class="A_TutorialCopyText">
+              let size = random(20, 80);<br>
+              let x = random(width);<br>
+              let y = random(height);
+            </p>
+            <button class="U_ButtonIcon A_TutorialCopyButton">
+              <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+            </button>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Функция <tx-sl>random()</tx-sl> возвращает случайное значение в&nbsp;заданном диапазоне.
+            Это&nbsp;значение можно использовать для&nbsp;размера, позиции или&nbsp;цвета.
+            Даже небольшое изменение параметров уже&nbsp;создаёт разнообразие.
+            Так&nbsp;один и&nbsp;тот&nbsp;же код&nbsp;начинает генерировать разные изображения.
+          </p>
+
+          <div class="M_TutorialQuote">
+            <p class="U_FontS2">
+              Случайность создаёт разнообразие, но&nbsp;контроль превращает её&nbsp;в&nbsp;дизайн
+            </p>
+          </div>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav2" class="U_FontH3 A_TutorialTitle">
+            Вариация
+          </h3>
+
+          <!-- TODO Тройной код -->
+          <div id="patr1module2tutorial4code1" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
             <div class="W_TutorialSingleCodeExecution">
               <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
                 allow="accelerometer; gyroscope; magnetometer">
@@ -207,8 +254,141 @@
                 </div>
               </div>
               <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
-                Мой любимый кубик
+                Здесь случайность влияет только на&nbsp;размер.
+                Позиции остаются фиксированными, поэтому структура сетки сохраняется.
+                Это&nbsp;самый мягкий способ добавить вариативность.
+                Композиция остаётся читаемой, но&nbsp;становится менее однообразной.
               </p>
+            </div>
+          </div>
+
+          <div id="patr1module2tutorial4code3" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Здесь изменяется положение элементов.
+                Сетка как будто “рассыпается”, но&nbsp;всё ещё&nbsp;читается.
+                Такой приём создаёт ощущение движения и&nbsp;живости.
+                Это&nbsp;более свободная форма случайности.
+              </p>
+            </div>
+          </div>
+
+          <div id="patr1module2tutorial4code3" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Здесь случайность управляет выбором.
+                В&nbsp;одних ячейках появляются круги, в&nbsp;других&nbsp;— квадраты.
+                Это&nbsp;уже не&nbsp;просто вариация параметров, а&nbsp;изменение самой структуры.
+                Такой подход создаёт более сложные и&nbsp;интересные композиции.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;первом варианте случайность почти незаметна и&nbsp;только оживляет структуру.
+            Во&nbsp;втором она начинает разрушать строгий порядок.
+            В&nbsp;третьем случае меняется сама логика композиции.
+            Чем&nbsp;больше параметров зависит от&nbsp;случайности, тем&nbsp;менее предсказуемым становится результат.
+          </p>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav3" class="U_FontH3 A_TutorialTitle">
+            Вывод
+          </h3>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              Случайность делает изображение вариативным
+            </li>
+            <li>
+              Можно контролировать, какие параметры будут случайными
+            </li>
+            <li>
+              Разные уровни случайности дают разный визуальный эффект
+            </li>
+          </ol>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav4" class="U_FontH3 A_TutorialTitle">
+            Задание
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Попробуй комбинировать разные виды случайности.
+            В&nbsp;коде ниже есть варианты, которые можно раскомментировать.
+            Постарайся найти баланс между порядком и&nbsp;хаосом.
+          </p>
+
+          <div id="patr1module2tutorial4code4" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="p5" data-autostart="false">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 
