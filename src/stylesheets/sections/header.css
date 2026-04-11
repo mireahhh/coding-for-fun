@@ -189,14 +189,14 @@
     }
 }
 
-.S_Header--Landing {
+/* .S_Header--Landing {
     backdrop-filter: blur(var(--size-spacing-50));
     box-shadow: none;
 
     &::before {
         display: none;
     }
-}
+} */
 
 /* m 4 -> 3 */
 @media (max-width: 1368px) {
@@ -215,8 +215,7 @@
 @media (max-width: 1152px) {
     .S_Header {
         &::before {
-            background:
-                linear-gradient(0deg,
+            background: linear-gradient(0deg,
                     var(--colors-brand-rainbow-subtrate)),
                 linear-gradient(90deg,
                     var(--colors-brand-rainbow));

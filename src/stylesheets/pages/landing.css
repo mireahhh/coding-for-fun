@@ -134,7 +134,8 @@
             padding-inline: 5%;
             box-sizing: border-box;
             width: 100%;
-            margin-top: var(--size-spacing-224);
+            /* 224 */
+            margin-top: var(--size-spacing-32);
             height: var(--size-spacing-558);
 
             .A_LandingCoverIllustrationImage1,
@@ -319,7 +320,7 @@
         .O_LendingPart {
             display: flex;
             max-width: var(--size-spacing-640);
-            min-width: var(--size-spacing-484);
+            min-width: var(--size-spacing-416);
             flex-direction: column;
             align-items: flex-start;
             gap: var(--size-spacing-40);
@@ -429,8 +430,8 @@
         box-sizing: border-box;
         width: 100%;
         justify-content: center;
-        align-items: flex-start;
-        align-content: flex-start;
+        align-items: center;
+        align-content: center;
         gap: var(--size-spacing-86) var(--size-spacing-160);
         flex-wrap: wrap;
 
@@ -440,16 +441,18 @@
             flex: 0 1 calc(50% - var(--size-spacing-80));
             align-items: flex-start;
             gap: var(--size-spacing-20);
-            flex-wrap: wrap;
 
             .A_LandingBoringImage {
                 display: flex;
                 width: 270px;
                 aspect-ratio: 1/1;
-                overflow: hidden;
 
                 border-radius: var(--size-radius-4);
                 border: var(--size-spacing-1) solid var(--colors-neutrals-200);
+
+                img {
+                    overflow: hidden;
+                }
             }
 
             .W_LandingBoringTexts {
@@ -457,8 +460,9 @@
                 flex-direction: column;
                 justify-content: space-between;
                 align-items: flex-start;
-                min-height: 0;
-                flex: 1 0 0;
+                min-width: 366px;
+                max-width: 572px;
+                flex: 1;
                 align-self: stretch;
 
                 .A_LandingBoringTitle,
@@ -485,7 +489,14 @@
     .S_Landing {
         .C_LandingBoring {
             flex-direction: column;
+            flex-wrap: nowrap;
             gap: var(--size-spacing-48);
+            width: 100%;
+            margin: auto;
+
+            .W_LandingBoringCard {
+                width: 100%;
+            }
         }
     }
 }
@@ -554,13 +565,20 @@
 }
 
 /* m 2 -> 1 */
-@media (max-width: 904px) {}
+@media (max-width: 904px) {
+    .S_Landing .C_LandingBoring .W_LandingBoringCard {
+        display: flex;
+        flex-direction: column;
+        flex: auto;
+        width: 100%;
+        gap: var(--size-spacing-20);
+    }
+}
 
 /* m 1 -> 0 */
 @media (max-width: 428px) {
     .S_Landing {
         .O_LandingCover {
-            padding-top: 100px important !;
 
             .O_LandingIntro {
                 padding-inline: 4%;
@@ -636,11 +654,22 @@
 
         .C_LandingBoring {
             padding-inline: 4%;
+            box-sizing: border-box;
+            width: 100%;
 
             .W_LandingBoringCard {
+                display: flex;
                 flex-direction: column;
                 flex: auto;
                 width: 100%;
+                gap: var(--size-spacing-20);
+
+                .A_LandingBoringImage {
+                    display: flex;
+                    max-width: 270px;
+                    width: 100%;
+                    height: auto;
+                }
 
                 .W_LandingBoringTexts .A_LandingBoringTitle {
                     /* U_FontH1-Mob */
@@ -652,7 +681,6 @@
                     text-transform: uppercase;
                 }
             }
-
         }
     }
 }
