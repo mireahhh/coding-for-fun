@@ -184,57 +184,54 @@
           </h3>
 
           <p id="TutorialTextFirst" class="U_FontB1 A_TutorialText">
-            Креативный код&nbsp;— это&nbsp;способ создавать визуальные формы с&nbsp;помощью алгоритмов. Главное здесь
-            не&nbsp;результат, а&nbsp;процесс: небольшое изменение в&nbsp;коде может полностью изменить визуальный
-            исход.
-            Именно поэтому креативный&nbsp;код
-            ближе к&nbsp;мышлению дизайнера или&nbsp;художника, чем&nbsp;к&nbsp;классической разработке.
+            Креативный код&nbsp;— это&nbsp;способ создавать визуальные формы через <tx-sl>алгоритмы</tx-sl>
+            и&nbsp;<tx-sl>правила</tx-sl>.
+            Вместо того чтобы рисовать вручную, ты&nbsp;описываешь систему, которая сама генерирует изображение.
+            Это&nbsp;меняет сам&nbsp;подход: ты&nbsp;работаешь не&nbsp;с&nbsp;формой напрямую, а&nbsp;с&nbsp;логикой
+            её&nbsp;появления.
+            Даже небольшое изменение параметра может полностью изменить визуальный результат.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;этом курсе визуал создаётся с&nbsp;помощью библиотеки <tx-sl>p5.js</tx-sl>.
+            В&nbsp;ней код делится на&nbsp;две ключевые части: <tx-sl>setup()</tx-sl> и&nbsp;<tx-sl>draw()</tx-sl>.
+            Это&nbsp;основа, на&nbsp;которой строится вся&nbsp;графика и&nbsp;анимация.
+            Понимание этой структуры важно, потому что&nbsp;она определяет, как&nbsp;именно работает твой&nbsp;код.
+          </p>
+
+          <div class="U_FontC2-Code W_TutorialCopyItem">
+            <p class="A_TutorialCopyText">
+              function setup() {<br>
+              &nbsp;&nbsp;createCanvas(400, 400);<br>
+              }<br><br>
+              function draw() {<br>
+              &nbsp;&nbsp;background(240);<br>
+              }
+            </p>
+            <button class="U_ButtonIcon A_TutorialCopyButton">
+              <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+            </button>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Функция <tx-sl>setup()</tx-sl> выполняется один&nbsp;раз при&nbsp;запуске.
+            Здесь ты&nbsp;настраиваешь сцену: задаёшь размер холста и&nbsp;базовые параметры.
+            Функция <tx-sl>draw()</tx-sl> выполняется постоянно, кадр за&nbsp;кадром.
+            Именно она&nbsp;отвечает за&nbsp;всё, что&nbsp;происходит во&nbsp;времени: движение, анимацию и&nbsp;изменения.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Иногда анимация не&nbsp;нужна, и&nbsp;достаточно отрисовать изображение один&nbsp;раз.
+            Для&nbsp;этого используется функция <tx-sl>noLoop()</tx-sl>.
+            Она останавливает постоянное выполнение <tx-sl>draw()</tx-sl> и&nbsp;оставляет только один&nbsp;кадр.
+            Это&nbsp;удобно, когда ты&nbsp;работаешь с&nbsp;генеративной графикой без движения.
           </p>
 
           <div class="M_TutorialQuote">
             <p class="U_FontS2">
-              Вместо того, чтобы рисовать каждый элемент вручную, мы&nbsp;задаём правило, по&nbsp;которому форма
-              появляется сама
+              Ты&nbsp;не&nbsp;рисуешь форму напрямую&nbsp;— ты&nbsp;задаёшь правило, по&nbsp;которому она&nbsp;появляется
             </p>
           </div>
-
-          <div class="A_TutorialSingleImage">
-            <video autoplay muted loop playsinline
-              src="../../../../images/tutorials/part1module1tutorial1image1.mp4"></video>
-            <p class="U_FontC1">
-              Простая сетка, созданная алгоритмом: одна инструкция повторяется много&nbsp;раз и&nbsp;формирует
-              структуру.
-            </p>
-          </div>
-
-          <p class="U_FontB1 A_TutorialText">
-            Такие структуры возникают из&nbsp;базовых принципов: повторения, параметров и&nbsp;зависимостей.
-            Мы&nbsp;не&nbsp;описываем
-            каждую фигуру отдельно&nbsp;— мы&nbsp;описываем систему, которая их&nbsp;создаёт.
-          </p>
-
-          <ul class="A_TutorialMultipleImage">
-            <li class="A_TutorialSingleImage">
-              <video autoplay muted loop playsinline
-                src="../../../../images/tutorials/part1module1tutorial1image2.mp4"></video>
-              <p class="U_FontC1">
-                Шумовые линии&nbsp;— алгоритм управляет движением точек
-              </p>
-            </li>
-            <li class="A_TutorialSingleImage">
-              <img src="../../../../images/tutorials/part1module1tutorial1image3.png" alt="">
-              <p class="U_FontC1">
-                Круги с&nbsp;параметрами&nbsp;— изменение одного значения создаёт вариации цвета
-              </p>
-            </li>
-            <li class="A_TutorialSingleImage">
-              <video autoplay muted loop playsinline
-                src="../../../../images/tutorials/part1module1tutorial1image4.mp4"></video>
-              <p class="U_FontC1">
-                Система частиц&nbsp;— сложное поведение из&nbsp;простых правил
-              </p>
-            </li>
-          </ul>
 
         </section>
         <section class="O_TutorialSection">
@@ -242,6 +239,13 @@
           <h3 id="nav2" class="U_FontH3 A_TutorialTitle">
             Практика
           </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Начнём с&nbsp;очень простого примера.
+            Здесь нет случайности&nbsp;— только повторение одной формы.
+            Это&nbsp;позволит понять, как&nbsp;работает структура, прежде чем добавлять вариации.
+            Сначала посмотри на&nbsp;результат, а&nbsp;потом попробуй изменить параметры.
+          </p>
 
           <div id="patr1module1tutorial1code1" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
             <div class="W_TutorialSingleCodeExecution">
@@ -267,17 +271,19 @@
                 </div>
               </div>
               <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
-                Сначала создаётся холст&nbsp;— это&nbsp;область, в&nbsp;которой мы&nbsp;рисуем. Затем в&nbsp;функции
-                draw очищается&nbsp;фон, чтобы&nbsp;каждый запуск начинался с&nbsp;чистого состояния. Переменная
-                <tx-sl>step</tx-sl>
-                задаёт расстояние между элементами и&nbsp;фактически определяет плотность сетки.
-                <br><br>
-                Дальше запускаются два&nbsp;вложенных цикла. Первый отвечает за&nbsp;движение по&nbsp;вертикали,
-                второй&nbsp;— по&nbsp;горизонтали. Вместе они&nbsp;перебирают все&nbsp;координаты сетки. В&nbsp;каждой
-                точке рисуется прямоугольник, и&nbsp;благодаря этому из&nbsp;одной команды получается целая структура.
+                Здесь используется <tx-sl>двойной цикл</tx-sl>, который проходит по&nbsp;сетке.
+                Переменная <tx-sl>step</tx-sl> задаёт расстояние между элементами.
+                Все&nbsp;круги одинаковые&nbsp;— это&nbsp;базовая структура без вариаций.
+                Такой код&nbsp;показывает, как&nbsp;из&nbsp;повторения появляется визуальная система.
               </p>
             </div>
           </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Теперь можно добавить вариацию.
+            Даже небольшое изменение размера или&nbsp;цвета сделает композицию более живой.
+            Обрати внимание, что&nbsp;сам алгоритм не&nbsp;меняется&nbsp;— меняются только параметры.
+          </p>
 
           <div id="patr1module1tutorial1code2" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
             <div class="W_TutorialSingleCodeExecution">
@@ -303,30 +309,45 @@
                 </div>
               </div>
               <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
-                Здесь добавляется случайность. Вместо фиксированного размера каждый прямоугольник получает своё значение
-                через random(). Это&nbsp;превращает строгую сетку в&nbsp;вариативную систему. Алгоритм остаётся
-                тем&nbsp;же, но&nbsp;результат становится&nbsp;живым.
+                Здесь появляется <tx-sl>random()</tx-sl>.
+                Размер круга немного меняется при каждой отрисовке.
+                Это&nbsp;добавляет вариативность, но&nbsp;структура остаётся той&nbsp;же.
+                Ты&nbsp;видишь, как&nbsp;простое правило начинает давать разные результаты.
               </p>
             </div>
           </div>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              <tx-sl>step</tx-sl> — расстояние между элементами сетки
+            </li>
+            <li>
+              <tx-sl>baseSize</tx-sl> — базовый размер круга
+            </li>
+            <li>
+              <tx-sl>random()</tx-sl> — добавляет случайность к&nbsp;размеру и&nbsp;цвету
+            </li>
+            <li>
+              блок <tx-sl>if</tx-sl> — выбирает один из&nbsp;цветов палитры
+            </li>
+          </ol>
 
         </section>
         <section class="O_TutorialSection">
 
           <h3 id="nav3" class="U_FontH3 A_TutorialTitle">
-            Выводы
+            Вывод
           </h3>
 
           <ol class="U_FontB1 C_TutorialTextList">
             <li>
-              Креативный код строится не&nbsp;вокруг рисования, а&nbsp;вокруг правил.
+              Креативный код строится вокруг <tx-sl>правил</tx-sl>, а&nbsp;не&nbsp;готовых форм
             </li>
             <li>
-              Повторение позволяет создавать сложные структуры из&nbsp;простых элементов.
+              Повторение позволяет создавать сложные структуры из&nbsp;простых элементов
             </li>
             <li>
-              Параметры дают контроль над&nbsp;результатом, а&nbsp;случайность добавляет вариативность и&nbsp;живость
-              изображению.
+              Случайность делает результат более живым и&nbsp;вариативным
             </li>
           </ol>
 
@@ -334,82 +355,32 @@
         <section class="O_TutorialSection">
 
           <h3 id="nav4" class="U_FontH3 A_TutorialTitle">
-            Синтаксис
+            Задание
           </h3>
 
-          <ul class="U_FontC2-Code C_TutorialCopyList">
-            <li class="W_TutorialCopyItem">
-              <p class="A_TutorialCopyText">
-                createCanvas(width, height); // создаёт область рисования
-                createCanvas(width, height); // без переноса
-              </p>
-              <button class="U_ButtonIcon A_TutorialCopyButton">
-                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
-              </button>
-            </li>
-            <li class="W_TutorialCopyItem">
-              <p class="A_TutorialCopyText">
-                background(value); // задаёт цвет фона (0–255)<br>
-                background(value); // только так перенос
-              </p>
-              <button class="U_ButtonIcon A_TutorialCopyButton">
-                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
-              </button>
-            </li>
-            <li class="W_TutorialCopyItem">
-              <p class="A_TutorialCopyText">
-                rect(x, y, w); // рисует прямоугольник в точке (x, y)
-              </p>
-              <button class="U_ButtonIcon A_TutorialCopyButton">
-                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
-              </button>
-            </li>
-            <li class="W_TutorialCopyItem">
-              <p class="A_TutorialCopyText">
-                for (let i = 0; i &lt; n; i++) { // повторяет код n раз }
-              </p>
-              <button class="U_ButtonIcon A_TutorialCopyButton">
-                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
-              </button>
-            </li>
-            <li class="W_TutorialCopyItem">
-              <p class="A_TutorialCopyText">
-                random(min, max); // случайное число в диапазоне
-              </p>
-              <button class="U_ButtonIcon A_TutorialCopyButton">
-                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
-              </button>
-            </li>
-            <li class="W_TutorialCopyItem">
-              <p class="A_TutorialCopyText">
-                noLoop(); // останавливает анимацию
-              </p>
-              <button class="U_ButtonIcon A_TutorialCopyButton">
-                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
-              </button>
-            </li>
-          </ul>
-
-        </section>
-        <section class="O_TutorialSection">
-
-          <h3 id="nav5" class="U_FontH3 A_TutorialTitle">
-            Задача
-          </h3>
+          <p class="U_FontB1 A_TutorialText">
+            Теперь попробуй самостоятельно изменить поведение системы.
+            В&nbsp;коде ниже уже&nbsp;есть готовые варианты&nbsp;— тебе нужно просто раскомментировать строки.
+            Делай это&nbsp;по&nbsp;одной и&nbsp;смотри, как&nbsp;меняется результат.
+          </p>
 
           <ol class="U_FontB1 C_TutorialTextList">
             <li>
-              В&nbsp;коде ниже попробуй изменить сетку так, чтобы она&nbsp;реагировала на&nbsp;позицию.
+              Уменьши <tx-sl>step</tx-sl>, чтобы сделать сетку плотнее
             </li>
             <li>
-              Сделай так, чтобы элементы становились больше к&nbsp;центру или, наоборот, уменьшались.
+              Увеличь <tx-sl>baseSize</tx-sl>, чтобы круги начали перекрываться
             </li>
             <li>
-              Постарайся связать размер с&nbsp;координатой x&nbsp;или&nbsp;y, чтобы появился градиент&nbsp;формы.
+              Убери <tx-sl>random()</tx-sl> и&nbsp;сделай все&nbsp;элементы одинаковыми
+            </li>
+            <li>
+              Измени цвета внутри <tx-sl>if</tx-sl>, чтобы&nbsp;создать свою палитру
             </li>
           </ol>
 
-          <div id="patr1module1tutorial1code3" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="false">
+          <div id="patr1module1tutorial1code3" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="p5" data-autostart="false">
             <div class="W_TutorialSingleCodeExecution">
               <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
                 allow="accelerometer; gyroscope; magnetometer">
@@ -432,13 +403,27 @@
                   </button>
                 </div>
               </div>
-              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
-                Здесь добавляется случайность. Вместо фиксированного размера каждый прямоугольник получает своё значение
-                через random(). Это&nbsp;превращает строгую сетку в&nbsp;вариативную систему. Алгоритм остаётся
-                тем&nbsp;же, но&nbsp;результат становится&nbsp;живым.
-              </p>
             </div>
           </div>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              Раскомментируй строку с&nbsp;<tx-sl>x&nbsp;/ width</tx-sl> и&nbsp;посмотри, как&nbsp;размер меняется
+              по&nbsp;горизонтали
+            </li>
+            <li>
+              Раскомментируй строку с&nbsp;<tx-sl>y&nbsp;/ height</tx-sl> и&nbsp;посмотри, как&nbsp;меняется вертикальный градиент
+            </li>
+            <li>
+              Раскомментируй <tx-sl>width&nbsp;* height</tx-sl>, и&nbsp;посмотри сочетание узоров
+            </li>
+            <li>
+              Раскомментируй <tx-sl>random()</tx-sl>, чтобы получить хаотичную композицию
+            </li>
+            <li>
+              Попробуй менять <tx-sl>step</tx-sl>, чтобы управлять плотностью сетки
+            </li>
+          </ol>
 
         </section>
       </div>

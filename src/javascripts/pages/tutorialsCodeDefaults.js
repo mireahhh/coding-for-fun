@@ -100,68 +100,77 @@ return () => {
 };
 
 export const defaultCodeById = {
-  patr1module1tutorial1code1: `function setup() {
+patr1module1tutorial1code1: `function setup() {
   createCanvas(windowWidth, windowHeight); // создаём холст размера окна
-  noStroke(); // убираем обводку у фигур
-}
-
-function draw() {
-  background(144); // очищаем фон (белый)
-
-  let step = 40; // шаг сетки — расстояние между элементами
-
-  // идём по вертикали
-  for (let y = 0; y < height; y += step) {
-    // для каждой строки идём по горизонтали
-    for (let x = 0; x < width; x += step) {
-      rect(x, y, step * 0.8); // рисуем квадрат чуть меньше шага
-    }
-  }
-}`,
-  patr1module1tutorial1code2: `function setup() {
-  createCanvas(320, 320);
+  // но можно указывать просто числа
   noStroke();
 }
 
 function draw() {
-  background(144);
+  background(248);
 
-  let step = 40;
+  let step = windowWidth / 6; // 6 шаров в сетке
 
   for (let y = 0; y < height; y += step) {
     for (let x = 0; x < width; x += step) {
 
-      // генерируем случайный размер для каждой фигуры
-      let size = step * random(0.3, 1);
+      fill('#2fd3e6');
+      // ellipse(x, y, step); // это рисовало бы без сдвига
+      ellipse(x + step / 2, y + step / 2, step);
 
-      rect(x, y, size); // теперь каждая ячейка выглядит по-разному
     }
   }
 
   noLoop();
 }`,
-  patr1module1tutorial1code3: `function setup() {
-  createCanvas(320, 320);
+patr1module1tutorial1code2: `function setup() {
+  createCanvas(windowWidth, windowHeight);
   noStroke();
 }
 
 function draw() {
-  background(144);
+  background(248);
 
-  let step = 40;
+  let step = windowWidth / 6;
 
   for (let y = 0; y < height; y += step) {
     for (let x = 0; x < width; x += step) {
 
-      // попробуй менять это:
+      let size = step + random(-10, 10);
+
+      fill('#ff86db');
+      ellipse(x + step / 2, y + step / 2, size);
+
+    }
+  }
+
+  noLoop();
+}`,
+patr1module1tutorial1code3: `function setup() {
+  createCanvas(windowWidth, windowHeight);
+  noStroke();
+}
+
+function draw() {
+  background(248);
+
+  let step = windowWidth / 7;
+
+  for (let y = 0; y < height; y += step) {
+    for (let x = 0; x < width; x += step) {
+
+      // базовый вариант
       let size = step;
 
-      // идеи:
+      // попробуй раскомментировать:
       // size = step * (x / width);
       // size = step * (y / height);
+      // size = step * (x / width) * (y / height);
       // size = step * random();
 
-      rect(x, y, size);
+      fill('#37e87a');
+      ellipse(x + step / 2, y + step / 2, size);
+
     }
   }
 
