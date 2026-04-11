@@ -447,6 +447,7 @@
             flex: 0 1 calc(50% - var(--size-spacing-80));
             align-items: flex-start;
             gap: var(--size-spacing-20);
+            min-width: 275px;
 
             .A_LandingBoringImage {
                 display: flex;
@@ -499,7 +500,6 @@
             width: var(--size-spacing-564);
             align-items: flex-start;
             gap: var(--size-spacing-40);
-            flex-shrink: 0;
 
             .A_LandingLinkImage {
                 display: flex;
@@ -563,6 +563,7 @@
             margin: auto;
 
             .W_LandingBoringCard {
+                min-width: auto;
                 width: 100%;
             }
         }
@@ -641,6 +642,14 @@
         flex: auto;
         width: 100%;
         gap: var(--size-spacing-20);
+    }
+
+    .S_Landing .C_LandingLinks {
+        flex-direction: column;
+
+        .O_LandingLink {
+            width: 100%;
+        }
     }
 }
 
@@ -759,6 +768,17 @@
                     text-transform: uppercase;
                 }
             }
+        }
+
+
+        .C_LandingLinks .W_LandingLinkTexts .A_LandingLinkHeading {
+            /* U_FontH1-Mob */
+            color: var(--colors-neutrals-900);
+            font-family: var(--font-KairosSans);
+            font-size: 3.5rem;
+            line-height: 100%;
+            letter-spacing: -0.175rem;
+            text-transform: uppercase;
         }
     }
 }
