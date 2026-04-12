@@ -189,7 +189,255 @@
       <div class="O_TutorialMain">
         <section class="O_TutorialSection">
 
+          <h3 id="nav1" class="U_FontH3 A_TutorialTitle">
+            Теория
+          </h3>
 
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;<tx-sl>Three.js</tx-sl> любой объект собирается из&nbsp;двух основных&nbspчастей:
+            <tx-sl>геометрии</tx-sl> и&nbsp;<tx-sl>материала</tx-sl>.
+            Геометрия задаёт форму, а&nbsp;материал определяет, как&nbspэта форма&nbspвыглядит.
+            Вместе они создают видимый объект в&nbsp;сцене.
+            Это&nbspодна из&nbsp;самых базовых конструкций в&nbsp;3D-графике.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Геометрия отвечает за&nbsp;структуру формы.
+            Например, она может описывать куб, шар, цилиндр или плоскость.
+            Именно геометрия задаёт, где находятся вершины и&nbsp;как собирается объём.
+            Если поменять геометрию, объект станет другой формы, даже если всё остальное останется прежним.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Материал отвечает за&nbsp;внешний вид объекта.
+            Он определяет цвет, способ отображения поверхности и общую визуальную логику.
+            Один и&nbsp;тот&nbsp;же куб может выглядеть по-разному в&nbsp;зависимости от&nbsp;того, какой материал
+            к&nbsp;нему применён.
+            Поэтому форма и&nbsp;поверхность в&nbsp;Three.js всегда работают вместе.
+          </p>
+
+          <div class="U_FontC2-Code W_TutorialCopyItem">
+            <p class="A_TutorialCopyText">
+              const geometry = new THREE.BoxGeometry(1, 1, 1); // форма куба<br>
+              const material = new THREE.MeshNormalMaterial(); // материал поверхности<br>
+              const mesh = new THREE.Mesh(geometry, material); // готовый объект
+            </p>
+            <button class="U_ButtonIcon A_TutorialCopyButton">
+              <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+            </button>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Сначала создаётся геометрия, затем материал, а&nbsp;после этого они объединяются в&nbsp;<tx-sl>Mesh</tx-sl>.
+            Именно <tx-sl>Mesh</tx-sl> уже можно добавить в&nbsp;сцену.
+            Получается, что объект в&nbsp;Three.js — это не одна сущность, а&nbsp;сборка из нескольких частей.
+            Такая логика лежит в основе почти всей работы с 3D-формами.
+          </p>
+
+          <div class="M_TutorialQuote">
+            <p class="U_FontS2">
+              Геометрия создаёт тело объекта, а материал задаёт его визуальный характер
+            </p>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Ниже ты&nbsp;сначала создашь базовый куб, а&nbsp;потом попробуешь менять его форму и&nbsp;поверхность.
+            Так будет видно, что объект можно собирать по частям и управлять им на разных уровнях.
+          </p>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav2" class="U_FontH3 A_TutorialTitle">
+            Задача
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Начнём с самого простого варианта — соберём куб.
+            Это базовая форма, на которой удобно понять связь геометрии и материала.
+            Здесь важно не движение, а сама конструкция объекта.
+          </p>
+
+          <div id="patr2module3tutorial2code1" class="O_TutorialSingleCode" data-runtime="three" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Здесь создаётся кубическая геометрия и материал, который показывает поверхность простым и наглядным
+                способом.
+                Затем эти части объединяются в один объект и добавляются в сцену.
+                Это минимальный, но уже полноценный 3D-объект.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Теперь поменяем только форму.
+            Материал останется тем же, поэтому будет хорошо видно, что визуальные изменения связаны именно с геометрией.
+          </p>
+
+          <div id="patr2module3tutorial2code2" class="O_TutorialSingleCode" data-runtime="three" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Здесь используется другая геометрия, но материал остаётся прежним.
+                За счёт этого объект выглядит иначе по форме, но сохраняет тот же принцип отображения поверхности.
+                Так становится ясно, что геометрия отвечает именно за тело объекта.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Теперь наоборот: оставим форму прежней, но изменим материал.
+            Так ты увидишь, как один и тот же объём может выглядеть по-разному в зависимости от поверхности.
+          </p>
+
+          <div id="patr2module3tutorial2code3" class="O_TutorialSingleCode" data-runtime="three" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Здесь форма остаётся кубом, но меняется материал.
+                За счёт этого объект получает другой визуальный характер.
+                Даже без света и текстур уже видно, что материал сильно влияет на восприятие формы.
+              </p>
+            </div>
+          </div>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav3" class="U_FontH3 A_TutorialTitle">
+            Вывод
+          </h3>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              Геометрия задаёт форму объекта
+            </li>
+            <li>
+              Материал определяет, как эта форма выглядит
+            </li>
+            <li>
+              Объект в <tx-sl>Three.js</tx-sl> собирается из отдельных частей
+            </li>
+            <li>
+              Даже простая замена геометрии или материала заметно меняет результат
+            </li>
+          </ol>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav4" class="U_FontH3 A_TutorialTitle">
+            Задание
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Попробуй изменить объект самостоятельно.
+            В коде ниже уже подготовлены варианты апгрейда: можно заменить форму, сменить материал или поменять цвет.
+            Раскомментируй строки по одной и смотри, как меняется восприятие объекта.
+          </p>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              Раскомментируй замену геометрии, чтобы вместо куба появился шар
+            </li>
+            <li>
+              Попробуй включить каркасный режим, чтобы увидеть структуру формы
+            </li>
+            <li>
+              Измени цвет материала и сравни более тёмный и более светлый варианты
+            </li>
+            <li>
+              Попробуй заменить куб на цилиндр и посмотреть, как меняется характер объекта
+            </li>
+          </ol>
+
+          <div id="patr2module3tutorial2code4" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="three" data-autostart="false">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
 
         </section>
       </div>

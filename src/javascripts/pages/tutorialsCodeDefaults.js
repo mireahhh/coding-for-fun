@@ -1271,7 +1271,7 @@ function draw() {
 
   app.appendChild(ball);
 })();`,
-patr2module2tutorial1code4:`function setup() {
+  patr2module2tutorial1code4: `function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
 }
@@ -1285,4 +1285,1499 @@ function draw() {
   fill(30);
   ellipse(x, y, 80);
 }`,
+  patr2module2tutorial2code1: `function setup() {
+  createCanvas(windowWidth, windowHeight);
+  noStroke();
+}
+
+function draw() {
+  background(248);
+
+  let size = map(mouseX, 0, width, 20, 200);
+
+  fill(30);
+  ellipse(mouseX, mouseY, size);
+}`,
+  patr2module2tutorial2code2: `let isDark = true;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  noStroke();
+}
+
+function draw() {
+  background(248);
+
+  let size = map(mouseX, 0, width, 20, 200);
+
+  fill(isDark ? 30 : 180);
+  ellipse(mouseX, mouseY, size);
+}
+
+function keyPressed() {
+  isDark = !isDark;
+}`,
+  patr2module2tutorial2code3: `function setup() {
+  createCanvas(windowWidth, windowHeight);
+  noStroke();
+}
+
+let isDark = true;
+
+function draw() {
+  background(248);
+
+  let size = map(mouseX, 0, width, 20, 200);
+
+  // базовый цвет
+  fill(30);
+
+  // попробуй раскомментировать:
+
+  // цвет зависит от позиции мыши
+  // fill(mouseX / width * 255, mouseY / height * 255, 150);
+
+  // цвет меняется по клавише
+  // fill(isDark ? 30 : 180);
+
+  ellipse(mouseX, mouseY, size);
+
+  // эффект "следа"
+  // background(248, 20);
+}
+
+function keyPressed() {
+  // переключение цвета
+  isDark = !isDark;
+}
+
+function mousePressed() {
+  // при клике появляется круг фиксированного размера
+  // fill(255, 100, 100);
+  // ellipse(mouseX, mouseY, 40);
+}`,
+  patr2module2tutorial3code1: `function setup() {
+  createCanvas(windowWidth, windowHeight);
+  noStroke();
+}
+
+function draw() {
+  background(248);
+
+  let step = min(width, height) / 10;
+  let size = step * 0.42;
+
+  for (let y = 0; y < height; y += step) {
+    for (let x = 0; x < width; x += step) {
+      let offsetX = sin(y * 0.04 + frameCount * 0.04) * step * 0.35;
+      let offsetY = cos(x * 0.04 + frameCount * 0.03) * step * 0.2;
+
+      fill(31);
+      ellipse(
+        x + step / 2 + offsetX,
+        y + step / 2 + offsetY,
+        size
+      );
+    }
+  }
+}`,
+  patr2module2tutorial3code2: `function setup() {
+  createCanvas(windowWidth, windowHeight);
+  noStroke();
+}
+
+function draw() {
+  background(248);
+
+  let step = min(width, height) / 10;
+  let size = step * 0.42;
+
+  for (let y = 0; y < height; y += step) {
+    for (let x = 0; x < width; x += step) {
+      fill(140);
+      ellipse(
+        x + step / 2,
+        y + step / 2,
+        size
+      );
+    }
+  }
+}`,
+  patr2module2tutorial3code3: `function setup() {
+  createCanvas(windowWidth, windowHeight);
+  noStroke();
+}
+
+function draw() {
+  background(248);
+
+  let step = min(width, height) / 10;
+  let size = step * 0.42;
+
+  for (let y = 0; y < height; y += step) {
+    let offsetX = sin(y * 0.04 + frameCount * 0.04) * step * 0.35;
+
+    for (let x = 0; x < width; x += step) {
+      fill(90);
+      ellipse(
+        x + step / 2 + offsetX,
+        y + step / 2,
+        size
+      );
+    }
+  }
+}`,
+  patr2module2tutorial3code4: `function setup() {
+  createCanvas(windowWidth, windowHeight);
+  noStroke();
+}
+
+function draw() {
+  background(248);
+
+  let step = min(width, height) / 10;
+  let size = step * 0.42;
+
+  for (let y = 0; y < height; y += step) {
+    for (let x = 0; x < width; x += step) {
+      // сначала смещаем строку по горизонтали
+      let offsetX = sin(y * 0.04 + frameCount * 0.04) * step * 0.35;
+
+      // потом добавляем более тонкое смещение по вертикали
+      let offsetY = cos(x * 0.04 + frameCount * 0.03) * step * 0.2;
+
+      fill(50);
+      ellipse(
+        x + step / 2 + offsetX,
+        y + step / 2 + offsetY,
+        size
+      );
+    }
+  }
+}`,
+  patr2module2tutorial3code5: `function setup() {
+  createCanvas(windowWidth, windowHeight);
+  noStroke();
+}
+
+function draw() {
+  background(248);
+
+  let step = min(width, height) / 10;
+  let size = step * 0.42;
+
+  for (let y = 0; y < height; y += step) {
+    for (let x = 0; x < width; x += step) {
+      let offsetX = sin(y * 0.04 + frameCount * 0.04) * step * 0.35;
+      let offsetY = cos(x * 0.04 + frameCount * 0.03) * step * 0.2;
+      let currentSize = size;
+
+      // попробуй раскомментировать:
+
+      // сделать вертикальное смещение сильнее
+      // offsetY = cos(x * 0.04 + frameCount * 0.03) * step * 0.35;
+
+      // менять размер элементов
+      // currentSize = map(sin(x * 0.03 + frameCount * 0.05), -1, 1, step * 0.2, step * 0.6);
+
+      // заменить круги на квадраты
+      // rectMode(CENTER);
+
+      fill(31);
+
+      // для квадратов:
+      // rect(
+      //   x + step / 2 + offsetX,
+      //   y + step / 2 + offsetY,
+      //   currentSize,
+      //   currentSize
+      // );
+
+      ellipse(
+        x + step / 2 + offsetX,
+        y + step / 2 + offsetY,
+        currentSize
+      );
+    }
+  }
+}`,
+  patr2module2tutorial4code1: `function setup() {
+  createCanvas(windowWidth, windowHeight);
+  noStroke();
+}
+
+function draw() {
+  background(248);
+
+  let x = width / 2 + sin(frameCount * 0.05) * 85;
+  let y = height / 2;
+
+  fill(31);
+  ellipse(x, y, 84);
+}`,
+  patr2module2tutorial4code2: `(function () {
+  const app = document.getElementById("app");
+  app.innerHTML = "";
+  app.style.position = "relative";
+  app.style.background = "#f8f8f8";
+  app.style.overflow = "hidden";
+
+  const ball = document.createElement("div");
+  ball.style.position = "absolute";
+  ball.style.width = "84px";
+  ball.style.height = "84px";
+  ball.style.borderRadius = "999px";
+  ball.style.background = "#1f1f1f";
+  ball.style.top = "50%";
+  ball.style.transform = "translate(-50%, -50%)";
+
+  app.appendChild(ball);
+
+  let t = 0;
+
+  function animate() {
+    const x = app.clientWidth / 2 + Math.sin(t) * 85;
+    ball.style.left = x + "px";
+
+    t += 0.05;
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+})();`,
+  patr2module2tutorial4code3: `(function () {
+  const app = document.getElementById("app");
+  app.innerHTML = "";
+  app.style.position = "relative";
+  app.style.background = "#f8f8f8";
+  app.style.overflow = "hidden";
+
+  const style = document.createElement("style");
+  style.innerHTML = "@keyframes sway {" +
+    "0% { transform: translate(-50%, -50%) translateX(-85px); }" +
+    "50% { transform: translate(-50%, -50%) translateX(85px); }" +
+    "100% { transform: translate(-50%, -50%) translateX(-85px); }" +
+  "}";
+  document.head.appendChild(style);
+
+  const ball = document.createElement("div");
+  ball.style.position = "absolute";
+  ball.style.left = "50%";
+  ball.style.top = "50%";
+  ball.style.width = "84px";
+  ball.style.height = "84px";
+  ball.style.borderRadius = "999px";
+  ball.style.background = "#1f1f1f";
+  ball.style.animation = "sway 2.4s ease-in-out infinite";
+
+  app.appendChild(ball);
+})();`,
+  patr2module2tutorial4code4: `function setup() {
+  createCanvas(windowWidth, windowHeight);
+  noStroke();
+}
+
+function draw() {
+  background(248);
+
+  let x = width / 2 + sin(frameCount * 0.05) * 130;
+  let y = height / 2;
+  let size = 84;
+
+  // попробуй раскомментировать:
+
+  // сделать движение спокойнее
+  // x = width / 2 + sin(frameCount * 0.03) * 90;
+
+  // сделать движение резче
+  // x = width / 2 + sin(frameCount * 0.08) * 180;
+
+  // добавить изменение размера
+  // size = 84 + sin(frameCount * 0.06) * 28;
+
+  // добавить вертикальное движение
+  // y = height / 2 + cos(frameCount * 0.04) * 60;
+
+  fill(31);
+  ellipse(x, y, size);
+}`,
+  patr2module2tutorial5code1: `let t = 0;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  noStroke();
+}
+
+function draw() {
+  background(248);
+
+  let x = noise(t) * width;
+  let y = height / 2;
+
+  fill(31);
+  ellipse(x, y, 84);
+
+  t += 0.01;
+}`,
+  patr2module2tutorial5code2: `function setup() {
+  createCanvas(windowWidth, windowHeight);
+  noFill();
+  stroke(31);
+  strokeWeight(3);
+}
+
+function draw() {
+  background(248);
+
+  beginShape();
+
+  for (let x = 0; x <= width; x += 24) {
+    let y = height / 2 + noise(x * 0.01) * 180 - 90;
+    vertex(x, y);
+  }
+
+  endShape();
+}`,
+  patr2module2tutorial5code3: `let t = 0;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  noFill();
+  stroke(31);
+  strokeWeight(3);
+}
+
+function draw() {
+  background(248);
+
+  beginShape();
+
+  for (let x = 0; x <= width; x += 24) {
+    let y = height / 2 + noise(x * 0.01, t) * 180 - 90;
+    vertex(x, y);
+  }
+
+  endShape();
+
+  t += 0.01;
+}`,
+  patr2module2tutorial5code4: `let t = 0;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  noFill();
+  stroke(31);
+  strokeWeight(3);
+}
+
+function draw() {
+  background(248);
+
+  let step = 24;
+  let amplitude = 180;
+
+  // попробуй раскомментировать:
+
+  // сделать линию плотнее
+  // step = 12;
+
+  // увеличить амплитуду
+  // amplitude = 260;
+
+  beginShape();
+
+  // попробуй раскомментировать:
+  // fill(31, 31, 31, 30);
+
+  for (let x = 0; x <= width; x += step) {
+    let y = height / 2 + noise(x * 0.01, t) * amplitude - amplitude / 2;
+    vertex(x, y);
+  }
+
+  // попробуй раскомментировать:
+  // vertex(width, height);
+  // vertex(0, height);
+
+  endShape();
+
+  // попробуй изменить скорость:
+  // t += 0.02;
+  t += 0.01;
+}`,
+  patr2module3tutorial1code1: `const width = app.clientWidth;
+const height = app.clientHeight;
+
+// сцена
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf8f8f8);
+
+// камера
+const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+camera.position.z = 3;
+camera.position.y = 0;
+camera.lookAt(0, 0, 0);
+
+// рендерер
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+// объект
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const material = new THREE.MeshNormalMaterial();
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+
+// resize
+function onResize() {
+  const width = app.clientWidth;
+  const height = app.clientHeight;
+
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+  renderer.setSize(width, height);
+}
+
+window.addEventListener("resize", onResize);
+
+// анимация
+let animationId;
+
+function animate() {
+  cube.rotation.x += 0.01;
+  cube.rotation.y += 0.02;
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+animate();
+
+// cleanup
+return () => {
+  cancelAnimationFrame(animationId);
+  window.removeEventListener("resize", onResize);
+
+  geometry.dispose();
+  material.dispose();
+  renderer.dispose();
+};`,
+  patr2module3tutorial1code2: `const width = app.clientWidth; // ширина области вывода
+const height = app.clientHeight; // высота области вывода
+
+const scene = new THREE.Scene(); // создаём 3D-сцену
+scene.background = new THREE.Color(0xf8f8f8); // задаём цвет фона
+
+const camera = new THREE.PerspectiveCamera(
+  50, // угол обзора
+  width / height, // соотношение сторон
+  0.1, // ближняя плоскость отсечения
+  1000 // дальняя плоскость отсечения
+);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true }); // создаём рендерер
+renderer.setSize(width, height); // подгоняем его под размер контейнера
+
+app.innerHTML = ""; // очищаем прошлый результат
+app.appendChild(renderer.domElement); // добавляем canvas в контейнер
+
+renderer.render(scene, camera); // показываем сцену через камеру `,
+  patr2module3tutorial1code3: `const width = app.clientWidth;
+const height = app.clientHeight;
+
+// сцена
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf8f8f8);
+
+// камера
+const camera = new THREE.PerspectiveCamera(
+  50,
+  width / height,
+  0.1,
+  1000
+);
+camera.position.z = 3;
+camera.position.y = 0;
+camera.lookAt(0, 0, 0);
+
+// рендерер
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+// вывод
+renderer.render(scene, camera); `,
+  patr2module3tutorial1code4: `const width = app.clientWidth;
+const height = app.clientHeight;
+
+// сцена
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf8f8f8);
+
+// камера
+const camera = new THREE.PerspectiveCamera(
+  50,
+  width / height,
+  0.1,
+  1000
+);
+camera.position.z = 3;
+camera.position.y = 0;
+camera.lookAt(0, 0, 0);
+
+// рендерер
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+// объект
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const material = new THREE.MeshNormalMaterial();
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+
+// вывод
+renderer.render(scene, camera); `,
+  patr2module3tutorial1code5: `const width = app.clientWidth;
+const height = app.clientHeight;
+
+// сцена
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf8f8f8);
+
+// попробуй раскомментировать:
+// scene.background = new THREE.Color(0xe9e9e9);
+
+// камера
+const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+camera.position.z = 3;
+camera.position.y = 0;
+// попробуй поднять камеру
+// camera.position.z = 3;
+// camera.position.y = 0.2;
+
+// рендерер
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+// объект
+let geometry = new THREE.BoxGeometry(1, 1, 1);
+
+// попробуй раскомментировать:
+// geometry = new THREE.SphereGeometry(0.8, 32, 32);
+
+let material = new THREE.MeshNormalMaterial();
+
+// попробуй раскомментировать:
+// material = new THREE.MeshBasicMaterial({color: 0x1f1f1f });
+// material = new THREE.MeshBasicMaterial({color: 0xbdbdbd, wireframe: true });
+
+const mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh);
+
+// resize
+function onResize() {
+  const width = app.clientWidth;
+  const height = app.clientHeight;
+
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+  renderer.setSize(width, height);
+}
+
+window.addEventListener("resize", onResize);
+
+// анимация
+let animationId;
+
+function animate() {
+  mesh.rotation.x += 0.01;
+  mesh.rotation.y += 0.02;
+
+  // попробуй раскомментировать:
+  // mesh.rotation.x += 0.03;
+  // mesh.rotation.y += 0.04;
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+animate();
+
+// cleanup
+return () => {
+  cancelAnimationFrame(animationId);
+  window.removeEventListener("resize", onResize);
+
+  geometry.dispose();
+  material.dispose();
+  renderer.dispose();
+}; `,
+patr2module3tutorial2code1: `const width = app.clientWidth;
+const height = app.clientHeight;
+
+// сцена
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf8f8f8);
+
+// камера
+const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+camera.position.z = 3;
+camera.lookAt(0, 0, 0);
+
+// рендерер
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+// объект
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const material = new THREE.MeshNormalMaterial();
+const mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh);
+
+// анимация
+let animationId;
+
+function animate() {
+  mesh.rotation.x += 0.01;
+  mesh.rotation.y += 0.02;
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+animate();
+
+// вывод
+renderer.render(scene, camera);`,
+patr2module3tutorial2code2: `const width = app.clientWidth;
+const height = app.clientHeight;
+
+// сцена
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf8f8f8);
+
+// камера
+const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+camera.position.z = 3;
+camera.lookAt(0, 0, 0);
+
+// рендерер
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+// объект
+const geometry = new THREE.SphereGeometry(0.8, 32, 32);
+const material = new THREE.MeshNormalMaterial();
+const mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh);
+
+// анимация
+let animationId;
+
+function animate() {
+  mesh.rotation.x += 0.01;
+  mesh.rotation.y += 0.02;
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+animate();
+
+// вывод
+renderer.render(scene, camera);`,
+patr2module3tutorial2code3: `const width = app.clientWidth;
+const height = app.clientHeight;
+
+// сцена
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf8f8f8);
+
+// камера
+const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+camera.position.z = 3;
+camera.lookAt(0, 0, 0);
+
+// рендерер
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+// объект
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const material = new THREE.MeshBasicMaterial({ color: 0x1f1f1f });
+const mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh);
+
+// анимация
+let animationId;
+
+function animate() {
+  mesh.rotation.x += 0.01;
+  mesh.rotation.y += 0.02;
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+animate();
+
+// вывод
+renderer.render(scene, camera);`,
+patr2module3tutorial2code4: `const width = app.clientWidth;
+const height = app.clientHeight;
+
+// сцена
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf8f8f8);
+
+// камера
+const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+camera.position.z = 3;
+camera.lookAt(0, 0, 0);
+
+// рендерер
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+// объект
+let geometry = new THREE.BoxGeometry(1, 1, 1);
+
+// попробуй раскомментировать:
+// geometry = new THREE.SphereGeometry(0.8, 32, 32);
+// geometry = new THREE.CylinderGeometry(0.7, 0.7, 1.4, 32);
+
+let material = new THREE.MeshBasicMaterial({ color: 0x1f1f1f });
+
+// попробуй раскомментировать:
+// material = new THREE.MeshBasicMaterial({ color: 0xbdbdbd });
+// material = new THREE.MeshBasicMaterial({ color: 0x1f1f1f, wireframe: true });
+
+const mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh);
+
+// анимация
+let animationId;
+
+function animate() {
+  mesh.rotation.x += 0.01;
+  mesh.rotation.y += 0.02;
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+animate();
+
+// вывод
+renderer.render(scene, camera);`,
+patr2module3tutorial3code1: `const width = app.clientWidth;
+const height = app.clientHeight;
+
+// сцена
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf8f8f8);
+
+// камера
+const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+camera.position.z = 3;
+camera.position.y = 0;
+camera.lookAt(0, 0, 0);
+
+// рендерер
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+// объект
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const material = new THREE.MeshStandardMaterial({ color: 0x858585 });
+const mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh);
+
+// свет
+const light = new THREE.DirectionalLight(0xffffff, 1.4);
+light.position.set(2, 2, 3);
+scene.add(light);
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.35);
+scene.add(ambientLight);
+
+// анимация
+let animationId;
+
+function animate() {
+  mesh.rotation.x += 0.01;
+  mesh.rotation.y += 0.02;
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+animate();
+
+// cleanup
+return () => {
+  cancelAnimationFrame(animationId);
+  geometry.dispose();
+  material.dispose();
+  renderer.dispose();
+};`,
+patr2module3tutorial3code2: `const width = app.clientWidth;
+const height = app.clientHeight;
+
+// сцена
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf8f8f8);
+
+// камера
+const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+camera.position.z = 3;
+camera.lookAt(0, 0, 0);
+
+// рендерер
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+// объект
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const material = new THREE.MeshBasicMaterial({ color: 0x1f1f1f });
+const mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh);
+
+// анимация
+let animationId;
+
+function animate() {
+  mesh.rotation.x += 0.01;
+  mesh.rotation.y += 0.02;
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+animate();
+
+// cleanup
+return () => {
+  cancelAnimationFrame(animationId);
+  geometry.dispose();
+  material.dispose();
+  renderer.dispose();
+};`,
+patr2module3tutorial3code3: `<div class="U_FontC2-Code W_TutorialCopyItem">
+  <p class="A_TutorialCopyText">
+    const width = app.clientWidth;<br>
+    const height = app.clientHeight;<br>
+    <br>
+    const scene = new THREE.Scene();<br>
+    scene.background = new THREE.Color(0xf8f8f8);<br>
+    <br>
+    const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);<br>
+    camera.position.z = 3;<br>
+    camera.lookAt(0, 0, 0);<br>
+    <br>
+    const renderer = new THREE.WebGLRenderer({ antialias: true });<br>
+    renderer.setSize(width, height);<br>
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));<br>
+    <br>
+    app.innerHTML = "";<br>
+    app.appendChild(renderer.domElement);<br>
+    <br>
+    const geometry = new THREE.BoxGeometry(1, 1, 1);<br>
+    const material = new THREE.MeshStandardMaterial({ color: 0x858585 });<br>
+    const mesh = new THREE.Mesh(geometry, material);<br>
+    scene.add(mesh);<br>
+    <br>
+    renderer.render(scene, camera);
+  </p>
+  <button class="U_ButtonIcon A_TutorialCopyButton">
+    <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+  </button>
+</div>
+`,
+patr2module3tutorial3code4: `const width = app.clientWidth;
+const height = app.clientHeight;
+
+// сцена
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf8f8f8);
+
+// камера
+const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+camera.position.z = 3;
+camera.lookAt(0, 0, 0);
+
+// рендерер
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+// объект
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const material = new THREE.MeshStandardMaterial({ color: 0x858585 });
+const mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh);
+
+// свет
+const light = new THREE.DirectionalLight(0xffffff, 1.2);
+light.position.set(2, 2, 3);
+scene.add(light);
+
+// анимация
+let animationId;
+
+function animate() {
+  mesh.rotation.x += 0.01;
+  mesh.rotation.y += 0.02;
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+animate();
+
+// cleanup
+return () => {
+  cancelAnimationFrame(animationId);
+  geometry.dispose();
+  material.dispose();
+  renderer.dispose();
+};`,
+patr2module3tutorial3code5: `const width = app.clientWidth;
+const height = app.clientHeight;
+
+// сцена
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf8f8f8);
+
+// попробуй раскомментировать:
+// scene.background = new THREE.Color(0xe9e9e9);
+
+// камера
+const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+camera.position.z = 3;
+camera.lookAt(0, 0, 0);
+
+// рендерер
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+// объект
+let geometry = new THREE.BoxGeometry(1, 1, 1);
+
+// попробуй раскомментировать:
+// geometry = new THREE.SphereGeometry(0.8, 32, 32);
+
+let material = new THREE.MeshStandardMaterial({ color: 0x858585 });
+
+// попробуй раскомментировать:
+// material = new THREE.MeshStandardMaterial({ color: 0x1f1f1f });
+// material = new THREE.MeshStandardMaterial({ color: 0xbdbdbd });
+
+const mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh);
+
+// свет
+let light = new THREE.DirectionalLight(0xffffff, 1.2);
+
+// попробуй раскомментировать:
+// light = new THREE.DirectionalLight(0xffffff, 2);
+
+light.position.set(2, 2, 3);
+scene.add(light);
+
+// попробуй раскомментировать:
+// const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+// scene.add(ambientLight);
+
+// анимация
+let animationId;
+
+function animate() {
+  mesh.rotation.x += 0.01;
+  mesh.rotation.y += 0.02;
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+animate();
+
+// cleanup
+return () => {
+  cancelAnimationFrame(animationId);
+  geometry.dispose();
+  material.dispose();
+  renderer.dispose();
+};`,
+patr2module3tutorial4code1: `const width = app.clientWidth;
+const height = app.clientHeight;
+
+// сцена
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf8f8f8);
+
+// камера
+const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+camera.position.set(0, 2.2, 5);
+camera.lookAt(0, 0, 0);
+
+// рендерер
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+// свет
+const light = new THREE.DirectionalLight(0xffffff, 1.4);
+light.position.set(2, 3, 4);
+scene.add(light);
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+scene.add(ambientLight);
+
+// пол
+const floorGeometry = new THREE.PlaneGeometry(8, 8);
+const floorMaterial = new THREE.MeshStandardMaterial({ color: 0xd6d6d6 });
+const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+floor.rotation.x = -Math.PI / 2;
+floor.position.y = -1;
+scene.add(floor);
+
+// куб
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const material = new THREE.MeshStandardMaterial({ color: 0x858585 });
+const mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh);
+
+// анимация
+let animationId;
+let t = 0;
+
+function animate() {
+  t += 0.02;
+
+  mesh.position.x = Math.sin(t) * 1.6;
+  mesh.position.y = -0.2;
+  mesh.rotation.y += 0.03;
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+animate();
+
+// cleanup
+return () => {
+  cancelAnimationFrame(animationId);
+  geometry.dispose();
+  material.dispose();
+  floorGeometry.dispose();
+  floorMaterial.dispose();
+  renderer.dispose();
+};`,
+patr2module3tutorial4code2: `const width = app.clientWidth;
+const height = app.clientHeight;
+
+// сцена
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf8f8f8);
+
+// камера
+const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+camera.position.set(2.2, 2.4, 4.2);
+camera.lookAt(0, -0.2, 0);
+
+// рендерер
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+// свет
+const light = new THREE.DirectionalLight(0xffffff, 1.4);
+light.position.set(2, 3, 4);
+scene.add(light);
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+scene.add(ambientLight);
+
+// пол
+const floorGeometry = new THREE.PlaneGeometry(8, 8);
+const floorMaterial = new THREE.MeshStandardMaterial({ color: 0xd6d6d6 });
+const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+floor.rotation.x = -Math.PI / 2;
+floor.position.y = -1;
+scene.add(floor);
+
+// куб
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const material = new THREE.MeshStandardMaterial({ color: 0x858585 });
+const mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh);
+
+// анимация
+let animationId;
+let t = 0;
+
+function animate() {
+  t += 0.02;
+
+  mesh.position.x = Math.sin(t) * 1.6;
+  mesh.position.y = -0.2;
+  mesh.rotation.y += 0.03;
+
+  camera.lookAt(0, -0.2, 0);
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+animate();
+
+// cleanup
+return () => {
+  cancelAnimationFrame(animationId);
+  geometry.dispose();
+  material.dispose();
+  floorGeometry.dispose();
+  floorMaterial.dispose();
+  renderer.dispose();
+};`,
+patr2module3tutorial4code3: `const width = app.clientWidth;
+const height = app.clientHeight;
+
+// сцена
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf8f8f8);
+
+// камера
+const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+
+// рендерер
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+// свет
+const light = new THREE.DirectionalLight(0xffffff, 1.4);
+light.position.set(2, 3, 4);
+scene.add(light);
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+scene.add(ambientLight);
+
+// пол
+const floorGeometry = new THREE.PlaneGeometry(8, 8);
+const floorMaterial = new THREE.MeshStandardMaterial({ color: 0xd6d6d6 });
+const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+floor.rotation.x = -Math.PI / 2;
+floor.position.y = -1;
+scene.add(floor);
+
+// куб
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const material = new THREE.MeshStandardMaterial({ color: 0x858585 });
+const mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh);
+
+// анимация
+let animationId;
+let t = 0;
+
+function animate() {
+  t += 0.02;
+
+  mesh.position.x = Math.sin(t) * 1.6;
+  mesh.position.y = -0.2;
+  mesh.rotation.y += 0.03;
+
+  camera.position.x = Math.cos(t * 0.6) * 4;
+  camera.position.z = Math.sin(t * 0.6) * 4;
+  camera.position.y = 2.2;
+  camera.lookAt(0, -0.2, 0);
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+animate();
+
+// cleanup
+return () => {
+  cancelAnimationFrame(animationId);
+  geometry.dispose();
+  material.dispose();
+  floorGeometry.dispose();
+  floorMaterial.dispose();
+  renderer.dispose();
+};`,
+patr2module3tutorial4code4: `const width = app.clientWidth;
+const height = app.clientHeight;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf8f8f8);
+
+const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+camera.position.set(2.2, 2.2, 4.4);
+camera.lookAt(0, -0.2, 0);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+const light = new THREE.DirectionalLight(0xffffff, 1.4);
+light.position.set(2, 3, 4);
+scene.add(light);
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+scene.add(ambientLight);
+
+const floorGeometry = new THREE.PlaneGeometry(8, 8);
+const floorMaterial = new THREE.MeshStandardMaterial({ color: 0xd6d6d6 });
+const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+floor.rotation.x = -Math.PI / 2;
+floor.position.y = -1;
+scene.add(floor);
+
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const material = new THREE.MeshStandardMaterial({ color: 0x858585 });
+const mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh);
+
+let animationId;
+let t = 0;
+
+function animate() {
+  t += 0.02;
+
+  mesh.position.x = Math.sin(t) * 1.8;
+  mesh.position.y = -0.2 + Math.abs(Math.sin(t * 2)) * 0.25;
+  mesh.rotation.x += 0.02;
+  mesh.rotation.y += 0.03;
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+animate();
+
+return () => {
+  cancelAnimationFrame(animationId);
+  geometry.dispose();
+  material.dispose();
+  floorGeometry.dispose();
+  floorMaterial.dispose();
+  renderer.dispose();
+};`,
+patr2module3tutorial4code5: `const width = app.clientWidth;
+const height = app.clientHeight;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf8f8f8);
+
+const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+const light = new THREE.DirectionalLight(0xffffff, 1.4);
+light.position.set(2, 3, 4);
+scene.add(light);
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+scene.add(ambientLight);
+
+const floorGeometry = new THREE.PlaneGeometry(8, 8);
+const floorMaterial = new THREE.MeshStandardMaterial({ color: 0xd6d6d6 });
+const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+floor.rotation.x = -Math.PI / 2;
+floor.position.y = -1;
+scene.add(floor);
+
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const material = new THREE.MeshStandardMaterial({ color: 0x858585 });
+const mesh = new THREE.Mesh(geometry, material);
+mesh.position.y = -0.2;
+scene.add(mesh);
+
+let animationId;
+let t = 0;
+
+function animate() {
+  t += 0.02;
+
+  mesh.rotation.y += 0.01;
+
+  camera.position.x = Math.cos(t * 0.7) * 4;
+  camera.position.z = Math.sin(t * 0.7) * 4;
+  camera.position.y = 2.1 + Math.sin(t * 0.4) * 0.3;
+  camera.lookAt(0, -0.2, 0);
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+animate();
+
+return () => {
+  cancelAnimationFrame(animationId);
+  geometry.dispose();
+  material.dispose();
+  floorGeometry.dispose();
+  floorMaterial.dispose();
+  renderer.dispose();
+};`,
+patr2module3tutorial4code6: `const width = app.clientWidth;
+const height = app.clientHeight;
+
+// сцена
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf8f8f8);
+
+// камера
+const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+
+// рендерер
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+// свет
+const light = new THREE.DirectionalLight(0xffffff, 1.4);
+light.position.set(2, 3, 4);
+scene.add(light);
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+scene.add(ambientLight);
+
+// пол
+const floorGeometry = new THREE.PlaneGeometry(8, 8);
+const floorMaterial = new THREE.MeshStandardMaterial({ color: 0xd6d6d6 });
+const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+floor.rotation.x = -Math.PI / 2;
+floor.position.y = -1;
+scene.add(floor);
+
+// куб
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const material = new THREE.MeshStandardMaterial({ color: 0x858585 });
+const mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh);
+
+// анимация
+let animationId;
+let t = 0;
+
+function animate() {
+  t += 0.02;
+
+  // базовое движение куба
+  mesh.position.x = Math.sin(t) * 1.6;
+  mesh.position.y = -0.2;
+  mesh.rotation.y += 0.03;
+
+  // попробуй раскомментировать:
+
+  // сделать движение куба активнее
+  // mesh.position.x = Math.sin(t * 1.6) * 2.2;
+
+  // добавить подпрыгивание
+  // mesh.position.y = -0.2 + Math.abs(Math.sin(t * 2.2)) * 0.35;
+
+  // усилить вращение
+  // mesh.rotation.x += 0.03;
+
+  // движение камеры по кругу
+  camera.position.x = Math.cos(t * 0.6) * 4;
+  camera.position.z = Math.sin(t * 0.6) * 4;
+  camera.position.y = 2.2;
+
+  // попробуй раскомментировать:
+
+  // сделать круг камеры шире
+  // camera.position.x = Math.cos(t * 0.6) * 5.5;
+  // camera.position.z = Math.sin(t * 0.6) * 5.5;
+
+  // добавить плавное движение камеры по высоте
+  // camera.position.y = 2.2 + Math.sin(t * 0.5) * 0.4;
+
+  camera.lookAt(0, -0.2, 0);
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+animate();
+
+// cleanup
+return () => {
+  cancelAnimationFrame(animationId);
+  geometry.dispose();
+  material.dispose();
+  floorGeometry.dispose();
+  floorMaterial.dispose();
+  renderer.dispose();
+};`
 };

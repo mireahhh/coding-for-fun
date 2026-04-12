@@ -189,7 +189,248 @@
       <div class="O_TutorialMain">
         <section class="O_TutorialSection">
 
+          <h3 id="nav1" class="U_FontH3 A_TutorialTitle">
+            Теория
+          </h3>
 
+          <p class="U_FontB1 A_TutorialText">
+            Движение в&nbsp;коде создаётся через изменение параметров во&nbsp;времени.
+            Это может быть простое линейное смещение, плавное колебание или более сложная система.
+            Даже если на&nbsp;экране всего один объект, анимация делает сцену глубже и&nbsp;живее.
+            В&nbsp;этом уроке ты&nbsp;сравнишь несколько способов создать движение и&nbsp;увидишь, как один
+            и&nbsp;тот&nbsp;же эффект по-разному собирается в&nbsp;<tx-sl>p5.js</tx-sl> и&nbsp;<tx-sl>Vanilla
+              JS</tx-sl>.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Чтобы объект двигался, нужно менять хотя&nbsp;бы один его параметр: положение, размер, угол или
+            прозрачность.
+            Эти изменения происходят кадр за&nbsp;кадром, поэтому зритель воспринимает их&nbsp;как непрерывное движение.
+            В&nbsp;<tx-sl>p5.js</tx-sl> для этого уже есть цикл <tx-sl>draw()</tx-sl>, а&nbsp;в&nbsp;Vanilla JS движение
+            чаще собирается через <tx-sl>requestAnimationFrame()</tx-sl> или через CSS-анимацию.
+            Так одна и&nbsp;та&nbsp;же идея может быть реализована разными инструментами.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Движение может быть разным по&nbsp;характеру.
+            Линейное выглядит механически и&nbsp;строго, а&nbsp;волнообразное или колебательное — мягче
+            и&nbsp;органичнее.
+            Это важно для креативного кодинга, потому что ощущение от&nbsp;сцены зависит не&nbsp;только от&nbsp;формы,
+            но&nbsp;и&nbsp;от&nbsp;того, как она себя ведёт.
+            Получается, что динамика тоже становится частью композиции.
+          </p>
+
+          <div class="U_FontC2-Code W_TutorialCopyItem">
+            <p class="A_TutorialCopyText">
+              let x = width / 2 + sin(frameCount * 0.05) * 120;
+            </p>
+            <button class="U_ButtonIcon A_TutorialCopyButton">
+              <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+            </button>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Здесь положение объекта вычисляется заново в&nbsp;каждом кадре.
+            Функция <tx-sl>sin()</tx-sl> создаёт плавное колебание, а&nbsp;<tx-sl>frameCount</tx-sl> отвечает
+            за&nbsp;движение во&nbsp;времени.
+            Это один из&nbsp;самых удобных способов сделать анимацию мягкой и&nbsp;живой.
+            Меняя множители, ты&nbsp;можешь управлять скоростью и&nbsp;амплитудой движения.
+          </p>
+
+          <div class="M_TutorialQuote">
+            <p class="U_FontS2">
+              Движение — это не просто смена координат, а характер поведения формы во времени
+            </p>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Ниже показана одна и&nbsp;та&nbsp;же задача: оживить круг.
+            Сначала движение будет реализовано через <tx-sl>p5.js</tx-sl>, а&nbsp;потом — через Vanilla JS двумя
+            способами.
+            Это поможет увидеть не&nbsp;только разницу в&nbsp;синтаксисе, но&nbsp;и&nbsp;разницу в&nbsp;подходе.
+          </p>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav2" class="U_FontH3 A_TutorialTitle">
+            Вариация
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;<tx-sl>p5.js</tx-sl> движение удобно собирать через <tx-sl>draw()</tx-sl>.
+            Библиотека сама создаёт поток кадров, а&nbsp;тебе остаётся только описать изменение параметров.
+          </p>
+
+          <div id="patr2module2tutorial4code1" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Здесь круг плавно движется из&nbsp;стороны в&nbsp;сторону по&nbsp;синусоиде.
+                Его положение пересчитывается в&nbsp;каждом кадре, поэтому движение получается непрерывным.
+                Это очень типичный способ анимировать объект в&nbsp;<tx-sl>p5.js</tx-sl>.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;Vanilla JS аналогичный эффект можно собрать вручную.
+            Для этого нужно создать цикл обновления и&nbsp;в&nbsp;нём постоянно менять положение элемента.
+          </p>
+
+          <div id="patr2module2tutorial4code2" class="O_TutorialSingleCode" data-runtime="vanilla"
+            data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Здесь создаётся DOM-элемент и&nbsp;запускается функция анимации.
+                Она вызывает сама себя через <tx-sl>requestAnimationFrame()</tx-sl>, из-за чего сцена обновляется кадр
+                за&nbsp;кадром.
+                Положение круга тоже вычисляется через синус, поэтому эффект похож на&nbsp;вариант
+                в&nbsp;<tx-sl>p5.js</tx-sl>.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Движение можно собрать и&nbsp;без ручного цикла.
+            В&nbsp;этом случае JavaScript только создаёт элемент, а&nbsp;само поведение передаётся CSS-анимации.
+          </p>
+
+          <div id="patr2module2tutorial4code3" class="O_TutorialSingleCode" data-runtime="vanilla"
+            data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Здесь анимация задаётся через <tx-sl>@keyframes</tx-sl>.
+                Движение заранее описано в&nbsp;CSS, поэтому браузер сам управляет сменой состояний.
+                Такой способ проще в&nbsp;настройке, но&nbsp;менее гибкий, чем ручной цикл.
+              </p>
+            </div>
+          </div>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav3" class="U_FontH3 A_TutorialTitle">
+            Вывод
+          </h3>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              В <tx-sl>p5.js</tx-sl> движение удобно собирать внутри <tx-sl>draw()</tx-sl>, потому что цикл уже встроен
+            </li>
+            <li>
+              В Vanilla JS похожий эффект можно сделать вручную через <tx-sl>requestAnimationFrame()</tx-sl>
+            </li>
+            <li>
+              Ещё один путь — передать движение CSS-анимации и использовать JavaScript только для создания элементов
+            </li>
+            <li>
+              Во всех случаях эффект движения строится через изменение параметров во времени
+            </li>
+          </ol>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav4" class="U_FontH3 A_TutorialTitle">
+            Задание
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Попробуй изменить характер движения в&nbsp;любом из&nbsp;вариантов.
+            Сделай амплитуду меньше или больше, ускорь колебание или замедли его.
+            Затем попробуй изменить не&nbsp;только положение, но&nbsp;и&nbsp;размер объекта во&nbsp;времени.
+            Так ты&nbsp;увидишь, что даже один элемент может создавать очень разное ощущение движения.
+          </p>
+
+          <div id="patr2module2tutorial4code4" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="p5" data-autostart="false">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
 
         </section>
       </div>

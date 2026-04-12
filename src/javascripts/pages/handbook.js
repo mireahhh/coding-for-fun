@@ -633,4 +633,4 @@ calcDrawParts();
 applyingSorting();
 drawingParts();
 drawModuleDates();
-// drawContTutorials();
+drawContTutorials();

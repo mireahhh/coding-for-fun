@@ -295,7 +295,8 @@ async function loadTutorialFirstText(moduleNumber, tutorialIndex) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, "text/html");
 
-    const firstText = doc.getElementById("TutorialTextFirst");
+    // const firstText = doc.getElementById("TutorialTextFirst");
+    const firstText = doc.querySelector(".A_TutorialText");
 
     if (!firstText) {
       return "";

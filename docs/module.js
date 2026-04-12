@@ -810,8 +810,8 @@ function _loadTutorialFirstText() {
         case 4:
           html = _context.v;
           parser = new DOMParser();
-          doc = parser.parseFromString(html, "text/html");
-          firstText = doc.getElementById("TutorialTextFirst");
+          doc = parser.parseFromString(html, "text/html"); // const firstText = doc.getElementById("TutorialTextFirst");
+          firstText = doc.querySelector(".A_TutorialText");
           if (firstText) {
             _context.n = 5;
             break;

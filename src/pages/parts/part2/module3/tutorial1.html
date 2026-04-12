@@ -189,7 +189,331 @@
       <div class="O_TutorialMain">
         <section class="O_TutorialSection">
 
+          <h3 id="nav1" class="U_FontH3 A_TutorialTitle">
+            Теория
+          </h3>
 
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;<tx-sl>Three.js</tx-sl> всё строится на&nbsp;трёх основных элементах: <tx-sl>scene</tx-sl>,
+            <tx-sl>camera</tx-sl> и&nbsp;<tx-sl>renderer</tx-sl>.
+            Сцена&nbsp;— это&nbsp;мир, в&nbsp;котором находятся объекты.
+            Камера определяет, откуда именно мы&nbsp;смотрим на&nbsp;этот&nbsp;мир.
+            Рендерер превращает всю&nbsp;систему в&nbsp;изображение на&nbsp;экране.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            <tx-sl>Scene</tx-sl> можно представить как контейнер для всего, что происходит в&nbsp;3D-пространстве.
+            Именно в&nbsp;неё добавляются объекты, свет и&nbsp;другие элементы.
+            Если сцены нет, то размещать фигуры просто негде.
+            Поэтому она всегда становится первым шагом в&nbsp;сборке любой 3D-системы.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            <tx-sl>Camera</tx-sl> задаёт точку зрения.
+            Один и&nbsp;тот&nbsp;же объект может выглядеть совершенно по-разному в&nbsp;зависимости от&nbsp;того, где
+            находится камера и&nbsp;куда она смотрит.
+            В Three.js камера не просто “смотрит”, а формирует сам способ восприятия пространства.
+            Без неё сцена существует, но увидеть её невозможно.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            <tx-sl>Renderer</tx-sl> отвечает за вывод.
+            Он берёт сцену и камеру, вычисляет изображение и показывает его на экране.
+            Именно рендерер связывает внутреннюю 3D-структуру с холстом в браузере.
+            Получается, что он завершает всю систему.
+          </p>
+
+          <div class="U_FontC2-Code W_TutorialCopyItem">
+            <p class="A_TutorialCopyText">
+              const scene = new THREE.Scene();<br>
+              const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);<br>
+              const renderer = new THREE.WebGLRenderer();
+            </p>
+            <button class="U_ButtonIcon A_TutorialCopyButton">
+              <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+            </button>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Здесь создаются три базовых элемента Three.js.
+            Сцена хранит объекты, камера задаёт перспективу, а рендерер выводит результат.
+            Пока в системе ещё нет геометрии, но архитектура уже собрана.
+            Это каркас, без которого дальнейшая работа невозможна.
+          </p>
+
+          <div class="M_TutorialQuote">
+            <p class="U_FontS2">
+              В 3D сначала собирается система, а уже потом появляется форма
+            </p>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Ниже ты соберёшь простую 3D-сцену шаг за шагом.
+            Сначала появится пустое пространство, потом камера и рендерер, затем объект, а в конце — полноценная сцена с
+            движением.
+            Так будет легче увидеть, как работает базовая архитектура Three.js.
+          </p>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav2" class="U_FontH3 A_TutorialTitle">
+            Техника
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Собери простую 3D-сцену с одним объектом.
+            В финальном варианте на экране должен появиться вращающийся куб в перспективе.
+            Для этого нужно поэтапно собрать систему из сцены, камеры, рендерера и объекта.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            В финальной версии на экране находится тёмный куб на светлом фоне.
+            Камера смотрит на него под небольшим углом, а сам объект плавно вращается.
+            Это минимальная, но уже полноценная сцена Three.js.
+            Здесь впервые появляется настоящее ощущение 3D-пространства.
+          </p>
+
+          <div id="patr2module3tutorial1code1" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="three" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Здесь собраны все основные части системы.
+                Сцена хранит объект, камера определяет точку зрения, а рендерер выводит всё на экран.
+                Затем в цикле анимации куб плавно вращается, и сцена обновляется кадр за кадром.
+                Это базовый шаблон, на котором строится большая часть проектов в Three.js.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Сначала создаётся пустая сцена и рендерер.
+            Пока в ней нет объектов, но уже есть сам холст и рабочее пространство.
+            Это самый первый каркас будущей системы.
+          </p>
+
+          <div class="U_FontC2-Code W_TutorialCopyItem">
+            <p class="A_TutorialCopyText">
+              const width = app.clientWidth; // ширина области вывода<br>
+              const height = app.clientHeight; // высота области вывода<br>
+              <br>
+              const scene = new THREE.Scene(); // создаём 3D-сцену<br>
+              scene.background = new THREE.Color(0xf8f8f8); // задаём цвет фона<br>
+              <br>
+              const camera = new THREE.PerspectiveCamera(<br>
+              50, // угол обзора<br>
+              width / height, // соотношение сторон<br>
+              0.1, // ближняя плоскость отсечения<br>
+              1000 // дальняя плоскость отсечения<br>
+              );<br>
+              <br>
+              const renderer = new THREE.WebGLRenderer({ antialias: true }); // создаём рендерер<br>
+              renderer.setSize(width, height); // подгоняем его под размер контейнера<br>
+              <br>
+              app.innerHTML = ""; // очищаем прошлый результат<br>
+              app.appendChild(renderer.domElement); // добавляем canvas в контейнер<br>
+              <br>
+              renderer.render(scene, camera); // показываем сцену через камеру<br>
+            </p>
+            <button class="U_ButtonIcon A_TutorialCopyButton">
+              <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+            </button>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Этот код создаёт контейнер вывода и инициализирует Three.js.
+            Сцена пока пустая, поэтому на экране почти ничего не видно.
+            Но важен сам факт: система уже существует и может рендериться.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Теперь добавляется камера.
+            Без неё сцена остаётся невидимой, потому что у системы ещё нет точки зрения.
+            Как только камера настроена, пространство начинает работать как полноценная 3D-среда.
+          </p>
+
+          <div class="U_FontC2-Code W_TutorialCopyItem">
+            <p class="A_TutorialCopyText">
+              `const width = app.clientWidth;<br>
+              const height = app.clientHeight;<br>
+              <br>
+              // сцена<br>
+              const scene = new THREE.Scene();<br>
+              scene.background = new THREE.Color(0xf8f8f8);<br>
+              <br>
+              // камера<br>
+              const camera = new THREE.PerspectiveCamera(<br>
+              50,
+              width / height,
+              0.1,
+              1000
+              );<br>
+              camera.position.z = 3;<br>
+              camera.position.y = 0;<br>
+              camera.lookAt(0, 0, 0);<br>
+              <br>
+              // рендерер<br>
+              const renderer = new THREE.WebGLRenderer({ antialias: true });<br>
+              renderer.setSize(width, height);<br>
+              renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));<br>
+              <br>
+              app.innerHTML = "";<br>
+              app.appendChild(renderer.domElement);<br>
+              <br>
+              // вывод<br>
+              renderer.render(scene, camera);<br>
+            </p>
+            <button class="U_ButtonIcon A_TutorialCopyButton">
+              <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+            </button>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            На следующем шаге в сцену добавляется сам объект.
+            Это уже почти финальная версия: есть пространство, точка зрения и форма.
+            Остаётся только сделать сцену более живой через движение.
+            Здесь появляется перспектива и положение наблюдателя.
+            Камера отодвигается назад, чтобы в будущем в поле зрения мог попасть объект.
+            На этом этапе архитектура сцены уже почти собрана.
+          </p>
+
+
+          <p class="U_FontB1 A_TutorialText">
+            На следующем шаге в сцену добавляется сам объект.
+            Это уже почти финальная версия: есть пространство, точка зрения и форма.
+            Остаётся только сделать сцену более живой через движение.
+          </p>
+
+          <div id="patr2module3tutorial1code4" class="O_TutorialSingleCode" data-runtime="three" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Здесь создаётся куб и помещается в центр сцены.
+                Камера уже видит его, а рендерер выводит результат на экран.
+                Это почти готовая сцена — не хватает только анимации, которая появится в финальном варианте.
+              </p>
+            </div>
+          </div>
+          kod
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav3" class="U_FontH3 A_TutorialTitle">
+            Вывод
+          </h3>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              <tx-sl>Scene</tx-sl> создаёт пространство, в котором находятся объекты
+            </li>
+            <li>
+              <tx-sl>Camera</tx-sl> задаёт точку зрения и делает сцену видимой
+            </li>
+            <li>
+              <tx-sl>Renderer</tx-sl> выводит результат на экран
+            </li>
+            <li>
+              Даже самая простая 3D-сцена строится как система из нескольких обязательных частей
+            </li>
+          </ol>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav4" class="U_FontH3 A_TutorialTitle">
+            Задание
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Попробуй улучшить сцену самостоятельно.
+            В коде ниже уже подготовлены варианты апгрейда: можно изменить цвет фона, форму объекта или скорость
+            вращения.
+            Раскомментируй строки по одной и посмотри, как меняется впечатление от пространства.
+          </p>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              Раскомментируй замену геометрии, чтобы вместо куба появился шар
+            </li>
+            <li>
+              Попробуй изменить цвет материала и сделать объект светлее
+            </li>
+            <li>
+              Увеличь скорость вращения и сравни спокойное и активное движение
+            </li>
+            <li>
+              Измени цвет фона, чтобы по-другому почувствовать глубину сцены
+            </li>
+          </ol>
+
+          <div id="patr2module3tutorial1code5" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="three" data-autostart="false">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
 
         </section>
       </div>

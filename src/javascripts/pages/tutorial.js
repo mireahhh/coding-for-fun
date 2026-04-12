@@ -259,13 +259,13 @@ function initTutorialPageNavigation() {
   // Берём только h3 внутри урока
   const tutorialHeadings = Array.from(tutorialMain.querySelectorAll("h3[id]"));
 
-  // Добавляем "Следующий материал" отдельно
-  const nextHeading = document.getElementById("nav6");
+  // // Добавляем "Следующий материал" отдельно
+  // const nextHeading = document.getElementById("nav6");
 
   const allHeadings = [...tutorialHeadings];
-  if (nextHeading) {
-    allHeadings.push(nextHeading);
-  }
+  // if (nextHeading) {
+  //   allHeadings.push(nextHeading);
+  // }
 
   if (!allHeadings.length) return;
 

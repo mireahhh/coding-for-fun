@@ -189,7 +189,323 @@
       <div class="O_TutorialMain">
         <section class="O_TutorialSection">
 
+          <h3 id="nav1" class="U_FontH3 A_TutorialTitle">
+            Теория
+          </h3>
 
+          <p id="TutorialTextFirst" class="U_FontB1 A_TutorialText">
+            Свет в&nbsp;3D влияет на&nbsp;то, как воспринимается форма.
+            Один и&nbsp;тот&nbsp;же объект без освещения может выглядеть плоским, а&nbsp;при появлении света начинает
+            ощущаться как объёмный.
+            <tx-sl>Текстуры</tx-sl> добавляют поверхности детали, но&nbsp;без света даже они не&nbsp;раскрываются
+            полностью.
+            Поэтому освещение — это один из&nbsp;главных инструментов визуальной глубины.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;<tx-sl>Three.js</tx-sl> свет — это отдельный объект сцены.
+            Он не просто делает изображение ярче, а помогает увидеть объём, направление граней и глубину пространства.
+            Без света часть материалов выглядит одинаково со всех сторон, и форма теряет выразительность.
+            Именно поэтому свет становится важным шагом после сборки геометрии и материала.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Не все материалы реагируют на свет одинаково.
+            Например, <tx-sl>MeshBasicMaterial</tx-sl> показывает только цвет и не учитывает освещение.
+            А <tx-sl>MeshStandardMaterial</tx-sl> или <tx-sl>MeshPhongMaterial</tx-sl> уже позволяют увидеть, как свет
+            моделирует поверхность.
+            Получается, что визуальная глубина рождается не только из света, но и из того, как материал умеет с ним
+            работать.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Текстура — это изображение, которое накладывается на поверхность объекта.
+            Она помогает добавить детали без изменения самой геометрии.
+            В этом уроке текстуры ещё не становятся главной темой, но важно понять, что они работают вместе со светом, а
+            не отдельно от него.
+            Освещение позволяет поверхности выглядеть более убедительно.
+          </p>
+
+          <div class="U_FontC2-Code W_TutorialCopyItem">
+            <p class="A_TutorialCopyText">
+              const light = new THREE.DirectionalLight(0xffffff, 1.4); // источник света<br>
+              light.position.set(2, 2, 3); // положение света в сцене<br>
+              scene.add(light); // добавляем свет в сцену
+            </p>
+            <button class="U_ButtonIcon A_TutorialCopyButton">
+              <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+            </button>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Здесь создаётся источник света и помещается в сцену.
+            Важен не только сам свет, но и его положение: от него зависит, какие части объекта будут освещены сильнее, а
+            какие уйдут в тень.
+            Когда свет начинает взаимодействовать с материалом, форма становится читаемее.
+            Именно так 3D-объект получает ощущение объёма.
+          </p>
+
+          <div class="M_TutorialQuote">
+            <p class="U_FontS2">
+              Свет не добавляет форму, а помогает увидеть её
+            </p>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Ниже ты соберёшь сцену с освещением шаг за шагом.
+            Сначала объект будет выглядеть почти плоским, потом появится материал, который реагирует на свет, а затем —
+            сам источник света.
+            Так будет понятно, как именно рождается визуальная глубина.
+          </p>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav2" class="U_FontH3 A_TutorialTitle">
+            Задача
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Собери сцену, в которой один объект будет освещён направленным источником света.
+            В финальной версии форма должна не просто вращаться, а выглядеть объёмной за счёт света и материала, который
+            на него реагирует.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            В финальном варианте на экране находится вращающийся объект на светлом фоне.
+            Благодаря освещению одна часть поверхности выглядит ярче, а другая уходит в тень.
+            За счёт этого сцена начинает восприниматься глубже, чем в предыдущих уроках.
+          </p>
+
+          <div id="patr2module3tutorial3code1" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="three" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Здесь объект уже собран не только из геометрии и материала, но и освещён источником света.
+                Материал учитывает освещение, поэтому поверхность реагирует на положение лампы.
+                Вращение помогает увидеть, как свет по-разному ложится на грани.
+                Это делает сцену более убедительной и трёхмерной.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Сначала появляется объект с простым материалом, который не зависит от света.
+            Он уже виден в сцене, но его поверхность пока выглядит довольно плоской.
+            Это отправная точка.
+          </p>
+
+          <div id="patr2module3tutorial3code2" class="O_TutorialSingleCode O_TutorialSingleCode" data-runtime="three"
+            data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Здесь используется материал, который просто показывает цвет.
+                Форма видна, но освещение на неё не влияет.
+                Поэтому сцена остаётся очень базовой по восприятию.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Теперь меняется материал.
+            Он начинает учитывать свет, но самого света в сцене ещё нет.
+            Это важный промежуточный шаг: объект уже готов к освещению, но пока не раскрывается.
+          </p>
+
+          <div class="U_FontC2-Code W_TutorialCopyItem">
+            <p class="A_TutorialCopyText">
+              `const width = app.clientWidth;<br>
+              const height = app.clientHeight;<br>
+              <br>
+              const scene = new THREE.Scene();<br>
+              scene.background = new THREE.Color(0xf8f8f8);<br>
+              <br>
+              const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);<br>
+              camera.position.z = 3;<br>
+              camera.lookAt(0, 0, 0);<br>
+              <br>
+              const renderer = new THREE.WebGLRenderer({ antialias: true });<br>
+              renderer.setSize(width, height);<br>
+              renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));<br>
+              <br>
+              app.innerHTML = "";<br>
+              app.appendChild(renderer.domElement);<br>
+              <br>
+              const geometry = new THREE.BoxGeometry(1, 1, 1);<br>
+              const material = new THREE.MeshStandardMaterial({ color: 0x858585 });<br>
+              const mesh = new THREE.Mesh(geometry, material);<br>
+              scene.add(mesh);<br>
+              <br>
+              renderer.render(scene, camera);`
+            </p>
+            <button class="U_ButtonIcon A_TutorialCopyButton">
+              <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+            </button>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Этот этап важен концептуально, но визуально почти ничего не показывает.
+            Поэтому здесь лучше смотреть именно на код и логику сборки сцены, а не на результат на экране.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Теперь в сцену добавляется свет.
+            Это уже почти финальный вариант: объект начинает восприниматься объёмно, потому что поверхность реагирует на
+            освещение.
+            Остаётся только немного усилить сцену и довести её до результата.
+          </p>
+
+          <div id="patr2module3tutorial3code4" class="O_TutorialSingleCode O_TutorialSingleCode" data-runtime="three"
+            data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Здесь свет и материал начинают работать вместе.
+                Грани объекта читаются лучше, и форма выглядит не просто геометрической, а пространственной.
+                Это уже почти финальная сцена.
+              </p>
+            </div>
+          </div>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav3" class="U_FontH3 A_TutorialTitle">
+            Вывод
+          </h3>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              Свет влияет на восприятие объёма и глубины
+            </li>
+            <li>
+              Материал должен уметь реагировать на свет, иначе сцена останется плоской
+            </li>
+            <li>
+              Даже простой источник света заметно меняет впечатление от объекта
+            </li>
+            <li>
+              Текстуры работают особенно убедительно именно вместе с освещением
+            </li>
+          </ol>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav4" class="U_FontH3 A_TutorialTitle">
+            Задание
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Попробуй улучшить сцену самостоятельно.
+            В коде ниже уже подготовлены апгрейды: можно поменять силу света, изменить цвет материала и сделать
+            поверхность более выразительной.
+            Раскомментируй строки по одной и сравни, как меняется ощущение глубины.
+          </p>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              Раскомментируй более яркий источник света и сравни мягкое и сильное освещение
+            </li>
+            <li>
+              Попробуй изменить цвет материала и посмотреть, как он взаимодействует со светом
+            </li>
+            <li>
+              Добавь второй слабый свет, чтобы сцена стала мягче
+            </li>
+            <li>
+              Попробуй заменить куб на шар и посмотреть, как свет читается на более плавной форме
+            </li>
+          </ol>
+
+          <div id="patr2module3tutorial3code5" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="three" data-autostart="false">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
 
         </section>
       </div>
