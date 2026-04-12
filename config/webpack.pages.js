@@ -114,6 +114,58 @@ const htmlPages = [
     "./pages/parts/part2/module2/tutorial1.html",
     ["index", "tutorial"],
   ),
+  createPages(
+    "./src/pages/parts/part2/module2/tutorial2.html",
+    "./pages/parts/part2/module2/tutorial2.html",
+    ["index", "tutorial"],
+  ),
+  createPages(
+    "./src/pages/parts/part2/module2/tutorial3.html",
+    "./pages/parts/part2/module2/tutorial3.html",
+    ["index", "tutorial"],
+  ),
+  createPages(
+    "./src/pages/parts/part2/module2/tutorial4.html",
+    "./pages/parts/part2/module2/tutorial4.html",
+    ["index", "tutorial"],
+  ),
+  createPages(
+    "./src/pages/parts/part2/module2/tutorial5.html",
+    "./pages/parts/part2/module2/tutorial5.html",
+    ["index", "tutorial"],
+  ),
+
+  // Часть2 Модуль3 ./part2/module3
+  createPages(
+    "./src/pages/parts/part2/module3.html",
+    "./pages/parts/part2/module3.html",
+    ["index", "module"],
+  ),
+  createPages(
+    "./src/pages/parts/part2/module3/tutorial1.html",
+    "./pages/parts/part2/module3/tutorial1.html",
+    ["index", "tutorial"],
+  ),
+  createPages(
+    "./src/pages/parts/part2/module3/tutorial2.html",
+    "./pages/parts/part2/module3/tutorial2.html",
+    ["index", "tutorial"],
+  ),
+  createPages(
+    "./src/pages/parts/part2/module3/tutorial3.html",
+    "./pages/parts/part2/module3/tutorial3.html",
+    ["index", "tutorial"],
+  ),
+  createPages(
+    "./src/pages/parts/part2/module3/tutorial4.html",
+    "./pages/parts/part2/module3/tutorial4.html",
+    ["index", "tutorial"],
+  ),
+  createPages(
+    "./src/pages/parts/part2/module3/tutorial5.html",
+    "./pages/parts/part2/module3/tutorial5.html",
+    ["index", "tutorial"],
+  ),
 ];
 
 module.exports = htmlPages;

@@ -356,7 +356,7 @@ for (let y = 0; y < canvas.height; y += step) {
     ctx.fill();
   }
 }`,
-patr1module2tutorial1code3: `function setup() {
+  patr1module2tutorial1code3: `function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
 }
@@ -375,7 +375,7 @@ function draw() {
 
   noLoop();
 }`,
-patr1module2tutorial1code4: `const app = document.getElementById("app");
+  patr1module2tutorial1code4: `const app = document.getElementById("app");
 app.innerHTML = "";
 
 const canvas = document.createElement("canvas");
@@ -432,7 +432,7 @@ for (let y = 0; y < canvas.height; y += step) {
     ctx.fill();
   }
 }`,
-patr1module2tutorial2code1: `function setup() {
+  patr1module2tutorial2code1: `function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
 }
@@ -451,7 +451,7 @@ function draw() {
 
   noLoop();
 }`,
-patr1module2tutorial2code2: `function setup() {
+  patr1module2tutorial2code2: `function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
 }
@@ -471,7 +471,7 @@ function draw() {
 
   noLoop();
 }`,
-patr1module2tutorial2code3: `function setup() {
+  patr1module2tutorial2code3: `function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
 }
@@ -502,7 +502,7 @@ function draw() {
 
   noLoop();
 }`,
-patr1module2tutorial3code1: `function setup() {
+  patr1module2tutorial3code1: `function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
 }
@@ -531,7 +531,7 @@ function draw() {
 
   noLoop();
 }`,
-patr1module2tutorial3code2: `let items = [];
+  patr1module2tutorial3code2: `let items = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -556,7 +556,7 @@ function draw() {
 
   noLoop();
 }`,
-patr1module2tutorial3code3: `let items = [];
+  patr1module2tutorial3code3: `let items = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -588,7 +588,7 @@ function draw() {
 
   noLoop();
 }`,
-patr1module2tutorial4code1: `function setup() {
+  patr1module2tutorial4code1: `function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
 }
@@ -610,7 +610,7 @@ function draw() {
 
   noLoop();
 }`,
-patr1module2tutorial4code2: `function setup() {
+  patr1module2tutorial4code2: `function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
 }
@@ -637,7 +637,7 @@ function draw() {
 
   noLoop();
 }`,
-patr1module2tutorial4code3: `function setup() {
+  patr1module2tutorial4code3: `function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
 }
@@ -668,7 +668,7 @@ function draw() {
 
   noLoop();
 }`,
-patr1module2tutorial4code4: `function setup() {
+  patr1module2tutorial4code4: `function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
 }
@@ -704,7 +704,7 @@ function draw() {
 
   noLoop();
 }`,
-patr1module2tutorial5code1: `function setup() {
+  patr1module2tutorial5code1: `function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
 }
@@ -723,7 +723,7 @@ function draw() {
 
   noLoop();
 }`,
-patr1module2tutorial5code2: `function setup() {
+  patr1module2tutorial5code2: `function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
 }
@@ -749,7 +749,7 @@ function draw() {
 
   noLoop();
 }`,
-patr1module2tutorial5code3: `function setup() {
+  patr1module2tutorial5code3: `function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
 }
@@ -778,7 +778,7 @@ function draw() {
 
   noLoop();
 }`,
-patr1module2tutorial5code4: `function setup() {
+  patr1module2tutorial5code4: `function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
 }
@@ -816,7 +816,7 @@ function draw() {
 
   noLoop();
 }`,
-patr2module1tutorial1code1: `const app = document.getElementById("app");
+  patr2module1tutorial1code1: `const app = document.getElementById("app");
 app.innerHTML = "";
 app.style.position = "relative";
 app.style.background = "#f8f8f8";
@@ -851,7 +851,7 @@ setTimeout(() => {
     block.remove();
   }
 }, 1200);`,
-patr2module1tutorial1code2: `let circles = [];
+  patr2module1tutorial1code2: `let circles = [];
 let timer = 0;
 
 function setup() {
@@ -882,7 +882,7 @@ function draw() {
     timer = 0;
   }
 }`,
-patr2module1tutorial1code3: `const app = document.getElementById("app");
+  patr2module1tutorial1code3: `const app = document.getElementById("app");
 app.innerHTML = "";
 app.style.position = "relative";
 app.style.background = "#f8f8f8";
@@ -925,48 +925,48 @@ setTimeout(() => {
 setTimeout(() => {
   app.innerHTML = "";
 }, 1200);`,
-patr2module1tutorial2code1: `if (!app) {
-let app = document.getElementById("app");
-}
-app.innerHTML = "";
-app.style.position = "relative";
-app.style.background = "#f8f8f8";
-app.style.overflow = "hidden";
+  patr2module1tutorial2code1: `(function () {
+  const app = document.getElementById("app");
+  app.innerHTML = "";
+  app.style.position = "relative";
+  app.style.background = "#f8f8f8";
+  app.style.overflow = "hidden";
 
-const cardsCount = 5;
+  const cardsCount = 5;
 
-for (let i = 0; i < cardsCount; i++) {
-  const card = document.createElement("div");
+  for (let i = 0; i < cardsCount; i++) {
+    const card = document.createElement("div");
 
-  const offsetX = i * 36 - 72;
-  const offsetY = i * 8;
-  const angle = i * 6 - 12;
+    const offsetX = i * 36 - 72;
+    const offsetY = i * 8;
+    const angle = i * 6 - 12;
 
-  card.style.position = "absolute";
-  card.style.width = "140px";
-  card.style.height = "180px";
-  card.style.left = "50%";
-  card.style.top = "50%";
-  card.style.borderRadius = "24px";
-  card.style.background = i % 2 === 0 ? "#1f1f1f" : "#d6d6d6";
-  card.style.boxShadow = "0 12px 32px rgba(31, 31, 31, 0.12)";
-  card.style.transform =
-    "translate(calc(-50% + " + offsetX + "px), calc(-50% + " + offsetY + "px)) rotate(" + angle + "deg)";
-  card.style.transition = "transform 0.3s ease";
-
-  card.addEventListener("mouseenter", () => {
-    card.style.transform =
-      "translate(calc(-50% + " + offsetX + "px), calc(-50% + " + offsetY + "px)) rotate(" + angle + "deg) scale(1.05)";
-  });
-
-  card.addEventListener("mouseleave", () => {
+    card.style.position = "absolute";
+    card.style.width = "140px";
+    card.style.height = "180px";
+    card.style.left = "50%";
+    card.style.top = "50%";
+    card.style.borderRadius = "24px";
+    card.style.background = i % 2 === 0 ? "#1f1f1f" : "#d6d6d6";
+    card.style.boxShadow = "0 12px 32px rgba(31, 31, 31, 0.12)";
     card.style.transform =
       "translate(calc(-50% + " + offsetX + "px), calc(-50% + " + offsetY + "px)) rotate(" + angle + "deg)";
-  });
+    card.style.transition = "transform 0.3s ease";
 
-  app.appendChild(card);
-}`,
-patr2module1tutorial2code2: `const app = document.getElementById("app");
+    card.addEventListener("mouseenter", () => {
+      card.style.transform =
+        "translate(calc(-50% + " + offsetX + "px), calc(-50% + " + offsetY + "px)) rotate(" + angle + "deg) scale(1.05)";
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform =
+        "translate(calc(-50% + " + offsetX + "px), calc(-50% + " + offsetY + "px)) rotate(" + angle + "deg)";
+    });
+
+    app.appendChild(card);
+  }
+})()`,
+  patr2module1tutorial2code2: `const app = document.getElementById("app");
 app.innerHTML = "";
 app.style.position = "relative";
 app.style.background = "#f8f8f8";
@@ -983,7 +983,7 @@ card.style.background = "#1f1f1f";
 card.style.boxShadow = "0 12px 32px rgba(31, 31, 31, 0.12)";
 
 app.appendChild(card);`,
-patr2module1tutorial2code3: `const app = document.getElementById("app");
+  patr2module1tutorial2code3: `const app = document.getElementById("app");
 app.innerHTML = "";
 app.style.position = "relative";
 app.style.background = "#f8f8f8";
@@ -1005,7 +1005,7 @@ for (let i = 0; i < cardsCount; i++) {
 
   app.appendChild(card);
 }`,
-patr2module1tutorial2code4: `const app = document.getElementById("app");
+  patr2module1tutorial2code4: `const app = document.getElementById("app");
 app.innerHTML = "";
 app.style.position = "relative";
 app.style.background = "#f8f8f8";
@@ -1037,53 +1037,53 @@ for (let i = 0; i < cardsCount; i++) {
 
   app.appendChild(card);
 }`,
-patr2module1tutorial2code5: `if (!app) {
-let app = document.getElementById("app");
-}
-app.innerHTML = "";
-app.style.position = "relative";
-app.style.background = "#f8f8f8";
-app.style.overflow = "hidden";
+  patr2module1tutorial2code5: `(function () {
+  const app = document.getElementById("app");
+  app.innerHTML = "";
+  app.style.position = "relative";
+  app.style.background = "#f8f8f8";
+  app.style.overflow = "hidden";
 
-const cardsCount = 5;
+  const cardsCount = 5;
 
-for (let i = 0; i < cardsCount; i++) {
-  const card = document.createElement("div");
+  for (let i = 0; i < cardsCount; i++) {
+    const card = document.createElement("div");
 
-  card.style.position = "absolute";
-  card.style.width = "140px";
-  card.style.height = "180px";
-  card.style.left = "50%";
-  card.style.top = "50%";
-  card.style.borderRadius = "24px";
-  card.style.background = "#858585";
-  card.style.boxShadow = "0 12px 32px rgba(31, 31, 31, 0.12)";
-  card.style.transition = "transform 0.3s ease, background 0.3s ease";
+    card.style.position = "absolute";
+    card.style.width = "140px";
+    card.style.height = "180px";
+    card.style.left = "50%";
+    card.style.top = "50%";
+    card.style.borderRadius = "24px";
+    card.style.background = "#858585";
+    card.style.boxShadow = "0 12px 32px rgba(31, 31, 31, 0.12)";
+    card.style.transition = "transform 0.3s ease, background 0.3s ease";
 
-  let offsetX = i * 32 - 64;
-  let offsetY = i * 10;
-  let angle = i * 5 - 10;
+    let offsetX = i * 32 - 64;
+    let offsetY = i * 10;
+    let angle = i * 5 - 10;
 
-  // попробуй раскомментировать:
-  // angle = i * 10 - 20;
-  // offsetX = i * 24 - 48;
-  // card.style.background = i % 2 === 0 ? "#1f1f1f" : "#d6d6d6";
-
-  card.style.transform = \`translate(calc(-50% + \${offsetX}px), calc(-50% + \${offsetY}px)) rotate(\${angle}deg)\`;
-
-  card.addEventListener("mouseenter", () => {
     // попробуй раскомментировать:
-    // card.style.background = "#1f1f1f";
-    // card.style.transform = \`translate(calc(-50% + \${offsetX}px), calc(-50% + \${offsetY}px)) rotate(\${angle}deg) scale(1.08)\`;
-  });
+    // angle = i * 10 - 20;
+    // offsetX = i * 24 - 48;
+    // card.style.background = i % 2 === 0 ? "#1f1f1f" : "#d6d6d6";
 
-  card.addEventListener("mouseleave", () => {
     card.style.transform = \`translate(calc(-50% + \${offsetX}px), calc(-50% + \${offsetY}px)) rotate(\${angle}deg)\`;
-  });
 
-  app.appendChild(card);
-}`,
-patr2module1tutorial3code1: `(function () {
+    card.addEventListener("mouseenter", () => {
+      // попробуй раскомментировать:
+      // card.style.background = "#1f1f1f";
+      // card.style.transform = \`translate(calc(-50% + \${offsetX}px), calc(-50% + \${offsetY}px)) rotate(\${angle}deg) scale(1.08)\`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = \`translate(calc(-50% + \${offsetX}px), calc(-50% + \${offsetY}px)) rotate(\${angle}deg)\`;
+    });
+
+    app.appendChild(card);
+  }
+})()`,
+  patr2module1tutorial3code1: `(function () {
   const app = document.getElementById("app");
   app.innerHTML = "";
   app.style.position = "relative";
@@ -1113,7 +1113,7 @@ patr2module1tutorial3code1: `(function () {
     ball.style.top = y + "px";
   });
 })();`,
-patr2module1tutorial3code2: `(function () {
+  patr2module1tutorial3code2: `(function () {
   const app = document.getElementById("app");
   app.innerHTML = "";
   app.style.position = "relative";
@@ -1150,7 +1150,7 @@ patr2module1tutorial3code2: `(function () {
     }, 220);
   });
 })();`,
-patr2module1tutorial3code3: `(function () {
+  patr2module1tutorial3code3: `(function () {
   const app = document.getElementById("app");
   app.innerHTML = "";
   app.style.position = "relative";
@@ -1195,7 +1195,7 @@ patr2module1tutorial3code3: `(function () {
     }, 220);
   });
 })();`,
-patr2module1tutorial4code1: `function setup() {
+  patr2module2tutorial1code1: `function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
 }
@@ -1203,13 +1203,13 @@ patr2module1tutorial4code1: `function setup() {
 function draw() {
   background(248);
 
-  let x = width / 2 + sin(frameCount * 0.05) * 120;
+  let x = width / 2 + sin(frameCount * 0.05) * 90;
   let y = height / 2;
 
   fill(30);
   ellipse(x, y, 80);
 }`,
-patr2module1tutorial4code2: `(function () {
+  patr2module2tutorial1code2: `(function () {
   const app = document.getElementById("app");
   app.innerHTML = "";
   app.style.position = "relative";
@@ -1228,7 +1228,7 @@ patr2module1tutorial4code2: `(function () {
   let t = 0;
 
   function draw() {
-    const x = app.clientWidth / 2 + Math.sin(t) * 120;
+    const x = app.clientWidth / 2 + Math.sin(t) * 90;
     const y = app.clientHeight / 2;
 
     ball.style.left = x + "px";
@@ -1242,7 +1242,7 @@ patr2module1tutorial4code2: `(function () {
 
   draw();
 })();`,
-patr2module1tutorial4code3: `(function () {
+  patr2module2tutorial1code3: `(function () {
   const app = document.getElementById("app");
   app.innerHTML = "";
   app.style.position = "relative";
@@ -1252,9 +1252,9 @@ patr2module1tutorial4code3: `(function () {
   const style = document.createElement("style");
   style.innerHTML = \`
     @keyframes move {
-      0% { transform: translate(-50%, -50%) translateX(-120px); }
-      50% { transform: translate(-50%, -50%) translateX(120px); }
-      100% { transform: translate(-50%, -50%) translateX(-120px); }
+      0% { transform: translate(-50%, -50%) translateX(-90px); }
+      50% { transform: translate(-50%, -50%) translateX(90px); }
+      100% { transform: translate(-50%, -50%) translateX(-90px); }
     }
   \`;
   document.head.appendChild(style);
@@ -1271,5 +1271,18 @@ patr2module1tutorial4code3: `(function () {
 
   app.appendChild(ball);
 })();`,
+patr2module2tutorial1code4:`function setup() {
+  createCanvas(windowWidth, windowHeight);
+  noStroke();
+}
 
+function draw() {
+  background(248);
+
+  let x = width / 2 + sin(frameCount * 0.05) * 90;
+  let y = height / 2;
+
+  fill(30);
+  ellipse(x, y, 80);
+}`,
 };

@@ -20,7 +20,7 @@
     <div><img src="https://mc.yandex.ru/watch/108369792" style="position:absolute; left:-9999px;" alt="" /></div>
   </noscript>
   <!-- /Yandex.Metrika counter -->
-  <title>Переменные и&nbsp;условия</title>
+  <title>Title</title>
 </head>
 
 <body>
@@ -172,14 +172,14 @@
               <a class="U_FontB1 A_TutorialNavigationModuleTitle" href="../module2.html">
                 Интерактив на&nbsp;p5.js</a>
               <ol class="U_FontF1 C_TutorialNavigationTutorialsList">
-                <li><a class="A_TutorialNavigationTutorialLink" href="../module1/tutorial1.html"></a></li>
+                <li><a class="A_TutorialNavigationTutorialLink" href="../module2/tutorial1.html"></a></li>
               </ol>
             </div>
             <div class="W_TutorialNavigationModule">
               <a class="U_FontB1 A_TutorialNavigationModuleTitle" href="../module3.html">
                 3D с&nbsp;Three.js</a>
               <ol class="U_FontF1 C_TutorialNavigationTutorialsList">
-                <li><a class="A_TutorialNavigationTutorialLink" href="../module1/tutorial1.html"></a></li>
+                <li><a class="A_TutorialNavigationTutorialLink" href="../module3/tutorial1.html"></a></li>
               </ol>
             </div>
           </div>
@@ -194,15 +194,16 @@
           </h3>
 
           <p id="TutorialTextFirst" class="U_FontB1 A_TutorialText">
-            В&nbsp;<tx-sl>p5.js</tx-sl> всё строится вокруг цикла <tx-sl>draw()</tx-sl>.
+            В&nbsp;<tx-sl>p5.js</tx-sl> всё&nbsp;строится вокруг цикла <tx-sl>draw()</tx-sl>.
             Он&nbsp;постоянно перерисовывает сцену, создавая поток кадров.
             Это и&nbsp;есть основа анимации: изображение обновляется много раз в&nbsp;секунду.
             В&nbsp;этом уроке ты&nbsp;сравнишь два подхода: автоматический цикл в&nbsp;p5 и&nbsp;ручное управление
-            в&nbsp;Vanilla JS.
+            в&nbsp;Vanilla&nbsp;JS.
           </p>
 
           <p class="U_FontB1 A_TutorialText">
-            Встроенный цикл <tx-sl>draw()</tx-sl> у&nbsp;<tx-sl>p5.js</tx-sl> запускается примерно 60&nbsp;раз в&nbsp;секунду
+            Встроенный цикл <tx-sl>draw()</tx-sl> у&nbsp;<tx-sl>p5.js</tx-sl> запускается примерно 60&nbsp;раз
+            в&nbsp;секунду
             и&nbsp;каждый раз заново рисует сцену.
             Это удобно: тебе не&nbsp;нужно думать о&nbsp;таймерах или&nbsp;обновлении кадров.
             Достаточно описать, что должно происходить в&nbsp;каждом кадре.
@@ -245,7 +246,7 @@
             Библиотека сама будет перерисовывать её много раз в&nbsp;секунду.
           </p>
 
-          <div id="patr2module1tutorial4code1" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+          <div id="patr2module2tutorial1code1" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
             <div class="W_TutorialSingleCodeExecution">
               <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
                 allow="accelerometer; gyroscope; magnetometer">
@@ -281,7 +282,7 @@
             Для этого используется <tx-sl>requestAnimationFrame()</tx-sl>.
           </p>
 
-          <div id="patr2module1tutorial4code2" class="O_TutorialSingleCode" data-runtime="vanilla"
+          <div id="patr2module2tutorial1code2" class="O_TutorialSingleCode" data-runtime="vanilla"
             data-autostart="true">
             <div class="W_TutorialSingleCodeExecution">
               <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
@@ -318,7 +319,7 @@
             В&nbsp;этом случае браузер сам управляет движением.
           </p>
 
-          <div id="patr2module1tutorial4code3" class="O_TutorialSingleCode" data-runtime="vanilla"
+          <div id="patr2module2tutorial1code3" class="O_TutorialSingleCode" data-runtime="vanilla"
             data-autostart="true">
             <div class="W_TutorialSingleCodeExecution">
               <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
@@ -372,12 +373,46 @@
             </li>
           </ol>
 
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav3" class="U_FontH3 A_TutorialTitle">
+            Задание
+          </h3>
+
           <p class="U_FontB1 A_TutorialText">
             Попробуй изменить амплитуду движения круга.
             Увеличь или уменьши значение <tx-sl>120</tx-sl> в&nbsp;коде.
             Затем попробуй изменить скорость, изменив шаг времени.
             Так ты&nbsp;увидишь, как параметры влияют на&nbsp;характер анимации.
           </p>
+
+          <div id="patr2module2tutorial1code4" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="p5" data-autostart="false">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                  aria-label="Поле кода"></textarea>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
 
         </section>
       </div>
@@ -399,12 +434,12 @@
       </div>
       <div class="W_NextAbout">
         <div class="M_NextTexts">
-          <h3 class="U_FontS1 A_NextTitle">Дополнительный материал</h3>
+          <h3 class="U_FontS1 A_NextTitle">Следующий материал</h3>
           <h2 class="U_FontH0 A_NextHeading">
-            Подробнее о&nbsp;проекте
+            Интерактив с&nbsp;машью и&nbsp;клавиатурой
           </h2>
         </div>
-        <a class="U_ALink U_FontS3 A_NextButton" href="../../../handbook.html">Перейти к&nbsp;разделу</a>
+        <a class="U_ALink U_FontS3 A_NextButton" href="./tutorial2.html">Перейти к&nbsp;статье</a>
       </div>
       <div class="C_IntroRainSquaresBox">
         <div class="U_FontH2 A_IntroRainSquares">
