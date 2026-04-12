@@ -214,6 +214,22 @@ function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Sym
 function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 // Какие фильтры у каких модулей
+// const tagsPart1Module1Tutorial1 = {
+//   complexity: "filterComplexityInitial",
+//   library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+//   format: ["filterFormatTechnique"],
+//   verification: "filterVerificationExpert",
+//   date: ["20251227"],
+//   title: "Определение креативного кода",
+//   author: "digitalnaya",
+//   link: "https://web.telegram.org/k/#@digitalnaya",
+//   tags: [
+//     "Генеративная графика",
+//     "Параметрические системы",
+//     "Паттерны",
+//   ],
+// };
+
 // p1m1
 var tagsPart1Module1Tutorial1 = {
   complexity: "filterComplexityInitial",
@@ -231,7 +247,7 @@ var tagsPart1Module1Tutorial2 = {
   library: ["filterLibraryP5js", "filterLibraryVanillajs"],
   format: ["filterFormatTechnique"],
   verification: "filterVerificationExpert",
-  date: ["20260129"],
+  date: ["20251229"],
   title: "\u0418\u043D\u0441\u0442\u0440\u0443\u043C\u0435\u043D\u0442\u044B \u0438\xA0\u0441\u0440\u0435\u0434\u0430",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
@@ -242,7 +258,7 @@ var tagsPart1Module1Tutorial3 = {
   library: ["filterLibraryP5js"],
   format: ["filterFormatTechnique"],
   verification: "filterVerificationExpert",
-  date: ["20260213"],
+  date: ["20260111"],
   title: "\u0426\u0432\u0435\u0442, \u0444\u043E\u0440\u043C\u0430 \u0438\xA0\u043A\u043E\u043C\u043F\u043E\u0437\u0438\u0446\u0438\u044F",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
@@ -256,7 +272,7 @@ var tagsPart1Module2Tutorial1 = {
   library: ["filterLibraryVanillajs", "filterLibraryP5js"],
   format: ["filterFormatTechnique"],
   verification: "filterVerificationExpert",
-  date: ["20260220"],
+  date: ["20260112"],
   title: "\u041F\u0435\u0440\u0435\u043C\u0435\u043D\u043D\u044B\u0435 \u0438\xA0\u0443\u0441\u043B\u043E\u0432\u0438\u044F",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
@@ -267,7 +283,7 @@ var tagsPart1Module2Tutorial2 = {
   library: ["filterLibraryP5js"],
   format: ["filterFormatTechnique"],
   verification: "filterVerificationExpert",
-  date: ["20260227"],
+  date: ["20260115"],
   title: "\u0426\u0438\u043A\u043B\u044B: \u0440\u0438\u0442\u043C \u0438\xA0\u0441\u0442\u0440\u0443\u043A\u0442\u0443\u0440\u0430",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
@@ -278,7 +294,7 @@ var tagsPart1Module2Tutorial3 = {
   library: ["filterLibraryP5js"],
   format: ["filterFormatTechnique"],
   verification: "filterVerificationExpert",
-  date: ["20260309"],
+  date: ["20260116"],
   title: "\u041C\u0430\u0441\u0441\u0438\u0432\u044B \u0438\xA0\u043E\u0431\u044A\u0435\u043A\u0442\u044B",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
@@ -289,7 +305,7 @@ var tagsPart1Module2Tutorial4 = {
   library: ["filterLibraryP5js"],
   format: ["filterFormatVariation"],
   verification: "filterVerificationExpert",
-  date: ["20260315"],
+  date: ["20260117"],
   title: "Генерация случайности",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
@@ -300,7 +316,7 @@ var tagsPart1Module2Tutorial5 = {
   library: ["filterLibraryP5js"],
   format: ["filterFormatTask"],
   verification: "filterVerificationExpert",
-  date: ["20260319"],
+  date: ["20260119"],
   title: "Паттерны повторов",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
@@ -314,7 +330,7 @@ var tagsPart2Module1Tutorial1 = {
   library: ["filterLibraryVanillajs", "filterLibraryP5js"],
   format: ["filterFormatVariation"],
   verification: "filterVerificationExpert",
-  date: ["20260327"],
+  date: ["20260125"],
   title: "\u0421\u043E\u0437\u0434\u0430\u043D\u0438\u0435 \u0438\xA0\u0443\u0434\u0430\u043B\u0435\u043D\u0438\u0435 \u044D\u043B\u0435\u043C\u0435\u043D\u0442\u043E\u0432",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
@@ -325,7 +341,7 @@ var tagsPart2Module1Tutorial2 = {
   library: ["filterLibraryVanillajs"],
   format: ["filterFormatTask"],
   verification: "filterVerificationExpert",
-  date: ["20260401"],
+  date: ["20260126"],
   title: "\u0421\u0442\u0438\u043B\u0438 \u0438\xA0\u0442\u0440\u0430\u043D\u0441\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u0438",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
@@ -336,7 +352,7 @@ var tagsPart2Module1Tutorial3 = {
   library: ["filterLibraryVanillajs"],
   format: ["filterFormatTechnique"],
   verification: "filterVerificationExpert",
-  date: ["20260403"],
+  date: ["20260204"],
   title: "\u0410\u043D\u0438\u043C\u0430\u0446\u0438\u0438 \u0438\xA0\u0441\u043E\u0431\u044B\u0442\u0438\u044F",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
@@ -349,28 +365,32 @@ var tagsPart2Module2Tutorial1 = {
   library: ["filterLibraryP5js", "filterLibraryVanillajs"],
   format: ["filterFormatVariation"],
   verification: "filterVerificationExpert",
-  date: ["20260411"],
+  date: ["20260207"],
   title: "\u0426\u0438\u043A\u043B \u043E\u0442\u0440\u0438\u0441\u043E\u0432\u043A\u0438 \u0438\xA0\u0444\u0438\u0433\u0443\u0440\u044B",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: ["Алгоритмическая анимация", "Параметрические системы", "Генеративная графика"]
 };
 var tagsPart2Module2Tutorial2 = {
+  date: ["20260209"],
   title: "\u0418\u043D\u0442\u0435\u0440\u0430\u043A\u0442\u0438\u0432 \u0441\xA0\u043C\u044B\u0448\u044C\u044E \u0438\xA0\u043A\u043B\u0430\u0432\u0438\u0430\u0442\u0443\u0440\u043E\u0439",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya"
 };
 var tagsPart2Module2Tutorial3 = {
+  date: ["20260216"],
   title: "\u0422\u0430\u0439\u043B\u0438\u043D\u0433 \u0438\xA0\u0434\u0438\u0441\u043F\u043B\u0435\u0439\u0441\u043C\u0435\u043D\u0442",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya"
 };
 var tagsPart2Module2Tutorial4 = {
+  date: ["20260219"],
   title: "Эффекты движения",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya"
 };
 var tagsPart2Module2Tutorial5 = {
+  date: ["20260223"],
   title: "Рисование шумом",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya"
@@ -378,31 +398,31 @@ var tagsPart2Module2Tutorial5 = {
 var tagsPart2Module2 = [tagsPart2Module2Tutorial1, tagsPart2Module2Tutorial2, tagsPart2Module2Tutorial3, tagsPart2Module2Tutorial4, tagsPart2Module2Tutorial5];
 // p2 m3
 var tagsPart2Module3Tutorial1 = {
-  date: ["20251227"],
+  date: ["20260305"],
   title: "\u0421\u0446\u0435\u043D\u0430, \u043A\u0430\u043C\u0435\u0440\u0430 \u0438\xA0\u0440\u0435\u043D\u0434\u0435\u0440\u0435\u0440",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya"
 };
 var tagsPart2Module3Tutorial2 = {
-  date: ["20251227"],
+  date: ["20260310"],
   title: "\u0413\u0435\u043E\u043C\u0435\u0442\u0440\u0438\u0438 \u0438\xA0\u043C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\u044B",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya"
 };
 var tagsPart2Module3Tutorial3 = {
-  date: ["20251227"],
+  date: ["20260311"],
   title: "\u0421\u0432\u0435\u0442 \u0438\xA0\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya"
 };
 var tagsPart2Module3Tutorial4 = {
-  date: ["20251227"],
+  date: ["20260312"],
   title: "\u0410\u043D\u0438\u043C\u0430\u0446\u0438\u044F \u0438\xA0\u0443\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u0435 \u043A\u0430\u043C\u0435\u0440\u043E\u0439",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya"
 };
 var tagsPart2Module3Tutorial5 = {
-  date: ["20251227"],
+  date: ["20260315"],
   title: "Импорт моделей",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya"
@@ -411,25 +431,25 @@ var tagsPart2Module3 = [tagsPart2Module3Tutorial1, tagsPart2Module3Tutorial2, ta
 var tagsPart2 = [tagsPart2Module1, tagsPart2Module2, tagsPart2Module3];
 // p3 m1
 var tagsPart3Module1Tutorial1 = {
-  date: ["20251227"],
-  title: "random() \u0438\xA0noise()",
+  date: ["20260318"],
+  title: "random(\xA0) \u0438\xA0noise(\xA0)",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya"
 };
 var tagsPart3Module1Tutorial2 = {
-  date: ["20251227"],
+  date: ["20260319"],
   title: "Контроль повторяемости",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya"
 };
 var tagsPart3Module1Tutorial3 = {
-  date: ["20251227"],
+  date: ["20260321"],
   title: "Распределения рандомных величин",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya"
 };
 var tagsPart3Module1Tutorial4 = {
-  date: ["20251227"],
+  date: ["20260324"],
   title: "Шумовые текстуры",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya"
@@ -437,31 +457,31 @@ var tagsPart3Module1Tutorial4 = {
 var tagsPart3Module1 = [tagsPart3Module1Tutorial1, tagsPart3Module1Tutorial2, tagsPart3Module1Tutorial3, tagsPart3Module1Tutorial4];
 // p3 m2
 var tagsPart3Module2Tutorial1 = {
-  date: ["20251227"],
+  date: ["20260326"],
   title: "Рекурсия",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya"
 };
 var tagsPart3Module2Tutorial2 = {
-  date: ["20251227"],
+  date: ["20260329"],
   title: "\u0424\u0440\u0430\u043A\u0442\u0430\u043B\u044B \u0438\xA0L-\u0441\u0438\u0441\u0442\u0435\u043C\u044B",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya"
 };
 var tagsPart3Module2Tutorial3 = {
-  date: ["20251227"],
+  date: ["20260330"],
   title: "\u041C\u043E\u0437\u0430\u0438\u043A\u0438 \u0438\xA0\u0441\u0435\u0442\u043A\u0438",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya"
 };
 var tagsPart3Module2Tutorial4 = {
-  date: ["20251227"],
+  date: ["20260401"],
   title: "Векторные поля",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya"
 };
 var tagsPart3Module2Tutorial5 = {
-  date: ["20251227"],
+  date: ["20260403"],
   title: "Диаграммы Вороного",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya"
@@ -469,19 +489,19 @@ var tagsPart3Module2Tutorial5 = {
 var tagsPart3Module2 = [tagsPart3Module2Tutorial1, tagsPart3Module2Tutorial2, tagsPart3Module2Tutorial3, tagsPart3Module2Tutorial4, tagsPart3Module2Tutorial5];
 // p3 m3
 var tagsPart3Module3Tutorial1 = {
-  date: ["20251227"],
+  date: ["20260405"],
   title: "Сторонние библиотеки",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya"
 };
 var tagsPart3Module3Tutorial2 = {
-  date: ["20251227"],
+  date: ["20260410"],
   title: "Применение шейдеров",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya"
 };
 var tagsPart3Module3Tutorial3 = {
-  date: ["20251227"],
+  date: ["20260412"],
   title: "\u0421\u043E\u043E\u0431\u0449\u0435\u0441\u0442\u0432\u0430 \u0438\xA0\u0440\u0435\u0441\u0443\u0440\u0441\u044B",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya"

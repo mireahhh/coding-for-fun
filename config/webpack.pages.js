@@ -134,7 +134,6 @@ const htmlPages = [
     "./pages/parts/part2/module2/tutorial5.html",
     ["index", "tutorial"],
   ),
-
   // Часть2 Модуль3 ./part2/module3
   createPages(
     "./src/pages/parts/part2/module3.html",
@@ -166,6 +165,85 @@ const htmlPages = [
     "./pages/parts/part2/module3/tutorial5.html",
     ["index", "tutorial"],
   ),
+  // Часть3 Модуль1 ./part3/module1
+  createPages(
+    "./src/pages/parts/part3/module1.html",
+    "./pages/parts/part3/module1.html",
+    ["index", "module"],
+  ),
+  createPages(
+    "./src/pages/parts/part3/module1/tutorial1.html",
+    "./pages/parts/part3/module1/tutorial1.html",
+    ["index", "tutorial"],
+  ),
+  createPages(
+    "./src/pages/parts/part3/module1/tutorial2.html",
+    "./pages/parts/part3/module1/tutorial2.html",
+    ["index", "tutorial"],
+  ),
+  createPages(
+    "./src/pages/parts/part3/module1/tutorial3.html",
+    "./pages/parts/part3/module1/tutorial3.html",
+    ["index", "tutorial"],
+  ),
+    createPages(
+    "./src/pages/parts/part3/module1/tutorial4.html",
+    "./pages/parts/part3/module1/tutorial4.html",
+    ["index", "tutorial"],
+  ),
+  // Часть3 Модуль2 ./part3/module2
+  createPages(
+    "./src/pages/parts/part3/module2.html",
+    "./pages/parts/part3/module2.html",
+    ["index", "module"],
+  ),
+  createPages(
+    "./src/pages/parts/part3/module2/tutorial1.html",
+    "./pages/parts/part3/module2/tutorial1.html",
+    ["index", "tutorial"],
+  ),
+  createPages(
+    "./src/pages/parts/part3/module2/tutorial2.html",
+    "./pages/parts/part3/module2/tutorial2.html",
+    ["index", "tutorial"],
+  ),
+  createPages(
+    "./src/pages/parts/part3/module2/tutorial3.html",
+    "./pages/parts/part3/module2/tutorial3.html",
+    ["index", "tutorial"],
+  ),
+  createPages(
+    "./src/pages/parts/part3/module2/tutorial4.html",
+    "./pages/parts/part3/module2/tutorial4.html",
+    ["index", "tutorial"],
+  ),
+  createPages(
+    "./src/pages/parts/part3/module2/tutorial5.html",
+    "./pages/parts/part3/module2/tutorial5.html",
+    ["index", "tutorial"],
+  ),
+  // Часть3 Модуль3 ./part3/module3
+  createPages(
+    "./src/pages/parts/part3/module3.html",
+    "./pages/parts/part3/module3.html",
+    ["index", "module"],
+  ),
+  createPages(
+    "./src/pages/parts/part3/module3/tutorial1.html",
+    "./pages/parts/part3/module3/tutorial1.html",
+    ["index", "tutorial"],
+  ),
+  createPages(
+    "./src/pages/parts/part3/module3/tutorial2.html",
+    "./pages/parts/part3/module3/tutorial2.html",
+    ["index", "tutorial"],
+  ),
+  createPages(
+    "./src/pages/parts/part3/module3/tutorial3.html",
+    "./pages/parts/part3/module3/tutorial3.html",
+    ["index", "tutorial"],
+  ),
 ];
+
 
 module.exports = htmlPages;
