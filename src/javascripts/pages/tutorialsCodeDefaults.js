@@ -2779,5 +2779,222 @@ return () => {
   floorGeometry.dispose();
   floorMaterial.dispose();
   renderer.dispose();
-};`
+};`,
+patr2module3tutorial5code1: `const width = app.clientWidth;
+const height = app.clientHeight;
+
+// сцена
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf8f8f8);
+
+// камера
+const camera = new THREE.PerspectiveCamera(65, width / height, 0.1, 1000);
+camera.position.set(0, 0.75, 5);
+
+// рендерер
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+// свет
+const light = new THREE.DirectionalLight(0xffffff, 1.4);
+light.position.set(3, 4, 5);
+scene.add(light);
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+scene.add(ambientLight);
+
+// группа (наш будущий объект)
+const group = new THREE.Group();
+scene.add(group);
+
+// тело
+const body = new THREE.Mesh(
+  new THREE.BoxGeometry(1.5, 2, 1),
+  new THREE.MeshStandardMaterial({ color: 0x7a7a7a })
+);
+group.add(body);
+
+// голова
+const head = new THREE.Mesh(
+  new THREE.BoxGeometry(1, 1, 1),
+  new THREE.MeshStandardMaterial({ color: 0x9a9a9a })
+);
+head.position.y = 1.5;
+group.add(head);
+
+// руки
+const armLeft = new THREE.Mesh(
+  new THREE.BoxGeometry(0.4, 1.6, 0.4),
+  new THREE.MeshStandardMaterial({ color: 0x666666 })
+);
+armLeft.position.x = -1.1;
+armLeft.position.y = 0.3;
+group.add(armLeft);
+
+const armRight = armLeft.clone();
+armRight.position.x = 1.1;
+group.add(armRight);
+
+// анимация
+let animationId;
+
+function animate() {
+  group.rotation.y += 0.02;
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+animate();
+
+// cleanup
+return () => {
+  cancelAnimationFrame(animationId);
+  renderer.dispose();
+};`,
+patr2module3tutorial5code2: `// создаём несколько отдельных объектов
+
+const body = new THREE.Mesh(
+  new THREE.BoxGeometry(1.5, 2, 1),
+  new THREE.MeshStandardMaterial({ color: 0x7a7a7a })
+);
+
+const head = new THREE.Mesh(
+  new THREE.BoxGeometry(1, 1, 1),
+  new THREE.MeshStandardMaterial({ color: 0x9a9a9a })
+);
+
+head.position.y = 1.5;
+
+scene.add(body);
+scene.add(head);`,
+patr2module3tutorial5code5: `const width = app.clientWidth;
+const height = app.clientHeight;
+
+// сцена
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf8f8f8);
+
+// камера
+const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+camera.position.set(3.2, 2.4, 5.2);
+camera.lookAt(0, 0.8, 0);
+
+// рендерер
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+// свет
+const light = new THREE.DirectionalLight(0xffffff, 1.4);
+light.position.set(3, 4, 5);
+scene.add(light);
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.45);
+scene.add(ambientLight);
+
+// пол
+const floorGeometry = new THREE.PlaneGeometry(10, 10);
+const floorMaterial = new THREE.MeshStandardMaterial({ color: 0xe9e9e9 });
+const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+floor.rotation.x = -Math.PI / 2;
+floor.position.y = -1.2;
+scene.add(floor);
+
+// группа — будущий составной объект
+const group = new THREE.Group();
+scene.add(group);
+
+// тело
+const bodyGeometry = new THREE.BoxGeometry(1.5, 2, 1);
+const bodyMaterial = new THREE.MeshStandardMaterial({ color: 0x7a7a7a });
+const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+body.position.y = 0;
+group.add(body);
+
+// голова
+const headGeometry = new THREE.BoxGeometry(1, 1, 1);
+const headMaterial = new THREE.MeshStandardMaterial({ color: 0x9a9a9a });
+const head = new THREE.Mesh(headGeometry, headMaterial);
+head.position.y = 1.5;
+group.add(head);
+
+// левая рука
+const armGeometry = new THREE.BoxGeometry(0.35, 1.5, 0.35);
+const armMaterial = new THREE.MeshStandardMaterial({ color: 0x666666 });
+const armLeft = new THREE.Mesh(armGeometry, armMaterial);
+armLeft.position.x = -1.1;
+armLeft.position.y = 0.2;
+group.add(armLeft);
+
+// правая рука
+const armRight = new THREE.Mesh(armGeometry, armMaterial);
+armRight.position.x = 1.1;
+armRight.position.y = 0.2;
+group.add(armRight);
+
+// левая нога
+const legGeometry = new THREE.BoxGeometry(0.45, 1.3, 0.45);
+const legMaterial = new THREE.MeshStandardMaterial({ color: 0x5a5a5a });
+const legLeft = new THREE.Mesh(legGeometry, legMaterial);
+legLeft.position.x = -0.4;
+legLeft.position.y = -1.55;
+group.add(legLeft);
+
+// правая нога
+const legRight = new THREE.Mesh(legGeometry, legMaterial);
+legRight.position.x = 0.4;
+legRight.position.y = -1.55;
+group.add(legRight);
+
+// небольшой верхний элемент
+const hatGeometry = new THREE.ConeGeometry(0.6, 0.7, 4);
+const hatMaterial = new THREE.MeshStandardMaterial({ color: 0x555555 });
+const hat = new THREE.Mesh(hatGeometry, hatMaterial);
+hat.position.y = 2.35;
+group.add(hat);
+
+// анимация
+let animationId;
+
+function animate() {
+  group.rotation.y += 0.02;
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+animate();
+
+// cleanup
+return () => {
+  cancelAnimationFrame(animationId);
+
+  bodyGeometry.dispose();
+  bodyMaterial.dispose();
+
+  headGeometry.dispose();
+  headMaterial.dispose();
+
+  armGeometry.dispose();
+  armMaterial.dispose();
+
+  legGeometry.dispose();
+  legMaterial.dispose();
+
+  hatGeometry.dispose();
+  hatMaterial.dispose();
+
+  floorGeometry.dispose();
+  floorMaterial.dispose();
+
+  renderer.dispose();
+};`,
 };

@@ -119,7 +119,7 @@ const tagsPart1Module2Tutorial3 = {
 };
 
 const tagsPart1Module2Tutorial4 = {
-  complexity: "filterComplexityInitial",
+  complexity: "filterComplexityMiddle",
   library: ["filterLibraryP5js"],
   format: ["filterFormatVariation"],
   verification: "filterVerificationExpert",
@@ -135,7 +135,7 @@ const tagsPart1Module2Tutorial4 = {
 };
 
 const tagsPart1Module2Tutorial5 = {
-  complexity: "filterComplexityInitial",
+  complexity: "filterComplexityMiddle",
   library: ["filterLibraryP5js"],
   format: ["filterFormatTask"],
   verification: "filterVerificationExpert",
@@ -168,7 +168,7 @@ const tagsPart2Module1Tutorial1 = {
 };
 
 const tagsPart2Module1Tutorial2 = {
-  complexity: "filterComplexityInitial",
+  complexity: "filterComplexityMiddle",
   library: ["filterLibraryVanillajs"],
   format: ["filterFormatTask"],
   verification: "filterVerificationExpert",
@@ -184,7 +184,7 @@ const tagsPart2Module1Tutorial2 = {
 };
 
 const tagsPart2Module1Tutorial3 = {
-  complexity: "filterComplexityInitial",
+  complexity: "filterComplexityMiddle",
   library: ["filterLibraryVanillajs"],
   format: ["filterFormatTechnique"],
   verification: "filterVerificationExpert",

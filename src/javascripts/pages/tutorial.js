@@ -88,27 +88,40 @@ function initTutorialCodeBlocks() {
     const resetButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonClean");
     const copyButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonCopy");
     const textarea = codeBlock.querySelector(".W_TutorialSingleCodeTextRun");
+    const highlight = codeBlock.querySelector(".A_TutorialSingleCodeTextHighlight");
 
-    if (!iframe || !runStopButton || !resetButton || !copyButton || !textarea) return;
+    if (!iframe || !runStopButton || !resetButton || !copyButton || !textarea || !highlight) return;
 
     const defaultCode = getDefaultCode(codeBlockId, runtime);
     textarea.value = defaultCode;
 
-    function autoResizeTextarea(textarea) {
+    function autoResizeTextarea() {
       textarea.style.height = "auto";
+      highlight.style.height = "auto";
 
       const minHeight = 272;
       const maxHeight = minHeight * 2;
       const nextHeight = Math.min(Math.max(textarea.scrollHeight, minHeight), maxHeight);
 
       textarea.style.height = `${nextHeight}px`;
+      highlight.style.height = `${nextHeight}px`;
+    }
+
+    function syncHighlight() {
+      highlight.innerHTML = highlightCode(textarea.value);
+      highlight.scrollTop = textarea.scrollTop;
+      highlight.scrollLeft = textarea.scrollLeft;
     }
 
     textarea.addEventListener("input", () => {
-      autoResizeTextarea(textarea);
+      autoResizeTextarea();
+      syncHighlight();
     });
 
-    autoResizeTextarea(textarea);
+    textarea.addEventListener("scroll", () => {
+      highlight.scrollTop = textarea.scrollTop;
+      highlight.scrollLeft = textarea.scrollLeft;
+    });
 
     runStopButton.addEventListener("click", () => {
       if (codeBlock.classList.contains("is-running")) {
@@ -120,13 +133,16 @@ function initTutorialCodeBlocks() {
 
     resetButton.addEventListener("click", () => {
       resetCode(textarea, defaultCode, codeBlock, iframe);
-      autoResizeTextarea(textarea);
+      autoResizeTextarea();
+      syncHighlight();
     });
 
     copyButton.addEventListener("click", async () => {
       await copyCodeFromTextarea(textarea, copyButton);
     });
 
+    autoResizeTextarea();
+    syncHighlight();
     clearFrame(iframe);
 
     if (codeBlock.dataset.autostart === "true") {
@@ -383,6 +399,81 @@ function drawTutorialPartNavigation() {
   });
 }
 
+// Подсветка кода
+function escapeHtml(value) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function highlightCode(code) {
+  let html = escapeHtml(code);
+  const tokens = [];
+
+  function keep(match, className) {
+    const id = `___TOKEN_${tokens.length}___`;
+    tokens.push(`<span class="${className}">${match}</span>`);
+    return id;
+  }
+
+  // 1. Комментарии и строки прячем первыми — у них высший приоритет
+  html = html.replace(/\/\/[^\n]*/g, (match) => keep(match, "code-comment"));
+  html = html.replace(/("(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|`(?:\\.|[^`\\])*`)/g, (match) =>
+    keep(match, "code-string")
+  );
+
+  // 2. Ключевые слова
+  html = html.replace(
+    /\b(const|let|var|if|else|for|while|do|function|return|class|new|try|catch|finally|throw|switch|case|break|continue|import|from|export|default|true|false|null|undefined)\b/g,
+    '<span class="code-keyword">$1</span>'
+  );
+
+  // 3. Переменные после const/let/var
+  html = html.replace(
+    /\b(const|let|var)\b(\s+)([A-Za-z_$][\w$]*)/g,
+    '<span class="code-keyword">$1</span>$2<span class="code-variable">$3</span>'
+  );
+
+  // 4. Числа
+  html = html.replace(
+    /\b(\d+(\.\d+)?)\b/g,
+    '<span class="code-number">$1</span>'
+  );
+
+  // 5. Функции
+  html = html.replace(
+    /\b([A-Za-z_$][\w$]*)(?=\s*\()/g,
+    '<span class="code-function">$1</span>'
+  );
+
+  // 6. Возвращаем строки и комментарии назад
+  html = html.replace(/___TOKEN_(\d+)___/g, (_, index) => tokens[Number(index)]);
+
+  return html;
+}
+
+// Подстветка статичного кода
+function initTutorialCodePreviewBlocks() {
+  document.querySelectorAll(".A_TutorialCopyText").forEach((block) => {
+    const rawHtml = block.innerHTML;
+
+    const normalized = rawHtml
+      .split(/<br\s*\/?>/gi)
+      .map((line) =>
+        line
+          .replace(/\n/g, "")
+          .replace(/\t/g, "")
+          .replace(/&nbsp;/g, " ")
+          .trim()
+      )
+      .join("\n");
+
+    block.innerHTML = highlightCode(normalized).replace(/\n/g, "<br>");
+  });
+}
+
+initTutorialCodePreviewBlocks()
 initTutorialCodeBlocks();
 initTutorialCopyButtons();
 drawTutorialMeta();

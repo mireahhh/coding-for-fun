@@ -301,7 +301,7 @@ var tagsPart1Module2Tutorial3 = {
   tags: ["Параметрические системы", "Генеративная графика", "Интерактивные системы"]
 };
 var tagsPart1Module2Tutorial4 = {
-  complexity: "filterComplexityInitial",
+  complexity: "filterComplexityMiddle",
   library: ["filterLibraryP5js"],
   format: ["filterFormatVariation"],
   verification: "filterVerificationExpert",
@@ -312,7 +312,7 @@ var tagsPart1Module2Tutorial4 = {
   tags: ["Случайность", "Генеративная графика", "Параметрические системы"]
 };
 var tagsPart1Module2Tutorial5 = {
-  complexity: "filterComplexityInitial",
+  complexity: "filterComplexityMiddle",
   library: ["filterLibraryP5js"],
   format: ["filterFormatTask"],
   verification: "filterVerificationExpert",
@@ -337,7 +337,7 @@ var tagsPart2Module1Tutorial1 = {
   tags: ["Интерактивные системы", "Генеративная графика"]
 };
 var tagsPart2Module1Tutorial2 = {
-  complexity: "filterComplexityInitial",
+  complexity: "filterComplexityMiddle",
   library: ["filterLibraryVanillajs"],
   format: ["filterFormatTask"],
   verification: "filterVerificationExpert",
@@ -348,7 +348,7 @@ var tagsPart2Module1Tutorial2 = {
   tags: ["Интерактивные системы", "Параметрические системы", "Генеративная графика"]
 };
 var tagsPart2Module1Tutorial3 = {
-  complexity: "filterComplexityInitial",
+  complexity: "filterComplexityMiddle",
   library: ["filterLibraryVanillajs"],
   format: ["filterFormatTechnique"],
   verification: "filterVerificationExpert",
