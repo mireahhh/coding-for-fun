@@ -62,9 +62,31 @@
     }
 }
 
+.A_AbTexLn,
+.A_AbTexLnMob {
+    padding-block: 70px;
+    padding-inline: 5%;
+    text-align: justify;
+    text-align-last: justify;
+}
+
+.A_AbTexLnMob {
+    display: none;
+}
+
 @media (max-width: 900px) {
     .W_About {
         flex-direction: column;
+    }
+
+    .A_AbTexLnMob {
+        display: flex;
+        text-align: center;
+        text-align-last: center;
+    }
+
+    .A_AbTexLn {
+        display: none;
     }
 }
 
@@ -73,7 +95,9 @@
 
 /* m 3 -> 2 */
 @media (max-width: 1152px) {
-    .A_BrightTitle {
+
+    .A_BrightTitle,
+    .A_AbTexLn {
         /* U_FontH1 */
         color: var(--colors-neutrals-900);
         font-family: var(--font-KairosSans);
