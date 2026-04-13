@@ -40,6 +40,27 @@
     }
 }
 
+.W_About {
+    display: flex;
+    flex-direction: row;
+    padding-block: 90px;
+    padding-inline: 5%;
+    box-sizing: border-box;
+    width: 100%;
+    align-items: flex-start;
+    align-self: stretch;
+    gap: 50px;
+
+    .A_AboutH {
+        width: 300px;
+    }
+
+    A_AboutT {
+        min-width: 0;
+        flex: 1;
+    }
+}
+
 /* m 4 -> 3 */
 @media (max-width: 1368px) {}
 
