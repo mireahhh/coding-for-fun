@@ -43,7 +43,7 @@
 .W_About {
     display: flex;
     flex-direction: row;
-    padding-block: 90px;
+    padding-block: 60px;
     padding-inline: 5%;
     box-sizing: border-box;
     width: 100%;
@@ -52,12 +52,19 @@
     gap: 50px;
 
     .A_AboutH {
-        width: 300px;
+        flex: 0 0 clamp(200px, 33%, 400px);
     }
 
     A_AboutT {
-        min-width: 0;
         flex: 1;
+        min-width: 0;
+        /* важно для переноса текста */
+    }
+}
+
+@media (max-width: 900px) {
+    .W_About {
+        flex-direction: column;
     }
 }
 
