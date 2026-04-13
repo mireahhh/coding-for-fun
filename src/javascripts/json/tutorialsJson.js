@@ -18,7 +18,7 @@
 // p1m1
 const tagsPart1Module1Tutorial1 = {
   complexity: "filterComplexityInitial",
-  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  library: ["filterLibraryP5js"],
   format: ["filterFormatTechnique"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
@@ -34,7 +34,7 @@ const tagsPart1Module1Tutorial1 = {
 
 const tagsPart1Module1Tutorial2 = {
   complexity: "filterComplexityInitial",
-  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  library: ["filterLibraryP5js"],
   format: ["filterFormatTechnique"],
   verification: "filterVerificationExpert",
   date: ["20251229"],
@@ -57,6 +57,7 @@ const tagsPart1Module1Tutorial3 = {
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: [
+    "Композиция",
     "Генеративная графика",
     "Паттерны",
     "Параметрические системы",
@@ -73,7 +74,7 @@ const tagsPart1Module1 = [
 const tagsPart1Module2Tutorial1 = {
   complexity: "filterComplexityInitial",
   library: ["filterLibraryVanillajs", "filterLibraryP5js"],
-  format: ["filterFormatTechnique"],
+  format: ["filterFormatVariation", "filterFormatTechnique"],
   verification: "filterVerificationExpert",
   date: ["20260112"],
   title: "Переменные и\u00A0условия",
@@ -99,6 +100,7 @@ const tagsPart1Module2Tutorial2 = {
     "Паттерны",
     "Генеративная графика",
     "Параметрические системы",
+    "Композиция"
   ],
 };
 
@@ -137,7 +139,7 @@ const tagsPart1Module2Tutorial4 = {
 const tagsPart1Module2Tutorial5 = {
   complexity: "filterComplexityMiddle",
   library: ["filterLibraryP5js"],
-  format: ["filterFormatTask"],
+  format: ["filterFormatTechnique"],
   verification: "filterVerificationExpert",
   date: ["20260119"],
   title: "Паттерны повторов",
@@ -145,8 +147,10 @@ const tagsPart1Module2Tutorial5 = {
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: [
     "Паттерны",
+    "Композиция",
     "Генеративная графика",
     "Параметрические системы",
+    "Текстуры",
   ],
 };
 const tagsPart1Module2 = [tagsPart1Module2Tutorial1, tagsPart1Module2Tutorial2, tagsPart1Module2Tutorial3, tagsPart1Module2Tutorial4, tagsPart1Module2Tutorial5];
@@ -155,7 +159,7 @@ const tagsPart1 = [tagsPart1Module1, tagsPart1Module2]
 const tagsPart2Module1Tutorial1 = {
   complexity: "filterComplexityInitial",
   library: ["filterLibraryVanillajs", "filterLibraryP5js"],
-  format: ["filterFormatVariation"],
+  format: ["filterFormatVariation", "filterFormatTechnique"],
   verification: "filterVerificationExpert",
   date: ["20260125"],
   title: "Создание и\u00A0удаление элементов",
@@ -177,6 +181,7 @@ const tagsPart2Module1Tutorial2 = {
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: [
+    "Композиция",
     "Интерактивные системы",
     "Параметрические системы",
     "Генеративная графика",
@@ -184,7 +189,7 @@ const tagsPart2Module1Tutorial2 = {
 };
 
 const tagsPart2Module1Tutorial3 = {
-  complexity: "filterComplexityMiddle",
+  complexity: "filterComplexityInitial",
   library: ["filterLibraryVanillajs"],
   format: ["filterFormatTechnique"],
   verification: "filterVerificationExpert",
@@ -211,10 +216,10 @@ const tagsPart2Module2Tutorial1 = {
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
   tags: [
-    "Алгоритмическая анимация",
-    "Параметрические системы",
     "Генеративная графика",
-  ],
+    "Параметрические системы",
+    "Алгоритмическая анимация"
+  ]
 };
 
 const tagsPart2Module2Tutorial2 = {
@@ -223,24 +228,69 @@ const tagsPart2Module2Tutorial2 = {
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
 
+  complexity: "filterComplexityInitial",
+  library: ["filterLibraryP5js"],
+  format: ["filterFormatTask"],
+  verification: "filterVerificationExpert",
+  tags: [
+    "Интерактивные системы",
+    "Случайность",
+    "Параметрические системы"
+  ]
 };
+
 const tagsPart2Module2Tutorial3 = {
   date: ["20260216"],
   title: "Тайлинг и\u00A0дисплейсмент",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
+
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryP5js"],
+  format: ["filterFormatTask"],
+  verification: "filterVerificationExpert",
+  tags: [
+    "Паттерны",
+    "Композиция",
+    "Геометрические алгоритмы",
+    "Процедурная генерация",
+    "Параметрические системы"
+  ]
 };
+
 const tagsPart2Module2Tutorial4 = {
   date: ["20260219"],
   title: "Эффекты движения",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
+
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatVariation"],
+  verification: "filterVerificationExpert",
+  tags: [
+    "Алгоритмическая анимация",
+    "Волны",
+    "Случайность",
+    "Параметрические системы"
+  ]
 };
+
 const tagsPart2Module2Tutorial5 = {
   date: ["20260223"],
   title: "Рисование шумом",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
+
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryP5js"],
+  format: ["filterFormatTechnique"],
+  verification: "filterVerificationExpert",
+  tags: [
+    "Шум",
+    "Процедурная генерация",
+    "Генеративная графика"
+  ]
 };
 const tagsPart2Module2 = [tagsPart2Module2Tutorial1, tagsPart2Module2Tutorial2, tagsPart2Module2Tutorial3, tagsPart2Module2Tutorial4, tagsPart2Module2Tutorial5];
 // p2 m3
@@ -249,30 +299,91 @@ const tagsPart2Module3Tutorial1 = {
   title: "Сцена, камера и\u00A0рендерер",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
+
+  complexity: "filterComplexityInitial",
+  library: ["filterLibraryThreejs"],
+  format: ["filterFormatTechnique"],
+  verification: "filterVerificationExpert",
+  tags: [
+    "3D",
+    "Генеративная графика",
+    "Параметрические системы"
+  ]
 };
+
 const tagsPart2Module3Tutorial2 = {
   date: ["20260310"],
   title: "Геометрии и\u00A0материалы",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
+
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryThreejs"],
+  format: ["filterFormatTask"],
+  verification: "filterVerificationExpert",
+  tags: [
+    "3D",
+    "Текстуры",
+    "Геометрические алгоритмы",
+    "Параметрические системы",
+    "Генеративная графика"
+  ]
 };
+
 const tagsPart2Module3Tutorial3 = {
   date: ["20260311"],
   title: "Свет и\u00A0текстуры",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
+
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryThreejs"],
+  format: ["filterFormatTask"],
+  verification: "filterVerificationExpert",
+  tags: [
+    "3D",
+    "Текстуры",
+    "Генеративная графика",
+    "Процедурная генерация",
+    "Паттерны"
+  ]
 };
+
 const tagsPart2Module3Tutorial4 = {
   date: ["20260312"],
   title: "Анимация и\u00A0управление камерой",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
+
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryThreejs"],
+  format: ["filterFormatTechnique"],
+  verification: "filterVerificationExpert",
+  tags: [
+    "3D",
+    "Композиция",
+    "Алгоритмическая анимация",
+    "Параметрические системы",
+    "Интерактивные системы"
+  ]
 };
+
 const tagsPart2Module3Tutorial5 = {
   date: ["20260315"],
   title: "Импорт моделей",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
+
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryThreejs"],
+  format: ["filterFormatTask"],
+  verification: "filterVerificationExpert",
+  tags: [
+    "3D",
+    "Композиция",
+    "Параметрические системы",
+    "Генеративная графика"
+  ]
 };
 const tagsPart2Module3 = [tagsPart2Module3Tutorial1, tagsPart2Module3Tutorial2, tagsPart2Module3Tutorial3, tagsPart2Module3Tutorial4, tagsPart2Module3Tutorial5];
 const tagsPart2 = [tagsPart2Module1, tagsPart2Module2, tagsPart2Module3]

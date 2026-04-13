@@ -129,7 +129,7 @@ var defaultCodeById = {
   patr2module3tutorial4code6: "const width = app.clientWidth;\nconst height = app.clientHeight;\n\n// \u0441\u0446\u0435\u043D\u0430\nconst scene = new THREE.Scene();\nscene.background = new THREE.Color(0xf8f8f8);\n\n// \u043A\u0430\u043C\u0435\u0440\u0430\nconst camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);\n\n// \u0440\u0435\u043D\u0434\u0435\u0440\u0435\u0440\nconst renderer = new THREE.WebGLRenderer({ antialias: true });\nrenderer.setSize(width, height);\nrenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));\n\napp.innerHTML = \"\";\napp.appendChild(renderer.domElement);\n\n// \u0441\u0432\u0435\u0442\nconst light = new THREE.DirectionalLight(0xffffff, 1.4);\nlight.position.set(2, 3, 4);\nscene.add(light);\n\nconst ambientLight = new THREE.AmbientLight(0xffffff, 0.4);\nscene.add(ambientLight);\n\n// \u043F\u043E\u043B\nconst floorGeometry = new THREE.PlaneGeometry(8, 8);\nconst floorMaterial = new THREE.MeshStandardMaterial({ color: 0xd6d6d6 });\nconst floor = new THREE.Mesh(floorGeometry, floorMaterial);\nfloor.rotation.x = -Math.PI / 2;\nfloor.position.y = -1;\nscene.add(floor);\n\n// \u043A\u0443\u0431\nconst geometry = new THREE.BoxGeometry(1, 1, 1);\nconst material = new THREE.MeshStandardMaterial({ color: 0x858585 });\nconst mesh = new THREE.Mesh(geometry, material);\nscene.add(mesh);\n\n// \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u044F\nlet animationId;\nlet t = 0;\n\nfunction animate() {\n  t += 0.02;\n\n  // \u0431\u0430\u0437\u043E\u0432\u043E\u0435 \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435 \u043A\u0443\u0431\u0430\n  mesh.position.x = Math.sin(t) * 1.6;\n  mesh.position.y = -0.2;\n  mesh.rotation.y += 0.03;\n\n  // \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439 \u0440\u0430\u0441\u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C:\n\n  // \u0441\u0434\u0435\u043B\u0430\u0442\u044C \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435 \u043A\u0443\u0431\u0430 \u0430\u043A\u0442\u0438\u0432\u043D\u0435\u0435\n  // mesh.position.x = Math.sin(t * 1.6) * 2.2;\n\n  // \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043F\u043E\u0434\u043F\u0440\u044B\u0433\u0438\u0432\u0430\u043D\u0438\u0435\n  // mesh.position.y = -0.2 + Math.abs(Math.sin(t * 2.2)) * 0.35;\n\n  // \u0443\u0441\u0438\u043B\u0438\u0442\u044C \u0432\u0440\u0430\u0449\u0435\u043D\u0438\u0435\n  // mesh.rotation.x += 0.03;\n\n  // \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435 \u043A\u0430\u043C\u0435\u0440\u044B \u043F\u043E \u043A\u0440\u0443\u0433\u0443\n  camera.position.x = Math.cos(t * 0.6) * 4;\n  camera.position.z = Math.sin(t * 0.6) * 4;\n  camera.position.y = 2.2;\n\n  // \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439 \u0440\u0430\u0441\u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C:\n\n  // \u0441\u0434\u0435\u043B\u0430\u0442\u044C \u043A\u0440\u0443\u0433 \u043A\u0430\u043C\u0435\u0440\u044B \u0448\u0438\u0440\u0435\n  // camera.position.x = Math.cos(t * 0.6) * 5.5;\n  // camera.position.z = Math.sin(t * 0.6) * 5.5;\n\n  // \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043F\u043B\u0430\u0432\u043D\u043E\u0435 \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435 \u043A\u0430\u043C\u0435\u0440\u044B \u043F\u043E \u0432\u044B\u0441\u043E\u0442\u0435\n  // camera.position.y = 2.2 + Math.sin(t * 0.5) * 0.4;\n\n  camera.lookAt(0, -0.2, 0);\n\n  renderer.render(scene, camera);\n  animationId = requestAnimationFrame(animate);\n}\n\nanimate();\n\n// cleanup\nreturn () => {\n  cancelAnimationFrame(animationId);\n  geometry.dispose();\n  material.dispose();\n  floorGeometry.dispose();\n  floorMaterial.dispose();\n  renderer.dispose();\n};",
   patr2module3tutorial5code1: "const width = app.clientWidth;\nconst height = app.clientHeight;\n\n// \u0441\u0446\u0435\u043D\u0430\nconst scene = new THREE.Scene();\nscene.background = new THREE.Color(0xf8f8f8);\n\n// \u043A\u0430\u043C\u0435\u0440\u0430\nconst camera = new THREE.PerspectiveCamera(65, width / height, 0.1, 1000);\ncamera.position.set(0, 0.75, 5);\n\n// \u0440\u0435\u043D\u0434\u0435\u0440\u0435\u0440\nconst renderer = new THREE.WebGLRenderer({ antialias: true });\nrenderer.setSize(width, height);\nrenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));\n\napp.innerHTML = \"\";\napp.appendChild(renderer.domElement);\n\n// \u0441\u0432\u0435\u0442\nconst light = new THREE.DirectionalLight(0xffffff, 1.4);\nlight.position.set(3, 4, 5);\nscene.add(light);\n\nconst ambientLight = new THREE.AmbientLight(0xffffff, 0.4);\nscene.add(ambientLight);\n\n// \u0433\u0440\u0443\u043F\u043F\u0430 (\u043D\u0430\u0448 \u0431\u0443\u0434\u0443\u0449\u0438\u0439 \u043E\u0431\u044A\u0435\u043A\u0442)\nconst group = new THREE.Group();\nscene.add(group);\n\n// \u0442\u0435\u043B\u043E\nconst body = new THREE.Mesh(\n  new THREE.BoxGeometry(1.5, 2, 1),\n  new THREE.MeshStandardMaterial({ color: 0x7a7a7a })\n);\ngroup.add(body);\n\n// \u0433\u043E\u043B\u043E\u0432\u0430\nconst head = new THREE.Mesh(\n  new THREE.BoxGeometry(1, 1, 1),\n  new THREE.MeshStandardMaterial({ color: 0x9a9a9a })\n);\nhead.position.y = 1.5;\ngroup.add(head);\n\n// \u0440\u0443\u043A\u0438\nconst armLeft = new THREE.Mesh(\n  new THREE.BoxGeometry(0.4, 1.6, 0.4),\n  new THREE.MeshStandardMaterial({ color: 0x666666 })\n);\narmLeft.position.x = -1.1;\narmLeft.position.y = 0.3;\ngroup.add(armLeft);\n\nconst armRight = armLeft.clone();\narmRight.position.x = 1.1;\ngroup.add(armRight);\n\n// \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u044F\nlet animationId;\n\nfunction animate() {\n  group.rotation.y += 0.02;\n\n  renderer.render(scene, camera);\n  animationId = requestAnimationFrame(animate);\n}\n\nanimate();\n\n// cleanup\nreturn () => {\n  cancelAnimationFrame(animationId);\n  renderer.dispose();\n};",
   patr2module3tutorial5code2: "// \u0441\u043E\u0437\u0434\u0430\u0451\u043C \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u043E\u0442\u0434\u0435\u043B\u044C\u043D\u044B\u0445 \u043E\u0431\u044A\u0435\u043A\u0442\u043E\u0432\n\nconst body = new THREE.Mesh(\n  new THREE.BoxGeometry(1.5, 2, 1),\n  new THREE.MeshStandardMaterial({ color: 0x7a7a7a })\n);\n\nconst head = new THREE.Mesh(\n  new THREE.BoxGeometry(1, 1, 1),\n  new THREE.MeshStandardMaterial({ color: 0x9a9a9a })\n);\n\nhead.position.y = 1.5;\n\nscene.add(body);\nscene.add(head);",
-  patr2module3tutorial5code5: "const width = app.clientWidth;\nconst height = app.clientHeight;\n\n// \u0441\u0446\u0435\u043D\u0430\nconst scene = new THREE.Scene();\nscene.background = new THREE.Color(0xf8f8f8);\n\n// \u043A\u0430\u043C\u0435\u0440\u0430\nconst camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);\ncamera.position.set(3.2, 2.4, 5.2);\ncamera.lookAt(0, 0.8, 0);\n\n// \u0440\u0435\u043D\u0434\u0435\u0440\u0435\u0440\nconst renderer = new THREE.WebGLRenderer({ antialias: true });\nrenderer.setSize(width, height);\nrenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));\n\napp.innerHTML = \"\";\napp.appendChild(renderer.domElement);\n\n// \u0441\u0432\u0435\u0442\nconst light = new THREE.DirectionalLight(0xffffff, 1.4);\nlight.position.set(3, 4, 5);\nscene.add(light);\n\nconst ambientLight = new THREE.AmbientLight(0xffffff, 0.45);\nscene.add(ambientLight);\n\n// \u043F\u043E\u043B\nconst floorGeometry = new THREE.PlaneGeometry(10, 10);\nconst floorMaterial = new THREE.MeshStandardMaterial({ color: 0xe9e9e9 });\nconst floor = new THREE.Mesh(floorGeometry, floorMaterial);\nfloor.rotation.x = -Math.PI / 2;\nfloor.position.y = -1.2;\nscene.add(floor);\n\n// \u0433\u0440\u0443\u043F\u043F\u0430 \u2014 \u0431\u0443\u0434\u0443\u0449\u0438\u0439 \u0441\u043E\u0441\u0442\u0430\u0432\u043D\u043E\u0439 \u043E\u0431\u044A\u0435\u043A\u0442\nconst group = new THREE.Group();\nscene.add(group);\n\n// \u0442\u0435\u043B\u043E\nconst bodyGeometry = new THREE.BoxGeometry(1.5, 2, 1);\nconst bodyMaterial = new THREE.MeshStandardMaterial({ color: 0x7a7a7a });\nconst body = new THREE.Mesh(bodyGeometry, bodyMaterial);\nbody.position.y = 0;\ngroup.add(body);\n\n// \u0433\u043E\u043B\u043E\u0432\u0430\nconst headGeometry = new THREE.BoxGeometry(1, 1, 1);\nconst headMaterial = new THREE.MeshStandardMaterial({ color: 0x9a9a9a });\nconst head = new THREE.Mesh(headGeometry, headMaterial);\nhead.position.y = 1.5;\ngroup.add(head);\n\n// \u043B\u0435\u0432\u0430\u044F \u0440\u0443\u043A\u0430\nconst armGeometry = new THREE.BoxGeometry(0.35, 1.5, 0.35);\nconst armMaterial = new THREE.MeshStandardMaterial({ color: 0x666666 });\nconst armLeft = new THREE.Mesh(armGeometry, armMaterial);\narmLeft.position.x = -1.1;\narmLeft.position.y = 0.2;\ngroup.add(armLeft);\n\n// \u043F\u0440\u0430\u0432\u0430\u044F \u0440\u0443\u043A\u0430\nconst armRight = new THREE.Mesh(armGeometry, armMaterial);\narmRight.position.x = 1.1;\narmRight.position.y = 0.2;\ngroup.add(armRight);\n\n// \u043B\u0435\u0432\u0430\u044F \u043D\u043E\u0433\u0430\nconst legGeometry = new THREE.BoxGeometry(0.45, 1.3, 0.45);\nconst legMaterial = new THREE.MeshStandardMaterial({ color: 0x5a5a5a });\nconst legLeft = new THREE.Mesh(legGeometry, legMaterial);\nlegLeft.position.x = -0.4;\nlegLeft.position.y = -1.55;\ngroup.add(legLeft);\n\n// \u043F\u0440\u0430\u0432\u0430\u044F \u043D\u043E\u0433\u0430\nconst legRight = new THREE.Mesh(legGeometry, legMaterial);\nlegRight.position.x = 0.4;\nlegRight.position.y = -1.55;\ngroup.add(legRight);\n\n// \u043D\u0435\u0431\u043E\u043B\u044C\u0448\u043E\u0439 \u0432\u0435\u0440\u0445\u043D\u0438\u0439 \u044D\u043B\u0435\u043C\u0435\u043D\u0442\nconst hatGeometry = new THREE.ConeGeometry(0.6, 0.7, 4);\nconst hatMaterial = new THREE.MeshStandardMaterial({ color: 0x555555 });\nconst hat = new THREE.Mesh(hatGeometry, hatMaterial);\nhat.position.y = 2.35;\ngroup.add(hat);\n\n// \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u044F\nlet animationId;\n\nfunction animate() {\n  group.rotation.y += 0.02;\n\n  renderer.render(scene, camera);\n  animationId = requestAnimationFrame(animate);\n}\n\nanimate();\n\n// cleanup\nreturn () => {\n  cancelAnimationFrame(animationId);\n\n  bodyGeometry.dispose();\n  bodyMaterial.dispose();\n\n  headGeometry.dispose();\n  headMaterial.dispose();\n\n  armGeometry.dispose();\n  armMaterial.dispose();\n\n  legGeometry.dispose();\n  legMaterial.dispose();\n\n  hatGeometry.dispose();\n  hatMaterial.dispose();\n\n  floorGeometry.dispose();\n  floorMaterial.dispose();\n\n  renderer.dispose();\n};"
+  patr2module3tutorial5code5: "const width = app.clientWidth;\nconst height = app.clientHeight;\n\n// \u0441\u0446\u0435\u043D\u0430\nconst scene = new THREE.Scene();\nscene.background = new THREE.Color(0xf8f8f8);\n\n// \u043A\u0430\u043C\u0435\u0440\u0430\nconst camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);\ncamera.position.set(3.2, 2.4, 5.2);\ncamera.lookAt(0, 0.8, 0);\n\n// \u0440\u0435\u043D\u0434\u0435\u0440\u0435\u0440\nconst renderer = new THREE.WebGLRenderer({ antialias: true });\nrenderer.setSize(width, height);\nrenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));\n\napp.innerHTML = \"\";\napp.appendChild(renderer.domElement);\n\n// \u0441\u0432\u0435\u0442\nconst light = new THREE.DirectionalLight(0xffffff, 1.4);\nlight.position.set(3, 4, 5);\nscene.add(light);\n\nconst ambientLight = new THREE.AmbientLight(0xffffff, 0.45);\nscene.add(ambientLight);\n\n// \u043F\u043E\u043B\nconst floorGeometry = new THREE.PlaneGeometry(10, 10);\nconst floorMaterial = new THREE.MeshStandardMaterial({ color: 0xe9e9e9 });\nconst floor = new THREE.Mesh(floorGeometry, floorMaterial);\nfloor.rotation.x = -Math.PI / 2;\nfloor.position.y = -1.2;\nscene.add(floor);\n\n// \u0433\u0440\u0443\u043F\u043F\u0430 \u2014 \u0431\u0443\u0434\u0443\u0449\u0438\u0439 \u0441\u043E\u0441\u0442\u0430\u0432\u043D\u043E\u0439 \u043E\u0431\u044A\u0435\u043A\u0442\nconst group = new THREE.Group();\nscene.add(group);\n\n// \u0442\u0435\u043B\u043E\nconst bodyGeometry = new THREE.BoxGeometry(1.5, 2, 1);\nconst bodyMaterial = new THREE.MeshStandardMaterial({ color: 0x7a7a7a });\nconst body = new THREE.Mesh(bodyGeometry, bodyMaterial);\nbody.position.y = 0;\ngroup.add(body);\n\n// \u0433\u043E\u043B\u043E\u0432\u0430\nconst headGeometry = new THREE.BoxGeometry(1, 1, 1);\nconst headMaterial = new THREE.MeshStandardMaterial({ color: 0x9a9a9a });\nconst head = new THREE.Mesh(headGeometry, headMaterial);\nhead.position.y = 1.5;\ngroup.add(head);\n\n// \u043B\u0435\u0432\u0430\u044F \u0440\u0443\u043A\u0430\nconst armGeometry = new THREE.BoxGeometry(0.35, 1.5, 0.35);\nconst armMaterial = new THREE.MeshStandardMaterial({ color: 0x666666 });\nconst armLeft = new THREE.Mesh(armGeometry, armMaterial);\narmLeft.position.x = -1.1;\narmLeft.position.y = 0.2;\ngroup.add(armLeft);\n\n// \u043F\u0440\u0430\u0432\u0430\u044F \u0440\u0443\u043A\u0430\nconst armRight = new THREE.Mesh(armGeometry, armMaterial);\narmRight.position.x = 1.1;\narmRight.position.y = 0.2;\ngroup.add(armRight);\n\n// \u043B\u0435\u0432\u0430\u044F \u043D\u043E\u0433\u0430\nconst legGeometry = new THREE.BoxGeometry(0.45, 1.3, 0.45);\nconst legMaterial = new THREE.MeshStandardMaterial({ color: 0x5a5a5a });\nconst legLeft = new THREE.Mesh(legGeometry, legMaterial);\nlegLeft.position.x = -0.4;\nlegLeft.position.y = -1.55;\ngroup.add(legLeft);\n\n// \u043F\u0440\u0430\u0432\u0430\u044F \u043D\u043E\u0433\u0430\nconst legRight = new THREE.Mesh(legGeometry, legMaterial);\nlegRight.position.x = 0.4;\nlegRight.position.y = -1.55;\ngroup.add(legRight);\n\n// \u043D\u0435\u0431\u043E\u043B\u044C\u0448\u043E\u0439 \u0432\u0435\u0440\u0445\u043D\u0438\u0439 \u044D\u043B\u0435\u043C\u0435\u043D\u0442\nconst hatGeometry = new THREE.ConeGeometry(0.6, 0.7, 4);\nconst hatMaterial = new THREE.MeshStandardMaterial({ color: 0x555555 });\nconst hat = new THREE.Mesh(hatGeometry, hatMaterial);\nhat.position.y = 2.35;\n// group.add(hat);\n\n// \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u044F\nlet animationId;\n\nfunction animate() {\n  group.rotation.y += 0.02;\n\n  renderer.render(scene, camera);\n  animationId = requestAnimationFrame(animate);\n}\n\nanimate();\n\n// cleanup\nreturn () => {\n  cancelAnimationFrame(animationId);\n\n  bodyGeometry.dispose();\n  bodyMaterial.dispose();\n\n  headGeometry.dispose();\n  headMaterial.dispose();\n\n  armGeometry.dispose();\n  armMaterial.dispose();\n\n  legGeometry.dispose();\n  legMaterial.dispose();\n\n  hatGeometry.dispose();\n  hatMaterial.dispose();\n\n  floorGeometry.dispose();\n  floorMaterial.dispose();\n\n  renderer.dispose();\n};"
 };
 ;// ./src/javascripts/pages/tutorialsCodeRuntimes.js
 function getBaseStyles() {
@@ -241,7 +241,8 @@ var filtersFormat = ["filterFormatTechnique", "filterFormatTask", "filterFormatV
 var filtersVerification = ["filterVerificationAuthorial", "filterVerificationExpert"];
 var filtersAll = [filtersComplexity, filtersLibrary, filtersFormat, filtersVerification];
 // Теги
-var tags = (/* unused pure expression or super */ null && (["Генеративная графика", "Шум", "Геометрические алгоритмы", "Фракталы", "Параметрические системы", "Волны", "Рекурсия", "Случайность", "Поля векторов", "Симуляции", "Клеточные автоматы", "L-системы", "Процедурная генерация", "Паттерны", "Алгоритмическая анимация", "Частицы", "Интерактивные системы", "Аудиореактивная графика"]));
+var tags = (/* unused pure expression or super */ null && (["Генеративная графика", "Шум", "Текстуры", "Геометрические алгоритмы", "Фракталы", "Параметрические системы", "Волны", "Рекурсия", "Случайность", "Поля векторов", "Симуляции", "Клеточные автоматы", "L-системы", "Процедурная генерация", "Паттерны", "Алгоритмическая анимация", "Частицы", "Интерактивные системы", "3D", "Аудиореактивная графика", "Композиция"]));
+// add   "3D", "Текстуры", "Композиция", 
 
 // Массивы с фонами
 // Изображения
@@ -343,7 +344,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
 // p1m1
 var tagsPart1Module1Tutorial1 = {
   complexity: "filterComplexityInitial",
-  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  library: ["filterLibraryP5js"],
   format: ["filterFormatTechnique"],
   verification: "filterVerificationExpert",
   date: ["20251227"],
@@ -354,7 +355,7 @@ var tagsPart1Module1Tutorial1 = {
 };
 var tagsPart1Module1Tutorial2 = {
   complexity: "filterComplexityInitial",
-  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  library: ["filterLibraryP5js"],
   format: ["filterFormatTechnique"],
   verification: "filterVerificationExpert",
   date: ["20251229"],
@@ -372,7 +373,7 @@ var tagsPart1Module1Tutorial3 = {
   title: "\u0426\u0432\u0435\u0442, \u0444\u043E\u0440\u043C\u0430 \u0438\xA0\u043A\u043E\u043C\u043F\u043E\u0437\u0438\u0446\u0438\u044F",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
-  tags: ["Генеративная графика", "Паттерны", "Параметрические системы"]
+  tags: ["Композиция", "Генеративная графика", "Паттерны", "Параметрические системы"]
 };
 var tagsPart1Module1 = [tagsPart1Module1Tutorial1, tagsPart1Module1Tutorial2, tagsPart1Module1Tutorial3];
 
@@ -380,7 +381,7 @@ var tagsPart1Module1 = [tagsPart1Module1Tutorial1, tagsPart1Module1Tutorial2, ta
 var tagsPart1Module2Tutorial1 = {
   complexity: "filterComplexityInitial",
   library: ["filterLibraryVanillajs", "filterLibraryP5js"],
-  format: ["filterFormatTechnique"],
+  format: ["filterFormatVariation", "filterFormatTechnique"],
   verification: "filterVerificationExpert",
   date: ["20260112"],
   title: "\u041F\u0435\u0440\u0435\u043C\u0435\u043D\u043D\u044B\u0435 \u0438\xA0\u0443\u0441\u043B\u043E\u0432\u0438\u044F",
@@ -397,7 +398,7 @@ var tagsPart1Module2Tutorial2 = {
   title: "\u0426\u0438\u043A\u043B\u044B: \u0440\u0438\u0442\u043C \u0438\xA0\u0441\u0442\u0440\u0443\u043A\u0442\u0443\u0440\u0430",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
-  tags: ["Паттерны", "Генеративная графика", "Параметрические системы"]
+  tags: ["Паттерны", "Генеративная графика", "Параметрические системы", "Композиция"]
 };
 var tagsPart1Module2Tutorial3 = {
   complexity: "filterComplexityInitial",
@@ -424,13 +425,13 @@ var tagsPart1Module2Tutorial4 = {
 var tagsPart1Module2Tutorial5 = {
   complexity: "filterComplexityMiddle",
   library: ["filterLibraryP5js"],
-  format: ["filterFormatTask"],
+  format: ["filterFormatTechnique"],
   verification: "filterVerificationExpert",
   date: ["20260119"],
   title: "Паттерны повторов",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
-  tags: ["Паттерны", "Генеративная графика", "Параметрические системы"]
+  tags: ["Паттерны", "Композиция", "Генеративная графика", "Параметрические системы", "Текстуры"]
 };
 var tagsPart1Module2 = [tagsPart1Module2Tutorial1, tagsPart1Module2Tutorial2, tagsPart1Module2Tutorial3, tagsPart1Module2Tutorial4, tagsPart1Module2Tutorial5];
 var tagsPart1 = [tagsPart1Module1, tagsPart1Module2];
@@ -438,7 +439,7 @@ var tagsPart1 = [tagsPart1Module1, tagsPart1Module2];
 var tagsPart2Module1Tutorial1 = {
   complexity: "filterComplexityInitial",
   library: ["filterLibraryVanillajs", "filterLibraryP5js"],
-  format: ["filterFormatVariation"],
+  format: ["filterFormatVariation", "filterFormatTechnique"],
   verification: "filterVerificationExpert",
   date: ["20260125"],
   title: "\u0421\u043E\u0437\u0434\u0430\u043D\u0438\u0435 \u0438\xA0\u0443\u0434\u0430\u043B\u0435\u043D\u0438\u0435 \u044D\u043B\u0435\u043C\u0435\u043D\u0442\u043E\u0432",
@@ -455,10 +456,10 @@ var tagsPart2Module1Tutorial2 = {
   title: "\u0421\u0442\u0438\u043B\u0438 \u0438\xA0\u0442\u0440\u0430\u043D\u0441\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u0438",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
-  tags: ["Интерактивные системы", "Параметрические системы", "Генеративная графика"]
+  tags: ["Композиция", "Интерактивные системы", "Параметрические системы", "Генеративная графика"]
 };
 var tagsPart2Module1Tutorial3 = {
-  complexity: "filterComplexityMiddle",
+  complexity: "filterComplexityInitial",
   library: ["filterLibraryVanillajs"],
   format: ["filterFormatTechnique"],
   verification: "filterVerificationExpert",
@@ -479,31 +480,51 @@ var tagsPart2Module2Tutorial1 = {
   title: "\u0426\u0438\u043A\u043B \u043E\u0442\u0440\u0438\u0441\u043E\u0432\u043A\u0438 \u0438\xA0\u0444\u0438\u0433\u0443\u0440\u044B",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
-  tags: ["Алгоритмическая анимация", "Параметрические системы", "Генеративная графика"]
+  tags: ["Генеративная графика", "Параметрические системы", "Алгоритмическая анимация"]
 };
 var tagsPart2Module2Tutorial2 = {
   date: ["20260209"],
   title: "\u0418\u043D\u0442\u0435\u0440\u0430\u043A\u0442\u0438\u0432 \u0441\xA0\u043C\u044B\u0448\u044C\u044E \u0438\xA0\u043A\u043B\u0430\u0432\u0438\u0430\u0442\u0443\u0440\u043E\u0439",
   author: "digitalnaya",
-  link: "https://web.telegram.org/k/#@digitalnaya"
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  complexity: "filterComplexityInitial",
+  library: ["filterLibraryP5js"],
+  format: ["filterFormatTask"],
+  verification: "filterVerificationExpert",
+  tags: ["Интерактивные системы", "Случайность", "Параметрические системы"]
 };
 var tagsPart2Module2Tutorial3 = {
   date: ["20260216"],
   title: "\u0422\u0430\u0439\u043B\u0438\u043D\u0433 \u0438\xA0\u0434\u0438\u0441\u043F\u043B\u0435\u0439\u0441\u043C\u0435\u043D\u0442",
   author: "digitalnaya",
-  link: "https://web.telegram.org/k/#@digitalnaya"
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryP5js"],
+  format: ["filterFormatTask"],
+  verification: "filterVerificationExpert",
+  tags: ["Паттерны", "Композиция", "Геометрические алгоритмы", "Процедурная генерация", "Параметрические системы"]
 };
 var tagsPart2Module2Tutorial4 = {
   date: ["20260219"],
   title: "Эффекты движения",
   author: "digitalnaya",
-  link: "https://web.telegram.org/k/#@digitalnaya"
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+  format: ["filterFormatVariation"],
+  verification: "filterVerificationExpert",
+  tags: ["Алгоритмическая анимация", "Волны", "Случайность", "Параметрические системы"]
 };
 var tagsPart2Module2Tutorial5 = {
   date: ["20260223"],
   title: "Рисование шумом",
   author: "digitalnaya",
-  link: "https://web.telegram.org/k/#@digitalnaya"
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryP5js"],
+  format: ["filterFormatTechnique"],
+  verification: "filterVerificationExpert",
+  tags: ["Шум", "Процедурная генерация", "Генеративная графика"]
 };
 var tagsPart2Module2 = [tagsPart2Module2Tutorial1, tagsPart2Module2Tutorial2, tagsPart2Module2Tutorial3, tagsPart2Module2Tutorial4, tagsPart2Module2Tutorial5];
 // p2 m3
@@ -511,31 +532,56 @@ var tagsPart2Module3Tutorial1 = {
   date: ["20260305"],
   title: "\u0421\u0446\u0435\u043D\u0430, \u043A\u0430\u043C\u0435\u0440\u0430 \u0438\xA0\u0440\u0435\u043D\u0434\u0435\u0440\u0435\u0440",
   author: "digitalnaya",
-  link: "https://web.telegram.org/k/#@digitalnaya"
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  complexity: "filterComplexityInitial",
+  library: ["filterLibraryThreejs"],
+  format: ["filterFormatTechnique"],
+  verification: "filterVerificationExpert",
+  tags: ["3D", "Генеративная графика", "Параметрические системы"]
 };
 var tagsPart2Module3Tutorial2 = {
   date: ["20260310"],
   title: "\u0413\u0435\u043E\u043C\u0435\u0442\u0440\u0438\u0438 \u0438\xA0\u043C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\u044B",
   author: "digitalnaya",
-  link: "https://web.telegram.org/k/#@digitalnaya"
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryThreejs"],
+  format: ["filterFormatTask"],
+  verification: "filterVerificationExpert",
+  tags: ["3D", "Текстуры", "Геометрические алгоритмы", "Параметрические системы", "Генеративная графика"]
 };
 var tagsPart2Module3Tutorial3 = {
   date: ["20260311"],
   title: "\u0421\u0432\u0435\u0442 \u0438\xA0\u0442\u0435\u043A\u0441\u0442\u0443\u0440\u044B",
   author: "digitalnaya",
-  link: "https://web.telegram.org/k/#@digitalnaya"
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  complexity: "filterComplexityMiddle",
+  library: ["filterLibraryThreejs"],
+  format: ["filterFormatTask"],
+  verification: "filterVerificationExpert",
+  tags: ["3D", "Текстуры", "Генеративная графика", "Процедурная генерация", "Паттерны"]
 };
 var tagsPart2Module3Tutorial4 = {
   date: ["20260312"],
   title: "\u0410\u043D\u0438\u043C\u0430\u0446\u0438\u044F \u0438\xA0\u0443\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u0435 \u043A\u0430\u043C\u0435\u0440\u043E\u0439",
   author: "digitalnaya",
-  link: "https://web.telegram.org/k/#@digitalnaya"
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryThreejs"],
+  format: ["filterFormatTechnique"],
+  verification: "filterVerificationExpert",
+  tags: ["3D", "Композиция", "Алгоритмическая анимация", "Параметрические системы", "Интерактивные системы"]
 };
 var tagsPart2Module3Tutorial5 = {
   date: ["20260315"],
   title: "Импорт моделей",
   author: "digitalnaya",
-  link: "https://web.telegram.org/k/#@digitalnaya"
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryThreejs"],
+  format: ["filterFormatTask"],
+  verification: "filterVerificationExpert",
+  tags: ["3D", "Композиция", "Параметрические системы", "Генеративная графика"]
 };
 var tagsPart2Module3 = [tagsPart2Module3Tutorial1, tagsPart2Module3Tutorial2, tagsPart2Module3Tutorial3, tagsPart2Module3Tutorial4, tagsPart2Module3Tutorial5];
 var tagsPart2 = [tagsPart2Module1, tagsPart2Module2, tagsPart2Module3];
@@ -1096,8 +1142,9 @@ function initTutorialCodePreviewBlocks() {
   document.querySelectorAll(".A_TutorialCopyText").forEach(function (block) {
     var rawHtml = block.innerHTML;
     var normalized = rawHtml.split(/<br\s*\/?>/gi).map(function (line) {
-      return line.replace(/\n/g, "").replace(/\t/g, "").replace(/&nbsp;/g, " ").trim();
-    }).join("\n");
+      return line.replace(/\n/g, "").replace(/\t/g, "").replace(/&nbsp;/g, "\xA0").replace(/\s+$/g, "");
+    } // убираем только хвост
+    ).join("\n");
     block.innerHTML = highlightCode(normalized).replace(/\n/g, "<br>");
   });
 }

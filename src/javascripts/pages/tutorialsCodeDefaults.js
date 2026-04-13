@@ -2959,7 +2959,7 @@ const hatGeometry = new THREE.ConeGeometry(0.6, 0.7, 4);
 const hatMaterial = new THREE.MeshStandardMaterial({ color: 0x555555 });
 const hat = new THREE.Mesh(hatGeometry, hatMaterial);
 hat.position.y = 2.35;
-group.add(hat);
+// group.add(hat);
 
 // анимация
 let animationId;

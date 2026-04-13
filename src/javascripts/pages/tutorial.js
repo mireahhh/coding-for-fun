@@ -464,8 +464,8 @@ function initTutorialCodePreviewBlocks() {
         line
           .replace(/\n/g, "")
           .replace(/\t/g, "")
-          .replace(/&nbsp;/g, " ")
-          .trim()
+          .replace(/&nbsp;/g, "\u00A0")
+          .replace(/\s+$/g, "") // убираем только хвост
       )
       .join("\n");
 
