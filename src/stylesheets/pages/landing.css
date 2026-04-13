@@ -33,7 +33,6 @@
     .O_LandingCover {
         position: relative;
         isolation: isolate;
-
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -50,24 +49,12 @@
             inset: -100%;
             z-index: 0;
             pointer-events: none;
-
-            background:
-                linear-gradient(0deg,
-                    var(--colors-brand-rainbow-subtrate-loop)),
-                linear-gradient(180deg,
-                    var(--colors-brand-rainbow-loop));
-
-            background-size:
-                100% 100%,
-                100% 100%;
-            background-position:
-                0 100%,
-                0 0%;
+            background: linear-gradient(0deg, var(--colors-brand-rainbow-subtrate-loop)), linear-gradient(180deg, var(--colors-brand-rainbow-loop));
+            background-size: 100% 50%, 100% 50%;
+            background-position: 0 100%, 0 0%;
             background-repeat: repeat;
-
             filter: saturate(1.2) brightness(1.05);
             mix-blend-mode: plus-lighter;
-
             animation: landingRainbowFlow 12s linear infinite;
         }
 
@@ -556,15 +543,11 @@
 
 @keyframes landingRainbowFlow {
     from {
-        background-position:
-            0 150%,
-            0 50%;
+        background-position: 0 150%, 0 50%;
     }
 
     to {
-        background-position:
-            0 50%,
-            0 150%;
+        background-position: 0 50%, 0 150%;
     }
 }
 

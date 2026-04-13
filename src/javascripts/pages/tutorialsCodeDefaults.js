@@ -947,7 +947,7 @@ setTimeout(() => {
     card.style.left = "50%";
     card.style.top = "50%";
     card.style.borderRadius = "24px";
-    card.style.background = i % 2 === 0 ? "#1f1f1f" : "#d6d6d6";
+    card.style.background = i % 2 === 0 ? "#ffffff" : "#d6d6d6";
     card.style.boxShadow = "0 12px 32px rgba(31, 31, 31, 0.12)";
     card.style.transform =
       "translate(calc(-50% + " + offsetX + "px), calc(-50% + " + offsetY + "px)) rotate(" + angle + "deg)";
@@ -979,7 +979,7 @@ card.style.left = "50%";
 card.style.top = "50%";
 card.style.transform = "translate(-50%, -50%)";
 card.style.borderRadius = "24px";
-card.style.background = "#1f1f1f";
+card.style.background = "#ffffff";
 card.style.boxShadow = "0 12px 32px rgba(31, 31, 31, 0.12)";
 
 app.appendChild(card);`,
@@ -999,8 +999,9 @@ for (let i = 0; i < cardsCount; i++) {
   card.style.height = "180px";
   card.style.left = "50%";
   card.style.top = "50%";
+  card.style.boxShadow = "0 12px 32px rgba(31, 31, 31, 0.12)";
   card.style.borderRadius = "24px";
-  card.style.background = "#858585";
+  card.style.background = "#d6d6d6";
   card.style.transform = \`translate(calc(-50% + \${i * 36 - 72}px), calc(-50% + \${i * 8}px))\`;
 
   app.appendChild(card);
@@ -1022,7 +1023,7 @@ for (let i = 0; i < cardsCount; i++) {
   card.style.left = "50%";
   card.style.top = "50%";
   card.style.borderRadius = "24px";
-  card.style.background = i % 2 === 0 ? "#1f1f1f" : "#d6d6d6";
+  card.style.background = i % 2 === 0 ? "#ffffff" : "#d6d6d6";
   card.style.boxShadow = "0 12px 32px rgba(31, 31, 31, 0.12)";
   card.style.transform = \`translate(calc(-50% + \${i * 36 - 72}px), calc(-50% + \${i * 8}px)) rotate(\${i * 6 - 12}deg)\`;
   card.style.transition = "transform 0.3s ease";
@@ -1066,13 +1067,13 @@ for (let i = 0; i < cardsCount; i++) {
     // попробуй раскомментировать:
     // angle = i * 10 - 20;
     // offsetX = i * 24 - 48;
-    // card.style.background = i % 2 === 0 ? "#1f1f1f" : "#d6d6d6";
+    // card.style.background = i % 2 === 0 ? "#ffffff" : "#f8f8f8";
 
     card.style.transform = \`translate(calc(-50% + \${offsetX}px), calc(-50% + \${offsetY}px)) rotate(\${angle}deg)\`;
 
     card.addEventListener("mouseenter", () => {
       // попробуй раскомментировать:
-      // card.style.background = "#1f1f1f";
+      // card.style.background = "#ffffff";
       // card.style.transform = \`translate(calc(-50% + \${offsetX}px), calc(-50% + \${offsetY}px)) rotate(\${angle}deg) scale(1.08)\`;
     });
 

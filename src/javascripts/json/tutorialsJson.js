@@ -393,6 +393,16 @@ const tagsPart3Module1Tutorial1 = {
   title: "random(\u00A0) и\u00A0noise(\u00A0)",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
+
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryP5js"],
+  format: ["filterFormatTechnique"],
+  verification: "filterVerificationExpert",
+  tags: [
+    "Шум",
+    "Процедурная генерация",
+    "Генеративная графика"
+  ]
 };
 const tagsPart3Module1Tutorial2 = {
   date: ["20260319"],
@@ -437,6 +447,18 @@ const tagsPart3Module2Tutorial4 = {
   title: "Векторные поля",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
+
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryP5js"],
+  format: ["filterFormatTask"],
+  verification: "filterVerificationExpert",
+  tags: [
+    "Паттерны",
+    "Композиция",
+    "Геометрические алгоритмы",
+    "Процедурная генерация",
+    "Параметрические системы"
+  ]
 };
 const tagsPart3Module2Tutorial5 = {
   date: ["20260403"],

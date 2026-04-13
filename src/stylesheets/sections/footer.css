@@ -251,6 +251,10 @@
                         width: 100%;
                         height: var(--size-spacing-48);
                     }
+
+                    input {
+                        text-decoration: none !important;
+                    }
                 }
             }
         }

@@ -480,7 +480,12 @@ var tagsPart3Module1Tutorial1 = {
   date: ["20260318"],
   title: "random(\xA0) \u0438\xA0noise(\xA0)",
   author: "digitalnaya",
-  link: "https://web.telegram.org/k/#@digitalnaya"
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryP5js"],
+  format: ["filterFormatTechnique"],
+  verification: "filterVerificationExpert",
+  tags: ["Шум", "Процедурная генерация", "Генеративная графика"]
 };
 var tagsPart3Module1Tutorial2 = {
   date: ["20260319"],
@@ -524,7 +529,12 @@ var tagsPart3Module2Tutorial4 = {
   date: ["20260401"],
   title: "Векторные поля",
   author: "digitalnaya",
-  link: "https://web.telegram.org/k/#@digitalnaya"
+  link: "https://web.telegram.org/k/#@digitalnaya",
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryP5js"],
+  format: ["filterFormatTask"],
+  verification: "filterVerificationExpert",
+  tags: ["Паттерны", "Композиция", "Геометрические алгоритмы", "Процедурная генерация", "Параметрические системы"]
 };
 var tagsPart3Module2Tutorial5 = {
   date: ["20260403"],
