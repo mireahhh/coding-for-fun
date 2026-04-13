@@ -670,6 +670,7 @@
                     .W_TutorialSingleCodeExecution {
                         max-width: none;
                         width: 100%;
+                        border: none;
 
                         .A_TutorialSingleCodeExecutionCanvas {
                             margin: auto;
