@@ -37,6 +37,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        overflow: hidden;
 
         &>* {
             position: relative;
@@ -46,18 +47,28 @@
         &::before {
             content: "";
             position: absolute;
-            inset: 0;
+            inset: -100%;
             z-index: 0;
             pointer-events: none;
 
             background:
                 linear-gradient(0deg,
-                    var(--colors-brand-rainbow-subtrate)),
+                    var(--colors-brand-rainbow-subtrate-loop)),
                 linear-gradient(180deg,
-                    var(--colors-brand-rainbow));
+                    var(--colors-brand-rainbow-loop));
+
+            background-size:
+                100% 100%,
+                100% 100%;
+            background-position:
+                0 100%,
+                0 0%;
+            background-repeat: repeat;
 
             filter: saturate(1.2) brightness(1.05);
             mix-blend-mode: plus-lighter;
+
+            animation: landingRainbowFlow 12s linear infinite;
         }
 
         .O_LandingIntro {
@@ -68,6 +79,7 @@
             flex-direction: column;
             align-items: center;
             align-self: stretch;
+            margin-top: 0;
 
             .W_LandingIntroTitleAndButtons {
                 display: flex;
@@ -132,8 +144,8 @@
             padding-inline: 5%;
             box-sizing: border-box;
             width: 100%;
-            /* 224 */
-            margin-top: var(--size-spacing-32);
+            /* 32 */
+            margin-top: var(--size-spacing-16);
             height: var(--size-spacing-558);
 
             .A_LandingCoverIllustrationImage1,
@@ -192,7 +204,7 @@
 
         .C_LandingCoverRunningTags {
             position: absolute;
-            bottom: 0;
+            bottom: 10px;
             left: 0;
 
             display: block;
@@ -539,6 +551,20 @@
                 }
             }
         }
+    }
+}
+
+@keyframes landingRainbowFlow {
+    from {
+        background-position:
+            0 150%,
+            0 50%;
+    }
+
+    to {
+        background-position:
+            0 50%,
+            0 150%;
     }
 }
 

@@ -207,6 +207,18 @@ var galleryVideos = {
   27: _27_namespaceObject,
   30: _30_namespaceObject
 };
+;// ./src/images/pages/landing/history0.png
+const history0_namespaceObject = __webpack_require__.p + "images/6278915bc7d1e1f07e09.png";
+;// ./src/images/pages/landing/history1.png
+const history1_namespaceObject = __webpack_require__.p + "images/967e66ff0bb7e9be04dd.png";
+;// ./src/images/pages/landing/history2.png
+const history2_namespaceObject = __webpack_require__.p + "images/dd0038eb950352c0f7d1.png";
+;// ./src/images/pages/landing/book0.png
+const book0_namespaceObject = __webpack_require__.p + "images/faec347343c23a246536.png";
+;// ./src/images/pages/landing/book1.png
+const book1_namespaceObject = __webpack_require__.p + "images/ea7c2255cfb3d82b7e75.png";
+;// ./src/images/pages/landing/book2.png
+const book2_namespaceObject = __webpack_require__.p + "images/ce3361fdeaa261e0138d.png";
 ;// ./src/javascripts/pages/landing.js
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -268,6 +280,41 @@ function initLandingTagsMarquee() {
     }, 100);
   });
 }
+
+
+
+
+
+
+var data = [[history0_namespaceObject, history1_namespaceObject, history2_namespaceObject], [book0_namespaceObject, book1_namespaceObject, book2_namespaceObject]];
+document.querySelectorAll(".O_LandingLink").forEach(function (card, i) {
+  return;
+  // removed by dead control flow
+ var wrapper; 
+  // removed by dead control flow
+
+  // removed by dead control flow
+ var currentImg; 
+  // removed by dead control flow
+ var nextImg; 
+  // removed by dead control flow
+ var images; 
+  // removed by dead control flow
+
+  // removed by dead control flow
+ var index; 
+  // removed by dead control flow
+ var DURATION;  // ← должно совпадать с CSS
+
+  // removed by dead control flow
+
+  // removed by dead control flow
+
+  // removed by dead control flow
+ var slide; 
+  // removed by dead control flow
+
+});
 initLandingTagsMarquee();
 /******/ })()
 ;

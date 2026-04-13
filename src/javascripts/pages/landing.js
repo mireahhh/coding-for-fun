@@ -73,4 +73,68 @@ function initLandingTagsMarquee() {
     });
 }
 
+import history0 from "../../images/pages/landing/history0.png";
+import history1 from "../../images/pages/landing/history1.png";
+import history2 from "../../images/pages/landing/history2.png";
+
+import book0 from "../../images/pages/landing/book0.png";
+import book1 from "../../images/pages/landing/book1.png";
+import book2 from "../../images/pages/landing/book2.png";
+
+const data = [
+    [history0, history1, history2],
+    [book0, book1, book2],
+];
+
+document.querySelectorAll(".O_LandingLink").forEach((card, i) => {
+    return;
+  const wrapper = card.querySelector(".A_LandingLinkImageWrapper");
+  if (!wrapper) return;
+
+  const currentImg = wrapper.querySelector(".A_LandingLinkImage--current");
+  const nextImg = wrapper.querySelector(".A_LandingLinkImage--next");
+
+  const images = data[i];
+  if (!images || images.length < 2) return;
+
+  let index = 0;
+
+  const DURATION = 800; // ← должно совпадать с CSS
+
+  currentImg.src = images[index];
+  nextImg.src = images[(index + 1) % images.length];
+
+  const slide = () => {
+    // старт анимации
+    wrapper.classList.add("is-sliding");
+
+    setTimeout(() => {
+      // 1. обновляем индекс
+      index = (index + 1) % images.length;
+
+      // 2. current получает новую картинку
+      currentImg.src = images[index];
+
+      // 3. next мгновенно уводим вправо
+      nextImg.style.transition = "none";
+      nextImg.style.transform = "translateX(100%)";
+
+      // форсим перерисовку
+      void nextImg.offsetWidth;
+
+      // 4. возвращаем transition
+      nextImg.style.transition = "";
+
+      // 5. задаём следующую картинку
+      nextImg.src = images[(index + 1) % images.length];
+
+      // 6. убираем класс
+      wrapper.classList.remove("is-sliding");
+
+    }, DURATION);
+  };
+
+  setInterval(slide, 3000);
+});
+
 initLandingTagsMarquee();

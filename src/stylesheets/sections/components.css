@@ -8,11 +8,36 @@
         linear-gradient(0deg,
             var(--colors-brand-rainbow-subtrate)),
         linear-gradient(90deg,
-            var(--colors-brand-rainbow));
+            var(--colors-brand-rainbow-loop));
     background-blend-mode: plus-lighter, normal;
+
+    background-size:
+        100% 100%,
+        200% 100%;
+    background-position:
+        0 0,
+        0 0;
+    background-repeat: repeat;
+
+    background-blend-mode: plus-lighter, normal;
+    animation: titleRainbowFlow 4s linear infinite;
 
     /* U_FontH0 */
     color: var(--colors-neutrals-900);
+}
+
+@keyframes titleRainbowFlow {
+    from {
+        background-position:
+            0 0,
+            0% 0;
+    }
+
+    to {
+        background-position:
+            0 0,
+            200% 0;
+    }
 }
 
 /* m 4 -> 3 */

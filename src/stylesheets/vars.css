@@ -113,6 +113,22 @@
     --colors-brand-rainbow-subtrate:
         var(--colors-neutrals-0-15),
         var(--colors-neutrals-0-30);
+    --colors-brand-rainbow-loop:
+        #F372B5 0%,
+        #F76479 10%,
+        #FC7C56 20%,
+        #FACE4E 30%,
+        #97E954 40%,
+        #5CD686 50%,
+        #5DD6BD 60%,
+        #5AD7E0 70%,
+        #57B9E9 80%,
+        #8B7CF6 90%,
+        #F372B5 100%;
+    --colors-brand-rainbow-subtrate-loop:
+        var(--colors-neutrals-0-15),
+        var(--colors-neutrals-0-30),
+        var(--colors-neutrals-0-15);
 
     /* neutrais */
     /* 255 ff */

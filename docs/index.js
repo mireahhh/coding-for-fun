@@ -6,7 +6,7 @@
 
 // Сдвинуть на хедер
 // Не лендинг ли
-var isLanding = document.getElementById("landing");
+var isLanding = document.querySelector(".S_Header--Landing");
 // Получаем высоту хедера
 var header = document.querySelector(".S_Header");
 // Применяем отступ к контенту
@@ -15,8 +15,11 @@ var footerContent = document.querySelector(".S_Footer");
 //Функция 
 function applyHeaderOffset() {
   var headerHeight = header.offsetHeight;
-  if (isLanding && false) // removed by dead control flow
-{ var landingIntro; }
+  if (isLanding) {
+    var landingIntro = document.querySelector(".O_LandingIntro");
+    landingIntro.style.marginTop = headerHeight + "px";
+    return;
+  }
   mainContent.style.paddingTop = headerHeight + "px";
   //footerContent.style.paddingTop = headerHeight + "px";
 }

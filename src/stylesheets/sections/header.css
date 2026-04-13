@@ -11,7 +11,6 @@
     /* background-color: transparent // Прозрачный */
     /* background-color: var(--colors-neutrals-body-01); */
     /* backdrop-filter: blur(var(--size-spacing-50)); */
-    box-shadow: 0 0 var(--size-spacing-8) var(--colors-neutrals-900-20);
     align-items: center;
     z-index: 256;
 
@@ -26,6 +25,7 @@
         inset: 0;
         z-index: 0;
 
+        box-shadow: 0 0 var(--size-spacing-8) var(--colors-neutrals-900-20);
         background: var(--colors-neutrals-body);
         pointer-events: none;
     }
@@ -188,14 +188,13 @@
     }
 }
 
-/* .S_Header--Landing {
-    backdrop-filter: blur(var(--size-spacing-50));
-    box-shadow: none;
-
+.S_Header--Landing {
     &::before {
-        display: none;
+        box-shadow: none;
+        backdrop-filter: blur(var(--size-spacing-inf));
+        background: none;
     }
-} */
+}
 
 /* m 4 -> 3 */
 @media (max-width: 1368px) {
