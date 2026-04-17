@@ -6,25 +6,6 @@ const filtersLibrary = ["filterLibraryVanillajs", "filterLibraryP5js", "filterLi
 const filtersVerification = ["filterVerificationExpert", "filterVerificationAuthorial"];
 const filtersAll = [filtersComplexity, filtersLibrary, filtersVerification];
 
-// Для отрисовки
-const handbookPart1Module1 = document.getElementById("handbookPart1Module1");
-const handbookPart1Module2 = document.getElementById("handbookPart1Module2");
-const handbookPart1Modules = [handbookPart1Module1, handbookPart1Module2];
-const handbookPart1 = [document.getElementById("handbookPart1"), handbookPart1Modules];
-
-const handbookPart2Module1 = document.getElementById("handbookPart2Module1");
-const handbookPart2Module2 = document.getElementById("handbookPart2Module2");
-const handbookPart2Module3 = document.getElementById("handbookPart2Module3");
-const handbookPart2Modules = [handbookPart2Module1, handbookPart2Module2, handbookPart2Module3];
-const handbookPart2 = [document.getElementById("handbookPart2"), handbookPart2Modules];
-const handbookPart3Module1 = document.getElementById("handbookPart3Module1");
-const handbookPart3Module2 = document.getElementById("handbookPart3Module2");
-const handbookPart3Module3 = document.getElementById("handbookPart3Module3");
-const handbookPart3Modules = [handbookPart3Module1, handbookPart3Module2, handbookPart3Module3];
-const handbookPart3 = [document.getElementById("handbookPart3"), handbookPart3Modules];
-const handbook = [handbookPart1, handbookPart2, handbookPart3];
-const handbookNoResults = document.getElementById("handbookNoResults");
-
 // Фильтры слева
 // Меню
 let isOpenFilters = false;
@@ -65,14 +46,6 @@ const filterLibraryVanillajs = document.getElementById("filterLibraryVanillajs")
 const filterLibraryP5js = document.getElementById("filterLibraryP5js");
 const filterLibraryThreejs = document.getElementById("filterLibraryThreejs");
 const buttonsLibrary = [filterLibraryVanillajs, filterLibraryP5js, filterLibraryThreejs];
-// const filterFormatTechnique = document.getElementById("filterFormatTechnique");
-// const filterFormatTask = document.getElementById("filterFormatTask");
-// const filterFormatVariation = document.getElementById("filterFormatVariation");
-// const buttonsFormat = [
-//   filterFormatTechnique,
-//   filterFormatTask,
-//   filterFormatVariation,
-// ];
 const filterVerificationExpert = document.getElementById("filterVerificationExpert");
 const filterVerificationAuthorial = document.getElementById("filterVerificationAuthorial");
 const buttonsVerification = [filterVerificationExpert, filterVerificationAuthorial];
@@ -80,7 +53,6 @@ const buttonsVerification = [filterVerificationExpert, filterVerificationAuthori
 const buttonsFilters = [
   buttonsComplexity,
   buttonsLibrary,
-  // buttonsFormat,
   buttonsVerification,
 ];
 
@@ -98,11 +70,6 @@ const defMatrFilters = [
   [false, [false, false, false]],
   [false, [false, false]],
 ];
-// const defMatrDraw = [
-//   [true, [true, true]],
-//   [true, [true, true, true]],
-//   [true, [true, true, true]],
-// ];
 const defNoResults = false;
 const defAppliedFilters = [new Set(), new Set(), new Set()];
 
@@ -177,8 +144,6 @@ buttonsFilters.forEach((buttons, indexFilter) => {
       applyFilters();
       drawingWorks();
       calcPagenation();
-      // calcDrawParts();
-      // drawingParts();
     });
   });
 });

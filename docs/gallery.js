@@ -836,24 +836,6 @@ var gallery_filtersLibrary = ["filterLibraryVanillajs", "filterLibraryP5js", "fi
 var gallery_filtersVerification = ["filterVerificationExpert", "filterVerificationAuthorial"];
 var gallery_filtersAll = [gallery_filtersComplexity, gallery_filtersLibrary, gallery_filtersVerification];
 
-// Для отрисовки
-var handbookPart1Module1 = document.getElementById("handbookPart1Module1");
-var handbookPart1Module2 = document.getElementById("handbookPart1Module2");
-var handbookPart1Modules = [handbookPart1Module1, handbookPart1Module2];
-var handbookPart1 = [document.getElementById("handbookPart1"), handbookPart1Modules];
-var handbookPart2Module1 = document.getElementById("handbookPart2Module1");
-var handbookPart2Module2 = document.getElementById("handbookPart2Module2");
-var handbookPart2Module3 = document.getElementById("handbookPart2Module3");
-var handbookPart2Modules = [handbookPart2Module1, handbookPart2Module2, handbookPart2Module3];
-var handbookPart2 = [document.getElementById("handbookPart2"), handbookPart2Modules];
-var handbookPart3Module1 = document.getElementById("handbookPart3Module1");
-var handbookPart3Module2 = document.getElementById("handbookPart3Module2");
-var handbookPart3Module3 = document.getElementById("handbookPart3Module3");
-var handbookPart3Modules = [handbookPart3Module1, handbookPart3Module2, handbookPart3Module3];
-var handbookPart3 = [document.getElementById("handbookPart3"), handbookPart3Modules];
-var handbook = [handbookPart1, handbookPart2, handbookPart3];
-var handbookNoResults = document.getElementById("handbookNoResults");
-
 // Фильтры слева
 // Меню
 var isOpenFilters = false;
@@ -891,21 +873,11 @@ var filterLibraryVanillajs = document.getElementById("filterLibraryVanillajs");
 var filterLibraryP5js = document.getElementById("filterLibraryP5js");
 var filterLibraryThreejs = document.getElementById("filterLibraryThreejs");
 var buttonsLibrary = [filterLibraryVanillajs, filterLibraryP5js, filterLibraryThreejs];
-// const filterFormatTechnique = document.getElementById("filterFormatTechnique");
-// const filterFormatTask = document.getElementById("filterFormatTask");
-// const filterFormatVariation = document.getElementById("filterFormatVariation");
-// const buttonsFormat = [
-//   filterFormatTechnique,
-//   filterFormatTask,
-//   filterFormatVariation,
-// ];
 var filterVerificationExpert = document.getElementById("filterVerificationExpert");
 var filterVerificationAuthorial = document.getElementById("filterVerificationAuthorial");
 var buttonsVerification = [filterVerificationExpert, filterVerificationAuthorial];
 // Все кнопачки
-var buttonsFilters = [buttonsComplexity, buttonsLibrary,
-// buttonsFormat,
-buttonsVerification];
+var buttonsFilters = [buttonsComplexity, buttonsLibrary, buttonsVerification];
 
 // Операции над множествами
 // Объединение
@@ -932,11 +904,6 @@ var setDifference = function setDifference(a, b) {
 
 // Список фильтров
 var defMatrFilters = [[false, [false, false, false]], [false, [false, false, false]], [false, [false, false]]];
-// const defMatrDraw = [
-//   [true, [true, true]],
-//   [true, [true, true, true]],
-//   [true, [true, true, true]],
-// ];
 var defNoResults = false;
 var defAppliedFilters = [new Set(), new Set(), new Set()];
 
@@ -1010,8 +977,6 @@ buttonsFilters.forEach(function (buttons, indexFilter) {
       applyFilters();
       drawingWorks();
       calcPagenation();
-      // calcDrawParts();
-      // drawingParts();
     });
   });
 });
