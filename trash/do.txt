@@ -1,0 +1,70 @@
+// Операции над множествами
+// Объединение
+const union = (...sets) => new Set(sets.flatMap((set) => [...set]));
+// Пересечение
+const intersection = (a, b) => new Set([...a].filter((x) => b.has(x)));
+// Разность
+const difference = (a, b) => new Set([...a].filter((x) => !b.has(x)));
+
+// Список фильтров
+let matrFilters = [
+  [false, [false, false, false]],
+  [false, [false, false, false]],
+  [false, [false, false, false]],
+  [false, [false, false]],
+];
+let noneResults = false;
+let matrResults = [
+  [true, [true, true, true]],
+  [true, [true, true, true]],
+  [true, [true, true, true]],
+  [true, [true, true]],
+];
+let activeFilters = new Set(filtersAll.flat());
+
+const buttonsFilters = [
+  buttonsComplexity,
+  buttonsLibrary,
+  buttonsFormat,
+  buttonsVerification,
+];
+
+// Применение фильтров
+buttonsFilters.forEach((buttons, indexFilter) => {
+  buttons.forEach((button, indexButton) => {
+    button.addEventListener("click", () => {
+      let buttonCondition = !matrFilters[indexFilter][1][indexButton];
+      matrFilters[indexFilter][1][indexButton] = buttonCondition;
+
+      // Окрашивание кнопки и Вкл/Вык фильтра
+      // Кнопка стала активна
+      if (buttonCondition) {
+        button.style.border = "1.5px dashed var(--colors-neutrals-900)";
+        // Фильр точно включился
+        matrFilters[indexFilter][0] = true;
+      }
+      // Кнопка стала неактивна
+      else {
+        button.style.border = "1.5px dashed var(--colors-neutrals-200)";
+        // Фильтр либо отключился либо остался
+        matrFilters[indexFilter][0] = matrFilters[indexFilter][1].some(
+          (item) => item !== false,
+        );
+      }
+
+      // Операции над множеством настроек
+      // Если фильтр включён
+      if (matrFilters[indexFilter][0]) {
+        activeFilters = difference(activeFilters, filtersAll[indexFilter]);
+
+        //TODO
+      }
+      // Фильр выключился
+      else {
+        activeFilters = union(activeFilters, filtersAll[indexFilter]);
+      }
+
+      console.log("after", matrFilters, activeFilters);
+    });
+  });
+});
