@@ -15,6 +15,7 @@ module.exports = {
     module: "./src/javascripts/pages/module.js",
     tutorial: "./src/javascripts/pages/tutorial.js",
     work: "./src/javascripts/pages/work.js",
+    adding: "./src/javascripts/pages/adding.js",
   },
   output: {
     filename: "[name].js",
