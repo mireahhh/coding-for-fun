@@ -140,16 +140,69 @@
                 }
             }
 
-            .C_HeaderAddForms {
+            .W_HeaderAdditionalFunctionality {
                 display: flex;
-                justify-content: flex-end;
-                align-items: center;
                 flex-direction: row;
+                height: 100%;
+                align-items: center;
+                gap: var(--size-spacing-12);
+                justify-content: space-between;
 
-                p,
                 a {
                     /* U_FontC2 */
                     color: var(--colors-neutrals-900);
+                }
+
+                .M_HeaderChangeThemeButton {
+                    display: inline-flex;
+                    padding: var(--size-spacing-4);
+                    width: var(--size-spacing-68);
+                    height: 100%;
+                    align-items: center;
+                    justify-content: flex-start;
+
+                    border-radius: var(--size-radius-18);
+                    background: var(--colors-neutrals-150-20);
+
+                    .A_HeaderChangeThemeCircle {
+                        display: flex;
+                        height: 100%;
+                        width: auto;
+                        aspect-ratio: 1/1;
+                        align-items: center;
+                        justify-content: center;
+
+                        border-radius: 50%;
+                        background: var(--colors-neutrals-0);
+
+                        transition:
+                            transform 0.25s ease,
+                            background 0.25s ease;
+
+                        img {
+                            width: 65%;
+                            height: 65%;
+                        }
+
+                        .Q_HeaderChangeThemeMoon {
+                            display: none;
+                        }
+                    }
+
+                    &.is-dark {
+                        .A_HeaderChangeThemeCircle {
+                            background: var(--colors-neutrals-900);
+                            transform: translateX(28px);
+
+                            .Q_HeaderChangeThemeSun {
+                                display: none;
+                            }
+
+                            .Q_HeaderChangeThemeMoon {
+                                display: flex;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -162,7 +215,7 @@
             padding-bottom: var(--size-spacing-12);
 
             .C_HeaderMenuLinks,
-            .C_HeaderMenuAddForms {
+            .C_HeaderMenuAdditionalFunctionality {
                 display: none;
             }
 
@@ -197,7 +250,7 @@
 }
 
 /* m 4 -> 3 */
-@media (max-width: 1368px) {
+@media (max-width: 1532px) {
     .S_Header .C_HeaderAll .O_HeaderNavigation .A_HeaderLogo {
         .A_HeaderLogoText {
             display: none;
@@ -210,17 +263,17 @@
 }
 
 /* m 3 -> 2 */
-@media (max-width: 1152px) {
+@media (max-width: 1180px) {
     .S_Header {
-        &::before {
-            /* background: linear-gradient(0deg,
+        /* &::before {
+            background: linear-gradient(0deg,
                     var(--colors-brand-rainbow-subtrate)),
                 linear-gradient(90deg,
                     var(--colors-brand-rainbow));
 
             filter: saturate(1.2) brightness(1.05);
-            mix-blend-mode: plus-lighter; */
-        }
+            mix-blend-mode: plus-lighter;
+        } */
 
         .C_HeaderAll {
             .O_HeaderNavigation {
@@ -250,12 +303,12 @@
     .S_Header {
         .C_HeaderAll {
             .O_HeaderNavigation {
-                .C_HeaderAddForms {
+                .W_HeaderAdditionalFunctionality {
                     display: none;
                 }
             }
 
-            .O_HeaderMenuNavigation .C_HeaderMenuAddForms {
+            .O_HeaderMenuNavigation .C_HeaderMenuAdditionalFunctionality {
                 display: flex;
             }
         }

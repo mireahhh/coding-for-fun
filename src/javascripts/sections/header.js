@@ -56,4 +56,29 @@ headerSearchBar.addEventListener("input", () => {
   headerSearchButton.style.opacity = headerSearchBar.value ? "1" : "0.52";
 });
 
+// Тема
+const themeButton = document.querySelector(".M_HeaderChangeThemeButton")
+const root = document.documentElement
+
+const savedTheme = localStorage.getItem("theme") || "light"
+
+applyTheme(savedTheme)
+
+themeButton.addEventListener("click", () => {
+  const currentTheme = localStorage.getItem("theme") || "light"
+  const newTheme = currentTheme === "light" ? "dark" : "light"
+
+  applyTheme(newTheme)
+
+  console.log("Текущая тема:", newTheme)
+})
+
+function applyTheme(theme) {
+  localStorage.setItem("theme", theme)
+
+  root.dataset.theme = theme
+
+  themeButton.classList.toggle("is-dark", theme === "dark")
+}
+
 applyHeaderOffset();
