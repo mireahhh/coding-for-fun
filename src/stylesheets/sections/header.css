@@ -165,6 +165,8 @@
                     background: var(--colors-neutrals-150-20);
 
                     .A_HeaderChangeThemeCircle {
+                        position: relative;
+
                         display: flex;
                         height: 100%;
                         width: auto;
@@ -180,8 +182,16 @@
                             background 0.25s ease;
 
                         img {
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+
                             width: 65%;
                             height: 65%;
+                            transform: translate(-50%, -50%);
+                            object-fit: contain;
+
+                            pointer-events: none;
                         }
 
                         .Q_HeaderChangeThemeMoon {
