@@ -37,7 +37,7 @@
         flex: 1 0 0;
 
         /* U_FontC2 */
-        color: var(--colors-neutrals-900);
+        color: var(--colors-text-900);
       }
 
       .A_GalleryWorkPreview {
@@ -47,7 +47,7 @@
         align-self: stretch;
         aspect-ratio: 1/1;
         border-radius: var(--size-radius-4);
-        border: 1px solid var(--colors-neutrals-200);
+        border: 1px solid var(--colors-border-200);
         /* transition: transform 0.3s ease, opacity 0.3s ease; */
         will-change: transform;
         transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
@@ -68,7 +68,7 @@
         align-self: stretch;
 
         /* U_FontH2 */
-        color: var(--colors-neutrals-900);
+        color: var(--colors-text-900);
       }
     }
   }
@@ -98,12 +98,12 @@
         border-radius: var(--size-radius-inf);
         opacity: var(--official-no-interaction-opacity);
         /* U_FontC2 */
-        color: var(--colors-neutrals-900);
+        color: var(--colors-text-900);
       }
 
       .A_GalleryScrollBarNumberHighlight {
         opacity: 1;
-        border: 1.5px dashed var(--colors-neutrals-900);
+        border: 1.5px dashed var(--colors-border-900);
       }
 
       .A_GalleryScrollBarNumberHide {
@@ -114,7 +114,7 @@
     .A_GalleryScrollBarArrows {
       display: flex;
       height: 100%;
-      color: var(--colors-neutrals-900, #1f1f1f);
+      color: var(--colors-text-900, #1f1f1f);
       align-items: center;
       font-family: var(--font-JetBrains);
       font-size: var(--size-spacing-24);
@@ -131,7 +131,7 @@
 
     .A_GalleryScrollBarNumbers {
       /* U_FontC2 */
-      color: var(--colors-neutrals-900);
+      color: var(--colors-text-900);
     }
   }
 }

@@ -88,7 +88,7 @@
                     height: 100%;
                     aspect-ratio: 1;
                     border-radius: var(--size-radius-4);
-                    background: var(--colors-neutrals-100-50);
+                    background: var(--colors-neutrals-150-20);
                     align-items: center;
                     justify-content: center;
                     flex-shrink: 0;
@@ -118,7 +118,7 @@
                     /* align-self: stretch; */
                     box-sizing: border-box;
                     border-radius: var(--size-radius-0);
-                    background: var(--colors-neutrals-100-50);
+                    background: var(--colors-neutrals-150-20);
 
                     input {
                         /* U_FontC2 */
@@ -173,7 +173,7 @@
                         justify-content: center;
 
                         border-radius: 50%;
-                        background: var(--colors-neutrals-0);
+                        background: var(--colors-const-0);
 
                         transition:
                             transform 0.25s ease,
@@ -191,7 +191,7 @@
 
                     &.is-dark {
                         .A_HeaderChangeThemeCircle {
-                            background: var(--colors-neutrals-900);
+                            background: var(--colors-const-900);
                             transform: translateX(28px);
 
                             .Q_HeaderChangeThemeSun {
@@ -224,7 +224,8 @@
                 flex-direction: column;
                 width: 100%;
 
-                a {
+                a,
+                button {
                     display: flex;
                     align-items: center;
                     justify-content: center;

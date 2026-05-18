@@ -85,7 +85,7 @@ function calcFilters() {
     filter[1].forEach((isActive, indexSetting) => {
       if (isActive) {
         buttonsFilters[indexFilter][indexSetting].style.border =
-          "1.5px dashed var(--colors-neutrals-900)";
+          "1.5px dashed var(--colors-const-900)";
 
         appliedFilters[indexFilter] = setUnion(
           appliedFilters[indexFilter],
@@ -93,7 +93,7 @@ function calcFilters() {
         );
       } else {
         buttonsFilters[indexFilter][indexSetting].style.border =
-          "1.5px dashed var(--colors-neutrals-200)";
+          "1.5px dashed var(--colors-const-200)";
       }
     });
   });
@@ -392,7 +392,7 @@ galleryScrollBarArrowLeft.addEventListener("click", () => {
   galleryScrollBarNumbers[galleryPage].style.border = "none";
   galleryPage -= 1;
   galleryScrollBarNumbers[galleryPage].style.opacity = "1";
-  galleryScrollBarNumbers[galleryPage].style.border = "1.5px dashed var(--colors-neutrals-900)";
+  galleryScrollBarNumbers[galleryPage].style.border = "1.5px dashed var(--colors-const-900)";
 
   drawingWorks();
   scrollToGallery();
@@ -410,7 +410,7 @@ galleryScrollBarArrowRight.addEventListener("click", () => {
   galleryScrollBarNumbers[galleryPage].style.border = "none";
   galleryPage += 1;
   galleryScrollBarNumbers[galleryPage].style.opacity = "1";
-  galleryScrollBarNumbers[galleryPage].style.border = "1.5px dashed var(--colors-neutrals-900)";
+  galleryScrollBarNumbers[galleryPage].style.border = "1.5px dashed var(--colors-const-900)";
 
   drawingWorks();
   scrollToGallery();
@@ -427,7 +427,7 @@ function handleGalleryNumberClick(index) {
 
   // установка новой активной
   galleryScrollBarNumbers[galleryPage].style.opacity = "1";
-  galleryScrollBarNumbers[galleryPage].style.border = "1.5px dashed var(--colors-neutrals-900)";
+  galleryScrollBarNumbers[galleryPage].style.border = "1.5px dashed var(--colors-const-900)";
 
   // обновление стрелок
   galleryScrollBarArrowLeft.style.opacity =
@@ -465,7 +465,7 @@ function calcPagenation() {
 
   if (galleryScrollBarNumbersCountDraw > 0) {
     galleryScrollBarNumbers[galleryPage].style.opacity = "1";
-    galleryScrollBarNumbers[galleryPage].style.border = "1.5px dashed var(--colors-neutrals-900)";
+    galleryScrollBarNumbers[galleryPage].style.border = "1.5px dashed var(--colors-const-900)";
   }
 
   galleryScrollBarArrowLeft.style.opacity = "var(--official-no-interaction-opacity)";

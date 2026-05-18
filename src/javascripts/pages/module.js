@@ -361,7 +361,7 @@ function calcFilters() {
     filter[1].forEach((setting, indexSetting) => {
       if (matrFilters[indexFilter][1][indexSetting]) {
         buttonsFilters[indexFilter][indexSetting].style.border =
-          "1.5px dashed var(--colors-neutrals-900)";
+          "1.5px dashed var(--colors-const-900)";
 
         applyFilters[indexFilter] = setUnion(
           applyFilters[indexFilter],
@@ -369,7 +369,7 @@ function calcFilters() {
         );
       } else {
         buttonsFilters[indexFilter][indexSetting].style.border =
-          "1.5px dashed var(--colors-neutrals-200)";
+          "1.5px dashed var(--colors-const-200)";
       }
       // ?deny / ?alloy
     });

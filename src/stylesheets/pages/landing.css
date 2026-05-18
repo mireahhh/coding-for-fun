@@ -86,7 +86,7 @@
                         text-align: center;
 
                         /* U_FontH0, U_FontH1 */
-                        color: var(--colors-neutrals-900);
+                        color: var(--colors-text-900);
                     }
                 }
 
@@ -110,16 +110,16 @@
                     }
 
                     .A_LandingIntroButtonBlack {
-                        background: var(--colors-neutrals-900);
-                        color: var(--colors-neutrals-0);
+                        background: var(--colors-body-900);
+                        color: var(--colors-text-0);
                     }
 
                     .A_LandingIntroButtonOpacity {
                         display: flex;
                         box-sizing: border-box;
-                        border: var(--size-spacing-1) solid var(--colors-neutrals-900);
+                        border: var(--size-spacing-1) solid var(--colors-border-900);
                         background: var(--colors-neutrals-body-01);
-                        color: var(--colors-neutrals-900);
+                        color: var(--colors-text-900);
                     }
                 }
             }

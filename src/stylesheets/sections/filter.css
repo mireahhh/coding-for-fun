@@ -209,6 +209,8 @@
                         align-self: stretch;
                         border-radius: var(--size-radius-0);
 
+                        border-bottom: 1.5px dashed var(--colors-const-450);
+
                         /* U_FontC2 */
                         color: var(--colors-neutrals-900);
 
@@ -221,6 +223,9 @@
                         .Q_FilterSortingByComplexityIcon {
                             display: flex;
                         }
+                    }
+                    .A_FilterSortingButton--Last {
+                        border-bottom: none;
                     }
                 }
             }

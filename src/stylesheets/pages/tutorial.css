@@ -388,7 +388,7 @@
                     align-items: flex-start;
                     aspect-ratio: 1/1;
 
-                    background-color: var(--colors-neutrals-0);
+                    background-color: var(--colors-const-0);
 
                     .A_TutorialSingleCodeExecutionCanvas {
                         display: flex;
