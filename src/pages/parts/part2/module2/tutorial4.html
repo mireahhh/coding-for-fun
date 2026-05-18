@@ -5,6 +5,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="../../../../images/brand/A_Logo.ico" />
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-KL8LKHBG');</script>
+  <!-- End Google Tag Manager -->
   <!-- Yandex.Metrika counter -->
   <script type="text/javascript">
     (function (m, e, t, r, i, k, a) {
@@ -16,14 +26,21 @@
 
     ym(108369792, 'init', { ssr: true, webvisor: true, clickmap: true, ecommerce: "dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce: true, trackLinks: true });
   </script>
-  <noscript>
-    <div><img src="https://mc.yandex.ru/watch/108369792" style="position:absolute; left:-9999px;" alt="" /></div>
-  </noscript>
   <!-- /Yandex.Metrika counter -->
   <title>Title</title>
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KL8LKHBG" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <!-- Yandex.Metrika counter (noscript) -->
+  <noscript>
+    <div><img src="https://mc.yandex.ru/watch/108369792" style="position:absolute; left:-9999px;" alt="" /></div>
+  </noscript>
+  <!-- /Yandex.Metrika counter (noscript) -->
+
   <header class="S_Header">
     <div class="C_HeaderAll">
       <div class="O_HeaderNavigation">
@@ -38,6 +55,7 @@
           <nav class="U_FontC2 C_HeaderLinks">
             <a class="U_ALink" href="../../../../pages/handbook.html">Учебник</a>
             <a class="U_ALink" href="../../../../pages/gallery.html">Галерея</a>
+            <a class="U_ALink" href="../../../../pages/sandbox.html">Песочница</a>
             <a class="U_ALink" href="../../../../pages/about.html">О&nbsp;проекте</a>
           </nav>
           <div class="M_HeaderSearchBar">
@@ -54,12 +72,14 @@
           </button>
         </div>
 
-        <div class="U_FontC2 C_HeaderAddForms">
-          <p>[</p>
-          <a class="U_ALink" href="../../../../pages/addTutorial.html">&nbsp;Туториал&nbsp;</a>
-          <p>/</p>
-          <a class="U_ALink" href="../../../../pages/adding.html">&nbsp;Работа&nbsp;</a>
-          <p>]</p>
+        <div class="U_FontC2 W_HeaderAdditionalFunctionality">
+          <a class="U_ALink" href="../../../../pages/adding.html">[Предложить&nbsp;работу]</a>
+          <button class="U_ButtonIcon M_HeaderChangeThemeButton">
+            <div class="A_HeaderChangeThemeCircle">
+              <img class="Q_HeaderChangeThemeSun" src="../../../../images/icons/sun-02.svg" alt="Солнце">
+              <img class="Q_HeaderChangeThemeMoon" src="../../../../images/icons/moon-01.svg" alt="Луна">
+            </div>
+          </button>
         </div>
       </div>
 
@@ -67,11 +87,12 @@
         <nav class="C_HeaderMenuLinks">
           <a class="U_ALink" href="../../../../pages/handbook.html">Учебник</a>
           <a class="U_ALink" href="../../../../pages/gallery.html">Галерея</a>
+          <a class="U_ALink" href="../../../../pages/sandbox.html">Песочница</a>
           <a class="U_ALink" href="../../../../pages/about.html">О&nbsp;проекте</a>
         </nav>
-        <nav class="C_HeaderMenuAddForms">
-          <a class="U_ALink" href="../../../../pages/addTutorial.html">Туториал</a>
-          <a class="U_ALink" href="../../../../pages/adding.html">Работа</a>
+        <nav class="C_HeaderMenuAdditionalFunctionality">
+          <a class="U_ALink" href="../../../../pages/adding.html">Предложить работу</a>
+          <a href="#">Сменить тему</a>
         </nav>
       </div>
     </div>
@@ -198,13 +219,17 @@
             Это&nbsp;может&nbsp;быть простое линейное смещение, плавное колебание или&nbsp;более сложная система.
             Даже&nbsp;если на&nbsp;экране всего один объект, анимация делает сцену глубже и&nbsp;живее.
             В&nbsp;этом уроке ты&nbsp;сравнишь несколько способов создать движение и&nbsp;увидишь, как&nbsp;один
-            и&nbsp;тот&nbsp;же эффект по&#45;разному собирается в&nbsp;<tx-sl>p5.js</tx-sl> и&nbsp;<tx-sl>Vanilla&nbsp;JS</tx-sl>.
+            и&nbsp;тот&nbsp;же эффект по&#45;разному собирается в&nbsp;<tx-sl>p5.js</tx-sl>
+            и&nbsp;<tx-sl>Vanilla&nbsp;JS</tx-sl>.
           </p>
 
           <p class="U_FontB1 A_TutorialText">
-            Чтобы&nbsp;объект двигался, нужно менять хотя&nbsp;бы один его параметр: положение, размер, угол или&nbsp;прозрачность.
-            Эти&nbsp;изменения происходят кадр за&nbsp;кадром, поэтому зритель воспринимает их&nbsp;как непрерывное движение.
-            В&nbsp;<tx-sl>p5.js</tx-sl> для&nbsp;этого уже&nbsp;есть цикл <tx-sl>draw()</tx-sl>, а&nbsp;в&nbsp;Vanilla&nbsp;JS движение
+            Чтобы&nbsp;объект двигался, нужно менять хотя&nbsp;бы один его параметр: положение, размер, угол
+            или&nbsp;прозрачность.
+            Эти&nbsp;изменения происходят кадр за&nbsp;кадром, поэтому зритель воспринимает их&nbsp;как непрерывное
+            движение.
+            В&nbsp;<tx-sl>p5.js</tx-sl> для&nbsp;этого уже&nbsp;есть цикл <tx-sl>draw()</tx-sl>,
+            а&nbsp;в&nbsp;Vanilla&nbsp;JS движение
             чаще собирается через <tx-sl>requestAnimationFrame()</tx-sl> или&nbsp;через CSS&#45;анимацию.
             Так одна и&nbsp;та&nbsp;же идея может быть реализована разными&nbsp;инструментами.
           </p>
@@ -213,7 +238,8 @@
             Движение может быть разным по&nbsp;характеру.
             Линейное выглядит механически и&nbsp;строго, а&nbsp;волнообразное или колебательное&nbsp;— мягче
             и&nbsp;органичнее.
-            Это&nbsp;важно для&nbsp;креативного кодинга, потому&nbsp;что ощущение от&nbsp;сцены зависит не&nbsp;только от&nbsp;формы,
+            Это&nbsp;важно для&nbsp;креативного кодинга, потому&nbsp;что ощущение от&nbsp;сцены зависит не&nbsp;только
+            от&nbsp;формы,
             но&nbsp;и&nbsp;от&nbsp;того, как&nbsp;она себя ведёт.
             Получается, что&nbsp;динамика тоже становится частью&nbsp;композиции.
           </p>
@@ -243,7 +269,8 @@
 
           <p class="U_FontB1 A_TutorialText">
             Ниже показана одна и&nbsp;та&nbsp;же задача: оживить круг.
-            Сначала движение будет реализовано через <tx-sl>p5.js</tx-sl>, а&nbsp;потом&nbsp;— через Vanilla&nbsp;JS двумя
+            Сначала движение будет реализовано через <tx-sl>p5.js</tx-sl>, а&nbsp;потом&nbsp;— через Vanilla&nbsp;JS
+            двумя
             способами.
             Это&nbsp;поможет увидеть не&nbsp;только разницу в&nbsp;синтаксисе, но&nbsp;и&nbsp;разницу в&nbsp;подходе.
           </p>
@@ -324,7 +351,8 @@
               </div>
               <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
                 Здесь создаётся DOM&#45;элемент и&nbsp;запускается функция анимации.
-                Она&nbsp;вызывает сама себя через <tx-sl>requestAnimationFrame()</tx-sl>, из&#45;за&nbsp;чего сцена обновляется кадр
+                Она&nbsp;вызывает сама себя через <tx-sl>requestAnimationFrame()</tx-sl>, из&#45;за&nbsp;чего сцена
+                обновляется кадр
                 за&nbsp;кадром.
                 Положение круга тоже вычисляется через синус, поэтому эффект похож на&nbsp;вариант
                 в&nbsp;<tx-sl>p5.js</tx-sl>.
@@ -379,13 +407,15 @@
 
           <ol class="U_FontB1 C_TutorialTextList">
             <li>
-              В&nbsp;<tx-sl>p5.js</tx-sl> движение удобно собирать внутри <tx-sl>draw()</tx-sl>, потому&nbsp;что цикл уже&nbsp;встроен
+              В&nbsp;<tx-sl>p5.js</tx-sl> движение удобно собирать внутри <tx-sl>draw()</tx-sl>, потому&nbsp;что цикл
+              уже&nbsp;встроен
             </li>
             <li>
               В&nbsp;Vanilla&nbsp;JS похожий эффект можно сделать вручную через <tx-sl>requestAnimationFrame()</tx-sl>
             </li>
             <li>
-              Ещё&nbsp;один путь&nbsp;— передать движение CSS&#45;анимации и&nbsp;использовать JavaScript только для&nbsp;создания&nbsp;элементов
+              Ещё&nbsp;один путь&nbsp;— передать движение CSS&#45;анимации и&nbsp;использовать JavaScript только
+              для&nbsp;создания&nbsp;элементов
             </li>
             <li>
               Во&nbsp;всех случаях эффект движения строится через изменение параметров во&nbsp;времени

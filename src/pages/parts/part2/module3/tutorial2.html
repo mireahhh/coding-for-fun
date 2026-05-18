@@ -5,6 +5,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="../../../../images/brand/A_Logo.ico" />
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-KL8LKHBG');</script>
+  <!-- End Google Tag Manager -->
   <!-- Yandex.Metrika counter -->
   <script type="text/javascript">
     (function (m, e, t, r, i, k, a) {
@@ -16,14 +26,21 @@
 
     ym(108369792, 'init', { ssr: true, webvisor: true, clickmap: true, ecommerce: "dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce: true, trackLinks: true });
   </script>
-  <noscript>
-    <div><img src="https://mc.yandex.ru/watch/108369792" style="position:absolute; left:-9999px;" alt="" /></div>
-  </noscript>
   <!-- /Yandex.Metrika counter -->
   <title>Title</title>
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KL8LKHBG" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <!-- Yandex.Metrika counter (noscript) -->
+  <noscript>
+    <div><img src="https://mc.yandex.ru/watch/108369792" style="position:absolute; left:-9999px;" alt="" /></div>
+  </noscript>
+  <!-- /Yandex.Metrika counter (noscript) -->
+
   <header class="S_Header">
     <div class="C_HeaderAll">
       <div class="O_HeaderNavigation">
@@ -38,6 +55,7 @@
           <nav class="U_FontC2 C_HeaderLinks">
             <a class="U_ALink" href="../../../../pages/handbook.html">Учебник</a>
             <a class="U_ALink" href="../../../../pages/gallery.html">Галерея</a>
+            <a class="U_ALink" href="../../../../pages/sandbox.html">Песочница</a>
             <a class="U_ALink" href="../../../../pages/about.html">О&nbsp;проекте</a>
           </nav>
           <div class="M_HeaderSearchBar">
@@ -54,12 +72,14 @@
           </button>
         </div>
 
-        <div class="U_FontC2 C_HeaderAddForms">
-          <p>[</p>
-          <a class="U_ALink" href="../../../../pages/addTutorial.html">&nbsp;Туториал&nbsp;</a>
-          <p>/</p>
-          <a class="U_ALink" href="../../../../pages/adding.html">&nbsp;Работа&nbsp;</a>
-          <p>]</p>
+        <div class="U_FontC2 W_HeaderAdditionalFunctionality">
+          <a class="U_ALink" href="../../../../pages/adding.html">[Предложить&nbsp;работу]</a>
+          <button class="U_ButtonIcon M_HeaderChangeThemeButton">
+            <div class="A_HeaderChangeThemeCircle">
+              <img class="Q_HeaderChangeThemeSun" src="../../../../images/icons/sun-02.svg" alt="Солнце">
+              <img class="Q_HeaderChangeThemeMoon" src="../../../../images/icons/moon-01.svg" alt="Луна">
+            </div>
+          </button>
         </div>
       </div>
 
@@ -67,11 +87,12 @@
         <nav class="C_HeaderMenuLinks">
           <a class="U_ALink" href="../../../../pages/handbook.html">Учебник</a>
           <a class="U_ALink" href="../../../../pages/gallery.html">Галерея</a>
+          <a class="U_ALink" href="../../../../pages/sandbox.html">Песочница</a>
           <a class="U_ALink" href="../../../../pages/about.html">О&nbsp;проекте</a>
         </nav>
-        <nav class="C_HeaderMenuAddForms">
-          <a class="U_ALink" href="../../../../pages/addTutorial.html">Туториал</a>
-          <a class="U_ALink" href="../../../../pages/adding.html">Работа</a>
+        <nav class="C_HeaderMenuAdditionalFunctionality">
+          <a class="U_ALink" href="../../../../pages/adding.html">Предложить работу</a>
+          <a href="#">Сменить тему</a>
         </nav>
       </div>
     </div>
@@ -205,7 +226,8 @@
             Геометрия отвечает за&nbsp;структуру формы.
             Например, она может описывать куб, шар, цилиндр или&nbsp;плоскость.
             Именно геометрия задаёт, где находятся вершины и&nbsp;как собирается объём.
-            Если поменять геометрию, объект станет другой формы, даже если&nbsp;всё&nbsp;остальное останется&nbsp;прежним.
+            Если поменять геометрию, объект станет другой формы, даже если&nbsp;всё&nbsp;остальное
+            останется&nbsp;прежним.
           </p>
 
           <p class="U_FontB1 A_TutorialText">
@@ -230,7 +252,8 @@
           <p class="U_FontB1 A_TutorialText">
             Сначала создаётся геометрия, затем материал, а&nbsp;после этого они объединяются в&nbsp;<tx-sl>Mesh</tx-sl>.
             Именно <tx-sl>Mesh</tx-sl> уже можно добавить в&nbsp;сцену.
-            Получается, что&nbsp;объект в&nbsp;Three.js&nbsp;— это&nbsp;не&nbsp;одна сущность, а&nbsp;сборка из&nbsp;нескольких частей.
+            Получается, что&nbsp;объект в&nbsp;Three.js&nbsp;— это&nbsp;не&nbsp;одна сущность, а&nbsp;сборка
+            из&nbsp;нескольких частей.
             Такая&nbsp;логика лежит в&nbsp;основе почти всей работы с&nbsp;3D&#45;формами.
           </p>
 
@@ -242,7 +265,8 @@
 
           <p class="U_FontB1 A_TutorialText">
             Ниже ты&nbsp;сначала создашь базовый куб, а&nbsp;потом попробуешь менять его&nbsp;форму и&nbsp;поверхность.
-            Так&nbsp;будет видно, что&nbsp;объект можно собирать по&nbsp;частям и&nbsp;управлять им на&nbsp;разных&nbsp;уровнях.
+            Так&nbsp;будет видно, что&nbsp;объект можно собирать по&nbsp;частям и&nbsp;управлять им
+            на&nbsp;разных&nbsp;уровнях.
           </p>
 
         </section>
@@ -283,7 +307,8 @@
                 </div>
               </div>
               <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
-                Здесь создаётся кубическая геометрия и&nbsp;материал, который показывает поверхность простым и&nbsp;наглядным
+                Здесь создаётся кубическая геометрия и&nbsp;материал, который показывает поверхность простым
+                и&nbsp;наглядным
                 способом.
                 Затем эти&nbsp;части объединяются в&nbsp;один объект и&nbsp;добавляются в&nbsp;сцену.
                 Это&nbsp;минимальный, но&nbsp;уже&nbsp;полноценный&nbsp;3D&#45;объект.
@@ -293,7 +318,8 @@
 
           <p class="U_FontB1 A_TutorialText">
             Теперь поменяем только форму.
-            Материал останется тем&nbsp;же, поэтому будет хорошо видно, что&nbsp;визуальные изменения связаны именно с&nbsp;геометрией.
+            Материал останется тем&nbsp;же, поэтому будет хорошо видно, что&nbsp;визуальные изменения связаны именно
+            с&nbsp;геометрией.
           </p>
 
           <div id="patr2module3tutorial2code2" class="O_TutorialSingleCode" data-runtime="three" data-autostart="true">
@@ -322,7 +348,8 @@
               </div>
               <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
                 Здесь используется другая геометрия, но&nbsp;материал остаётся прежним.
-                За&nbsp;счёт этого объект выглядит иначе по&nbsp;форме, но&nbsp;сохраняет тот&nbsp;же принцип отображения поверхности.
+                За&nbsp;счёт этого объект выглядит иначе по&nbsp;форме, но&nbsp;сохраняет тот&nbsp;же принцип
+                отображения поверхности.
                 Так&nbsp;становится ясно, что&nbsp;геометрия отвечает именно за&nbsp;тело&nbsp;объекта.
               </p>
             </div>
@@ -330,7 +357,8 @@
 
           <p class="U_FontB1 A_TutorialText">
             Теперь наоборот: оставим форму прежней, но&nbsp;изменим материал.
-            Так&nbsp;ты увидишь, как&nbsp;один и&nbsp;тот&nbsp;же объём может выглядеть по&#45;разному в&nbsp;зависимости от&nbsp;поверхности.
+            Так&nbsp;ты увидишь, как&nbsp;один и&nbsp;тот&nbsp;же объём может выглядеть по&#45;разному
+            в&nbsp;зависимости от&nbsp;поверхности.
           </p>
 
           <div id="patr2module3tutorial2code3" class="O_TutorialSingleCode" data-runtime="three" data-autostart="true">
@@ -360,7 +388,8 @@
               <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
                 Здесь форма остаётся кубом, но&nbsp;меняется материал.
                 За&nbsp;счёт этого объект получает другой визуальный характер.
-                Даже без&nbsp;света и&nbsp;текстур уже&nbsp;видно, что&nbsp;материал сильно влияет на&nbsp;восприятие&nbsp;формы.
+                Даже без&nbsp;света и&nbsp;текстур уже&nbsp;видно, что&nbsp;материал сильно влияет
+                на&nbsp;восприятие&nbsp;формы.
               </p>
             </div>
           </div>
@@ -396,7 +425,8 @@
 
           <p class="U_FontB1 A_TutorialText">
             Попробуй изменить объект самостоятельно.
-            В&nbsp;коде ниже уже&nbsp;подготовлены варианты апгрейда: можно заменить форму, сменить материал или&nbsp;поменять цвет.
+            В&nbsp;коде ниже уже&nbsp;подготовлены варианты апгрейда: можно заменить форму, сменить материал
+            или&nbsp;поменять цвет.
             Раскомментируй строки по&nbsp;одной и смотри, как&nbsp;меняется восприятие&nbsp;объекта.
           </p>
 

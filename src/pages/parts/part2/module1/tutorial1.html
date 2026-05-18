@@ -5,6 +5,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="../../../../images/brand/A_Logo.ico" />
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-KL8LKHBG');</script>
+  <!-- End Google Tag Manager -->
   <!-- Yandex.Metrika counter -->
   <script type="text/javascript">
     (function (m, e, t, r, i, k, a) {
@@ -16,14 +26,21 @@
 
     ym(108369792, 'init', { ssr: true, webvisor: true, clickmap: true, ecommerce: "dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce: true, trackLinks: true });
   </script>
-  <noscript>
-    <div><img src="https://mc.yandex.ru/watch/108369792" style="position:absolute; left:-9999px;" alt="" /></div>
-  </noscript>
   <!-- /Yandex.Metrika counter -->
   <title>Title</title>
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KL8LKHBG" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <!-- Yandex.Metrika counter (noscript) -->
+  <noscript>
+    <div><img src="https://mc.yandex.ru/watch/108369792" style="position:absolute; left:-9999px;" alt="" /></div>
+  </noscript>
+  <!-- /Yandex.Metrika counter (noscript) -->
+
   <header class="S_Header">
     <div class="C_HeaderAll">
       <div class="O_HeaderNavigation">
@@ -38,6 +55,7 @@
           <nav class="U_FontC2 C_HeaderLinks">
             <a class="U_ALink" href="../../../../pages/handbook.html">Учебник</a>
             <a class="U_ALink" href="../../../../pages/gallery.html">Галерея</a>
+            <a class="U_ALink" href="../../../../pages/sandbox.html">Песочница</a>
             <a class="U_ALink" href="../../../../pages/about.html">О&nbsp;проекте</a>
           </nav>
           <div class="M_HeaderSearchBar">
@@ -54,12 +72,14 @@
           </button>
         </div>
 
-        <div class="U_FontC2 C_HeaderAddForms">
-          <p>[</p>
-          <a class="U_ALink" href="../../../../pages/addTutorial.html">&nbsp;Туториал&nbsp;</a>
-          <p>/</p>
-          <a class="U_ALink" href="../../../../pages/adding.html">&nbsp;Работа&nbsp;</a>
-          <p>]</p>
+        <div class="U_FontC2 W_HeaderAdditionalFunctionality">
+          <a class="U_ALink" href="../../../../pages/adding.html">[Предложить&nbsp;работу]</a>
+          <button class="U_ButtonIcon M_HeaderChangeThemeButton">
+            <div class="A_HeaderChangeThemeCircle">
+              <img class="Q_HeaderChangeThemeSun" src="../../../../images/icons/sun-02.svg" alt="Солнце">
+              <img class="Q_HeaderChangeThemeMoon" src="../../../../images/icons/moon-01.svg" alt="Луна">
+            </div>
+          </button>
         </div>
       </div>
 
@@ -67,16 +87,16 @@
         <nav class="C_HeaderMenuLinks">
           <a class="U_ALink" href="../../../../pages/handbook.html">Учебник</a>
           <a class="U_ALink" href="../../../../pages/gallery.html">Галерея</a>
+          <a class="U_ALink" href="../../../../pages/sandbox.html">Песочница</a>
           <a class="U_ALink" href="../../../../pages/about.html">О&nbsp;проекте</a>
         </nav>
-        <nav class="C_HeaderMenuAddForms">
-          <a class="U_ALink" href="../../../../pages/addTutorial.html">Туториал</a>
-          <a class="U_ALink" href="../../../../pages/adding.html">Работа</a>
+        <nav class="C_HeaderMenuAdditionalFunctionality">
+          <a class="U_ALink" href="../../../../pages/adding.html">Предложить работу</a>
+          <a href="#">Сменить тему</a>
         </nav>
       </div>
     </div>
   </header>
-
   <main class="S_Main">
     <section class="O_Intro">
       <ul class="U_FontH2 C_IntroRainSquaresTutorial">
@@ -202,16 +222,19 @@
           <p class="U_FontB1 A_TutorialText">
             Когда ты&nbsp;работаешь с&nbsp;<tx-sl>DOM</tx-sl>, ты&nbsp;управляешь не&nbsp;рисунком, а&nbsp;самой
             структурой страницы.
-            Через код можно создать новый <tx-sl>div</tx-sl>, изменить его&nbsp;стиль, добавить в&nbsp;контейнер или&nbsp;удалить.
+            Через код можно создать новый <tx-sl>div</tx-sl>, изменить его&nbsp;стиль, добавить в&nbsp;контейнер
+            или&nbsp;удалить.
             Это&nbsp;делает интерфейс динамическим.
-            Важно понять, что &nbsp;здесь код&nbsp;управляет уже&nbsp;не&nbsp;только графикой, но&nbsp;и&nbsp;элементами&nbsp;среды.
+            Важно понять, что &nbsp;здесь код&nbsp;управляет уже&nbsp;не&nbsp;только графикой,
+            но&nbsp;и&nbsp;элементами&nbsp;среды.
           </p>
 
           <p class="U_FontB1 A_TutorialText">
             Создание элемента обычно начинается с&nbsp;<tx-sl>document.createElement()</tx-sl>.
             После этого элементу можно задать текст, размер, цвет и&nbsp;позицию, а&nbsp;затем добавить его
             в&nbsp;<tx-sl>app</tx-sl>.
-            Удаление работает так&nbsp;же явно: элемент можно убрать из&nbsp;контейнера или&nbsp;очистить всю&nbsp;область целиком.
+            Удаление работает так&nbsp;же явно: элемент можно убрать из&nbsp;контейнера или&nbsp;очистить
+            всю&nbsp;область целиком.
             За&nbsp;счёт этого код&nbsp;начинает работать как&nbsp;система управления интерфейсом.
           </p>
 
@@ -300,9 +323,11 @@
 
           <p class="U_FontB1 A_TutorialText">
             Теперь посмотрим на&nbsp;похожую идею в&nbsp;<tx-sl>p5.js</tx-sl>.
-            Здесь элементы не&nbsp;существуют как&nbsp;DOM&#45;объекты, а&nbsp;рисуются на&nbsp;холсте заново в&nbsp;каждом
+            Здесь элементы не&nbsp;существуют как&nbsp;DOM&#45;объекты, а&nbsp;рисуются на&nbsp;холсте заново
+            в&nbsp;каждом
             кадре.
-            Это&nbsp;другой тип&nbsp;динамики: не&nbsp;создание узлов страницы, а&nbsp;постоянная перерисовка&nbsp;сцены.
+            Это&nbsp;другой тип&nbsp;динамики: не&nbsp;создание узлов страницы, а&nbsp;постоянная
+            перерисовка&nbsp;сцены.
           </p>
 
           <div id="patr2module1tutorial1code2" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
@@ -330,7 +355,8 @@
                 </div>
               </div>
               <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
-                В&nbsp;этом примере круги постепенно появляются на&nbsp;сцене, а&nbsp;потом исчезают, потому&nbsp;что список
+                В&nbsp;этом примере круги постепенно появляются на&nbsp;сцене, а&nbsp;потом исчезают, потому&nbsp;что
+                список
                 элементов очищается и&nbsp;заполняется заново.
                 Здесь движение и&nbsp;изменение происходят не&nbsp;через DOM, а&nbsp;через цикл <tx-sl>draw()</tx-sl>.
                 Это&nbsp;показывает, что&nbsp;динамика может строиться по&#45;разному.
@@ -358,7 +384,8 @@
             Если тебе нужно управлять структурой страницы, лучше подходит <tx-sl>Vanilla&nbsp;JS</tx-sl>.
             Если важнее визуальное движение и&nbsp;постоянное обновление сцены, естественнее использовать
             <tx-sl>p5.js</tx-sl>.
-            Оба&nbsp;подхода важны, потому&nbsp;что креативный код работает и&nbsp;с&nbsp;интерфейсом, и&nbsp;с&nbsp;графикой.
+            Оба&nbsp;подхода важны, потому&nbsp;что креативный код работает и&nbsp;с&nbsp;интерфейсом,
+            и&nbsp;с&nbsp;графикой.
           </p>
 
         </section>
