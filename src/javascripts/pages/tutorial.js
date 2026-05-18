@@ -301,6 +301,12 @@ function initTutorialPageNavigation() {
     return { heading, link };
   });
 
+  let canSyncHashWithScroll = false;
+
+  if (location.hash) {
+    canSyncHashWithScroll = true;
+  }
+
   function updateCurrentSection() {
     const headerOffset = 120;
     const triggerLine = window.innerHeight * 0.28;
@@ -323,7 +329,7 @@ function initTutorialPageNavigation() {
       currentItem.link.classList.add("is-current");
 
       const currentHash = `#${currentItem.heading.id}`;
-      if (location.hash !== currentHash) {
+      if (canSyncHashWithScroll && location.hash !== currentHash) {
         history.replaceState(null, "", currentHash);
       }
     }
@@ -332,6 +338,7 @@ function initTutorialPageNavigation() {
   navItems.forEach((item) => {
     item.link.addEventListener("click", (e) => {
       e.preventDefault();
+      canSyncHashWithScroll = true;
 
       const headerOffset = 120;
       const top =
@@ -347,7 +354,14 @@ function initTutorialPageNavigation() {
   });
 
   updateCurrentSection();
-  window.addEventListener("scroll", updateCurrentSection, { passive: true });
+  window.addEventListener(  
+    "scroll",
+    () => {
+      canSyncHashWithScroll = true;
+      updateCurrentSection();
+    },
+    { passive: true },
+  );
   window.addEventListener("resize", updateCurrentSection);
 }
 
