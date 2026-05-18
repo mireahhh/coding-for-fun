@@ -212,6 +212,8 @@
                         /* U_FontC2 */
                         color: var(--colors-neutrals-900);
 
+                        border-bottom: 1.5px dashed var(--colors-neutrals-450);
+
                         .Q_FilterSortingByComplexityIcon,
                         .Q_FilterSortingByDateIcon,
                         .Q_FilterSortingByVerificationIcon {
@@ -221,6 +223,10 @@
                         .Q_FilterSortingByComplexityIcon {
                             display: flex;
                         }
+                    }
+
+                    .A_FilterSortingButton--Last {
+                        border-bottom: none;
                     }
                 }
             }

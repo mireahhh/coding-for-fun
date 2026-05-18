@@ -57,28 +57,37 @@ headerSearchBar.addEventListener("input", () => {
 });
 
 // Тема
-const themeButton = document.querySelector(".M_HeaderChangeThemeButton")
-const root = document.documentElement
+const themeButton = document.querySelector(".M_HeaderChangeThemeButton");
+const root = document.documentElement;
+const THEME_STORAGE_KEY = "theme";
+const THEMES = {
+  light: "light",
+  dark: "dark"
+};
 
-const savedTheme = localStorage.getItem("theme") || "light"
+const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+const initialTheme = savedTheme && THEMES[savedTheme] ? savedTheme : THEMES.light;
 
-applyTheme(savedTheme)
+applyTheme(initialTheme);
 
-themeButton.addEventListener("click", () => {
-  const currentTheme = localStorage.getItem("theme") || "light"
-  const newTheme = currentTheme === "light" ? "dark" : "light"
+if (themeButton) {
+  themeButton.addEventListener("click", () => {
+    const currentTheme = root.dataset.theme === THEMES.dark ? THEMES.dark : THEMES.light;
+    const newTheme = currentTheme === THEMES.light ? THEMES.dark : THEMES.light;
 
-  applyTheme(newTheme)
-
-  console.log("Текущая тема:", newTheme)
-})
+    applyTheme(newTheme);
+  });
+}
 
 function applyTheme(theme) {
-  localStorage.setItem("theme", theme)
+  const nextTheme = THEMES[theme] ? theme : THEMES.light;
 
-  root.dataset.theme = theme
+  localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+  root.dataset.theme = nextTheme;
 
-  themeButton.classList.toggle("is-dark", theme === "dark")
+  if (themeButton) {
+    themeButton.classList.toggle("is-dark", nextTheme === THEMES.dark);
+  }
 }
 
 applyHeaderOffset();
