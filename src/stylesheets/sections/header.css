@@ -41,6 +41,7 @@
         padding-inline: 5%;
         box-sizing: border-box;
         width: 100%;
+        max-width: 100%;
         height: min-content;
 
         .O_HeaderNavigation {
@@ -328,11 +329,9 @@
 /* m 2 -> 1 */
 @media (max-width: 428px) {
     .S_Header {
-        padding-inline: 4%;
-        box-sizing: border-box;
-        width: 100%;
-
         .C_HeaderAll {
+            padding-inline: 4%;
+
             .O_HeaderNavigation {
                 flex-direction: column;
                 row-gap: var(--size-spacing-16);
@@ -342,6 +341,7 @@
                 width: 100%;
 
                 .A_HeaderLogo {
+
                     /* height: clamp(var(--size-spacing-4), var(--size-spacing-32), 10%); */
                     width: 100%;
 

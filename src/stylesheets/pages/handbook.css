@@ -12,6 +12,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    width: 100%;
     padding-bottom: var(--size-spacing-120);
     align-items: flex-start;
     align-content: flex-start;
@@ -26,6 +27,7 @@
       height: var(--size-spacing-448);
       min-width: var(--size-spacing-344);
       max-width: var(--size-spacing-416);
+      width: 100%;
       gap: var(--size-spacing-36);
       align-items: flex-start;
       justify-content: space-between;
@@ -33,6 +35,7 @@
       .W_HandbookPartTexts {
         display: flex;
         flex-direction: column;
+        width: 100%;
         align-items: flex-start;
         gap: var(--size-spacing-12);
 
@@ -263,9 +266,10 @@
       .W_HandbookPartAbout {
         row-gap: var(--size-spacing-80);
         height: min-content;
+        min-width: auto;
+        max-width: none;
 
         .W_HandbookPartTexts {
-
           .M_HandbookPartHeading {
             /* H0 -> H1-mob */
             color: var(--colors-neutrals-900);
@@ -284,11 +288,28 @@
       }
 
       .C_HandbookModules {
+        flex-direction: column;
+        flex-wrap: nowrap;
         width: 100%;
 
         .W_HandbookModule {
           width: 100%;
           max-width: var(--size-spacing-384);
+        }
+      }
+    }
+  }
+}
+
+/* m 1 -> 0 */
+@media (max-width: 428px) {
+  .C_HandbookParts {
+    .O_HandbookPart {
+      .C_HandbookModules {
+        .W_HandbookModule {
+          max-width: none;
+          min-width: auto;
+          width: 100%;
         }
       }
     }

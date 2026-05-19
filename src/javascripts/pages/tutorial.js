@@ -354,7 +354,7 @@ function initTutorialPageNavigation() {
   });
 
   updateCurrentSection();
-  window.addEventListener(  
+  window.addEventListener(
     "scroll",
     () => {
       canSyncHashWithScroll = true;

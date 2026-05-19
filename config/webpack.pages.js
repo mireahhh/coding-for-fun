@@ -21,10 +21,6 @@ const htmlPages = [
   createPages("./src/pages/work.html", "./pages/work.html", ["index", "work"]),
   createPages("./src/pages/about.html", "./pages/about.html", ["index"]),
   createPages("./src/pages/adding.html", "./pages/adding.html", ["index", "adding"]),
-  createPages("./src/pages/addTutorial.html", "./pages/addTutorial.html", [
-    "index",
-  ]),
-
   createPages(
     "./src/pages/parts/part1/module1/tutorial0.html",
     "./pages/parts/part1/module1/tutorial0.html",
