@@ -365,6 +365,20 @@ function initTutorialPageNavigation() {
   window.addEventListener("resize", updateCurrentSection);
 }
 
+function initTutorialButtonUp() {
+  const button = document.querySelector(".A_TutorialButtonUp");
+  if (!button) return;
+
+  const toggleVisibility = () => {
+    const showFrom = Math.max(window.innerHeight * 0.45, 240);
+    button.classList.toggle("is-visible", window.scrollY > showFrom);
+  };
+
+  toggleVisibility();
+  window.addEventListener("scroll", toggleVisibility, { passive: true });
+  window.addEventListener("resize", toggleVisibility);
+}
+
 // Навигация
 // Динамическая по учебнику
 function drawTutorialPartNavigation() {
@@ -493,3 +507,4 @@ initTutorialCopyButtons();
 drawTutorialMeta();
 initTutorialPageNavigation();
 drawTutorialPartNavigation();
+initTutorialButtonUp();

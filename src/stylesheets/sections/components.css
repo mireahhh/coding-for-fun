@@ -142,8 +142,3 @@
         padding-inline: 4%;
     }
 }
-
-.A_CrossHorizontalLine {
-    width: 100%;
-    border-bottom: 1.5px dashed var(--colors-neutrals-900);
-}

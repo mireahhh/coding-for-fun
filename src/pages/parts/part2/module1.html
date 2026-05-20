@@ -167,197 +167,209 @@
     </section>
 
     <section class="O_Filter">
-      <div class="O_FilterFilters">
+      <div class="O_Filters">
+        <div class="O_FilterFilters">
 
-        <div class="W_FilterFiltersHeader">
-          <div class="M_FilterFiltersHeaderOpen">
-            <button class="U_ButtonIcon A_FilterFiltersButton" aria-label="Фильтры">
-              <p class="U_FontC2 A_FilterFiltersHeaderName">Фильтрация</p>
-              <img class="U_ImgIconFullH Q_FilterFiltersOpenIcon" src="../../../images/icons/chevron-down.svg" alt="" />
-              <img class="U_ImgIconFullH Q_FilterFiltersCloseIcon" src="../../../images/icons/chevron-up.svg" alt="" />
-            </button>
-          </div>
-          <div class="M_FilterFiltersHeaderSearchBar">
-            <input id="filterSearchBar" class="U_FontC2" placeholder="Паттерны" />
-            <div class="C_FilterFiltersHeaderIcons">
-              <button class="U_ButtonIcon Q_FilterSearchIcon" aria-label="Найти">
-                <img class="U_ImgIconFullH" src="../../../images/icons/search-01.svg" alt="" />
-              </button>
-              <button class="U_ButtonIcon Q_FilterShuffleIcon" aria-label="Перемешать">
-                <img class="U_ImgIconFullH" src="../../../images/icons/shuffle.svg" alt="" />
-              </button>
-            </div>
-          </div>
-        </div>
-        <ul class="C_FilterFiltersMenu">
-
-          <li class="W_FilterFiltersMenuFilter">
-            <p class="U_FontF2 A_FilterFiltersMenuFilterName">Сложность</p>
-            <ul class="C_FilterFiltersMenuFilter">
-              <li><button id="filterComplexityInitial"
-                  class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Начальная</button></li>
-              <li><button id="filterComplexityMiddle"
-                  class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Средняя</button></li>
-              <li><button id="filterComplexityAdvanced"
-                  class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Продвинутая</button></li>
-            </ul>
-          </li>
-          <li class="W_FilterFiltersMenuFilter">
-            <p class="U_FontF2 A_FilterFiltersMenuFilterName">Библиотека</p>
-            <ul class="C_FilterFiltersMenuFilter">
-              <li><button id="filterLibraryVanillajs"
-                  class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Vanilla&nbsp;JS</button></li>
-              <li><button id="filterLibraryP5js"
-                  class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">P5.JS</button></li>
-              <li><button id="filterLibraryThreejs"
-                  class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Three.js</button></li>
-            </ul>
-          </li>
-
-          <li class="W_FilterFiltersMenuFilter">
-            <p class="U_FontF2 A_FilterFiltersMenuFilterName">Формат</p>
-            <ul class="C_FilterFiltersMenuFilter">
-              <li><button id="filterFormatTechnique"
-                  class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Техника</button></li>
-              <li><button id="filterFormatTask"
-                  class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Задача</button></li>
-              <li><button id="filterFormatVariation"
-                  class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Вариация</button></li>
-            </ul>
-          </li>
-
-          <li class="W_FilterFiltersMenuFilter" style="display: none;">
-            <p class="U_FontF2 A_FilterFiltersMenuFilterName">Проверенность</p>
-            <ul class="C_FilterFiltersMenuFilter">
-              <li><button id="filterVerificationExpert"
-                  class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Экспертная</button></li>
-              <li><button id="filterVerificationAuthorial"
-                  class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Авторская</button></li>
-            </ul>
-          </li>
-
-        </ul>
-      </div>
-      <div class="O_FilterAllSorting">
-        <div class="O_FilterSorting">
-          <p class="U_FontC2 A_FilterSortingTitle">Сортировка:</p>
-          <div class="W_FilterSortingAllMenu">
-            <div class="A_FilterSortingBy">
-              <button class="U_ButtonIcon A_FilterSortingOpenButton" aria-label="Тип сортировки">
-                <p class="U_FontC2 A_FilterSortingByText">По&nbsp;сложности</p>
-                <img class="U_ImgIconFullH Q_FilterSortingOpenIcon" src="../../../images/icons/chevron-down.svg"
+          <div class="W_FilterFiltersHeader">
+            <div class="M_FilterFiltersHeaderOpen">
+              <button class="U_ButtonIcon A_FilterFiltersButton" aria-label="Фильтры">
+                <p class="U_FontC2 A_FilterFiltersHeaderName">Фильтрация</p>
+                <img class="U_ImgIconFullH Q_FilterFiltersOpenIcon" src="../../../images/icons/chevron-down.svg"
                   alt="" />
-                <img class="U_ImgIconFullH Q_FilterSortingCloseIcon" src="../../../images/icons/chevron-up.svg"
+                <img class="U_ImgIconFullH Q_FilterFiltersCloseIcon" src="../../../images/icons/chevron-up.svg"
                   alt="" />
               </button>
             </div>
-            <ul class="C_FilterSortingMenu">
-              <button id="filterSortingByComplexityButton" class="U_ButtonIcon U_FontF2 A_FilterSortingButton">
-                По&nbsp;сложности
-                <img class="U_ImgIcon Q_FilterSortingByComplexityIcon" src="../../../images/icons/point-sort.svg"
-                  alt="" />
-              </button>
-              <button id="filterSortingByDateButton" class="U_ButtonIcon U_FontF2 A_FilterSortingButton">
-                По&nbsp;дате&nbsp;обновления
-                <img class="U_ImgIcon Q_FilterSortingByDateIcon" src="../../../images/icons/point-sort.svg" alt="" />
-              </button>
-              <button id="filterSortingByVerificationButton"
-                class="U_ButtonIcon U_FontF2 A_FilterSortingButton A_FilterSortingButton--Last">
-                По&nbsp;проверенности
-                <img class="U_ImgIcon Q_FilterSortingByVerificationIcon" src="../../../images/icons/point-sort.svg"
-                  alt="" />
-              </button>
-            </ul>
+            <div class="M_FilterFiltersHeaderSearchBar">
+              <input id="filterSearchBar" class="U_FontC2" placeholder="Паттерны" />
+              <div class="C_FilterFiltersHeaderIcons">
+                <button class="U_ButtonIcon Q_FilterSearchIcon" aria-label="Найти">
+                  <img class="U_ImgIconFullH" src="../../../images/icons/search-01.svg" alt="" />
+                </button>
+                <button class="U_ButtonIcon Q_FilterShuffleIcon" aria-label="Перемешать">
+                  <img class="U_ImgIconFullH" src="../../../images/icons/shuffle.svg" alt="" />
+                </button>
+              </div>
+            </div>
           </div>
+          <ul class="C_FilterFiltersMenu">
+
+            <li class="W_FilterFiltersMenuFilter">
+              <p class="U_FontF2 A_FilterFiltersMenuFilterName">Сложность</p>
+              <ul class="C_FilterFiltersMenuFilter">
+                <li><button id="filterComplexityInitial"
+                    class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Начальная</button></li>
+                <li><button id="filterComplexityMiddle"
+                    class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Средняя</button></li>
+                <li><button id="filterComplexityAdvanced"
+                    class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Продвинутая</button></li>
+              </ul>
+            </li>
+            <li class="W_FilterFiltersMenuFilter">
+              <p class="U_FontF2 A_FilterFiltersMenuFilterName">Библиотека</p>
+              <ul class="C_FilterFiltersMenuFilter">
+                <li><button id="filterLibraryVanillajs"
+                    class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Vanilla&nbsp;JS</button></li>
+                <li><button id="filterLibraryP5js"
+                    class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">P5.JS</button></li>
+                <li><button id="filterLibraryThreejs"
+                    class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Three.js</button></li>
+              </ul>
+            </li>
+
+            <li class="W_FilterFiltersMenuFilter">
+              <p class="U_FontF2 A_FilterFiltersMenuFilterName">Формат</p>
+              <ul class="C_FilterFiltersMenuFilter">
+                <li><button id="filterFormatTechnique"
+                    class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Техника</button></li>
+                <li><button id="filterFormatTask"
+                    class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Задача</button></li>
+                <li><button id="filterFormatVariation"
+                    class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Вариация</button></li>
+              </ul>
+            </li>
+
+            <li class="W_FilterFiltersMenuFilter" style="display: none;">
+              <p class="U_FontF2 A_FilterFiltersMenuFilterName">Проверенность</p>
+              <ul class="C_FilterFiltersMenuFilter">
+                <li><button id="filterVerificationExpert"
+                    class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Экспертная</button></li>
+                <li><button id="filterVerificationAuthorial"
+                    class="U_ButtonIcon U_FontF2 A_FilterFiltersMenuFilterButton">Авторская</button></li>
+              </ul>
+            </li>
+
+          </ul>
         </div>
-        <button id="filterResetButton1" class="U_ButtonIcon A_FilterResetButton" aria-label="Сброс">
-          <p class="U_FontF2 A_FilterResetText">Сброс&nbsp;настроек</p>
-        </button>
+        <div class="O_FilterAllSorting">
+          <div class="O_FilterSorting">
+            <p class="U_FontC2 A_FilterSortingTitle">Сортировка:</p>
+            <div class="W_FilterSortingAllMenu">
+              <div class="A_FilterSortingBy">
+                <button class="U_ButtonIcon A_FilterSortingOpenButton" aria-label="Тип сортировки">
+                  <p class="U_FontC2 A_FilterSortingByText">По&nbsp;сложности</p>
+                  <img class="U_ImgIconFullH Q_FilterSortingOpenIcon" src="../../../images/icons/chevron-down.svg"
+                    alt="" />
+                  <img class="U_ImgIconFullH Q_FilterSortingCloseIcon" src="../../../images/icons/chevron-up.svg"
+                    alt="" />
+                </button>
+              </div>
+              <ul class="C_FilterSortingMenu">
+                <button id="filterSortingByComplexityButton" class="U_ButtonIcon U_FontF2 A_FilterSortingButton">
+                  По&nbsp;сложности
+                  <img class="U_ImgIcon Q_FilterSortingByComplexityIcon" src="../../../images/icons/point-sort.svg"
+                    alt="" />
+                </button>
+                <button id="filterSortingByDateButton" class="U_ButtonIcon U_FontF2 A_FilterSortingButton">
+                  По&nbsp;дате&nbsp;обновления
+                  <img class="U_ImgIcon Q_FilterSortingByDateIcon" src="../../../images/icons/point-sort.svg" alt="" />
+                </button>
+                <button id="filterSortingByVerificationButton"
+                  class="U_ButtonIcon U_FontF2 A_FilterSortingButton A_FilterSortingButton--Last">
+                  По&nbsp;проверенности
+                  <img class="U_ImgIcon Q_FilterSortingByVerificationIcon" src="../../../images/icons/point-sort.svg"
+                    alt="" />
+                </button>
+              </ul>
+            </div>
+          </div>
+          <button id="filterResetButton1" class="U_ButtonIcon A_FilterResetButton" aria-label="Сброс">
+            <p class="U_FontF2 A_FilterResetText">Сброс&nbsp;настроек</p>
+          </button>
+        </div>
       </div>
     </section>
 
     <section class="C_ModuleTutorials">
-      <a id="moduleTutorial1" class="U_ALink W_ModuleTutorial" href="module1/tutorial1.html">
-        <div class="W_ModuleTutorialHangle">
-          <p class="U_FontC2 A_ModuleTutorialsubtitle">
-            автор / дата
-          </p>
-          <h3 class="U_FontH3 A_ModuleTutorialTitle">
-            Название
-          </h3>
-        </div>
-        <div class="W_ModuleTutorialAboute">
-          <ul class="U_FontF2 C_ModuleTutorialTags">
-            <li class="A_ModuleTutorialTag">Тег</li>
-          </ul>
-          <p class="U_FontB1 A_ModuleTutorialDescription"></p>
-        </div>
-        <div class="M_ModuleTutorialPointer">
-          <!-- <img class="U_ImgIconFullH A_ModuleTutorialDash" src="../../../images/icons/dash.svg" alt="" />
-          <img class="U_ImgIconFullH A_ModuleTutorialDash" src="../../../images/icons/dash.svg" alt="" />
-          <img class="U_ImgIconFullH A_ModuleTutorialDash" src="../../../images/icons/dash.svg" alt="" /> -->
-          <img class="U_ImgIconFullH A_ModuleTutorialArrow" src="../../../images/icons/arrow-right.svg" alt="" />
-        </div>
-      </a>
-
-      <a id="moduleTutorial2" class="U_ALink W_ModuleTutorial" href="module1/tutorial2.html">
-        <div class="W_ModuleTutorialHangle">
-          <p class="U_FontC2 A_ModuleTutorialsubtitle">
-            автор / дата
-          </p>
-          <h3 class="U_FontH3 A_ModuleTutorialTitle">
-            Название
-          </h3>
-        </div>
-        <div class="W_ModuleTutorialAboute">
-          <ul class="U_FontF2 C_ModuleTutorialTags">
-            <li class="A_ModuleTutorialTag">Тег</li>
-          </ul>
-          <p class="U_FontB1 A_ModuleTutorialDescription"></p>
-        </div>
-        <div class="M_ModuleTutorialPointer">
-          <!-- <img class="U_ImgIconFullH A_ModuleTutorialDash" src="../../../images/icons/dash.svg" alt="" />
-          <img class="U_ImgIconFullH A_ModuleTutorialDash" src="../../../images/icons/dash.svg" alt="" />
-          <img class="U_ImgIconFullH A_ModuleTutorialDash" src="../../../images/icons/dash.svg" alt="" /> -->
-          <img class="U_ImgIconFullH A_ModuleTutorialArrow" src="../../../images/icons/arrow-right.svg" alt="" />
+      <a id="moduleTutorial1" class="U_ALink O_ModuleTutorial" href="module1/tutorial1.html">
+        <div class="W_ModuleTutorial">
+          <div class="W_ModuleTutorialHangle">
+            <p class="U_FontC2 A_ModuleTutorialsubtitle">
+              автор / дата
+            </p>
+            <h3 class="U_FontH3 A_ModuleTutorialTitle">
+              Название
+            </h3>
+          </div>
+          <div class="W_ModuleTutorialAboute">
+            <ul class="U_FontF2 C_ModuleTutorialTags">
+              <li class="A_ModuleTutorialTag">Тег</li>
+            </ul>
+            <p class="U_FontB1 A_ModuleTutorialDescription"></p>
+          </div>
+          <div class="M_ModuleTutorialPointer">
+            <!-- <img class="U_ImgIcon A_ModuleTutorialDash" src="../../../images/icons/dash.svg" alt="" />
+            <img class="U_ImgIcon A_ModuleTutorialDash" src="../../../images/icons/dash.svg" alt="" />
+            <img class="U_ImgIcon A_ModuleTutorialDash" src="../../../images/icons/dash.svg" alt="" /> -->
+            <img class="U_ImgIcon A_ModuleTutorialArrow" src="../../../images/icons/arrow-right.svg" alt="" />
+          </div>
         </div>
       </a>
 
-      <a id="moduleTutorial3" class="U_ALink W_ModuleTutorial" href="module1/tutorial3.html">
-        <div class="W_ModuleTutorialHangle">
-          <p class="U_FontC2 A_ModuleTutorialsubtitle">
-            автор / дата
-          </p>
-          <h3 class="U_FontH3 A_ModuleTutorialTitle">
-            Название
-          </h3>
-        </div>
-        <div class="W_ModuleTutorialAboute">
-          <ul class="U_FontF2 C_ModuleTutorialTags">
-            <li class="A_ModuleTutorialTag">Тег</li>
-          </ul>
-          <p class="U_FontB1 A_ModuleTutorialDescription"></p>
-        </div>
-        <div class="M_ModuleTutorialPointer">
-          <!-- <img class="U_ImgIconFullH Q_ModuleTutorialDash" src="../../../images/icons/dash.svg" alt="" />
-          <img class="U_ImgIconFullH Q_ModuleTutorialDash" src="../../../images/icons/dash.svg" alt="" />
-          <img class="U_ImgIconFullH Q_ModuleTutorialDash" src="../../../images/icons/dash.svg" alt="" /> -->
-          <img class="U_ImgIconFullH Q_ModuleTutorialArrow" src="../../../images/icons/arrow-right.svg" alt="" />
+      <a id="moduleTutorial2" class="U_ALink O_ModuleTutorial" href="module1/tutorial2.html">
+        <div class="W_ModuleTutorial">
+          <div class="W_ModuleTutorialHangle">
+            <p class="U_FontC2 A_ModuleTutorialsubtitle">
+              автор / дата
+            </p>
+            <h3 class="U_FontH3 A_ModuleTutorialTitle">
+              Название
+            </h3>
+          </div>
+          <div class="W_ModuleTutorialAboute">
+            <ul class="U_FontF2 C_ModuleTutorialTags">
+              <li class="A_ModuleTutorialTag">Тег</li>
+            </ul>
+            <p class="U_FontB1 A_ModuleTutorialDescription"></p>
+          </div>
+          <div class="M_ModuleTutorialPointer">
+            <!-- <img class="U_ImgIcon A_ModuleTutorialDash" src="../../../images/icons/dash.svg" alt="" />
+            <img class="U_ImgIcon A_ModuleTutorialDash" src="../../../images/icons/dash.svg" alt="" />
+            <img class="U_ImgIcon A_ModuleTutorialDash" src="../../../images/icons/dash.svg" alt="" /> -->
+            <img class="U_ImgIcon A_ModuleTutorialArrow" src="../../../images/icons/arrow-right.svg" alt="" />
+          </div>
         </div>
       </a>
 
-      <a id="noResultsTutorials" class="U_ALink NoResultsTutorials W_ModuleTutorial NotActiveTutorial">
-        <div class="W_ModuleTutorialHangle">
-          <h3 class="U_FontH3 A_ModuleTutorialTitle">
-            Статьи не&nbsp;найдены
-          </h3>
+      <a id="moduleTutorial3" class="U_ALink O_ModuleTutorial" href="module1/tutorial3.html">
+        <div class="W_ModuleTutorial">
+          <div class="W_ModuleTutorialHangle">
+            <p class="U_FontC2 A_ModuleTutorialsubtitle">
+              автор / дата
+            </p>
+            <h3 class="U_FontH3 A_ModuleTutorialTitle">
+              Название
+            </h3>
+          </div>
+          <div class="W_ModuleTutorialAboute">
+            <ul class="U_FontF2 C_ModuleTutorialTags">
+              <li class="A_ModuleTutorialTag">Тег</li>
+            </ul>
+            <p class="U_FontB1 A_ModuleTutorialDescription"></p>
+          </div>
+          <div class="M_ModuleTutorialPointer">
+            <!-- <img class="U_ImgIcon A_ModuleTutorialDash" src="../../../images/icons/dash.svg" alt="" />
+            <img class="U_ImgIcon A_ModuleTutorialDash" src="../../../images/icons/dash.svg" alt="" />
+            <img class="U_ImgIcon A_ModuleTutorialDash" src="../../../images/icons/dash.svg" alt="" /> -->
+            <img class="U_ImgIcon A_ModuleTutorialArrow" src="../../../images/icons/arrow-right.svg" alt="" />
+          </div>
         </div>
-        <div class="W_ModuleTutorialAboute">
-          <p class="U_FontB1 A_ModuleTutorialDescription" style="display: flex;">
-            В&nbsp;текущем модуле по&nbsp;выбранным фильтрам результатов&nbsp;нет&nbsp;:(
-          </p>
-        </div>
-        <div class="M_ModuleTutorialPointer">
+      </a>
+
+      <a id="noResultsTutorials" class="U_ALink NoResultsTutorials O_ModuleTutorial NotActiveTutorial">
+        <div class="W_ModuleTutorial">
+          <div class="W_ModuleTutorialHangle">
+            <h3 class="U_FontH3 A_ModuleTutorialTitle">
+              Статьи не&nbsp;найдены
+            </h3>
+          </div>
+          <div class="W_ModuleTutorialAboute">
+            <p class="U_FontB1 A_ModuleTutorialDescription" style="display: flex;">
+              В&nbsp;текущем модуле по&nbsp;выбранным фильтрам результатов&nbsp;нет&nbsp;:&#40;
+            </p>
+          </div>
+          <div class="M_ModuleTutorialPointer">
+          </div>
         </div>
       </a>
     </section>

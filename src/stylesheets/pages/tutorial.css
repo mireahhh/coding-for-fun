@@ -37,7 +37,8 @@
         display: flex;
         flex-direction: column;
         min-width: 0;
-        flex: 24 1 0;
+        box-sizing: border-box;
+        width: 24%;
         padding-top: var(--size-spacing-56);
         padding-bottom: var(--size-spacing-96);
         padding-inline: 5%;
@@ -169,7 +170,8 @@
     .O_TutorialMain {
         display: flex;
         min-width: 0;
-        flex: 60 1 0;
+        width: 60%;
+        box-sizing: border-box;
         flex-direction: column;
         align-items: flex-start;
         gap: var(--size-spacing-80);
@@ -249,7 +251,7 @@
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
-                min-width: calc(3 * var(--size-spacing-88));
+                min-width: calc(3 * var(--min-width));
                 gap: var(--size-spacing-12);
                 align-self: stretch;
                 flex: 1 0 0;
@@ -594,12 +596,33 @@
 
         display: flex;
         min-width: 0;
-        flex: 16 1 0;
+        width: 16%;
         padding-top: var(--size-spacing-56);
         padding-bottom: var(--size-spacing-96);
-        height: min-content;
-        justify-content: center;
+        box-sizing: border-box;
+        padding-right: 5%;
+        justify-content: flex-end;
         align-items: center;
+        opacity: 0;
+
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(var(--size-spacing-8));
+        transition:
+            opacity 220ms ease,
+            transform 220ms ease,
+            visibility 0ms linear 220ms;
+
+        &.is-visible {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0);
+            transition:
+                opacity 220ms ease,
+                transform 220ms ease,
+                visibility 0ms;
+        }
     }
 }
 
@@ -608,6 +631,11 @@
     .S_Tutorial {
         .O_TutorialMain {
             padding-right: var(--size-spacing-64);
+            width: 70%;
+        }
+
+        .O_TutorialNavigation {
+            width: 30%;
         }
 
         .A_TutorialButtonUp {
@@ -630,6 +658,7 @@
 
         .O_TutorialMain {
             padding-inline: var(--size-spacing-48);
+            width: 100%;
         }
     }
 }
@@ -641,7 +670,7 @@
 
             .O_TutorialSection {
                 .A_TutorialSingleImage {
-                    min-width: calc(2 * var(--size-spacing-88));
+                    min-width: calc(2 * var(--min-width));
                 }
 
                 .A_TutorialMultipleImage {
