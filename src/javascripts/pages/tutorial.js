@@ -68,6 +68,22 @@ function stopCode(codeBlock, iframe) {
   codeBlock.classList.remove("is-running");
 }
 
+function getLineCount(textValue) {
+  return textValue.split("\n").length;
+}
+
+function getGutterDigits(lineCount) {
+  return Math.max(2, String(lineCount).length);
+}
+
+function buildLineNumbersMarkup(lineCount, digits) {
+  const rows = [];
+  for (let index = 1; index <= lineCount; index += 1) {
+    rows.push(String(index).padStart(digits, " "));
+  }
+  return rows.join("\n");
+}
+
 function resetCode(textarea, defaultCode, codeBlock, iframe) {
   textarea.value = defaultCode;
   stopCode(codeBlock, iframe);
@@ -89,8 +105,17 @@ function initTutorialCodeBlocks() {
     const copyButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonCopy");
     const textarea = codeBlock.querySelector(".W_TutorialSingleCodeTextRun");
     const highlight = codeBlock.querySelector(".A_TutorialSingleCodeTextHighlight");
+    const textAreaWrapper = codeBlock.querySelector(".W_TutorialSingleCodeTextArea");
 
-    if (!iframe || !runStopButton || !resetButton || !copyButton || !textarea || !highlight) return;
+    if (!iframe || !runStopButton || !resetButton || !copyButton || !textarea || !highlight || !textAreaWrapper) return;
+
+    let lineNumbers = textAreaWrapper.querySelector(".A_TutorialSingleCodeLineNumbers");
+    if (!lineNumbers) {
+      lineNumbers = document.createElement("pre");
+      lineNumbers.className = "U_FontC2-Code A_TutorialSingleCodeLineNumbers";
+      lineNumbers.setAttribute("aria-hidden", "true");
+      textAreaWrapper.prepend(lineNumbers);
+    }
 
     const defaultCode = getDefaultCode(codeBlockId, runtime);
     textarea.value = defaultCode;
@@ -113,14 +138,26 @@ function initTutorialCodeBlocks() {
       highlight.scrollLeft = textarea.scrollLeft;
     }
 
+    function syncLineNumbers() {
+      const lineCount = getLineCount(textarea.value);
+      const digits = getGutterDigits(lineCount);
+      const gutterWidth = `calc(${digits}ch + var(--size-spacing-20))`;
+
+      textAreaWrapper.style.setProperty("--code-line-number-gutter-width", gutterWidth);
+      lineNumbers.textContent = buildLineNumbersMarkup(lineCount, digits);
+      lineNumbers.scrollTop = textarea.scrollTop;
+    }
+
     textarea.addEventListener("input", () => {
       autoResizeTextarea();
       syncHighlight();
+      syncLineNumbers();
     });
 
     textarea.addEventListener("scroll", () => {
       highlight.scrollTop = textarea.scrollTop;
       highlight.scrollLeft = textarea.scrollLeft;
+      lineNumbers.scrollTop = textarea.scrollTop;
     });
 
     runStopButton.addEventListener("click", () => {
@@ -135,6 +172,7 @@ function initTutorialCodeBlocks() {
       resetCode(textarea, defaultCode, codeBlock, iframe);
       autoResizeTextarea();
       syncHighlight();
+      syncLineNumbers();
     });
 
     copyButton.addEventListener("click", async () => {
@@ -143,6 +181,7 @@ function initTutorialCodeBlocks() {
 
     autoResizeTextarea();
     syncHighlight();
+    syncLineNumbers();
     clearFrame(iframe);
 
     if (codeBlock.dataset.autostart === "true") {

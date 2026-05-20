@@ -416,6 +416,7 @@
                     gap: var(--size-spacing-20);
 
                     .W_TutorialSingleCodeTextArea {
+                        --code-line-number-gutter-width: calc(var(--size-spacing-12) * 4);
                         position: relative;
 
                         display: flex;
@@ -443,11 +444,29 @@
                             box-sizing: border-box;
                             margin: 0;
                             padding: var(--size-spacing-16);
+                            padding-left: calc(var(--size-spacing-16) + var(--code-line-number-gutter-width));
                             padding-right: calc(3 * var(--size-spacing-32) + 3 * var(--size-spacing-12));
                             overflow: auto;
                             white-space: pre;
                             pointer-events: none;
 
+                            color: var(--colors-neutrals-450);
+                        }
+
+                        .A_TutorialSingleCodeLineNumbers {
+                            position: absolute;
+                            z-index: 1;
+                            top: 0;
+                            left: 0;
+                            bottom: 0;
+                            width: var(--code-line-number-gutter-width);
+                            box-sizing: border-box;
+                            margin: 0;
+                            padding: var(--size-spacing-16) var(--size-spacing-8) var(--size-spacing-16) 0;
+                            overflow: hidden;
+                            white-space: pre;
+                            pointer-events: none;
+                            text-align: right;
                             color: var(--colors-neutrals-450);
                         }
 
@@ -463,6 +482,7 @@
                             box-sizing: border-box;
                             margin: 0;
                             padding: var(--size-spacing-16);
+                            padding-left: calc(var(--size-spacing-16) + var(--code-line-number-gutter-width));
                             padding-right: calc(3 * var(--size-spacing-32) + 3 * var(--size-spacing-12));
                             overflow: auto;
                             white-space: pre;
