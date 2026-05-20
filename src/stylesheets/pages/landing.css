@@ -718,17 +718,31 @@
         }
 
         .C_LendingParts {
+            display: flex;
+            flex-direction: column;
             padding-inline: 4%;
             padding-block: var(--size-spacing-56);
 
-            .O_LendingPart .W_LendingPartInfo .A_LendingPartInfoTitle {
-                /* U_FontH1-Mob */
-                color: var(--colors-neutrals-900);
-                font-family: var(--font-KairosSans);
-                font-size: 3.5rem;
-                line-height: 100%;
-                letter-spacing: -0.175rem;
-                text-transform: uppercase;
+            .O_LendingPart {
+                max-width: none;
+                min-width: 0;
+                width: 100%;
+
+                .W_LendingPartInfo {
+                    max-width: none;
+                    min-width: 0;
+                    width: 100%;
+
+                    .A_LendingPartInfoTitle {
+                        /* U_FontH1-Mob */
+                        color: var(--colors-neutrals-900);
+                        font-family: var(--font-KairosSans);
+                        font-size: 3.5rem;
+                        line-height: 100%;
+                        letter-spacing: -0.175rem;
+                        text-transform: uppercase;
+                    }
+                }
             }
         }
 
