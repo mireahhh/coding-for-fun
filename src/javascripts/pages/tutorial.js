@@ -69,6 +69,8 @@ function stopCode(codeBlock, iframe) {
 }
 
 function getLineCount(textValue) {
+  if (textValue === "") return 1;
+
   return textValue.split("\n").length;
 }
 
@@ -138,6 +140,12 @@ function initTutorialCodeBlocks() {
       highlight.scrollLeft = textarea.scrollLeft;
     }
 
+    function syncScrollOffsets() {
+      highlight.scrollTop = textarea.scrollTop;
+      highlight.scrollLeft = textarea.scrollLeft;
+      lineNumbers.style.transform = `translateY(${-textarea.scrollTop}px)`;
+    }
+
     function syncLineNumbers() {
       const lineCount = getLineCount(textarea.value);
       const digits = getGutterDigits(lineCount);
@@ -145,7 +153,7 @@ function initTutorialCodeBlocks() {
 
       textAreaWrapper.style.setProperty("--code-line-number-gutter-width", gutterWidth);
       lineNumbers.textContent = buildLineNumbersMarkup(lineCount, digits);
-      lineNumbers.scrollTop = textarea.scrollTop;
+      syncScrollOffsets();
     }
 
     textarea.addEventListener("input", () => {
@@ -155,9 +163,7 @@ function initTutorialCodeBlocks() {
     });
 
     textarea.addEventListener("scroll", () => {
-      highlight.scrollTop = textarea.scrollTop;
-      highlight.scrollLeft = textarea.scrollLeft;
-      lineNumbers.scrollTop = textarea.scrollTop;
+      syncScrollOffsets();
     });
 
     runStopButton.addEventListener("click", () => {

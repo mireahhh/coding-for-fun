@@ -433,6 +433,12 @@
                         background: var(--colors-neutrals-0);
                         overflow: hidden;
 
+                        .A_TutorialSingleCodeTextHighlight,
+                        .A_TutorialSingleCodeLineNumbers,
+                        .W_TutorialSingleCodeTextRun {
+                            line-height: 1.5;
+                        }
+
                         .A_TutorialSingleCodeTextHighlight {
                             position: absolute;
                             inset: 0;
@@ -470,6 +476,8 @@
                             text-align: right;
                             color: var(--colors-neutrals-450);
                             background: var(--colors-neutrals-0);
+                            transform: translateY(0);
+                            will-change: transform;
                         }
 
                         .W_TutorialSingleCodeTextRun {
