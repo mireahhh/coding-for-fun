@@ -2,13 +2,13 @@
 // Не лендинг ли
 const isLanding = document.querySelector(".S_Header--Landing");
 // Получаем высоту хедера
-const header = document.querySelector(".S_Header");
+const headerNavigation = document.querySelector(".O_HeaderNavigation");
 // Применяем отступ к контенту
 const mainContent = document.querySelector(".S_Main");
 const footerContent = document.querySelector(".S_Footer");
-//Функция 
+
 function applyHeaderOffset() {
-  const headerHeight = header.offsetHeight;
+  const headerHeight = headerNavigation.offsetHeight;
   if (isLanding) {
     const landingIntro = document.querySelector(".O_LandingIntro");
     landingIntro.style.marginTop = headerHeight + "px";

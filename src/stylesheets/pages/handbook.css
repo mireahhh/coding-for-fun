@@ -4,6 +4,9 @@
   padding-inline: 5%;
   box-sizing: border-box;
   width: 100%;
+  min-width: var(--min-width);
+  max-width: var(--max-width);
+  margin: auto;
   align-items: flex-start;
   gap: var(--size-spacing-120);
   margin-top: var(--size-spacing-72);
@@ -152,7 +155,8 @@
               transform 0.3s ease,
               opacity 0.3s ease; */
             will-change: transform;
-            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+            transition:
+              transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
               opacity 0.2s ease;
           }
         }
@@ -174,7 +178,6 @@
         .HandbookPartNoActiveLink,
         .HandbookPartNoActiveLink:hover,
         .HandbookPartNoActiveLink:active {
-
           transform: none;
           box-shadow: none;
           opacity: var(--official-no-interaction-opacity);

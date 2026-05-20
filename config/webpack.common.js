@@ -16,6 +16,7 @@ module.exports = {
     tutorial: "./src/javascripts/pages/tutorial.js",
     work: "./src/javascripts/pages/work.js",
     adding: "./src/javascripts/pages/adding.js",
+    sandbox: "./src/javascripts/pages/sandbox.js",
   },
   output: {
     filename: "[name].js",

@@ -5,173 +5,180 @@
   align-items: flex-start;
   overflow: hidden;
 
-  .W_ModuleTutorial {
+  .O_ModuleTutorial {
     position: relative;
     isolation: isolate;
-
-    display: flex;
-    flex-direction: row;
-    padding-block: var(--size-spacing-36);
-    padding-inline: 5%;
-    box-sizing: border-box;
+    
     width: 100%;
-    align-items: flex-start;
-    align-content: flex-start;
-    gap: var(--size-spacing-96);
-    align-self: stretch;
-
     border-bottom: var(--size-spacing-1-5) solid var(--colors-neutrals-450);
+
     will-change: transform;
     transition:
       transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
       opacity 0.2s ease;
 
-    .W_ModuleTutorialHangle {
+    .W_ModuleTutorial {
       display: flex;
-      min-width: 0px;
-      max-width: var(--size-spacing-704);
-      flex-direction: column;
-      align-items: flex-start;
-      gap: var(--size-spacing-16);
-      flex: 1 0 0;
+      flex-direction: row;
+      padding-block: var(--size-spacing-36);
+      align-items: center;
+      gap: var(--size-spacing-96);
+      align-self: stretch;
 
-      .M_ModuleTutorialsubtitle {
+      padding-inline: 5%;
+      box-sizing: border-box;
+      width: 100%;
+      min-width: var(--min-width);
+      max-width: var(--max-width);
+      margin: auto;
+
+      .W_ModuleTutorialHangle {
         display: flex;
+        min-width: 0px;
+        max-width: var(--size-spacing-704);
+        flex-direction: column;
         align-items: flex-start;
-        align-self: stretch;
+        gap: var(--size-spacing-16);
+        flex: 1 0 0;
 
-        /* U_FontC2 */
-        color: var(--colors-neutrals-900);
-      }
-
-      .A_ModuleTutorialTitle {
-        display: flex;
-        align-items: flex-start;
-        align-self: stretch;
-
-        /* U_FontH3 */
-        color: var(--colors-neutrals-900);
-      }
-    }
-
-    .W_ModuleTutorialAboute {
-      display: flex;
-      min-width: 0px;
-      max-width: var(--size-spacing-780);
-      flex-direction: column;
-      align-items: flex-start;
-      gap: var(--size-spacing-10);
-      flex: 1 0 0;
-
-      .C_ModuleTutorialTags {
-        display: flex;
-        align-items: center;
-        align-content: center;
-        gap: var(--size-spacing-8);
-        align-self: stretch;
-        flex-wrap: wrap;
-
-        .A_ModuleTutorialTag {
+        .M_ModuleTutorialsubtitle {
           display: flex;
-          padding: var(--size-spacing-4) var(--size-spacing-8);
-          justify-content: center;
-          align-items: center;
+          align-items: flex-start;
+          align-self: stretch;
 
-          border-radius: var(--size-spacing-4);
-          border: var(--size-spacing-1) dashed var(--colors-neutrals-900);
+          /* U_FontC2 */
+          color: var(--colors-neutrals-900);
+        }
 
-          /* U_FontF2 */
+        .A_ModuleTutorialTitle {
+          display: flex;
+          align-items: flex-start;
+          align-self: stretch;
+
+          /* U_FontH3 */
           color: var(--colors-neutrals-900);
         }
       }
 
-      .A_ModuleTutorialDescription {
-        align-self: stretch;
-        overflow: hidden;
+      .W_ModuleTutorialAboute {
+        display: flex;
+        min-width: 0px;
+        max-width: var(--size-spacing-780);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--size-spacing-10);
+        flex: 1 0 0;
 
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        line-clamp: 2;
+        .C_ModuleTutorialTags {
+          display: flex;
+          align-items: center;
+          align-content: center;
+          gap: var(--size-spacing-8);
+          align-self: stretch;
+          flex-wrap: wrap;
 
-        /* U_FontB1 */
-        color: var(--colors-neutrals-900);
+          .A_ModuleTutorialTag {
+            display: flex;
+            padding: var(--size-spacing-4) var(--size-spacing-8);
+            justify-content: center;
+            align-items: center;
+
+            border-radius: var(--size-spacing-4);
+            border: var(--size-spacing-1) dashed var(--colors-neutrals-900);
+
+            /* U_FontF2 */
+            color: var(--colors-neutrals-900);
+          }
+        }
+
+        .A_ModuleTutorialDescription {
+          align-self: stretch;
+          overflow: hidden;
+
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          line-clamp: 2;
+
+          /* U_FontB1 */
+          color: var(--colors-neutrals-900);
+        }
       }
-    }
 
-    .M_ModuleTutorialPointer {
-      position: relative;
+      .M_ModuleTutorialPointer {
+        position: relative;
 
-      width: var(--size-spacing-24);
-      height: var(--size-spacing-24);
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
+        width: var(--size-spacing-24);
+        height: var(--size-spacing-24);
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
 
-      .Q_ModuleTutorialDash,
-      .Q_ModuleTutorialArrow {
+        .Q_ModuleTutorialDash,
+        .Q_ModuleTutorialArrow {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+
+          display: block;
+          transform: translate(-50%, -50%);
+          transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+          will-change: transform;
+        }
+
+        .Q_ModuleTutorialArrow {
+          left: 60%;
+        }
+      }
+
+      &>* {
+        position: relative;
+        z-index: 2;
+      }
+
+      &::before {
+        content: "";
         position: absolute;
-        top: 50%;
-        left: 50%;
+        inset: 0;
+        z-index: 0;
+        opacity: 0.3;
 
-        display: block;
-        transform: translate(-50%, -50%);
-        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        will-change: transform;
+        background:
+          linear-gradient(0deg,
+            var(--colors-brand-rainbow-subtrate)),
+          linear-gradient(90deg,
+            var(--colors-brand-rainbow));
+
+        /* background-size: 200% 100%; */
+        /* background-position: 100% 0; */
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease-out;
+        /* background-position 0.6s ease; */
+        filter: saturate(1.2) brightness(1.05);
+
+        mix-blend-mode: plus-lighter;
       }
 
-      .Q_ModuleTutorialArrow {
-        left: 60%;
+      &:hover,
+      &:active {
+        opacity: 1;
+        transform: none;
+        box-shadow: none;
       }
-    }
 
-    &>* {
-      position: relative;
-      z-index: 2;
-    }
+      &:hover {
+        transform: scale(1.01);
+      }
 
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      opacity: 0.3;
+      &:active {
+        transform: scale(1);
+      }
 
-      background:
-        linear-gradient(0deg,
-          var(--colors-brand-rainbow-subtrate)),
-        linear-gradient(90deg,
-          var(--colors-brand-rainbow));
-
-      /* background-size: 200% 100%; */
-      /* background-position: 100% 0; */
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s ease-out;
-      /* background-position 0.6s ease; */
-      filter: saturate(1.2) brightness(1.05);
-
-      mix-blend-mode: plus-lighter;
-    }
-
-    &:hover,
-    &:active {
-      opacity: 1;
-      transform: none;
-      box-shadow: none;
-    }
-
-    &:hover {
-      transform: scale(1.01);
-    }
-
-    &:active {
-      transform: scale(1);
-    }
-
-    &:hover::before {
-      opacity: 1;
-      transform: scaleX(1);
+      &:hover::before {
+        opacity: 1;
+        transform: scaleX(1);
+      }
     }
   }
 
@@ -283,7 +290,7 @@
 /* m 4 -> 3 */
 @media (max-width: 1368px) {
   .C_ModuleTutorials {
-    .W_ModuleTutorial {
+    .O_ModuleTutorial {
       gap: var(--size-spacing-80);
     }
   }
@@ -296,7 +303,7 @@
 /* m 3 -> 2 */
 @media (max-width: 1152px) {
   .C_ModuleTutorials {
-    .W_ModuleTutorial {
+    .O_ModuleTutorial {
       &::before {
         background: none;
       }
@@ -327,7 +334,7 @@
 /* m 2 -> 1 */
 @media (max-width: 904px) {
   .C_ModuleTutorials {
-    .W_ModuleTutorial {
+    .O_ModuleTutorial {
       flex-direction: column;
       padding-block: var(--size-spacing-64);
       padding-inline: 4%;

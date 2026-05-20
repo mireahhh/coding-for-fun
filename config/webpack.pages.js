@@ -18,6 +18,7 @@ const htmlPages = [
     "index",
     "gallery",
   ]),
+  createPages("./src/pages/sandbox.html", "./pages/sandbox.html", ["index", "sandbox"]),
   createPages("./src/pages/work.html", "./pages/work.html", ["index", "work"]),
   createPages("./src/pages/about.html", "./pages/about.html", ["index"]),
   createPages("./src/pages/adding.html", "./pages/adding.html", ["index", "adding"]),

@@ -3,8 +3,10 @@
     flex-direction: column;
     margin: auto;
     height: min-content;
-    min-width: 88px;
     width: 100%;
+    min-width: var(--min-width);
+    /* max-width: var(--max-width); */
+    margin: auto;
     gap: var(--size-spacing-0);
     background-color: var(--colors-neutrals-body);
     

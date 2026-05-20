@@ -178,7 +178,11 @@
     --layout-laptop: 1368px;
     --layout-tablet: 1152px;
     --layout-mobile: 428px;
+
+    --min-width: 88px;
+    --max-width: 1920px;
 }
+
 :root[data-theme="dark"] {
     --colors-neutrals-0: #000000;
     --colors-neutrals-0-15: #00000026;

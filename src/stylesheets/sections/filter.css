@@ -4,6 +4,9 @@
     padding-inline: 5%;
     box-sizing: border-box;
     width: 100%;
+    min-width: var(--min-width);
+    max-width: var(--max-width);
+    margin: auto;
     padding-block: var(--size-spacing-32);
     background-color: var(--colors-neutrals-body);
     justify-content: space-between;
@@ -12,7 +15,6 @@
     gap: var(--size-spacing-32);
     align-self: stretch;
     flex-wrap: wrap;
-    border-bottom: 1.5px dashed var(--colors-neutrals-900);
     margin-top: var(--size-spacing-32);
 
     .O_FilterFilters {

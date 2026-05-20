@@ -1,4 +1,4 @@
-.A_BrightTitle {
+.M_BrightTitle {
     padding: var(--size-spacing-32) 5%;
     align-items: center;
     align-self: stretch;
@@ -22,8 +22,15 @@
     background-blend-mode: plus-lighter, normal;
     animation: titleRainbowFlow 4s linear infinite;
 
-    /* U_FontH0 */
-    color: var(--colors-neutrals-900);
+    .A_BrightTitleText {
+        width: 100%;
+        min-width: var(--min-width);
+        max-width: var(--max-width);
+        margin: auto;
+
+        /* U_FontH0 */
+        color: var(--colors-neutrals-900);
+    }
 }
 
 @keyframes titleRainbowFlow {
@@ -47,6 +54,9 @@
     padding-inline: 5%;
     box-sizing: border-box;
     width: 100%;
+    min-width: var(--min-width);
+    max-width: var(--max-width);
+    margin: auto;
     align-items: flex-start;
     align-self: stretch;
     gap: 50px;
@@ -68,6 +78,11 @@
     padding-inline: 5%;
     text-align: justify;
     text-align-last: justify;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: var(--min-width);
+    max-width: var(--max-width);
+    margin: auto;
 }
 
 .A_AbTexLnMob {
@@ -126,4 +141,9 @@
 
         padding-inline: 4%;
     }
+}
+
+.A_CrossHorizontalLine {
+    width: 100%;
+    border-bottom: 1.5px dashed var(--colors-neutrals-900);
 }

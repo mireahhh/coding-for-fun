@@ -241,7 +241,7 @@ function drawModuleMeta() {
 
   // 2) Обновляем карточки статей
   const tutorialCards = document.querySelectorAll(
-    ".C_ModuleTutorials .W_ModuleTutorial:not(#noResultsTutorials)"
+    ".C_ModuleTutorials .O_ModuleTutorial .W_ModuleTutorial:not(#noResultsTutorials)"
   );
 
   tutorialCards.forEach((card, index) => {
@@ -316,7 +316,7 @@ async function drawTutorialDescriptions() {
   const moduleNumber = Number(heading.dataset.module);
 
   const tutorialCards = document.querySelectorAll(
-    ".C_ModuleTutorials .W_ModuleTutorial:not(#noResultsTutorials)"
+    ".C_ModuleTutorials .O_ModuleTutorial .W_ModuleTutorial:not(#noResultsTutorials)"
   );
 
   for (const [index, card] of Array.from(tutorialCards).entries()) {

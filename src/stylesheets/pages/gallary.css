@@ -4,6 +4,9 @@
   padding-inline: 5%;
   box-sizing: border-box;
   width: 100%;
+  min-width: var(--min-width);
+  max-width: var(--max-width);
+  margin: auto;
   align-items: flex-start;
   gap: var(--size-spacing-96);
   margin-top: var(--size-spacing-96);
@@ -194,6 +197,7 @@
     .C_GalleryWorks {
       flex-direction: column;
       flex-wrap: nowrap;
+
       .W_GalleryWork {
         min-width: 0;
       }

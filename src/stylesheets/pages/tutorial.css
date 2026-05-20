@@ -5,7 +5,9 @@
     flex-direction: row;
     margin: auto;
     align-items: flex-start;
-    min-width: 88px;
+    min-width: var(--min-width);
+    max-width: var(--max-width);
+    margin: auto;
     width: 100%;
     background-color: var(--colors-neutrals-body);
 

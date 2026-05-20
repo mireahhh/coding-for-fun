@@ -4,6 +4,9 @@
     padding-inline: 5%;
     box-sizing: border-box;
     width: 100%;
+    min-width: var(--min-width);
+    max-width: var(--max-width);
+    margin: auto;
     padding-block: var(--size-spacing-56);
     align-items: center;
     gap: var(--size-spacing-0);
