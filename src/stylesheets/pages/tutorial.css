@@ -433,6 +433,15 @@
                         background: var(--colors-neutrals-0);
                         overflow: hidden;
 
+                                                .W_TutorialSingleCodeTextLayers {
+                            position: relative;
+                            flex: 1 1 auto;
+                            min-width: 0;
+                            min-height: var(--size-spacing-272);
+                            max-height: calc(2 * var(--size-spacing-272));
+                            overflow: hidden;
+                        }
+
                         .A_TutorialSingleCodeTextHighlight,
                         .A_TutorialSingleCodeLineNumbers,
                         .W_TutorialSingleCodeTextRun {
@@ -451,7 +460,7 @@
                             box-sizing: border-box;
                             margin: 0;
                             padding: var(--size-spacing-16);
-                            padding-left: calc(var(--size-spacing-16) + var(--code-line-number-gutter-width));
+                            /* padding-left: calc(var(--size-spacing-16) + var(--code-line-number-gutter-width)); */
                             padding-right: calc(3 * var(--size-spacing-32) + 3 * var(--size-spacing-12));
                             overflow: auto;
                             white-space: pre;
@@ -461,11 +470,9 @@
                         }
 
                         .A_TutorialSingleCodeLineNumbers {
-                            position: absolute;
+                            position: relative;
                             z-index: 1;
-                            top: 0;
-                            left: 0;
-                            bottom: 0;
+                            flex: 0 0 auto;
                             width: var(--code-line-number-gutter-width);
                             box-sizing: border-box;
                             margin: 0;
@@ -492,7 +499,7 @@
                             box-sizing: border-box;
                             margin: 0;
                             padding: var(--size-spacing-16);
-                            padding-left: calc(var(--size-spacing-16) + var(--code-line-number-gutter-width));
+                            /* padding-left: calc(var(--size-spacing-16) + var(--code-line-number-gutter-width)); */
                             padding-right: calc(3 * var(--size-spacing-32) + 3 * var(--size-spacing-12));
                             overflow: auto;
                             white-space: pre;
