@@ -35,7 +35,8 @@
 
 
 /* A Link */
-.U_ALink {
+.U_ALink,
+.U_Button {
   color: var(--colors-neutrals-900);
   cursor: pointer;
   will-change: transform;

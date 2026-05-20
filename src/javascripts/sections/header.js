@@ -57,7 +57,7 @@ headerSearchBar.addEventListener("input", () => {
 });
 
 // Тема
-const themeButton = document.querySelector(".M_HeaderChangeThemeButton");
+const themeButtons = document.querySelectorAll(".M_HeaderChangeThemeButton, .A_HeaderMenuChangeThemeButton");
 const root = document.documentElement;
 const THEME_STORAGE_KEY = "theme";
 const THEMES = {
@@ -70,12 +70,14 @@ const initialTheme = savedTheme && THEMES[savedTheme] ? savedTheme : THEMES.ligh
 
 applyTheme(initialTheme);
 
-if (themeButton) {
-  themeButton.addEventListener("click", () => {
-    const currentTheme = root.dataset.theme === THEMES.dark ? THEMES.dark : THEMES.light;
-    const newTheme = currentTheme === THEMES.light ? THEMES.dark : THEMES.light;
+if (themeButtons.length) {
+  themeButtons.forEach((themeButton) => {
+    themeButton.addEventListener("click", () => {
+      const currentTheme = root.dataset.theme === THEMES.dark ? THEMES.dark : THEMES.light;
+      const newTheme = currentTheme === THEMES.light ? THEMES.dark : THEMES.light;
 
-    applyTheme(newTheme);
+      applyTheme(newTheme);
+    });
   });
 }
 
@@ -85,9 +87,11 @@ function applyTheme(theme) {
   localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
   root.dataset.theme = nextTheme;
 
-  if (themeButton) {
+  themeButtons.forEach((themeButton) => {
     themeButton.classList.toggle("is-dark", nextTheme === THEMES.dark);
-  }
+  });
 }
+
+let isHeaderSearchOpen = false;
 
 applyHeaderOffset();
