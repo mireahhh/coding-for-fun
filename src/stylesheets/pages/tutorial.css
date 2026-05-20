@@ -416,7 +416,8 @@
                     gap: var(--size-spacing-20);
 
                     .W_TutorialSingleCodeTextArea {
-                        --code-line-number-gutter-width: calc(var(--size-spacing-12) * 4);
+                        --code-line-number-gutter-padding: var(--size-spacing-8);
+                        --code-line-number-gutter-width: calc(var(--size-spacing-12) * 4 + 2 * var(--code-line-number-gutter-padding));
                         position: relative;
 
                         display: flex;
@@ -462,12 +463,13 @@
                             width: var(--code-line-number-gutter-width);
                             box-sizing: border-box;
                             margin: 0;
-                            padding: var(--size-spacing-16) var(--size-spacing-8) var(--size-spacing-16) 0;
+                            padding: var(--size-spacing-16) var(--code-line-number-gutter-padding);
                             overflow: hidden;
                             white-space: pre;
                             pointer-events: none;
                             text-align: right;
                             color: var(--colors-neutrals-450);
+                            background: var(--colors-neutrals-0);
                         }
 
                         .W_TutorialSingleCodeTextRun {
