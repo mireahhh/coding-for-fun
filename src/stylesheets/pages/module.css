@@ -42,7 +42,7 @@
         gap: var(--size-spacing-16);
         flex: 1 0 0;
 
-        .M_ModuleTutorialsubtitle {
+        .M_ModuleTutorialSubtitle {
           display: flex;
           align-items: flex-start;
           align-self: stretch;
@@ -109,27 +109,9 @@
       .M_ModuleTutorialPointer {
         position: relative;
 
-        width: var(--size-spacing-24);
-        height: var(--size-spacing-24);
         display: flex;
         justify-content: flex-end;
         align-items: center;
-
-        .Q_ModuleTutorialDash,
-        .Q_ModuleTutorialArrow {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-
-          display: block;
-          transform: translate(-50%, -50%);
-          transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-          will-change: transform;
-        }
-
-        .Q_ModuleTutorialArrow {
-          left: 60%;
-        }
       }
     }
 
@@ -181,26 +163,26 @@
       opacity: 1;
       transform: scaleX(1);
     }
-  }
 
-  .NotActiveTutorial {
+    &.NotActiveTutorial {
 
-    &:hover,
-    &:active {
-      opacity: 1;
-      transform: none;
-      box-shadow: none;
+      &:hover,
+      &:active {
+        opacity: 1;
+        transform: none;
+        box-shadow: none;
+      }
+
+      &::before {
+        filter: grayscale(1) saturate(0.15) brightness(0.95);
+        pointer-events: none;
+      }
     }
 
-    &::before {
-      filter: grayscale(1) saturate(0.15) brightness(0.95);
-      pointer-events: none;
+    &.NoResultsTutorials {
+      display: none;
+      border-bottom: var(--size-spacing-1) solid var(--colors-neutrals-450);
     }
-  }
-
-  .NoResultsTutorials {
-    display: none;
-    border-bottom: var(--size-spacing-1) solid var(--colors-neutrals-450);
   }
 }
 

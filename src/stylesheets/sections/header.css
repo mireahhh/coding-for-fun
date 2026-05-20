@@ -223,7 +223,7 @@
             flex-direction: column;
             width: 100%;
             height: min-content;
-            padding-bottom: var(--size-spacing-12);
+            padding-bottom: var(--size-spacing-8);
 
             .C_HeaderMenuLinks,
             .C_HeaderMenuAdditionalFunctionality {
@@ -252,7 +252,174 @@
         }
 
         .S_HeaderSearch {
+            /* TODO display: none; */
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: min-content;
+            padding-top: var(--size-spacing-48);
+            padding-bottom: var(--size-spacing-36);
+            row-gap: var(--size-spacing-36);
 
+            .W_HeaderSearchTutorials,
+            .W_HeaderSearchWorks {
+                display: flex;
+                flex-direction: column;
+
+                .W_HeaderSearchTutorialsTitle,
+                .W_HeaderSearchWorksTitle {}
+
+                .C_HeaderSearchTutorials {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    align-items: flex-start;
+                    overflow: hidden;
+
+                    .O_HeaderSearchTutorial {
+                        position: relative;
+                        isolation: isolate;
+
+                        display: flex;
+                        flex-direction: row;
+                        padding-block: var(--size-spacing-36);
+                        align-items: baseline;
+                        gap: var(--size-spacing-96);
+                        align-self: stretch;
+                        justify-content: space-between;
+                        box-sizing: border-box;
+                        width: 100%;
+                        border-bottom: var(--size-spacing-1-5) solid var(--colors-neutrals-450);
+
+                        will-change: transform;
+                        transition:
+                            transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                            opacity 0.2s ease;
+
+                        .W_HeaderSearchTutorialHangle {
+                            display: flex;
+                            min-width: 0px;
+                            max-width: var(--size-spacing-704);
+                            flex-direction: column;
+                            align-items: flex-start;
+                            flex: 1 0 0;
+
+                            .M_HeaderSearchTutorialSubtitle {
+                                display: flex;
+
+                                /* U_FontC2 */
+                                color: var(--colors-neutrals-900);
+                            }
+
+                            .A_HeaderSearchTutorialTitle {
+                                display: flex;
+
+                                /* U_FontH3 */
+                                color: var(--colors-neutrals-900);
+                            }
+                        }
+
+                        .W_HeaderSearchTutorialAboute {
+                            display: flex;
+                            min-width: 0px;
+                            max-width: var(--size-spacing-780);
+                            flex: 1 0 0;
+                            align-self: stretch;
+                            overflow: hidden;
+
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 2;
+                            line-clamp: 2;
+
+                            /* U_FontB1 */
+                            color: var(--colors-neutrals-900);
+                        }
+
+                        .M_HeaderSearchTutorialPointer {
+                            position: relative;
+
+                            display: flex;
+                            justify-content: flex-end;
+                            align-items: center;
+                        }
+                    }
+
+                    &>* {
+                        position: relative;
+                        z-index: 2;
+                    }
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        inset: 0;
+                        z-index: 0;
+                        opacity: 0.3;
+
+                        background:
+                            linear-gradient(0deg,
+                                var(--colors-brand-rainbow-subtrate)),
+                            linear-gradient(90deg,
+                                var(--colors-brand-rainbow));
+
+                        /* background-size: 200% 100%; */
+                        /* background-position: 100% 0; */
+                        transform: scaleX(0);
+                        transform-origin: left;
+                        transition: transform 0.3s ease-out;
+                        /* background-position 0.6s ease; */
+                        filter: saturate(1.2) brightness(1.05);
+
+                        mix-blend-mode: plus-lighter;
+                    }
+
+                    &:hover,
+                    &:active {
+                        opacity: 1;
+                        transform: none;
+                        box-shadow: none;
+                    }
+
+                    &:hover {
+                        transform: scale(1.01);
+                    }
+
+                    &:active {
+                        transform: scale(1);
+                    }
+
+                    &:hover::before {
+                        opacity: 1;
+                        transform: scaleX(1);
+                    }
+
+                    &.NotActiveTutorial {
+
+                        &:hover,
+                        &:active {
+                            opacity: 1;
+                            transform: none;
+                            box-shadow: none;
+                        }
+
+                        &::before {
+                            filter: grayscale(1) saturate(0.15) brightness(0.95);
+                            pointer-events: none;
+                        }
+                    }
+
+                    &.NoResultsTutorials {
+                        display: none;
+                        border-bottom: var(--size-spacing-1) solid var(--colors-neutrals-450);
+                    }
+                }
+
+                .C_HeaderSearchWorks {
+                    display: flex;
+                    flex-wrap: wrap;
+                }
+            }
         }
     }
 }
