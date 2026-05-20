@@ -47,8 +47,14 @@
                             color: var(--colors-neutrals-900);
                         }
 
-                        .Q_FilterFiltersCloseIcon {
-                            display: none;
+                        .Q_FilterFiltersOpenIcon {
+                            transform: rotate(0deg);
+                            transition: transform 220ms ease;
+                            transform-origin: center;
+                        }
+
+                        &.is-open .Q_FilterFiltersOpenIcon {
+                            transform: rotate(180deg);
                         }
                     }
                 }
@@ -184,14 +190,23 @@
                             .A_FilterSortingByComplexityText,
                             .A_FilterSortingByDateText,
                             .A_FilterSortingByVerificationText,
-                            .Q_FilterSortingOpenIcon,
-                            .Q_FilterSortingCloseIcon {
+                            .Q_FilterSortingOpenIcon {
                                 display: none;
                             }
 
                             .A_FilterSortingByComplexityText,
                             .Q_FilterSortingOpenIcon {
                                 display: flex;
+                            }
+
+                            .Q_FilterSortingOpenIcon {
+                                transform: rotate(0deg);
+                                transition: transform 220ms ease;
+                                transform-origin: center;
+                            }
+
+                            &.is-open .Q_FilterSortingOpenIcon {
+                                transform: rotate(180deg);
                             }
                         }
                     }
