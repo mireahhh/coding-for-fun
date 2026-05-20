@@ -178,7 +178,8 @@ function initTutorialCodeBlocks() {
     function syncScrollOffsets() {
       const top = textarea.scrollTop;
       const left = textarea.scrollLeft;
-      highlight.style.transform = `translate(${-left}px, ${-top}px)`;
+      highlight.scrollTop = top;
+      highlight.scrollLeft = left;
       lineNumbers.style.transform = `translateY(${-top}px)`;
     }
 
