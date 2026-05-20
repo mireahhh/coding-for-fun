@@ -125,7 +125,8 @@
                         color: var(--colors-neutrals-450);
                     }
 
-                    .A_TutorialNavigationModuleTitle.is-current {}
+                    /* TODO хз поч тут пустое, потом разобраться от чего вообще такое состояние аппендиксом появилось */
+                    /* .A_TutorialNavigationModuleTitle.is-current {} */
 
                     .C_TutorialNavigationTutorialsList {
                         display: flex;
