@@ -86,6 +86,15 @@ function buildLineNumbersMarkup(lineCount, digits) {
   return rows.join("\n");
 }
 
+function normalizeCodeForHighlight(code) {
+  if (code === "") return "​";
+
+  return code
+    .split("\n")
+    .map((line) => (line === "" ? "​" : line))
+    .join("\n");
+}
+
 function resetCode(textarea, defaultCode, codeBlock, iframe) {
   textarea.value = defaultCode;
   stopCode(codeBlock, iframe);
@@ -134,16 +143,43 @@ function initTutorialCodeBlocks() {
       highlight.style.height = `${nextHeight}px`;
     }
 
+    function syncTypographyMetrics() {
+      const textareaStyle = window.getComputedStyle(textarea);
+      const props = [
+        "font",
+        "fontFamily",
+        "fontSize",
+        "fontWeight",
+        "fontStyle",
+        "lineHeight",
+        "letterSpacing",
+        "tabSize",
+        "paddingTop",
+        "paddingRight",
+        "paddingBottom",
+        "paddingLeft",
+      ];
+
+      props.forEach((prop) => {
+        const value = textareaStyle[prop];
+        highlight.style[prop] = value;
+        lineNumbers.style[prop] = value;
+      });
+
+      lineNumbers.style.paddingRight = "var(--code-line-number-gutter-padding)";
+      lineNumbers.style.paddingLeft = "var(--code-line-number-gutter-padding)";
+    }
+
     function syncHighlight() {
-      highlight.innerHTML = highlightCode(textarea.value);
-      highlight.scrollTop = textarea.scrollTop;
-      highlight.scrollLeft = textarea.scrollLeft;
+      highlight.innerHTML = highlightCode(normalizeCodeForHighlight(textarea.value));
+      syncScrollOffsets();
     }
 
     function syncScrollOffsets() {
-      highlight.scrollTop = textarea.scrollTop;
-      highlight.scrollLeft = textarea.scrollLeft;
-      lineNumbers.style.transform = `translateY(${-textarea.scrollTop}px)`;
+      const top = textarea.scrollTop;
+      const left = textarea.scrollLeft;
+      highlight.style.transform = `translate(${-left}px, ${-top}px)`;
+      lineNumbers.style.transform = `translateY(${-top}px)`;
     }
 
     function syncLineNumbers() {
@@ -166,6 +202,11 @@ function initTutorialCodeBlocks() {
       syncScrollOffsets();
     });
 
+    window.addEventListener("resize", () => {
+      syncTypographyMetrics();
+      syncScrollOffsets();
+    });
+
     runStopButton.addEventListener("click", () => {
       if (codeBlock.classList.contains("is-running")) {
         stopCode(codeBlock, iframe);
@@ -185,6 +226,7 @@ function initTutorialCodeBlocks() {
       await copyCodeFromTextarea(textarea, copyButton);
     });
 
+    syncTypographyMetrics();
     autoResizeTextarea();
     syncHighlight();
     syncLineNumbers();

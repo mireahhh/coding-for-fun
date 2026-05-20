@@ -433,7 +433,7 @@
                         background: var(--colors-neutrals-0);
                         overflow: hidden;
 
-                                                .W_TutorialSingleCodeTextLayers {
+                        .W_TutorialSingleCodeTextLayers {
                             position: relative;
                             flex: 1 1 auto;
                             min-width: 0;
@@ -445,7 +445,11 @@
                         .A_TutorialSingleCodeTextHighlight,
                         .A_TutorialSingleCodeLineNumbers,
                         .W_TutorialSingleCodeTextRun {
+                            font: inherit;
+                            letter-spacing: inherit;
+                            font-kerning: none;
                             line-height: 1.5;
+                            tab-size: 2;
                         }
 
                         .A_TutorialSingleCodeTextHighlight {
@@ -490,6 +494,11 @@
                         .W_TutorialSingleCodeTextRun {
                             position: relative;
                             z-index: 1;
+                            border: 0;
+                            outline: 0;
+                            border-radius: 0;
+                            appearance: none;
+                            -webkit-appearance: none;
 
                             min-height: var(--size-spacing-272);
                             max-height: calc(2 * var(--size-spacing-272));
