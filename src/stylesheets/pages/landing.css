@@ -251,37 +251,21 @@
 
     .O_LandingInfo {
         display: flex;
-        padding: var(--size-spacing-160) 5%;
-        box-sizing: border-box;
-        width: 100%;
         min-width: var(--min-width);
         max-width: var(--max-width);
         margin: auto;
+        padding-block: var(--size-spacing-80);
         flex-direction: column;
         align-items: center;
 
-        .A_LandingInfoText,
-        .A_LandingInfoText--Mobile {
-            display: inline;
-            text-align: justify;
-            text-align-last: justify;
-            /* U_FontH0 */
-            color: var(--colors-neutrals-900);
-        }
-
-        .A_LandingInfoText--Mobile {
-            display: none;
-            text-align: center;
-            text-align-last: center;
-        }
-
-
         .W_LandingInfo {
             display: flex;
+            padding-inline: 5%;
+            box-sizing: border-box;
+            width: 100%;
             flex-direction: column;
             align-items: flex-start;
             gap: var(--size-spacing-32);
-            width: 100%;
 
             .C_LandingInfo {
                 display: flex;
@@ -347,7 +331,6 @@
 
             .A_LendingPartLink {
                 display: flex;
-                /* TODO у всем с бордером сделать по внешнему размеру */
                 box-sizing: border-box;
                 width: 100%;
                 aspect-ratio: 1/1;
@@ -498,10 +481,14 @@
         }
     }
 
+    .W_LandingCarousel {
+        display: flex;
+        padding-block: var(--size-spacing-80);
+    }
+
     .C_LandingLinks {
         display: flex;
         flex-direction: row;
-        padding-bottom: var(--size-spacing-40);
         padding-inline: 5%;
         box-sizing: border-box;
         width: 100%;
@@ -632,17 +619,6 @@
         .O_LandingInfo {
             padding-block: var(--size-spacing-64);
 
-            .A_LandingInfoText,
-            .A_LandingInfoText--Mobile {
-                /* U_FontH1 */
-                color: var(--colors-neutrals-900);
-                font-family: var(--font-KairosSans);
-                font-size: 4rem;
-                line-height: 100%;
-                letter-spacing: -0.14rem;
-                text-transform: uppercase;
-            }
-
             .W_LandingInfo .C_LandingInfo {
 
                 .A_LandingInfoItemNumber,
@@ -659,6 +635,8 @@
         }
 
         .C_LendingParts {
+            padding-block: var(--size-spacing-64);
+
             .O_LendingPart {
                 max-width: var(--size-spacing-388);
                 min-width: var(--size-spacing-340);
@@ -722,25 +700,6 @@
         .O_LandingInfo {
             padding-block: var(--size-spacing-56);
 
-            .A_LandingInfoText,
-            .A_LandingInfoText--Mobile {
-                /* U_FontH1-Mob */
-                color: var(--colors-neutrals-900);
-                font-family: var(--font-KairosSans);
-                font-size: 3.5rem;
-                line-height: 100%;
-                letter-spacing: -0.175rem;
-                text-transform: uppercase;
-            }
-
-            .A_LandingInfoText {
-                display: none;
-            }
-
-            .A_LandingInfoText--Mobile {
-                display: flex;
-            }
-
             .W_LandingInfo .C_LandingInfo {
                 flex-direction: column;
                 justify-content: center;
@@ -760,6 +719,7 @@
 
         .C_LendingParts {
             padding-inline: 4%;
+            padding-block: var(--size-spacing-56);
 
             .O_LendingPart .W_LendingPartInfo .A_LendingPartInfoTitle {
                 /* U_FontH1-Mob */
@@ -786,7 +746,8 @@
 
                 .A_LandingBoringImage {
                     display: flex;
-                    max-width: 270px;
+                    max-width: none;
+                    min-width: 0;
                     width: 100%;
                     height: auto;
                 }
