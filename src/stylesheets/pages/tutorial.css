@@ -415,6 +415,7 @@
                     gap: var(--size-spacing-20);
 
                     .W_TutorialSingleCodeTextArea {
+                        --line-numbers-column-width: calc(2ch + 2 * var(--size-spacing-8));
                         position: relative;
 
                         display: flex;
@@ -438,9 +439,10 @@
                             min-height: var(--size-spacing-272);
                             max-height: calc(2 * var(--size-spacing-272));
                             height: auto;
-                            width: 100%;
+                            width: calc(100% - var(--line-numbers-column-width));
                             box-sizing: border-box;
                             margin: 0;
+                            margin-left: var(--line-numbers-column-width);
                             padding: var(--size-spacing-16);
                             padding-right: calc(3 * var(--size-spacing-32) + 3 * var(--size-spacing-12));
                             overflow: auto;
@@ -458,9 +460,10 @@
                             max-height: calc(2 * var(--size-spacing-272));
                             height: auto;
                             resize: none;
-                            width: 100%;
+                            width: calc(100% - var(--line-numbers-column-width));
                             box-sizing: border-box;
                             margin: 0;
+                            margin-left: var(--line-numbers-column-width);
                             padding: var(--size-spacing-16);
                             padding-right: calc(3 * var(--size-spacing-32) + 3 * var(--size-spacing-12));
                             overflow: auto;
@@ -471,6 +474,25 @@
                             background: transparent;
                             color: transparent;
                             caret-color: var(--colors-neutrals-900);
+                        }
+
+                        .A_TutorialSingleCodeLineNumbers {
+                            position: absolute;
+                            inset: 0 auto 0 0;
+                            z-index: 1;
+
+                            width: var(--line-numbers-column-width);
+                            box-sizing: border-box;
+                            margin: 0;
+                            padding: var(--size-spacing-16) var(--size-spacing-8);
+                            overflow: hidden;
+                            white-space: pre;
+                            pointer-events: none;
+                            user-select: none;
+                            text-align: right;
+
+                            color: var(--colors-neutrals-450);
+                            background: transparent;
                         }
 
                         .M_TutorialSingleCodeTextButtons {

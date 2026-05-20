@@ -89,8 +89,13 @@ function initTutorialCodeBlocks() {
     const copyButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonCopy");
     const textarea = codeBlock.querySelector(".W_TutorialSingleCodeTextRun");
     const highlight = codeBlock.querySelector(".A_TutorialSingleCodeTextHighlight");
+    const textAreaWrapper = codeBlock.querySelector(".W_TutorialSingleCodeTextArea");
 
-    if (!iframe || !runStopButton || !resetButton || !copyButton || !textarea || !highlight) return;
+    if (!iframe || !runStopButton || !resetButton || !copyButton || !textarea || !highlight || !textAreaWrapper) return;
+
+    const lineNumbers = document.createElement("pre");
+    lineNumbers.className = "A_TutorialSingleCodeLineNumbers U_FontC2-Code";
+    textAreaWrapper.append(lineNumbers);
 
     const defaultCode = getDefaultCode(codeBlockId, runtime);
     textarea.value = defaultCode;
@@ -113,14 +118,28 @@ function initTutorialCodeBlocks() {
       highlight.scrollLeft = textarea.scrollLeft;
     }
 
+    function syncLineNumbers() {
+      const totalLines = textarea.value.split("\n").length;
+      const lineDigits = Math.max(2, String(totalLines).length);
+      const lineIndexes = Array.from({ length: totalLines }, (_, index) =>
+        String(index + 1).padStart(lineDigits, " ")
+      );
+
+      lineNumbers.textContent = lineIndexes.join("\n");
+      lineNumbers.scrollTop = textarea.scrollTop;
+      textAreaWrapper.style.setProperty("--line-numbers-column-width", `calc(${lineDigits}ch + 2 * var(--size-spacing-8))`);
+    }
+
     textarea.addEventListener("input", () => {
       autoResizeTextarea();
       syncHighlight();
+      syncLineNumbers();
     });
 
     textarea.addEventListener("scroll", () => {
       highlight.scrollTop = textarea.scrollTop;
       highlight.scrollLeft = textarea.scrollLeft;
+      lineNumbers.scrollTop = textarea.scrollTop;
     });
 
     runStopButton.addEventListener("click", () => {
@@ -135,6 +154,7 @@ function initTutorialCodeBlocks() {
       resetCode(textarea, defaultCode, codeBlock, iframe);
       autoResizeTextarea();
       syncHighlight();
+      syncLineNumbers();
     });
 
     copyButton.addEventListener("click", async () => {
@@ -143,6 +163,7 @@ function initTutorialCodeBlocks() {
 
     autoResizeTextarea();
     syncHighlight();
+    syncLineNumbers();
     clearFrame(iframe);
 
     if (codeBlock.dataset.autostart === "true") {
