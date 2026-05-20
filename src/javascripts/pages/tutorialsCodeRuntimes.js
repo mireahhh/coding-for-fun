@@ -21,10 +21,11 @@ export function getBaseStyles(background = "transparent") {
       margin: 0;
       padding: 12px;
       white-space: pre-wrap;
-      font-family: monospace;
-      font-size: 13px;
-      line-height: 1.4;
-      color: #B91C1C;
+      font-family: "JetBrains Mono", "Courier New", Courier, monospace;
+      font-size: 1rem;
+      line-height: 170%;
+      letter-spacing: -0.05rem;
+      color: #FF2D55;
     }
   `;
 }
