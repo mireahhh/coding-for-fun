@@ -11,21 +11,17 @@ const filtersAll = [filtersComplexity, filtersLibrary, filtersVerification];
 let isOpenFilters = false;
 const filterFiltersButton = document.querySelector(".A_FilterFiltersButton");
 const filterFiltersMenu = document.querySelector(".C_FilterFiltersMenu");
-const filterFiltersOpenIcon = document.querySelector(".Q_FilterFiltersOpenIcon");
-const filterFiltersCloseIcon = document.querySelector(".Q_FilterFiltersCloseIcon");
 
 function openMenuFilters() {
   isOpenFilters = true;
   filterFiltersMenu.style.display = "flex";
-  filterFiltersOpenIcon.style.display = "none";
-  filterFiltersCloseIcon.style.display = "flex";
+  filterFiltersButton.classList.add("is-open");
 }
 
 function closeMenuFilters() {
   isOpenFilters = false;
   filterFiltersMenu.style.display = "none";
-  filterFiltersOpenIcon.style.display = "flex";
-  filterFiltersCloseIcon.style.display = "none";
+  filterFiltersButton.classList.remove("is-open");
 }
 
 filterFiltersButton.addEventListener("click", () => {
@@ -166,22 +162,18 @@ filterSearchBar.addEventListener("input", () => {
 let isOpenSorting = false;
 
 const openSortsButton = document.querySelector(".A_FilterSortingOpenButton");
-const openSortsIcon = document.querySelector(".Q_FilterSortingOpenIcon");
-const closeSortsIcon = document.querySelector(".Q_FilterSortingCloseIcon");
 const sortingMenu = document.querySelector(".C_FilterSortingMenu");
 
 function openMenuSorting() {
   isOpenSorting = true;
   sortingMenu.style.display = "flex";
-  openSortsIcon.style.display = "none";
-  closeSortsIcon.style.display = "flex";
+  openSortsButton.classList.add("is-open");
 }
 
 function closeMenuSorting() {
   isOpenSorting = false;
   sortingMenu.style.display = "none";
-  openSortsIcon.style.display = "flex";
-  closeSortsIcon.style.display = "none";
+  openSortsButton.classList.remove("is-open");
 }
 
 openSortsButton.addEventListener("click", () => {

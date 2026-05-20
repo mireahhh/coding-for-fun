@@ -91,7 +91,8 @@
                             opacity: var(--official-no-interaction-opacity);
                         }
 
-                        .Q_FilterShuffleIcon {}
+                        /* TODO это икнока для случайного тега, не знаю почему она вообще не дописана */
+                        /* .Q_FilterShuffleIcon {} */
                     }
                 }
             }
