@@ -464,13 +464,37 @@
                             box-sizing: border-box;
                             margin: 0;
                             padding: var(--size-spacing-16);
-                            /* padding-left: calc(var(--size-spacing-16) + var(--code-line-number-gutter-width)); */
+                            /* padding-left: calc(var(--size-spacing-16) + var(--code-line-number-gutter-width)); */                           
                             padding-right: calc(3 * var(--size-spacing-32) + 3 * var(--size-spacing-12));
                             overflow: auto;
                             white-space: pre;
                             pointer-events: none;
 
                             color: var(--colors-neutrals-450);
+
+                            /* scrollbar-width: none; */
+                            /* Firefox */
+                            /* -ms-overflow-style: none; */
+                            /* старый Edge/IE */
+                            /* &::-webkit-scrollbar {
+                                width: 0;
+                                height: 0;
+                            } */
+                            /* Chrome/Safari */
+
+
+                            /* &::-webkit-scrollbar {
+                                background: transparent;
+                            }
+
+                            &::-webkit-scrollbar-thumb {
+                                background: transparent;
+                                border: none;
+                            }
+
+                            &::-webkit-scrollbar-corner {
+                                background: transparent;
+                            } */
                         }
 
                         .A_TutorialSingleCodeLineNumbers {
@@ -489,6 +513,9 @@
                             background: var(--colors-neutrals-0);
                             transform: translateY(0);
                             will-change: transform;
+                            /* border-right: var(--size-spacing-2) solid var(--colors-neutrals-body); */
+
+                            color: var(--colors-neutrals-200);
                         }
 
                         .W_TutorialSingleCodeTextRun {
