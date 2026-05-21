@@ -99,10 +99,10 @@
         background: var(--colors-neutrals-450);
       }
 
-      .HandbookPartNoActiveStartButton:hover,
+      /* .HandbookPartNoActiveStartButton:hover,
       .HandbookPartNoActiveStartButton:active {
-        /* filter: blur(var(--size-spacing-1)); */
-      }
+        filter: blur(var(--size-spacing-1));
+      } */
     }
 
     .C_HandbookModules {

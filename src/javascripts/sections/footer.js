@@ -1,11 +1,16 @@
 const footerSubscribeBar = document.getElementById("footerSubscribeBar");
 const footerSubscribeButton = document.getElementById("footerSubscribeButton");
+const footerEmailAction = document.querySelector(".M_FooterEmailAction");
+
+const updateFooterSubscribeButtonState = () => {
+  footerEmailAction.classList.toggle("is-filled", Boolean(footerSubscribeBar.value));
+};
 
 footerSubscribeButton.addEventListener("click", () => {
-    footerSubscribeButton.style.opacity = "0.52";
   footerSubscribeBar.value = "";
+  updateFooterSubscribeButtonState();
 });
 
-footerSubscribeBar.addEventListener("input", () => {
-  footerSubscribeButton.style.opacity = footerSubscribeBar.value ? "1" : "0.52";
-});
+footerSubscribeBar.addEventListener("input", updateFooterSubscribeButtonState);
+
+updateFooterSubscribeButtonState();

@@ -157,11 +157,18 @@
                         align-items: center;
                         flex-shrink: 0;
                         background: var(--colors-neutrals-900);
-                        opacity: var(--official-no-interaction-opacity);
+                        color: var(--colors-neutrals-450);
+                        transition: color 0.15s ease, transform 0.1s ease;
 
                         p {
                             /* U_FontS3 */
                             color: var(--colors-neutrals-0);
+                        }
+                    }
+
+                    &.is-filled {
+                        button {
+                            color: var(--colors-neutrals-900);
                         }
                     }
                 }

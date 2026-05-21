@@ -252,7 +252,7 @@
 
         .S_HeaderSearch {
             /* TODO display: none; */
-            display: flex;
+            display: none;
             flex-direction: column;
             box-sizing: border-box;
             width: 100%;

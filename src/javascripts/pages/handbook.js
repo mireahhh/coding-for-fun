@@ -610,7 +610,10 @@ function drawContTutorials() {
 }
 
 function showWidth() {
-  document.getElementById("width-value").textContent = window.innerWidth;
+  const widthValue = document.getElementById("width-value");
+  if (!widthValue) return;
+
+  widthValue.textContent = window.innerWidth;
 }
 
 showWidth();
