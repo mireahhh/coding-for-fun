@@ -137,6 +137,12 @@
                         padding-inline: var(--size-spacing-8);
                         opacity: var(--official-no-interaction-opacity);
                     }
+
+                    &.is-filled {
+                        .Q_HeaderSearchIcon {
+                            opacity: 1;
+                        }
+                    }
                 }
             }
 

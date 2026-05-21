@@ -45,17 +45,32 @@ headerCrossButton.addEventListener("click", () => {
 
 const headerSearchBar = document.getElementById("headerSearchBar");
 const headerSearchButton = document.querySelector(".Q_HeaderSearchIcon");
+const headerSearchElement = document.querySelector(".M_HeaderSearchBar");
+
+let isHeaderSearchFilled = false;
+
+function updateHeaderSearchFilledFlag() {
+  isHeaderSearchFilled = Boolean(headerSearchBar.value.trim());
+
+  if (isHeaderSearchFilled) {
+    headerSearchElement.classList.add("is-filled");
+    return;
+  }
+
+  headerSearchElement.classList.remove("is-filled");
+}
 
 headerSearchButton.addEventListener("click", () => {
-  headerSearchButton.style.opacity = "0.52";
   headerSearchBar.value = "";
+  updateHeaderSearchFilledFlag();
   // headerSearchBar.focus();
 });
 
 headerSearchBar.addEventListener("input", () => {
-  console.log(headerSearchBar.value);
-  headerSearchButton.style.opacity = headerSearchBar.value ? "1" : "0.52";
+  updateHeaderSearchFilledFlag();
 });
+
+updateHeaderSearchFilledFlag();
 
 // Тема
 const themeButtons = document.querySelectorAll(".M_HeaderChangeThemeButton, .A_HeaderMenuChangeThemeButton");
