@@ -6,21 +6,21 @@ const htmlPages = require("./webpack.pages.js");
 const webpack = require("webpack");
 const path = require("path");
 
-class DuplicateNotFoundAs404Plugin {
-  apply(compiler) {
-    compiler.hooks.afterEmit.tap("DuplicateNotFoundAs404Plugin", (compilation) => {
-      const fs = require("fs");
-      const path = require("path");
-      const outDir = compilation.outputOptions.path;
-      const source = path.join(outDir, "pages", "notFound.html");
-      const target = path.join(outDir, "404.html");
+// class DuplicateNotFoundAs404Plugin {
+//   apply(compiler) {
+//     compiler.hooks.afterEmit.tap("DuplicateNotFoundAs404Plugin", (compilation) => {
+//       const fs = require("fs");
+//       const path = require("path");
+//       const outDir = compilation.outputOptions.path;
+//       const source = path.join(outDir, "pages", "notFound.html");
+//       const target = path.join(outDir, "404.html");
 
-      if (fs.existsSync(source)) {
-        fs.copyFileSync(source, target);
-      }
-    });
-  }
-}
+//       if (fs.existsSync(source)) {
+//         fs.copyFileSync(source, target);
+//       }
+//     });
+//   }
+// }
 
 module.exports = {
   entry: {
@@ -79,7 +79,8 @@ module.exports = {
       },
     ],
   },
-  plugins: [new MiniCssExtractPlugin(), ...htmlPages, new DuplicateNotFoundAs404Plugin()],
+  plugins: [new MiniCssExtractPlugin(), ...htmlPages],
+  // plugins: [new MiniCssExtractPlugin(), ...htmlPages, new DuplicateNotFoundAs404Plugin()],
   optimization: {
     minimizer: [new CssMinimizerPlugin()],
   },
