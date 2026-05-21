@@ -585,9 +585,19 @@
                                 }
                             }
 
-                            .A_TutorialSingleCodeTextButtonCopy.is-copied {
-                                filter: invert(1);
-                                opacity: var(--official-interaction-hover-opacity);
+                            .A_TutorialSingleCodeTextButtonCopy {
+                                &:hover {
+                                    opacity: 1;
+                                    background: var(--colors-neutrals-body);
+                                }
+
+                                &.is-copied {
+                                    background: var(--colors-neutrals-200);
+                                }
+
+                                &.is-copied:hover {
+                                    background: var(--colors-neutrals-200);
+                                }
                             }
 
                             .Q_TutorialSingleCodeIconRun,
