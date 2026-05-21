@@ -1,4 +1,4 @@
-import { tags } from "../json/otherJson";
+import { tags, filtersName } from "../json/otherJson";
 
 // Сдвинуть на хедер
 // Не лендинг ли
@@ -47,6 +47,7 @@ headerCrossButton.addEventListener("click", () => {
 
 const headerSearchBar = document.getElementById("headerSearchBar");
 const headerSearchButton = document.querySelector(".Q_HeaderSearchIcon");
+const headerSearchCrossButton = document.querySelector(".Q_HeaderCrossButton");
 const headerSearchElement = document.querySelector(".M_HeaderSearchBar");
 
 let isHeaderSearchFilled = false;
@@ -70,12 +71,6 @@ function updateHeaderSearchPlaceholder() {
   const randomTagIndex = Math.floor(Math.random() * tags.length);
   headerSearchBar.placeholder = tags[randomTagIndex];
 }
-
-headerSearchButton.addEventListener("click", () => {
-  headerSearchBar.value = "";
-  updateHeaderSearchFilledFlag();
-  // headerSearchBar.focus();
-});
 
 headerSearchBar.addEventListener("input", () => {
   updateHeaderSearchFilledFlag();
@@ -133,5 +128,137 @@ function applyTheme(theme) {
 }
 
 let isHeaderSearchOpen = false;
+
+// Поиск
+const headerRoot = document.querySelector(".S_Header");
+const headerSearchSection = document.querySelector(".S_HeaderSearch");
+const headerSearchField = document.getElementById("headerSearchField");
+const headerSearchFieldButton = document.querySelector(".A_HeaderSearchFieldButton");
+const headerSearchFieldBar = document.querySelector(".M_HeaderSearchFieldBar");
+const headerSearchTags = document.querySelector(".C_HeaderSearchTags");
+let areHeaderSearchTagsRendered = false;
+
+function tokenizeHeaderQuery(text) {
+  const tokens = text.trim().split(/\s+/).filter(Boolean);
+  const tokenSet = new Set(tokens);
+  console.log("Header search query tokens set:", tokenSet);
+  return tokenSet;
+}
+
+function setHeaderSearchOpenState(isOpen) {
+  isHeaderSearchOpen = isOpen;
+  if (!headerRoot) return;
+
+  headerRoot.classList.toggle("is-open", isOpen);
+}
+
+function renderHeaderSearchTagsOnce() {
+  if (!headerSearchTags || areHeaderSearchTagsRendered) return;
+
+  headerSearchTags.innerHTML = "";
+
+  Object.values(filtersName).forEach((value) => {
+    const button = document.createElement("button");
+    button.className = "U_ButtonIcon U_FontC2 A_HeaderSearchTagPrimary";
+    button.type = "button";
+    button.textContent = value;
+    headerSearchTags.appendChild(button);
+  });
+
+  tags.forEach((value) => {
+    const button = document.createElement("button");
+    button.className = "U_ButtonIcon U_FontC2 A_HeaderSearchTagSecondary";
+    button.type = "button";
+    button.textContent = value;
+    headerSearchTags.appendChild(button);
+  });
+
+  areHeaderSearchTagsRendered = true;
+}
+
+function updateHeaderSearchFieldFilledFlag() {
+  if (!headerSearchField || !headerSearchFieldBar) return;
+
+  const isFilled = Boolean(headerSearchField.value.trim());
+  headerSearchFieldBar.classList.toggle("is-filled", isFilled);
+}
+
+function openHeaderSearch() {
+  renderHeaderSearchTagsOnce();
+  setHeaderSearchOpenState(true);
+}
+
+function closeHeaderSearch() {
+  setHeaderSearchOpenState(false);
+  headerSearchBar.value = "";
+  updateHeaderSearchFilledFlag();
+}
+
+function submitHeaderSearchFromInput(inputElement) {
+  if (!headerSearchField) return;
+
+  const query = inputElement.value.trim();
+  if (!query) return;
+
+  openHeaderSearch();
+  headerSearchField.value = query;
+  updateHeaderSearchFieldFilledFlag();
+
+  if (inputElement === headerSearchBar) {
+    headerSearchBar.value = "";
+    updateHeaderSearchFilledFlag();
+  }
+
+  tokenizeHeaderQuery(query);
+}
+
+headerSearchBar.addEventListener("keydown", (event) => {
+  if (event.key !== "Enter") return;
+  event.preventDefault();
+  submitHeaderSearchFromInput(headerSearchBar);
+});
+
+if (headerSearchField) {
+  headerSearchField.addEventListener("input", () => {
+    updateHeaderSearchFieldFilledFlag();
+  });
+
+  headerSearchField.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter") return;
+    event.preventDefault();
+    submitHeaderSearchFromInput(headerSearchField);
+  });
+}
+
+headerSearchButton.addEventListener("click", () => {
+  if (!headerSearchBar.value.trim()) {
+    return;
+  }
+
+  submitHeaderSearchFromInput(headerSearchBar);
+});
+
+headerSearchCrossButton?.addEventListener("click", () => {
+  closeHeaderSearch();
+});
+
+if (headerSearchFieldButton) {
+  headerSearchFieldButton.addEventListener("click", () => {
+    submitHeaderSearchFromInput(headerSearchField);
+  });
+}
+
+if (headerSearchTags) {
+  headerSearchTags.addEventListener("click", (event) => {
+    const button = event.target.closest("button");
+    if (!button || !headerSearchField) return;
+
+    headerSearchField.value = button.textContent.trim();
+    updateHeaderSearchFieldFilledFlag();
+    headerSearchField.focus();
+  });
+}
+
+updateHeaderSearchFieldFilledFlag();
 
 applyHeaderOffset();

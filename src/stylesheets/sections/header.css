@@ -30,6 +30,26 @@
         pointer-events: none;
     }
 
+    &.is-open {
+        &::before {
+            background: var(--colors-neutrals-body);
+        }
+
+        .C_HeaderAll {
+            .S_HeaderSearch {
+                display: flex;
+            }
+
+            .O_HeaderNavigation {
+                .M_HeaderSearchBar:not(.is-filled) {
+                    .Q_HeaderCrossButton {
+                        display: flex;
+                    }
+                }
+            }
+        }
+    }
+
     .C_HeaderAll {
         position: relative;
         z-index: 1;
@@ -134,13 +154,25 @@
                     }
 
                     .Q_HeaderSearchIcon {
+                        display: none;
+                        padding-inline: var(--size-spacing-8);
+                        opacity: 1;
+                    }
+
+                    .Q_HeaderCrossButton {
+                        display: flex;
                         padding-inline: var(--size-spacing-8);
                         opacity: var(--official-no-interaction-opacity);
                     }
 
                     &.is-filled {
                         .Q_HeaderSearchIcon {
+                            display: flex;
                             opacity: 1;
+                        }
+
+                        .Q_HeaderCrossButton {
+                            display: none;
                         }
                     }
                 }
@@ -305,6 +337,12 @@
                             width: 100%;
 
                             opacity: var(--official-no-interaction-opacity);
+                        }
+                    }
+
+                    &.is-filled {
+                        .Q_HeaderSearchField {
+                            opacity: 1;
                         }
                     }
                 }
