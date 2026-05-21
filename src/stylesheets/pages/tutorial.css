@@ -353,16 +353,24 @@
                     align-items: center;
 
                     border-radius: 50%;
-                    background: var(--colors-neutrals-150-60);
+                    background: var(--colors-neutrals-100);
 
                     .Q_TutorialCopyIcon {
                         width: var(--size-spacing-16);
                         height: var(--size-spacing-16);
                     }
 
+                    &:hover {
+                        opacity: 1;
+                        background: var(--colors-neutrals-body);
+                    }
+
                     &.is-copied {
-                        filter: invert(1);
-                        opacity: var(--official-interaction-hover-opacity);
+                        background: var(--colors-neutrals-200);
+                    }
+
+                    &.is-copied:hover {
+                        background: var(--colors-neutrals-200);
                     }
                 }
             }
@@ -464,7 +472,7 @@
                             box-sizing: border-box;
                             margin: 0;
                             padding: var(--size-spacing-16);
-                            /* padding-left: calc(var(--size-spacing-16) + var(--code-line-number-gutter-width)); */                           
+                            /* padding-left: calc(var(--size-spacing-16) + var(--code-line-number-gutter-width)); */
                             padding-right: calc(3 * var(--size-spacing-32) + 3 * var(--size-spacing-12));
                             overflow: auto;
                             white-space: pre;
@@ -569,7 +577,12 @@
                                 align-items: center;
 
                                 border-radius: 50%;
-                                background: var(--colors-neutrals-150);
+                                background: var(--colors-neutrals-100);
+
+                                &:hover {
+                                    opacity: 1;
+                                    background: var(--colors-neutrals-body);
+                                }
                             }
 
                             .A_TutorialSingleCodeTextButtonCopy.is-copied {

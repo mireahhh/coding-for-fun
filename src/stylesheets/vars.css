@@ -144,6 +144,8 @@
     --colors-neutrals-body-0: #f8f8f800;
     /* 248   1% 03 */
     --colors-neutrals-body-01: #f8f8f803;
+    /* 241 f1 */
+    --colors-neutrals-100: #f1f1f1;
     /* 214 d6 */
     --colors-neutrals-150: #d6d6d6;
     /* 214 d6   20% 33 */
@@ -190,6 +192,7 @@
     --colors-neutrals-body: #1f1f1f;
     --colors-neutrals-body-0: #1f1f1f00;
     --colors-neutrals-body-01: #1f1f1f03;
+    --colors-neutrals-100: #0d0d0d;
     --colors-neutrals-150: #292929;
     --colors-neutrals-150-20: #29292933;
     --colors-neutrals-150-60: #29292999;
