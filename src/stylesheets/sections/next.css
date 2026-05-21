@@ -61,6 +61,15 @@
             }
         }
 
+        .A_NextDiscription {
+            display: flex;
+            width: var(--size-spacing-528);
+            text-align: center;
+
+            /* U_FontB1 */
+            color: var(--colors-neutrals-900);
+        }
+
         .A_NextButton {
             display: flex;
             width: var(--size-spacing-312);
@@ -104,27 +113,22 @@
         margin-top: var(--size-spacing-64);
 
         .C_IntroRainSquaresBox .A_IntroRainSquares {
-            /* TODO dvw */
-            width: 44dvw;
+            width: 44%;
         }
 
-        .W_NextAbout .M_NextText .A_NextHeading {
-            /* H0 -> H1-Mob */
-            /* color: var(--colors-neutrals-900);
-            font-family: var(--font-KairosSans);
-            font-size: 3.5rem;
-                        line-height: 100%;
-            letter-spacing: -0.175rem;
-            text-transform: uppercase; */
-            /* U_FontH1-Mob */
-        }
-
-    }
-}
-
-@media (max-width: 904px) {
-    .W_Next {
         .W_NextAbout {
+            .M_NextTexts .A_NextHeading {
+                /* H0 -> H1-Mob */
+                color: var(--colors-neutrals-900);
+                font-family: var(--font-KairosSans);
+                font-size: 3.5rem;
+                line-height: 100%;
+                letter-spacing: -0.175rem;
+                text-transform: uppercase;
+                /* U_FontH1-Mob */
+            }
+
+            .A_NextDiscription,
             .A_NextButton {
                 width: 100%;
             }

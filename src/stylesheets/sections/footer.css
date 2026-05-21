@@ -97,7 +97,6 @@
             flex-direction: column;
             width: var(--size-spacing-528);
             justify-content: space-between;
-            align-items: flex-start;
             gap: var(--size-spacing-56);
 
             .W_FooterSubscribe {
