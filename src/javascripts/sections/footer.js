@@ -2,15 +2,26 @@ const footerSubscribeBar = document.getElementById("footerSubscribeBar");
 const footerSubscribeButton = document.getElementById("footerSubscribeButton");
 const footerEmailAction = document.querySelector(".M_FooterEmailAction");
 
-const updateFooterSubscribeButtonState = () => {
-  footerEmailAction.classList.toggle("is-filled", Boolean(footerSubscribeBar.value));
-};
+let isFooterEmailFilled = false;
+
+function updateFooterEmailFilledFlag() {
+  isFooterEmailFilled = Boolean(footerSubscribeBar.value.trim());
+
+  if (isFooterEmailFilled) {
+    footerEmailAction.classList.add("is-filled");
+    return;
+  }
+
+  footerEmailAction.classList.remove("is-filled");
+}
 
 footerSubscribeButton.addEventListener("click", () => {
   footerSubscribeBar.value = "";
-  updateFooterSubscribeButtonState();
+  updateFooterEmailFilledFlag();
 });
 
-footerSubscribeBar.addEventListener("input", updateFooterSubscribeButtonState);
+footerSubscribeBar.addEventListener("input", () => {
+  updateFooterEmailFilledFlag();
+});
 
-updateFooterSubscribeButtonState();
+updateFooterEmailFilledFlag();

@@ -117,7 +117,6 @@
                     }
                 }
 
-
                 .M_FooterEmailAction {
                     display: flex;
                     flex-direction: row;
@@ -156,8 +155,7 @@
                         justify-content: center;
                         align-items: center;
                         flex-shrink: 0;
-                        background: var(--colors-neutrals-900);
-                        color: var(--colors-neutrals-450);
+                        background: var(--colors-neutrals-450);
                         transition: color 0.15s ease, transform 0.1s ease;
 
                         p {
@@ -168,7 +166,7 @@
 
                     &.is-filled {
                         button {
-                            color: var(--colors-neutrals-900);
+                            background: var(--colors-neutrals-900);
                         }
                     }
                 }

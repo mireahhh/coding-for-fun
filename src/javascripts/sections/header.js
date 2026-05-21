@@ -53,6 +53,7 @@ headerSearchButton.addEventListener("click", () => {
 });
 
 headerSearchBar.addEventListener("input", () => {
+  console.log(headerSearchBar.value);
   headerSearchButton.style.opacity = headerSearchBar.value ? "1" : "0.52";
 });
 
