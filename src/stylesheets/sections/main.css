@@ -21,6 +21,4 @@
 @media (max-width: 904px) {}
 
 /* m 1 -> 0 */
-@media (max-width: 428px) {
-    .S_Main {}
-}
+@media (max-width: 428px) {}

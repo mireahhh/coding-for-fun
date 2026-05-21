@@ -125,7 +125,7 @@
                         color: var(--colors-neutrals-450);
                     }
 
-                    /* TODO хз поч тут пустое, потом разобраться от чего вообще такое состояние аппендиксом появилось */
+                    /* TODO хз поч тут пустое, потом разобраться от чего вообще такое состояние аппендиксом появилось, скорее всего это от nav*/
                     /* .A_TutorialNavigationModuleTitle.is-current {} */
 
                     .C_TutorialNavigationTutorialsList {

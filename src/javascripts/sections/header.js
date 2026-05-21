@@ -1,3 +1,5 @@
+import { tags } from "../json/otherJson";
+
 // Сдвинуть на хедер
 // Не лендинг ли
 const isLanding = document.querySelector(".S_Header--Landing");
@@ -60,6 +62,15 @@ function updateHeaderSearchFilledFlag() {
   headerSearchElement.classList.remove("is-filled");
 }
 
+function updateHeaderSearchPlaceholder() {
+  if (!headerSearchBar || !tags.length) {
+    return;
+  }
+
+  const randomTagIndex = Math.floor(Math.random() * tags.length);
+  headerSearchBar.placeholder = tags[randomTagIndex];
+}
+
 headerSearchButton.addEventListener("click", () => {
   headerSearchBar.value = "";
   updateHeaderSearchFilledFlag();
@@ -70,7 +81,20 @@ headerSearchBar.addEventListener("input", () => {
   updateHeaderSearchFilledFlag();
 });
 
+headerSearchBar.addEventListener("keydown", (event) => {
+  if (event.key !== "Tab" || !headerSearchBar.placeholder) {
+    return;
+  }
+
+  event.preventDefault();
+  headerSearchBar.value = headerSearchBar.placeholder;
+  headerSearchBar.focus();
+  headerSearchBar.setSelectionRange(headerSearchBar.value.length, headerSearchBar.value.length);
+  updateHeaderSearchFilledFlag();
+});
+
 updateHeaderSearchFilledFlag();
+updateHeaderSearchPlaceholder();
 
 // Тема
 const themeButtons = document.querySelectorAll(".M_HeaderChangeThemeButton, .A_HeaderMenuChangeThemeButton");
