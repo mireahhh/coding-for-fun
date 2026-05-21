@@ -23,7 +23,7 @@ const htmlPages = [
   createPages("./src/pages/about.html", "./pages/about.html", ["index"]),
   createPages("./src/pages/adding.html", "./pages/adding.html", ["index", "adding"]),
   createPages("./src/pages/notFound.html", "./pages/notFound.html", ["index"]),
-    createPages("./src/pages/notFound.html", "./404.html", ["index"]),
+  // createPages("./src/pages/notFound.html", "./404.html", ["index"]),
   createPages(
     "./src/pages/parts/part1/module1/tutorial0.html",
     "./pages/parts/part1/module1/tutorial0.html",

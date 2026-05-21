@@ -118,7 +118,6 @@
                     align-items: center;
                     /* align-self: stretch; */
                     box-sizing: border-box;
-                    border-radius: var(--size-radius-0);
                     background: var(--colors-neutrals-150-20);
 
                     input {

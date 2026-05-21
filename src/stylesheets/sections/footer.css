@@ -121,6 +121,7 @@
                 .M_FooterEmailAction {
                     display: flex;
                     flex-direction: row;
+                    width: 100%;
                     align-items: center;
                     align-content: center;
                     gap: var(--size-spacing-8);
@@ -139,6 +140,10 @@
                         align-content: center;
 
                         input {
+                            width: 100%;
+                            flex: 1;
+                            min-width: 0;
+
                             /* U_FontC2 */
                             color: var(--colors-neutrals-900);
                         }
