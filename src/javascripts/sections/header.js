@@ -141,11 +141,6 @@ function runHeaderSearch(query) {
 }
 
 function updateHeaderSearchCrossFlag() {
-  console.log("[HeaderSearch] updateHeaderSearchCrossFlag:start", {
-    isHeaderSearchOpen,
-    isHeaderSearchBarFilled
-  });
-
   isHeaderSearchCrossVisible = isHeaderSearchOpen && !isHeaderSearchBarFilled;
 
   if (!headerSearchElement) return;
@@ -196,7 +191,6 @@ function renderHeaderSearchTagsOnce() {
 }
 
 function updateHeaderSearchFilledFlag() {
-  console.log("[HeaderSearch] updateHeaderSearchFilledFlag:start");
   if (!headerSearchBar || !headerSearchElement) return;
 
   isHeaderSearchBarFilled = Boolean(headerSearchBar.value.trim());
@@ -210,7 +204,6 @@ function updateHeaderSearchFilledFlag() {
 }
 
 function updateHeaderSearchFieldFilledFlag() {
-  console.log("[HeaderSearch] updateHeaderSearchFieldFilledFlag:start");
   if (!headerSearchField || !headerSearchFieldBar) return;
 
   isHeaderSearchFieldFilled = Boolean(headerSearchField.value.trim());
@@ -236,20 +229,26 @@ function closeHeaderSearch() {
 
 function submitHeaderSearchFromInput(inputElement) {
   console.log("[HeaderSearch] submitHeaderSearchFromInput:start", inputElement?.id);
-  if (!headerSearchField || !inputElement) return;
+  if (!inputElement) return;
 
   const query = inputElement.value.trim();
+  console.log("[HeaderSearch] submitHeaderSearchFromInput:query", query);
   if (!query) return;
 
   openHeaderSearch();
-  headerSearchField.value = query;
-  updateHeaderSearchFieldFilledFlag();
+  if (headerSearchField) {
+    headerSearchField.value = query;
+    updateHeaderSearchFieldFilledFlag();
+  } else {
+    console.log("[HeaderSearch] submitHeaderSearchFromInput:no headerSearchField on page");
+  }
 
   if (inputElement === headerSearchBar) {
     headerSearchBar.value = "";
     updateHeaderSearchFilledFlag();
   }
 
+  console.log(1);
   runHeaderSearch(query);
 }
 
@@ -269,9 +268,19 @@ if (headerSearchField) {
   headerSearchField.addEventListener("keydown", (event) => {
     if (event.key !== "Enter") return;
     event.preventDefault();
+    console.log("1 Вызов поиска в поле")
     submitHeaderSearchFromInput(headerSearchField);
   });
 }
+
+document.addEventListener("keydown", (event) => {
+  const target = event.target;
+  if (!target || target.id !== "headerSearchField") return;
+  console.log("[HeaderSearch] delegated headerSearchField:keydown", event.key);
+  if (event.key !== "Enter") return;
+  event.preventDefault();
+  submitHeaderSearchFromInput(target);
+});
 
 headerSearchButton.addEventListener("click", () => {
   console.log("[HeaderSearch] headerSearchButton:click");
@@ -289,6 +298,14 @@ if (headerSearchFieldButton) {
     submitHeaderSearchFromInput(headerSearchField);
   });
 }
+
+document.addEventListener("click", (event) => {
+  const button = event.target.closest(".A_HeaderSearchFieldButton");
+  if (!button) return;
+  const liveHeaderSearchField = document.getElementById("headerSearchField");
+  console.log("[HeaderSearch] delegated headerSearchFieldButton:click");
+  submitHeaderSearchFromInput(liveHeaderSearchField);
+});
 
 if (headerSearchTags) {
   headerSearchTags.addEventListener("click", (event) => {
