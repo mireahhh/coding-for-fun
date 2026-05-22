@@ -51,7 +51,7 @@ const headerSearchCrossButton = document.querySelector(".Q_HeaderCrossButton");
 const headerSearchElement = document.querySelector(".M_HeaderSearchBar");
 
 function updateHeaderSearchPlaceholder() {
-  if (!headerSearchBar || !tags.length) {
+  if (!tags.length) {
     return;
   }
 
@@ -141,7 +141,6 @@ function runHeaderSearch(query) {
 function updateHeaderSearchCrossFlag() {
   isHeaderSearchCrossVisible = isHeaderSearchOpen && !isHeaderSearchBarFilled;
 
-  if (!headerSearchElement) return;
   if (isHeaderSearchCrossVisible) {
     headerSearchElement.classList.add("is-cross-visible");
     return;
@@ -152,28 +151,30 @@ function updateHeaderSearchCrossFlag() {
 
 function setHeaderSearchOpenState(isOpen) {
   isHeaderSearchOpen = isOpen;
-  if (headerRoot) {
-    if (isOpen) {
-      headerRoot.classList.add("is-open-search");
-    } else {
-      headerRoot.classList.remove("is-open-search");
-    }
+  if (isOpen) {
+    headerRoot.classList.add("is-open-search");
+  } else {
+    headerRoot.classList.remove("is-open-search");
   }
   updateHeaderSearchCrossFlag();
 }
 
 function renderHeaderSearchTagsOnce() {
-  if (!headerSearchTags || areHeaderSearchTagsRendered) return;
+  if (areHeaderSearchTagsRendered) return;
 
   headerSearchTags.innerHTML = "";
 
-  Object.values(filtersName).forEach((value) => {
-    const button = document.createElement("button");
-    button.className = "U_ButtonIcon U_FontC2 A_HeaderSearchTagPrimary";
-    button.type = "button";
-    button.textContent = value;
-    headerSearchTags.appendChild(button);
-  });
+  const excludedHeaderTags = new Set(["Экспертная", "Авторская"]);
+
+  Object.values(filtersName)
+    .filter((value) => !excludedHeaderTags.has(value.trim()))
+    .forEach((value) => {
+      const button = document.createElement("button");
+      button.className = "U_ButtonIcon U_FontC2 A_HeaderSearchTagPrimary";
+      button.type = "button";
+      button.textContent = value;
+      headerSearchTags.appendChild(button);
+    });
 
   tags.forEach((value) => {
     const button = document.createElement("button");
@@ -187,8 +188,6 @@ function renderHeaderSearchTagsOnce() {
 }
 
 function updateHeaderSearchFilledFlag() {
-  if (!headerSearchBar || !headerSearchElement) return;
-
   isHeaderSearchBarFilled = Boolean(headerSearchBar.value.trim());
   if (isHeaderSearchBarFilled) {
     headerSearchElement.classList.add("is-filled");
@@ -200,8 +199,6 @@ function updateHeaderSearchFilledFlag() {
 }
 
 function updateHeaderSearchFieldFilledFlag() {
-  if (!headerSearchField || !headerSearchFieldBar) return;
-
   isHeaderSearchFieldFilled = Boolean(headerSearchField.value.trim());
   if (isHeaderSearchFieldFilled) {
     headerSearchFieldBar.classList.add("is-filled");
@@ -222,8 +219,6 @@ function closeHeaderSearch() {
 }
 
 function submitHeaderSearchFromInput(inputElement) {
-  if (!inputElement) return;
-
   const query = inputElement.value.trim();
   if (!query) return;
 
@@ -264,22 +259,18 @@ headerSearchCrossButton.addEventListener("click", () => {
   closeHeaderSearch();
 });
 
-if (headerSearchFieldButton) {
-  headerSearchFieldButton.addEventListener("click", () => {
-    submitHeaderSearchFromInput(headerSearchField);
-  });
-}
+headerSearchFieldButton.addEventListener("click", () => {
+  submitHeaderSearchFromInput(headerSearchField);
+});
 
-if (headerSearchTags) {
-  headerSearchTags.addEventListener("click", (event) => {
-    const button = event.target.closest("button");
-    if (!button || !headerSearchField) return;
+headerSearchTags.addEventListener("click", (event) => {
+  const button = event.target.closest("button");
+  if (!button) return;
 
-    headerSearchField.value = button.textContent.trim();
-    updateHeaderSearchFieldFilledFlag();
-    headerSearchField.focus();
-  });
-}
+  headerSearchField.value = button.textContent.trim();
+  updateHeaderSearchFieldFilledFlag();
+  headerSearchField.focus();
+});
 
 updateHeaderSearchFilledFlag();
 updateHeaderSearchFieldFilledFlag();
