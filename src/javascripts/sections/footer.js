@@ -4,6 +4,12 @@ const footerEmailAction = document.querySelector(".M_FooterEmailAction");
 
 let isFooterEmailFilled = false;
 
+function submitFooterEmail() {
+  console.log(footerSubscribeBar.value);
+  footerSubscribeBar.value = "";
+  updateFooterEmailFilledFlag();
+}
+
 function updateFooterEmailFilledFlag() {
   isFooterEmailFilled = Boolean(footerSubscribeBar.value.trim());
 
@@ -16,12 +22,18 @@ function updateFooterEmailFilledFlag() {
 }
 
 footerSubscribeButton.addEventListener("click", () => {
-  footerSubscribeBar.value = "";
-  updateFooterEmailFilledFlag();
+  submitFooterEmail();
 });
 
 footerSubscribeBar.addEventListener("input", () => {
   updateFooterEmailFilledFlag();
+});
+
+footerSubscribeBar.addEventListener("keydown", (event) => {
+  if (event.key !== "Enter") return;
+
+  event.preventDefault();
+  submitFooterEmail();
 });
 
 updateFooterEmailFilledFlag();
