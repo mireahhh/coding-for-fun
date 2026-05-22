@@ -381,7 +381,7 @@
 
             .W_HeaderSearchTutorials,
             .W_HeaderSearchWorks {
-                display: flex;
+                display: none;
                 flex-direction: column;
 
                 .W_HeaderSearchTutorialsTitle,
@@ -569,6 +569,16 @@
                     display: flex;
                     flex-wrap: wrap;
                 }
+            }
+
+            .W_HeaderSearchNoResults {
+                display: flex;
+                padding-block: var(--size-spacing-32);
+                justify-content: center;
+                align-items: center;
+
+                /* U_FontH3 */
+                color: var(--colors-neutrals-900);
             }
         }
     }
