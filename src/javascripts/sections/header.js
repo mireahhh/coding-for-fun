@@ -50,19 +50,6 @@ const headerSearchButton = document.querySelector(".Q_HeaderSearchIcon");
 const headerSearchCrossButton = document.querySelector(".Q_HeaderCrossButton");
 const headerSearchElement = document.querySelector(".M_HeaderSearchBar");
 
-let isHeaderSearchFilled = false;
-
-function updateHeaderSearchFilledFlag() {
-  isHeaderSearchFilled = Boolean(headerSearchBar.value.trim());
-
-  if (isHeaderSearchFilled) {
-    headerSearchElement.classList.add("is-filled");
-    return;
-  }
-
-  headerSearchElement.classList.remove("is-filled");
-}
-
 function updateHeaderSearchPlaceholder() {
   if (!headerSearchBar || !tags.length) {
     return;
@@ -128,10 +115,12 @@ function applyTheme(theme) {
 }
 
 let isHeaderSearchOpen = false;
+let isHeaderSearchBarFilled = false;
+let isHeaderSearchFieldFilled = false;
+let isHeaderSearchCrossVisible = false;
 
 // Поиск
 const headerRoot = document.querySelector(".S_Header");
-const headerSearchSection = document.querySelector(".S_HeaderSearch");
 const headerSearchField = document.getElementById("headerSearchField");
 const headerSearchFieldButton = document.querySelector(".A_HeaderSearchFieldButton");
 const headerSearchFieldBar = document.querySelector(".M_HeaderSearchFieldBar");
@@ -139,20 +128,50 @@ const headerSearchTags = document.querySelector(".C_HeaderSearchTags");
 let areHeaderSearchTagsRendered = false;
 
 function tokenizeHeaderQuery(text) {
+  console.log("[HeaderSearch] tokenizeHeaderQuery:start", text);
   const tokens = text.trim().split(/\s+/).filter(Boolean);
   const tokenSet = new Set(tokens);
   console.log("Header search query tokens set:", tokenSet);
   return tokenSet;
 }
 
-function setHeaderSearchOpenState(isOpen) {
-  isHeaderSearchOpen = isOpen;
-  if (!headerRoot) return;
+function runHeaderSearch(query) {
+  console.log("[HeaderSearch] runHeaderSearch:start", query);
+  tokenizeHeaderQuery(query);
+}
 
-  headerRoot.classList.toggle("is-open", isOpen);
+function updateHeaderSearchCrossFlag() {
+  console.log("[HeaderSearch] updateHeaderSearchCrossFlag:start", {
+    isHeaderSearchOpen,
+    isHeaderSearchBarFilled
+  });
+
+  isHeaderSearchCrossVisible = isHeaderSearchOpen && !isHeaderSearchBarFilled;
+
+  if (!headerSearchElement) return;
+  if (isHeaderSearchCrossVisible) {
+    headerSearchElement.classList.add("is-cross-visible");
+    return;
+  }
+
+  headerSearchElement.classList.remove("is-cross-visible");
+}
+
+function setHeaderSearchOpenState(isOpen) {
+  console.log("[HeaderSearch] setHeaderSearchOpenState:start", isOpen);
+  isHeaderSearchOpen = isOpen;
+  if (headerRoot) {
+    if (isOpen) {
+      headerRoot.classList.add("is-open-search");
+    } else {
+      headerRoot.classList.remove("is-open-search");
+    }
+  }
+  updateHeaderSearchCrossFlag();
 }
 
 function renderHeaderSearchTagsOnce() {
+  console.log("[HeaderSearch] renderHeaderSearchTagsOnce:start", { areHeaderSearchTagsRendered });
   if (!headerSearchTags || areHeaderSearchTagsRendered) return;
 
   headerSearchTags.innerHTML = "";
@@ -176,26 +195,48 @@ function renderHeaderSearchTagsOnce() {
   areHeaderSearchTagsRendered = true;
 }
 
+function updateHeaderSearchFilledFlag() {
+  console.log("[HeaderSearch] updateHeaderSearchFilledFlag:start");
+  if (!headerSearchBar || !headerSearchElement) return;
+
+  isHeaderSearchBarFilled = Boolean(headerSearchBar.value.trim());
+  if (isHeaderSearchBarFilled) {
+    headerSearchElement.classList.add("is-filled");
+  } else {
+    headerSearchElement.classList.remove("is-filled");
+  }
+
+  updateHeaderSearchCrossFlag();
+}
+
 function updateHeaderSearchFieldFilledFlag() {
+  console.log("[HeaderSearch] updateHeaderSearchFieldFilledFlag:start");
   if (!headerSearchField || !headerSearchFieldBar) return;
 
-  const isFilled = Boolean(headerSearchField.value.trim());
-  headerSearchFieldBar.classList.toggle("is-filled", isFilled);
+  isHeaderSearchFieldFilled = Boolean(headerSearchField.value.trim());
+  if (isHeaderSearchFieldFilled) {
+    headerSearchFieldBar.classList.add("is-filled");
+  } else {
+    headerSearchFieldBar.classList.remove("is-filled");
+  }
 }
 
 function openHeaderSearch() {
+  console.log("[HeaderSearch] openHeaderSearch:start");
   renderHeaderSearchTagsOnce();
   setHeaderSearchOpenState(true);
 }
 
 function closeHeaderSearch() {
+  console.log("[HeaderSearch] closeHeaderSearch:start");
   setHeaderSearchOpenState(false);
   headerSearchBar.value = "";
   updateHeaderSearchFilledFlag();
 }
 
 function submitHeaderSearchFromInput(inputElement) {
-  if (!headerSearchField) return;
+  console.log("[HeaderSearch] submitHeaderSearchFromInput:start", inputElement?.id);
+  if (!headerSearchField || !inputElement) return;
 
   const query = inputElement.value.trim();
   if (!query) return;
@@ -209,7 +250,7 @@ function submitHeaderSearchFromInput(inputElement) {
     updateHeaderSearchFilledFlag();
   }
 
-  tokenizeHeaderQuery(query);
+  runHeaderSearch(query);
 }
 
 headerSearchBar.addEventListener("keydown", (event) => {
@@ -220,7 +261,9 @@ headerSearchBar.addEventListener("keydown", (event) => {
 
 if (headerSearchField) {
   headerSearchField.addEventListener("input", () => {
+    console.log("[HeaderSearch] headerSearchField:input");
     updateHeaderSearchFieldFilledFlag();
+    updateHeaderSearchCrossFlag();
   });
 
   headerSearchField.addEventListener("keydown", (event) => {
@@ -231,25 +274,25 @@ if (headerSearchField) {
 }
 
 headerSearchButton.addEventListener("click", () => {
-  if (!headerSearchBar.value.trim()) {
-    return;
-  }
-
+  console.log("[HeaderSearch] headerSearchButton:click");
   submitHeaderSearchFromInput(headerSearchBar);
 });
 
 headerSearchCrossButton?.addEventListener("click", () => {
+  console.log("[HeaderSearch] headerSearchCrossButton:click");
   closeHeaderSearch();
 });
 
 if (headerSearchFieldButton) {
   headerSearchFieldButton.addEventListener("click", () => {
+    console.log("[HeaderSearch] headerSearchFieldButton:click");
     submitHeaderSearchFromInput(headerSearchField);
   });
 }
 
 if (headerSearchTags) {
   headerSearchTags.addEventListener("click", (event) => {
+    console.log("[HeaderSearch] headerSearchTags:click");
     const button = event.target.closest("button");
     if (!button || !headerSearchField) return;
 
@@ -259,6 +302,6 @@ if (headerSearchTags) {
   });
 }
 
+updateHeaderSearchFilledFlag();
 updateHeaderSearchFieldFilledFlag();
-
-applyHeaderOffset();
+updateHeaderSearchCrossFlag();

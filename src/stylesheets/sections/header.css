@@ -30,7 +30,7 @@
         pointer-events: none;
     }
 
-    &.is-open {
+    &.is-open-search {
         &::before {
             background: var(--colors-neutrals-body);
         }
@@ -38,14 +38,6 @@
         .C_HeaderAll {
             .S_HeaderSearch {
                 display: flex;
-            }
-
-            .O_HeaderNavigation {
-                .M_HeaderSearchBar:not(.is-filled) {
-                    .Q_HeaderCrossButton {
-                        display: flex;
-                    }
-                }
             }
         }
     }
@@ -157,25 +149,30 @@
                     }
 
                     .Q_HeaderSearchIcon {
-                        display: none;
-                        padding-inline: var(--size-spacing-8);
-                        opacity: 1;
-                    }
-
-                    .Q_HeaderCrossButton {
                         display: flex;
                         padding-inline: var(--size-spacing-8);
                         opacity: var(--official-no-interaction-opacity);
                     }
 
+                    .Q_HeaderCrossButton {
+                        display: none;
+                        padding-inline: var(--size-spacing-8);
+                        opacity: 1;
+                    }
+
                     &.is-filled {
                         .Q_HeaderSearchIcon {
-                            display: flex;
                             opacity: 1;
+                        }
+                    }
+
+                    &.is-cross-visible {
+                        .Q_HeaderSearchIcon {
+                            display: none;
                         }
 
                         .Q_HeaderCrossButton {
-                            display: none;
+                            display: flex;
                         }
                     }
                 }
@@ -292,7 +289,6 @@
         }
 
         .S_HeaderSearch {
-            /* TODO display: none; */
             display: none;
             flex-direction: column;
             box-sizing: border-box;
