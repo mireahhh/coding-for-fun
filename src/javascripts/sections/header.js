@@ -129,6 +129,14 @@ const headerSearchSection = document.querySelector(".S_HeaderSearch");
 const headerSearchResetButton = document.querySelector(".A_NextButton");
 let areHeaderSearchTagsRendered = false;
 
+function resizeHeaderSearchField() {
+  if (!headerSearchField) return;
+
+  headerSearchField.style.height = "auto";
+  const nextHeight = Math.max(headerSearchField.scrollHeight, 72);
+  headerSearchField.style.height = nextHeight + "px";
+}
+
 function hideAllHeaderSearchResults() {
   headerSearchSection?.classList.add("is-close-all-results");
 }
@@ -160,10 +168,10 @@ function showHeaderSearchResultsSection(targetSection) {
 
 function tokenizeHeaderQuery(text) {
   const tokens = text.trim().split(/\s+/).filter(Boolean);
-    // const tokens = text
-    // .trim()
-    // .split(/[^\p{L}\p{N}]+/u)
-    // .filter(Boolean);
+  // const tokens = text
+  // .trim()
+  // .split(/[^\p{L}\p{N}]+/u)
+  // .filter(Boolean);
   const tokenSet = new Set(tokens);
   console.log(tokenSet);
   return tokenSet;
@@ -257,9 +265,13 @@ function closeHeaderSearch() {
   headerSearchField.value = "";
   updateHeaderSearchFilledFlag();
   updateHeaderSearchFieldFilledFlag();
+  resizeHeaderSearchField();
 }
 
 function submitHeaderSearchFromInput(inputElement) {
+  headerSearchBar.blur();
+  headerSearchField.blur();
+
   const query = inputElement.value.trim();
   if (!query) return;
 
@@ -282,6 +294,7 @@ headerSearchBar.addEventListener("keydown", (event) => {
 });
 
 headerSearchField.addEventListener("input", () => {
+  resizeHeaderSearchField();
   updateHeaderSearchFieldFilledFlag();
   updateHeaderSearchCrossFlag();
 });
@@ -309,6 +322,7 @@ headerSearchTags.addEventListener("click", (event) => {
   if (!button) return;
 
   headerSearchField.value = button.textContent.trim();
+  resizeHeaderSearchField();
   updateHeaderSearchFieldFilledFlag();
   headerSearchField.focus();
 });
@@ -317,6 +331,7 @@ if (headerSearchResetButton) {
   headerSearchResetButton.addEventListener("click", () => {
     hideAllHeaderSearchResults();
     headerSearchField.value = "";
+    resizeHeaderSearchField();
     updateHeaderSearchFieldFilledFlag();
     headerSearchField.focus();
   });
@@ -324,6 +339,7 @@ if (headerSearchResetButton) {
 
 applyHeaderOffset();
 updateHeaderSearchFilledFlag();
+resizeHeaderSearchField();
 updateHeaderSearchFieldFilledFlag();
 updateHeaderSearchCrossFlag();
 hideAllHeaderSearchResults();

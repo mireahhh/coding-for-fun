@@ -7,6 +7,7 @@ let isFooterEmailFilled = false;
 function submitFooterEmail() {
   console.log(footerSubscribeBar.value);
   footerSubscribeBar.value = "";
+  footerSubscribeBar.blur();
   updateFooterEmailFilledFlag();
 }
 
