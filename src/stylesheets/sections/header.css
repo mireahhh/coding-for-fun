@@ -145,6 +145,9 @@
                         padding-inline: var(--size-spacing-14);
                         box-sizing: border-box;
                         width: 100%;
+                        height: 100%;
+                        flex: 1;
+                        min-width: 0;
                         color: var(--colors-neutrals-900);
                     }
 
@@ -320,6 +323,7 @@
 
                     input {
                         width: 100%;
+                        height: 100%;
                         flex: 1;
                         min-width: 0;
 
