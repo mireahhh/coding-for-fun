@@ -20,10 +20,13 @@ function applyHeaderOffset() {
   //footerContent.style.paddingTop = headerHeight + "px";
 }
 
-// Обновляем при изменении размера окна
-window.addEventListener("resize", function () {
+function handleWindowResize() {
   applyHeaderOffset();
-});
+  resizeHeaderSearchField();
+}
+
+// Обновляем при изменении размера окна
+window.addEventListener("resize", handleWindowResize);
 
 // Бургер меню
 let isHeaderMenuOpen = false;
@@ -338,6 +341,7 @@ if (headerSearchResetButton) {
 }
 
 applyHeaderOffset();
+handleWindowResize();
 updateHeaderSearchFilledFlag();
 resizeHeaderSearchField();
 updateHeaderSearchFieldFilledFlag();
