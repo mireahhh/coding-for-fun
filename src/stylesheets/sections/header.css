@@ -621,7 +621,6 @@
 
 .S_Header--Landing {
     &::before {
-        box-shadow: none;
         backdrop-filter: blur(var(--size-spacing-inf));
         background: none;
     }

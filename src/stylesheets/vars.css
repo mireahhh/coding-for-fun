@@ -186,7 +186,7 @@
 }
 
 :root[data-theme="dark"] {
-    --colors-neutrals-0: #000000;
+    /* --colors-neutrals-0: #000000;
     --colors-neutrals-0-15: #00000026;
     --colors-neutrals-0-30: #0000004d;
     --colors-neutrals-body: #1f1f1f;
@@ -201,5 +201,11 @@
     --colors-neutrals-450-20: #7a7a7a33;
     --colors-neutrals-900: #f8f8f8;
     --colors-neutrals-900-20: #f8f8f833;
-    --colors-neutrals-900-80: #f8f8f8b2;
+    --colors-neutrals-900-80: #f8f8f8b2; */
+
+    /* filter: invert(100%); */
+
+    --colors-neutrals-body: #1f1f1f;
+    --colors-neutrals-900: #f8f8f8;
+    --colors-neutrals-0: #000000;
 }

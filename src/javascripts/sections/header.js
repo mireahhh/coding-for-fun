@@ -25,7 +25,7 @@ window.addEventListener("resize", function () {
   applyHeaderOffset();
 });
 
-
+// Бургер меню
 let isHeaderMenuOpen = false;
 const headerMenuButton = document.querySelector(".O_HeaderMenuNavigation");
 
@@ -160,6 +160,10 @@ function showHeaderSearchResultsSection(targetSection) {
 
 function tokenizeHeaderQuery(text) {
   const tokens = text.trim().split(/\s+/).filter(Boolean);
+    // const tokens = text
+    // .trim()
+    // .split(/[^\p{L}\p{N}]+/u)
+    // .filter(Boolean);
   const tokenSet = new Set(tokens);
   console.log(tokenSet);
   return tokenSet;
@@ -318,6 +322,7 @@ if (headerSearchResetButton) {
   });
 }
 
+applyHeaderOffset();
 updateHeaderSearchFilledFlag();
 updateHeaderSearchFieldFilledFlag();
 updateHeaderSearchCrossFlag();

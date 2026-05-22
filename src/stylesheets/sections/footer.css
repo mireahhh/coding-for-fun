@@ -133,7 +133,7 @@
                         width: 100%;
                         height: var(--size-spacing-48);
                         text-transform: none;
-                        background: var(--colors-neutrals-150-20);
+                        background: var(--colors-neutrals-100);
                         padding-inline: var(--size-spacing-14);
                         box-sizing: border-box;
                         align-content: center;
