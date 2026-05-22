@@ -125,7 +125,38 @@ const headerSearchField = document.getElementById("headerSearchField");
 const headerSearchFieldButton = document.querySelector(".A_HeaderSearchFieldButton");
 const headerSearchFieldBar = document.querySelector(".M_HeaderSearchFieldBar");
 const headerSearchTags = document.querySelector(".C_HeaderSearchTags");
+const headerSearchSection = document.querySelector(".S_HeaderSearch");
+const headerSearchResetButton = document.querySelector(".A_NextButton");
 let areHeaderSearchTagsRendered = false;
+
+function hideAllHeaderSearchResults() {
+  headerSearchSection?.classList.add("is-close-all-results");
+}
+
+function showHeaderSearchResultsSection(targetSection) {
+  if (!headerSearchSection) return;
+
+  headerSearchSection.classList.remove("is-close-all-results", "is-show-no-results", "is-show-tutorials", "is-show-works", "is-show-both");
+
+  if (targetSection === "no-results") {
+    headerSearchSection.classList.add("is-show-no-results");
+    return;
+  }
+
+  if (targetSection === "tutorials") {
+    headerSearchSection.classList.add("is-show-tutorials");
+    return;
+  }
+
+  if (targetSection === "works") {
+    headerSearchSection.classList.add("is-show-works");
+    return;
+  }
+
+  if (targetSection === "both") {
+    headerSearchSection.classList.add("is-show-both");
+  }
+}
 
 function tokenizeHeaderQuery(text) {
   const tokens = text.trim().split(/\s+/).filter(Boolean);
@@ -136,6 +167,7 @@ function tokenizeHeaderQuery(text) {
 
 function runHeaderSearch(query) {
   tokenizeHeaderQuery(query);
+  showHeaderSearchResultsSection("no-results");
 }
 
 function updateHeaderSearchCrossFlag() {
@@ -166,8 +198,18 @@ function renderHeaderSearchTagsOnce() {
 
   const excludedHeaderTags = new Set(["Экспертная", "Авторская"]);
 
+  tags
+    .filter((value) => !excludedHeaderTags.has(value))
+    .forEach((value) => {
+      const button = document.createElement("button");
+      button.className = "U_ButtonIcon U_FontC2 A_HeaderSearchTagSecondary";
+      button.type = "button";
+      button.textContent = value;
+      headerSearchTags.appendChild(button);
+    });
+
   Object.values(filtersName)
-    .filter((value) => !excludedHeaderTags.has(value.trim()))
+    .filter((value) => !excludedHeaderTags.has(value))
     .forEach((value) => {
       const button = document.createElement("button");
       button.className = "U_ButtonIcon U_FontC2 A_HeaderSearchTagPrimary";
@@ -175,14 +217,6 @@ function renderHeaderSearchTagsOnce() {
       button.textContent = value;
       headerSearchTags.appendChild(button);
     });
-
-  tags.forEach((value) => {
-    const button = document.createElement("button");
-    button.className = "U_ButtonIcon U_FontC2 A_HeaderSearchTagSecondary";
-    button.type = "button";
-    button.textContent = value;
-    headerSearchTags.appendChild(button);
-  });
 
   areHeaderSearchTagsRendered = true;
 }
@@ -214,8 +248,11 @@ function openHeaderSearch() {
 
 function closeHeaderSearch() {
   setHeaderSearchOpenState(false);
+  hideAllHeaderSearchResults();
   headerSearchBar.value = "";
+  headerSearchField.value = "";
   updateHeaderSearchFilledFlag();
+  updateHeaderSearchFieldFilledFlag();
 }
 
 function submitHeaderSearchFromInput(inputElement) {
@@ -272,6 +309,16 @@ headerSearchTags.addEventListener("click", (event) => {
   headerSearchField.focus();
 });
 
+if (headerSearchResetButton) {
+  headerSearchResetButton.addEventListener("click", () => {
+    hideAllHeaderSearchResults();
+    headerSearchField.value = "";
+    updateHeaderSearchFieldFilledFlag();
+    headerSearchField.focus();
+  });
+}
+
 updateHeaderSearchFilledFlag();
 updateHeaderSearchFieldFilledFlag();
 updateHeaderSearchCrossFlag();
+hideAllHeaderSearchResults();

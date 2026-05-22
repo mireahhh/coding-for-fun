@@ -370,7 +370,7 @@
                     }
 
                     .A_HeaderSearchTagPrimary {
-                        border: 1.5px dashed var(--colors-neutrals-900);
+                        border: 1.5px dashed var(--colors-neutrals-200);
                     }
 
                     .A_HeaderSearchTagSecondary {
@@ -572,13 +572,48 @@
             }
 
             .W_HeaderSearchNoResults {
-                display: flex;
+                display: none;
                 padding-block: var(--size-spacing-32);
                 justify-content: center;
                 align-items: center;
 
                 /* U_FontH3 */
                 color: var(--colors-neutrals-900);
+            }
+
+            &.is-show-no-results {
+                .W_HeaderSearchNoResults {
+                    display: flex;
+                }
+            }
+
+            &.is-show-tutorials {
+                .W_HeaderSearchTutorials {
+                    display: flex;
+                }
+            }
+
+            &.is-show-works {
+                .W_HeaderSearchWorks {
+                    display: flex;
+                }
+            }
+
+            &.is-show-both {
+
+                .W_HeaderSearchTutorials,
+                .W_HeaderSearchWorks {
+                    display: flex;
+                }
+            }
+
+            &.is-close-all-results {
+
+                .W_HeaderSearchNoResults,
+                .W_HeaderSearchTutorials,
+                .W_HeaderSearchWorks {
+                    display: none;
+                }
             }
         }
     }
