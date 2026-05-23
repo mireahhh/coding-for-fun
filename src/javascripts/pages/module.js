@@ -119,30 +119,11 @@ const defApplyFilters = [new Set(), new Set(), new Set(), new Set()];
 let matrFilters = structuredClone(defMatrFilters);
 let applyFilters = structuredClone(defApplyFilters);
 import { months, filtersName, filtersAll } from "../json/otherJson.js";
-import { tagsHandbook } from "../json/tutorialsJson.js";
-
-// helpers
-const toArray = (value) => {
-  if (Array.isArray(value)) {
-    return value;
-  }
-  if (value === undefined || value === null || value === "") {
-    return [];
-  }
-  return [value];
-};
-
-const tutorialToFilterSet = (tutorial) => {
-  return new Set([
-    ...toArray(tutorial.complexity),
-    ...toArray(tutorial.library),
-    ...toArray(tutorial.format),
-    ...toArray(tutorial.verification),
-  ]);
-};
+import { tagsHandbook, getPartModules, getModuleTutorials, tutorialToFilterSet } from "../json/tutorialsJson.js";
 
 // туториалы текущего модуля
-const currentModuleTutorials = tagsHandbook?.[part - 1]?.[module - 1] ?? [];
+const currentPartModules = getPartModules(tagsHandbook?.[part - 1]);
+const currentModuleTutorials = getModuleTutorials(currentPartModules?.[module - 1]);
 
 // переводим в старую структуру
 const currentModuleFilters = currentModuleTutorials.map((tutorial) =>
@@ -214,8 +195,18 @@ function drawTutorialTags(tutorial, tagsContainer) {
 function drawModuleMeta() {
   if (!heading) return;
 
-  const moduleTutorialsData = tagsHandbook?.[part - 1]?.[module - 1];
+  const moduleTutorialsData = currentModuleTutorials;
   if (!moduleTutorialsData || !Array.isArray(moduleTutorialsData)) return;
+  const currentPartData = tagsHandbook?.[part - 1];
+  const currentModuleData = currentPartModules?.[module - 1];
+
+  // 0) Обновляем хлебную строку
+  const headingAbout = document.querySelector(".A_IntroHeadingAbout");
+  if (headingAbout) {
+    const partTitle = currentPartData?.title ?? `Часть ${part}`;
+    const moduleTitle = currentModuleData?.title ?? `Модуль ${module}`;
+    headingAbout.textContent = `Учебник: ${partTitle} / ${moduleTitle}`;
+  }
 
   // 1) Обновляем дату модуля
   const moduleDateEl = document.querySelector(".A_IntroHeadingApdate");

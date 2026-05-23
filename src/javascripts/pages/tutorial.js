@@ -240,7 +240,7 @@ function initTutorialCodeBlocks() {
 }
 
 import { months, filtersName } from "../json/otherJson.js";
-import { tagsHandbook } from "../json/tutorialsJson.js";
+import { tagsHandbook, toArray, getPartModules, getModuleTutorials } from "../json/tutorialsJson.js";
 
 function formatTutorialDate(dateJs) {
   if (!dateJs) return "";
@@ -252,18 +252,10 @@ function formatTutorialDate(dateJs) {
   return `${day} ${months[month - 1]} ${year}`;
 }
 
-function toArray(value) {
-  if (Array.isArray(value)) {
-    return value;
-  }
-  if (value === undefined || value === null || value === "") {
-    return [];
-  }
-  return [value];
-}
-
 function drawTutorialMeta() {
-  const tutorialData = tagsHandbook?.[part - 1]?.[module - 1]?.[tutorial - 1];
+  const partData = tagsHandbook?.[part - 1];
+  const moduleData = getPartModules(partData)?.[module - 1];
+  const tutorialData = getModuleTutorials(moduleData)?.[tutorial - 1];
   if (!tutorialData) return;
 
   // Название вкладки
@@ -273,13 +265,11 @@ function drawTutorialMeta() {
 
   // Хлебная строка
   const headingAbout = document.querySelector(".A_IntroHeadingAbout");
-  if (headingAbout && tutorialData.title) {
-    const baseText = headingAbout.textContent.trim();
-    const cleanedBaseText = baseText.endsWith("/")
-      ? `${baseText} `
-      : `${baseText} / `;
-
-    headingAbout.textContent = `${cleanedBaseText}${tutorialData.title}`;
+  if (headingAbout) {
+    const partTitle = partData?.title ?? `Часть ${part}`;
+    const moduleTitle = moduleData?.title ?? `Модуль ${module}`;
+    const tutorialTitle = tutorialData.title ?? `Урок ${tutorial}`;
+    headingAbout.textContent = `Учебник: ${partTitle} / ${moduleTitle} / ${tutorialTitle}`;
   }
 
   // Дата
@@ -474,28 +464,37 @@ function drawTutorialPartNavigation() {
   if (!navigationPart) return;
 
   const partData = tagsHandbook?.[part - 1];
-  if (!Array.isArray(partData)) return;
+  if (!partData) return;
 
-  const moduleElements = navigationPart.querySelectorAll(".W_TutorialNavigationModule");
+  const partModules = getPartModules(partData);
+  const partTitleElement = navigationPart.querySelector(".A_TutorialNavigationTitle");
+  if (partTitleElement && partData.title) {
+    partTitleElement.textContent = partData.title;
+  }
 
-  moduleElements.forEach((moduleElement, moduleIndex) => {
-    const moduleData = partData[moduleIndex];
-    if (!Array.isArray(moduleData)) return;
+  const modulesContainer = navigationPart.querySelector(".C_TutorialNavigationModules");
+  if (!modulesContainer) return;
+
+  modulesContainer.innerHTML = "";
+
+  partModules.forEach((moduleData, moduleIndex) => {
+    const moduleTutorials = getModuleTutorials(moduleData);
+    if (!moduleData || !Array.isArray(moduleTutorials)) return;
 
     const moduleNumber = moduleIndex + 1;
 
-    const moduleTitle = moduleElement.querySelector(".A_TutorialNavigationModuleTitle");
+    const moduleElement = document.createElement("div");
+    moduleElement.className = "W_TutorialNavigationModule";
+    const moduleTitle = document.createElement("a");
+    moduleTitle.className = "U_FontB1 A_TutorialNavigationModuleTitle";
+    moduleTitle.href = `../module${moduleNumber}.html`;
+    moduleTitle.textContent = moduleData.title || `Модуль ${moduleNumber}`;
+    if (moduleNumber === module) moduleTitle.classList.add("is-current");
 
-    if (moduleNumber === module) {
-      moduleTitle?.classList.add("is-current");
-    }
+    const tutorialsList = document.createElement("ol");
+    tutorialsList.className = "U_FontF1 C_TutorialNavigationTutorialsList";
 
-    const tutorialsList = moduleElement.querySelector(".C_TutorialNavigationTutorialsList");
-    if (!tutorialsList) return;
-
-    tutorialsList.innerHTML = "";
-
-    moduleData.forEach((tutorialData, tutorialIndex) => {
+    moduleTutorials.forEach((tutorialData, tutorialIndex) => {
       const tutorialNumber = tutorialIndex + 1;
 
       const li = document.createElement("li");
@@ -512,6 +511,8 @@ function drawTutorialPartNavigation() {
       li.appendChild(link);
       tutorialsList.appendChild(li);
     });
+    moduleElement.append(moduleTitle, tutorialsList);
+    modulesContainer.appendChild(moduleElement);
   });
 }
 

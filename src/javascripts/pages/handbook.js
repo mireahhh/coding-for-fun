@@ -141,7 +141,7 @@ let noResults = defNoResults;
 let applyFilters = structuredClone(defApplyFilters);
 
 import { months, filtersAll } from "../json/otherJson.js";
-import { tagsHandbook } from "../json/tutorialsJson.js";
+import { tagsHandbook, getPartModules, getModuleTutorials, tutorialToFilterSet } from "../json/tutorialsJson.js";
 
 // Сортировка и баллы
 const complexityOrder = {
@@ -177,28 +177,14 @@ function average(values) {
   return values.reduce((sum, value) => sum + value, 0) / values.length;
 }
 
-function tutorialToFilterSet(tutorial) {
-  const toArray = (value) => {
-    if (Array.isArray(value)) return value;
-    if (value === undefined || value === null || value === "") return [];
-    return [value];
-  };
-
-  return new Set([
-    ...toArray(tutorial.complexity),
-    ...toArray(tutorial.library),
-    ...toArray(tutorial.format),
-    ...toArray(tutorial.verification),
-  ]);
-}
-
 // Вычисление метаданных модулей для сортировки
 const handbookIntroDate = document.querySelector(".A_IntroHeadingApdate");
 
 // Метаданные модулей:
 // [partIndex][moduleIndex] -> объект с данными модуля
-const moduleMeta = tagsHandbook.map((partModules, partIndex) => {
-  return partModules.map((moduleTutorials, moduleIndex) => {
+const moduleMeta = tagsHandbook.map((partData, partIndex) => {
+  return getPartModules(partData).map((moduleData, moduleIndex) => {
+    const moduleTutorials = getModuleTutorials(moduleData);
     const tutorialDates = moduleTutorials
       .map((tutorial) => getLastTutorialDate(tutorial))
       .filter(Boolean);

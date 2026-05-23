@@ -1,21 +1,20 @@
-// Какие фильтры у каких модулей
-// const tagsPart1Module1Tutorial1 = {
-//   complexity: "filterComplexityInitial",
-//   library: ["filterLibraryP5js", "filterLibraryVanillajs"],
+// // p1m1
+// const tagsPart1Module1Tutorial0 = {
+//   complexity: "filterComplexityAdvanced",
+//   library: ["filterLibraryP5js", "filterLibraryVanillajs", "filterLibraryThreejs"],
 //   format: ["filterFormatTechnique"],
 //   verification: "filterVerificationExpert",
-//   date: ["20251227"],
-//   title: "Определение креативного кода",
-//   author: "digitalnaya",
+//   date: ["20050309"],
+//   title: "Кубическая статья",
+//   author: "Цифровая",
 //   link: "https://web.telegram.org/k/#@digitalnaya",
 //   tags: [
-//     "Генеративная графика",
+//     "3D",
 //     "Параметрические системы",
 //     "Паттерны",
 //   ],
 // };
 
-// p1m1
 const tagsPart1Module1Tutorial1 = {
   complexity: "filterComplexityInitial",
   library: ["filterLibraryP5js"],
@@ -154,7 +153,7 @@ const tagsPart1Module2Tutorial5 = {
   ],
 };
 const tagsPart1Module2 = [tagsPart1Module2Tutorial1, tagsPart1Module2Tutorial2, tagsPart1Module2Tutorial3, tagsPart1Module2Tutorial4, tagsPart1Module2Tutorial5];
-const tagsPart1 = [tagsPart1Module1, tagsPart1Module2]
+
 // p2 m1
 const tagsPart2Module1Tutorial1 = {
   complexity: "filterComplexityInitial",
@@ -386,7 +385,7 @@ const tagsPart2Module3Tutorial5 = {
   ]
 };
 const tagsPart2Module3 = [tagsPart2Module3Tutorial1, tagsPart2Module3Tutorial2, tagsPart2Module3Tutorial3, tagsPart2Module3Tutorial4, tagsPart2Module3Tutorial5];
-const tagsPart2 = [tagsPart2Module1, tagsPart2Module2, tagsPart2Module3]
+
 // p3 m1
 const tagsPart3Module1Tutorial1 = {
   date: ["20260318"],
@@ -487,22 +486,14 @@ const tagsPart3Module3Tutorial3 = {
   link: "https://web.telegram.org/k/#@digitalnaya",
 };
 const tagsPart3Module3 = [tagsPart3Module3Tutorial1, tagsPart3Module3Tutorial2, tagsPart3Module3Tutorial3];
-const tagsPart3 = [tagsPart3Module1, tagsPart3Module2, tagsPart3Module3]
-export const tagsHandbook = [tagsPart1, tagsPart2, tagsPart3];
 
-// helpers
-const toArray = (value) => {
-  if (Array.isArray(value)) {
-    return value;
-  }
-  if (value === undefined || value === null || value === "") {
-    return [];
-  }
+export const toArray = (value) => {
+  if (Array.isArray(value)) return value;
+  if (value === undefined || value === null || value === "") return [];
   return [value];
 };
 
-// tutorial -> Set фильтров
-const tutorialToFilterSet = (tutorial) => {
+export const tutorialToFilterSet = (tutorial = {}) => {
   return new Set([
     ...toArray(tutorial.complexity),
     ...toArray(tutorial.library),
@@ -510,6 +501,55 @@ const tutorialToFilterSet = (tutorial) => {
     ...toArray(tutorial.verification),
   ]);
 };
+
+export const getPartModules = (partData) => partData?.modules ?? [];
+export const getModuleTutorials = (moduleData) => moduleData?.tutorials ?? [];
+
+export const forEachPartModuleTutorial = (handbookData, callback) => {
+  handbookData.forEach((partData, partIndex) => {
+    getPartModules(partData).forEach((moduleData, moduleIndex) => {
+      getModuleTutorials(moduleData).forEach((tutorialData, tutorialIndex) => {
+        callback({
+          partData,
+          moduleData,
+          tutorialData,
+          partIndex,
+          moduleIndex,
+          tutorialIndex,
+        });
+      });
+    });
+  });
+};
+
+const buildModule = (title, tutorials, slug) => ({
+  title,
+  slug,
+  tutorials,
+});
+
+const buildPart = (title, modules, slug) => ({
+  title,
+  slug,
+  modules,
+});
+
+export const tagsHandbook = [
+  buildPart("Базовые знания", [
+    buildModule("Введение в тему", tagsPart1Module1, "module1"),
+    buildModule("Алгоритмы и данные", tagsPart1Module2, "module2"),
+  ], "part1"),
+  buildPart("Рисование в браузере", [
+    buildModule("DOM и интерактив", tagsPart2Module1, "module1"),
+    buildModule("Графика в p5.js", tagsPart2Module2, "module2"),
+    buildModule("3D в three.js", tagsPart2Module3, "module3"),
+  ], "part2"),
+  buildPart("Продвинутые генеративные практики", [
+    buildModule("Шум и случайность", tagsPart3Module1, "module1"),
+    buildModule("Структуры и системы", tagsPart3Module2, "module2"),
+    buildModule("Инструменты и развитие", tagsPart3Module3, "module3"),
+  ], "part3"),
+];
 
 // module -> Array<Set>
 const moduleToTutorialSets = (moduleTutorials) => {
@@ -527,10 +567,29 @@ const partToModuleSets = (partModules) => {
   return partModules.map((moduleTutorials) => moduleToModuleSet(moduleTutorials));
 };
 
-export const filtersModules = tagsHandbook.flatMap((partModules) => {
-  return partModules.map((moduleTutorials) => moduleToTutorialSets(moduleTutorials));
-});
+let filtersModulesCache = null;
+let filtersPartsCache = null;
 
-export const filtersParts = tagsHandbook.map((partModules) => {
-  return partToModuleSets(partModules);
-});
+export const getFiltersModules = () => {
+  if (filtersModulesCache) return filtersModulesCache;
+
+  filtersModulesCache = tagsHandbook.flatMap((partData) => {
+    return getPartModules(partData).map((moduleData) =>
+      moduleToTutorialSets(getModuleTutorials(moduleData))
+    );
+  });
+
+  return filtersModulesCache;
+};
+
+export const getFiltersParts = () => {
+  if (filtersPartsCache) return filtersPartsCache;
+
+  filtersPartsCache = tagsHandbook.map((partData) => {
+    return partToModuleSets(
+      getPartModules(partData).map((moduleData) => getModuleTutorials(moduleData))
+    );
+  });
+
+  return filtersPartsCache;
+};

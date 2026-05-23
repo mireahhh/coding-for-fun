@@ -1,5 +1,5 @@
 import { tags, filtersName } from "../json/otherJson";
-import { tagsHandbook } from "../json/tutorialsJson";
+import { tagsHandbook, forEachPartModuleTutorial } from "../json/tutorialsJson";
 
 // Сдвинуть на хедер
 // Не лендинг ли
@@ -162,37 +162,33 @@ function buildTutorialPath(pathPrefix, partIndex, moduleIndex, tutorialIndex) {
 function getTutorialMatches(tokenSet) {
   const matchedTutorials = [];
 
-  tagsHandbook.forEach((partModules, partIndex) => {
-    partModules.forEach((moduleTutorials, moduleIndex) => {
-      moduleTutorials.forEach((tutorialData, tutorialIndex) => {
-        const titleText = normalizeHeaderSearchText(tutorialData.title);
-        const tagsList = (tutorialData.tags || []).map((tagText) => normalizeHeaderSearchText(tagText));
+  forEachPartModuleTutorial(tagsHandbook, ({ tutorialData, partIndex, moduleIndex, tutorialIndex }) => {
+    const titleText = normalizeHeaderSearchText(tutorialData.title);
+    const tagsList = (tutorialData.tags || []).map((tagText) => normalizeHeaderSearchText(tagText));
 
-        for (const setPart of tokenSet) {
-          const isTitleMatched = titleText.includes(setPart);
-          console.log("[HeaderSearch][title]", {
-            query: setPart,
-            source: titleText,
-            result: isTitleMatched
-          });
-
-          const isTagsMatched = tagsList.some((tagText) => {
-            const isTagMatched = tagText.includes(setPart);
-            console.log("[HeaderSearch][tag]", {
-              query: setPart,
-              source: tagText,
-              result: isTagMatched
-            });
-            return isTagMatched;
-          });
-
-          if (isTitleMatched || isTagsMatched) {
-            matchedTutorials.push({ tutorialData, partIndex, moduleIndex, tutorialIndex });
-            break;
-          }
-        }
+    for (const setPart of tokenSet) {
+      const isTitleMatched = titleText.includes(setPart);
+      console.log("[HeaderSearch][title]", {
+        query: setPart,
+        source: titleText,
+        result: isTitleMatched
       });
-    });
+
+      const isTagsMatched = tagsList.some((tagText) => {
+        const isTagMatched = tagText.includes(setPart);
+        console.log("[HeaderSearch][tag]", {
+          query: setPart,
+          source: tagText,
+          result: isTagMatched
+        });
+        return isTagMatched;
+      });
+
+      if (isTitleMatched || isTagsMatched) {
+        matchedTutorials.push({ tutorialData, partIndex, moduleIndex, tutorialIndex });
+        break;
+      }
+    }
   });
 
   return matchedTutorials;
