@@ -1,5 +1,6 @@
 import { tags, filtersName } from "../json/otherJson";
 import { tagsHandbook, forEachPartModuleTutorial } from "../json/tutorialsJson";
+import pointerIconSrc from "../../images/icons/arrow-right.svg";
 
 // Сдвинуть на хедер
 // Не лендинг ли
@@ -162,7 +163,7 @@ function buildTutorialPath(pathPrefix, partIndex, moduleIndex, tutorialIndex) {
 function getTutorialMatches(tokenSet) {
   const matchedTutorials = [];
 
-  forEachPartModuleTutorial(tagsHandbook, ({ tutorialData, partIndex, moduleIndex, tutorialIndex }) => {
+  forEachPartModuleTutorial(tagsHandbook, ({ tutorialData, partData, moduleData, partIndex, moduleIndex, tutorialIndex }) => {
     const titleText = normalizeHeaderSearchText(tutorialData.title);
     const tagsList = (tutorialData.tags || []).map((tagText) => normalizeHeaderSearchText(tagText));
 
@@ -185,7 +186,7 @@ function getTutorialMatches(tokenSet) {
       });
 
       if (isTitleMatched || isTagsMatched) {
-        matchedTutorials.push({ tutorialData, partIndex, moduleIndex, tutorialIndex });
+        matchedTutorials.push({ tutorialData, partData, moduleData, partIndex, moduleIndex, tutorialIndex });
         break;
       }
     }
@@ -194,26 +195,49 @@ function getTutorialMatches(tokenSet) {
   return matchedTutorials;
 }
 
-function renderHeaderSearchTutorials(matchedTutorials) {
+const tutorialDescriptionCache = new Map();
+
+async function getTutorialDescriptionByPath(tutorialPath) {
+  if (tutorialDescriptionCache.has(tutorialPath)) return tutorialDescriptionCache.get(tutorialPath);
+
+  try {
+    const response = await fetch(tutorialPath);
+    if (!response.ok) throw new Error(`Failed to load tutorial page: ${tutorialPath}`);
+
+    const pageMarkup = await response.text();
+    const parser = new DOMParser();
+    const pageDocument = parser.parseFromString(pageMarkup, "text/html");
+    const tutorialText = pageDocument.querySelector(".A_TutorialText")?.textContent?.trim();
+    const description = tutorialText || "Урок в разработке";
+
+    tutorialDescriptionCache.set(tutorialPath, description);
+    return description;
+  } catch (error) {
+    console.error("[HeaderSearch] Failed to read tutorial description", error);
+    return "Урок в разработке";
+  }
+}
+
+async function renderHeaderSearchTutorials(matchedTutorials) {
   if (!headerSearchTutorialsList) return;
 
   const pathPrefix = getHeaderPathPrefix();
-  const pointerIconSrc = `${pathPrefix}images/icons/arrow-right.svg`;
-
   headerSearchTutorialsList.innerHTML = "";
 
-  matchedTutorials.forEach(({ tutorialData, partIndex, moduleIndex, tutorialIndex }) => {
+  const listItems = await Promise.all(matchedTutorials.map(async ({
+    tutorialData, partData, moduleData, partIndex, moduleIndex, tutorialIndex }) => {
     const listItem = document.createElement("li");
     const tutorialLink = document.createElement("a");
     tutorialLink.className = "O_HeaderSearchTutorial";
-    tutorialLink.href = buildTutorialPath(pathPrefix, partIndex, moduleIndex, tutorialIndex);
+    const tutorialPath = buildTutorialPath(pathPrefix, partIndex, moduleIndex, tutorialIndex);
+    tutorialLink.href = tutorialPath;
 
     const hangle = document.createElement("div");
     hangle.className = "W_HeaderSearchTutorialHangle";
 
     const subtitle = document.createElement("p");
     subtitle.className = "U_FontC2 M_HeaderSearchTutorialSubtitle";
-    subtitle.textContent = `Часть ${partIndex + 1} · Модуль ${moduleIndex + 1}`;
+    subtitle.textContent = `${partData?.title || `Часть ${partIndex + 1}`}. ${moduleData?.title || `Модуль ${moduleIndex + 1}`}`;
 
     const title = document.createElement("h3");
     title.className = "U_FontH3 A_HeaderSearchTutorialTitle";
@@ -223,7 +247,7 @@ function renderHeaderSearchTutorials(matchedTutorials) {
 
     const about = document.createElement("p");
     about.className = "U_FontB1 W_HeaderSearchTutorialAboute";
-    about.textContent = (tutorialData.tags || []).join(", ") || "Теги для этого урока пока не добавлены";
+    about.textContent = await getTutorialDescriptionByPath(tutorialPath);
 
     const pointer = document.createElement("img");
     pointer.className = "U_ImgIcon M_HeaderSearchTutorialPointer";
@@ -232,8 +256,10 @@ function renderHeaderSearchTutorials(matchedTutorials) {
 
     tutorialLink.append(hangle, about, pointer);
     listItem.appendChild(tutorialLink);
-    headerSearchTutorialsList.appendChild(listItem);
-  });
+    return listItem;
+  }));
+
+  listItems.forEach((listItem) => headerSearchTutorialsList.appendChild(listItem));
 
   if (headerSearchTutorialsCounter) {
     headerSearchTutorialsCounter.textContent = String(matchedTutorials.length);
@@ -284,12 +310,12 @@ function tokenizeHeaderQuery(text) {
   return tokenSet;
 }
 
-function runHeaderSearch(query) {
+async function runHeaderSearch(query) {
   const tokenSet = tokenizeHeaderQuery(query);
   const matchedTutorials = getTutorialMatches(tokenSet);
 
   if (matchedTutorials.length) {
-    renderHeaderSearchTutorials(matchedTutorials);
+    await renderHeaderSearchTutorials(matchedTutorials);
     showHeaderSearchResultsSection("tutorials");
     return;
   }

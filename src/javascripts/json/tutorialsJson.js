@@ -536,18 +536,18 @@ const buildPart = (title, modules, slug) => ({
 
 export const tagsHandbook = [
   buildPart("Базовые знания", [
-    buildModule("Введение в тему", tagsPart1Module1, "module1"),
-    buildModule("Алгоритмы и данные", tagsPart1Module2, "module2"),
+    buildModule("Введение в\u00A0тему", tagsPart1Module1, "module1"),
+    buildModule("Алгоритмы и\u00A0данные", tagsPart1Module2, "module2"),
   ], "part1"),
-  buildPart("Рисование в браузере", [
-    buildModule("DOM и интерактив", tagsPart2Module1, "module1"),
-    buildModule("Графика в p5.js", tagsPart2Module2, "module2"),
-    buildModule("3D в three.js", tagsPart2Module3, "module3"),
+  buildPart("Принципы креативного кода", [
+    buildModule("JS\u00A0+ DOM\u00A0(Vanilla)", tagsPart2Module1, "module1"),
+    buildModule("Интерактив на\u00A0p5.js", tagsPart2Module2, "module2"),
+    buildModule("3D с\u00A0Three.js", tagsPart2Module3, "module3"),
   ], "part2"),
-  buildPart("Продвинутые генеративные практики", [
-    buildModule("Шум и случайность", tagsPart3Module1, "module1"),
-    buildModule("Структуры и системы", tagsPart3Module2, "module2"),
-    buildModule("Инструменты и развитие", tagsPart3Module3, "module3"),
+  buildPart("Продвинутая практика", [
+    buildModule("Рандомизация и\u00A0шум", tagsPart3Module1, "module1"),
+    buildModule("Сложные алгоритмы", tagsPart3Module2, "module2"),
+    buildModule("Экосистема", tagsPart3Module3, "module3"),
   ], "part3"),
 ];
 
