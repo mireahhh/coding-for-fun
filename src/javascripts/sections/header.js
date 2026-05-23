@@ -1,4 +1,5 @@
 import { tags, filtersName } from "../json/otherJson";
+import { tagsHandbook } from "../json/tutorialsJson";
 
 // Сдвинуть на хедер
 // Не лендинг ли
@@ -132,6 +133,117 @@ const headerSearchSection = document.querySelector(".S_HeaderSearch");
 const headerSearchResetButton = document.querySelector(".A_NextButton");
 let areHeaderSearchTagsRendered = false;
 
+const headerSearchTutorialsCounter = document.querySelector(".A_HeaderSearchTutorialsCounter");
+const headerSearchTutorialsList = document.querySelector(".C_HeaderSearchTutorials");
+const headerSearchTutorialLink = document.querySelector(".W_HeaderSearchTutorialsTitle .U_ALink");
+
+function normalizeHeaderSearchText(value) {
+  return String(value || "")
+    .toLocaleLowerCase("ru-RU")
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .trim();
+}
+
+function getHeaderPathPrefix() {
+  if (headerSearchTutorialLink?.getAttribute("href")) {
+    const handbookHref = headerSearchTutorialLink.getAttribute("href");
+    return handbookHref.replace(/pages\/handbook\.html$/, "");
+  }
+
+  const globalPathLevel = document.documentElement?.dataset?.pathLevel ?? document.body?.dataset?.pathLevel ?? 0;
+  const level = Number(globalPathLevel);
+  return "../".repeat(Math.max(0, level));
+}
+
+function buildTutorialPath(pathPrefix, partIndex, moduleIndex, tutorialIndex) {
+  return `${pathPrefix}pages/parts/part${partIndex + 1}/module${moduleIndex + 1}/tutorial${tutorialIndex + 1}.html`;
+}
+
+function getTutorialMatches(tokenSet) {
+  const matchedTutorials = [];
+
+  tagsHandbook.forEach((partModules, partIndex) => {
+    partModules.forEach((moduleTutorials, moduleIndex) => {
+      moduleTutorials.forEach((tutorialData, tutorialIndex) => {
+        const titleText = normalizeHeaderSearchText(tutorialData.title);
+        const tagsList = (tutorialData.tags || []).map((tagText) => normalizeHeaderSearchText(tagText));
+
+        for (const setPart of tokenSet) {
+          const isTitleMatched = titleText.includes(setPart);
+          console.log("[HeaderSearch][title]", {
+            query: setPart,
+            source: titleText,
+            result: isTitleMatched
+          });
+
+          const isTagsMatched = tagsList.some((tagText) => {
+            const isTagMatched = tagText.includes(setPart);
+            console.log("[HeaderSearch][tag]", {
+              query: setPart,
+              source: tagText,
+              result: isTagMatched
+            });
+            return isTagMatched;
+          });
+
+          if (isTitleMatched || isTagsMatched) {
+            matchedTutorials.push({ tutorialData, partIndex, moduleIndex, tutorialIndex });
+            break;
+          }
+        }
+      });
+    });
+  });
+
+  return matchedTutorials;
+}
+
+function renderHeaderSearchTutorials(matchedTutorials) {
+  if (!headerSearchTutorialsList) return;
+
+  const pathPrefix = getHeaderPathPrefix();
+  const pointerIconSrc = `${pathPrefix}images/icons/arrow-right.svg`;
+
+  headerSearchTutorialsList.innerHTML = "";
+
+  matchedTutorials.forEach(({ tutorialData, partIndex, moduleIndex, tutorialIndex }) => {
+    const listItem = document.createElement("li");
+    const tutorialLink = document.createElement("a");
+    tutorialLink.className = "O_HeaderSearchTutorial";
+    tutorialLink.href = buildTutorialPath(pathPrefix, partIndex, moduleIndex, tutorialIndex);
+
+    const hangle = document.createElement("div");
+    hangle.className = "W_HeaderSearchTutorialHangle";
+
+    const subtitle = document.createElement("p");
+    subtitle.className = "U_FontC2 M_HeaderSearchTutorialSubtitle";
+    subtitle.textContent = `Часть ${partIndex + 1} · Модуль ${moduleIndex + 1}`;
+
+    const title = document.createElement("h3");
+    title.className = "U_FontH3 A_HeaderSearchTutorialTitle";
+    title.textContent = tutorialData.title || `Урок ${tutorialIndex + 1}`;
+
+    hangle.append(subtitle, title);
+
+    const about = document.createElement("p");
+    about.className = "U_FontB1 W_HeaderSearchTutorialAboute";
+    about.textContent = (tutorialData.tags || []).join(", ") || "Теги для этого урока пока не добавлены";
+
+    const pointer = document.createElement("img");
+    pointer.className = "U_ImgIcon M_HeaderSearchTutorialPointer";
+    pointer.src = pointerIconSrc;
+    pointer.alt = "Перейти к туториалу";
+
+    tutorialLink.append(hangle, about, pointer);
+    listItem.appendChild(tutorialLink);
+    headerSearchTutorialsList.appendChild(listItem);
+  });
+
+  if (headerSearchTutorialsCounter) {
+    headerSearchTutorialsCounter.textContent = String(matchedTutorials.length);
+  }
+}
+
 function resizeHeaderSearchField() {
   if (!headerSearchField) return;
 
@@ -170,18 +282,22 @@ function showHeaderSearchResultsSection(targetSection) {
 }
 
 function tokenizeHeaderQuery(text) {
-  const tokens = text.trim().split(/\s+/).filter(Boolean);
-  // const tokens = text
-  // .trim()
-  // .split(/[^\p{L}\p{N}]+/u)
-  // .filter(Boolean);
+  const tokens = text.trim().toLocaleLowerCase("ru-RU").split(/\s+/).filter(Boolean);
   const tokenSet = new Set(tokens);
-  console.log(tokenSet);
+  // console.log(tokenSet);
   return tokenSet;
 }
 
 function runHeaderSearch(query) {
-  tokenizeHeaderQuery(query);
+  const tokenSet = tokenizeHeaderQuery(query);
+  const matchedTutorials = getTutorialMatches(tokenSet);
+
+  if (matchedTutorials.length) {
+    renderHeaderSearchTutorials(matchedTutorials);
+    showHeaderSearchResultsSection("tutorials");
+    return;
+  }
+
   showHeaderSearchResultsSection("no-results");
 }
 
