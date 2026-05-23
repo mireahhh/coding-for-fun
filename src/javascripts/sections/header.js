@@ -197,6 +197,13 @@ function getTutorialMatches(tokenSet) {
 
 const tutorialDescriptionCache = new Map();
 
+function buildFallbackTutorialDescription() {
+  return {
+    text: "Урок в разработке",
+    isActive: false
+  };
+}
+
 async function getTutorialDescriptionByPath(tutorialPath) {
   if (tutorialDescriptionCache.has(tutorialPath)) return tutorialDescriptionCache.get(tutorialPath);
 
@@ -208,13 +215,15 @@ async function getTutorialDescriptionByPath(tutorialPath) {
     const parser = new DOMParser();
     const pageDocument = parser.parseFromString(pageMarkup, "text/html");
     const tutorialText = pageDocument.querySelector(".A_TutorialText")?.textContent?.trim();
-    const description = tutorialText || "Урок в разработке";
+    const description = tutorialText
+      ? { text: tutorialText, isActive: true }
+      : buildFallbackTutorialDescription();
 
     tutorialDescriptionCache.set(tutorialPath, description);
     return description;
   } catch (error) {
     console.error("[HeaderSearch] Failed to read tutorial description", error);
-    return "Урок в разработке";
+    return buildFallbackTutorialDescription();
   }
 }
 
@@ -247,12 +256,22 @@ async function renderHeaderSearchTutorials(matchedTutorials) {
 
     const about = document.createElement("p");
     about.className = "U_FontB1 W_HeaderSearchTutorialAboute";
-    about.textContent = await getTutorialDescriptionByPath(tutorialPath);
 
     const pointer = document.createElement("img");
     pointer.className = "U_ImgIcon M_HeaderSearchTutorialPointer";
     pointer.src = pointerIconSrc;
     pointer.alt = "Перейти к туториалу";
+
+    const tutorialDescription = await getTutorialDescriptionByPath(tutorialPath);
+    about.textContent = tutorialDescription.text;
+
+    if (!tutorialDescription.isActive) {
+      tutorialLink.classList.add("NotActiveTutorial");
+      tutorialLink.removeAttribute("href");
+      tutorialLink.setAttribute("aria-disabled", "true");
+      tutorialLink.setAttribute("tabindex", "-1");
+      pointer.alt = "Туториал недоступен";
+    }
 
     tutorialLink.append(hangle, about, pointer);
     listItem.appendChild(tutorialLink);

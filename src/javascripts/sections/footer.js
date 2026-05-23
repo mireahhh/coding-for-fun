@@ -37,4 +37,15 @@ footerSubscribeBar.addEventListener("keydown", (event) => {
   submitFooterEmail();
 });
 
+// span на ширину внизу
+const widthValue = document.getElementById("width-value");
+
+function updateScreenWidth() {
+  widthValue.textContent = window.innerWidth;
+}
+
+updateScreenWidth();
+window.addEventListener("resize", updateScreenWidth);
+
+
 updateFooterEmailFilledFlag();

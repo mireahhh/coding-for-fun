@@ -551,7 +551,6 @@
                         }
 
                         &.NotActiveTutorial {
-
                             &:hover,
                             &:active {
                                 opacity: 1;

@@ -307,10 +307,21 @@ async function drawTutorialDescriptions() {
     if (!description) continue;
 
     const tutorialText = await loadTutorialFirstText(moduleNumber, index);
+    const tutorialLink = card.closest(".O_ModuleTutorial")?.querySelector("a");
 
     if (tutorialText) {
       description.innerHTML = tutorialText;
+      card.classList.remove("NotActiveTutorial");
+      tutorialLink?.removeAttribute("aria-disabled");
+      tutorialLink?.removeAttribute("tabindex");
+      continue;
     }
+
+    description.textContent = "Урок в разработке";
+    card.classList.add("NotActiveTutorial");
+    tutorialLink?.removeAttribute("href");
+    tutorialLink?.setAttribute("aria-disabled", "true");
+    tutorialLink?.setAttribute("tabindex", "-1");
   }
 }
 
