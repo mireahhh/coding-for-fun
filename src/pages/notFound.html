@@ -63,6 +63,9 @@
             <button class="U_ButtonIcon Q_HeaderSearchIcon" aria-label="Найти">
               <img class="U_ImgIconFullH" src="../images/icons/search-01.svg" alt="" />
             </button>
+            <button class="U_ButtonIcon Q_HeaderCrossButton" aria-label="Закрыть">
+              <img class="U_ImgIconFullH" src="../images/icons/header-cross.svg" alt="" />
+            </button>
           </div>
           <button class="U_ButtonIcon A_HeaderBurgerButton" aria-label="Меню">
             <img class="U_ImgIconFullH" src="../images/icons/header-menu.svg" alt="" />
@@ -94,6 +97,91 @@
           <a class="U_ALink" href="../pages/adding.html">Предложить работу</a>
           <button class="U_FontC2 U_Button A_HeaderMenuChangeThemeButton">Сменить тему</button>
         </nav>
+      </div>
+
+      <div class="S_HeaderSearch" id="headerSearchTop">
+        <div class="W_HeaderSearchField">
+          <div class="M_HeaderSearchFieldBar">
+            <textarea id="headerSearchField" class="U_FontS2" rows="1"
+              placeholder="Введи запрос или выбери тег"></textarea>
+            <button class="U_ButtonIcon A_HeaderSearchFieldButton" aria-label="Найти">
+              <img class="U_ImgIcon Q_HeaderSearchField" src="../images/icons/search-01.svg" alt="">
+            </button>
+          </div>
+          <ol class="U_FontC2 C_HeaderSearchTags">
+            <button class="U_ButtonIcon U_FontC2 W_HeaderSearchTagOpenButton" type="button" aria-expanded="false">
+              Все теги
+              <img class="U_ImgIconSizeH Q_HeaderSearchTagOpenIcon" src="../images/icons/chevron-down.svg"
+                alt="Все теги">
+            </button>
+            <button class="U_ButtonIcon U_FontC2 A_HeaderSearchTagSecondary">Второстипенный (тег)</button>
+            <button class="U_ButtonIcon U_FontC2 A_HeaderSearchTagPrimary">Основной (фильтр)</button>
+          </ol>
+        </div>
+
+        <div class="W_HeaderSearchTutorials">
+          <div class="W_HeaderSearchTutorialsTitle">
+            <p class="U_FontS2 M_HeaderSearchTutorialsFound">
+              Найдено уроков: <span class="A_HeaderSearchTutorialsCounter">0</span>
+            </p>
+            <a class="U_ALink U_FontC2" href="../pages/handbook.html">Перейти в&nbsp;учебник</a>
+          </div>
+          <ul class="C_HeaderSearchTutorials">
+            <li>
+              <a class="O_HeaderSearchTutorial">
+                <div class="W_HeaderSearchTutorialHangle">
+                  <p class="U_FontC2 M_HeaderSearchTutorialSubtitle">Подзаголовок путь</p>
+                  <h3 class="U_FontH3 A_HeaderSearchTutorialTitle">Туториал название</h3>
+                </div>
+                <p class="U_FontB1 W_HeaderSearchTutorialAboute">Ваще крч туториал збс, поэтому повторю это ещё раз.
+                  Ваще крч туториал збс, поэтому повторю это ещё раз. Ваще крч туториал збс, поэтому повторю это ещё
+                  раз. Ваще крч туториал збс, поэтому повторю это ещё раз.</p>
+                <img class="U_ImgIcon M_HeaderSearchTutorialPointer" src="../images/icons/arrow-right.svg"
+                  alt="Перейти к туториалу">
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="W_HeaderSearchWorks">
+        </div>
+
+        <div class="W_Next W_HeaderSearchNoResults">
+          <div class="C_IntroRainSquaresBox">
+            <div class="U_FontH2 A_IntroRainSquares">
+              <p>.</p>
+              <p>.</p>
+            </div>
+            <div class="U_FontH2 A_IntroRainSquares">
+              <p>.</p>
+              <p>.</p>
+            </div>
+          </div>
+          <div class="W_NextAbout">
+            <div class="M_NextTexts">
+              <p class="U_FontS2 A_NextTitle">Найдено результатов: 0</p>
+              <h2 class="U_FontH0 A_NextHeading">
+                Тут пока ничего<br>не нашлось ;О
+              </h2>
+            </div>
+            <p class="U_FontB1 A_NextDiscription">
+              Мы не&nbsp;нашли туториалы или&nbsp;работы по&nbsp;этому запросу. Попробуй изменить формулировку, убрать
+              часть тегов или&nbsp;поискать вручную через Учебник и&nbsp;Галерею.
+            </p>
+            <button class="U_Button U_FontS3 A_NextButton">Сбросить поиск</a>
+          </div>
+          <div class="C_IntroRainSquaresBox">
+            <div class="U_FontH2 A_IntroRainSquares">
+              <p>.</p>
+              <p>.</p>
+            </div>
+            <div class="U_FontH2 A_IntroRainSquares">
+              <p>.</p>
+              <p>.</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </header>

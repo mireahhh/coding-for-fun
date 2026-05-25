@@ -369,6 +369,7 @@
                     align-items: flex-start;
                     align-content: flex-start;
                     gap: var(--size-spacing-12);
+                    padding-inline: var(--size-spacing-24);
                     max-height: var(--size-spacing-34);
 
                     overflow: hidden;
@@ -395,13 +396,7 @@
                     }
 
                     .W_HeaderSearchTagOpenButton {
-                        position: sticky;
-                        left: 0;
-                        top: 0;
-                        z-index: 2;
-
                         gap: var(--size-spacing-4);
-                        flex-shrink: 0;
 
                         .Q_HeaderSearchTagOpenIcon {
                             transform: rotate(0deg);
@@ -432,7 +427,10 @@
                 .W_HeaderSearchTutorialsTitle,
                 .W_HeaderSearchWorksTitle {
                     display: flex;
+                    flex-wrap: wrap;
                     padding-block: var(--size-spacing-32);
+                    column-gap: var(--size-spacing-24);
+                    row-gap: var(--size-spacing-16);
                     justify-content: space-between;
                     align-items: flex-end;
 

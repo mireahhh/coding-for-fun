@@ -144,7 +144,8 @@ const headerSearchTutorialLink = document.querySelector(".W_HeaderSearchTutorial
 function normalizeHeaderSearchText(value) {
   return String(value || "")
     .toLocaleLowerCase("ru-RU")
-    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    // НЕ РЕЗАТЬ ПО ВСЕМУ ПОДРЯД, ТОЛЬКО ПО ПРОБЕЛАМ!
+    // .replace(/[^\p{L}\p{N}]+/gu, " ")
     .trim();
 }
 

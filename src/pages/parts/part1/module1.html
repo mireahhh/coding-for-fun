@@ -99,7 +99,7 @@
         </nav>
       </div>
 
-      <div class="S_HeaderSearch">
+      <div class="S_HeaderSearch" id="headerSearchTop">
         <div class="W_HeaderSearchField">
           <div class="M_HeaderSearchFieldBar">
             <textarea id="headerSearchField" class="U_FontS2" rows="1"
@@ -109,8 +109,13 @@
             </button>
           </div>
           <ol class="U_FontC2 C_HeaderSearchTags">
-            <button class="U_ButtonIcon U_FontC2 A_HeaderSearchTagPrimary">Основной</button>
-            <button class="U_ButtonIcon U_FontC2 A_HeaderSearchTagSecondary">Второстипенный</button>
+            <button class="U_ButtonIcon U_FontC2 W_HeaderSearchTagOpenButton" type="button" aria-expanded="false">
+              Все теги
+              <img class="U_ImgIconSizeH Q_HeaderSearchTagOpenIcon" src="../../../images/icons/chevron-down.svg"
+                alt="Все теги">
+            </button>
+            <button class="U_ButtonIcon U_FontC2 A_HeaderSearchTagSecondary">Второстипенный (тег)</button>
+            <button class="U_ButtonIcon U_FontC2 A_HeaderSearchTagPrimary">Основной (фильтр)</button>
           </ol>
         </div>
 
@@ -123,7 +128,7 @@
           </div>
           <ul class="C_HeaderSearchTutorials">
             <li>
-              <a class="O_HeaderSearchTutorial" href="../../../pages/parts/part1/module1/tutorial0.html">
+              <a class="O_HeaderSearchTutorial">
                 <div class="W_HeaderSearchTutorialHangle">
                   <p class="U_FontC2 M_HeaderSearchTutorialSubtitle">Подзаголовок путь</p>
                   <h3 class="U_FontH3 A_HeaderSearchTutorialTitle">Туториал название</h3>

@@ -18,7 +18,7 @@ html {
 /* Firefox */
 *:not(html):not(body) {
   scrollbar-width: thin;
-  scrollbar-color: var(--colors-neutrals-150-60) transparent;
+  scrollbar-color: var(--colors-neutrals-100) transparent;
 }
 /* Chrome / Edge / Safari */
 *:not(html):not(body)::-webkit-scrollbar {
@@ -29,11 +29,11 @@ html {
   background: transparent;
 }
 *:not(html):not(body)::-webkit-scrollbar-thumb {
-  background: var(--colors-neutrals-150-60);
+  background: var(--colors-neutrals-100);
   border-radius: 0;
 }
 *:not(html):not(body)::-webkit-scrollbar-thumb:hover {
-  background: var(--colors-neutrals-200);
+  background: var(--colors-neutrals-100);
 }
 *:not(html):not(body)::-webkit-scrollbar-button {
   display: none;
