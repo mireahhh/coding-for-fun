@@ -370,6 +370,7 @@
                     align-content: flex-start;
                     gap: var(--size-spacing-12);
 
+                    .W_HeaderSearchTagOpenButton,
                     .A_HeaderSearchTagPrimary,
                     .A_HeaderSearchTagSecondary {
                         display: flex;
@@ -382,6 +383,10 @@
 
                         /* U_FontC2 */
                         color: var(--colors-neutrals-900);
+                    }
+
+                    .W_HeaderSearchTagOpenButton {
+                        gap: var(--size-spacing-4);
                     }
 
                     .A_HeaderSearchTagPrimary {

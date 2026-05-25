@@ -404,7 +404,7 @@ function setHeaderSearchOpenState(isOpen) {
 function renderHeaderSearchTagsOnce() {
   if (areHeaderSearchTagsRendered) return;
 
-  headerSearchTags.innerHTML = "";
+  // headerSearchTags.innerHTML = "";
 
   const excludedHeaderTags = new Set(["Экспертная", "Авторская"]);
 
