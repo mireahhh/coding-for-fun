@@ -483,10 +483,10 @@ function closeHeaderSearch() {
 }
 
 function scrollHeaderSearchToTop() {
-  const headerSearchTopAnchor = document.getElementById("headerSearchTop");
+  const headerSearchTop = document.getElementById("headerSearchTop");
 
-  if (headerSearchTopAnchor && typeof headerSearchTopAnchor.scrollIntoView === "function") {
-    headerSearchTopAnchor.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (headerSearchTop && typeof headerSearchTop.scrollIntoView === "function") {
+    headerSearchTop.scrollIntoView({ behavior: "smooth", block: "start" });
     return;
   }
 
