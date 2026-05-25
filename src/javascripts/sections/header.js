@@ -25,6 +25,7 @@ function applyHeaderOffset() {
 function handleWindowResize() {
   applyHeaderOffset();
   resizeHeaderSearchField();
+  updateHeaderSearchMaxHeight();
 }
 
 // Обновляем при изменении размера окна
@@ -413,14 +414,29 @@ function updateHeaderSearchFieldFilledFlag() {
   }
 }
 
+function updateHeaderSearchMaxHeight() {
+  if (!headerRoot || !headerSearchSection || !headerNavigation) return;
+
+  const headerStyles = window.getComputedStyle(headerRoot);
+  const headerPaddingTop = parseFloat(headerStyles.paddingTop) || 0;
+  const headerPaddingBottom = parseFloat(headerStyles.paddingBottom) || 0;
+  const navigationHeight = headerNavigation.offsetHeight;
+  const menuHeight = headerMenuButton && headerMenuButton.style.display !== "none" ? headerMenuButton.offsetHeight : 0;
+  const availableHeight = Math.max(window.innerHeight - navigationHeight - menuHeight - headerPaddingTop - headerPaddingBottom, 0);
+
+  headerSearchSection.style.setProperty("--header-search-max-height", availableHeight + "px");
+}
+
 function openHeaderSearch() {
   renderHeaderSearchTagsOnce();
   setHeaderSearchOpenState(true);
+  updateHeaderSearchMaxHeight();
 }
 
 function closeHeaderSearch() {
   setHeaderSearchOpenState(false);
   hideAllHeaderSearchResults();
+  headerSearchSection?.style.removeProperty("--header-search-max-height");
   headerSearchBar.value = "";
   headerSearchField.value = "";
   updateHeaderSearchFilledFlag();
@@ -436,13 +452,16 @@ function submitHeaderSearchFromInput(inputElement) {
   if (!query) return;
 
   openHeaderSearch();
-  headerSearchField.value = query;
-  updateHeaderSearchFieldFilledFlag();
 
   if (inputElement === headerSearchBar) {
+    headerSearchField.value = query.toLocaleUpperCase("ru-RU");
     headerSearchBar.value = "";
     updateHeaderSearchFilledFlag();
+  } else {
+    headerSearchField.value = query;
   }
+
+  updateHeaderSearchFieldFilledFlag();
 
   runHeaderSearch(query);
 }
@@ -503,4 +522,5 @@ updateHeaderSearchFilledFlag();
 resizeHeaderSearchField();
 updateHeaderSearchFieldFilledFlag();
 updateHeaderSearchCrossFlag();
+updateHeaderSearchMaxHeight();
 hideAllHeaderSearchResults();
