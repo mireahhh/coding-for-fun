@@ -742,6 +742,11 @@
                 width: 100%;
                 gap: var(--size-spacing-20);
 
+                .W_HeaderSearchTutorialAboute {
+                    flex: 0 0 auto;
+                    /* или flex-basis: auto */
+                }
+
                 .M_HeaderSearchTutorialPointer {
                     display: none;
                 }
