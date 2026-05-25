@@ -180,19 +180,19 @@ function getTutorialMatches(tokenSet) {
 
     for (const setPart of tokenSet) {
       const isTitleMatched = titleText.includes(setPart);
-      console.log("[HeaderSearch][title]", {
-        query: setPart,
-        source: titleText,
-        result: isTitleMatched
-      });
+      // console.log("[HeaderSearch][title]", {
+      //   query: setPart,
+      //   source: titleText,
+      //   result: isTitleMatched
+      // });
 
       const isTagsMatched = tagsList.some((tagText) => {
         const isTagMatched = tagText.includes(setPart);
-        console.log("[HeaderSearch][tag]", {
-          query: setPart,
-          source: tagText,
-          result: isTagMatched
-        });
+        // console.log("[HeaderSearch][tag]", {
+        //   query: setPart,
+        //   source: tagText,
+        //   result: isTagMatched
+        // });
         return isTagMatched;
       });
 
@@ -353,10 +353,28 @@ async function runHeaderSearch(query) {
   const tokenSet = tokenizeHeaderQuery(query);
   const matchedTutorials = getTutorialMatches(tokenSet);
 
+  if (!tokenSet.size) {
+    if (headerSearchTutorialsList) {
+      headerSearchTutorialsList.innerHTML = "";
+    }
+    if (headerSearchTutorialsCounter) {
+      headerSearchTutorialsCounter.textContent = "0";
+    }
+    showHeaderSearchResultsSection("no-results");
+    return;
+  }
+
   if (matchedTutorials.length) {
     await renderHeaderSearchTutorials(matchedTutorials);
     showHeaderSearchResultsSection("tutorials");
     return;
+  }
+
+  if (headerSearchTutorialsList) {
+    headerSearchTutorialsList.innerHTML = "";
+  }
+  if (headerSearchTutorialsCounter) {
+    headerSearchTutorialsCounter.textContent = "0";
   }
 
   showHeaderSearchResultsSection("no-results");
@@ -464,17 +482,34 @@ function closeHeaderSearch() {
   resizeHeaderSearchField();
 }
 
+function scrollHeaderSearchToTop() {
+  const headerSearchTopAnchor = document.getElementById("headerSearchTop");
+
+  if (headerSearchTopAnchor && typeof headerSearchTopAnchor.scrollIntoView === "function") {
+    headerSearchTopAnchor.scrollIntoView({ behavior: "smooth", block: "start" });
+    return;
+  }
+
+  if (headerRoot) {
+    headerRoot.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  if (headerSearchSection) {
+    headerSearchSection.scrollTo({ top: 0, behavior: "smooth" });
+  }
+}
+
 function submitHeaderSearchFromInput(inputElement) {
   headerSearchBar.blur();
   headerSearchField.blur();
 
   const query = inputElement.value.trim();
-  if (!query) return;
 
   openHeaderSearch();
+  scrollHeaderSearchToTop();
 
   if (inputElement === headerSearchBar) {
-    headerSearchField.value = query.toLocaleUpperCase("ru-RU");
+    headerSearchField.value = query ? query.toLocaleUpperCase("ru-RU") : "";
     headerSearchBar.value = "";
     updateHeaderSearchFilledFlag();
   } else {
@@ -482,6 +517,7 @@ function submitHeaderSearchFromInput(inputElement) {
   }
 
   updateHeaderSearchFieldFilledFlag();
+  resizeHeaderSearchField();
 
   runHeaderSearch(query);
 }
@@ -522,6 +558,8 @@ headerSearchTags.addEventListener("click", (event) => {
 
   const query = button.textContent.trim();
 
+  openHeaderSearch();
+  scrollHeaderSearchToTop();
   headerSearchField.value = query;
   resizeHeaderSearchField();
   updateHeaderSearchFieldFilledFlag();
