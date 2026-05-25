@@ -20,30 +20,38 @@ html {
   scrollbar-width: thin;
   scrollbar-color: var(--colors-neutrals-100) transparent;
 }
+
 /* Chrome / Edge / Safari */
 *:not(html):not(body)::-webkit-scrollbar {
   width: var(--size-spacing-6);
   height: var(--size-spacing-6);
 }
+
 *:not(html):not(body)::-webkit-scrollbar-track {
   background: transparent;
 }
+
 *:not(html):not(body)::-webkit-scrollbar-thumb {
   background: var(--colors-neutrals-100);
   border-radius: 0;
 }
+
 *:not(html):not(body)::-webkit-scrollbar-thumb:hover {
   background: var(--colors-neutrals-100);
 }
+
 *:not(html):not(body)::-webkit-scrollbar-button {
   display: none;
 }
+
 *:not(html):not(body)::-webkit-scrollbar-corner {
   background: transparent;
 }
 
 tx-sl {
   display: inline;
+  /* Сохраняем визуальный зазор, даже если HTML-сборка схлопнула пробелы рядом с тегом */
+  margin-inline: 0.4em;
   padding-block: var(--size-spacing-2);
   padding-inline: var(--size-spacing-6);
   border-radius: var(--size-spacing-4);
