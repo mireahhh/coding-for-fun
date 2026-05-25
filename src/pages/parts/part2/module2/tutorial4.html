@@ -300,8 +300,8 @@
             Это&nbsp;может&nbsp;быть простое линейное смещение, плавное колебание или&nbsp;более сложная система.
             Даже&nbsp;если на&nbsp;экране всего один объект, анимация делает сцену глубже и&nbsp;живее.
             В&nbsp;этом уроке ты&nbsp;сравнишь несколько способов создать движение и&nbsp;увидишь, как&nbsp;один
-            и&nbsp;тот&nbsp;же эффект по&#45;разному собирается в&nbsp;<tx-sl>p5.js</tx-sl>
-            и&nbsp;<tx-sl>Vanilla&nbsp;JS</tx-sl>.
+            и&nbsp;тот&nbsp;же эффект по&#45;разному собирается в&nbsp;<span>p5.js</span>
+            и&nbsp;<span>Vanilla&nbsp;JS</span>.
           </p>
 
           <p class="U_FontB1 A_TutorialText">
@@ -309,9 +309,9 @@
             или&nbsp;прозрачность.
             Эти&nbsp;изменения происходят кадр за&nbsp;кадром, поэтому зритель воспринимает их&nbsp;как непрерывное
             движение.
-            В&nbsp;<tx-sl>p5.js</tx-sl> для&nbsp;этого уже&nbsp;есть цикл <tx-sl>draw()</tx-sl>,
+            В&nbsp;<span>p5.js</span> для&nbsp;этого уже&nbsp;есть цикл <span>draw()</span>,
             а&nbsp;в&nbsp;Vanilla&nbsp;JS движение
-            чаще собирается через <tx-sl>requestAnimationFrame()</tx-sl> или&nbsp;через CSS&#45;анимацию.
+            чаще собирается через <span>requestAnimationFrame()</span> или&nbsp;через CSS&#45;анимацию.
             Так одна и&nbsp;та&nbsp;же идея может быть реализована разными&nbsp;инструментами.
           </p>
 
@@ -336,7 +336,7 @@
 
           <p class="U_FontB1 A_TutorialText">
             Здесь положение объекта вычисляется заново в&nbsp;каждом кадре.
-            Функция <tx-sl>sin()</tx-sl> создаёт плавное колебание, а&nbsp;<tx-sl>frameCount</tx-sl> отвечает
+            Функция <span>sin()</span> создаёт плавное колебание, а&nbsp;<span>frameCount</span> отвечает
             за&nbsp;движение во&nbsp;времени.
             Это&nbsp;один из&nbsp;самых удобных способов сделать анимацию мягкой и&nbsp;живой.
             Меняя множители, ты&nbsp;можешь управлять скоростью и&nbsp;амплитудой&nbsp;движения.
@@ -350,7 +350,7 @@
 
           <p class="U_FontB1 A_TutorialText">
             Ниже показана одна и&nbsp;та&nbsp;же задача: оживить круг.
-            Сначала движение будет реализовано через <tx-sl>p5.js</tx-sl>, а&nbsp;потом&nbsp;— через Vanilla&nbsp;JS
+            Сначала движение будет реализовано через <span>p5.js</span>, а&nbsp;потом&nbsp;— через Vanilla&nbsp;JS
             двумя
             способами.
             Это&nbsp;поможет увидеть не&nbsp;только разницу в&nbsp;синтаксисе, но&nbsp;и&nbsp;разницу в&nbsp;подходе.
@@ -364,7 +364,7 @@
           </h3>
 
           <p class="U_FontB1 A_TutorialText">
-            В&nbsp;<tx-sl>p5.js</tx-sl> движение удобно собирать через <tx-sl>draw()</tx-sl>.
+            В&nbsp;<span>p5.js</span> движение удобно собирать через <span>draw()</span>.
             Библиотека сама создаёт поток кадров,&nbsp;а&nbsp;тебе остаётся только описать изменение&nbsp;параметров.
           </p>
 
@@ -397,7 +397,7 @@
               <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
                 Здесь круг плавно движется из&nbsp;стороны в&nbsp;сторону по&nbsp;синусоиде.
                 Его&nbsp;положение пересчитывается в&nbsp;каждом кадре, поэтому движение получается непрерывным.
-                Это&nbsp;очень типичный способ анимировать объект в&nbsp;<tx-sl>p5.js</tx-sl>.
+                Это&nbsp;очень типичный способ анимировать объект в&nbsp;<span>p5.js</span>.
               </p>
             </div>
           </div>
@@ -436,11 +436,11 @@
               </div>
               <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
                 Здесь создаётся DOM&#45;элемент и&nbsp;запускается функция анимации.
-                Она&nbsp;вызывает сама себя через <tx-sl>requestAnimationFrame()</tx-sl>, из&#45;за&nbsp;чего сцена
+                Она&nbsp;вызывает сама себя через <span>requestAnimationFrame()</span>, из&#45;за&nbsp;чего сцена
                 обновляется кадр
                 за&nbsp;кадром.
                 Положение круга тоже вычисляется через синус, поэтому эффект похож на&nbsp;вариант
-                в&nbsp;<tx-sl>p5.js</tx-sl>.
+                в&nbsp;<span>p5.js</span>.
               </p>
             </div>
           </div>
@@ -478,7 +478,7 @@
                 </div>
               </div>
               <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
-                Здесь анимация задаётся через <tx-sl>@keyframes</tx-sl>.
+                Здесь анимация задаётся через <span>@keyframes</span>.
                 Движение заранее описано в&nbsp;CSS, поэтому браузер сам управляет сменой состояний.
                 Такой способ проще в&nbsp;настройке, но&nbsp;менее гибкий, чем&nbsp;ручной&nbsp;цикл.
               </p>
@@ -494,11 +494,11 @@
 
           <ol class="U_FontB1 C_TutorialTextList">
             <li>
-              В&nbsp;<tx-sl>p5.js</tx-sl> движение удобно собирать внутри <tx-sl>draw()</tx-sl>, потому&nbsp;что цикл
+              В&nbsp;<span>p5.js</span> движение удобно собирать внутри <span>draw()</span>, потому&nbsp;что цикл
               уже&nbsp;встроен
             </li>
             <li>
-              В&nbsp;Vanilla&nbsp;JS похожий эффект можно сделать вручную через <tx-sl>requestAnimationFrame()</tx-sl>
+              В&nbsp;Vanilla&nbsp;JS похожий эффект можно сделать вручную через <span>requestAnimationFrame()</span>
             </li>
             <li>
               Ещё&nbsp;один путь&nbsp;— передать движение CSS&#45;анимации и&nbsp;использовать JavaScript только

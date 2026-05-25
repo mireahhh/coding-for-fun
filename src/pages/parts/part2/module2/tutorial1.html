@@ -296,7 +296,7 @@
           </h3>
 
           <p class="U_FontB1 A_TutorialText">
-            В&nbsp;<tx-sl>p5.js</tx-sl> всё&nbsp;строится вокруг цикла <tx-sl>draw()</tx-sl>.
+            В&nbsp;<span>p5.js</span> всё&nbsp;строится вокруг цикла <span>draw()</span>.
             Он&nbsp;постоянно перерисовывает сцену, создавая поток кадров.
             Это и&nbsp;есть основа анимации: изображение обновляется много раз в&nbsp;секунду.
             В&nbsp;этом уроке ты&nbsp;сравнишь два подхода: автоматический цикл в&nbsp;p5 и&nbsp;ручное управление
@@ -304,7 +304,7 @@
           </p>
 
           <p class="U_FontB1 A_TutorialText">
-            Встроенный цикл <tx-sl>draw()</tx-sl> у&nbsp;<tx-sl>p5.js</tx-sl> запускается примерно 60&nbsp;раз
+            Встроенный цикл <span>draw()</span> у&nbsp;<span>p5.js</span> запускается примерно 60&nbsp;раз
             в&nbsp;секунду
             и&nbsp;каждый&nbsp;раз заново рисует сцену.
             Это удобно: тебе не&nbsp;нужно думать о&nbsp;таймерах или&nbsp;обновлении кадров.
@@ -314,7 +314,7 @@
           <p class="U_FontB1 A_TutorialText">
             В&nbsp;обычном JavaScript такого цикла&nbsp;нет.
             Чтобы&nbsp;создать анимацию, нужно запускать обновление вручную.
-            Чаще всего используется <tx-sl>requestAnimationFrame()</tx-sl>.
+            Чаще всего используется <span>requestAnimationFrame()</span>.
             Это&nbsp;даёт больше контроля, но&nbsp;требует явного управления&nbsp;временем.
           </p>
 
@@ -333,7 +333,7 @@
 
           <p class="U_FontB1 A_TutorialText">
             Ниже ты&nbsp;увидишь одну и&nbsp;ту&nbsp;же задачу: нарисовать фигуру и&nbsp;оживить&nbsp;её.
-            Сначала это&nbsp;будет сделано через <tx-sl>p5.js</tx-sl>, затем&nbsp;— через Vanilla&nbsp;JS
+            Сначала это&nbsp;будет сделано через <span>p5.js</span>, затем&nbsp;— через Vanilla&nbsp;JS
             разными&nbsp;способами.
           </p>
 
@@ -345,7 +345,7 @@
           </h3>
 
           <p class="U_FontB1 A_TutorialText">
-            В&nbsp;p5.js достаточно описать сцену внутри <tx-sl>draw()</tx-sl>.
+            В&nbsp;p5.js достаточно описать сцену внутри <span>draw()</span>.
             Библиотека сама будет перерисовывать её&nbsp;много раз&nbsp;в&nbsp;секунду.
           </p>
 
@@ -378,14 +378,14 @@
               <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
                 Здесь создаётся холст, и&nbsp;в&nbsp;каждом кадре сцена очищается.
                 Круг рисуется в&nbsp;позиции, зависящей от&nbsp;времени, поэтому он&nbsp;движется.
-                Всё&nbsp;происходит внутри <tx-sl>draw()</tx-sl>, который запускается&nbsp;автоматически.
+                Всё&nbsp;происходит внутри <span>draw()</span>, который запускается&nbsp;автоматически.
               </p>
             </div>
           </div>
 
           <p class="U_FontB1 A_TutorialText">
             В&nbsp;Vanilla JS нужно самому создать цикл отрисовки.
-            Для этого используется <tx-sl>requestAnimationFrame()</tx-sl>.
+            Для этого используется <span>requestAnimationFrame()</span>.
           </p>
 
           <div id="patr2module2tutorial1code2" class="O_TutorialSingleCode" data-runtime="vanilla"
@@ -456,7 +456,7 @@
                 </div>
               </div>
               <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
-                Здесь движение задаётся через <tx-sl>keyframes</tx-sl>.
+                Здесь движение задаётся через <span>keyframes</span>.
                 JavaScript только создаёт элемент, а&nbsp;анимация происходит за&nbsp;счёт&nbsp;CSS.
                 Это&nbsp;другой подход: не&nbsp;перерисовка, а&nbsp;заранее описанное&nbsp;поведение.
               </p>
@@ -472,10 +472,10 @@
 
           <ol class="U_FontB1 C_TutorialTextList">
             <li>
-              В&nbsp;<tx-sl>p5.js</tx-sl> цикл <tx-sl>draw()</tx-sl> уже встроен и&nbsp;работает&nbsp;автоматически
+              В&nbsp;<span>p5.js</span> цикл <span>draw()</span> уже встроен и&nbsp;работает&nbsp;автоматически
             </li>
             <li>
-              В&nbsp;Vanilla JS цикл нужно создавать вручную через <tx-sl>requestAnimationFrame()</tx-sl>
+              В&nbsp;Vanilla JS цикл нужно создавать вручную через <span>requestAnimationFrame()</span>
             </li>
             <li>
               Альтернативно можно использовать CSS&#45;анимации без JavaScript&#45;цикла
@@ -494,7 +494,7 @@
 
           <p class="U_FontB1 A_TutorialText">
             Попробуй изменить амплитуду движения круга.
-            Увеличь или&nbsp;уменьши значение <tx-sl>120</tx-sl> в&nbsp;коде.
+            Увеличь или&nbsp;уменьши значение <span>120</span> в&nbsp;коде.
             Затем попробуй изменить скорость, изменив шаг&nbsp;времени.
             Так&nbsp;ты&nbsp;увидишь, как&nbsp;параметры влияют на&nbsp;характер&nbsp;анимации.
           </p>
