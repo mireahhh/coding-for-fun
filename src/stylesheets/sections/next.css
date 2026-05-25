@@ -48,16 +48,14 @@
             align-self: stretch;
 
             .A_NextTitle {
-                align-items: center;
+                text-align: center;
                 color: var(--colors-neutrals-450);
-                border-radius: var(--size-radius-4);
             }
 
             .A_NextHeading {
                 text-align: center;
                 /* U_FontH0 */
                 color: var(--colors-neutrals-900);
-                border-radius: var(--size-radius-4);
             }
         }
 
@@ -65,6 +63,7 @@
             display: flex;
             width: var(--size-spacing-528);
             text-align: center;
+            justify-content: center;
 
             /* U_FontB1 */
             color: var(--colors-neutrals-900);
@@ -72,7 +71,8 @@
 
         .A_NextButton {
             display: flex;
-            width: var(--size-spacing-312);
+            width: 100%;
+            max-width: var(--size-spacing-312);
             height: var(--size-spacing-48);
             justify-content: center;
             align-items: center;
@@ -128,8 +128,7 @@
                 /* U_FontH1-Mob */
             }
 
-            .A_NextDiscription,
-            .A_NextButton {
+            .A_NextDiscription {
                 width: 100%;
             }
         }

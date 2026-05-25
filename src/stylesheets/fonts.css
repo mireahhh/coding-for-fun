@@ -34,6 +34,16 @@
   text-transform: uppercase;
 }
 
+.U_FontH0-NotUp {
+  /* U_FontH0-Work */
+  color: var(--colors-neutrals-900);
+  font-family: var(--font-KairosSans);
+  font-size: 6.5rem;
+  line-height: 100%;
+  letter-spacing: -0.325rem;
+  text-transform: none;
+}
+
 .U_FontH1 {
   /* U_FontH1 */
   color: var(--colors-neutrals-900);
@@ -44,6 +54,16 @@
   text-transform: uppercase;
 }
 
+.U_FontH1-NotUp {
+  /* U_FontH1 */
+  color: var(--colors-neutrals-900);
+  font-family: var(--font-KairosSans);
+  font-size: 4rem;
+  line-height: 100%;
+  letter-spacing: -0.14rem;
+  text-transform: none;
+}
+
 .U_FontH1-Mob {
   /* U_FontH1-Mob */
   color: var(--colors-neutrals-900);
@@ -52,6 +72,16 @@
   line-height: 100%;
   letter-spacing: -0.175rem;
   text-transform: uppercase;
+}
+
+.U_FontH1-Mob-NotUp {
+  /* U_FontH1-Mob */
+  color: var(--colors-neutrals-900);
+  font-family: var(--font-KairosSans);
+  font-size: 3.5rem;
+  line-height: 100%;
+  letter-spacing: -0.175rem;
+  text-transform: none;
 }
 
 .U_FontH2 {
@@ -192,6 +222,7 @@
 @media (max-width: 428px) {
 
   .U_FontH0,
+  .U_FontH0-Work,
   .U_FontH1 {
     font-size: 13vw !important;
   }

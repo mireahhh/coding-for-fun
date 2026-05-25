@@ -12,6 +12,7 @@
     /* background-color: var(--colors-neutrals-body-01); */
     /* backdrop-filter: blur(var(--size-spacing-50)); */
     align-items: center;
+
     z-index: 256;
 
     &>* {
@@ -31,6 +32,8 @@
     }
 
     &.is-open-search {
+        min-height: 100dvh;
+
         &::before {
             background: var(--colors-neutrals-body);
         }
@@ -54,7 +57,6 @@
         flex-direction: column;
         min-width: var(--min-width);
         max-width: var(--max-width);
-        margin: auto;
         padding-inline: 5%;
         box-sizing: border-box;
         width: 100%;
@@ -370,6 +372,7 @@
                     align-content: flex-start;
                     gap: var(--size-spacing-12);
                     padding-inline: var(--size-spacing-24);
+                    padding-block: var(--size-spacing-4);
                     max-height: var(--size-spacing-34);
 
                     overflow: hidden;
