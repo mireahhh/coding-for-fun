@@ -578,6 +578,15 @@ headerSearchCrossButton.addEventListener("click", () => {
   closeHeaderSearch();
 });
 
+document.addEventListener("keydown", (event) => {
+  const isHeaderSearchBarActive = document.activeElement === headerSearchBar;
+  const hasHeaderSearchBarValue = Boolean(headerSearchBar.value.trim());
+  const shouldCloseSearch = isHeaderSearchOpen || (isHeaderSearchBarActive && hasHeaderSearchBarValue);
+
+  if (event.key !== "Escape" || !shouldCloseSearch) return;
+  closeHeaderSearch();
+});
+
 headerSearchFieldButton.addEventListener("click", () => {
   submitHeaderSearchFromInput(headerSearchField);
 });
