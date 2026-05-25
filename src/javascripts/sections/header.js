@@ -215,7 +215,7 @@ const tutorialDescriptionCache = new Map();
 
 function buildFallbackTutorialDescription() {
   return {
-    text: "Урок в разработке",
+    html: "",
     isActive: false
   };
 }
@@ -230,9 +230,9 @@ async function getTutorialDescriptionByPath(tutorialPath) {
     const pageMarkup = await response.text();
     const parser = new DOMParser();
     const pageDocument = parser.parseFromString(pageMarkup, "text/html");
-    const tutorialText = pageDocument.querySelector(".A_TutorialText")?.textContent?.trim();
+    const tutorialText = pageDocument.querySelector(".A_TutorialText")?.innerHTML?.trim();
     const description = tutorialText
-      ? { text: tutorialText, isActive: true }
+      ? { html: tutorialText, isActive: true }
       : buildFallbackTutorialDescription();
 
     tutorialDescriptionCache.set(tutorialPath, description);
@@ -279,7 +279,7 @@ async function renderHeaderSearchTutorials(matchedTutorials) {
     pointer.alt = "Перейти к туториалу";
 
     const tutorialDescription = await getTutorialDescriptionByPath(tutorialPath);
-    about.textContent = tutorialDescription.text;
+    about.innerHTML = tutorialDescription.html || "Урок в разработке";
 
     if (!tutorialDescription.isActive) {
       tutorialLink.classList.add("NotActiveTutorial");
