@@ -369,6 +369,16 @@
                     align-items: flex-start;
                     align-content: flex-start;
                     gap: var(--size-spacing-12);
+                    max-height: fit-content;
+                    max-height: 1lh;
+
+                    overflow: hidden;
+                    transition: max-height 220ms ease;
+
+                    &.is-open {
+                        max-height: none;
+                        overflow: visible;
+                    }
 
                     .W_HeaderSearchTagOpenButton,
                     .A_HeaderSearchTagPrimary,
@@ -386,7 +396,24 @@
                     }
 
                     .W_HeaderSearchTagOpenButton {
+                        position: sticky;
+                        left: 0;
+                        top: 0;
+                        z-index: 2;
+
                         gap: var(--size-spacing-4);
+                        margin-left: auto;
+                        flex-shrink: 0;
+
+                        .Q_HeaderSearchTagOpenIcon {
+                            transform: rotate(0deg);
+                            transition: transform 220ms ease;
+                            transform-origin: center;
+                        }
+
+                        &.is-open .Q_HeaderSearchTagOpenIcon {
+                            transform: rotate(180deg);
+                        }
                     }
 
                     .A_HeaderSearchTagPrimary {

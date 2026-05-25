@@ -124,6 +124,7 @@ let isHeaderSearchOpen = false;
 let isHeaderSearchBarFilled = false;
 let isHeaderSearchFieldFilled = false;
 let isHeaderSearchCrossVisible = false;
+let areHeaderSearchTagsOpen = false;
 
 // Поиск
 const headerRoot = document.querySelector(".S_Header");
@@ -133,6 +134,7 @@ const headerSearchFieldBar = document.querySelector(".M_HeaderSearchFieldBar");
 const headerSearchTags = document.querySelector(".C_HeaderSearchTags");
 const headerSearchSection = document.querySelector(".S_HeaderSearch");
 const headerSearchResetButton = document.querySelector(".A_NextButton");
+const headerSearchTagsOpenButton = headerSearchTags?.querySelector(".W_HeaderSearchTagOpenButton");
 let areHeaderSearchTagsRendered = false;
 
 const headerSearchTutorialsCounter = document.querySelector(".A_HeaderSearchTutorialsCounter");
@@ -403,10 +405,10 @@ function setHeaderSearchOpenState(isOpen) {
 
 function renderHeaderSearchTagsOnce() {
   if (areHeaderSearchTagsRendered) return;
-
-  // headerSearchTags.innerHTML = "";
+  if (!headerSearchTags) return;
 
   const excludedHeaderTags = new Set(["Экспертная", "Авторская"]);
+  const fragment = document.createDocumentFragment();
 
   tags
     .filter((value) => !excludedHeaderTags.has(value))
@@ -415,7 +417,7 @@ function renderHeaderSearchTagsOnce() {
       button.className = "U_ButtonIcon U_FontC2 A_HeaderSearchTagSecondary";
       button.type = "button";
       button.textContent = value;
-      headerSearchTags.appendChild(button);
+      fragment.appendChild(button);
     });
 
   Object.entries(filtersName)
@@ -426,10 +428,27 @@ function renderHeaderSearchTagsOnce() {
       button.type = "button";
       button.dataset.filterKey = filterKey;
       button.textContent = filterLabel;
-      headerSearchTags.appendChild(button);
+      fragment.appendChild(button);
     });
 
+  if (headerSearchTagsOpenButton) {
+    headerSearchTagsOpenButton.insertAdjacentElement("afterend", fragment);
+  } else {
+    headerSearchTags.appendChild(fragment);
+  }
   areHeaderSearchTagsRendered = true;
+}
+
+function setHeaderSearchTagsOpenState(isOpen) {
+  areHeaderSearchTagsOpen = isOpen;
+
+  if (!headerSearchTags) return;
+
+  headerSearchTags.classList.toggle("is-open", areHeaderSearchTagsOpen);
+  if (headerSearchTagsOpenButton) {
+    headerSearchTagsOpenButton.classList.toggle("is-open", areHeaderSearchTagsOpen);
+    headerSearchTagsOpenButton.setAttribute("aria-expanded", String(areHeaderSearchTagsOpen));
+  }
 }
 
 function updateHeaderSearchFilledFlag() {
@@ -473,6 +492,7 @@ function openHeaderSearch() {
 
 function closeHeaderSearch() {
   setHeaderSearchOpenState(false);
+  setHeaderSearchTagsOpenState(false);
   hideAllHeaderSearchResults();
   headerSearchSection?.style.removeProperty("--header-search-max-height");
   headerSearchBar.value = "";
@@ -559,6 +579,12 @@ headerSearchTags.addEventListener("click", (event) => {
   const button = event.target.closest("button");
   if (!button) return;
 
+  if (button.classList.contains("W_HeaderSearchTagOpenButton")) {
+    setHeaderSearchTagsOpenState(!areHeaderSearchTagsOpen);
+    return;
+  }
+
+
   const query = button.textContent.trim();
 
   openHeaderSearch();
@@ -587,3 +613,4 @@ updateHeaderSearchFieldFilledFlag();
 updateHeaderSearchCrossFlag();
 updateHeaderSearchMaxHeight();
 hideAllHeaderSearchResults();
+setHeaderSearchTagsOpenState(false);
