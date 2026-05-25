@@ -407,6 +407,10 @@ function renderHeaderSearchTagsOnce() {
   if (areHeaderSearchTagsRendered) return;
   if (!headerSearchTags) return;
 
+  // headerSearchTags.innerHTML = "";
+  const outdatedTagButtons = headerSearchTags.querySelectorAll(".A_HeaderSearchTagPrimary, .A_HeaderSearchTagSecondary");
+  outdatedTagButtons.forEach((button) => button.remove());
+
   const excludedHeaderTags = new Set(["Экспертная", "Авторская"]);
   const fragment = document.createDocumentFragment();
 
