@@ -369,8 +369,7 @@
                     align-items: flex-start;
                     align-content: flex-start;
                     gap: var(--size-spacing-12);
-                    max-height: fit-content;
-                    max-height: 1lh;
+                    max-height: var(--size-spacing-34);
 
                     overflow: hidden;
                     transition: max-height 220ms ease;
@@ -402,7 +401,6 @@
                         z-index: 2;
 
                         gap: var(--size-spacing-4);
-                        margin-left: auto;
                         flex-shrink: 0;
 
                         .Q_HeaderSearchTagOpenIcon {

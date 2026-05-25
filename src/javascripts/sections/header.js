@@ -431,8 +431,8 @@ function renderHeaderSearchTagsOnce() {
       fragment.appendChild(button);
     });
 
-  if (headerSearchTagsOpenButton) {
-    headerSearchTagsOpenButton.insertAdjacentElement("afterend", fragment);
+  if (headerSearchTagsOpenButton && headerSearchTagsOpenButton.parentNode === headerSearchTags) {
+    headerSearchTags.insertBefore(fragment, headerSearchTagsOpenButton.nextSibling);
   } else {
     headerSearchTags.appendChild(fragment);
   }
@@ -443,6 +443,8 @@ function setHeaderSearchTagsOpenState(isOpen) {
   areHeaderSearchTagsOpen = isOpen;
 
   if (!headerSearchTags) return;
+
+  // Тут надо добавить удалчени елишнего из списка C_HeaderSearchTags, но не удалять W_HeaderSearchTagOpenButton , и удалять A_HeaderSearchTagPrimary + A_HeaderSearchTagSecondary
 
   headerSearchTags.classList.toggle("is-open", areHeaderSearchTagsOpen);
   if (headerSearchTagsOpenButton) {
