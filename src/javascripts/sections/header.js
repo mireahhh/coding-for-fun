@@ -146,6 +146,8 @@ function normalizeHeaderSearchText(value) {
     .trim();
 }
 
+const normalizedFilterLabels = new Set(Object.values(filtersName).map((value) => normalizeHeaderSearchText(value)));
+
 function getHeaderPathPrefix() {
   if (headerSearchTutorialLink?.getAttribute("href")) {
     const handbookHref = headerSearchTutorialLink.getAttribute("href");
@@ -334,7 +336,14 @@ function showHeaderSearchResultsSection(targetSection) {
 }
 
 function tokenizeHeaderQuery(text) {
-  const tokens = text.trim().toLocaleLowerCase("ru-RU").split(/\s+/).filter(Boolean);
+  const normalizedQuery = normalizeHeaderSearchText(text);
+  if (!normalizedQuery) return new Set();
+
+  if (normalizedFilterLabels.has(normalizedQuery)) {
+    return new Set([normalizedQuery]);
+  }
+
+  const tokens = normalizedQuery.split(/\s+/).filter(Boolean);
   const tokenSet = new Set(tokens);
   // console.log(tokenSet);
   return tokenSet;
@@ -511,7 +520,9 @@ headerSearchTags.addEventListener("click", (event) => {
   const button = event.target.closest("button");
   if (!button) return;
 
-  headerSearchField.value = button.textContent.trim();
+  const query = button.textContent.trim();
+
+  headerSearchField.value = query;
   resizeHeaderSearchField();
   updateHeaderSearchFieldFilledFlag();
   headerSearchField.focus();
