@@ -1,5 +1,5 @@
 import { tags, filtersName } from "../json/otherJson";
-import { tagsHandbook, forEachPartModuleTutorial } from "../json/tutorialsJson";
+import { tagsHandbook, forEachPartModuleTutorial, toArray } from "../json/tutorialsJson";
 import pointerIconSrc from "../../images/icons/arrow-right.svg";
 
 // Сдвинуть на хедер
@@ -167,6 +167,14 @@ function getTutorialMatches(tokenSet) {
   forEachPartModuleTutorial(tagsHandbook, ({ tutorialData, partData, moduleData, partIndex, moduleIndex, tutorialIndex }) => {
     const titleText = normalizeHeaderSearchText(tutorialData.title);
     const tagsList = (tutorialData.tags || []).map((tagText) => normalizeHeaderSearchText(tagText));
+    const tutorialFiltersList = [
+      ...toArray(tutorialData.complexity),
+      ...toArray(tutorialData.library),
+      ...toArray(tutorialData.format),
+      ...toArray(tutorialData.verification),
+    ]
+      .filter(Boolean)
+      .map((filterValue) => normalizeHeaderSearchText(filtersName[filterValue] || filterValue));
 
     for (const setPart of tokenSet) {
       const isTitleMatched = titleText.includes(setPart);
@@ -186,7 +194,9 @@ function getTutorialMatches(tokenSet) {
         return isTagMatched;
       });
 
-      if (isTitleMatched || isTagsMatched) {
+      const isFilterMatched = tutorialFiltersList.some((filterText) => filterText.includes(setPart));
+
+      if (isTitleMatched || isTagsMatched || isFilterMatched) {
         matchedTutorials.push({ tutorialData, partData, moduleData, partIndex, moduleIndex, tutorialIndex });
         break;
       }
@@ -381,13 +391,14 @@ function renderHeaderSearchTagsOnce() {
       headerSearchTags.appendChild(button);
     });
 
-  Object.values(filtersName)
-    .filter((value) => !excludedHeaderTags.has(value))
-    .forEach((value) => {
+  Object.entries(filtersName)
+    .filter(([, filterLabel]) => !excludedHeaderTags.has(filterLabel))
+    .forEach(([filterKey, filterLabel]) => {
       const button = document.createElement("button");
       button.className = "U_ButtonIcon U_FontC2 A_HeaderSearchTagPrimary";
       button.type = "button";
-      button.textContent = value;
+      button.dataset.filterKey = filterKey;
+      button.textContent = filterLabel;
       headerSearchTags.appendChild(button);
     });
 
