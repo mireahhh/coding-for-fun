@@ -483,19 +483,22 @@ function closeHeaderSearch() {
 }
 
 function scrollHeaderSearchToTop() {
-  const headerSearchTop = document.getElementById("headerSearchTop");
+  const searchContainer = document.querySelector(".C_HeaderAll");
 
-  if (headerSearchTop && typeof headerSearchTop.scrollIntoView === "function") {
-    headerSearchTop.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (searchContainer && typeof searchContainer.scrollTo === "function") {
+    requestAnimationFrame(() => {
+      searchContainer.scrollTo({ top: 0, behavior: "smooth" });
+    });
     return;
   }
 
-  if (headerRoot) {
-    headerRoot.scrollTo({ top: 0, behavior: "smooth" });
+  if (headerSearchSection && typeof headerSearchSection.scrollIntoView === "function") {
+    headerSearchSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    return;
   }
 
-  if (headerSearchSection) {
-    headerSearchSection.scrollTo({ top: 0, behavior: "smooth" });
+  if (headerRoot && typeof headerRoot.scrollTo === "function") {
+    headerRoot.scrollTo({ top: 0, behavior: "smooth" });
   }
 }
 
