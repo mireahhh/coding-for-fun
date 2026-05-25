@@ -6,19 +6,10 @@ if (!heading) {
 const part = Number(heading.dataset.part);
 const module = Number(heading.dataset.module);
 
-// Туториалы для отрисовки
-const moduleTutorial1 = document.getElementById("moduleTutorial1");
-const moduleTutorial2 = document.getElementById("moduleTutorial2");
-const moduleTutorial3 = document.getElementById("moduleTutorial3");
-const moduleTutorial4 = document.getElementById("moduleTutorial4");
-const moduleTutorial5 = document.getElementById("moduleTutorial5");
-const moduleTutorials = [
-  moduleTutorial1,
-  moduleTutorial2,
-  moduleTutorial3,
-  moduleTutorial4,
-  moduleTutorial5,
-];
+// Туториалы для отрисовки (динамически, без фиксированного лимита)
+const moduleTutorials = Array.from(
+  document.querySelectorAll('.O_ModuleTutorial[id^="moduleTutorial"]'),
+);
 
 const moduleNoResults = document.querySelector(".NoResultsTutorials");
 
@@ -278,7 +269,6 @@ async function loadTutorialFirstText(moduleNumber, tutorialIndex) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, "text/html");
 
-    // const firstText = doc.getElementById("TutorialTextFirst");
     const firstText = doc.querySelector(".A_TutorialText");
 
     if (!firstText) {
@@ -302,12 +292,27 @@ async function drawTutorialDescriptions() {
     ".C_ModuleTutorials .O_ModuleTutorial .W_ModuleTutorial:not(#noResultsTutorials)"
   );
 
-  for (const [index, card] of Array.from(tutorialCards).entries()) {
-    const description = card.querySelector(".A_ModuleTutorialDescription");
+  const maxTutorials = Math.min(tutorialCards.length, currentModuleTutorials.length);
+
+  for (let index = 0; index < maxTutorials; index += 1) {
+    const card = tutorialCards[index];
+    const description = card?.querySelector(".A_ModuleTutorialDescription");
+    if (!description) continue;
+
+    const tutorialLink = card.closest(".O_ModuleTutorial");
+    const hasTutorialHref = Boolean(tutorialLink?.getAttribute("href"));
+
+    if (!hasTutorialHref) {
+      description.textContent = "Урок в разработке";
+      card.classList.add("NotActiveTutorial");
+      tutorialLink?.setAttribute("aria-disabled", "true");
+      tutorialLink?.setAttribute("tabindex", "-1");
+      continue;
+    }
+
     if (!description) continue;
 
     const tutorialText = await loadTutorialFirstText(moduleNumber, index);
-    const tutorialLink = card.closest(".O_ModuleTutorial")?.querySelector("a");
 
     if (tutorialText) {
       description.innerHTML = tutorialText;
@@ -394,13 +399,17 @@ function calcAndDrawingTutorials() {
       // console.log("fT", filtersTutorial, "aF", applyFilter);
       if (setIntersection(filtersTutorial, applyFilter).size == 0) {
         // Не рисуем туториал
-        moduleTutorials[indexTutorial].style.display = "none";
+        const tutorialNode = moduleTutorials[indexTutorial];
+        if (tutorialNode) {
+          tutorialNode.style.display = "none";
+        }
         // console.log("nD t", indexTutorial, "f", applyFilter);
         break;
       }
     }
     // Если нашли хоть 1 результат - убираем плашку
-    if (moduleTutorials[indexTutorial].style.display == "flex") {
+    const tutorialNode = moduleTutorials[indexTutorial];
+    if (tutorialNode?.style.display == "flex") {
       moduleNoResults.style.display = "none";
     }
   });
