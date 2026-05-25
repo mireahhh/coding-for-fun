@@ -165,6 +165,7 @@
     }
 
     &.NotActiveTutorial {
+
       &:hover,
       &:active {
         opacity: 1;
@@ -284,27 +285,25 @@
 
 /* m 3 -> 2 */
 @media (max-width: 1152px) {
-  .C_ModuleTutorials {
-    .O_ModuleTutorial {
-      &::before {
-        background: none;
-      }
+  .C_ModuleTutorials .O_ModuleTutorial {
+    &::before {
+      background: none;
+    }
 
-      .W_ModuleTutorial {
-        gap: var(--size-spacing-72);
+    .W_ModuleTutorial {
+      gap: var(--size-spacing-72);
 
-        .W_ModuleTutorialHangle {
+      .W_ModuleTutorialHangle {
 
-          /* H3 -> S2 */
-          .A_ModuleTutorialTitle {
-            /* U_FontS2 */
-            color: var(--colors-neutrals-900);
-            font-family: var(--font-JetBrains);
-            font-size: 1.5rem;
-            line-height: 130%;
-            letter-spacing: -0.075px;
-            text-transform: none;
-          }
+        /* H3 -> S2 */
+        .A_ModuleTutorialTitle {
+          /* U_FontS2 */
+          color: var(--colors-neutrals-900);
+          font-family: var(--font-JetBrains);
+          font-size: 1.5rem;
+          line-height: 130%;
+          letter-spacing: -0.075px;
+          text-transform: none;
         }
       }
     }
@@ -317,18 +316,16 @@
 
 /* m 2 -> 1 */
 @media (max-width: 904px) {
-  .C_ModuleTutorials {
-    .O_ModuleTutorial .W_ModuleTutorial {
-      flex-direction: column;
-      padding-block: var(--size-spacing-64);
-      padding-inline: 4%;
-      box-sizing: border-box;
-      width: 100%;
-      gap: var(--size-spacing-20);
+  .C_ModuleTutorials .O_ModuleTutorial .W_ModuleTutorial {
+    flex-direction: column;
+    padding-block: var(--size-spacing-36);
+    padding-inline: 4%;
+    box-sizing: border-box;
+    width: 100%;
+    gap: var(--size-spacing-20);
 
-      .M_ModuleTutorialPointer {
-        display: none;
-      }
+    .M_ModuleTutorialPointer {
+      display: none;
     }
   }
 

@@ -300,7 +300,6 @@
             padding-top: var(--size-spacing-24);
             padding-bottom: var(--size-spacing-92);
             row-gap: var(--size-spacing-36);
-            max-height: var(--header-search-max-height, none);
             overflow-y: auto;
             overscroll-behavior-y: contain;
             /* box-shadow: inset 0 var(--size-spacing-8) var(--size-spacing-8) calc(var(--size-spacing-8) * -1) var(--colors-neutrals-900-20); */
@@ -490,7 +489,8 @@
                             flex: 1 0 0;
                             align-self: stretch;
                             overflow: hidden;
-                            max-height: 3em;
+                            /* max-height: 3em; */
+                            height: 3em;
                             line-height: 150%;
 
                             display: -webkit-box;
@@ -642,7 +642,7 @@
     }
 }
 
-/* m 4 -> 3 */
+/* mD 4 -> 3 */
 @media (max-width: 1532px) {
     .S_Header .C_HeaderAll .O_HeaderNavigation .A_HeaderLogo {
         .A_HeaderLogoText {
@@ -652,6 +652,13 @@
         .A_HeaderLogoMin {
             display: block;
         }
+    }
+}
+
+/* m 4 -> 3 */
+@media (max-width: 1368px) {
+    .S_Header .C_HeaderAll .S_HeaderSearch .W_HeaderSearchTutorials .C_HeaderSearchTutorials .O_HeaderSearchTutorial {
+        gap: var(--size-spacing-80);
     }
 }
 
@@ -688,6 +695,28 @@
             .O_HeaderMenuNavigation .C_HeaderMenuLinks {
                 display: flex;
             }
+
+            .S_HeaderSearch .W_HeaderSearchTutorials .C_HeaderSearchTutorials .O_HeaderSearchTutorial {
+                &::before {
+                    background: none;
+                }
+
+                gap: var(--size-spacing-72);
+
+                .W_HeaderSearchTutorialHangle {
+
+                    /* H3 -> S2 */
+                    .A_HeaderSearchTutorialTitle {
+                        /* U_FontS2 */
+                        color: var(--colors-neutrals-900);
+                        font-family: var(--font-JetBrains);
+                        font-size: 1.5rem;
+                        line-height: 130%;
+                        letter-spacing: -0.075px;
+                        text-transform: none;
+                    }
+                }
+            }
         }
     }
 }
@@ -703,6 +732,19 @@
 
             .O_HeaderMenuNavigation .C_HeaderMenuAdditionalFunctionality {
                 display: flex;
+            }
+
+            .S_HeaderSearch .W_HeaderSearchTutorials .C_HeaderSearchTutorials .O_HeaderSearchTutorial {
+                flex-direction: column;
+                padding-block: var(--size-spacing-36);
+                padding-inline: 4%;
+                box-sizing: border-box;
+                width: 100%;
+                gap: var(--size-spacing-20);
+
+                .M_HeaderSearchTutorialPointer {
+                    display: none;
+                }
             }
         }
     }
