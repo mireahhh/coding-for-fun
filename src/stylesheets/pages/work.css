@@ -234,15 +234,33 @@
                         resize: none;
                     }
 
+                    .M_WorkPairAnnotations {
+                        position: relative;
+                    }
+
                     .A_WorkMetaLink {
                         display: flex;
                         height: var(--size-spacing-48);
                         padding: var(--size-spacing-5) var(--size-spacing-10);
+                        box-sizing: border-box;
                         align-items: center;
-                        gap: var(--size-spacing-4);
                         align-self: stretch;
 
                         background-color: var(--colors-neutrals-150-20);
+                    }
+
+                    .A_WorkMetaLink+img {
+                        position: absolute;
+                        left: var(--size-spacing-10);
+                        top: calc(var(--size-spacing-32) + var(--size-spacing-3));
+                        pointer-events: none;
+                        opacity: 1;
+                    }
+
+                    .M_WorkPairAnnotations:has(.A_WorkMetaLink:not(:placeholder-shown)) .A_WorkMetaLink+img,
+                    .M_WorkPairAnnotations:has(.A_WorkMetaLink:focus) .A_WorkMetaLink+img,
+                    .M_WorkPairAnnotations.is-filled .A_WorkMetaLink+img {
+                        opacity: 0;
                     }
                 }
             }
