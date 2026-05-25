@@ -41,11 +41,12 @@ footerSubscribeBar.addEventListener("keydown", (event) => {
 const widthValue = document.getElementById("width-value");
 
 function updateScreenWidth() {
+  if (!widthValue) return;
+
   widthValue.textContent = window.innerWidth;
 }
 
-updateScreenWidth();
 window.addEventListener("resize", updateScreenWidth);
 
-
+updateScreenWidth();
 updateFooterEmailFilledFlag();
