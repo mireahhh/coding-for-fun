@@ -37,16 +37,19 @@ footerSubscribeBar.addEventListener("keydown", (event) => {
   submitFooterEmail();
 });
 
+
 // span на ширину внизу
 const widthValue = document.getElementById("width-value");
+const footer = document.querySelector(".S_Footer");
 
-function updateScreenWidth() {
-  if (!widthValue) return;
+function updateFooterWidth() {
+  if (!widthValue || !footer) return;
 
-  widthValue.textContent = window.innerWidth;
+  widthValue.textContent = footer.offsetWidth;
 }
 
-window.addEventListener("resize", updateScreenWidth);
+window.addEventListener("resize", updateFooterWidth);
 
-updateScreenWidth();
+
+updateFooterWidth();
 updateFooterEmailFilledFlag();
