@@ -41,8 +41,8 @@ function syncAddingDescriptionHeight() {
 
   const paddingY = parsePxValue(styles.paddingTop) + parsePxValue(styles.paddingBottom);
   const borderY = parsePxValue(styles.borderTopWidth) + parsePxValue(styles.borderBottomWidth);
-  const minHeight = lineHeight * 3 + paddingY + borderY;
-  const maxHeight = lineHeight * 5 + paddingY + borderY;
+  const minHeight = lineHeight * 5 + paddingY + borderY;
+  const maxHeight = lineHeight * 7 + paddingY + borderY;
 
   description.style.minHeight = `${minHeight}px`;
   description.style.maxHeight = `${maxHeight}px`;
