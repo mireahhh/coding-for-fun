@@ -76,6 +76,110 @@ function isValidWorkUrl(urlValue) {
   }
 }
 
+function collectAddingFormValues() {
+  const authorValue = document.getElementById("addingAuthor")?.value.trim() || "";
+  const titleValue = document.getElementById("addingTitle")?.value.trim() || "";
+  const descriptionValue = document.getElementById("addingDescription")?.value.trim() || "";
+  const linkValue = document.getElementById("addingLink")?.value.trim() || "";
+
+  return {
+    author: authorValue,
+    title: titleValue,
+    description: descriptionValue,
+    link: linkValue,
+  };
+}
+
+function isAddingFormValid(formData) {
+  return (
+    Boolean(formData.author) &&
+    Boolean(formData.title) &&
+    Boolean(formData.description) &&
+    isValidWorkUrl(formData.link)
+  );
+}
+
+// Контрольная сумма: склеиваем 4 значения в строку и считаем детерминированный хэш.
+function getWorkPayloadChecksum(payloadString) {
+  let normalized = payloadString;
+
+  if (normalized.length % 2 === 1) {
+    normalized += "m";
+  }
+
+  let sum = 0n;
+  const overflowGuard = 1000000000000000000n;
+
+  for (let index = 0; index < normalized.length; index += 2) {
+    const leftCode = BigInt(normalized.charCodeAt(index));
+    const rightCode = BigInt(normalized.charCodeAt(index + 1));
+    const mul = leftCode * rightCode;
+    const div = rightCode === 0n ? 0n : leftCode / rightCode;
+    sum = (sum + mul + div) % overflowGuard;
+  }
+
+  while (sum !== 0n && sum % 10n === 0n) {
+    sum /= 10n;
+  }
+
+  const checksum = sum % 100000000n;
+  return checksum.toString().padStart(8, "0");
+}
+
+function createAddingFormChecksum(formData) {
+  const payload = `${String(formData.author)}${String(formData.title)}${String(formData.description)}${String(formData.link)}`;
+  return getWorkPayloadChecksum(payload);
+}
+
+const WORK_CHECKSUMS_STORAGE_KEY = "workChecksums";
+
+function getStoredWorkChecksums() {
+  try {
+    const storedValue = localStorage.getItem(WORK_CHECKSUMS_STORAGE_KEY);
+    const parsedValue = storedValue ? JSON.parse(storedValue) : [];
+    return Array.isArray(parsedValue) ? parsedValue : [];
+  } catch {
+    return [];
+  }
+}
+
+function setStoredWorkChecksums(nextChecksums) {
+  localStorage.setItem(WORK_CHECKSUMS_STORAGE_KEY, JSON.stringify(nextChecksums));
+  window.workChecksums = nextChecksums;
+}
+
+function initWorkChecksumsStore() {
+  window.workChecksums = getStoredWorkChecksums();
+}
+
+function syncSubmitWorkButtonState() {
+  const submitWorkButton = document.getElementById("submitWorkButton");
+  if (!submitWorkButton) return;
+
+  const formData = collectAddingFormValues();
+  const isValid = isAddingFormValid(formData);
+
+  submitWorkButton.classList.toggle("is-active", isValid);
+  submitWorkButton.disabled = !isValid;
+}
+
+function initAddingFormValidation() {
+  const trackedFieldIds = ["addingAuthor", "addingTitle", "addingDescription", "addingLink"];
+  const trackedFields = trackedFieldIds
+    .map((fieldId) => document.getElementById(fieldId))
+    .filter(Boolean);
+
+  if (!trackedFields.length) return;
+
+  trackedFields.forEach((field) => {
+    ["input", "change", "blur"].forEach((eventName) => {
+      field.addEventListener(eventName, syncSubmitWorkButtonState);
+    });
+  });
+
+  syncSubmitWorkButtonState();
+}
+
 // Очистка формы: сбрасываем все поля и пересчитываем UI-состояния.
 function clearAddingForm() {
   const authorInput = document.getElementById("addingAuthor");
@@ -89,6 +193,7 @@ function clearAddingForm() {
 
   syncAddingLinkIconState();
   syncAddingDescriptionHeight();
+  syncSubmitWorkButtonState();
 }
 
 // Действия формы: обработчики кнопок "Сбросить" и "Предложить работу".
@@ -102,39 +207,21 @@ function initAddingFormActions() {
 
   if (submitWorkButton) {
     submitWorkButton.addEventListener("click", () => {
-      const authorValue = document.getElementById("addingAuthor")?.value.trim() || "";
-      const titleValue = document.getElementById("addingTitle")?.value.trim() || "";
-      const descriptionValue = document.getElementById("addingDescription")?.value.trim() || "";
-      const linkValue = document.getElementById("addingLink")?.value.trim() || "";
+      const formData = collectAddingFormValues();
+      const isValid = isAddingFormValid(formData);
 
-      const formData = {
-        author: authorValue,
-        title: titleValue,
-        description: descriptionValue,
-        link: linkValue,
-      };
+      if (isValid) {
+        const checksum = createAddingFormChecksum(formData);
+        const existingChecksums = Array.isArray(window.workChecksums) ? window.workChecksums : getStoredWorkChecksums();
 
-      if (!authorValue) {
-        console.log("Поле «Никнейм автора» пустое.");
-      }
+        if (existingChecksums.includes(checksum)) {
+          console.log("Эта работа уже предложена.");
+          return;
+        }
 
-      if (!titleValue) {
-        console.log("Поле «Название работы» пустое.");
-      }
-
-      if (!descriptionValue) {
-        console.log("Поле «Особенности работы» пустое.");
-      }
-
-      if (!linkValue) {
-        console.log("Поле «Источник с кодом» пустое.");
-        return;
-      }
-
-      if (isValidWorkUrl(linkValue)) {
-        console.log("Работа отправлена (заглушка):", formData);
-      } else {
-        console.log("Некорректная ссылка. Проверьте поле «Источник с кодом».");
+        const nextChecksums = [...existingChecksums, checksum];
+        setStoredWorkChecksums(nextChecksums);
+        console.log("Работа отправлена (заглушка):", { ...formData, checksum });
       }
     });
   }
@@ -142,4 +229,6 @@ function initAddingFormActions() {
 
 initAddingLinkIcon();
 initAddingDescriptionAutosize();
+initAddingFormValidation();
+initWorkChecksumsStore();
 initAddingFormActions();
