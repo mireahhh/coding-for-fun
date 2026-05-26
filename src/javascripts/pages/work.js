@@ -36,7 +36,7 @@ function drawWorkTextData(drawWork) {
   const description = document.querySelector(".A_WorkMetaDescription");
   description.innerHTML = drawWork.description;
 
-  const link = document.querySelector(".A_WorkLink");
+  const link = document.querySelector(".A_WorkLinkButton");
   link.href = drawWork.link;
 }
 

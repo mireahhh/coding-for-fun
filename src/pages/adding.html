@@ -240,14 +240,26 @@
                   placeholder="Немного расскажи о&nbsp;работе: какие библиотеки или&nbsp;приёмы были использованы, что&nbsp;в&nbsp;ней особенно интересно для&nbsp;тебя. Любые детали помогут нам&nbsp;сделать описание более точным и&nbsp;вдохновляющим"></textarea>
               </div>
               <div class="M_WorkPairAnnotations">
-                <p class="U_FontC2 A_WorkPairAnnotation">Источник с&nbsp;кодом</p>
-                <input id="addingLink" class="U_FontC2 A_WorkMetaLink"
-                  placeholder="   ссылка в формате https://..."><img class="U_ImgIconSizeH"
-                  src="../images/icons/link-adding.svg" alt="Ссылка"></input>
+                <div class="M_WorkPairAnnotations M_WorkPairAnnotations--Link">
+                  <p class="U_FontC2 A_WorkPairAnnotation">Источник с&nbsp;кодом</p>
+                  <input id="addingLink" class="U_FontC2 A_WorkMetaLink"
+                    placeholder="    ссылка в формате https://..."><img class="U_ImgIconSizeH"
+                    src="../images/icons/link-adding.svg" alt="Ссылка"></input>
+                </div>
+                <p class="U_FontC2 A_WorkPairAnnotation A_WorkPairAnnotation--Link">* На основе этого кода будет
+                  сформировано превью работы</p>
               </div>
             </div>
-            <button id="submitWorkButton" class="U_Button U_FontS3 A_WorkLink" type="button">
-              Предложить работу</button>
+            <div class="M_WorkPairAnnotations M_WorkPairAnnotations--Buttons">
+              <div class="M_WorkPairAnnotations M_WorkPairAnnotations--Button">
+                <p class="U_FontC1 M_WorkButtonDescription">Работа отправится на модерацию</p>
+                <button id="submitWorkButton" class="U_Button U_FontS3 A_WorkLinkButton" type="button">
+                  Предложить работу</button>
+              </div>
+              <button id="cleanFormButton" class="U_Button U_FontS3 A_WorkLinkButton A_WorkLinkButton--Opacity"
+                type="button">
+                Сбросить изменения</button>
+            </div>
           </div>
         </div>
       </div>

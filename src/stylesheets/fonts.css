@@ -8,14 +8,16 @@
 
 @font-face {
   font-family: "JetBrains Mono";
-  src: url('../fonts/JetBrainsMono-Medium.ttf') format('ttf'),
-    url('../fonts/JetBrainsMono-Medium.woff2') format('woff2');
+  src: url('../fonts/JetBrainsMono-Regular.ttf') format('ttf'),
+    url('../fonts/JetBrainsMono-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Open Sans";
+  /* src: url('../fonts/OpenSans-Regular.ttf') format('ttf'),
+    url('../fonts/OpenSans-Regular.ttf') format('ttf'); */
   src: url('../fonts/OpenSans-Regular.woff') format('woff'),
     url('../fonts/OpenSans-Regular.woff2') format('woff2');
   font-weight: 400;
