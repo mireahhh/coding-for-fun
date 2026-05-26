@@ -20,7 +20,7 @@
   }
 
   &:active {
-    transform: scale(var(--official-interaction-button-active-transform));
+    transform: scale(var(--official-interaction-icon-active-transform));
   }
 
   &:focus {
@@ -54,7 +54,7 @@
   }
 
   &:active {
-    transform: scale(var(--official-interaction-link-active-transform));
+    transform: scale(var(--official-interaction-button-active-transform));
   }
 
   &:focus {
@@ -65,6 +65,10 @@
     outline: var(--size-spacing-2) dashed var(--colors-neutrals-900);
     outline-offset: var(--size-spacing-2);
   }
+}
+
+.U_ALink:active {
+  transform: scale(var(--official-interaction-link-active-transform));
 }
 
 /* Img Icon */

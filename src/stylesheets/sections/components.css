@@ -145,7 +145,7 @@
 }
 
 .W_Alert {
-    display: flex;
+    display: none;
     flex-direction: row;
     width: var(--size-spacing-424);
     padding: var(--size-spacing-16);
@@ -162,12 +162,6 @@
         flex: 1 0 0;
 
         color: var(--colors-neutrals-450);
-    }
-
-    .A_AlertCloseButtom .Q_AlertCloseButtom {
-        height: 100%;
-        width: auto;
-        aspect-ratio: 1/1;
     }
 }
 

@@ -176,6 +176,7 @@
     --official-size-icons: 1.5rem;
     --official-interaction-hover-opacity: 0.7;
     --official-no-interaction-opacity: 0.52;
+    --official-interaction-icon-active-transform: 0.91;
     --official-interaction-button-active-transform: 0.95;
     --official-interaction-link-active-transform: 0.98;
 
