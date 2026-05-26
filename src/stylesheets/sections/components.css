@@ -147,10 +147,12 @@
 .W_Alert {
     display: none;
     flex-direction: row;
-    width: var(--size-spacing-424);
+    flex: 1;
+    max-width: var(--size-spacing-424);
     padding: var(--size-spacing-16);
+    margin-inline: var(--size-spacing-16);
     align-items: flex-start;
-    gap: var(--size-spacing-8);
+    /* gap: var(--size-spacing-8); */
 
     border-radius: var(--size-radius-4);
     border: var(--size-spacing-1-5) dashed var(--colors-neutrals-450);
@@ -164,6 +166,7 @@
         color: var(--colors-neutrals-450);
     }
 }
+
 
 /* m 4 -> 3 */
 @media (max-width: 1368px) {}
