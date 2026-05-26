@@ -1,3 +1,5 @@
+import "../sections/code.js";
+
 const heading = document.querySelector(".A_IntroHeadingTutorial");
 
 const part = Number(heading.dataset.part);
