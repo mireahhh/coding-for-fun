@@ -45,6 +45,10 @@
     opacity: 1;
 }
 
+.O_Alert.is-visible:hover {
+    transform: translateY(calc((100% + var(--size-spacing-16)) * -1 * var(--alert-index))) scale(calc(2 - var(--official-interaction-button-active-transform)));
+}
+
 .O_Alert.is-hiding {
     opacity: 0;
 }

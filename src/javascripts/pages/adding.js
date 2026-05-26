@@ -156,16 +156,6 @@ function setStoredWorkDuplicateSignatures(nextSignatures) {
   window.workDuplicateSignatures = nextSignatures;
 }
 
-// // ВРЕМЕННО: очистка старой базы дубликатов.
-// // Удалить после первого запуска с новой схемой хранения.
-// function clearLegacyWorkChecksumsStoreOnce() {
-//   const oldStoreValue = localStorage.getItem(LEGACY_WORK_CHECKSUMS_STORAGE_KEY);
-//   if (oldStoreValue !== null) {
-//     localStorage.removeItem(LEGACY_WORK_CHECKSUMS_STORAGE_KEY);
-//     console.log("Legacy-база workChecksums очищена.");
-//   }
-// }
-
 function initWorkDuplicateSignaturesStore() {
   window.workDuplicateSignatures = getStoredWorkDuplicateSignatures();
 }
@@ -259,18 +249,19 @@ function initAddingFormActions() {
         const existingSignatures = Array.isArray(window.workDuplicateSignatures)
           ? window.workDuplicateSignatures
           : getStoredWorkDuplicateSignatures();
-        const duplicateBy = findDuplicateSignatureMatch(existingSignatures, signatures);
-
-        if (duplicateBy) {
-          showAlert(`Эта работа не отправлена, так как она уже была предложена. Если это ошибка, обратитесь к нам, указав: ${duplicateBy}`);
-          return;
-        }
 
         const gallerySignatures = getGalleryWorkDuplicateSignatures();
         const duplicateInGalleryBy = findDuplicateSignatureMatch(gallerySignatures, signatures);
 
         if (duplicateInGalleryBy) {
           showAlert(`Эта работа не отправлена, так как она уже есть в Галерее. Если это ошибка, обратитесь к нам, указав: ${duplicateInGalleryBy}`);
+          return;
+        }
+
+        const duplicateBy = findDuplicateSignatureMatch(existingSignatures, signatures);
+
+        if (duplicateBy) {
+          showAlert(`Эта работа не отправлена, так как она уже была предложена. Если это ошибка, обратитесь к нам, указав: ${duplicateBy}`);
           return;
         }
 
