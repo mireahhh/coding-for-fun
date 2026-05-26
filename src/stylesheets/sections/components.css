@@ -91,6 +91,9 @@
     padding-inline: 5%;
     box-sizing: border-box;
     width: 100%;
+    min-width: var(--min-width);
+    max-width: var(--max-width);
+    margin: auto;
     text-align: justify;
     text-align-last: justify;
     /* U_FontH0 */

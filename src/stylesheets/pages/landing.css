@@ -23,8 +23,8 @@
             pointer-events: none;
 
             background:
-                linear-gradient(black, black) top left,
-                linear-gradient(black, black) top right;
+                linear-gradient(var(--colors-neutrals-900), var(--colors-neutrals-900)) top left,
+                linear-gradient(var(--colors-neutrals-900), var(--colors-neutrals-900)) top right;
             /* linear-gradient(black, black) bottom left,
                         linear-gradient(black, black) bottom right; */
 
@@ -229,7 +229,7 @@
                 flex-wrap: nowrap;
                 align-items: center;
                 gap: var(--size-spacing-24);
-                margin-right: var(--size-spacing-24);
+                padding-right: var(--size-spacing-24);
                 flex-shrink: 0;
             }
 
@@ -251,8 +251,7 @@
 
     .O_LandingInfo {
         display: flex;
-        min-width: var(--min-width);
-        max-width: var(--max-width);
+        width: 100%;
         margin: auto;
         padding-block: var(--size-spacing-80);
         flex-direction: column;
@@ -263,6 +262,9 @@
             padding-inline: 5%;
             box-sizing: border-box;
             width: 100%;
+            min-width: var(--min-width);
+            max-width: var(--max-width);
+            margin: auto;
             flex-direction: column;
             align-items: flex-start;
             gap: var(--size-spacing-32);
