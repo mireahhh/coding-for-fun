@@ -292,7 +292,17 @@
                     color: var(--colors-neutrals-450);
                 }
 
-                .A_WorkLinkButton--Opacity {
+                .A_WorkLinkButton--Work {
+                    pointer-events: none;
+                    background: var(--colors-neutrals-450);
+
+                    &.is-active {
+                        pointer-events: all;
+                        background: var(--colors-neutrals-900);
+                    }
+                }
+
+                .A_WorkLinkButton--Clean {
                     padding-block: var(--size-spacing-7);
 
                     background: none;
