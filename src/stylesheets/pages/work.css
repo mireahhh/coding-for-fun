@@ -215,6 +215,7 @@
 
                     .A_WorkPairAnnotation--Link {
                         padding-top: var(--size-spacing-12);
+                        color: var(--colors-neutrals-450);
                     }
                 }
 
@@ -292,6 +293,8 @@
                 }
 
                 .A_WorkLinkButton--Opacity {
+                    padding-block: var(--size-spacing-7);
+
                     background: none;
                     border: var(--size-spacing-1) solid var(--colors-neutrals-900);
                     color: var(--colors-neutrals-900);
