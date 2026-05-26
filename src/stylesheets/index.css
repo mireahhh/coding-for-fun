@@ -13,6 +13,7 @@
 @import 'sections/filter.css';
 @import 'sections/next.css';
 @import 'sections/code.css';
+@import 'sections/alerts.css';
 @import 'sections/footer.css';
 /* pages */
 @import 'pages/landing.css';
