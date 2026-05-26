@@ -1,3 +1,5 @@
+import { showAlert } from "../sections/alerts.js";
+
 // Иконка ссылки: добавляем/убираем класс, если поле ссылки заполнено.
 function syncAddingLinkIconState() {
   const linkInput = document.getElementById("addingLink");
@@ -253,6 +255,10 @@ function initAddingFormActions() {
 
         const nextSignatures = [...existingSignatures, signatures];
         setStoredWorkDuplicateSignatures(nextSignatures);
+
+        const successMessageHtml = "Произведение отправлено на&nbsp;проверку. Если модерация будет пройдена, работа появится в&nbsp;Галерее: следи в&nbsp;соц.&nbsp;сетях!";
+
+        showAlert(successMessageHtml);
         console.log("Работа отправлена (заглушка):", { ...formData, signatures });
       }
     });

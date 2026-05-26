@@ -1,4 +1,17 @@
+.C_Alerts {
+    position: fixed;
+    inset: 0;
+    z-index: 512;
+    pointer-events: none;
+}
+
 .O_Alert {
+    --alert-index: 0;
+
+    position: absolute;
+    right: var(--size-spacing-16);
+    bottom: var(--size-spacing-16);
+
     display: flex;
     flex-direction: row;
     flex: 1;
@@ -6,11 +19,15 @@
     padding: var(--size-spacing-16);
     margin-inline: var(--size-spacing-16);
     align-items: flex-start;
-    /* gap: var(--size-spacing-8); */
 
     border-radius: var(--size-radius-4);
     border: var(--size-spacing-1-5) dashed var(--colors-neutrals-450);
     background: var(--colors-neutrals-0);
+
+    transform: translateY(calc(100% + var(--size-spacing-16)));
+    opacity: 0;
+    transition: transform 0.28s ease, opacity 0.22s ease;
+    pointer-events: auto;
 
     .A_AlertDescription {
         display: flex;
@@ -19,4 +36,13 @@
 
         color: var(--colors-neutrals-450);
     }
+}
+
+.O_Alert.is-visible {
+    transform: translateY(calc((100% + var(--size-spacing-16)) * -1 * var(--alert-index)));
+    opacity: 1;
+}
+
+.O_Alert.is-hiding {
+    opacity: 0;
 }
