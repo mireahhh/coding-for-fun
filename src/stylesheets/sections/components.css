@@ -144,8 +144,32 @@
     }
 }
 
+.W_Alert {
+    display: flex;
+    flex-direction: row;
+    width: var(--size-spacing-424);
+    padding: var(--size-spacing-16);
+    align-items: flex-start;
+    gap: var(--size-spacing-8);
 
+    border-radius: var(--size-radius-4);
+    border: var(--size-spacing-1-5) dashed var(--colors-neutrals-450);
+    background: var(--colors-neutrals-0);
 
+    .A_AlertDescription {
+        display: flex;
+        align-items: center;
+        flex: 1 0 0;
+
+        color: var(--colors-neutrals-450);
+    }
+
+    .A_AlertCloseButtom .Q_AlertCloseButtom {
+        height: 100%;
+        width: auto;
+        aspect-ratio: 1/1;
+    }
+}
 
 /* m 4 -> 3 */
 @media (max-width: 1368px) {}
