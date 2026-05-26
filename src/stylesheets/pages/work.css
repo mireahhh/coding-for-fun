@@ -257,9 +257,7 @@
                         opacity: 1;
                     }
 
-                    .M_WorkPairAnnotations:has(.A_WorkMetaLink:not(:placeholder-shown)) .A_WorkMetaLink+img,
-                    .M_WorkPairAnnotations:has(.A_WorkMetaLink:focus) .A_WorkMetaLink+img,
-                    .M_WorkPairAnnotations.is-filled .A_WorkMetaLink+img {
+                    .A_WorkMetaLink.is-filled+img {
                         opacity: 0;
                     }
                 }

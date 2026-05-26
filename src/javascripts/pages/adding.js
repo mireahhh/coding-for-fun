@@ -2,8 +2,11 @@ function syncAddingLinkIconState() {
   const linkInput = document.getElementById("addingLink");
   if (!linkInput) return;
 
-  const hasValue = linkInput.value.trim().length > 0;
-  pair.classList.toggle("is-filled", hasValue);
+  if (linkInput.value) {
+    linkInput.classList.add("is-filled");
+  } else {
+    linkInput.classList.remove("is-filled");
+  }
 }
 
 function initAddingLinkIcon() {
