@@ -1,3 +1,4 @@
+import { works } from "../json/galleryJson.js";
 import { showAlert } from "../sections/alerts.js";
 
 // Иконка ссылки: добавляем/убираем класс, если поле ссылки заполнено.
@@ -183,6 +184,18 @@ function findDuplicateSignatureMatch(existingSignatures, newSignatures) {
   return null;
 }
 
+function getGalleryWorkDuplicateSignatures() {
+  if (!Array.isArray(works)) return [];
+
+  return works.map((work) =>
+    createWorkDuplicateSignatures({
+      author: work?.author || "",
+      title: work?.title || "",
+      link: work?.link || "",
+    }),
+  );
+}
+
 function syncSubmitWorkButtonState() {
   const submitWorkButton = document.getElementById("submitWorkButton");
   if (!submitWorkButton) return;
@@ -249,7 +262,15 @@ function initAddingFormActions() {
         const duplicateBy = findDuplicateSignatureMatch(existingSignatures, signatures);
 
         if (duplicateBy) {
-          console.log(`Эта работа уже предложена. Совпадение: ${duplicateBy}`);
+          showAlert(`Эта работа не отправлена, так как она уже была предложена. Если это ошибка, обратитесь к нам, указав: ${duplicateBy}`);
+          return;
+        }
+
+        const gallerySignatures = getGalleryWorkDuplicateSignatures();
+        const duplicateInGalleryBy = findDuplicateSignatureMatch(gallerySignatures, signatures);
+
+        if (duplicateInGalleryBy) {
+          showAlert(`Эта работа не отправлена, так как она уже есть в Галерее. Если это ошибка, обратитесь к нам, указав: ${duplicateInGalleryBy}`);
           return;
         }
 
@@ -259,7 +280,6 @@ function initAddingFormActions() {
         const successMessageHtml = "Произведение отправлено на&nbsp;проверку. Если модерация будет пройдена, работа появится в&nbsp;Галерее: следи в&nbsp;соц.&nbsp;сетях!";
 
         showAlert(successMessageHtml);
-        console.log("Работа отправлена (заглушка):", { ...formData, signatures });
       }
     });
   }
