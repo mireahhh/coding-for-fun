@@ -1,3 +1,4 @@
+// Иконка ссылки: добавляем/убираем класс, если поле ссылки заполнено.
 function syncAddingLinkIconState() {
   const linkInput = document.getElementById("addingLink");
   if (!linkInput) return;
@@ -20,11 +21,13 @@ function initAddingLinkIcon() {
   });
 }
 
+// Утилита: безопасно переводит CSS-значение (например, "20px") в число.
 function parsePxValue(value) {
   const parsed = parseFloat(value);
   return Number.isFinite(parsed) ? parsed : 0;
 }
 
+// Автовысота описания: держим textarea в пределах 3–5 строк.
 function syncAddingDescriptionHeight() {
   const description = document.getElementById("addingDescription");
   if (!description) return;
@@ -61,5 +64,82 @@ function initAddingDescriptionAutosize() {
   window.addEventListener("resize", syncAddingDescriptionHeight);
 }
 
+// Проверка ссылки: принимаем только корректные http/https URL.
+function isValidWorkUrl(urlValue) {
+  if (!urlValue) return false;
+
+  try {
+    const parsedUrl = new URL(urlValue);
+    return parsedUrl.protocol === "http:" || parsedUrl.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
+// Очистка формы: сбрасываем все поля и пересчитываем UI-состояния.
+function clearAddingForm() {
+  const authorInput = document.getElementById("addingAuthor");
+  const titleInput = document.getElementById("addingTitle");
+  const descriptionInput = document.getElementById("addingDescription");
+  const linkInput = document.getElementById("addingLink");
+
+  [authorInput, titleInput, descriptionInput, linkInput].forEach((field) => {
+    if (field) field.value = "";
+  });
+
+  syncAddingLinkIconState();
+  syncAddingDescriptionHeight();
+}
+
+// Действия формы: обработчики кнопок "Сбросить" и "Предложить работу".
+function initAddingFormActions() {
+  const cleanFormButton = document.getElementById("cleanFormButton");
+  const submitWorkButton = document.getElementById("submitWorkButton");
+
+  if (cleanFormButton) {
+    cleanFormButton.addEventListener("click", clearAddingForm);
+  }
+
+  if (submitWorkButton) {
+    submitWorkButton.addEventListener("click", () => {
+      const authorValue = document.getElementById("addingAuthor")?.value.trim() || "";
+      const titleValue = document.getElementById("addingTitle")?.value.trim() || "";
+      const descriptionValue = document.getElementById("addingDescription")?.value.trim() || "";
+      const linkValue = document.getElementById("addingLink")?.value.trim() || "";
+
+      const formData = {
+        author: authorValue,
+        title: titleValue,
+        description: descriptionValue,
+        link: linkValue,
+      };
+
+      if (!authorValue) {
+        console.log("Поле «Никнейм автора» пустое.");
+      }
+
+      if (!titleValue) {
+        console.log("Поле «Название работы» пустое.");
+      }
+
+      if (!descriptionValue) {
+        console.log("Поле «Особенности работы» пустое.");
+      }
+
+      if (!linkValue) {
+        console.log("Поле «Источник с кодом» пустое.");
+        return;
+      }
+
+      if (isValidWorkUrl(linkValue)) {
+        console.log("Работа отправлена (заглушка):", formData);
+      } else {
+        console.log("Некорректная ссылка. Проверьте поле «Источник с кодом».");
+      }
+    });
+  }
+}
+
 initAddingLinkIcon();
 initAddingDescriptionAutosize();
+initAddingFormActions();
