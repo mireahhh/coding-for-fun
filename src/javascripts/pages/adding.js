@@ -126,16 +126,21 @@ function getWorkPayloadChecksum(payloadString) {
   return checksum.toString().padStart(8, "0");
 }
 
-function createAddingFormChecksum(formData) {
-  const payload = `${String(formData.author)}${String(formData.title)}${String(formData.description)}${String(formData.link)}`;
-  return getWorkPayloadChecksum(payload);
+function createWorkDuplicateSignatures(formData) {
+  return {
+    at: `AT-${getWorkPayloadChecksum(`${String(formData.author)}${String(formData.title)}`)}`,
+    al: `AL-${getWorkPayloadChecksum(`${String(formData.author)}${String(formData.link)}`)}`,
+    tl: `TL-${getWorkPayloadChecksum(`${String(formData.title)}${String(formData.link)}`)}`,
+    l: `L-${getWorkPayloadChecksum(String(formData.link))}`,
+  };
 }
 
-const WORK_CHECKSUMS_STORAGE_KEY = "workChecksums";
+const WORK_DUPLICATE_SIGNATURES_STORAGE_KEY = "workDuplicateSignatures";
+// const LEGACY_WORK_CHECKSUMS_STORAGE_KEY = "workChecksums";
 
-function getStoredWorkChecksums() {
+function getStoredWorkDuplicateSignatures() {
   try {
-    const storedValue = localStorage.getItem(WORK_CHECKSUMS_STORAGE_KEY);
+    const storedValue = localStorage.getItem(WORK_DUPLICATE_SIGNATURES_STORAGE_KEY);
     const parsedValue = storedValue ? JSON.parse(storedValue) : [];
     return Array.isArray(parsedValue) ? parsedValue : [];
   } catch {
@@ -143,13 +148,37 @@ function getStoredWorkChecksums() {
   }
 }
 
-function setStoredWorkChecksums(nextChecksums) {
-  localStorage.setItem(WORK_CHECKSUMS_STORAGE_KEY, JSON.stringify(nextChecksums));
-  window.workChecksums = nextChecksums;
+function setStoredWorkDuplicateSignatures(nextSignatures) {
+  localStorage.setItem(WORK_DUPLICATE_SIGNATURES_STORAGE_KEY, JSON.stringify(nextSignatures));
+  window.workDuplicateSignatures = nextSignatures;
 }
 
-function initWorkChecksumsStore() {
-  window.workChecksums = getStoredWorkChecksums();
+// // ВРЕМЕННО: очистка старой базы дубликатов.
+// // Удалить после первого запуска с новой схемой хранения.
+// function clearLegacyWorkChecksumsStoreOnce() {
+//   const oldStoreValue = localStorage.getItem(LEGACY_WORK_CHECKSUMS_STORAGE_KEY);
+//   if (oldStoreValue !== null) {
+//     localStorage.removeItem(LEGACY_WORK_CHECKSUMS_STORAGE_KEY);
+//     console.log("Legacy-база workChecksums очищена.");
+//   }
+// }
+
+function initWorkDuplicateSignaturesStore() {
+  window.workDuplicateSignatures = getStoredWorkDuplicateSignatures();
+}
+
+function findDuplicateSignatureMatch(existingSignatures, newSignatures) {
+  // Приоритет совпадений: сначала ссылка, затем комбинированные сигнатуры.
+  const signatureOrder = ["l", "al", "tl", "at"];
+
+  for (const signatureType of signatureOrder) {
+    const hasDuplicate = existingSignatures.some((existingSignature) => existingSignature?.[signatureType] === newSignatures[signatureType]);
+    if (hasDuplicate) {
+      return newSignatures[signatureType];
+    }
+  }
+
+  return null;
 }
 
 function syncSubmitWorkButtonState() {
@@ -211,17 +240,20 @@ function initAddingFormActions() {
       const isValid = isAddingFormValid(formData);
 
       if (isValid) {
-        const checksum = createAddingFormChecksum(formData);
-        const existingChecksums = Array.isArray(window.workChecksums) ? window.workChecksums : getStoredWorkChecksums();
+        const signatures = createWorkDuplicateSignatures(formData);
+        const existingSignatures = Array.isArray(window.workDuplicateSignatures)
+          ? window.workDuplicateSignatures
+          : getStoredWorkDuplicateSignatures();
+        const duplicateBy = findDuplicateSignatureMatch(existingSignatures, signatures);
 
-        if (existingChecksums.includes(checksum)) {
-          console.log("Эта работа уже предложена.");
+        if (duplicateBy) {
+          console.log(`Эта работа уже предложена. Совпадение: ${duplicateBy}`);
           return;
         }
 
-        const nextChecksums = [...existingChecksums, checksum];
-        setStoredWorkChecksums(nextChecksums);
-        console.log("Работа отправлена (заглушка):", { ...formData, checksum });
+        const nextSignatures = [...existingSignatures, signatures];
+        setStoredWorkDuplicateSignatures(nextSignatures);
+        console.log("Работа отправлена (заглушка):", { ...formData, signatures });
       }
     });
   }
@@ -230,5 +262,5 @@ function initAddingFormActions() {
 initAddingLinkIcon();
 initAddingDescriptionAutosize();
 initAddingFormValidation();
-initWorkChecksumsStore();
+initWorkDuplicateSignaturesStore();
 initAddingFormActions();
