@@ -87,6 +87,7 @@ function drawWorkTags(drawWork) {
 
   const primaryValues = primaryKeys.map((key) => filtersName[key] ?? key);
 
+  // Теги
   primaryValues.forEach((value) => {
     const button = document.createElement("button");
     button.className = "U_Button U_FontC2 A_WorkMetaTagPrimary";
@@ -94,7 +95,6 @@ function drawWorkTags(drawWork) {
     primaryContainer.appendChild(button);
   });
 
-  // Второстепенные теги
   const secondaryTags = drawWork.tags || [];
 
   secondaryTags.forEach((value) => {

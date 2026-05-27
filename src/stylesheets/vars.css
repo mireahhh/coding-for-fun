@@ -86,10 +86,12 @@
     --size-spacing-552: 34.5rem;
     --size-spacing-558: 34.75rem;
     --size-spacing-564: 35.25rem;
-    --size-spacing-640: 340rem;
+    --size-spacing-640: 34rem;
+    --size-spacing-688: 43rem;
     --size-spacing-704: 44rem;
     --size-spacing-780: 48.75rem;
     --size-spacing-800: 50rem;
+    --size-spacing-928: 58rem;
     --size-spacing-inf: 1000rem;
 
     /* radius */
@@ -145,6 +147,7 @@
     /* 255 ff   30% 4d */
     --colors-neutrals-0-30: #ffffff4d;
     /* 248 f8 (50) */
+    --colors-neutrals-50: #f8f8f8;
     --colors-neutrals-body: #f8f8f8;
     /* 248   0% 0 */
     --colors-neutrals-body-0: #f8f8f800;

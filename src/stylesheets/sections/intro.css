@@ -77,9 +77,7 @@
   .O_IntroFooter {
     display: flex;
     flex-direction: row;
-    /* TODO с кнопкой добавить вернуть это! */
-    /* align-items: flex-end; */
-    align-content: flex-end;
+    align-items: flex-end;
     row-gap: var(--size-spacing-36);
     column-gap: var(--size-spacing-132);
     align-self: stretch;
@@ -87,12 +85,10 @@
 
     .A_IntroFooterText {
       display: flex;
-      align-items: flex-end;
-      align-content: flex-end;
       gap: var(--size-spacing-24);
       align-self: stretch;
       flex-wrap: wrap;
-      max-width: 928px;
+      max-width: var(--size-spacing-928);
 
       /* U_FontS1 */
       color: var(--colors-neutrals-900);
@@ -100,14 +96,13 @@
 
     .C_IntroTutorialTags {
       display: flex;
-      align-items: center;
-      align-content: center;
+      /* align-items: flex-start;
+      align-content: flex-start; */
       gap: var(--size-spacing-8);
-      align-self: stretch;
-      padding-right: 25.5%;
-      box-sizing: border-box;
-      width: 100%;
+      flex: 1;
+      max-width: var(--size-spacing-688);
       flex-wrap: wrap;
+      height: min-content;
 
       .A_IntroTutorialTagPrimary,
       .A_IntroTutorialTagSecondary {
@@ -116,27 +111,28 @@
         justify-content: center;
         align-items: center;
         border-radius: var(--size-spacing-4);
+        height: min-content;
 
         /* U_FontC2 */
         color: var(--colors-neutrals-900);
       }
 
       .A_IntroTutorialTagPrimary {
-        border: 1.5px dashed var(--colors-neutrals-900);
+        border: var(--size-spacing-1-5) dashed var(--colors-neutrals-900);
       }
 
       .A_IntroTutorialTagSecondary {
-        border: 1.5px dashed var(--colors-neutrals-200);
+        border: var(--size-spacing-1-5) dashed var(--colors-neutrals-200);
       }
     }
 
     .O_IntroRight {
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      align-content: flex-start;
-      gap: var(--size-spacing-12, 12px);
-      flex-wrap: wrap;
+      flex-direction: row;
+      gap: var(--size-spacing-16);
+      height: min-content;
+      width: min-content;
+      align-items: center;
 
       .A_IntroAuthor {
         display: flex;
@@ -146,47 +142,25 @@
         /* U_FontC2 */
         color: var(--colors-neutrals-900);
       }
-    }
-
-    .O_IntroButtons {
-      display: flex;
-      flex-direction: row;
-      width: min-content;
-      align-items: flex-end;
-      align-content: flex-end;
-      gap: var(--size-spacing-16);
-
-      .M_IntroAddTutor {
-        display: none;
-        /* display: flex; TODO */
-        justify-content: center;
-        align-items: center;
-        width: var(--size-spacing-212);
-        height: var(--size-spacing-46);
-        max-height: var(--size-spacing-50);
-        margin: var(--size-radius-4) var(--size-radius-12);
-        justify-content: center;
-        align-items: center;
-        gap: var(--size-spacing-8);
-        flex-shrink: 0;
-        border: var(--size-spacing-1) solid var(--colors-neutrals-900);
-        background: var(--colors-neutrals-body-01);
-
-        /* U_FontC2 */
-        color: var(--colors-neutrals-900);
-      }
 
       .A_IntroShare {
         display: flex;
-        align-items: center;
         height: var(--size-spacing-48);
       }
     }
   }
 }
 
-/* m 4 -> 3 */
-@media (max-width: 1368px) {}
+.O_Intro--Tutorial {
+  .O_IntroFooter {
+    align-items: flex-start;
+
+    .O_IntroRight .A_IntroShare {
+      height: var(--size-spacing-40);
+    }
+  }
+}
+
 
 /* m 3 -> 2 */
 @media (max-width: 1152px) {
@@ -232,10 +206,9 @@
       flex-direction: column;
       align-items: flex-start;
 
-      .O_IntroButtons {
+      .O_IntroRight {
+        width: 100%;
         flex-wrap: wrap;
-        width: auto;
-        height: auto;
       }
     }
 
@@ -248,18 +221,6 @@
     }
   }
 
-  /* H0 (H1) -> H1-mob */
-  .A_IntroHeading,
-  .A_IntroHeadingTutorial {
-    /* U_FontH1-Mob */
-    /* color: var(--colors-neutrals-900);
-    font-family: var(--font-KairosSans);
-    font-size: 3.5rem;
-        line-height: 100%;
-    letter-spacing: -0.175rem;
-    text-transform: uppercase; */
-  }
-
   /* S1 (B1) -> S1 */
   .A_IntroFooterText {
     /* U_FontS1 */
@@ -269,5 +230,12 @@
     line-height: 130%;
     letter-spacing: -0.0375rem;
     text-transform: none;
+  }
+}
+
+/* m 1 -> 0 */
+@media (max-width: 428px) {
+  .O_Intro .O_IntroFooter .C_IntroTutorialTags {
+    padding-right: 0;
   }
 }

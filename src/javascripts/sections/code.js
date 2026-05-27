@@ -202,6 +202,19 @@ export function initCodeBlocks() {
             lineNumbers.style.paddingLeft = "var(--code-line-number-gutter-padding)";
         }
 
+        function syncActiveLineHighlight() {
+            const textBeforeCaret = textarea.value.slice(0, textarea.selectionStart);
+            const lineIndex = textBeforeCaret.split("\n").length - 1;
+
+            const textareaStyle = window.getComputedStyle(textarea);
+            const lineHeight = parseFloat(textareaStyle.lineHeight) || 16;
+            const paddingTop = parseFloat(textareaStyle.paddingTop) || 0;
+            const activeLineTop = paddingTop + lineIndex * lineHeight;
+
+            highlight.style.setProperty("--active-line-top", `${activeLineTop}px`);
+            highlight.style.setProperty("--active-line-height", `${lineHeight}px`);
+        }
+
         function syncHighlight() {
             highlight.innerHTML = highlightCode(normalizeCodeForHighlight(textarea.value));
             syncScrollOffsets();
@@ -229,15 +242,46 @@ export function initCodeBlocks() {
             autoResizeTextarea();
             syncHighlight();
             syncLineNumbers();
+            syncActiveLineHighlight();
         });
+
+        let isTextareaFocused = false;
+
+        function scheduleCaretSync() {
+            window.requestAnimationFrame(() => {
+                syncActiveLineHighlight();
+            });
+        }
 
         textarea.addEventListener("scroll", () => {
             syncScrollOffsets();
+            scheduleCaretSync();
+        });
+
+        textarea.addEventListener("focus", () => {
+            isTextareaFocused = true;
+            scheduleCaretSync();
+        });
+
+        textarea.addEventListener("blur", () => {
+            isTextareaFocused = false;
+        });
+
+        textarea.addEventListener("click", scheduleCaretSync);
+        textarea.addEventListener("keyup", scheduleCaretSync);
+        textarea.addEventListener("keydown", scheduleCaretSync);
+        textarea.addEventListener("mouseup", scheduleCaretSync);
+        textarea.addEventListener("select", scheduleCaretSync);
+
+        document.addEventListener("selectionchange", () => {
+            if (!isTextareaFocused || document.activeElement !== textarea) return;
+            scheduleCaretSync();
         });
 
         window.addEventListener("resize", () => {
             syncTypographyMetrics();
             syncScrollOffsets();
+            scheduleCaretSync();
         });
 
         runStopButton.addEventListener("click", () => {
@@ -253,6 +297,7 @@ export function initCodeBlocks() {
             autoResizeTextarea();
             syncHighlight();
             syncLineNumbers();
+            syncActiveLineHighlight();
         });
 
         copyButton.addEventListener("click", async () => {
@@ -263,6 +308,7 @@ export function initCodeBlocks() {
         autoResizeTextarea();
         syncHighlight();
         syncLineNumbers();
+        syncActiveLineHighlight();
         clearFrame(iframe);
 
         if (codeBlock.dataset.autostart === "true") {

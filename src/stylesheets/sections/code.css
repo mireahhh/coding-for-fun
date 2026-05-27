@@ -91,6 +91,12 @@
                 pointer-events: none;
 
                 color: var(--colors-neutrals-450);
+                background:
+                    linear-gradient(to bottom,
+                        transparent var(--active-line-top, 0),
+                        var(--colors-neutrals-50) var(--active-line-top, 0),
+                        var(--colors-neutrals-50) calc(var(--active-line-top, 0) + var(--active-line-height, 0px)),
+                        transparent calc(var(--active-line-top, 0) + var(--active-line-height, 0px)));
 
                 /* scrollbar-width: none; */
                 /* Firefox */

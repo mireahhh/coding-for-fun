@@ -195,7 +195,7 @@
   color: var(--colors-neutrals-450);
   font-family: var(--font-JetBrains);
   font-size: 1rem;
-  line-height: 170%;
+  line-height: 1;
   letter-spacing: -0.05rem;
   text-transform: none;
 }
