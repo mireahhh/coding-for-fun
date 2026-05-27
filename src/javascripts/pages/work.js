@@ -105,6 +105,31 @@ function drawWorkTags(drawWork) {
   });
 }
 
+function fillHeaderSearchFromWorkTag(tagText) {
+  const headerSearchBar = document.getElementById("headerSearchBar");
+
+  if (!headerSearchBar) return;
+
+  headerSearchBar.value = tagText;
+  headerSearchBar.focus();
+  headerSearchBar.setSelectionRange(headerSearchBar.value.length, headerSearchBar.value.length);
+  headerSearchBar.dispatchEvent(new Event("input", { bubbles: true }));
+}
+
+function initWorkTagSearchPrefill() {
+  const tagsContainer = document.querySelector(".W_WorkMetaTags");
+
+  if (!tagsContainer) return;
+
+  tagsContainer.addEventListener("click", (event) => {
+    const tagButton = event.target.closest(".A_WorkMetaTagPrimary, .A_WorkMetaTagSecondary");
+
+    if (!tagButton) return;
+
+    fillHeaderSearchFromWorkTag(tagButton.textContent.trim());
+  });
+}
+
 function showWork() {
   const drawWork = getCurrentWork();
 
@@ -113,4 +138,5 @@ function showWork() {
   drawWorkTags(drawWork);
 }
 
-showWork()
+showWork();
+initWorkTagSearchPrefill();
