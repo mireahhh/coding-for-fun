@@ -142,6 +142,92 @@ async function copyCodeFromTextarea(textarea, copyButton) {
     showCopyFeedback(copyButton);
 }
 
+function getLineRangeBySelection(value, selectionStart, selectionEnd) {
+    const safeSelectionStart = Math.max(0, selectionStart || 0);
+    const safeSelectionEnd = Math.max(0, selectionEnd || 0);
+
+    const startLine = value.slice(0, safeSelectionStart).split("\n").length - 1;
+    const endLine = value.slice(0, safeSelectionEnd).split("\n").length - 1;
+
+    return {
+        startLine,
+        endLine,
+    };
+}
+
+function toggleCommentOnSelectedLines(textarea) {
+    const value = textarea.value;
+    const lines = value.split("\n");
+    const selectionStart = textarea.selectionStart || 0;
+    const selectionEnd = textarea.selectionEnd || 0;
+    const { startLine, endLine } = getLineRangeBySelection(value, selectionStart, selectionEnd);
+
+    const selectedLineIndexes = [];
+    for (let index = startLine; index <= endLine; index += 1) {
+        if (/^\s*$/.test(lines[index] || "")) continue;
+        selectedLineIndexes.push(index);
+    }
+
+    if (selectedLineIndexes.length === 0) return;
+
+    const shouldUncomment = selectedLineIndexes.every((index) => /^[\t ]*\/\//.test(lines[index]));
+    const lineDiffByIndex = new Map();
+
+    selectedLineIndexes.forEach((index) => {
+        const line = lines[index];
+        const beforeLength = line.length;
+
+        if (shouldUncomment) {
+            lines[index] = line.replace(/^([\t ]*)\/\/ ?/, "$1");
+        } else {
+            const indentMatch = line.match(/^[\t ]*/);
+            const indent = indentMatch ? indentMatch[0] : "";
+            const content = line.slice(indent.length);
+            lines[index] = `${indent}// ${content}`;
+        }
+
+        lineDiffByIndex.set(index, lines[index].length - beforeLength);
+    });
+
+    function getPositionShift(position) {
+        let shift = 0;
+        let cursor = 0;
+        for (let index = 0; index < lines.length; index += 1) {
+            const originalLineLength = (value.split("\n")[index] || "").length;
+            const lineStart = cursor;
+            const lineEnd = lineStart + originalLineLength;
+            const diff = lineDiffByIndex.get(index) || 0;
+
+            if (position > lineEnd) {
+                shift += diff;
+            } else if (position > lineStart && diff !== 0) {
+                const indentMatch = (value.split("\n")[index] || "").match(/^[\t ]*/);
+                const indentLength = indentMatch ? indentMatch[0].length : 0;
+                const markerStart = lineStart + indentLength;
+
+                if (!shouldUncomment && position > markerStart) {
+                    shift += 3;
+                }
+
+                if (shouldUncomment && position > markerStart) {
+                    const removed = (value.split("\n")[index] || "").startsWith(`${" ".repeat(indentLength)}// `, indentLength)
+                        ? 3
+                        : 2;
+                    shift -= removed;
+                }
+            }
+
+            cursor = lineEnd + 1;
+        }
+        return shift;
+    }
+
+    textarea.value = lines.join("\n");
+    textarea.selectionStart = Math.max(0, selectionStart + getPositionShift(selectionStart));
+    textarea.selectionEnd = Math.max(0, selectionEnd + getPositionShift(selectionEnd));
+}
+
+
 export function initCodeBlocks() {
     document.querySelectorAll(".O_TutorialSingleCode").forEach((codeBlock) => {
         const codeBlockId = codeBlock.id;
@@ -222,12 +308,13 @@ export function initCodeBlocks() {
         }
 
         function syncActiveLineHighlight() {
+            const lineIndex = getActiveLineIndex();
+            syncLineNumberActiveState();
+
             if (textarea.selectionStart !== textarea.selectionEnd) {
-                clearActiveLineHighlight();
+                highlight.style.setProperty("--active-line-height", "0px");
                 return;
             }
-
-            const lineIndex = getActiveLineIndex();
 
             const textareaStyle = window.getComputedStyle(textarea);
             const lineHeight = parseFloat(textareaStyle.lineHeight) || 16;
@@ -239,7 +326,6 @@ export function initCodeBlocks() {
 
             highlight.style.setProperty("--active-line-top", `${visibleActiveLineTop}px`);
             highlight.style.setProperty("--active-line-height", `${lineHeight}px`);
-            syncLineNumberActiveState();
         }
 
         function clearActiveLineHighlight() {
@@ -290,6 +376,23 @@ export function initCodeBlocks() {
         textarea.addEventListener("click", scheduleCaretSync);
         textarea.addEventListener("keyup", scheduleCaretSync);
         textarea.addEventListener("keydown", scheduleCaretSync);
+                textarea.addEventListener("keydown", (event) => {
+            const isCtrlPressed = event.ctrlKey || event.metaKey;
+            if (!isCtrlPressed || event.altKey) return;
+
+            const isCommentShortcut = event.code === "Slash" || event.key === "/";
+            const isToggleShortcutByPeriod = event.code === "Period" || event.key === "." || event.key === "ю" || event.key === "Ю";
+
+            if (!isCommentShortcut && !isToggleShortcutByPeriod) return;
+
+            event.preventDefault();
+            toggleCommentOnSelectedLines(textarea);
+
+            autoResizeTextarea();
+            syncHighlight();
+            syncLineNumbers();
+            syncActiveLineHighlight();
+        });
         textarea.addEventListener("mousemove", (event) => {
             if (event.buttons === 1) {
                 scheduleCaretSync();
