@@ -400,6 +400,7 @@
 
                     .W_HeaderSearchTagOpenButton {
                         gap: var(--size-spacing-4);
+                        padding-block: calc(var(--size-spacing-4) + var(--size-spacing-1));
 
                         .Q_HeaderSearchTagOpenIcon {
                             transform: rotate(0deg);
@@ -413,11 +414,11 @@
                     }
 
                     .A_HeaderSearchTagPrimary {
-                        border: 1.5px dashed var(--colors-neutrals-200);
+                        border: var(--size-spacing-1-5) dashed var(--colors-neutrals-200);
                     }
 
                     .A_HeaderSearchTagSecondary {
-                        border: 1.5px dashed var(--colors-neutrals-200);
+                        border: var(--size-spacing-1-5) dashed var(--colors-neutrals-200);
                     }
                 }
             }

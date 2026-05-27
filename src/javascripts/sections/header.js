@@ -419,7 +419,7 @@ function renderHeaderSearchTagsOnce() {
     .filter((value) => !excludedHeaderTags.has(value))
     .forEach((value) => {
       const button = document.createElement("button");
-      button.className = "U_ButtonIcon U_FontC2 A_HeaderSearchTagSecondary";
+      button.className = "U_Button U_FontC2 A_HeaderSearchTagSecondary";
       button.type = "button";
       button.textContent = value;
       fragment.appendChild(button);
@@ -429,7 +429,7 @@ function renderHeaderSearchTagsOnce() {
     .filter(([, filterLabel]) => !excludedHeaderTags.has(filterLabel))
     .forEach(([filterKey, filterLabel]) => {
       const button = document.createElement("button");
-      button.className = "U_ButtonIcon U_FontC2 A_HeaderSearchTagPrimary";
+      button.className = "U_Button U_FontC2 A_HeaderSearchTagPrimary";
       button.type = "button";
       button.dataset.filterKey = filterKey;
       button.textContent = filterLabel;

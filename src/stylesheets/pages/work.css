@@ -141,6 +141,17 @@
                         box-sizing: border-box;
                         width: 100%;
 
+                        .A_WorkMetaTagTitile {
+                            display: flex;
+                            padding: calc(var(--size-spacing-4) + var(--size-spacing-1)) var(--size-spacing-8);
+                            justify-content: center;
+                            align-items: center;
+
+                            background: var(--colors-neutrals-body-01);
+                            /* U_FontC2 */
+                            color: var(--colors-neutrals-900);
+                        }
+
                         .C_WorkMetaTagsPrimary,
                         .C_WorkMetaTagsSecondary {
                             display: contents;
