@@ -203,15 +203,19 @@ export function initCodeBlocks() {
         }
 
         function syncActiveLineHighlight() {
-            const textBeforeCaret = textarea.value.slice(0, textarea.selectionStart);
+            const caretPosition = textarea.selectionStart || 0;
+            const textBeforeCaret = textarea.value.slice(0, caretPosition);
             const lineIndex = textBeforeCaret.split("\n").length - 1;
 
             const textareaStyle = window.getComputedStyle(textarea);
             const lineHeight = parseFloat(textareaStyle.lineHeight) || 16;
             const paddingTop = parseFloat(textareaStyle.paddingTop) || 0;
-            const activeLineTop = paddingTop + lineIndex * lineHeight;
+            const scrollTop = textarea.scrollTop || 0;
 
-            highlight.style.setProperty("--active-line-top", `${activeLineTop}px`);
+            const activeLineTop = paddingTop + lineIndex * lineHeight;
+            const visibleActiveLineTop = activeLineTop - scrollTop;
+
+            highlight.style.setProperty("--active-line-top", `${visibleActiveLineTop}px`);
             highlight.style.setProperty("--active-line-height", `${lineHeight}px`);
         }
 
@@ -244,44 +248,25 @@ export function initCodeBlocks() {
             syncLineNumbers();
             syncActiveLineHighlight();
         });
-
-        let isTextareaFocused = false;
-
         function scheduleCaretSync() {
-            window.requestAnimationFrame(() => {
-                syncActiveLineHighlight();
-            });
+            window.requestAnimationFrame(syncActiveLineHighlight);
         }
 
         textarea.addEventListener("scroll", () => {
             syncScrollOffsets();
-            scheduleCaretSync();
-        });
-
-        textarea.addEventListener("focus", () => {
-            isTextareaFocused = true;
-            scheduleCaretSync();
-        });
-
-        textarea.addEventListener("blur", () => {
-            isTextareaFocused = false;
+            syncActiveLineHighlight();
         });
 
         textarea.addEventListener("click", scheduleCaretSync);
         textarea.addEventListener("keyup", scheduleCaretSync);
         textarea.addEventListener("keydown", scheduleCaretSync);
         textarea.addEventListener("mouseup", scheduleCaretSync);
-        textarea.addEventListener("select", scheduleCaretSync);
-
-        document.addEventListener("selectionchange", () => {
-            if (!isTextareaFocused || document.activeElement !== textarea) return;
-            scheduleCaretSync();
-        });
+        textarea.addEventListener("input", scheduleCaretSync);
 
         window.addEventListener("resize", () => {
             syncTypographyMetrics();
             syncScrollOffsets();
-            scheduleCaretSync();
+            syncActiveLineHighlight();
         });
 
         runStopButton.addEventListener("click", () => {
