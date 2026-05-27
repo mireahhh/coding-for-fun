@@ -88,20 +88,20 @@ function drawWorkTags(drawWork) {
   const primaryValues = primaryKeys.map((key) => filtersName[key] ?? key);
 
   primaryValues.forEach((value) => {
-    const li = document.createElement("li");
-    li.className = "A_WorkMetaTagPrimary";
-    li.textContent = value;
-    primaryContainer.appendChild(li);
+    const button = document.createElement("button");
+    button.className = "U_Button U_FontC2 A_WorkMetaTagPrimary";
+    button.textContent = value;
+    primaryContainer.appendChild(button);
   });
 
   // Второстепенные теги
   const secondaryTags = drawWork.tags || [];
 
   secondaryTags.forEach((value) => {
-    const li = document.createElement("li");
-    li.className = "A_WorkMetaTagSecondary";
-    li.textContent = value;
-    secondaryContainer.appendChild(li);
+    const button = document.createElement("button");
+    button.className = "U_Button U_FontC2 A_WorkMetaTagSecondary";
+    button.textContent = value;
+    secondaryContainer.appendChild(button);
   });
 }
 
