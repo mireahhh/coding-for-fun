@@ -12,6 +12,15 @@ html {
     background-color: var(--colors-neutrals-900-20);
     /* color: var(--colors-neutrals-body); */
   }
+
+  :focus {
+    outline: none;
+  }
+
+  :focus-visible {
+    outline: var(--size-spacing-2) solid var(--colors-neutrals-900);
+    outline-offset: var(--size-spacing-2);
+  }
 }
 
 /* Sscrollbar */

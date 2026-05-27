@@ -22,15 +22,6 @@
   &:active {
     transform: scale(var(--official-interaction-icon-active-transform));
   }
-
-  &:focus {
-    outline: none;
-  }
-
-  &:focus-visible {
-    outline: var(--size-spacing-2) dashed var(--colors-neutrals-900);
-    outline-offset: var(--size-spacing-2);
-  }
 }
 
 
@@ -55,15 +46,6 @@
 
   &:active {
     transform: scale(var(--official-interaction-button-active-transform));
-  }
-
-  &:focus {
-    outline: none;
-  }
-
-  &:focus-visible {
-    outline: var(--size-spacing-2) dashed var(--colors-neutrals-900);
-    outline-offset: var(--size-spacing-2);
   }
 }
 
