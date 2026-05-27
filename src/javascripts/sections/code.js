@@ -90,12 +90,17 @@ function getGutterDigits(lineCount) {
     return Math.max(2, String(lineCount).length);
 }
 
-function buildLineNumbersMarkup(lineCount, digits) {
+function buildLineNumbersMarkup(lineCount, digits, activeLineIndex = null) {
     const rows = [];
     for (let index = 1; index <= lineCount; index += 1) {
-        rows.push(String(index).padStart(digits, " "));
+        const number = escapeHtml(String(index).padStart(digits, " "));
+        const isActive = activeLineIndex === index - 1;
+        const className = isActive
+            ? "A_TutorialSingleCodeLineNumber is-active"
+            : "A_TutorialSingleCodeLineNumber";
+        rows.push(`<span class="${className}" data-line-number="${index}">${number}</span>`);
     }
-    return rows.join("\n");
+    return rows.join("");
 }
 
 function normalizeCodeForHighlight(code) {
@@ -202,10 +207,22 @@ export function initCodeBlocks() {
             lineNumbers.style.paddingLeft = "var(--code-line-number-gutter-padding)";
         }
 
-        function syncActiveLineHighlight() {
+        function getActiveLineIndex() {
             const caretPosition = textarea.selectionStart || 0;
             const textBeforeCaret = textarea.value.slice(0, caretPosition);
-            const lineIndex = textBeforeCaret.split("\n").length - 1;
+            return textBeforeCaret.split("\n").length - 1;
+        }
+
+        function syncLineNumberActiveState() {
+            const activeLineIndex = getActiveLineIndex();
+            lineNumbers.querySelectorAll(".A_TutorialSingleCodeLineNumber").forEach((lineNode) => {
+                const lineNumber = Number(lineNode.dataset.lineNumber) - 1;
+                lineNode.classList.toggle("is-active", lineNumber === activeLineIndex);
+            });
+        }
+
+        function syncActiveLineHighlight() {
+            const lineIndex = getActiveLineIndex();
 
             const textareaStyle = window.getComputedStyle(textarea);
             const lineHeight = parseFloat(textareaStyle.lineHeight) || 16;
@@ -217,6 +234,14 @@ export function initCodeBlocks() {
 
             highlight.style.setProperty("--active-line-top", `${visibleActiveLineTop}px`);
             highlight.style.setProperty("--active-line-height", `${lineHeight}px`);
+            syncLineNumberActiveState();
+        }
+
+        function clearActiveLineHighlight() {
+            highlight.style.setProperty("--active-line-height", "0px");
+            lineNumbers.querySelectorAll(".A_TutorialSingleCodeLineNumber.is-active").forEach((lineNode) => {
+                lineNode.classList.remove("is-active");
+            });
         }
 
         function syncHighlight() {
@@ -238,7 +263,7 @@ export function initCodeBlocks() {
             const gutterWidth = `calc(${digits}ch + var(--size-spacing-20))`;
 
             textAreaWrapper.style.setProperty("--code-line-number-gutter-width", gutterWidth);
-            lineNumbers.textContent = buildLineNumbersMarkup(lineCount, digits);
+            lineNumbers.innerHTML = buildLineNumbersMarkup(lineCount, digits, getActiveLineIndex());
             syncScrollOffsets();
         }
 
@@ -262,6 +287,8 @@ export function initCodeBlocks() {
         textarea.addEventListener("keydown", scheduleCaretSync);
         textarea.addEventListener("mouseup", scheduleCaretSync);
         textarea.addEventListener("input", scheduleCaretSync);
+        textarea.addEventListener("focus", scheduleCaretSync);
+        textarea.addEventListener("blur", clearActiveLineHighlight);
 
         window.addEventListener("resize", () => {
             syncTypographyMetrics();

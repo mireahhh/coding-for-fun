@@ -51,7 +51,7 @@
 
             border-radius: var(--size-radius-4);
             background: var(--colors-neutrals-0);
-            border: var(--size-spacing-1) solid var(--colors-neutrals-200);
+            /* border: var(--size-spacing-1) solid var(--colors-neutrals-200); */
             overflow: hidden;
 
             .W_TutorialSingleCodeTextLayers {
@@ -144,6 +144,15 @@
 
                 color: var(--colors-neutrals-200);
                 /* border-right: var(--size-spacing-1) solid var(--colors-neutrals-200); */
+            }
+
+            .A_TutorialSingleCodeLineNumber {
+                display: block;
+                color: var(--colors-neutrals-200);
+            }
+
+            .A_TutorialSingleCodeLineNumber.is-active {
+                color: var(--colors-neutrals-450);
             }
 
             .W_TutorialSingleCodeTextRun {
