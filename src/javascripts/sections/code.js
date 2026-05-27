@@ -222,6 +222,11 @@ export function initCodeBlocks() {
         }
 
         function syncActiveLineHighlight() {
+            if (textarea.selectionStart !== textarea.selectionEnd) {
+                clearActiveLineHighlight();
+                return;
+            }
+
             const lineIndex = getActiveLineIndex();
 
             const textareaStyle = window.getComputedStyle(textarea);
@@ -285,7 +290,13 @@ export function initCodeBlocks() {
         textarea.addEventListener("click", scheduleCaretSync);
         textarea.addEventListener("keyup", scheduleCaretSync);
         textarea.addEventListener("keydown", scheduleCaretSync);
+        textarea.addEventListener("mousemove", (event) => {
+            if (event.buttons === 1) {
+                scheduleCaretSync();
+            }
+        });
         textarea.addEventListener("mouseup", scheduleCaretSync);
+        textarea.addEventListener("select", scheduleCaretSync);
         textarea.addEventListener("input", scheduleCaretSync);
         textarea.addEventListener("focus", scheduleCaretSync);
         textarea.addEventListener("blur", clearActiveLineHighlight);

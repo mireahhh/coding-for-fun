@@ -100,6 +100,14 @@
                         var(--colors-neutrals-50) calc(var(--active-line-top, 0) + var(--active-line-height, 0px)),
                         transparent calc(var(--active-line-top, 0) + var(--active-line-height, 0px)));
 
+                /* to bottom — направление градиента сверху вниз.
+                transparent var(--active-line-top, 0) — до позиции --active-line-top фон полностью прозрачный.
+                var(--colors-neutrals-50) var(--active-line-top, 0) — с этой же позиции начинается цвет подсветки (резкий переход без размытия, потому что позиция совпадает).
+                var(--colors-neutrals-50) calc(var(--active-line-top, 0) + var(--active-line-height, 0px)) — цвет подсветки тянется на высоту активной строки.
+                transparent calc(var(--active-line-top, 0) + var(--active-line-height, 0px)) — после конца активной строки снова прозрачный фон.
+                --active-line-top — вертикальная позиция верхней границы выделенной строки.
+                --active-line-height — высота выделенной строки. */
+
                 /* scrollbar-width: none; */
                 /* Firefox */
                 /* -ms-overflow-style: none; */

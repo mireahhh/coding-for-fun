@@ -9,8 +9,8 @@ html {
 
   /* Выделение текста */
   ::selection {
-    background-color: var(--colors-neutrals-900-80);
-    color: var(--colors-neutrals-body);
+    background-color: var(--colors-neutrals-900-20);
+    /* color: var(--colors-neutrals-body); */
   }
 }
 

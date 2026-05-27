@@ -195,6 +195,7 @@
   color: var(--colors-neutrals-450);
   font-family: var(--font-JetBrains);
   font-size: 1rem;
+  /* В копи блоках 150, а так 100 */
   line-height: 1;
   letter-spacing: -0.05rem;
   text-transform: none;
