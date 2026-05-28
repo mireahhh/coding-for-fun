@@ -77,22 +77,49 @@ function drawTutorialMeta() {
     const primaryValues = primaryKeys.map((key) => filtersName[key] ?? key);
 
     primaryValues.forEach((value) => {
-      const li = document.createElement("li");
-      li.className = "A_IntroTutorialTagPrimary";
-      li.textContent = value;
-      tagsContainer.appendChild(li);
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "U_Button U_FontC2 A_IntroTutorialTagPrimary";
+      button.textContent = value;
+      tagsContainer.appendChild(button);
     });
 
     // Второстепенные теги: tutorialData.tags
     const secondaryValues = toArray(tutorialData.tags).filter(Boolean);
 
     secondaryValues.forEach((value) => {
-      const li = document.createElement("li");
-      li.className = "A_IntroTutorialTagSecondary";
-      li.textContent = value;
-      tagsContainer.appendChild(li);
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "U_Button U_FontC2 A_IntroTutorialTagSecondary";
+      button.textContent = value;
+      tagsContainer.appendChild(button);
     });
   }
+}
+
+function fillHeaderSearchFromTutorialTag(tagText) {
+  const headerSearchBar = document.getElementById("headerSearchBar");
+
+  if (!headerSearchBar) return;
+
+  headerSearchBar.value = tagText;
+  headerSearchBar.focus();
+  headerSearchBar.setSelectionRange(headerSearchBar.value.length, headerSearchBar.value.length);
+  headerSearchBar.dispatchEvent(new Event("input", { bubbles: true }));
+}
+
+function initTutorialTagSearchPrefill() {
+  const tagsContainer = document.querySelector(".C_IntroTutorialTags");
+
+  if (!tagsContainer) return;
+
+  tagsContainer.addEventListener("click", (event) => {
+    const tagButton = event.target.closest(".A_IntroTutorialTagPrimary, .A_IntroTutorialTagSecondary");
+
+    if (!tagButton || !tagsContainer.contains(tagButton)) return;
+
+    fillHeaderSearchFromTutorialTag(tagButton.textContent.trim());
+  });
 }
 
 // Навигация
@@ -272,6 +299,7 @@ function drawTutorialPartNavigation() {
 
 
 drawTutorialMeta();
+initTutorialTagSearchPrefill();
 initTutorialPageNavigation();
 drawTutorialPartNavigation();
 initTutorialButtonUp();
