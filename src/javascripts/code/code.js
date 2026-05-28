@@ -261,7 +261,15 @@ export function initCodeBlocks() {
         const defaultCode = getDefaultCode(codeBlockId, runtime);
         textarea.value = defaultCode;
 
+        const isSandboxCodeBlock = codeBlock.classList.contains("O_TutorialSingleCode--Sandbox");
+
         function autoResizeTextarea() {
+            if (isSandboxCodeBlock) {
+                textarea.style.height = "100%";
+                highlight.style.height = "100%";
+                return;
+            }
+
             textarea.style.height = "auto";
             highlight.style.height = "auto";
 

@@ -344,15 +344,42 @@
 }
 
 .O_TutorialSingleCode--Sandbox {
-    min-height: 80vh;
+    height: 80vh;
+    align-items: stretch;
 
     .W_TutorialSingleCodeExecution,
     .O_TutorialSingleCodeTexts {
         min-width: 0;
         width: 100%;
-        flex: 1;
-        height: 100%;
+        flex: 1 1 0;
+        height: auto;
         aspect-ratio: auto;
+    }
+
+    /* .W_TutorialSingleCodeExecution {
+        height: auto;
+        aspect-ratio: 1;
+    } */
+
+    .A_TutorialSingleCodeExecutionCanvas {
+        height: 100%;
+    }
+
+    .O_TutorialSingleCodeTexts {
+        align-self: stretch;
+
+        .W_TutorialSingleCodeTextArea,
+        .W_TutorialSingleCodeTextLayers,
+        .A_TutorialSingleCodeTextHighlight,
+        .W_TutorialSingleCodeTextRun {
+            min-height: 0;
+            max-height: none;
+            height: 100%;
+        }
+
+        .W_TutorialSingleCodeTextArea {
+            flex: 1;
+        }
     }
 }
 
