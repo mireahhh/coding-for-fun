@@ -175,7 +175,14 @@
     /* 31 1f   80% b2 */
     --colors-neutrals-900-80: #1f1f1fb2;
 
-    --colors-neutrals-body: #f8f8f8;
+    --colors-light-50-dark-900: #f8f8f8;
+
+    /* 
+    js
+    gallary
+    handbook
+    module
+    */
 
     /* 1% 0.01 = hex03 */
 
@@ -218,7 +225,9 @@
 
     /* filter: invert(100%); */
 
-    --colors-neutrals-body: #1f1f1f;
+    /* --colors-neutrals-50: #1f1f1f;
     --colors-neutrals-900: #f8f8f8;
-    --colors-neutrals-0: #000000;
+    --colors-neutrals-0: #000000; */
+
+    --colors-light-50-dark-900: #1f1f1f;
 }

@@ -1,11 +1,11 @@
-import { defaultCodeByRuntime, defaultCodeById } from "../pages/tutorialsCodeDefaults";
+import { defaultCodeByRuntime, defaultCodeById } from "./tutorialsCodeDefaults";
 import {
     getEmptyHtml,
     getUnknownRuntimeHtml,
     getVanillaHtml,
     getP5Html,
     getThreeHtml,
-} from "../pages/tutorialsCodeRuntimes";
+} from "./codeRuntimes";
 
 function escapeHtml(value) {
     return value

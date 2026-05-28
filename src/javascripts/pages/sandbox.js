@@ -1,1 +1,1 @@
-import "../sections/code.js";
+import "../code/code.js";

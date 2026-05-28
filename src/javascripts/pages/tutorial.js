@@ -1,4 +1,4 @@
-import "../sections/code.js";
+import "../code/code.js";
 
 const heading = document.querySelector(".A_IntroHeadingTutorial");
 
