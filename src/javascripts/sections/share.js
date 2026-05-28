@@ -6,7 +6,9 @@ if (shareHandbookButton) {
       await navigator.share({
         title: "Coding for Fun!\n(Кодить - прикольно!)",
         text: "Web-учебник креативного кода\n",
-        url: "https://mireahhh.github.io/coding-for-fun/index.html",
+        // url: "https://mireahhh.github.io/coding-for-fun/index.html",
+        url: "https://cff.adc.ac/index.html",
+        // домен преехал + я хочу чтобы на каждой странице своя ссылка - не на оющий домен, а на эту страницу
       });
       console.log("Поделились успешно");
     } catch (error) {
