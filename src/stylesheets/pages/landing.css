@@ -56,8 +56,8 @@
         }
 
         &::before {
-            --landing-rainbow-flow-width: 200%;
-            --landing-rainbow-visible-height: 100%;
+            --landing-rainbow-flow-width: 100%;
+            --landing-rainbow-visible-height: 400%;
 
             content: "";
             position: absolute;
@@ -68,18 +68,16 @@
                 linear-gradient(0deg,
                     var(--colors-neutrals-0-20) 0%,
                     var(--colors-neutrals-0-20) 100%),
-                linear-gradient(270deg,
+                linear-gradient(180deg,
                     var(--colors-brand-rainbow-loop));
             background-blend-mode: plus-lighter, normal, normal;
             filter: saturate(1.2) brightness(1.05);
             mix-blend-mode: plus-lighter;
 
-            background-size:
-                var(--landing-rainbow-flow-width) var(--landing-rainbow-visible-height),
-                var(--landing-rainbow-flow-width) var(--landing-rainbow-visible-height);
+            background-size: 100% 50%, 100% 50%;
             background-position: 0 100%, 0 0%;
             background-repeat: repeat;
-            animation: landingRainbowFlow 12s linear infinite;
+            animation: landingRainbowFlow 8s linear infinite;
         }
 
         .O_LandingIntro {
@@ -582,15 +580,11 @@
 
 @keyframes landingRainbowFlow {
     from {
-        background-position: 
-        0 100%, 
-        0 0%;
+        background-position: 0 100%, 0 0%;
     }
 
     to {
-        background-position: 
-        200% 100%, 
-        200% 0%;
+        background-position: 0 50%, 0 150%;
     }
 }
 
