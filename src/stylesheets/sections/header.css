@@ -582,9 +582,11 @@
 
                             background:
                                 linear-gradient(0deg,
-                                    var(--colors-brand-rainbow-subtrate)),
+                                    var(--colors-neutrals-0-20) 0%,
+                                    var(--colors-neutrals-0-20) 100%),
                                 linear-gradient(90deg,
-                                    var(--colors-brand-rainbow));
+                                    var(--colors-brand-rainbow)),
+                                var(--colors-neutrals-150);
 
                             /* background-size: 200% 100%; */
                             /* background-position: 100% 0; */
@@ -721,11 +723,15 @@
 @media (max-width: 1180px) {
     .S_Header {
         /* &::before {
-            background: linear-gradient(0deg,
-                    var(--colors-brand-rainbow-subtrate)),
-                linear-gradient(90deg,
-                    var(--colors-brand-rainbow));
+            background:
+                linear-gradient(0deg,
+                    var(--colors-neutrals-0-20) 0%,
+                    var(--colors-neutrals-0-20) 100%),
+                linear-gradient(0deg,
+                    var(--colors-brand-rainbow)),
+                var(--colors-neutrals-150);
 
+            background-blend-mode: plus-lighter, normal, normal;
             filter: saturate(1.2) brightness(1.05);
             mix-blend-mode: plus-lighter;
         } */

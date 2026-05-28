@@ -110,82 +110,77 @@
     --colors-brand-primary-CoreSun: #ffc300;
     /* rainbow */
 
-    /* background: linear-gradient(0deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.20) 100%), linear-gradient(0deg, #39E87B 0.48%, #32B4C1 30%, #CD5BC1 58.17%, #E56BC0 70%, #FFC818 100%), #D9D9D9;
-    background-blend-mode: plus-lighter, normal, normal; */
-
     --colors-brand-rainbow:
-        #F372B5 0%,
-        #F76479 12.5%,
-        #FC7C56 25%,
-        #FACE4E 37.5%,
-        #97E954 50%,
-        #5CD686 62.5%,
-        #5DD6BD 75%,
-        #5AD7E0 87.5%,
-        #57B9E9 100%;
-    --colors-brand-rainbow-subtrate:
-        var(--colors-neutrals-0-15),
-        var(--colors-neutrals-0-30);
-
-    /* background: linear-gradient(0deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.20) 100%), linear-gradient(0deg, #39E87B 0.48%, #32B4C1 22.01%, #CD5BC1 50.62%, #E56BC0 61.41%, #FFC818 80%, #39E87B 100%);
-    background-blend-mode: plus-lighter, normal; */
+        #39E87B 0.48%,
+        #32B4C1 30%,
+        #CD5BC1 58.17%,
+        #E56BC0 70%,
+        #FFC818 100%;
 
     --colors-brand-rainbow-loop:
-        #F372B5 0%,
-        #F76479 10%,
-        #FC7C56 20%,
-        #FACE4E 30%,
-        #97E954 40%,
-        #5CD686 50%,
-        #5DD6BD 60%,
-        #5AD7E0 70%,
-        #57B9E9 80%,
-        #8B7CF6 90%,
-        #F372B5 100%;
-    --colors-brand-rainbow-subtrate-loop:
-        var(--colors-neutrals-0-15),
-        var(--colors-neutrals-0-30),
-        var(--colors-neutrals-0-15);
+        #39E87B 0.48%,
+        #32B4C1 22.01%,
+        #CD5BC1 50.62%,
+        #E56BC0 61.41%,
+        #FFC818 80%,
+        #39E87B 100%;
+
+    /* Конечная */
+    /* background:
+        linear-gradient(0deg,
+            var(--colors-neutrals-0-20) 0%,
+            var(--colors-neutrals-0-20) 100%),
+        linear-gradient(0deg,
+            var(--colors-brand-rainbow)),
+        var(--colors-neutrals-150);
+    background-blend-mode: plus-lighter, normal, normal; */
+    
+    /* Циклическая */
+    /* background:
+        linear-gradient(0deg,
+            var(--colors-neutrals-0-20) 0%,
+            var(--colors-neutrals-0-20) 100%),
+        linear-gradient(0deg,
+            var(--colors-brand-rainbow-loop));
+    background-blend-mode: plus-lighter, normal, normal; */
 
     /* neutrais */
     /* 255 ff */
     --colors-neutrals-0: #ffffff;
-    /* 255 ff   15% 26 */
-    --colors-neutrals-0-15: #ffffff26;
-    /* 255 ff   30% 4d */
-    --colors-neutrals-0-30: #ffffff4d;
+    /* 255 ff   20% 33 */
+    --colors-neutrals-0-20: #ffffff33;
     /* 250 f8 */
     --colors-neutrals-30: #fafafa;
     /* 248 f8 (50) */
     --colors-neutrals-50: #f8f8f8;
-    /* 248   0% 0 */
-    --colors-neutrals-50-0: #f8f8f800;
     /* 248   1% 03 */
     --colors-neutrals-50-01: #f8f8f803;
+    /* 248   0% 0 */
+    --colors-neutrals-50-0: #f8f8f800;
     /* 241 f1 */
     --colors-neutrals-100: #f1f1f1;
     /* 214 d6 */
     --colors-neutrals-150: #d6d6d6;
-    /* 214 d6   20% 33 */
-    --colors-neutrals-150-20: #d6d6d633;
     /* 214 d6   60% 99 */
     --colors-neutrals-150-60: #d6d6d699;
+    /* 214 d6   20% 33 */
+    --colors-neutrals-150-20: #d6d6d633;
     /* 207 cf  */
     --colors-neutrals-200: #cfcfcf;
     /* 133 85 */
     --colors-neutrals-450: #858585;
+    /* 133 60% 99 */
+    --colors-neutrals-450-60: #85858599;
     /* 133 20% 33 */
     --colors-neutrals-450-20: #85858533;
-    /* 133 60% 99 */
-    --colors-neutrals-450-20: #85858599;
     /* 74  4a (900 + 150-20) */
     --colors-neutrals-650: #4a4a4a;
     /* 31 1f */
     --colors-neutrals-900: #1f1f1f;
-    /* 31 1f   20% 33 */
-    --colors-neutrals-900-20: #1f1f1f33;
     /* 31 1f   80% b2 */
     --colors-neutrals-900-80: #1f1f1fb2;
+    /* 31 1f   20% 33 */
+    --colors-neutrals-900-20: #1f1f1f33;
     /* 23 1f */
     --colors-neutrals-950: #171717;
 
@@ -193,13 +188,14 @@
     --colors-light-900-dark-50: #1f1f1f;
     --colors-light-0-dark-1000: #ffffff;
 
-    --colors-light-900-20-dark-150-20: #1f1f1f33;
     --colors-light-0-dark-950: #ffffff;
+    --colors-light-50-dark-200: #f8f8f8;
+    --colors-light-50-01-dark-450-60: #f8f8f803;
+    --colors-light-150-dark-650: #d6d6d6;
     --colors-light-200-dark-450: #cfcfcf;
     --colors-light-450-dark-200: #858585;
     --colors-light-450-dark-900: #858585;
-    --colors-light-50-01-dark-450-60: #f8f8f803;
-    --colors-light-150-dark-650: #d6d6d6;
+    --colors-light-900-20-dark-150-20: #1f1f1f33;
 
     /* TODO цвет -100 в некоторых местах мб не пойдёт на тёмную тему */
 
@@ -256,4 +252,5 @@
     --colors-light-450-dark-900: #1f1f1f;
     --colors-light-50-01-dark-450-60: #85858599;
     --colors-light-150-dark-650: #4a4a4a;
+    --colors-light-50-dark-200: #cfcfcf;
 }

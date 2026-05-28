@@ -6,10 +6,11 @@
 
     background:
         linear-gradient(0deg,
-            var(--colors-brand-rainbow-subtrate)),
-        linear-gradient(90deg,
+            var(--colors-neutrals-0-20) 0%,
+            var(--colors-neutrals-0-20) 100%),
+        linear-gradient(270deg,
             var(--colors-brand-rainbow-loop));
-    background-blend-mode: plus-lighter, normal;
+    background-blend-mode: plus-lighter, normal, normal;
 
     background-size:
         100% 100%,
@@ -19,8 +20,7 @@
         0 0;
     background-repeat: repeat;
 
-    background-blend-mode: plus-lighter, normal;
-    animation: titleRainbowFlow 4s linear infinite;
+    animation: titleRainbowFlow 6s linear infinite;
 
     .A_BrightTitleText {
         width: 100%;

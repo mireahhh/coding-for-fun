@@ -21,10 +21,13 @@
 
         background:
             linear-gradient(0deg,
-                var(--colors-brand-rainbow-subtrate)),
+                var(--colors-neutrals-0-20) 0%,
+                var(--colors-neutrals-0-20) 100%),
             linear-gradient(180deg,
-                var(--colors-brand-rainbow));
+                var(--colors-brand-rainbow)),
+            var(--colors-neutrals-150);
 
+        background-blend-mode: plus-lighter, normal, normal;
         filter: saturate(1.2) brightness(1.05);
         pointer-events: none;
     }
@@ -409,15 +412,15 @@
 
                     &:hover {
                         opacity: 1;
-                        background: var(--colors-neutrals-50);
+                        background: var(--colors-light-50-dark-200);
                     }
 
                     &.is-copied {
-                        background: var(--colors-neutrals-200);
+                        background: var(--colors-light-200-dark-450);
                     }
 
                     &.is-copied:hover {
-                        background: var(--colors-neutrals-200);
+                        background: var(--colors-light-200-dark-450);
                     }
                 }
             }

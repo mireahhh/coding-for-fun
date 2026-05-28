@@ -222,17 +222,17 @@
 
                     &:hover {
                         opacity: 1;
-                        background: var(--colors-neutrals-50);
+                        background: var(--colors-light-50-dark-200);
                     }
                 }
 
                 .A_TutorialSingleCodeTextButtonCopy {
                     &.is-copied {
-                        background: var(--colors-neutrals-200);
+                        background: var(--colors-light-200-dark-450);
                     }
 
                     &.is-copied:hover {
-                        background: var(--colors-neutrals-200);
+                        background: var(--colors-light-200-dark-450);
                     }
                 }
 

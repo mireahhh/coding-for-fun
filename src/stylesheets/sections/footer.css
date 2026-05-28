@@ -238,10 +238,13 @@
         &::before {
             background:
                 linear-gradient(0deg,
-                    var(--colors-brand-rainbow-subtrate)),
+                    var(--colors-neutrals-0-20) 0%,
+                    var(--colors-neutrals-0-20) 100%),
                 linear-gradient(180deg,
-                    var(--colors-brand-rainbow));
+                    var(--colors-brand-rainbow)),
+                var(--colors-neutrals-150);
 
+            background-blend-mode: plus-lighter, normal, normal;
             filter: saturate(1.2) brightness(1.05);
             mix-blend-mode: plus-lighter;
         }

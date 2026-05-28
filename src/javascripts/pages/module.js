@@ -222,7 +222,7 @@ function drawModuleMeta() {
     const tutorial = moduleTutorialsData[index];
     if (!tutorial) return;
 
-    const subtitle = card.querySelector(".A_ModuleTutorialSubtitle");
+    const subtitle = card.querySelector(".W_ModuleTutorialSubtitle");
     const title = card.querySelector(".A_ModuleTutorialTitle");
     const tagsContainer = card.querySelector(".C_ModuleTutorialTags");
 
