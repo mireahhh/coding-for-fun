@@ -233,9 +233,9 @@ async function getTutorialDescriptionByPath(tutorialPath) {
     const pageMarkup = await response.text();
     const parser = new DOMParser();
     const pageDocument = parser.parseFromString(pageMarkup, "text/html");
-    const tutorialText = pageDocument.querySelector(".A_TutorialText")?.innerHTML?.trim();
-    const description = tutorialText
-      ? { html: tutorialText, isActive: true }
+    const tutorialAnnotation = pageDocument.querySelector(".A_TutorialAnnotation")?.innerHTML?.trim();
+    const description = tutorialAnnotation
+      ? { html: tutorialAnnotation, isActive: true }
       : buildFallbackTutorialDescription();
 
     tutorialDescriptionCache.set(tutorialPath, description);

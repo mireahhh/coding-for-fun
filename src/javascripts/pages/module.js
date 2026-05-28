@@ -254,7 +254,7 @@ function drawModuleMeta() {
   });
 }
 
-async function loadTutorialFirstText(moduleNumber, tutorialIndex) {
+async function loadTutorialAnnotation(moduleNumber, tutorialIndex) {
   const tutorialNumber = tutorialIndex + 1;
   const tutorialPath = `./module${moduleNumber}/tutorial${tutorialNumber}.html`;
 
@@ -269,13 +269,13 @@ async function loadTutorialFirstText(moduleNumber, tutorialIndex) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, "text/html");
 
-    const firstText = doc.querySelector(".A_TutorialText");
+    const tutorialAnnotation = doc.querySelector(".A_TutorialAnnotation");
 
-    if (!firstText) {
+    if (!tutorialAnnotation) {
       return "";
     }
 
-    return firstText.innerHTML.trim();
+    return tutorialAnnotation.innerHTML.trim();
   } catch (error) {
     console.error("Ошибка загрузки текста туториала:", error);
     return "";
@@ -312,10 +312,10 @@ async function drawTutorialDescriptions() {
 
     if (!description) continue;
 
-    const tutorialText = await loadTutorialFirstText(moduleNumber, index);
+    const tutorialAnnotation = await loadTutorialAnnotation(moduleNumber, index);
 
-    if (tutorialText) {
-      description.innerHTML = tutorialText;
+    if (tutorialAnnotation) {
+      description.innerHTML = tutorialAnnotation;
       card.classList.remove("NotActiveTutorial");
       tutorialLink?.removeAttribute("aria-disabled");
       tutorialLink?.removeAttribute("tabindex");

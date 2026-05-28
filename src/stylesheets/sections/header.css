@@ -534,30 +534,6 @@
 
                             /* U_FontB1 */
                             color: var(--colors-light-900-dark-50);
-
-                            span {
-                                display: inline;
-                                padding-block: var(--size-spacing-2);
-                                padding-inline: var(--size-spacing-6);
-                                border-radius: var(--size-spacing-4);
-                                /* border: var(--size-spacing-1-5) dashed var(--colors-neutrals-200); */
-                                background: var(--colors-neutrals-150-60);
-
-                                white-space: normal;
-                                -webkit-box-decoration-break: clone;
-                                box-decoration-break: clone;
-                                word-break: break-word;
-                                /* white-space: normal; */
-                                /* overflow-wrap: break-word; */
-
-                                /* U_FontC2-Code */
-                                color: var(--colors-light-450-dark-900);
-                                font-family: var(--font-JetBrains);
-                                font-size: 1rem;
-                                line-height: 170%;
-                                letter-spacing: -0.05rem;
-                                text-transform: none;
-                            }
                         }
 
                         .M_HeaderSearchTutorialPointer {

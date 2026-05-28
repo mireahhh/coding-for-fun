@@ -566,6 +566,10 @@
                     flex-wrap: wrap;
                 }
 
+                .A_TutorialAnnotation {
+                    width: 100%;
+                }
+
                 .A_TutorialText,
                 .M_TutorialQuote,
                 .C_TutorialTextList {
