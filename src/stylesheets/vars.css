@@ -176,6 +176,8 @@
     --colors-neutrals-450: #858585;
     /* 133 20% 33 */
     --colors-neutrals-450-20: #85858533;
+    /* 133 60% 99 */
+    --colors-neutrals-450-20: #85858599;
     /* 74  4a (900 + 150-20) */
     --colors-neutrals-650: #4a4a4a;
     /* 31 1f */
@@ -196,6 +198,8 @@
     --colors-light-200-dark-450: #cfcfcf;
     --colors-light-450-dark-200: #858585;
     --colors-light-450-dark-900: #858585;
+    --colors-light-50-01-dark-450-60: #f8f8f803;
+    --colors-light-150-dark-650: #d6d6d6;
 
     /* TODO цвет -100 в некоторых местах мб не пойдёт на тёмную тему */
 
@@ -250,4 +254,6 @@
     --colors-light-200-dark-450: #858585;
     --colors-light-450-dark-200: #cfcfcf;
     --colors-light-450-dark-900: #1f1f1f;
+    --colors-light-50-01-dark-450-60: #85858599;
+    --colors-light-150-dark-650: #4a4a4a;
 }

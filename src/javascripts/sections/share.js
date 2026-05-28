@@ -12,12 +12,24 @@ const getShareUrl = () => {
   return shareUrl.toString();
 };
 
+const runShareButtonAnimation = () => {
+  shareHandbookButton.classList.remove("A_IntroShare--isSpinning");
+  void shareHandbookButton.offsetWidth;
+  shareHandbookButton.classList.add("A_IntroShare--isSpinning");
+};
+
 if (shareHandbookButton) {
+  shareHandbookButton.addEventListener("animationend", () => {
+    shareHandbookButton.classList.remove("A_IntroShare--isSpinning");
+  });
+
   shareHandbookButton.addEventListener("click", async () => {
+    runShareButtonAnimation();
+
     try {
       await navigator.share({
-        title: "Coding for Fun!\nКодить – прикольно!",
-        text: "Web-учебник креативного кода\n",
+        title: "Кодить прикольно (Coding for Fun)\nВеб-учебник креативного кода",
+        text: "Веб-учебник креативного кода\n",
         url: getShareUrl(),
       });
       console.log("Поделились успешно");
@@ -26,5 +38,3 @@ if (shareHandbookButton) {
     }
   });
 }
-
-" — – − - ";

@@ -134,7 +134,7 @@
                             align-items: center;
 
                             border-radius: var(--size-radius-4);
-                            border: var(--size-spacing-1-5) dashed var(--colors-neutrals-200);
+                            border: var(--size-spacing-1-5) dashed var(--colors-light-200-dark-450);
                             background: var(--colors-neutrals-50-01);
 
                             /* U_FontF2 */
@@ -142,6 +142,7 @@
 
                             &.is-active {
                                 border: var(--size-spacing-1-5) dashed var(--colors-light-900-dark-50);
+                                background: var(--colors-light-50-01-dark-450-60);
                             }
                         }
                     }
@@ -180,8 +181,7 @@
 
                     display: flex;
                     flex-direction: column;
-                    width: min(var(--size-spacing-192), 100%);
-                    min-width: 0;
+                    width: var(--size-spacing-192);
 
                     .A_FilterSortingBy {
                         display: flex;
@@ -236,7 +236,7 @@
                         align-items: flex-start;
                         gap: var(--size-spacing-0);
                         border-radius: var(--size-radius-4);
-                        background: var(--colors-neutrals-150);
+                        background: var(--colors-light-150-dark-650);
 
                         .A_FilterSortingButton {
                             display: flex;
@@ -251,7 +251,7 @@
                             /* U_FontC2 */
                             color: var(--colors-light-900-dark-50);
 
-                            border-bottom: var(--size-spacing-1-5) dashed var(--colors-neutrals-450);
+                            border-bottom: var(--size-spacing-1-5) dashed var(--colors-light-450-dark-200);
 
                             .Q_FilterSortingByComplexityIcon,
                             .Q_FilterSortingByDateIcon,
