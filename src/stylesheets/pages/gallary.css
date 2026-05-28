@@ -74,6 +74,10 @@
         color: var(--colors-neutrals-900);
       }
     }
+
+    .W_GalleryWork--Hide {
+      display: none;
+    }
   }
 
   .W_GalleryScrollBar {

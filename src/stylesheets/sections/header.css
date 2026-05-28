@@ -9,7 +9,7 @@
     width: 100%;
     height: min-content;
     /* background-color: transparent // Прозрачный */
-    /* background-color: var(--colors-neutrals-body-01); */
+    /* background-color: var(--colors-neutrals-50-01); */
     /* backdrop-filter: blur(var(--size-spacing-50)); */
     align-items: center;
 
@@ -27,7 +27,7 @@
         z-index: 0;
 
         box-shadow: 0 0 var(--size-spacing-8) var(--colors-neutrals-900-20);
-        background: var(--colors-neutrals-body);
+        background: var(--colors-neutrals-50);
         pointer-events: none;
     }
 
@@ -35,7 +35,7 @@
         min-height: 100dvh;
 
         &::before {
-            background: var(--colors-neutrals-body);
+            background: var(--colors-neutrals-50);
         }
 
         .C_HeaderAll {
@@ -392,7 +392,7 @@
                         align-items: center;
 
                         border-radius: var(--size-spacing-4);
-                        background: var(--colors-neutrals-body-01);
+                        background: var(--colors-neutrals-50-01);
 
                         /* U_FontC2 */
                         color: var(--colors-neutrals-900);

@@ -3,14 +3,14 @@ body {
 }
 
 html {
-  background-color: var(--colors-neutrals-body);
+  background-color: var(--colors-neutrals-50);
   scroll-padding-top: var(--size-spacing-92);
   scroll-behavior: smooth;
 
   /* Выделение текста */
   ::selection {
     background-color: var(--colors-neutrals-900-20);
-    /* color: var(--colors-neutrals-body); */
+    /* color: var(--colors-neutrals-50); */
   }
 
   :focus {

@@ -219,14 +219,14 @@
 
                     &:hover {
                         opacity: 1;
-                        background: var(--colors-neutrals-body);
+                        background: var(--colors-neutrals-50);
                     }
                 }
 
                 .A_TutorialSingleCodeTextButtonCopy {
                     &:hover {
                         opacity: 1;
-                        background: var(--colors-neutrals-body);
+                        background: var(--colors-neutrals-50);
                     }
 
                     &.is-copied {
@@ -332,7 +332,7 @@
         height: auto;
         aspect-ratio: auto;
         justify-content: center;
-        background-color: var(--colors-neutrals-body);
+        background-color: var(--colors-neutrals-50);
         padding-block: var(--size-spacing-32);
 
         .A_TutorialSingleCodeExecutionCanvas {

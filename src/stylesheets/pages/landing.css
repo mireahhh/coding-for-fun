@@ -80,6 +80,7 @@
                 justify-content: center;
                 align-items: center;
                 gap: var(--size-spacing-32);
+                padding-block: var(--size-spacing-8);
 
                 .M_LandingIntroTitle {
                     display: flex;
@@ -128,7 +129,7 @@
                         display: flex;
                         box-sizing: border-box;
                         border: var(--size-spacing-1) solid var(--colors-neutrals-900);
-                        background: var(--colors-neutrals-body-01);
+                        background: var(--colors-neutrals-50-01);
                         color: var(--colors-neutrals-900);
                     }
                 }
@@ -199,7 +200,7 @@
             justify-content: center;
             align-items: center;
 
-            background: linear-gradient(180deg, var(--colors-neutrals-body-0) 0%, var(--colors-neutrals-body) 45%);
+            background: linear-gradient(180deg, var(--colors-neutrals-50-0) 0%, var(--colors-neutrals-50) 45%);
         }
 
         .C_LandingCoverRunningTags {
@@ -246,7 +247,7 @@
                 padding: var(--size-spacing-4) var(--size-spacing-8);
 
                 border-radius: var(--size-spacing-4);
-                background: var(--colors-neutrals-body);
+                background: var(--colors-neutrals-50);
                 border: var(--size-spacing-1-5) dashed var(--colors-neutrals-200);
                 color: var(--colors-neutrals-450);
             }

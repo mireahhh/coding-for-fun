@@ -150,11 +150,10 @@
     --colors-neutrals-30: #fafafa;
     /* 248 f8 (50) */
     --colors-neutrals-50: #f8f8f8;
-    --colors-neutrals-body: #f8f8f8;
     /* 248   0% 0 */
-    --colors-neutrals-body-0: #f8f8f800;
+    --colors-neutrals-50-0: #f8f8f800;
     /* 248   1% 03 */
-    --colors-neutrals-body-01: #f8f8f803;
+    --colors-neutrals-50-01: #f8f8f803;
     /* 241 f1 */
     --colors-neutrals-100: #f1f1f1;
     /* 214 d6 */
@@ -175,6 +174,8 @@
     --colors-neutrals-900-20: #1f1f1f33;
     /* 31 1f   80% b2 */
     --colors-neutrals-900-80: #1f1f1fb2;
+
+    --colors-neutrals-body: #f8f8f8;
 
     /* 1% 0.01 = hex03 */
 
@@ -201,9 +202,9 @@
     /* --colors-neutrals-0: #000000;
     --colors-neutrals-0-15: #00000026;
     --colors-neutrals-0-30: #0000004d;
-    --colors-neutrals-body: #1f1f1f;
-    --colors-neutrals-body-0: #1f1f1f00;
-    --colors-neutrals-body-01: #1f1f1f03;
+    --colors-neutrals-50: #1f1f1f;
+    --colors-neutrals-50-0: #1f1f1f00;
+    --colors-neutrals-50-01: #1f1f1f03;
     --colors-neutrals-100: #0d0d0d;
     --colors-neutrals-150: #292929;
     --colors-neutrals-150-20: #29292933;

@@ -9,7 +9,7 @@
     max-width: var(--max-width);
     margin: auto;
     width: 100%;
-    background-color: var(--colors-neutrals-body);
+    background-color: var(--colors-neutrals-50);
 
     &::before {
         content: "";
@@ -411,7 +411,7 @@
 
                     &:hover {
                         opacity: 1;
-                        background: var(--colors-neutrals-body);
+                        background: var(--colors-neutrals-50);
                     }
 
                     &.is-copied {

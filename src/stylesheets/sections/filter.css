@@ -1,5 +1,5 @@
 .O_Filter {
-    background-color: var(--colors-neutrals-body);
+    background-color: var(--colors-neutrals-50);
     align-items: center;
     margin-top: var(--size-spacing-32);
     width: 100%;
@@ -136,12 +136,16 @@
 
                             border-radius: var(--size-radius-4);
                             border: 1.5px dashed var(--colors-neutrals-200);
-                            background: var(--colors-neutrals-body-01);
+                            background: var(--colors-neutrals-50-01);
 
                             /* U_FontF2 */
                             color: var(--colors-neutrals-900);
                         }
                     }
+                }
+
+                .W_FilterFiltersMenuFilter--Hide {
+                    display: none;
                 }
             }
         }
