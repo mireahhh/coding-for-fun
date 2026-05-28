@@ -551,7 +551,7 @@
                                 /* overflow-wrap: break-word; */
 
                                 /* U_FontC2-Code */
-                                color: var(--colors-neutrals-450);
+                                color: var(--colors-light-450-dark-900);
                                 font-family: var(--font-JetBrains);
                                 font-size: 1rem;
                                 line-height: 170%;

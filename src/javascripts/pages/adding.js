@@ -1,5 +1,7 @@
 import { works } from "../json/galleryJson.js";
 import { showAlert } from "../sections/alerts.js";
+import { getStoredArray, setStoredArray } from "../utils/storageCache.js";
+import { getWorkPayloadChecksum } from "../utils/signatures.js";
 
 // Иконка ссылки: добавляем/убираем класс, если поле ссылки заполнено.
 function syncAddingLinkIconState() {
@@ -102,33 +104,6 @@ function isAddingFormValid(formData) {
   );
 }
 
-// Контрольная сумма: склеиваем 4 значения в строку и считаем детерминированный хэш.
-function getWorkPayloadChecksum(payloadString) {
-  let normalized = payloadString;
-
-  if (normalized.length % 2 === 1) {
-    normalized += "m";
-  }
-
-  let sum = 0n;
-  const overflowGuard = 1000000000000000000n;
-
-  for (let index = 0; index < normalized.length; index += 2) {
-    const leftCode = BigInt(normalized.charCodeAt(index));
-    const rightCode = BigInt(normalized.charCodeAt(index + 1));
-    const mul = leftCode * rightCode;
-    const div = rightCode === 0n ? 0n : leftCode / rightCode;
-    sum = (sum + mul + div) % overflowGuard;
-  }
-
-  while (sum !== 0n && sum % 10n === 0n) {
-    sum /= 10n;
-  }
-
-  const checksum = sum % 100000000n;
-  return checksum.toString().padStart(8, "0");
-}
-
 function createWorkDuplicateSignatures(formData) {
   return {
     at: `AT-${getWorkPayloadChecksum(`${String(formData.author)}${String(formData.title)}`)}`,
@@ -142,17 +117,11 @@ const WORK_DUPLICATE_SIGNATURES_STORAGE_KEY = "workDuplicateSignatures";
 // const LEGACY_WORK_CHECKSUMS_STORAGE_KEY = "workChecksums";
 
 function getStoredWorkDuplicateSignatures() {
-  try {
-    const storedValue = localStorage.getItem(WORK_DUPLICATE_SIGNATURES_STORAGE_KEY);
-    const parsedValue = storedValue ? JSON.parse(storedValue) : [];
-    return Array.isArray(parsedValue) ? parsedValue : [];
-  } catch {
-    return [];
-  }
+  return getStoredArray(WORK_DUPLICATE_SIGNATURES_STORAGE_KEY);
 }
 
 function setStoredWorkDuplicateSignatures(nextSignatures) {
-  localStorage.setItem(WORK_DUPLICATE_SIGNATURES_STORAGE_KEY, JSON.stringify(nextSignatures));
+  setStoredArray(WORK_DUPLICATE_SIGNATURES_STORAGE_KEY, nextSignatures);
   window.workDuplicateSignatures = nextSignatures;
 }
 

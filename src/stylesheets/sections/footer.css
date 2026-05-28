@@ -2,7 +2,7 @@
     position: relative;
     isolation: isolate;
 
-    border-top: 1.5px dashed var(--colors-neutrals-450);
+    border-top: var(--size-spacing-1-5) dashed var(--colors-neutrals-450);
     margin-top: var(--size-spacing-120);
 
     &>* {
@@ -26,7 +26,7 @@
         display: flex;
         flex-direction: row;
         padding-top: var(--size-spacing-56);
-        padding-bottom: var(--size-spacing-88);
+        padding-bottom: var(--size-spacing-168);
         justify-content: space-between;
         align-items: flex-start;
         align-content: flex-start;
@@ -211,6 +211,12 @@
 @media (max-width: 1604px) {
     .S_Footer .O_FooterContent .A_FooterLogo {
         display: none;
+    }
+}
+
+@media (max-width: 1152px) {
+    .S_Footer .O_FooterContent {
+        padding-bottom: var(--size-spacing-88);
     }
 }
 

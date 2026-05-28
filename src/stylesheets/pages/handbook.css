@@ -218,13 +218,13 @@
 
   .A_HandbookModuleImage:hover {
     opacity: 0.97;
-    transform: scale(1.03);
+    transform: scale(1.02);
     box-shadow: none;
   }
 
   .A_HandbookModuleImage:active {
     opacity: 1;
-    transform: scale(0.95);
+    transform: scale(0.98);
     box-shadow: none;
   }
 }
