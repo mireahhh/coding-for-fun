@@ -1,6 +1,6 @@
 import alertCrossIconSrc from "../../images/icons/alert-cross.svg";
 
-const ALERT_LIFETIME_MS = 500000;
+const ALERT_LIFETIME_MS = 5000;
 
 const alertQueue = [];
 let alertRoot = null;
