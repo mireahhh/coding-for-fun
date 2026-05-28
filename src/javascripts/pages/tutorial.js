@@ -37,7 +37,7 @@ function drawTutorialMeta() {
     const partTitle = partData?.title ?? `Часть ${part}`;
     const moduleTitle = moduleData?.title ?? `Модуль ${module}`;
     const tutorialTitle = tutorialData.title ?? `Урок ${tutorial}`;
-    headingAbout.textContent = `Учебник: ${partTitle} ⏵ ${moduleTitle} ⏵ ${tutorialTitle}`;
+    headingAbout.textContent = `Учебник: ${partTitle} / ${moduleTitle} / ${tutorialTitle}`;
   }
 
   // Дата
@@ -224,6 +224,68 @@ function initTutorialPageNavigation() {
   window.addEventListener("resize", updateCurrentSection);
 }
 
+function showTutorialShareFeedback(button) {
+  button.classList.add("is-copied");
+
+  setTimeout(() => {
+    button.classList.remove("is-copied");
+  }, 800);
+}
+
+const TUTORIAL_SHARE_ORIGIN = "https://cff.adc.ac";
+
+function getTutorialAnchorUrl(anchorId) {
+  const currentUrl = new URL(window.location.href);
+  const shareUrl = new URL(currentUrl.pathname + currentUrl.search, TUTORIAL_SHARE_ORIGIN);
+
+  shareUrl.hash = anchorId;
+
+  if (shareUrl.pathname.endsWith("/index.html")) {
+    shareUrl.pathname = shareUrl.pathname.replace(/\/index\.html$/, "/");
+  }
+
+  return shareUrl.toString();
+}
+
+async function copyTutorialAnchorLink(link) {
+  try {
+    await navigator.clipboard.writeText(link);
+  } catch (error) {
+    const textarea = document.createElement("textarea");
+
+    textarea.value = link;
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "fixed";
+    textarea.style.top = "0";
+    textarea.style.left = "-9999px";
+
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    textarea.remove();
+  }
+}
+
+function initTutorialAnchorShareButtons() {
+  const tutorialMain = document.querySelector(".O_TutorialMain");
+  if (!tutorialMain) return;
+
+  tutorialMain.addEventListener("click", async (event) => {
+    const button = event.target.closest(".A_TutorialTitle .U_ButtonIcon");
+
+    if (!button || !tutorialMain.contains(button)) return;
+
+    const title = button.closest(".A_TutorialTitle[id]");
+    if (!title) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    await copyTutorialAnchorLink(getTutorialAnchorUrl(title.id));
+    showTutorialShareFeedback(button);
+  });
+}
+
 function initTutorialButtonUp() {
   const button = document.querySelector(".A_TutorialButtonUp");
   if (!button) return;
@@ -301,5 +363,6 @@ function drawTutorialPartNavigation() {
 drawTutorialMeta();
 initTutorialTagSearchPrefill();
 initTutorialPageNavigation();
+initTutorialAnchorShareButtons();
 drawTutorialPartNavigation();
 initTutorialButtonUp();

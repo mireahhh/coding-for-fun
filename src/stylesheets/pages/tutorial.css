@@ -179,6 +179,19 @@
         align-items: flex-start;
         gap: var(--size-spacing-80);
         margin-top: var(--size-spacing-56);
+        --padding-right: 25.5%;
+
+        .A_TutorialAnnotation {
+            display: flex;
+            align-items: flex-start;
+            padding: var(--size-spacing-16);
+            box-sizing: border-box;
+            width: calc(100% - var(--padding-right));
+
+            border-radius: var(--size-radius-4);
+            border: var(--size-spacing-1-5) dashed var(--colors-neutrals-450);
+            background: var(--colors-neutrals-opacity, var(--colors-neutrals-150-20));
+        }
 
         .O_TutorialSection {
             display: flex;
@@ -214,7 +227,7 @@
                     }
 
                     &.is-copied {
-                        filter: brightness(0.8);
+                        filter: brightness(0.15);
                     }
                 }
 
@@ -232,7 +245,7 @@
                 justify-content: center;
                 align-items: flex-start;
                 align-self: stretch;
-                padding-right: 25.5%;
+                padding-right: var(--padding-right);
                 box-sizing: border-box;
                 width: 100%;
 
@@ -269,7 +282,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                padding-right: 25.5%;
+                padding-right: var(--padding-right);
                 box-sizing: border-box;
                 width: 100%;
                 gap: 8px;
@@ -348,7 +361,7 @@
                 align-items: flex-start;
                 gap: var(--size-spacing-8);
                 counter-reset: item;
-                padding-right: 25.5%;
+                padding-right: var(--padding-right);
                 box-sizing: border-box;
                 width: 100%;
 

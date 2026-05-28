@@ -196,7 +196,7 @@ function drawModuleMeta() {
   if (headingAbout) {
     const partTitle = currentPartData?.title ?? `Часть ${part}`;
     const moduleTitle = currentModuleData?.title ?? `Модуль ${module}`;
-    headingAbout.textContent = `Учебник: ${partTitle} ⏵ ${moduleTitle}`;
+    headingAbout.textContent = `Учебник: ${partTitle} / ${moduleTitle}`;
   }
 
   // 1) Обновляем дату модуля

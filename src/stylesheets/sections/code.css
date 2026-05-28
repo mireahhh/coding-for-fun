@@ -147,7 +147,7 @@
                 color: var(--colors-neutrals-450);
                 transform: translateY(0);
                 will-change: transform;
-                
+
                 color: var(--colors-neutrals-200);
                 /* border-right: var(--size-spacing-1) solid var(--colors-neutrals-200); */
             }
@@ -364,7 +364,6 @@
             .W_TutorialSingleCodeExecution {
                 max-width: none;
                 width: 100%;
-                border: none;
 
                 .A_TutorialSingleCodeExecutionCanvas {
                     margin: auto;
@@ -375,5 +374,11 @@
                 }
             }
         }
+    }
+}
+
+@media (max-width: 578px) {
+    .S_Tutorial .O_TutorialMain .O_TutorialSection .O_TutorialSingleCode--Large .W_TutorialSingleCodeExecution {
+        border: none;
     }
 }

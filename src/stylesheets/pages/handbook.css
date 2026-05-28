@@ -21,7 +21,7 @@
     align-content: flex-start;
     gap: var(--size-spacing-168);
     align-self: stretch;
-    border-bottom: 1.5px dashed var(--colors-neutrals-200);
+    border-bottom: var(--size-spacing-1-5) dashed var(--colors-neutrals-200);
     scroll-margin-top: var(--size-spacing-120);
 
     .W_HandbookPartAbout {
