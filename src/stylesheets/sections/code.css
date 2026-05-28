@@ -273,7 +273,7 @@
                 /* overflow-wrap: break-word; */
 
                 /* U_FontC2-Code */
-                color: var(--colors-neutrals-450);
+                color: var(--colors-light-450-dark-900);
                 font-family: var(--font-JetBrains);
                 font-size: 1rem;
                 line-height: 170%;
@@ -340,6 +340,19 @@
             border-radius: var(--size-radius-4);
             border: var(--size-spacing-1) solid var(--colors-neutrals-200);
         }
+    }
+}
+
+.O_TutorialSingleCode--Sandbox {
+    min-height: 80vh;
+
+    .W_TutorialSingleCodeExecution,
+    .O_TutorialSingleCodeTexts {
+        min-width: 0;
+        width: 100%;
+        flex: 1;
+        height: 100%;
+        aspect-ratio: auto;
     }
 }
 

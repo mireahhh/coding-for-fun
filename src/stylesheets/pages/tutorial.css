@@ -226,8 +226,8 @@
                         height: 100%;
                     }
 
-                    &.is-copied {
-                        filter: brightness(0.15);
+                    &.is-copied img {
+                        opacity: var(--official-no-interaction-opacity);
                     }
                 }
 
