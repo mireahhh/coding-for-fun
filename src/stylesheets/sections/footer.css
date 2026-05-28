@@ -17,7 +17,7 @@
         z-index: 0;
 
         /* базовый фон */
-        background: var(--colors-neutrals-50);
+        background: var(--colors-light-50-dark-900);
 
         pointer-events: none;
     }
@@ -72,7 +72,7 @@
                     display: flex;
                     align-items: flex-start;
                     align-self: stretch;
-                    color: var(--colors-neutrals-900);
+                    color: var(--colors-light-900-dark-50);
                 }
             }
 
@@ -87,7 +87,7 @@
                     display: flex;
                     align-items: flex-start;
                     align-self: stretch;
-                    color: var(--colors-neutrals-900);
+                    color: var(--colors-light-900-dark-50);
                 }
             }
         }
@@ -109,7 +109,7 @@
                 .A_FooterSubscribeText {
                     p {
                         /* U_FontB1 */
-                        color: var(--colors-neutrals-900);
+                        color: var(--colors-light-900-dark-50);
                     }
 
                     .A_FooterSubscribeText2 {
@@ -133,7 +133,7 @@
                         width: 100%;
                         height: var(--size-spacing-48);
                         text-transform: none;
-                        background: var(--colors-neutrals-100);
+                        background: var(--colors-neutrals-150-20);
                         padding-inline: var(--size-spacing-14);
                         box-sizing: border-box;
                         align-content: center;
@@ -145,7 +145,11 @@
                             min-width: 0;
 
                             /* U_FontC2 */
-                            color: var(--colors-neutrals-900);
+                            color: var(--colors-light-900-dark-50);
+                        }
+
+                        input::placeholder {
+                            color: var(--colors-neutrals-450);
                         }
                     }
 
@@ -167,7 +171,7 @@
 
                     &.is-filled {
                         button {
-                            background: var(--colors-neutrals-900);
+                            background: var(--colors-light-900-dark-50);
                         }
                     }
                 }
@@ -190,7 +194,7 @@
                 justify-content: center;
                 align-items: center;
                 /* U_FontC1 */
-                color: var(--colors-neutrals-900);
+                color: var(--colors-light-900-dark-50);
             }
 
             .A_FooterPlace {
@@ -198,7 +202,7 @@
                 justify-content: center;
                 align-items: center;
                 /* U_FontC1 */
-                color: var(--colors-neutrals-900);
+                color: var(--colors-light-900-dark-50);
             }
         }
     }

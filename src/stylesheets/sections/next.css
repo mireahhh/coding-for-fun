@@ -55,7 +55,7 @@
             .A_NextHeading {
                 text-align: center;
                 /* U_FontH0 */
-                color: var(--colors-neutrals-900);
+                color: var(--colors-light-900-dark-50);
             }
         }
 
@@ -66,7 +66,7 @@
             justify-content: center;
 
             /* U_FontB1 */
-            color: var(--colors-neutrals-900);
+            color: var(--colors-light-900-dark-50);
         }
 
         .A_NextButton {
@@ -78,7 +78,7 @@
             align-items: center;
             gap: var(--size-spacing-8);
             border-radius: var(--size-radius-0);
-            background: var(--colors-neutrals-900);
+            background: var(--colors-light-900-dark-50);
             flex-shrink: 0;
 
             /* Subtitle/S3 */
@@ -94,7 +94,6 @@
 @media (max-width: 1152px) {
     .W_Next .W_NextAbout .M_NextTexts .A_NextHeading {
         /* H0 -> H1 */
-        color: var(--colors-neutrals-900);
         font-family: var(--font-KairosSans);
         font-size: 4rem;
         line-height: 100%;
@@ -119,7 +118,6 @@
         .W_NextAbout {
             .M_NextTexts .A_NextHeading {
                 /* H0 -> H1-Mob */
-                color: var(--colors-neutrals-900);
                 font-family: var(--font-KairosSans);
                 font-size: 3.5rem;
                 line-height: 100%;

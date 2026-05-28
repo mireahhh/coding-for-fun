@@ -9,7 +9,7 @@
     max-width: var(--max-width);
     margin: auto;
     width: 100%;
-    background-color: var(--colors-neutrals-50);
+    background-color: var(--colors-light-50-dark-900);
 
     &::before {
         content: "";

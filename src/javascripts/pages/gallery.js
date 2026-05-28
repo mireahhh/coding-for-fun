@@ -80,16 +80,14 @@ function calcFilters() {
   matrFilters.forEach((filter, indexFilter) => {
     filter[1].forEach((isActive, indexSetting) => {
       if (isActive) {
-        buttonsFilters[indexFilter][indexSetting].style.border =
-          "1.5px dashed var(--colors-neutrals-900)";
+        buttonsFilters[indexFilter][indexSetting].classList.add("is-active");
 
         appliedFilters[indexFilter] = setUnion(
           appliedFilters[indexFilter],
           new Set([filtersAll[indexFilter][indexSetting]]),
         );
       } else {
-        buttonsFilters[indexFilter][indexSetting].style.border =
-          "1.5px dashed var(--colors-neutrals-200)";
+        buttonsFilters[indexFilter][indexSetting].classList.remove("is-active");
       }
     });
   });

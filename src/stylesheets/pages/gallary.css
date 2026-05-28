@@ -40,7 +40,7 @@
         flex: 1 0 0;
 
         /* U_FontC2 */
-        color: var(--colors-neutrals-900);
+        color: var(--colors-light-900-dark-50);
       }
 
       .A_GalleryWorkPreview {
@@ -71,7 +71,7 @@
         align-self: stretch;
 
         /* U_FontH2 */
-        color: var(--colors-neutrals-900);
+        color: var(--colors-light-900-dark-50);
       }
     }
 
@@ -105,12 +105,18 @@
         border-radius: var(--size-radius-inf);
         opacity: var(--official-no-interaction-opacity);
         /* U_FontC2 */
-        color: var(--colors-neutrals-900);
+        color: var(--colors-light-900-dark-50);
+
+        &.is-current {
+          /* дописать это состояние и использовать его
+          Обычное состояние - это неактивное
+          Для стрелочек так же, только там не current */
+        }
       }
 
       .A_GalleryScrollBarNumberHighlight {
         opacity: 1;
-        border: 1.5px dashed var(--colors-neutrals-900);
+        border: 1.5px dashed var(--colors-light-900-dark-50);
       }
 
       .A_GalleryScrollBarNumberHide {
@@ -121,7 +127,7 @@
     .A_GalleryScrollBarArrows {
       display: flex;
       height: 100%;
-      color: var(--colors-neutrals-900, #1f1f1f);
+      color: var(--colors-light-900-dark-50);
       align-items: center;
       font-family: var(--font-JetBrains);
       font-size: var(--size-spacing-24);
@@ -140,7 +146,7 @@
 
     .A_GalleryScrollBarNumbers {
       /* U_FontC2 */
-      color: var(--colors-neutrals-900);
+      color: var(--colors-light-900-dark-50);
     }
   }
 }

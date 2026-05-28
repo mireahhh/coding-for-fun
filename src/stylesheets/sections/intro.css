@@ -9,7 +9,7 @@
   margin: auto;
   padding-block: var(--size-spacing-56);
   padding-top: var(--size-spacing-20);
-  background-color: var(--colors-neutrals-50);
+  background-color: var(--colors-light-50-dark-900);
   align-items: flex-start;
   gap: var(--size-spacing-0);
   align-self: stretch;
@@ -25,7 +25,7 @@
     transform: translateY(calc(-1 * var(--size-spacing-8)));
 
     /* U_FontH2 */
-    color: var(--colors-neutrals-900);
+    color: var(--colors-light-900-dark-50);
   }
 
   .C_IntroRainSquaresTutorial {
@@ -61,7 +61,7 @@
     margin-bottom: var(--size-spacing-32);
 
     /* U_FontH0 */
-    color: var(--colors-neutrals-900);
+    color: var(--colors-light-900-dark-50);
   }
 
   .A_IntroHeadingTutorial {
@@ -71,7 +71,7 @@
     margin-bottom: var(--size-spacing-72);
 
     /* U_FontH1 */
-    color: var(--colors-neutrals-900);
+    color: var(--colors-light-900-dark-50);
   }
 
   .O_IntroFooter {
@@ -91,7 +91,7 @@
       max-width: var(--size-spacing-928);
 
       /* U_FontS1 */
-      color: var(--colors-neutrals-900);
+      color: var(--colors-light-900-dark-50);
     }
 
     .C_IntroTutorialTags {
@@ -114,11 +114,11 @@
         height: min-content;
 
         /* U_FontC2 */
-        color: var(--colors-neutrals-900);
+        color: var(--colors-light-900-dark-50);
       }
 
       .A_IntroTutorialTagPrimary {
-        border: var(--size-spacing-1-5) dashed var(--colors-neutrals-900);
+        border: var(--size-spacing-1-5) dashed var(--colors-light-900-dark-50);
       }
 
       .A_IntroTutorialTagSecondary {
@@ -140,7 +140,7 @@
         align-items: flex-start;
 
         /* U_FontC2 */
-        color: var(--colors-neutrals-900);
+        color: var(--colors-light-900-dark-50);
       }
 
       .A_IntroShare {
@@ -168,7 +168,6 @@
   /* H0 -> H1 */
   .A_IntroHeading {
     /* U_FontH1 */
-    color: var(--colors-neutrals-900);
     font-family: var(--font-KairosSans);
     font-size: 4rem;
     line-height: 100%;
@@ -179,7 +178,6 @@
   /* S1 -> B1 */
   .A_IntroFooterText {
     /* U_FontB1 */
-    color: var(--colors-neutrals-900);
     font-family: var(--font-OpenSans);
     font-size: 1.125rem;
     line-height: 150%;

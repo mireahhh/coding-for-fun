@@ -28,7 +28,7 @@
 /* A Link */
 .U_ALink,
 .U_Button {
-  color: var(--colors-neutrals-900);
+  color: var(--colors-light-900-dark-50);
   cursor: pointer;
   will-change: transform;
   transition: opacity 0.15s ease, transform 0.1s ease;
@@ -37,7 +37,7 @@
   visited,
   hover,
   active {
-    color: var(--colors-neutrals-900);
+    color: var(--colors-light-900-dark-50);
   }
 
   &:hover {

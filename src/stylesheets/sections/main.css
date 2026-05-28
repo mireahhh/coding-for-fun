@@ -8,7 +8,7 @@
     /* max-width: var(--max-width); */
     margin: auto;
     gap: var(--size-spacing-0);
-    background-color: var(--colors-neutrals-50);
+    background-color: var(--colors-light-50-dark-900);
 }
 
 /* m 4 -> 3 */

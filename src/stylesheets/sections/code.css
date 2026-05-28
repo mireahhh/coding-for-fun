@@ -96,14 +96,14 @@
                 background:
                     linear-gradient(to bottom,
                         transparent var(--active-line-top, 0),
-                        var(--colors-neutrals-50) var(--active-line-top, 0),
-                        var(--colors-neutrals-50) calc(var(--active-line-top, 0) + var(--active-line-height, 0px)),
+                        var(--colors-light-50-dark-900) var(--active-line-top, 0),
+                        var(--colors-light-50-dark-900) calc(var(--active-line-top, 0) + var(--active-line-height, 0px)),
                         transparent calc(var(--active-line-top, 0) + var(--active-line-height, 0px)));
 
                 /* to bottom — направление градиента сверху вниз.
                 transparent var(--active-line-top, 0) — до позиции --active-line-top фон полностью прозрачный.
-                var(--colors-neutrals-50) var(--active-line-top, 0) — с этой же позиции начинается цвет подсветки (резкий переход без размытия, потому что позиция совпадает).
-                var(--colors-neutrals-50) calc(var(--active-line-top, 0) + var(--active-line-height, 0px)) — цвет подсветки тянется на высоту активной строки.
+                var(--colors-light-50-dark-900) var(--active-line-top, 0) — с этой же позиции начинается цвет подсветки (резкий переход без размытия, потому что позиция совпадает).
+                var(--colors-light-50-dark-900) calc(var(--active-line-top, 0) + var(--active-line-height, 0px)) — цвет подсветки тянется на высоту активной строки.
                 transparent calc(var(--active-line-top, 0) + var(--active-line-height, 0px)) — после конца активной строки снова прозрачный фон.
                 --active-line-top — вертикальная позиция верхней границы выделенной строки.
                 --active-line-height — высота выделенной строки. */
@@ -190,7 +190,7 @@
 
                 background: transparent;
                 color: transparent;
-                caret-color: var(--colors-neutrals-900);
+                caret-color: var(--colors-light-900-dark-500);
             }
 
             .M_TutorialSingleCodeTextButtons {
@@ -224,11 +224,6 @@
                 }
 
                 .A_TutorialSingleCodeTextButtonCopy {
-                    &:hover {
-                        opacity: 1;
-                        background: var(--colors-neutrals-50);
-                    }
-
                     &.is-copied {
                         background: var(--colors-neutrals-200);
                     }
@@ -257,7 +252,7 @@
             display: inline-block;
             align-items: flex-start;
             align-self: stretch;
-            color: var(--colors-neutrals-900);
+            color: var(--colors-light-900-dark-50);
 
             span {
                 display: inline;
@@ -332,7 +327,7 @@
         height: auto;
         aspect-ratio: auto;
         justify-content: center;
-        background-color: var(--colors-neutrals-50);
+        background-color: var(--colors-light-50-dark-900);
         padding-block: var(--size-spacing-32);
 
         .A_TutorialSingleCodeExecutionCanvas {

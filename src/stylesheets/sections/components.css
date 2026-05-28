@@ -55,7 +55,6 @@
 
     .M_BrightTitle .A_BrightTitleText {
         /* U_FontH1 */
-        color: var(--colors-neutrals-900);
         font-family: var(--font-KairosSans);
         font-size: 4rem;
         line-height: 100%;
@@ -74,7 +73,6 @@
 
         .A_BrightTitleText {
             /* U_FontH1-Mob */
-            color: var(--colors-neutrals-900);
             font-family: var(--font-KairosSans);
             font-size: 3.5rem;
             line-height: 100%;
@@ -97,7 +95,7 @@
     text-align: justify;
     text-align-last: justify;
     /* U_FontH0 */
-    color: var(--colors-neutrals-900);
+    color: var(--colors-light-900-dark-50);
 }
 
 .A_FullScreenText--Mobile {
@@ -115,7 +113,6 @@
     .A_FullScreenText,
     .A_FullScreenText--Mobile {
         /* U_FontH1 */
-        color: var(--colors-neutrals-900);
         font-family: var(--font-KairosSans);
         font-size: 4rem;
         line-height: 100%;
@@ -130,7 +127,6 @@
     .A_FullScreenText,
     .A_FullScreenText--Mobile {
         /* U_FontH1-Mob */
-        color: var(--colors-neutrals-900);
         font-family: var(--font-KairosSans);
         font-size: 3.5rem;
         line-height: 100%;
@@ -227,7 +223,6 @@
 
     .M_BrightTitle .A_BrightTitleText {
         /* U_FontH1 */
-        color: var(--colors-neutrals-900);
         font-family: var(--font-KairosSans);
         font-size: 4rem;
         line-height: 100%;
@@ -237,7 +232,6 @@
 
     .A_AbTexLn {
         /* U_FontH1 */
-        color: var(--colors-neutrals-900);
         font-family: var(--font-KairosSans);
         font-size: 4rem;
         line-height: 100%;
@@ -258,7 +252,6 @@
 
         .A_BrightTitleText {
             /* U_FontH1-Mob */
-            color: var(--colors-neutrals-900);
             font-family: var(--font-KairosSans);
             font-size: 3.5rem;
             line-height: 100%;

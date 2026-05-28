@@ -27,7 +27,7 @@
         z-index: 0;
 
         box-shadow: 0 0 var(--size-spacing-8) var(--colors-neutrals-900-20);
-        background: var(--colors-neutrals-50);
+        background: var(--colors-light-50-dark-900);
         pointer-events: none;
     }
 
@@ -35,7 +35,7 @@
         min-height: 100dvh;
 
         &::before {
-            background: var(--colors-neutrals-50);
+            background: var(--colors-light-50-dark-900);
         }
 
         .C_HeaderAll {
@@ -121,7 +121,7 @@
 
                     a {
                         /* U_FontC2 */
-                        color: var(--colors-neutrals-900);
+                        color: var(--colors-light-900-dark-50);
                     }
                 }
 
@@ -146,12 +146,11 @@
                         height: 100%;
                         flex: 1;
                         min-width: 0;
-                        color: var(--colors-neutrals-900);
+                        color: var(--colors-light-900-dark-50);
                     }
 
                     input::placeholder {
-                        color: var(--colors-neutrals-900);
-                        opacity: var(--official-no-interaction-opacity);
+                        color: var(--colors-neutrals-450);
                     }
 
                     .Q_HeaderSearchIcon {
@@ -194,7 +193,7 @@
 
                 a {
                     /* U_FontC2 */
-                    color: var(--colors-neutrals-900);
+                    color: var(--colors-light-900-dark-50);
                 }
 
                 .M_HeaderChangeThemeButton {
@@ -286,10 +285,10 @@
                     height: var(--size-spacing-40);
                     box-sizing: border-box;
                     position: relative;
-                    border-bottom: var(--size-spacing-1) solid var(--colors-neutrals-900);
+                    border-bottom: var(--size-spacing-1) solid var(--colors-light-900-dark-50);
 
                     /* U_FontC2 */
-                    color: var(--colors-neutrals-900);
+                    color: var(--colors-light-900-dark-50);
                 }
             }
         }
@@ -305,7 +304,7 @@
             overflow-y: auto;
             overscroll-behavior-y: contain;
             /* box-shadow: inset 0 var(--size-spacing-8) var(--size-spacing-8) calc(var(--size-spacing-8) * -1) var(--colors-neutrals-900-20); */
-            /* border-top: var(--size-spacing-1) solid var(--colors-neutrals-900); */
+            /* border-top: var(--size-spacing-1) solid var(--colors-light-900-dark-50); */
 
             .W_HeaderSearchField {
                 display: flex;
@@ -340,7 +339,11 @@
                         overflow: hidden;
 
                         /* U_FontC2 */
-                        color: var(--colors-neutrals-900);
+                        color: var(--colors-light-900-dark-50);
+                    }
+
+                    textarea::placeholder {
+                        color: var(--colors-neutrals-450);
                     }
 
                     .A_HeaderSearchFieldButton {
@@ -395,12 +398,13 @@
                         background: var(--colors-neutrals-50-01);
 
                         /* U_FontC2 */
-                        color: var(--colors-neutrals-900);
+                        color: var(--colors-light-900-dark-50);
                     }
 
                     .W_HeaderSearchTagOpenButton {
                         gap: var(--size-spacing-4);
                         padding-block: calc(var(--size-spacing-4) + var(--size-spacing-1));
+                        background: none;
 
                         .Q_HeaderSearchTagOpenIcon {
                             transform: rotate(0deg);
@@ -438,15 +442,13 @@
                     justify-content: space-between;
                     align-items: flex-end;
 
-                    border-bottom: 1.5px dashed var(--colors-neutrals-900, #1F1F1F);
+                    border-bottom: var(--size-spacing-1-5) dashed var(--colors-light-900-dark-50);
 
                     .M_HeaderSearchTutorialsFound {
                         display: inline;
 
-                        .A_HeaderSearchTutorialsCounter {
-                            /* U_FontS2 */
-                            color: var(--colors-neutrals-900);
-                        }
+                        /* U_FontS2 */
+                        color: var(--colors-light-900-dark-50);
                     }
 
                     a {
@@ -504,14 +506,14 @@
                                 display: flex;
 
                                 /* U_FontC2 */
-                                color: var(--colors-neutrals-900);
+                                color: var(--colors-light-900-dark-50);
                             }
 
                             .A_HeaderSearchTutorialTitle {
                                 display: flex;
 
                                 /* U_FontH3 */
-                                color: var(--colors-neutrals-900);
+                                color: var(--colors-light-900-dark-50);
                             }
                         }
 
@@ -531,7 +533,7 @@
                             line-clamp: 2;
 
                             /* U_FontB1 */
-                            color: var(--colors-neutrals-900);
+                            color: var(--colors-light-900-dark-50);
 
                             span {
                                 display: inline;
@@ -650,7 +652,7 @@
                 align-items: center;
 
                 /* U_FontH3 */
-                color: var(--colors-neutrals-900);
+                color: var(--colors-light-900-dark-50);
             }
 
             &.is-show-no-results {
@@ -764,7 +766,6 @@
                     /* H3 -> S2 */
                     .A_HeaderSearchTutorialTitle {
                         /* U_FontS2 */
-                        color: var(--colors-neutrals-900);
                         font-family: var(--font-JetBrains);
                         font-size: 1.5rem;
                         line-height: 130%;

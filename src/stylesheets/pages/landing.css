@@ -200,7 +200,7 @@
             justify-content: center;
             align-items: center;
 
-            background: linear-gradient(180deg, var(--colors-neutrals-50-0) 0%, var(--colors-neutrals-50) 45%);
+            background: linear-gradient(180deg, var(--colors-neutrals-50-0) 0%, var(--colors-light-50-dark-900) 45%);
         }
 
         .C_LandingCoverRunningTags {
@@ -247,7 +247,7 @@
                 padding: var(--size-spacing-4) var(--size-spacing-8);
 
                 border-radius: var(--size-spacing-4);
-                background: var(--colors-neutrals-50);
+                background: var(--colors-light-50-dark-900);
                 border: var(--size-spacing-1-5) dashed var(--colors-neutrals-200);
                 color: var(--colors-neutrals-450);
             }

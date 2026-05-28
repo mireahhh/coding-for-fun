@@ -274,16 +274,14 @@ function calcFilters() {
   matrFilters.forEach((filter, indexFilter) => {
     filter[1].forEach((setting, indexSetting) => {
       if (matrFilters[indexFilter][1][indexSetting]) {
-        buttonsFilters[indexFilter][indexSetting].style.border =
-          "1.5px dashed var(--colors-neutrals-900)";
+        buttonsFilters[indexFilter][indexSetting].classList.add("is-active");
 
         applyFilters[indexFilter] = setUnion(
           applyFilters[indexFilter],
           new Set([filtersAll[indexFilter][indexSetting]]),
         );
       } else {
-        buttonsFilters[indexFilter][indexSetting].style.border =
-          "1.5px dashed var(--colors-neutrals-200)";
+        buttonsFilters[indexFilter][indexSetting].classList.remove("is-active");
       }
       // ?deny / ?alloy
     });

@@ -1,9 +1,9 @@
 .O_Filter {
-    background-color: var(--colors-neutrals-50);
+    background-color: var(--colors-light-50-dark-900);
     align-items: center;
     margin-top: var(--size-spacing-32);
     width: 100%;
-    border-bottom: 1.5px dashed var(--colors-neutrals-900);
+    border-bottom: var(--size-spacing-1-5) dashed var(--colors-light-900-dark-50);
 
     .O_Filters {
         display: flex;
@@ -44,7 +44,7 @@
 
                         .A_FilterFiltersHeaderName {
                             /* U_FontC2 */
-                            color: var(--colors-neutrals-900);
+                            color: var(--colors-light-900-dark-50);
                         }
 
                         .Q_FilterFiltersOpenIcon {
@@ -68,19 +68,18 @@
                     padding-top: var(--size-spacing-0);
                     justify-content: space-between;
                     align-items: center;
-                    border-bottom: var(--size-spacing-1) solid var(--colors-neutrals-900);
+                    border-bottom: var(--size-spacing-1) solid var(--colors-light-900-dark-50);
 
                     input {
                         display: flex;
                         width: var(--size-spacing-240);
 
                         /* U_FontC2 */
-                        color: var(--colors-neutrals-900);
+                        color: var(--colors-light-900-dark-50);
                     }
 
                     input::placeholder {
-                        color: var(--colors-neutrals-900);
-                        opacity: var(--official-no-interaction-opacity);
+                        color: var(--colors-neutrals-450);
                     }
 
                     .C_FilterFiltersHeaderIcons {
@@ -119,7 +118,7 @@
                         border-radius: var(--size-radius-4);
 
                         /* U_FontF2 */
-                        color: var(--colors-neutrals-900);
+                        color: var(--colors-light-900-dark-50);
                     }
 
                     .C_FilterFiltersMenuFilter {
@@ -135,11 +134,15 @@
                             align-items: center;
 
                             border-radius: var(--size-radius-4);
-                            border: 1.5px dashed var(--colors-neutrals-200);
+                            border: var(--size-spacing-1-5) dashed var(--colors-neutrals-200);
                             background: var(--colors-neutrals-50-01);
 
                             /* U_FontF2 */
-                            color: var(--colors-neutrals-900);
+                            color: var(--colors-light-900-dark-50);
+
+                            &.is-active {
+                                border: var(--size-spacing-1-5) dashed var(--colors-light-900-dark-50);
+                            }
                         }
                     }
                 }
@@ -169,7 +172,7 @@
 
                 .A_FilterSortingTitle {
                     /* U_FontC2 */
-                    color: var(--colors-neutrals-900);
+                    color: var(--colors-light-900-dark-50);
                 }
 
                 .W_FilterSortingAllMenu {
@@ -189,7 +192,7 @@
                         .A_FilterSortingOpenButton {
                             p {
                                 /* U_FontC2 */
-                                color: var(--colors-neutrals-900);
+                                color: var(--colors-light-900-dark-50);
                             }
 
                             .A_FilterSortingByComplexityText,
@@ -243,9 +246,9 @@
                             border-radius: var(--size-radius-0);
 
                             /* U_FontC2 */
-                            color: var(--colors-neutrals-900);
+                            color: var(--colors-light-900-dark-50);
 
-                            border-bottom: 1.5px dashed var(--colors-neutrals-450);
+                            border-bottom: var(--size-spacing-1-5) dashed var(--colors-neutrals-450);
 
                             .Q_FilterSortingByComplexityIcon,
                             .Q_FilterSortingByDateIcon,
