@@ -70,7 +70,10 @@ headerSearchBar.addEventListener("input", () => {
 });
 
 headerSearchBar.addEventListener("keydown", (event) => {
-  if (event.key !== "Tab" || !headerSearchBar.placeholder) {
+  const isTab = event.key === "Tab";
+  const isShiftTab = isTab && event.shiftKey;
+  
+  if (!isTab || isShiftTab || !headerSearchBar.placeholder || headerSearchBar.value !== "") {
     return;
   }
 

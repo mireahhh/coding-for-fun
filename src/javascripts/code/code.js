@@ -384,6 +384,27 @@ export function initCodeBlocks() {
         textarea.addEventListener("keyup", scheduleCaretSync);
         textarea.addEventListener("keydown", scheduleCaretSync);
         textarea.addEventListener("keydown", (event) => {
+            if (event.key === "Tab" && !event.ctrlKey && !event.metaKey && !event.altKey) {
+                event.preventDefault();
+
+                const selectionStart = textarea.selectionStart || 0;
+                const selectionEnd = textarea.selectionEnd || 0;
+                const value = textarea.value;
+                const tabSpaces = "  ";
+
+                textarea.value = `${value.slice(0, selectionStart)}${tabSpaces}${value.slice(selectionEnd)}`;
+
+                const nextCursorPosition = selectionStart + tabSpaces.length;
+                textarea.selectionStart = nextCursorPosition;
+                textarea.selectionEnd = nextCursorPosition;
+
+                autoResizeTextarea();
+                syncHighlight();
+                syncLineNumbers();
+                syncActiveLineHighlight();
+                return;
+            }
+
             const isCtrlPressed = event.ctrlKey || event.metaKey;
             if (!isCtrlPressed || event.altKey) return;
 

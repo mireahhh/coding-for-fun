@@ -185,6 +185,8 @@
 
     --colors-light-900-20-dark-150-20: #1f1f1f33;
     --colors-light-0-dark-950: #ffffff;
+    --colors-light-200-dark-450: #cfcfcf;
+    --colors-light-450-dark-200: #858585;
 
     /* TODO цвет -100 в некоторых местах мб не пойдёт на тёмную тему */
 
@@ -236,4 +238,6 @@
 
     --colors-light-900-20-dark-150-20: #d6d6d633;
     --colors-light-0-dark-950: #171717;
+    --colors-light-200-dark-450: #858585;
+    --colors-light-450-dark-200: #cfcfcf;
 }

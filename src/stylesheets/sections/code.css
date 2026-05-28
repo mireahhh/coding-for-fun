@@ -154,11 +154,12 @@
 
             .A_TutorialSingleCodeLineNumber {
                 display: block;
-                color: var(--colors-neutrals-200);
+                color: var(--colors-light-200-dark-450);
             }
 
             .A_TutorialSingleCodeLineNumber.is-active {
-                color: var(--colors-neutrals-450);
+                display: block;
+                color: var(--colors-light-450-dark-200);
             }
 
             .W_TutorialSingleCodeTextRun {
@@ -188,7 +189,11 @@
 
                 background: transparent;
                 color: transparent;
-                caret-color: var(--colors-light-900-dark-500);
+                caret-color: var(--colors-light-900-dark-50);
+
+                &:focus {
+                    caret-color: var(--colors-light-900-dark-50);
+                }
             }
 
             .M_TutorialSingleCodeTextButtons {
