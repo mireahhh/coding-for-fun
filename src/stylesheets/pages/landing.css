@@ -56,6 +56,9 @@
         }
 
         &::before {
+            --landing-rainbow-flow-width: 200%;
+            --landing-rainbow-visible-height: 100%;
+
             content: "";
             position: absolute;
             inset: -100%;
@@ -71,7 +74,9 @@
             filter: saturate(1.2) brightness(1.05);
             mix-blend-mode: plus-lighter;
 
-            background-size: 100% 50%, 100% 50%;
+            background-size:
+                var(--landing-rainbow-flow-width) var(--landing-rainbow-visible-height),
+                var(--landing-rainbow-flow-width) var(--landing-rainbow-visible-height);
             background-position: 0 100%, 0 0%;
             background-repeat: repeat;
             animation: landingRainbowFlow 12s linear infinite;
@@ -577,11 +582,15 @@
 
 @keyframes landingRainbowFlow {
     from {
-        background-position: 0 150%, 0 50%;
+        background-position: 
+        0 100%, 
+        0 0%;
     }
 
     to {
-        background-position: 0 50%, 0 150%;
+        background-position: 
+        200% 100%, 
+        200% 0%;
     }
 }
 

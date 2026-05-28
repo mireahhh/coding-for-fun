@@ -1,4 +1,7 @@
 .M_BrightTitle {
+    --bright-title-rainbow-flow-width: 200%;
+    --bright-title-rainbow-visible-height: 100%;
+
     padding: var(--size-spacing-32) 5%;
     align-items: center;
     align-self: stretch;
@@ -13,8 +16,8 @@
     background-blend-mode: plus-lighter, normal, normal;
 
     background-size:
-        100% 100%,
-        200% 100%;
+        var(--bright-title-rainbow-flow-width) var(--bright-title-rainbow-visible-height),
+        var(--bright-title-rainbow-flow-width) var(--bright-title-rainbow-visible-height);
     background-position:
         0 0,
         0 0;
@@ -42,7 +45,7 @@
 
     to {
         background-position:
-            0 0,
+            200% 0,
             200% 0;
     }
 }
