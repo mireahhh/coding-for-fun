@@ -355,6 +355,7 @@ const galleryCanvases = Array.from(document.querySelectorAll(".C_GalleryWorks .W
   galleryCapacity,
 );
 const galleryWorksSection = document.querySelector(".O_GalleryWorks");
+const galleryNextSection = document.querySelector("main > section.W_Next:last-of-type");
 // Пейдженация
 let galleryPage = 0;
 const galleryScrollBarArrowLeft = document.querySelector(".Q_GalleryScrollBarArrowLeft");
@@ -366,6 +367,9 @@ let galleryScrollBarNumbersCountDraw = 0;
 function setNoResultsState(value) {
   noResults = value;
   galleryWorksSection.classList[value ? "add" : "remove"]("is-show-no-results");
+  if (galleryNextSection) {
+    galleryNextSection.classList[value ? "add" : "remove"]("is-hide");
+  }
 }
 
 function rebuildPaginationButtons() {
@@ -374,7 +378,7 @@ function rebuildPaginationButtons() {
 
   for (let pageIndex = 0; pageIndex < galleryScrollBarNumbersCountDraw; pageIndex += 1) {
     const pageButton = document.createElement("button");
-    pageButton.className = "U_ButtonIcon";
+    pageButton.className = "U_FontC2 U_ButtonIcon A_GalleryScrollBarNumber";
     pageButton.textContent = String(pageIndex + 1).padStart(2, "0");
     pageButton.addEventListener("click", () => {
       handleGalleryNumberClick(pageIndex);
