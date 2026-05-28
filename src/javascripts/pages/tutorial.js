@@ -37,7 +37,7 @@ function drawTutorialMeta() {
     const partTitle = partData?.title ?? `Часть ${part}`;
     const moduleTitle = moduleData?.title ?? `Модуль ${module}`;
     const tutorialTitle = tutorialData.title ?? `Урок ${tutorial}`;
-    headingAbout.textContent = `Учебник: ${partTitle} / ${moduleTitle} / ${tutorialTitle}`;
+    headingAbout.textContent = `Учебник: ${partTitle} ⏵ ${moduleTitle} ⏵ ${tutorialTitle}`;
   }
 
   // Дата
