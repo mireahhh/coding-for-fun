@@ -131,6 +131,22 @@
       }
     }
   }
+
+  .W_GalleryWorksNoResults {
+    display: flex;
+    margin-top: 0;
+    padding-block: var(--size-spacing-56);
+    padding-inline: 0;
+  }
+
+  &.is-show-no-results {
+    .W_HeaderSearchNoResults {
+      display: flex;
+    }
+    .W_GalleryScrollBar {
+      display: none;
+    }
+  }
 }
 
 .A_GalleryWorkPreview:hover {

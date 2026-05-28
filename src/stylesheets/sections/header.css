@@ -648,12 +648,9 @@
 
             .W_HeaderSearchNoResults {
                 display: none;
-                padding-block: var(--size-spacing-32);
-                justify-content: center;
-                align-items: center;
-
-                /* U_FontH3 */
-                color: var(--colors-light-900-dark-50);
+                margin-top: 0;
+                padding-block: var(--size-spacing-56);
+                padding-inline: 0;
             }
 
             &.is-show-no-results {
