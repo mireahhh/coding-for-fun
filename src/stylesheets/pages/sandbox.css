@@ -17,5 +17,6 @@
 @media (max-width: 904px) {
     .O_Sandbox {
         padding-block: var(--size-spacing-20);
+        padding-inline: 4%;
     }
 }

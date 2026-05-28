@@ -377,6 +377,7 @@
 @media (max-width: 904px) {
     .S_Work {
         padding-block: var(--size-spacing-20);
+        padding-inline: 4%;
     }
 }
 
