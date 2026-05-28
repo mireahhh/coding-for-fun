@@ -14,7 +14,7 @@
         min-width: var(--min-width);
         max-width: var(--max-width);
         margin: auto;
-        align-items: center;
+        /* align-items: center; */
         justify-content: space-between;
         padding-block: var(--size-spacing-32);
         gap: var(--size-spacing-32);
@@ -190,6 +190,9 @@
                         gap: var(--size-spacing-4);
 
                         .A_FilterSortingOpenButton {
+                            display: flex;
+                            flex-direction: row;
+
                             p {
                                 /* U_FontC2 */
                                 color: var(--colors-light-900-dark-50);
@@ -254,6 +257,8 @@
                             .Q_FilterSortingByDateIcon,
                             .Q_FilterSortingByVerificationIcon {
                                 display: none;
+                                transform: translateY(-10px);
+                                color: var(--colors-light-900-dark-50);
                             }
 
                             .Q_FilterSortingByComplexityIcon {
@@ -270,6 +275,7 @@
 
             .A_FilterResetButton {
                 .A_FilterResetText {
+                    padding-block: var(--size-spacing-2);
                     text-decoration-line: underline;
 
                     color: var(--colors-neutrals-450);

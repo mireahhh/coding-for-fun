@@ -166,31 +166,29 @@
     --colors-neutrals-200: #cfcfcf;
     /* 133 85 */
     --colors-neutrals-450: #858585;
-    /* 133 8520% 33 */
+    /* 133 20% 33 */
     --colors-neutrals-450-20: #85858533;
+    /* 74  4a (900 + 150-20) */
+    --colors-neutrals-650: #4a4a4a;
     /* 31 1f */
     --colors-neutrals-900: #1f1f1f;
     /* 31 1f   20% 33 */
     --colors-neutrals-900-20: #1f1f1f33;
     /* 31 1f   80% b2 */
     --colors-neutrals-900-80: #1f1f1fb2;
+    /* 23 1f */
+    --colors-neutrals-950: #171717;
 
     --colors-light-50-dark-900: #f8f8f8;
     --colors-light-900-dark-50: #1f1f1f;
+    --colors-light-0-dark-1000: #ffffff;
 
-    /* TODO -100 */
+    --colors-light-900-20-dark-150-20: #1f1f1f33;
+    --colors-light-0-dark-950: #ffffff;
 
-    /* 
-    js
-    gallary
-    handbook
-    module
-    */
-
-    /* 1% 0.01 = hex03 */
+    /* TODO цвет -100 в некоторых местах мб не пойдёт на тёмную тему */
 
     /* official */
-    --test: #bf069a;
     --official-size-icons: 1.5rem;
     --official-interaction-hover-opacity: 0.7;
     --official-no-interaction-opacity: 0.52;
@@ -234,4 +232,8 @@
 
     --colors-light-50-dark-900: #1f1f1f;
     --colors-light-900-dark-50: #f8f8f8;
+    --colors-light-0-dark-1000: #000000;
+
+    --colors-light-900-20-dark-150-20: #d6d6d633;
+    --colors-light-0-dark-950: #171717;
 }

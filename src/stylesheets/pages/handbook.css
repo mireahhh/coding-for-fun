@@ -87,7 +87,7 @@
         flex-shrink: 0;
 
         /* U_FontB2 */
-        color: var(--colors-neutrals-0);
+        color: var(--colors-light-0-dark-1000);
       }
 
       .HandbookPartNoActiveStartButton,

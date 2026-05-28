@@ -13,8 +13,6 @@
         align-items: flex-start;
         aspect-ratio: 1/1;
 
-        background-color: var(--colors-neutrals-0);
-
         .A_TutorialSingleCodeExecutionCanvas {
             display: flex;
             height: 100%;
@@ -24,6 +22,7 @@
 
             border-radius: var(--size-radius-4);
             border: var(--size-spacing-1) solid var(--colors-neutrals-200);
+            background-color: var(--colors-neutrals-0);
         }
     }
 
@@ -50,7 +49,7 @@
             height: auto;
 
             border-radius: var(--size-radius-4);
-            background: var(--colors-neutrals-0);
+            background: var(--colors-light-0-dark-950);
             /* border: var(--size-spacing-1) solid var(--colors-neutrals-200); */
             overflow: hidden;
 
@@ -146,7 +145,6 @@
                 pointer-events: none;
                 text-align: right;
                 color: var(--colors-neutrals-450);
-                background: var(--colors-neutrals-0);
                 transform: translateY(0);
                 will-change: transform;
 
@@ -336,7 +334,6 @@
             aspect-ratio: 1/1;
             border-radius: var(--size-radius-4);
             border: var(--size-spacing-1) solid var(--colors-neutrals-200);
-            background-color: var(--colors-neutrals-0);
         }
     }
 }

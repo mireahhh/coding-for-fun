@@ -9,7 +9,6 @@
     width: 100%;
     height: min-content;
     /* background-color: transparent // Прозрачный */
-    /* background-color: var(--colors-neutrals-50-01); */
     /* backdrop-filter: blur(var(--size-spacing-50)); */
     align-items: center;
 
@@ -25,10 +24,10 @@
         position: absolute;
         inset: 0;
         z-index: 0;
-
-        box-shadow: 0 0 var(--size-spacing-8) var(--colors-neutrals-900-20);
-        background: var(--colors-light-50-dark-900);
         pointer-events: none;
+
+        box-shadow: 0 0 var(--size-spacing-8) var(--colors-light-900-20-dark-150-20);
+        background: var(--colors-light-50-dark-900);
     }
 
     &.is-open-search {
@@ -693,8 +692,8 @@
 
 .S_Header--Landing {
     &::before {
-        backdrop-filter: blur(var(--size-spacing-inf));
         background: none;
+        backdrop-filter: blur(var(--size-spacing-inf));
     }
 }
 

@@ -76,7 +76,7 @@
 
                 border-radius: var(--size-radius-4);
                 border: var(--size-spacing-1) solid var(--colors-neutrals-200);
-                background-color: var(--colors-neutrals-0);
+                background-color: var(--colors-light-0-dark-950);
 
                 .A_WorkPreviewImg,
                 .A_WorkPreviewVideo {
@@ -204,7 +204,7 @@
                     background: var(--colors-light-900-dark-50);
 
                     /* U_FontS3 */
-                    color: var(--colors-neutrals-0);
+                    color: var(--colors-light-0-dark-1000);
                 }
             }
 
@@ -258,6 +258,7 @@
                         padding: var(--size-spacing-5) var(--size-spacing-10);
 
                         background-color: var(--colors-neutrals-150-20);
+                        color: var(--colors-light-900-dark-50);
 
                         ::placeholder {
                             color: var(--colors-neutrals-450);

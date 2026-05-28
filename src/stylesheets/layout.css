@@ -1,5 +1,5 @@
 body {
-  font-family: "JetBrains Mono", "Courier New", Courier, monospace;
+  font-family: "KairosSansW06 CondMedium", "Impact", "Arial Black", Helvetica, sans-serif;
 }
 
 html {
@@ -9,17 +9,17 @@ html {
 
   /* Выделение текста */
   ::selection {
-    background-color: var(--colors-neutrals-900-20);
+    background-color: var(--colors-light-900-20-dark-150-20);
   }
 
-  :focus {
+  /* :focus {
     outline: none;
   }
 
   :focus-visible {
     outline: var(--size-spacing-2) solid var(--colors-light-900-dark-50);
     outline-offset: var(--size-spacing-2);
-  }
+  } */
 }
 
 /* Sscrollbar */

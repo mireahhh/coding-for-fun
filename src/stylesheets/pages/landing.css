@@ -130,16 +130,16 @@
                     }
 
                     .A_LandingIntroButtonBlack {
-                        background: var(--colors-light-900-dark-50);
+                        background: var(--colors-neutrals-900);
                         color: var(--colors-neutrals-0);
                     }
 
                     .A_LandingIntroButtonOpacity {
                         display: flex;
                         box-sizing: border-box;
-                        border: var(--size-spacing-1) solid var(--colors-light-900-dark-50);
+                        border: var(--size-spacing-1) solid var(--colors-neutrals-900);
                         background: var(--colors-neutrals-50-01);
-                        color: var(--colors-light-900-dark-50);
+                        color: var(--colors-neutrals-900);
                     }
                 }
             }
@@ -415,7 +415,7 @@
 
                     background: var(--colors-light-900-dark-50);
                     /* U_FontS3 */
-                    color: var(--colors-neutrals-0);
+                    color: var(--colors-light-0-dark-1000);
                 }
             }
         }
@@ -561,7 +561,7 @@
                     gap: var(--size-spacing-8);
                     flex-shrink: 0;
                     background: var(--colors-light-900-dark-50);
-                    color: var(--colors-neutrals-0);
+                    color: var(--colors-light-0-dark-1000);
                 }
             }
         }
