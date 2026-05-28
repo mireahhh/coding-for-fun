@@ -8,25 +8,9 @@
     max-width: var(--max-width);
     margin: auto;
     padding-block: var(--size-spacing-56);
-    padding-top: var(--size-spacing-20);
-    align-items: flex-start;
     gap: var(--size-spacing-0);
     align-self: stretch;
     margin-top: var(--size-spacing-0);
-
-    .C_WorkSquares {
-        display: flex;
-        flex-direction: row;
-        height: var(--size-spacing-42);
-        align-self: stretch;
-        justify-content: space-between;
-
-        p {
-            transform: translateY(calc(-1 * var(--size-spacing-8)));
-            /* U_FontH2 */
-            color: var(--colors-light-900-dark-50);
-        }
-    }
 
     .O_Work {
         display: flex;
@@ -390,7 +374,11 @@
 }
 
 /* m 2 -> 1 */
-@media (max-width: 904px) {}
+@media (max-width: 904px) {
+    .S_Work {
+        padding-block: var(--size-spacing-20);
+    }
+}
 
 /* m 1 -> 0 */
 @media (max-width: 428px) {

@@ -143,6 +143,21 @@
     }
 }
 
+.C_FifthRainSquares {
+    display: flex;
+    flex-direction: row;
+    height: var(--size-spacing-42);
+    align-self: stretch;
+    justify-content: space-between;
+
+    p {
+        transform: translateY(calc(-1 * var(--size-spacing-8)));
+        /* U_FontH2 */
+        color: var(--colors-light-900-dark-50);
+    }
+}
+
+
 
 /* m 4 -> 3 */
 @media (max-width: 1368px) {}

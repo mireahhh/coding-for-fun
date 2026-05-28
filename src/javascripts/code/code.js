@@ -390,13 +390,82 @@ export function initCodeBlocks() {
                 const selectionStart = textarea.selectionStart || 0;
                 const selectionEnd = textarea.selectionEnd || 0;
                 const value = textarea.value;
-                const tabSpaces = "\t";
+                const lineStart = value.lastIndexOf("\n", Math.max(0, selectionStart - 1)) + 1;
+                const lineEndSearchIndex = selectionEnd;
+                let lineEnd = value.indexOf("\n", lineEndSearchIndex);
+                if (lineEnd === -1) lineEnd = value.length;
 
-                textarea.value = `${value.slice(0, selectionStart)}${tabSpaces}${value.slice(selectionEnd)}`;
+                const hasSelection = selectionStart !== selectionEnd;
+                const selectedBlock = value.slice(lineStart, lineEnd);
+                const selectedLines = selectedBlock.split("\n");
 
-                const nextCursorPosition = selectionStart + tabSpaces.length;
-                textarea.selectionStart = nextCursorPosition;
-                textarea.selectionEnd = nextCursorPosition;
+                if (hasSelection) {
+                    if (!event.shiftKey) {
+                        const indentedLines = selectedLines.map((line) => `\t${line}`);
+                        const updatedBlock = indentedLines.join("\n");
+                        textarea.value = `${value.slice(0, lineStart)}${updatedBlock}${value.slice(lineEnd)}`;
+
+                        const newSelectionStart = selectionStart + 1;
+                        const newSelectionEnd = selectionEnd + selectedLines.length;
+                        textarea.selectionStart = newSelectionStart;
+                        textarea.selectionEnd = newSelectionEnd;
+                    } else {
+                        let removedBeforeSelectionStart = 0;
+                        let removedTotal = 0;
+
+                        const outdentedLines = selectedLines.map((line, index) => {
+                            let removeLength = 0;
+
+                            if (line.startsWith("\t")) {
+                                removeLength = 1;
+                            } else if (line.startsWith("  ")) {
+                                removeLength = 2;
+                            } else if (line.startsWith(" ")) {
+                                removeLength = 1;
+                            }
+
+                            if (index === 0) {
+                                removedBeforeSelectionStart = Math.min(removeLength, selectionStart - lineStart);
+                            }
+
+                            removedTotal += removeLength;
+                            return line.slice(removeLength);
+                        });
+
+                        const updatedBlock = outdentedLines.join("\n");
+                        textarea.value = `${value.slice(0, lineStart)}${updatedBlock}${value.slice(lineEnd)}`;
+
+                        textarea.selectionStart = Math.max(lineStart, selectionStart - removedBeforeSelectionStart);
+                        textarea.selectionEnd = Math.max(textarea.selectionStart, selectionEnd - removedTotal);
+                    }
+                } else if (!event.shiftKey) {
+                    const tabSpaces = "\t";
+                    textarea.value = `${value.slice(0, selectionStart)}${tabSpaces}${value.slice(selectionEnd)}`;
+
+                    const nextCursorPosition = selectionStart + tabSpaces.length;
+                    textarea.selectionStart = nextCursorPosition;
+                    textarea.selectionEnd = nextCursorPosition;
+                } else {
+                    const currentLineEnd = value.indexOf("\n", selectionStart);
+                    const singleLineEnd = currentLineEnd === -1 ? value.length : currentLineEnd;
+                    const lineText = value.slice(lineStart, singleLineEnd);
+
+                    let removeLength = 0;
+                    if (lineText.startsWith("\t")) {
+                        removeLength = 1;
+                    } else if (lineText.startsWith("  ")) {
+                        removeLength = 2;
+                    } else if (lineText.startsWith(" ")) {
+                        removeLength = 1;
+                    }
+
+                    if (removeLength > 0) {
+                        textarea.value = `${value.slice(0, lineStart)}${lineText.slice(removeLength)}${value.slice(singleLineEnd)}`;
+                        const nextCursorPosition = Math.max(lineStart, selectionStart - removeLength);
+                        textarea.selectionStart = nextCursorPosition;
+                        textarea.selectionEnd = nextCursorPosition;
+                    }
+                }
 
                 autoResizeTextarea();
                 syncHighlight();

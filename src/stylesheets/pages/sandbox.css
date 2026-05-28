@@ -1,0 +1,21 @@
+.O_Sandbox {
+    display: flex;
+    flex-direction: column;
+    padding-inline: 5%;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: var(--min-width);
+    max-width: var(--max-width);
+    margin: auto;
+    padding-block: var(--size-spacing-56);
+    gap: var(--size-spacing-0);
+    align-self: stretch;
+    margin-top: var(--size-spacing-0);
+}
+
+/* m 2 -> 1 */
+@media (max-width: 904px) {
+    .O_Sandbox {
+        padding-block: var(--size-spacing-20);
+    }
+}
