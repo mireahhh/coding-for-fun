@@ -56,14 +56,28 @@
         }
 
         &::before {
-            --landing-rainbow-flow-width: 100%;
-            --landing-rainbow-visible-height: 400%;
+            /*
+                --landing-rainbow-size: square side of the animated layer.
+                --landing-rainbow-tile-size: visible repeated rainbow tile size.
+                --landing-rainbow-position-*: layer anchor inside the cover.
+                --landing-rainbow-flow-*: one-loop shift; keep it equal to the tile for a seamless loop.
+            */
+            --landing-rainbow-size: 240vmax;
+            --landing-rainbow-tile-size: 60vmax;
+            --landing-rainbow-position-x: 50%;
+            --landing-rainbow-position-y: 50%;
+            --landing-rainbow-flow-x: var(--landing-rainbow-tile-size);
+            --landing-rainbow-flow-y: var(--landing-rainbow-tile-size);
 
             content: "";
             position: absolute;
-            inset: -100%;
+            left: var(--landing-rainbow-position-x);
+            top: var(--landing-rainbow-position-y);
             z-index: 0;
+            width: var(--landing-rainbow-size);
+            height: var(--landing-rainbow-size);
             pointer-events: none;
+            transform: translate(-50%, -50%);
             background:
                 linear-gradient(0deg,
                     var(--colors-neutrals-0-20) 0%,
@@ -74,8 +88,12 @@
             filter: saturate(1.2) brightness(1.05);
             mix-blend-mode: plus-lighter;
 
-            background-size: 100% 50%, 100% 50%;
-            background-position: 0 100%, 0 0%;
+            background-size:
+                var(--landing-rainbow-tile-size) var(--landing-rainbow-tile-size),
+                var(--landing-rainbow-tile-size) var(--landing-rainbow-tile-size);
+            background-position:
+                0 0,
+                0 0;
             background-repeat: repeat;
             animation: landingRainbowFlow 8s linear infinite;
         }
@@ -580,11 +598,15 @@
 
 @keyframes landingRainbowFlow {
     from {
-        background-position: 0 100%, 0 0%;
+        background-position:
+            0 0,
+            0 0;
     }
 
     to {
-        background-position: 0 50%, 0 150%;
+        background-position:
+            var(--landing-rainbow-flow-x) var(--landing-rainbow-flow-y),
+            var(--landing-rainbow-flow-x) var(--landing-rainbow-flow-y);
     }
 }
 
