@@ -9,7 +9,7 @@ function ensureAlertRoot() {
   if (alertRoot) return alertRoot;
 
   const root = document.createElement("div");
-  root.className = "C_Alerts";
+  root.className = "O_Alerts";
   document.body.append(root);
   alertRoot = root;
 
@@ -66,7 +66,7 @@ function dismissAlert(entry, { instant }) {
 
 function createAlertElement(messageHtml) {
   const element = document.createElement("article");
-  element.className = "O_Alert";
+  element.className = "W_Alert";
 
   element.innerHTML = `
     <p class="U_FontB1 A_AlertDescription">${messageHtml}</p>

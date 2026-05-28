@@ -37,11 +37,13 @@ function submitFooterEmail() {
   const alreadySubscribed = subscribedEmails.includes(emailSignature);
 
   if (alreadySubscribed) {
-    showAlert(`Почта не добавлена в подписку, почта уже подписана: ${emailValue}`);
+    showAlert(`Этот email уже\u00A0использовался ранее. Проверь входящие письма или\u00A0введи другой адрес для\u00A0подписки. Указанная почта: ${emailValue}`);
   } else {
     const nextEmails = [...subscribedEmails, emailSignature];
     setFooterSubscribedEmails(nextEmails);
-    showAlert(`Почта добавлена в подписку: ${emailValue}`);
+    showAlert(`Всё готово! Будем присылать на\u00A0адрес новые статьи, работы и\u00A0обновления. Почта: ${emailValue}`);
+
+    `Твоя подписка на\u00A0уведомления активна. Мы уже\u00A0отправляем новые материалы и\u00A0обновления проекта на\u00A0этот email`;
   }
 
   footerSubscribeBar.value = "";
