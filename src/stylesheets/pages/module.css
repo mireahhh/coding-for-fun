@@ -42,13 +42,13 @@
         gap: var(--size-spacing-16);
         flex: 1 0 0;
 
-        .M_ModuleTutorialSubtitle {
+        .W_ModuleTutorialSubtitle {
           display: flex;
           align-items: flex-start;
           align-self: stretch;
 
           /* U_FontC2 */
-          color: var(--colors-neutrals-900);
+          color: var(--colors-light-900-dark-50);
         }
 
         .A_ModuleTutorialTitle {
@@ -57,7 +57,7 @@
           align-self: stretch;
 
           /* U_FontH3 */
-          color: var(--colors-neutrals-900);
+          color: var(--colors-light-900-dark-50);
         }
       }
 
@@ -85,10 +85,10 @@
             align-items: center;
 
             border-radius: var(--size-spacing-4);
-            border: var(--size-spacing-1) dashed var(--colors-neutrals-900);
+            border: var(--size-spacing-1) dashed var(--colors-light-900-dark-50);
 
             /* U_FontF2 */
-            color: var(--colors-neutrals-900);
+            color: var(--colors-light-900-dark-50);
           }
         }
 
@@ -102,7 +102,7 @@
           line-clamp: 2;
 
           /* U_FontB1 */
-          color: var(--colors-neutrals-900);
+          color: var(--colors-light-900-dark-50);
 
           span {
             display: inline;
@@ -212,7 +212,7 @@
 
 .S_ModuleResources {
   /* TODO display: none; */
-  display: none;
+  display: flex;
   flex-direction: row;
   padding-inline: 5%;
   box-sizing: border-box;
@@ -235,7 +235,7 @@
     flex: 1 0 0;
 
     /* U_FontH1 */
-    color: var(--colors-neutrals-900);
+    color: var(--colors-light-900-dark-50);
   }
 
   .C_ModuleResourcesArticles {
@@ -265,7 +265,7 @@
         align-items: center;
         align-self: stretch;
 
-        color: var(--colors-neutrals-900);
+        color: var(--colors-light-900-dark-50);
       }
 
       .C_ModuleResourcesArticlesLinks {
@@ -322,7 +322,6 @@
         /* H3 -> S2 */
         .A_ModuleTutorialTitle {
           /* U_FontS2 */
-          color: var(--colors-neutrals-900);
           font-family: var(--font-JetBrains);
           font-size: 1.5rem;
           line-height: 130%;

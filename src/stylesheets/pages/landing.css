@@ -23,10 +23,19 @@
             pointer-events: none;
 
             background:
+                linear-gradient(var(--colors-light-900-dark-50), var(--colors-light-900-dark-50)) top left,
+                linear-gradient(var(--colors-light-900-dark-50), var(--colors-light-900-dark-50)) top right;
+
+            background-size: var(--size-spacing-8) var(--size-spacing-8);
+            background-repeat: no-repeat;
+        }
+    }
+
+    .W_LandingRainSquares--Black {
+        &::before {
+            background:
                 linear-gradient(var(--colors-neutrals-900), var(--colors-neutrals-900)) top left,
                 linear-gradient(var(--colors-neutrals-900), var(--colors-neutrals-900)) top right;
-            /* linear-gradient(black, black) bottom left,
-                        linear-gradient(black, black) bottom right; */
 
             background-size: var(--size-spacing-8) var(--size-spacing-8);
             background-repeat: no-repeat;
@@ -121,16 +130,16 @@
                     }
 
                     .A_LandingIntroButtonBlack {
-                        background: var(--colors-neutrals-900);
+                        background: var(--colors-light-900-dark-50);
                         color: var(--colors-neutrals-0);
                     }
 
                     .A_LandingIntroButtonOpacity {
                         display: flex;
                         box-sizing: border-box;
-                        border: var(--size-spacing-1) solid var(--colors-neutrals-900);
+                        border: var(--size-spacing-1) solid var(--colors-light-900-dark-50);
                         background: var(--colors-neutrals-50-01);
-                        color: var(--colors-neutrals-900);
+                        color: var(--colors-light-900-dark-50);
                     }
                 }
             }
@@ -296,13 +305,13 @@
                     .A_LandingInfoItemNumber {
                         text-align: center;
                         /* U_FontH0 */
-                        color: var(--colors-neutrals-900);
+                        color: var(--colors-light-900-dark-50);
                     }
 
                     .A_LandingInfoItemText {
                         text-align: center;
                         /* U_FontH1 */
-                        color: var(--colors-neutrals-900);
+                        color: var(--colors-light-900-dark-50);
                     }
                 }
             }
@@ -386,12 +395,12 @@
 
                     .A_LendingPartInfoTitle {
                         /* U_FontH1 */
-                        color: var(--colors-neutrals-900);
+                        color: var(--colors-light-900-dark-50);
                     }
 
                     .A_LendingPartInfoDescription {
                         /* U_FontB1 */
-                        color: var(--colors-neutrals-900);
+                        color: var(--colors-light-900-dark-50);
                     }
                 }
 
@@ -404,7 +413,7 @@
                     gap: var(--size-spacing-8);
                     flex-shrink: 0;
 
-                    background: var(--colors-neutrals-900);
+                    background: var(--colors-light-900-dark-50);
                     /* U_FontS3 */
                     color: var(--colors-neutrals-0);
                 }
@@ -482,7 +491,7 @@
 
                 .A_LandingBoringTitle,
                 .A_LandingBoringDescription {
-                    color: var(--colors-neutrals-900);
+                    color: var(--colors-light-900-dark-50);
                 }
             }
         }
@@ -539,7 +548,7 @@
                     text-align: center;
 
                     /* U_FontH1 */
-                    color: var(--colors-neutrals-900);
+                    color: var(--colors-light-900-dark-50);
                 }
 
                 .A_LandingLinkButton {
@@ -551,7 +560,7 @@
                     align-items: center;
                     gap: var(--size-spacing-8);
                     flex-shrink: 0;
-                    background: var(--colors-neutrals-900);
+                    background: var(--colors-light-900-dark-50);
                     color: var(--colors-neutrals-0);
                 }
             }
@@ -606,7 +615,6 @@
                     .M_LandingIntroTitle {
                         .A_LandingIntroTitleText {
                             /* U_FontH1 */
-                            color: var(--colors-neutrals-900);
                             font-family: var(--font-KairosSans);
                             font-size: 4rem;
                             line-height: 100%;
@@ -631,7 +639,6 @@
                 .A_LandingInfoItemNumber,
                 A_LandingInfoItemText {
                     /* U_FontH1 */
-                    color: var(--colors-neutrals-900);
                     font-family: var(--font-KairosSans);
                     font-size: 4rem;
                     line-height: 100%;
@@ -686,7 +693,6 @@
                     .M_LandingIntroTitle {
                         .A_LandingIntroTitleText {
                             /* U_FontH1-Mob */
-                            color: var(--colors-neutrals-900);
                             font-family: var(--font-KairosSans);
                             font-size: 3.5rem;
                             line-height: 100%;
@@ -714,7 +720,6 @@
                 .A_LandingInfoItemNumber,
                 A_LandingInfoItemText {
                     /* U_FontHmob */
-                    color: var(--colors-neutrals-900);
                     font-family: var(--font-KairosSans);
                     font-size: 3.5rem;
                     line-height: 100%;
@@ -742,7 +747,6 @@
 
                     .A_LendingPartInfoTitle {
                         /* U_FontH1-Mob */
-                        color: var(--colors-neutrals-900);
                         font-family: var(--font-KairosSans);
                         font-size: 3.5rem;
                         line-height: 100%;
@@ -778,7 +782,6 @@
 
                     .A_LandingBoringTitle {
                         /* U_FontH1-Mob */
-                        color: var(--colors-neutrals-900);
                         font-family: var(--font-KairosSans);
                         font-size: 3.5rem;
                         line-height: 100%;
@@ -792,7 +795,6 @@
 
         .C_LandingLinks .W_LandingLinkTexts .A_LandingLinkHeading {
             /* U_FontH1-Mob */
-            color: var(--colors-neutrals-900);
             font-family: var(--font-KairosSans);
             font-size: 3.5rem;
             line-height: 100%;

@@ -362,6 +362,19 @@ const galleryScrollBarArrowRight = document.querySelector(".Q_GalleryScrollBarAr
 const galleryScrollBarNumbers = Array.from(document.querySelectorAll(".A_GalleryScrollBarNumbers .U_ButtonIcon"));
 const galleryScrollBarNumbersCount = galleryScrollBarNumbers.length;
 let galleryScrollBarNumbersCountDraw = galleryScrollBarNumbersCount;
+
+function updatePaginationUi() {
+  galleryScrollBarNumbers.forEach((number, index) => {
+    number.classList.toggle("A_GalleryScrollBarNumberHide", index >= galleryScrollBarNumbersCountDraw);
+    number.classList.toggle("is-current", index === galleryPage && index < galleryScrollBarNumbersCountDraw);
+  });
+
+  const isFirstPage = galleryPage === 0;
+  const isLastPage = galleryPage === galleryScrollBarNumbersCountDraw - 1;
+
+  galleryScrollBarArrowLeft.classList.toggle("is-disabled", isFirstPage);
+  galleryScrollBarArrowRight.classList.toggle("is-disabled", galleryScrollBarNumbersCountDraw <= 1 || isLastPage);
+}
 // Галерея вверх
 function scrollToGallery() {
   const gallery = document.getElementById("gallery");
@@ -371,36 +384,22 @@ function scrollToGallery() {
 }
 // Влево
 galleryScrollBarArrowLeft.addEventListener("click", () => {
-  if (galleryPage - 1 == 0) {
-    galleryScrollBarArrowLeft.style.opacity = "var(--official-no-interaction-opacity)";
-  }
   if (galleryPage == 0) {
     return;
   }
-  galleryScrollBarArrowRight.style.opacity = "1";
-  galleryScrollBarNumbers[galleryPage].style.opacity = "var(--official-no-interaction-opacity)";
-  galleryScrollBarNumbers[galleryPage].style.border = "none";
   galleryPage -= 1;
-  galleryScrollBarNumbers[galleryPage].style.opacity = "1";
-  galleryScrollBarNumbers[galleryPage].style.border = "1.5px dashed var(--colors-neutrals-900)";
+  updatePaginationUi();
 
   drawingWorks();
   scrollToGallery();
 });
 // Вправо
 galleryScrollBarArrowRight.addEventListener("click", () => {
-  if (galleryPage + 1 == galleryScrollBarNumbersCountDraw - 1) {
-    galleryScrollBarArrowRight.style.opacity = "var(--official-no-interaction-opacity)";
-  }
   if (galleryPage == galleryScrollBarNumbersCountDraw - 1) {
     return;
   }
-  galleryScrollBarArrowLeft.style.opacity = "1";
-  galleryScrollBarNumbers[galleryPage].style.opacity = "var(--official-no-interaction-opacity)";
-  galleryScrollBarNumbers[galleryPage].style.border = "none";
   galleryPage += 1;
-  galleryScrollBarNumbers[galleryPage].style.opacity = "1";
-  galleryScrollBarNumbers[galleryPage].style.border = "1.5px dashed var(--colors-neutrals-900)";
+  updatePaginationUi();
 
   drawingWorks();
   scrollToGallery();
@@ -409,24 +408,8 @@ galleryScrollBarArrowRight.addEventListener("click", () => {
 function handleGalleryNumberClick(index) {
   if (index === galleryPage) return;
 
-  // сброс текущей активной
-  galleryScrollBarNumbers[galleryPage].style.opacity = "var(--official-no-interaction-opacity)";
-  galleryScrollBarNumbers[galleryPage].style.border = "none";
-
   galleryPage = index;
-
-  // установка новой активной
-  galleryScrollBarNumbers[galleryPage].style.opacity = "1";
-  galleryScrollBarNumbers[galleryPage].style.border = "1.5px dashed var(--colors-neutrals-900)";
-
-  // обновление стрелок
-  galleryScrollBarArrowLeft.style.opacity =
-    galleryPage === 0 ? "var(--official-no-interaction-opacity)" : "1";
-
-  galleryScrollBarArrowRight.style.opacity =
-    galleryPage === galleryScrollBarNumbersCountDraw - 1
-      ? "var(--official-no-interaction-opacity)"
-      : "1";
+  updatePaginationUi();
 
   drawingWorks();
   scrollToGallery();
@@ -442,27 +425,7 @@ function calcPagenation() {
   galleryScrollBarNumbersCountDraw = Math.ceil(filteredWorks.length / galleryCapacity);
   galleryPage = 0;
 
-  galleryScrollBarNumbers.forEach((number, index) => {
-    number.style.opacity = "var(--official-no-interaction-opacity)";
-    number.style.border = "none";
-
-    if (index < galleryScrollBarNumbersCountDraw) {
-      number.style.display = "inline-flex";
-    } else {
-      number.style.display = "none";
-    }
-  });
-
-  if (galleryScrollBarNumbersCountDraw > 0) {
-    galleryScrollBarNumbers[galleryPage].style.opacity = "1";
-    galleryScrollBarNumbers[galleryPage].style.border = "1.5px dashed var(--colors-neutrals-900)";
-  }
-
-  galleryScrollBarArrowLeft.style.opacity = "var(--official-no-interaction-opacity)";
-  galleryScrollBarArrowRight.style.opacity =
-    galleryScrollBarNumbersCountDraw > 1
-      ? "1"
-      : "var(--official-no-interaction-opacity)";
+  updatePaginationUi();
 }
 
 // Сохранение номера работы

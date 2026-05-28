@@ -146,10 +146,10 @@
 
                             /* U_FontC2 */
                             color: var(--colors-light-900-dark-50);
-                        }
 
-                        input::placeholder {
-                            color: var(--colors-neutrals-450);
+                            ::placeholder {
+                                color: var(--colors-neutrals-450);
+                            }
                         }
                     }
 

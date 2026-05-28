@@ -146,11 +146,12 @@
                         height: 100%;
                         flex: 1;
                         min-width: 0;
-                        color: var(--colors-light-900-dark-50);
-                    }
 
-                    input::placeholder {
-                        color: var(--colors-neutrals-450);
+                        color: var(--colors-light-900-dark-50);
+
+                        ::placeholder {
+                            color: var(--colors-neutrals-450);
+                        }
                     }
 
                     .Q_HeaderSearchIcon {
@@ -340,10 +341,10 @@
 
                         /* U_FontC2 */
                         color: var(--colors-light-900-dark-50);
-                    }
 
-                    textarea::placeholder {
-                        color: var(--colors-neutrals-450);
+                        ::placeholder {
+                            color: var(--colors-neutrals-450);
+                        }
                     }
 
                     .A_HeaderSearchFieldButton {

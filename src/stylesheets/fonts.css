@@ -190,6 +190,16 @@
   text-transform: uppercase;
 }
 
+.U_FontC2-NotUp {
+  /* U_FontC2-NotUp */
+  color: var(--colors-neutrals-900);
+  font-family: var(--font-JetBrains);
+  font-size: 1rem;
+  line-height: 145%;
+  letter-spacing: -0.05rem;
+  text-transform: none;
+}
+
 .U_FontC2-Code {
   /* U_FontC2-Code */
   color: var(--colors-neutrals-450);

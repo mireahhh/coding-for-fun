@@ -103,24 +103,15 @@
         height: var(--size-spacing-40);
         width: var(--size-spacing-40);
         border-radius: var(--size-radius-inf);
-        opacity: var(--official-no-interaction-opacity);
-        /* U_FontC2 */
-        color: var(--colors-light-900-dark-50);
+
+        color: var(--colors-neutrals-450);
 
         &.is-current {
-          /* дописать это состояние и использовать его
-          Обычное состояние - это неактивное
-          Для стрелочек так же, только там не current */
+          border: var(--size-spacing-1-5) dashed var(--colors-light-900-dark-50);
+
+          /* U_FontC2 */
+          color: var(--colors-light-900-dark-50);
         }
-      }
-
-      .A_GalleryScrollBarNumberHighlight {
-        opacity: 1;
-        border: 1.5px dashed var(--colors-light-900-dark-50);
-      }
-
-      .A_GalleryScrollBarNumberHide {
-        display: none;
       }
     }
 
@@ -134,19 +125,10 @@
       font-style: normal;
       font-weight: 200;
       line-height: 130%;
-    }
 
-    .Q_GalleryScrollBarArrowLeft {
-      opacity: var(--official-no-interaction-opacity);
-    }
-
-    .Q_GalleryScrollBarArrowRight {
-      opacity: 1;
-    }
-
-    .A_GalleryScrollBarNumbers {
-      /* U_FontC2 */
-      color: var(--colors-light-900-dark-50);
+      &.is-disabled {
+        color: var(--colors-neutrals-450);
+      }
     }
   }
 }

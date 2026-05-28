@@ -60,7 +60,7 @@
           backdrop-filter: var(--size-spacing-5);
 
           /* Heading/H1 */
-          color: var(--colors-neutrals-900);
+          color: var(--colors-light-900-dark-50);
         }
 
         .M_HandbookPartDescription {
@@ -72,7 +72,7 @@
           backdrop-filter: var(--size-spacing-5);
 
           /* U_FontB1 */
-          color: var(--colors-neutrals-900);
+          color: var(--colors-light-900-dark-50);
         }
       }
 
@@ -83,7 +83,7 @@
         justify-content: center;
         align-items: center;
         gap: var(--size-spacing-8);
-        background: var(--colors-neutrals-900);
+        background: var(--colors-light-900-dark-50);
         flex-shrink: 0;
 
         /* U_FontB2 */
@@ -129,7 +129,7 @@
           align-self: stretch;
 
           /* U_FontC2 */
-          color: var(--colors-neutrals-900);
+          color: var(--colors-light-900-dark-50);
         }
 
         .A_HandbookModuleLink {
@@ -168,7 +168,7 @@
           border-radius: var(--size-radius-4);
 
           /* U_FontH2 */
-          color: var(--colors-neutrals-900);
+          color: var(--colors-light-900-dark-50);
         }
 
         .HandbookPartNoActiveDate {
@@ -275,7 +275,6 @@
         .W_HandbookPartTexts {
           .M_HandbookPartHeading {
             /* H0 -> H1-mob */
-            color: var(--colors-neutrals-900);
             font-family: var(--font-KairosSans);
             font-size: 3.5rem;
             line-height: 100%;

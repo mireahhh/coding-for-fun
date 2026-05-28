@@ -55,7 +55,7 @@
         }
 
         .W_TutorialNavigationPage .A_TutorialNavigationTitle {
-            color: var(--colors-neutrals-900);
+            color: var(--colors-light-900-dark-50);
         }
 
         .W_TutorialNavigationPart .A_TutorialNavigationTitle {
@@ -84,7 +84,7 @@
                     box-sizing: border-box;
                     padding: var(--size-spacing-2) var(--size-spacing-12);
 
-                    color: var(--colors-neutrals-900);
+                    color: var(--colors-light-900-dark-50);
                     border-left: var(--size-spacing-1-5) solid transparent;
                     background: transparent;
 
@@ -97,7 +97,6 @@
                 .A_TutorialNavigationPageLink.is-current {
                     color: var(--colors-neutrals-900);
                     background: var(--colors-neutrals-150-60);
-                    /* border-left: var(--size-spacing-1-5) solid var(--colors-neutrals-900); */
                 }
             }
         }
@@ -194,7 +193,7 @@
                 width: fit-content;
 
                 /* U_FontH3 */
-                color: var(--colors-neutrals-900);
+                color: var(--colors-light-900-dark-50);
             }
 
             .A_TutorialText {
@@ -207,7 +206,7 @@
                 width: 100%;
 
                 /* U_FontB1 */
-                color: var(--colors-neutrals-900);
+                color: var(--colors-light-900-dark-50);
 
                 span {
                     display: inline;
@@ -252,7 +251,7 @@
                     text-align: center;
 
                     /* U_FontS2 */
-                    color: var(--colors-neutrals-900);
+                    color: var(--colors-light-900-dark-50);
 
                     &::before {
                         content: "";
@@ -261,10 +260,10 @@
                         pointer-events: none;
 
                         background:
-                            linear-gradient(black, black) top left,
-                            linear-gradient(black, black) top right,
-                            linear-gradient(black, black) bottom left,
-                            linear-gradient(black, black) bottom right;
+                            linear-gradient(var(--colors-light-900-dark-50), var(--colors-light-900-dark-50)) top left,
+                            linear-gradient(var(--colors-light-900-dark-50), var(--colors-light-900-dark-50)) top right,
+                            linear-gradient(var(--colors-light-900-dark-50), var(--colors-light-900-dark-50)) bottom left,
+                            linear-gradient(var(--colors-light-900-dark-50), var(--colors-light-900-dark-50)) bottom right;
 
                         background-size: var(--size-spacing-6) var(--size-spacing-6);
                         background-repeat: no-repeat;
@@ -329,7 +328,7 @@
                     counter-increment: item;
 
                     /* U_FontB1 */
-                    color: var(--colors-neutrals-900);
+                    color: var(--colors-light-900-dark-50);
 
                     &::before {
                         content: counter(item) ".\A0";
