@@ -233,7 +233,7 @@
     }
 }
 
-@media (max-width: 1152px) {
+/* @media (max-width: 1152px) {
     .S_Footer {
         &::before {
             background:
@@ -246,7 +246,7 @@
             mix-blend-mode: plus-lighter;
         }
     }
-}
+} */
 
 @media (max-width: 594px) {
     .S_Footer .O_FooterContent {
