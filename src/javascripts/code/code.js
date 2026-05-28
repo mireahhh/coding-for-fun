@@ -239,9 +239,14 @@ export function initCodeBlocks() {
         const copyButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonCopy");
         const textarea = codeBlock.querySelector(".W_TutorialSingleCodeTextRun");
         const highlight = codeBlock.querySelector(".A_TutorialSingleCodeTextHighlight");
+        const textLayers = codeBlock.querySelector(".W_TutorialSingleCodeTextLayers");
         const textAreaWrapper = codeBlock.querySelector(".W_TutorialSingleCodeTextArea");
 
         if (!iframe || !runStopButton || !resetButton || !copyButton || !textarea || !highlight || !textAreaWrapper) return;
+
+        textarea.classList.add("U_FontC2-Code");
+        highlight.classList.add("U_FontC2-Code");
+        textLayers?.classList.add("U_FontC2-Code");
 
         let lineNumbers = textAreaWrapper.querySelector(".A_TutorialSingleCodeLineNumbers");
         if (!lineNumbers) {
@@ -250,6 +255,8 @@ export function initCodeBlocks() {
             lineNumbers.setAttribute("aria-hidden", "true");
             textAreaWrapper.prepend(lineNumbers);
         }
+
+        lineNumbers.classList.add("U_FontC2-Code");
 
         const defaultCode = getDefaultCode(codeBlockId, runtime);
         textarea.value = defaultCode;
@@ -376,7 +383,7 @@ export function initCodeBlocks() {
         textarea.addEventListener("click", scheduleCaretSync);
         textarea.addEventListener("keyup", scheduleCaretSync);
         textarea.addEventListener("keydown", scheduleCaretSync);
-                textarea.addEventListener("keydown", (event) => {
+        textarea.addEventListener("keydown", (event) => {
             const isCtrlPressed = event.ctrlKey || event.metaKey;
             if (!isCtrlPressed || event.altKey) return;
 
