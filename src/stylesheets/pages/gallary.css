@@ -140,9 +140,16 @@
   }
 
   &.is-show-no-results {
-    .W_HeaderSearchNoResults {
+    margin-top: 0;
+
+    .C_GalleryWorks {
+      display: none;
+    }
+
+    .W_GalleryWorksNoResults {
       display: flex;
     }
+
     .W_GalleryScrollBar {
       display: none;
     }

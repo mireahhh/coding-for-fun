@@ -85,6 +85,10 @@
             color: var(--colors-neutrals-0);
         }
     }
+
+    &.is-hide {
+        display: none;
+    }
 }
 
 /* m 4 -> 3 */
