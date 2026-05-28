@@ -359,7 +359,7 @@ const galleryWorksSection = document.querySelector(".O_GalleryWorks");
 let galleryPage = 0;
 const galleryScrollBarArrowLeft = document.querySelector(".Q_GalleryScrollBarArrowLeft");
 const galleryScrollBarArrowRight = document.querySelector(".Q_GalleryScrollBarArrowRight");
-const galleryScrollBarNumbersContainer = document.querySelector(".A_GalleryScrollBarNumbers");
+const galleryScrollBarNumbersContainer = document.querySelector(".C_GalleryScrollBarNumbers");
 let galleryScrollBarNumbers = [];
 let galleryScrollBarNumbersCountDraw = 0;
 

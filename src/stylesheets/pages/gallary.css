@@ -90,13 +90,13 @@
     height: var(--size-spacing-40);
     align-self: center;
 
-    .A_GalleryScrollBarNumbers {
+    .C_GalleryScrollBarNumbers {
       display: flex;
       flex-direction: row;
       align-items: center;
       gap: var(--size-spacing-8);
 
-      buttom {
+      .A_GalleryScrollBarNumber {
         display: flex;
         align-items: center;
         justify-content: center;
