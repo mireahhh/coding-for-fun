@@ -390,7 +390,7 @@ export function initCodeBlocks() {
                 const selectionStart = textarea.selectionStart || 0;
                 const selectionEnd = textarea.selectionEnd || 0;
                 const value = textarea.value;
-                const tabSpaces = "  ";
+                const tabSpaces = "\t";
 
                 textarea.value = `${value.slice(0, selectionStart)}${tabSpaces}${value.slice(selectionEnd)}`;
 
