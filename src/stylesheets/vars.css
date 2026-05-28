@@ -109,6 +109,10 @@
     --colors-brand-primary-SeedGreen: #37e87a;
     --colors-brand-primary-CoreSun: #ffc300;
     /* rainbow */
+
+    /* background: linear-gradient(0deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.20) 100%), linear-gradient(0deg, #39E87B 0.48%, #32B4C1 30%, #CD5BC1 58.17%, #E56BC0 70%, #FFC818 100%), #D9D9D9;
+    background-blend-mode: plus-lighter, normal, normal; */
+
     --colors-brand-rainbow:
         #F372B5 0%,
         #F76479 12.5%,
@@ -122,6 +126,10 @@
     --colors-brand-rainbow-subtrate:
         var(--colors-neutrals-0-15),
         var(--colors-neutrals-0-30);
+
+    /* background: linear-gradient(0deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.20) 100%), linear-gradient(0deg, #39E87B 0.48%, #32B4C1 22.01%, #CD5BC1 50.62%, #E56BC0 61.41%, #FFC818 80%, #39E87B 100%);
+    background-blend-mode: plus-lighter, normal; */
+
     --colors-brand-rainbow-loop:
         #F372B5 0%,
         #F76479 10%,

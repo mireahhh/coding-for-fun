@@ -4,16 +4,23 @@ const ALERT_LIFETIME_MS = 500000;
 
 const alertQueue = [];
 let alertRoot = null;
+let alertStack = null;
 
 function ensureAlertRoot() {
-  if (alertRoot) return alertRoot;
+  if (alertRoot && alertStack) return { root: alertRoot, stack: alertStack };
 
   const root = document.createElement("div");
   root.className = "O_Alerts";
+
+  const stack = document.createElement("div");
+  stack.className = "C_AlertsRight";
+  root.append(stack);
+
   document.body.append(root);
   alertRoot = root;
+  alertStack = stack;
 
-  return alertRoot;
+  return { root: alertRoot, stack: alertStack };
 }
 
 function updateAlertOffsets() {
@@ -81,7 +88,7 @@ function createAlertElement(messageHtml) {
 export function showAlert(messageHtml) {
   if (!messageHtml) return;
 
-  const root = ensureAlertRoot();
+  const { stack } = ensureAlertRoot();
   const element = createAlertElement(messageHtml);
 
   const entry = {
@@ -102,7 +109,7 @@ export function showAlert(messageHtml) {
     dismissAlert(entry, { instant: true });
   });
 
-  root.append(element);
+  stack.append(element);
   alertQueue.push(entry);
   updateAlertOffsets();
 
