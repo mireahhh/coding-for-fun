@@ -133,7 +133,7 @@
   }
 
   .W_GalleryWorksNoResults {
-    display: flex;
+    display: none;
     margin-top: 0;
     padding-block: var(--size-spacing-56);
     padding-inline: 0;

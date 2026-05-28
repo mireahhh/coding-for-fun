@@ -66,12 +66,10 @@ const defMatrFilters = [
   [false, [false, false, false]],
   [false, [false, false]],
 ];
-const defNoResults = false;
 const defAppliedFilters = [new Set(), new Set(), new Set()];
 
 // let matrDraw = structuredClone(defMatrDraw);
 let matrFilters = structuredClone(defMatrFilters);
-let noResults = defNoResults;
 let appliedFilters = structuredClone(defAppliedFilters);
 
 function calcFilters() {
@@ -351,26 +349,49 @@ const galleryWorks = works.map((work) => {
 
 let sortedWorks = structuredClone(galleryWorks);
 let filteredWorks = structuredClone(sortedWorks);
+let noResults = false;
 const galleryCanvases = Array.from(document.querySelectorAll(".C_GalleryWorks .W_GalleryWork")).slice(
   0,
   galleryCapacity,
 );
+const galleryWorksSection = document.querySelector(".O_GalleryWorks");
 // Пейдженация
 let galleryPage = 0;
 const galleryScrollBarArrowLeft = document.querySelector(".Q_GalleryScrollBarArrowLeft");
 const galleryScrollBarArrowRight = document.querySelector(".Q_GalleryScrollBarArrowRight");
-const galleryScrollBarNumbers = Array.from(document.querySelectorAll(".A_GalleryScrollBarNumbers .U_ButtonIcon"));
-const galleryScrollBarNumbersCount = galleryScrollBarNumbers.length;
-let galleryScrollBarNumbersCountDraw = galleryScrollBarNumbersCount;
+const galleryScrollBarNumbersContainer = document.querySelector(".A_GalleryScrollBarNumbers");
+let galleryScrollBarNumbers = [];
+let galleryScrollBarNumbersCountDraw = 0;
+
+function setNoResultsState(value) {
+  noResults = value;
+  galleryWorksSection.classList[value ? "add" : "remove"]("is-show-no-results");
+}
+
+function rebuildPaginationButtons() {
+  galleryScrollBarNumbersContainer.innerHTML = "";
+  galleryScrollBarNumbers = [];
+
+  for (let pageIndex = 0; pageIndex < galleryScrollBarNumbersCountDraw; pageIndex += 1) {
+    const pageButton = document.createElement("button");
+    pageButton.className = "U_ButtonIcon";
+    pageButton.textContent = String(pageIndex + 1).padStart(2, "0");
+    pageButton.addEventListener("click", () => {
+      handleGalleryNumberClick(pageIndex);
+    });
+
+    galleryScrollBarNumbersContainer.append(pageButton);
+    galleryScrollBarNumbers.push(pageButton);
+  }
+}
 
 function updatePaginationUi() {
   galleryScrollBarNumbers.forEach((number, index) => {
-    number.classList.toggle("A_GalleryScrollBarNumberHide", index >= galleryScrollBarNumbersCountDraw);
-    number.classList.toggle("is-current", index === galleryPage && index < galleryScrollBarNumbersCountDraw);
+    number.classList.toggle("is-current", index === galleryPage);
   });
 
   const isFirstPage = galleryPage === 0;
-  const isLastPage = galleryPage === galleryScrollBarNumbersCountDraw - 1;
+  const isLastPage = galleryPage >= galleryScrollBarNumbersCountDraw - 1;
 
   galleryScrollBarArrowLeft.classList.toggle("is-disabled", isFirstPage);
   galleryScrollBarArrowRight.classList.toggle("is-disabled", galleryScrollBarNumbersCountDraw <= 1 || isLastPage);
@@ -414,17 +435,13 @@ function handleGalleryNumberClick(index) {
   drawingWorks();
   scrollToGallery();
 }
-// Обработчики цифор
-galleryScrollBarNumbers.forEach((btn, index) => {
-  btn.addEventListener("click", () => {
-    handleGalleryNumberClick(index);
-  });
-});
 // Пересчитать пейдженацию (после сортировки)
 function calcPagenation() {
   galleryScrollBarNumbersCountDraw = Math.ceil(filteredWorks.length / galleryCapacity);
   galleryPage = 0;
+  setNoResultsState(filteredWorks.length === 0);
 
+  rebuildPaginationButtons();
   updatePaginationUi();
 }
 
