@@ -54,7 +54,13 @@ export function highlightCode(code) {
     return html;
 }
 
-function getDefaultCode(blockId, runtime) {
+const defaultSandboxCodeIndex = 3;
+
+function getDefaultCode(blockId, runtime, isSandboxCodeBlock = false) {
+    if (isSandboxCodeBlock) {
+        const sandboxCodes = sandboxCodeByRuntime[runtime] || [];
+        return sandboxCodes[defaultSandboxCodeIndex] || sandboxCodes[0] || defaultCodeByRuntime[runtime] || "";
+    }
     return defaultCodeById[blockId] || defaultCodeByRuntime[runtime] || "";
 }
 
@@ -260,10 +266,9 @@ export function initCodeBlocks() {
 
         lineNumbers.classList.add("U_FontC2-Code");
 
-        const defaultCode = getDefaultCode(codeBlockId, runtime);
-        textarea.value = defaultCode;
-
         const isSandboxCodeBlock = codeBlock.classList.contains("O_TutorialSingleCode--Sandbox");
+        const defaultCode = getDefaultCode(codeBlockId, runtime, isSandboxCodeBlock);
+        textarea.value = defaultCode;
 
         function autoResizeTextarea() {
             if (isSandboxCodeBlock) {

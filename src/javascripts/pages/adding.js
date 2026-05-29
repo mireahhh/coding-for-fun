@@ -4,7 +4,13 @@ import { getStoredArray, setStoredArray } from "../utils/storageCache.js";
 import { getWorkPayloadChecksum } from "../utils/signatures.js";
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mgoqdjoq";
-
+const ADDING_FORM_FIELD_STORAGE_KEYS = {
+  addingAuthor: "addingFormAuthor",
+  addingTitle: "addingFormTitle",
+  addingDescription: "addingFormDescription",
+  addingLink: "addingFormLink",
+};
+const ADDING_FORM_FIELD_IDS = Object.keys(ADDING_FORM_FIELD_STORAGE_KEYS);
 
 // Иконка ссылки: добавляем/убираем класс, если поле ссылки заполнено.
 function syncAddingLinkIconState() {
@@ -82,6 +88,47 @@ function isValidWorkUrl(urlValue) {
   } catch {
     return false;
   }
+}
+
+function getAddingFormFields() {
+  return ADDING_FORM_FIELD_IDS.map((fieldId) => document.getElementById(fieldId)).filter(Boolean);
+}
+
+function saveAddingFormFieldValue(field) {
+  const storageKey = ADDING_FORM_FIELD_STORAGE_KEYS[field.id];
+  if (!storageKey) return;
+
+  if (field.value) {
+    localStorage.setItem(storageKey, field.value);
+  } else {
+    localStorage.removeItem(storageKey);
+  }
+}
+
+function clearStoredAddingFormValues() {
+  Object.values(ADDING_FORM_FIELD_STORAGE_KEYS).forEach((storageKey) => {
+    localStorage.removeItem(storageKey);
+  });
+}
+
+function initStoredAddingFormValues() {
+  getAddingFormFields().forEach((field) => {
+    const savedValue = localStorage.getItem(ADDING_FORM_FIELD_STORAGE_KEYS[field.id]);
+
+    if (savedValue !== null) {
+      field.value = savedValue;
+    }
+
+    ["input", "change"].forEach((eventName) => {
+      field.addEventListener(eventName, () => {
+        saveAddingFormFieldValue(field);
+      });
+    });
+  });
+
+  syncAddingLinkIconState();
+  syncAddingDescriptionHeight();
+  syncSubmitWorkButtonState();
 }
 
 function collectAddingFormValues() {
@@ -195,10 +242,7 @@ async function submitAddingFormToFormspree(formData) {
 }
 
 function initAddingFormValidation() {
-  const trackedFieldIds = ["addingAuthor", "addingTitle", "addingDescription", "addingLink"];
-  const trackedFields = trackedFieldIds
-    .map((fieldId) => document.getElementById(fieldId))
-    .filter(Boolean);
+  const trackedFields = getAddingFormFields();
 
   if (!trackedFields.length) return;
 
@@ -221,6 +265,7 @@ function clearAddingForm() {
   [authorInput, titleInput, descriptionInput, linkInput].forEach((field) => {
     if (field) field.value = "";
   });
+  clearStoredAddingFormValues();
 
   syncAddingLinkIconState();
   syncAddingDescriptionHeight();
@@ -231,6 +276,7 @@ function clearAddingForm() {
 function initAddingFormActions() {
   const addingForm = document.getElementById("addingForm");
   const cleanFormButton = document.getElementById("cleanFormButton");
+  const submitWorkButton = document.getElementById("submitWorkButton");
 
   if (cleanFormButton) {
     cleanFormButton.addEventListener("click", clearAddingForm);
@@ -254,14 +300,14 @@ function initAddingFormActions() {
       const duplicateInGalleryBy = findDuplicateSignatureMatch(gallerySignatures, signatures);
 
       if (duplicateInGalleryBy) {
-        showAlert(`Эта работа не отправлена, так как она уже есть в Галерее. Если это ошибка, обратитесь к нам, указав: ${duplicateInGalleryBy}`);
+        showAlert(`Эта работа не&nbsp;отправлена, так как она уже есть в&nbsp;Галерее. Если это ошибка, обратитесь к&nbsp;нам, указав: ${duplicateInGalleryBy}`);
         return;
       }
 
       const duplicateBy = findDuplicateSignatureMatch(existingSignatures, signatures);
 
       if (duplicateBy) {
-        showAlert(`Эта работа не отправлена, так как она уже была предложена. Если это ошибка, обратитесь к нам, указав: ${duplicateBy}`);
+        showAlert(`Эта работа не&nbsp;отправлена, так как она уже была&nbsp;предложена. Если это ошибка, обратитесь к&nbsp;нам, указав: ${duplicateBy}`);
         return;
       }
 
@@ -275,19 +321,23 @@ function initAddingFormActions() {
         const successMessageHtml = "Произведение отправлено на&nbsp;проверку. Если модерация будет пройдена, работа появится в&nbsp;Галерее: следи в&nbsp;соц.&nbsp;сетях!";
 
         showAlert(successMessageHtml);
-        clearAddingForm();
       } catch (error) {
         console.error(error);
-        showAlert("Не получилось отправить работу. Проверь подключение к интернету и попробуй ещё раз.");
+        showAlert("Не&nbsp;удалось отправить работу. Проверь подключение к&nbsp;Интернету и&nbsp;попробуй заполнить форму работы ещё&nbsp;раз");
       } finally {
         setSubmitWorkButtonSubmitting(false);
       }
+    });
+  } else if (submitWorkButton) {
+    submitWorkButton.addEventListener("click", (event) => {
+      event.preventDefault();
     });
   }
 }
 
 initAddingLinkIcon();
 initAddingDescriptionAutosize();
+initStoredAddingFormValues();
 initAddingFormValidation();
 initWorkDuplicateSignaturesStore();
 initAddingFormActions();

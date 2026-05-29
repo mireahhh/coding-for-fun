@@ -99,6 +99,289 @@ return () => {
 };`,
 };
 
+export const sandboxCodeByRuntime = {
+  vanilla: [
+    `const app = document.getElementById("app");
+
+app.innerHTML = "";
+app.style.width = "100%";
+app.style.height = "100%";
+app.style.display = "grid";
+app.style.placeItems = "center";
+app.style.background = "#ffffff";
+
+const label = document.createElement("div");
+label.textContent = "Vanilla JS sandbox";
+label.style.padding = "16px 20px";
+label.style.border = "2px solid #111827";
+label.style.borderRadius = "16px";
+label.style.fontFamily = "sans-serif";
+label.style.fontSize = "20px";
+
+app.appendChild(label);`,
+    `const app = document.getElementById("app");
+const canvas = document.createElement("canvas");
+const ctx = canvas.getContext("2d");
+
+app.innerHTML = "";
+app.appendChild(canvas);
+
+function resize() {
+  canvas.width = app.clientWidth;
+  canvas.height = app.clientHeight;
+  draw();
+}
+
+function draw() {
+  ctx.fillStyle = "#f8f8f8";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "#2fd3e6";
+  ctx.beginPath();
+  ctx.arc(canvas.width / 2, canvas.height / 2, 80, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+window.addEventListener("resize", resize);
+resize();`,
+    `const app = document.getElementById("app");
+const canvas = document.createElement("canvas");
+const ctx = canvas.getContext("2d");
+let animationId;
+
+app.innerHTML = "";
+app.appendChild(canvas);
+
+function resize() {
+  canvas.width = app.clientWidth;
+  canvas.height = app.clientHeight;
+}
+
+function animate(time) {
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  const x = canvas.width / 2 + Math.cos(time * 0.002) * 80;
+  ctx.fillStyle = "#ff86db";
+  ctx.fillRect(x - 40, canvas.height / 2 - 40, 80, 80);
+
+  animationId = requestAnimationFrame(animate);
+}
+
+window.addEventListener("resize", resize);
+resize();
+animate(0);
+
+return () => {
+  cancelAnimationFrame(animationId);
+  window.removeEventListener("resize", resize);
+};`,
+    `const app = document.getElementById("app");
+
+app.innerHTML = "";
+app.style.padding = "16px";
+app.style.overflow = "auto";
+app.style.fontFamily = "JetBrains Mono, Courier New, monospace";
+app.style.whiteSpace = "pre-wrap";
+app.style.background = "#ffffff";
+app.style.color = "#111827";
+
+function pair(title, width, height) {
+  return title + ": " + Math.round(width || 0) + " × " + Math.round(height || 0);
+}
+
+function render() {
+  const rect = app.getBoundingClientRect();
+  const root = document.documentElement;
+  const body = document.body;
+  const visual = window.visualViewport;
+
+  app.textContent = [
+    "Варианты размеров для создания окна:",
+    pair("app.clientWidth / app.clientHeight", app.clientWidth, app.clientHeight),
+    pair("app.getBoundingClientRect()", rect.width, rect.height),
+    pair("window.innerWidth / window.innerHeight", window.innerWidth, window.innerHeight),
+    pair("documentElement.clientWidth / clientHeight", root.clientWidth, root.clientHeight),
+    pair("body.clientWidth / body.clientHeight", body.clientWidth, body.clientHeight),
+    visual ? pair("visualViewport.width / height", visual.width, visual.height) : "visualViewport: нет",
+    pair("screen.width / screen.height", screen.width, screen.height)
+  ].join("\n");
+}
+
+window.addEventListener("resize", render);
+render();`,
+  ],
+
+  p5: [
+    `function setup() {
+  createCanvas(windowWidth, windowHeight);
+  noStroke();
+}
+
+function draw() {
+  background(248);
+  fill('#2fd3e6');
+  ellipse(width / 2, height / 2, 120);
+}`,
+    `function setup() {
+  const app = document.getElementById("app");
+  createCanvas(app.clientWidth, app.clientHeight);
+  noStroke();
+}
+
+function draw() {
+  background(248);
+  fill('#ff86db');
+  rect(width / 2 - 60, height / 2 - 60, 120, 120);
+}`,
+    `function setup() {
+  const app = document.getElementById("app");
+  const rect = app.getBoundingClientRect();
+  createCanvas(rect.width, rect.height);
+  noStroke();
+}
+
+function draw() {
+  background(248);
+  fill('#37e87a');
+  ellipse(mouseX, mouseY, 80);
+}`,
+    `// Диагностика размеров в p5.
+// Попробуй заменить первую строку в setup на один из вариантов:
+// createCanvas(windowWidth, windowHeight);
+// createCanvas(window.innerWidth, window.innerHeight);
+// createCanvas(document.documentElement.clientWidth, document.documentElement.clientHeight);
+// createCanvas(document.getElementById("app").clientWidth, document.getElementById("app").clientHeight);
+// const rect = document.getElementById("app").getBoundingClientRect(); createCanvas(rect.width, rect.height);
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  textFont('monospace');
+  textSize(16);
+  noLoop();
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  redraw();
+}
+
+function formatSize(name, w, h) {
+  return name + ': ' + round(w || 0) + ' × ' + round(h || 0);
+}
+
+function draw() {
+  const app = document.getElementById('app');
+  const appRect = app.getBoundingClientRect();
+  const root = document.documentElement;
+  const body = document.body;
+  const visual = window.visualViewport;
+  const canvas = document.querySelector('canvas');
+
+  const rows = [
+    'Что p5 подставляет в createCanvas(windowWidth, windowHeight):',
+    formatSize('p5 windowWidth / windowHeight', windowWidth, windowHeight),
+    '',
+    'Варианты, на которые можно опираться:',
+    formatSize('window.innerWidth / window.innerHeight', window.innerWidth, window.innerHeight),
+    formatSize('documentElement.clientWidth / clientHeight', root.clientWidth, root.clientHeight),
+    formatSize('body.clientWidth / body.clientHeight', body.clientWidth, body.clientHeight),
+    formatSize('app.clientWidth / app.clientHeight', app.clientWidth, app.clientHeight),
+    formatSize('app.getBoundingClientRect()', appRect.width, appRect.height),
+    visual ? formatSize('visualViewport.width / height', visual.width, visual.height) : 'visualViewport: нет',
+    formatSize('screen.width / screen.height', screen.width, screen.height),
+    '',
+    'Фактический canvas после createCanvas:',
+    formatSize('p5 width / height', width, height),
+    canvas ? formatSize('canvas.width / canvas.height', canvas.width, canvas.height) : 'canvas: не найден',
+    canvas ? formatSize('canvas.clientWidth / canvas.clientHeight', canvas.clientWidth, canvas.clientHeight) : 'canvas.client: не найден'
+  ];
+
+  background(255);
+  fill('#111827');
+  noStroke();
+  textLeading(24);
+  text(rows.join('\n'), 24, 36);
+}`,
+  ],
+
+  three: [
+    `const width = app.clientWidth;
+const height = app.clientHeight;
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+camera.position.z = 3;
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+const mesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshNormalMaterial());
+scene.add(mesh);
+renderer.render(scene, camera);`,
+    `const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xffffff);
+const camera = new THREE.PerspectiveCamera(50, app.clientWidth / app.clientHeight, 0.1, 1000);
+camera.position.z = 4;
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(app.clientWidth, app.clientHeight);
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+const mesh = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 32), new THREE.MeshNormalMaterial());
+scene.add(mesh);
+renderer.render(scene, camera);`,
+    `const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(50, app.clientWidth / app.clientHeight, 0.1, 1000);
+camera.position.z = 4;
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(app.clientWidth, app.clientHeight);
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+const mesh = new THREE.Mesh(new THREE.TorusKnotGeometry(0.8, 0.25, 100, 16), new THREE.MeshNormalMaterial());
+scene.add(mesh);
+let animationId;
+function animate() {
+  mesh.rotation.x += 0.01;
+  mesh.rotation.y += 0.02;
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+animate();
+return () => cancelAnimationFrame(animationId);`,
+    `app.innerHTML = "";
+app.style.padding = "16px";
+app.style.overflow = "auto";
+app.style.fontFamily = "JetBrains Mono, Courier New, monospace";
+app.style.whiteSpace = "pre-wrap";
+app.style.color = "#111827";
+
+function pair(title, width, height) {
+  return title + ": " + Math.round(width || 0) + " × " + Math.round(height || 0);
+}
+
+function renderSizes() {
+  const rect = app.getBoundingClientRect();
+  const root = document.documentElement;
+  const body = document.body;
+  const visual = window.visualViewport;
+
+  app.textContent = [
+    "Варианты размеров для Three.js renderer.setSize:",
+    pair("app.clientWidth / app.clientHeight", app.clientWidth, app.clientHeight),
+    pair("app.getBoundingClientRect()", rect.width, rect.height),
+    pair("window.innerWidth / window.innerHeight", window.innerWidth, window.innerHeight),
+    pair("documentElement.clientWidth / clientHeight", root.clientWidth, root.clientHeight),
+    pair("body.clientWidth / body.clientHeight", body.clientWidth, body.clientHeight),
+    visual ? pair("visualViewport.width / height", visual.width, visual.height) : "visualViewport: нет",
+    pair("screen.width / screen.height", screen.width, screen.height)
+  ].join("\n");
+}
+
+window.addEventListener("resize", renderSizes);
+renderSizes();
+
+return () => window.removeEventListener("resize", renderSizes);`,
+  ],
+};
+
 export const defaultCodeById = {
   patr1module1tutorial1code1: `function setup() {
   createCanvas(windowWidth, windowHeight); // создаём холст размера окна
@@ -1927,7 +2210,7 @@ return () => {
   material.dispose();
   renderer.dispose();
 }; `,
-patr2module3tutorial2code1: `const width = app.clientWidth;
+  patr2module3tutorial2code1: `const width = app.clientWidth;
 const height = app.clientHeight;
 
 // сцена
@@ -1968,7 +2251,7 @@ animate();
 
 // вывод
 renderer.render(scene, camera);`,
-patr2module3tutorial2code2: `const width = app.clientWidth;
+  patr2module3tutorial2code2: `const width = app.clientWidth;
 const height = app.clientHeight;
 
 // сцена
@@ -2009,7 +2292,7 @@ animate();
 
 // вывод
 renderer.render(scene, camera);`,
-patr2module3tutorial2code3: `const width = app.clientWidth;
+  patr2module3tutorial2code3: `const width = app.clientWidth;
 const height = app.clientHeight;
 
 // сцена
@@ -2050,7 +2333,7 @@ animate();
 
 // вывод
 renderer.render(scene, camera);`,
-patr2module3tutorial2code4: `const width = app.clientWidth;
+  patr2module3tutorial2code4: `const width = app.clientWidth;
 const height = app.clientHeight;
 
 // сцена
@@ -2101,7 +2384,7 @@ animate();
 
 // вывод
 renderer.render(scene, camera);`,
-patr2module3tutorial3code1: `const width = app.clientWidth;
+  patr2module3tutorial3code1: `const width = app.clientWidth;
 const height = app.clientHeight;
 
 // сцена
@@ -2156,7 +2439,7 @@ return () => {
   material.dispose();
   renderer.dispose();
 };`,
-patr2module3tutorial3code2: `const width = app.clientWidth;
+  patr2module3tutorial3code2: `const width = app.clientWidth;
 const height = app.clientHeight;
 
 // сцена
@@ -2202,7 +2485,7 @@ return () => {
   material.dispose();
   renderer.dispose();
 };`,
-patr2module3tutorial3code3: `<div class="U_FontC2-Code W_TutorialCopyItem">
+  patr2module3tutorial3code3: `<div class="U_FontC2-Code W_TutorialCopyItem">
   <p class="A_TutorialCopyText">
     const width = app.clientWidth;<br>
     const height = app.clientHeight;<br>
@@ -2233,7 +2516,7 @@ patr2module3tutorial3code3: `<div class="U_FontC2-Code W_TutorialCopyItem">
   </button>
 </div>
 `,
-patr2module3tutorial3code4: `const width = app.clientWidth;
+  patr2module3tutorial3code4: `const width = app.clientWidth;
 const height = app.clientHeight;
 
 // сцена
@@ -2284,7 +2567,7 @@ return () => {
   material.dispose();
   renderer.dispose();
 };`,
-patr2module3tutorial3code5: `const width = app.clientWidth;
+  patr2module3tutorial3code5: `const width = app.clientWidth;
 const height = app.clientHeight;
 
 // сцена
@@ -2355,7 +2638,7 @@ return () => {
   material.dispose();
   renderer.dispose();
 };`,
-patr2module3tutorial4code1: `const width = app.clientWidth;
+  patr2module3tutorial4code1: `const width = app.clientWidth;
 const height = app.clientHeight;
 
 // сцена
@@ -2423,7 +2706,7 @@ return () => {
   floorMaterial.dispose();
   renderer.dispose();
 };`,
-patr2module3tutorial4code2: `const width = app.clientWidth;
+  patr2module3tutorial4code2: `const width = app.clientWidth;
 const height = app.clientHeight;
 
 // сцена
@@ -2493,7 +2776,7 @@ return () => {
   floorMaterial.dispose();
   renderer.dispose();
 };`,
-patr2module3tutorial4code3: `const width = app.clientWidth;
+  patr2module3tutorial4code3: `const width = app.clientWidth;
 const height = app.clientHeight;
 
 // сцена
@@ -2564,7 +2847,7 @@ return () => {
   floorMaterial.dispose();
   renderer.dispose();
 };`,
-patr2module3tutorial4code4: `const width = app.clientWidth;
+  patr2module3tutorial4code4: `const width = app.clientWidth;
 const height = app.clientHeight;
 
 const scene = new THREE.Scene();
@@ -2625,7 +2908,7 @@ return () => {
   floorMaterial.dispose();
   renderer.dispose();
 };`,
-patr2module3tutorial4code5: `const width = app.clientWidth;
+  patr2module3tutorial4code5: `const width = app.clientWidth;
 const height = app.clientHeight;
 
 const scene = new THREE.Scene();
@@ -2687,7 +2970,7 @@ return () => {
   floorMaterial.dispose();
   renderer.dispose();
 };`,
-patr2module3tutorial4code6: `const width = app.clientWidth;
+  patr2module3tutorial4code6: `const width = app.clientWidth;
 const height = app.clientHeight;
 
 // сцена
@@ -2781,7 +3064,7 @@ return () => {
   floorMaterial.dispose();
   renderer.dispose();
 };`,
-patr2module3tutorial5code1: `const width = app.clientWidth;
+  patr2module3tutorial5code1: `const width = app.clientWidth;
 const height = app.clientHeight;
 
 // сцена
@@ -2857,7 +3140,7 @@ return () => {
   cancelAnimationFrame(animationId);
   renderer.dispose();
 };`,
-patr2module3tutorial5code2: `// создаём несколько отдельных объектов
+  patr2module3tutorial5code2: `// создаём несколько отдельных объектов
 
 const body = new THREE.Mesh(
   new THREE.BoxGeometry(1.5, 2, 1),
@@ -2873,7 +3156,7 @@ head.position.y = 1.5;
 
 scene.add(body);
 scene.add(head);`,
-patr2module3tutorial5code5: `const width = app.clientWidth;
+  patr2module3tutorial5code5: `const width = app.clientWidth;
 const height = app.clientHeight;
 
 // сцена
