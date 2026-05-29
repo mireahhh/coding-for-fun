@@ -4,6 +4,7 @@ import { getStoredArray, setStoredArray } from "../utils/storageCache.js";
 import { getWorkPayloadChecksum } from "../utils/signatures.js";
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mgoqdjoq";
+const ADDING_FORM_SUBJECT = "Заявка на добавление работы";
 const ADDING_FORM_FIELD_STORAGE_KEYS = {
   addingAuthor: "addingFormAuthor",
   addingTitle: "addingFormTitle",
@@ -138,6 +139,7 @@ function collectAddingFormValues() {
   const linkValue = document.getElementById("addingLink")?.value.trim() || "";
 
   return {
+    _subject: ADDING_FORM_SUBJECT,
     author: authorValue,
     title: titleValue,
     description: descriptionValue,
