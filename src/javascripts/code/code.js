@@ -241,6 +241,8 @@ export function initCodeBlocks() {
         const highlight = codeBlock.querySelector(".A_TutorialSingleCodeTextHighlight");
         const textLayers = codeBlock.querySelector(".W_TutorialSingleCodeTextLayers");
         const textAreaWrapper = codeBlock.querySelector(".W_TutorialSingleCodeTextArea");
+        const textAreaBody = textAreaWrapper?.querySelector(".W_TutorialSingleCodeTextBody") || textAreaWrapper;
+        const textAreaHeader = textAreaWrapper?.querySelector(".W_TutorialSingleCodeTextHeader");
 
         if (!iframe || !runStopButton || !resetButton || !copyButton || !textarea || !highlight || !textAreaWrapper) return;
 
@@ -253,7 +255,7 @@ export function initCodeBlocks() {
             lineNumbers = document.createElement("pre");
             lineNumbers.className = "U_FontC2-Code A_TutorialSingleCodeLineNumbers";
             lineNumbers.setAttribute("aria-hidden", "true");
-            textAreaWrapper.prepend(lineNumbers);
+            textAreaBody.prepend(lineNumbers);
         }
 
         lineNumbers.classList.add("U_FontC2-Code");
@@ -265,20 +267,24 @@ export function initCodeBlocks() {
 
         function autoResizeTextarea() {
             if (isSandboxCodeBlock) {
+                textAreaWrapper.style.height = "100%";
                 textarea.style.height = "100%";
                 highlight.style.height = "100%";
                 return;
             }
 
+            textAreaWrapper.style.height = "auto";
             textarea.style.height = "auto";
             highlight.style.height = "auto";
 
             const minHeight = 272;
             const maxHeight = minHeight * 2;
-            const nextHeight = Math.min(Math.max(textarea.scrollHeight, minHeight), maxHeight);
+            const headerHeight = textAreaHeader?.offsetHeight || 0;
+            const nextHeight = Math.min(Math.max(textarea.scrollHeight + headerHeight, minHeight), maxHeight);
 
-            textarea.style.height = `${nextHeight}px`;
-            highlight.style.height = `${nextHeight}px`;
+            textAreaWrapper.style.height = `${nextHeight}px`;
+            textarea.style.height = "100%";
+            highlight.style.height = "100%";
         }
 
         function syncTypographyMetrics() {

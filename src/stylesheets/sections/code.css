@@ -42,7 +42,7 @@
             display: flex;
             width: 100%;
             box-sizing: border-box;
-            align-items: flex-start;
+            align-items: stretch;
             align-self: stretch;
             min-height: var(--size-spacing-272);
             max-height: calc(2 * var(--size-spacing-272));
@@ -53,12 +53,36 @@
             /* border: var(--size-spacing-1) solid var(--colors-neutrals-200); */
             overflow: hidden;
 
+            .W_TutorialSingleCodeTextHeader {
+                flex: 0 0 auto;
+            }
+
+            .W_TutorialSingleCodeTextBody {
+                position: relative;
+                display: flex;
+                flex: 1 1 auto;
+                width: 100%;
+                min-width: 0;
+                min-height: 0;
+                overflow: hidden;
+            }
+
+            &.W_TutorialSingleCodeTextArea--WithHeader,
+            &:has(> .W_TutorialSingleCodeTextHeader) {
+                flex-direction: column;
+
+                >.W_TutorialSingleCodeTextBody {
+                    height: auto;
+                }
+            }
+
             .W_TutorialSingleCodeTextLayers {
                 position: relative;
                 flex: 1 1 auto;
                 min-width: 0;
-                min-height: var(--size-spacing-272);
-                max-height: calc(2 * var(--size-spacing-272));
+                min-height: 0;
+                max-height: none;
+                height: 100%;
                 overflow: hidden;
             }
 
@@ -77,9 +101,9 @@
                 inset: 0;
                 z-index: 0;
 
-                min-height: var(--size-spacing-272);
-                max-height: calc(2 * var(--size-spacing-272));
-                height: auto;
+                min-height: 0;
+                max-height: none;
+                height: 100%;
                 width: 100%;
                 box-sizing: border-box;
                 margin: 0;
@@ -137,6 +161,7 @@
                 z-index: 1;
                 flex: 0 0 auto;
                 width: var(--code-line-number-gutter-width);
+                height: 100%;
                 box-sizing: border-box;
                 margin: 0;
                 padding: var(--size-spacing-16) var(--code-line-number-gutter-padding);
@@ -171,9 +196,9 @@
                 appearance: none;
                 -webkit-appearance: none;
 
-                min-height: var(--size-spacing-272);
-                max-height: calc(2 * var(--size-spacing-272));
-                height: auto;
+                min-height: 0;
+                max-height: none;
+                height: 100%;
                 resize: none;
                 width: 100%;
                 box-sizing: border-box;
