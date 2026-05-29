@@ -191,6 +191,8 @@
             border-radius: var(--size-radius-4);
             border: var(--size-spacing-1-5) dashed var(--colors-neutrals-450);
             background: var(--colors-neutrals-opacity, var(--colors-neutrals-150-20));
+
+            color: var(--colors-neutrals-450);
         }
 
         .O_TutorialSection {

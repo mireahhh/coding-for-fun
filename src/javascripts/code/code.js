@@ -1,4 +1,4 @@
-import { defaultCodeByRuntime, defaultCodeById } from "./tutorialsCodeDefaults";
+import { defaultCodeByRuntime, defaultCodeById, sandboxCodeByRuntime } from "./tutorialsCodeDefaults";
 import {
     getEmptyHtml,
     getUnknownRuntimeHtml,
