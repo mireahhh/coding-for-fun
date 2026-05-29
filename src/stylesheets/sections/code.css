@@ -10,8 +10,11 @@
     .W_TutorialSingleCodeExecution {
         display: flex;
         height: var(--size-spacing-272);
+        width: auto;
         align-items: flex-start;
         aspect-ratio: 1/1;
+
+        border-radius: var(--size-radius-4);
 
         .A_TutorialSingleCodeExecutionCanvas {
             display: flex;
@@ -50,10 +53,10 @@
 
             border-radius: var(--size-radius-4);
             background: var(--colors-light-0-dark-950);
-            /* border: var(--size-spacing-1) solid var(--colors-neutrals-200); */
             overflow: hidden;
 
             .W_TutorialSingleCodeTextHeader {
+                height: 32px;
                 flex: 0 0 auto;
             }
 
@@ -351,19 +354,18 @@
 
     .W_TutorialSingleCodeExecution {
         border: var(--size-spacing-1-5) dashed var(--colors-neutrals-450);
+        height: var(--size-spacing-416);
         width: 100%;
-        height: auto;
-        aspect-ratio: auto;
         justify-content: center;
         background-color: var(--colors-light-50-dark-900);
+        border-radius: var(--size-radius-4);
         padding-block: var(--size-spacing-32);
 
         .A_TutorialSingleCodeExecutionCanvas {
-            height: var(--size-spacing-416);
-            width: auto;
+            width: 100%;
+            max-width: var(--size-spacing-416);
+            height: auto;
             aspect-ratio: 1/1;
-            border-radius: var(--size-radius-4);
-            border: var(--size-spacing-1) solid var(--colors-neutrals-200);
         }
     }
 }
