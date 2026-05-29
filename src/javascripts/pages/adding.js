@@ -3,6 +3,9 @@ import { showAlert } from "../sections/alerts.js";
 import { getStoredArray, setStoredArray } from "../utils/storageCache.js";
 import { getWorkPayloadChecksum } from "../utils/signatures.js";
 
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mgoqdjoq";
+
+
 // Иконка ссылки: добавляем/убираем класс, если поле ссылки заполнено.
 function syncAddingLinkIconState() {
   const linkInput = document.getElementById("addingLink");
@@ -161,9 +164,34 @@ function syncSubmitWorkButtonState() {
 
   const formData = collectAddingFormValues();
   const isValid = isAddingFormValid(formData);
+  const isSubmitting = submitWorkButton.dataset.submitting === "true";
 
-  submitWorkButton.classList.toggle("is-active", isValid);
-  submitWorkButton.disabled = !isValid;
+  submitWorkButton.classList.toggle("is-active", isValid && !isSubmitting);
+  submitWorkButton.disabled = !isValid || isSubmitting;
+}
+
+function setSubmitWorkButtonSubmitting(isSubmitting) {
+  const submitWorkButton = document.getElementById("submitWorkButton");
+  if (!submitWorkButton) return;
+
+  submitWorkButton.dataset.submitting = String(isSubmitting);
+  submitWorkButton.textContent = isSubmitting ? "Отправляем..." : "Предложить работу";
+  syncSubmitWorkButtonState();
+}
+
+async function submitAddingFormToFormspree(formData) {
+  const response = await fetch(FORMSPREE_ENDPOINT, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Formspree submit failed with status ${response.status}`);
+  }
 }
 
 function initAddingFormValidation() {
@@ -201,38 +229,45 @@ function clearAddingForm() {
 
 // Действия формы: обработчики кнопок "Сбросить" и "Предложить работу".
 function initAddingFormActions() {
+  const addingForm = document.getElementById("addingForm");
   const cleanFormButton = document.getElementById("cleanFormButton");
-  const submitWorkButton = document.getElementById("submitWorkButton");
 
   if (cleanFormButton) {
     cleanFormButton.addEventListener("click", clearAddingForm);
   }
 
-  if (submitWorkButton) {
-    submitWorkButton.addEventListener("click", () => {
+  if (addingForm) {
+    addingForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
       const formData = collectAddingFormValues();
       const isValid = isAddingFormValid(formData);
 
-      if (isValid) {
-        const signatures = createWorkDuplicateSignatures(formData);
-        const existingSignatures = Array.isArray(window.workDuplicateSignatures)
-          ? window.workDuplicateSignatures
-          : getStoredWorkDuplicateSignatures();
+      if (!isValid) return;
 
-        const gallerySignatures = getGalleryWorkDuplicateSignatures();
-        const duplicateInGalleryBy = findDuplicateSignatureMatch(gallerySignatures, signatures);
+      const signatures = createWorkDuplicateSignatures(formData);
+      const existingSignatures = Array.isArray(window.workDuplicateSignatures)
+        ? window.workDuplicateSignatures
+        : getStoredWorkDuplicateSignatures();
 
-        if (duplicateInGalleryBy) {
-          showAlert(`Эта работа не отправлена, так как она уже есть в Галерее. Если это ошибка, обратитесь к нам, указав: ${duplicateInGalleryBy}`);
-          return;
-        }
+      const gallerySignatures = getGalleryWorkDuplicateSignatures();
+      const duplicateInGalleryBy = findDuplicateSignatureMatch(gallerySignatures, signatures);
 
-        const duplicateBy = findDuplicateSignatureMatch(existingSignatures, signatures);
+      if (duplicateInGalleryBy) {
+        showAlert(`Эта работа не отправлена, так как она уже есть в Галерее. Если это ошибка, обратитесь к нам, указав: ${duplicateInGalleryBy}`);
+        return;
+      }
 
-        if (duplicateBy) {
-          showAlert(`Эта работа не отправлена, так как она уже была предложена. Если это ошибка, обратитесь к нам, указав: ${duplicateBy}`);
-          return;
-        }
+      const duplicateBy = findDuplicateSignatureMatch(existingSignatures, signatures);
+
+      if (duplicateBy) {
+        showAlert(`Эта работа не отправлена, так как она уже была предложена. Если это ошибка, обратитесь к нам, указав: ${duplicateBy}`);
+        return;
+      }
+
+      try {
+        setSubmitWorkButtonSubmitting(true);
+        await submitAddingFormToFormspree(formData);
 
         const nextSignatures = [...existingSignatures, signatures];
         setStoredWorkDuplicateSignatures(nextSignatures);
@@ -240,6 +275,12 @@ function initAddingFormActions() {
         const successMessageHtml = "Произведение отправлено на&nbsp;проверку. Если модерация будет пройдена, работа появится в&nbsp;Галерее: следи в&nbsp;соц.&nbsp;сетях!";
 
         showAlert(successMessageHtml);
+        clearAddingForm();
+      } catch (error) {
+        console.error(error);
+        showAlert("Не получилось отправить работу. Проверь подключение к интернету и попробуй ещё раз.");
+      } finally {
+        setSubmitWorkButtonSubmitting(false);
       }
     });
   }

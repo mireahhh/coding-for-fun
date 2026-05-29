@@ -213,28 +213,31 @@
           </p>
         </div>
 
-        <div class="O_WorkAll O_WorkAll--Adding">
+        <form id="addingForm" class="O_WorkAll O_WorkAll--Adding" action="https://formspree.io/f/mgoqdjoq"
+          method="POST">
           <div class="W_WorkMeta">
             <div class="M_WorkPairAnnotations">
               <p class="U_FontC2 A_WorkPairAnnotation">Никнейм автора</p>
-              <input id="addingAuthor" class="U_FontH2 A_WorkMetaAuthor" placeholder="creative_vibecoder"></input>
+              <input id="addingAuthor" class="U_FontH2 A_WorkMetaAuthor" name="author" placeholder="creative_vibecoder"
+                required />
             </div>
             <div class="M_WorkPairAnnotations">
               <p class="U_FontC2 A_WorkPairAnnotation">Название работы</p>
-              <textarea id="addingTitle" class="U_FontH0-NotUp A_WorkMetaTitle"
-                placeholder="Controlled&NewLine;Chaos"></textarea>
+              <textarea id="addingTitle" class="U_FontH0-NotUp A_WorkMetaTitle" name="title"
+                placeholder="Controlled&NewLine;Chaos" required></textarea>
             </div>
             <div class="M_WorkPairAnnotations">
               <p class="U_FontC2 A_WorkPairAnnotation">Особенности работы</p>
-              <textarea id="addingDescription" class="U_FontB1 A_WorkMetaDescription"
-                placeholder="Немного расскажи о&nbsp;работе: какие библиотеки или&nbsp;приёмы были использованы, что&nbsp;в&nbsp;ней особенно интересно для&nbsp;тебя. Любые детали помогут нам&nbsp;сделать описание более точным и&nbsp;вдохновляющим"></textarea>
+              <textarea id="addingDescription" class="U_FontB1 A_WorkMetaDescription" name="description"
+                placeholder="Немного расскажи о&nbsp;работе: какие библиотеки или&nbsp;приёмы были использованы, что&nbsp;в&nbsp;ней особенно интересно для&nbsp;тебя. Любые детали помогут нам&nbsp;сделать описание более точным и&nbsp;вдохновляющим"
+                required></textarea>
             </div>
             <div class="M_WorkPairAnnotations">
               <div class="M_WorkPairAnnotations M_WorkPairAnnotations--Link">
                 <p class="U_FontC2 A_WorkPairAnnotation">Источник с&nbsp;кодом</p>
-                <input id="addingLink" class="U_FontC2-NotUp A_WorkMetaLink"
-                  placeholder="    Ссылка в формате https://..."><img class="U_ImgIconSizeH"
-                  src="../images/icons/adding-link.svg" alt="Ссылка"></input>
+                <input id="addingLink" class="U_FontC2-NotUp A_WorkMetaLink" name="link" type="url"
+                  placeholder="    Cсылка в формате https://..." required /><img class="U_ImgIconSizeH"
+                  src="../images/icons/adding-link.svg" alt="Ссылка">
               </div>
               <p class="U_FontC1 A_WorkPairAnnotation A_WorkPairAnnotation--Link">* На основе этого кода будет
                 сформировано превью работы</p>
@@ -244,14 +247,14 @@
             <div class="M_WorkPairAnnotations M_WorkPairAnnotations--Button">
               <p class="U_FontC1 M_WorkButtonDescription">Работа отправится на модерацию</p>
               <button id="submitWorkButton" class="U_Button U_FontS3 A_WorkLinkButton A_WorkLinkButton--Work"
-                type="button">
+                type="submit">
                 Предложить работу</button>
             </div>
             <button id="cleanFormButton" class="U_Button U_FontS3 A_WorkLinkButton A_WorkLinkButton--Clean"
               type="button">
               Сбросить изменения</button>
           </div>
-        </div>
+        </form>
       </div>
 
       <ul class="U_FontH2 C_FifthRainSquares">
