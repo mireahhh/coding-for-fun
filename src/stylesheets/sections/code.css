@@ -55,11 +55,6 @@
             background: var(--colors-light-0-dark-950);
             overflow: hidden;
 
-            .W_TutorialSingleCodeTextHeader {
-                height: 32px;
-                flex: 0 0 auto;
-            }
-
             .W_TutorialSingleCodeTextBody {
                 position: relative;
                 display: flex;
@@ -68,15 +63,6 @@
                 min-width: 0;
                 min-height: 0;
                 overflow: hidden;
-            }
-
-            &.W_TutorialSingleCodeTextArea--WithHeader,
-            &:has(> .W_TutorialSingleCodeTextHeader) {
-                flex-direction: column;
-
-                >.W_TutorialSingleCodeTextBody {
-                    height: auto;
-                }
             }
 
             .W_TutorialSingleCodeTextLayers {
@@ -170,7 +156,7 @@
                 box-sizing: border-box;
                 margin: 0;
                 padding: var(--size-spacing-16) var(--code-line-number-gutter-padding);
-                overflow: visible;
+                overflow: hidden;
                 white-space: pre;
                 pointer-events: none;
                 text-align: right;
@@ -385,11 +371,6 @@
         aspect-ratio: auto;
     }
 
-    /* .W_TutorialSingleCodeExecution {
-        height: auto;
-        aspect-ratio: 1;
-    } */
-
     .A_TutorialSingleCodeExecutionCanvas {
         height: 100%;
     }
@@ -406,8 +387,23 @@
             height: 100%;
         }
 
-        .W_TutorialSingleCodeTextArea {
+        .W_TutorialSingleCodeTextArea--WithHeader {
             flex: 1;
+
+            .W_TutorialSingleCodeTextHeader {
+                padding: 16px;
+                height: 32px;
+                flex: 0 0 auto;
+            }
+        }
+
+        .W_TutorialSingleCodeTextArea--WithHeader,
+        &:has(> .W_TutorialSingleCodeTextHeader) {
+            flex-direction: column;
+
+            >.W_TutorialSingleCodeTextBody {
+                height: auto;
+            }
         }
     }
 }
@@ -442,6 +438,22 @@
                     aspect-ratio: 1/1;
                 }
             }
+        }
+    }
+
+    .O_TutorialSingleCode--Sandbox {
+        flex-direction: column;
+        height: auto;
+
+        .W_TutorialSingleCodeExecution {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1;
+        }
+
+        .O_TutorialSingleCodeTexts {
+            height: 80vh;
+            width: 100%;
         }
     }
 }

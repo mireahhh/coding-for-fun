@@ -61,7 +61,13 @@ function getSandboxCode(runtime, sandboxCodeId = "", sandboxCodeNumber = "") {
         return sandboxCodeById[sandboxCodeId];
     }
 
-    const sandboxCodes = sandboxCodeByRuntime[runtime] || [];
+    const sandboxCode = sandboxCodeByRuntime[runtime];
+
+    if (typeof sandboxCode === "string") {
+        return sandboxCode;
+    }
+
+    const sandboxCodes = Array.isArray(sandboxCode) ? sandboxCode : [];
     const requestedCodeNumber = Number(sandboxCodeNumber);
     const requestedCodeIndex = Number.isInteger(requestedCodeNumber) && requestedCodeNumber > 0
         ? requestedCodeNumber - 1

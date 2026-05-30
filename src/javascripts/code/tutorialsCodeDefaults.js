@@ -100,55 +100,16 @@ return () => {
 };
 
 export const sandboxCodeByRuntime = {
-  vanilla: [
-    `const app = document.getElementById("app");
-
-app.innerHTML = "";
-app.style.width = "100%";
-app.style.height = "100%";
-app.style.display = "grid";
-app.style.placeItems = "center";
-app.style.background = "#ffffff";
-
-const label = document.createElement("div");
-label.textContent = "Vanilla JS sandbox";
-label.style.padding = "16px 20px";
-label.style.border = "2px solid #111827";
-label.style.borderRadius = "16px";
-label.style.fontFamily = "sans-serif";
-label.style.fontSize = "20px";
-
-app.appendChild(label);`,
-    `const app = document.getElementById("app");
-const canvas = document.createElement("canvas");
-const ctx = canvas.getContext("2d");
-
-app.innerHTML = "";
-app.appendChild(canvas);
-
-function resize() {
-  canvas.width = app.clientWidth;
-  canvas.height = app.clientHeight;
-  draw();
-}
-
-function draw() {
-  ctx.fillStyle = "#f8f8f8";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "#2fd3e6";
-  ctx.beginPath();
-  ctx.arc(canvas.width / 2, canvas.height / 2, 80, 0, Math.PI * 2);
-  ctx.fill();
-}
-
-window.addEventListener("resize", resize);
-resize();`,
-    `const app = document.getElementById("app");
+  vanilla: `const app = document.getElementById("app");
 const canvas = document.createElement("canvas");
 const ctx = canvas.getContext("2d");
 let animationId;
 
 app.innerHTML = "";
+app.style.width = "100%";
+app.style.height = "100%";
+app.style.background = "#ffffff";
+
 app.appendChild(canvas);
 
 function resize() {
@@ -156,13 +117,49 @@ function resize() {
   canvas.height = app.clientHeight;
 }
 
-function animate(time) {
-  ctx.fillStyle = "#ffffff";
+function drawBackground() {
+  ctx.fillStyle = "#f8f8f8";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  const x = canvas.width / 2 + Math.cos(time * 0.002) * 80;
+  ctx.strokeStyle = "#e5e7eb";
+  ctx.lineWidth = 1;
+
+  for (let x = 0; x < canvas.width; x += 32) {
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, canvas.height);
+    ctx.stroke();
+  }
+
+  for (let y = 0; y < canvas.height; y += 32) {
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(canvas.width, y);
+    ctx.stroke();
+  }
+}
+
+function animate(time) {
+  drawBackground();
+
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
+  const orbit = Math.min(canvas.width, canvas.height) * 0.18;
+  const x = centerX + Math.cos(time * 0.002) * orbit;
+  const y = centerY + Math.sin(time * 0.002) * orbit;
+
+  ctx.fillStyle = "#2fd3e6";
+  ctx.beginPath();
+  ctx.arc(centerX, centerY, 72, 0, Math.PI * 2);
+  ctx.fill();
+
   ctx.fillStyle = "#ff86db";
-  ctx.fillRect(x - 40, canvas.height / 2 - 40, 80, 80);
+  ctx.fillRect(x - 36, y - 36, 72, 72);
+
+  ctx.fillStyle = "#111827";
+  ctx.font = "20px sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillText("Vanilla JS sandbox", centerX, centerY + 120);
 
   animationId = requestAnimationFrame(animate);
 }
@@ -175,87 +172,121 @@ return () => {
   cancelAnimationFrame(animationId);
   window.removeEventListener("resize", resize);
 };`,
-  ],
 
-  p5: [
-    `function setup() {
-  createCanvas(windowWidth, windowHeight);
-  noStroke();
-}
-
-function draw() {
-  background(248);
-  fill('#2fd3e6');
-  ellipse(width / 2, height / 2, 120);
-}`,
-    `function setup() {
+  p5: `function setup() {
   const app = document.getElementById("app");
   createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
+  textFont("sans-serif");
+  textAlign(CENTER, CENTER);
 }
 
-function draw() {
-  background(248);
-  fill('#ff86db');
-  rect(width / 2 - 60, height / 2 - 60, 120, 120);
-}`,
-    `function setup() {
+function windowResized() {
   const app = document.getElementById("app");
-  const rect = app.getBoundingClientRect();
-  createCanvas(rect.width, rect.height);
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function drawGrid() {
+  stroke("#e5e7eb");
+  strokeWeight(1);
+
+  for (let x = 0; x < width; x += 32) {
+    line(x, 0, x, height);
+  }
+
+  for (let y = 0; y < height; y += 32) {
+    line(0, y, width, y);
+  }
+
   noStroke();
 }
 
 function draw() {
   background(248);
-  fill('#37e87a');
-  ellipse(mouseX, mouseY, 80);
-}`,
-  ],
+  drawGrid();
 
-  three: [
-    `const width = app.clientWidth;
+  const orbit = min(width, height) * 0.18;
+  const x = width / 2 + cos(frameCount * 0.03) * orbit;
+  const y = height / 2 + sin(frameCount * 0.03) * orbit;
+
+  fill("#2fd3e6");
+  ellipse(width / 2, height / 2, 144);
+
+  fill("#ff86db");
+  rectMode(CENTER);
+  rect(x, y, 72, 72, 16);
+
+  fill("#111827");
+  textSize(20);
+  text("p5 sandbox", width / 2, height / 2 + 120);
+}`,
+  three: `const width = app.clientWidth;
 const height = app.clientHeight;
+
 const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xffffff);
+
 const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
-camera.position.z = 3;
+camera.position.z = 4;
+
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
 app.innerHTML = "";
 app.appendChild(renderer.domElement);
-const mesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshNormalMaterial());
-scene.add(mesh);
-renderer.render(scene, camera);`,
-    `const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xffffff);
-const camera = new THREE.PerspectiveCamera(50, app.clientWidth / app.clientHeight, 0.1, 1000);
-camera.position.z = 4;
-const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize(app.clientWidth, app.clientHeight);
-app.innerHTML = "";
-app.appendChild(renderer.domElement);
-const mesh = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 32), new THREE.MeshNormalMaterial());
-scene.add(mesh);
-renderer.render(scene, camera);`,
-    `const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(50, app.clientWidth / app.clientHeight, 0.1, 1000);
-camera.position.z = 4;
-const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize(app.clientWidth, app.clientHeight);
-app.innerHTML = "";
-app.appendChild(renderer.domElement);
-const mesh = new THREE.Mesh(new THREE.TorusKnotGeometry(0.8, 0.25, 100, 16), new THREE.MeshNormalMaterial());
-scene.add(mesh);
+
+
+const group = new THREE.Group();
+scene.add(group);
+
+const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
+const cubeMaterial = new THREE.MeshNormalMaterial();
+const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+cube.position.x = -0.9;
+group.add(cube);
+
+const sphereGeometry = new THREE.SphereGeometry(0.55, 32, 32);
+const sphereMaterial = new THREE.MeshNormalMaterial();
+const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+sphere.position.x = 0.9;
+group.add(sphere);
+
+function onResize() {
+  const width = app.clientWidth;
+  const height = app.clientHeight;
+
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+  renderer.setSize(width, height);
+}
+
+window.addEventListener("resize", onResize);
+
 let animationId;
+
 function animate() {
-  mesh.rotation.x += 0.01;
-  mesh.rotation.y += 0.02;
+  cube.rotation.x += 0.01;
+  cube.rotation.y += 0.02;
+  sphere.rotation.y -= 0.015;
+  group.rotation.y += 0.006;
+
   renderer.render(scene, camera);
   animationId = requestAnimationFrame(animate);
 }
+
 animate();
-return () => cancelAnimationFrame(animationId);`,
-  ],
+
+return () => {
+  cancelAnimationFrame(animationId);
+  window.removeEventListener("resize", onResize);
+
+  cubeGeometry.dispose();
+  cubeMaterial.dispose();
+  sphereGeometry.dispose();
+  sphereMaterial.dispose();
+  renderer.dispose();
+};`,
 };
 
 export const sandboxCodeById = {
