@@ -211,59 +211,59 @@
                     caret-color: var(--colors-light-900-dark-50);
                 }
             }
+        }
 
-            .M_TutorialSingleCodeTextButtons {
-                position: absolute;
-                z-index: 2;
-                top: var(--size-spacing-14);
-                right: calc(var(--size-spacing-14) + var(--size-spacing-8));
+        .M_TutorialSingleCodeTextButtons {
+            position: absolute;
+            z-index: 2;
+            top: var(--size-spacing-14);
+            right: calc(var(--size-spacing-14) + var(--size-spacing-8));
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: var(--size-spacing-8);
+
+            .A_TutorialSingleCodeTextButtonRunStop,
+            .A_TutorialSingleCodeTextButtonClean,
+            .A_TutorialSingleCodeTextButtonCopy {
+                width: var(--size-spacing-32);
+                height: var(--size-spacing-32);
 
                 display: flex;
-                flex-direction: row;
+                justify-content: center;
                 align-items: center;
-                gap: var(--size-spacing-8);
 
-                .A_TutorialSingleCodeTextButtonRunStop,
-                .A_TutorialSingleCodeTextButtonClean,
-                .A_TutorialSingleCodeTextButtonCopy {
-                    width: var(--size-spacing-32);
-                    height: var(--size-spacing-32);
+                border-radius: 50%;
+                background: var(--colors-neutrals-100);
 
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                &:hover {
+                    opacity: 1;
+                    background: var(--colors-light-50-dark-200);
+                }
+            }
 
-                    border-radius: 50%;
-                    background: var(--colors-neutrals-100);
-
-                    &:hover {
-                        opacity: 1;
-                        background: var(--colors-light-50-dark-200);
-                    }
+            .A_TutorialSingleCodeTextButtonCopy {
+                &.is-copied {
+                    background: var(--colors-light-200-dark-450);
                 }
 
-                .A_TutorialSingleCodeTextButtonCopy {
-                    &.is-copied {
-                        background: var(--colors-light-200-dark-450);
-                    }
-
-                    &.is-copied:hover {
-                        background: var(--colors-light-200-dark-450);
-                    }
+                &.is-copied:hover {
+                    background: var(--colors-light-200-dark-450);
                 }
+            }
 
-                .Q_TutorialSingleCodeIconRun,
-                .Q_TutorialSingleCodeIconStop,
-                .Q_TutorialSingleCodeIconClean,
-                .Q_TutorialSingleCodeIconCopy {
-                    display: flex;
-                    width: var(--size-spacing-16);
-                    height: var(--size-spacing-16);
-                }
+            .Q_TutorialSingleCodeIconRun,
+            .Q_TutorialSingleCodeIconStop,
+            .Q_TutorialSingleCodeIconClean,
+            .Q_TutorialSingleCodeIconCopy {
+                display: flex;
+                width: var(--size-spacing-16);
+                height: var(--size-spacing-16);
+            }
 
-                .Q_TutorialSingleCodeIconStop {
-                    display: none;
-                }
+            .Q_TutorialSingleCodeIconStop {
+                display: none;
             }
         }
 
@@ -300,7 +300,7 @@
     }
 
     &.is-running {
-        .O_TutorialSingleCodeTexts .W_TutorialSingleCodeTextArea .M_TutorialSingleCodeTextButtons .A_TutorialSingleCodeTextButtonRunStop {
+        .O_TutorialSingleCodeTexts .M_TutorialSingleCodeTextButtons .A_TutorialSingleCodeTextButtonRunStop {
             .Q_TutorialSingleCodeIconRun {
                 display: none;
             }
