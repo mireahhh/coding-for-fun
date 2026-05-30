@@ -105,6 +105,11 @@ const canvas = document.createElement("canvas");
 const ctx = canvas.getContext("2d");
 let animationId;
 
+let speedFactor = 1;
+let targetSpeedFactor = 1;
+let virtualTime = 0;
+let lastTime = 0;
+
 app.innerHTML = "";
 app.style.width = "100%";
 app.style.height = "100%";
@@ -140,13 +145,19 @@ function drawBackground() {
 }
 
 function animate(time) {
+  const deltaTime = time - lastTime;
+  lastTime = time;
+
+  speedFactor += (targetSpeedFactor - speedFactor) * Math.min(deltaTime / 2000, 1);
+  virtualTime += deltaTime * speedFactor;
+
   drawBackground();
 
   const centerX = canvas.width / 2;
   const centerY = canvas.height / 2;
   const orbit = Math.min(canvas.width, canvas.height) * 0.18;
-  const x = centerX + Math.cos(time * 0.002) * orbit;
-  const y = centerY + Math.sin(time * 0.002) * orbit;
+  const x = centerX + Math.cos(virtualTime * 0.002 + Math.PI) * orbit;
+  const y = centerY + Math.sin(virtualTime * 0.002 + Math.PI) * orbit;
 
   ctx.fillStyle = "#2fd3e6";
   ctx.beginPath();
@@ -156,29 +167,42 @@ function animate(time) {
   ctx.fillStyle = "#ff86db";
   ctx.fillRect(x - 36, y - 36, 72, 72);
 
-  ctx.fillStyle = "#111827";
-  ctx.font = "20px sans-serif";
-  ctx.textAlign = "center";
-  ctx.fillText("Vanilla JS sandbox", centerX, centerY + 120);
-
   animationId = requestAnimationFrame(animate);
 }
 
+function pauseAnimation() {
+  targetSpeedFactor = 0;
+}
+
+function playAnimation() {
+  targetSpeedFactor = 1;
+}
+
+canvas.addEventListener("mouseenter", pauseAnimation);
+canvas.addEventListener("mouseleave", playAnimation);
 window.addEventListener("resize", resize);
+
 resize();
 animate(0);
 
 return () => {
   cancelAnimationFrame(animationId);
+  canvas.removeEventListener("mouseenter", pauseAnimation);
+  canvas.removeEventListener("mouseleave", playAnimation);
   window.removeEventListener("resize", resize);
 };`,
 
-  p5: `function setup() {
+  p5: `let speedFactor = 1;
+let targetSpeedFactor = 1;
+let virtualFrame = 0;
+
+function setup() {
   const app = document.getElementById("app");
-  createCanvas(app.clientWidth, app.clientHeight);
+  const canvas = createCanvas(app.clientWidth, app.clientHeight);
+  canvas.mouseOver(() => targetSpeedFactor = 0);
+  canvas.mouseOut(() => targetSpeedFactor = 1);
+
   noStroke();
-  textFont("sans-serif");
-  textAlign(CENTER, CENTER);
 }
 
 function windowResized() {
@@ -202,12 +226,15 @@ function drawGrid() {
 }
 
 function draw() {
+  speedFactor += (targetSpeedFactor - speedFactor) * (deltaTime / 2000);
+  virtualFrame += speedFactor;
+
   background(248);
   drawGrid();
 
   const orbit = min(width, height) * 0.18;
-  const x = width / 2 + cos(frameCount * 0.03) * orbit;
-  const y = height / 2 + sin(frameCount * 0.03) * orbit;
+  const x = width / 2 + cos(virtualFrame * 0.03 + PI) * orbit;
+  const y = height / 2 + sin(virtualFrame * 0.03 + PI) * orbit;
 
   fill("#2fd3e6");
   ellipse(width / 2, height / 2, 144);
@@ -215,13 +242,14 @@ function draw() {
   fill("#ff86db");
   rectMode(CENTER);
   rect(x, y, 72, 72, 16);
-
-  fill("#111827");
-  textSize(20);
-  text("p5 sandbox", width / 2, height / 2 + 120);
 }`,
+
   three: `const width = app.clientWidth;
 const height = app.clientHeight;
+
+let speedFactor = 1;
+let targetSpeedFactor = 1;
+let lastTime = 0;
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xffffff);
@@ -235,7 +263,6 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 app.innerHTML = "";
 app.appendChild(renderer.domElement);
-
 
 const group = new THREE.Group();
 scene.add(group);
@@ -261,25 +288,42 @@ function onResize() {
   renderer.setSize(width, height);
 }
 
+function pauseAnimation() {
+  targetSpeedFactor = 0;
+}
+
+function playAnimation() {
+  targetSpeedFactor = 1;
+}
+
 window.addEventListener("resize", onResize);
+renderer.domElement.addEventListener("mouseenter", pauseAnimation);
+renderer.domElement.addEventListener("mouseleave", playAnimation);
 
 let animationId;
 
-function animate() {
-  cube.rotation.x += 0.01;
-  cube.rotation.y += 0.02;
-  sphere.rotation.y -= 0.015;
-  group.rotation.y += 0.006;
+function animate(time) {
+  const deltaTime = time - lastTime;
+  lastTime = time;
+
+  speedFactor += (targetSpeedFactor - speedFactor) * Math.min(deltaTime / 2000, 1);
+
+  cube.rotation.x += 0.01 * speedFactor;
+  cube.rotation.y += 0.02 * speedFactor;
+  sphere.rotation.y -= 0.015 * speedFactor;
+  group.rotation.y += 0.006 * speedFactor;
 
   renderer.render(scene, camera);
   animationId = requestAnimationFrame(animate);
 }
 
-animate();
+animate(0);
 
 return () => {
   cancelAnimationFrame(animationId);
   window.removeEventListener("resize", onResize);
+  renderer.domElement.removeEventListener("mouseenter", pauseAnimation);
+  renderer.domElement.removeEventListener("mouseleave", playAnimation);
 
   cubeGeometry.dispose();
   cubeMaterial.dispose();
