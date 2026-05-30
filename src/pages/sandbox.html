@@ -204,7 +204,7 @@
         Песочница креативного кода
       </div>
 
-      <div class="O_TutorialSingleCode O_TutorialSingleCode--Sandbox" data-runtime="three" data-autostart="true">
+      <div class="O_TutorialSingleCode O_TutorialSingleCode--Sandbox" data-runtime="vanilla" data-autostart="true">
         <div class="W_TutorialSingleCodeExecution">
           <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
             allow="accelerometer; gyroscope; magnetometer">
@@ -215,9 +215,15 @@
             <div class="W_TutorialSingleCodeTextHeader">
               <div class="W_TutorialSingleCodeTextHeaderLibraryButtons">
                 <ul class="C_TutorialSingleCodeTextHeaderLibraryButtons">
-                  <button class="U_Button U_FontF2 A_TutorialSingleCodeTextHeaderLibraryButton">Vanilla&nbsp;JS</button>
-                  <button class="U_Button U_FontF2 A_TutorialSingleCodeTextHeaderLibraryButton">p5.js</button>
-                  <button class="U_Button U_FontF2 A_TutorialSingleCodeTextHeaderLibraryButton">Three.js</button>
+                  <button id="sandboxLibrarySwitchVanillajs"
+                    class="U_Button U_FontF2 A_TutorialSingleCodeTextHeaderLibraryButton"
+                    data-runtime="vanilla">Vanilla&nbsp;JS</button>
+                  <button id="sandboxLibrarySwitchP5js"
+                    class="U_Button U_FontF2 A_TutorialSingleCodeTextHeaderLibraryButton"
+                    data-runtime="p5">p5.js</button>
+                  <button id="sandboxLibrarySwitchThreejs"
+                    class="U_Button U_FontF2 A_TutorialSingleCodeTextHeaderLibraryButton"
+                    data-runtime="three">Three.js</button>
                 </ul>
               </div>
               <div class="M_TutorialSingleCodeTextButtons">

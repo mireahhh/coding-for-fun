@@ -1,4 +1,4 @@
-import { defaultCodeByRuntime, defaultCodeById, sandboxCodeByRuntime, sandboxCodeById } from "./tutorialsCodeDefaults";
+import { defaultCodeByRuntime, defaultCodeById, sandboxCodeByRuntime, sandboxCodeById, sandboxEmptyCodeByRuntime } from "./tutorialsCodeDefaults";
 import {
     getEmptyHtml,
     getUnknownRuntimeHtml,
@@ -55,6 +55,32 @@ export function highlightCode(code) {
 }
 
 const defaultSandboxCodeIndex = 0;
+const sandboxDefaultRuntime = "vanilla";
+const sandboxRuntimeOrder = ["vanilla", "p5", "three"];
+const sandboxCodeStates = new Set();
+let isSandboxBeforeUnloadInitialized = false;
+
+function getSandboxEmptyCode(runtime) {
+    return sandboxEmptyCodeByRuntime[runtime] || "";
+}
+
+function isSandboxStandardCode(code, defaultCode, emptyCode) {
+    return code === defaultCode || code === emptyCode;
+}
+
+function initSandboxBeforeUnload() {
+    if (isSandboxBeforeUnloadInitialized) return;
+
+    window.addEventListener("beforeunload", (event) => {
+        const hasUnsavedSandboxChanges = Array.from(sandboxCodeStates).some((state) => state.hasUnsavedChanges());
+        if (!hasUnsavedSandboxChanges) return;
+
+        event.preventDefault();
+        event.returnValue = "";
+    });
+
+    isSandboxBeforeUnloadInitialized = true;
+}
 
 function getSandboxCode(runtime, sandboxCodeId = "", sandboxCodeNumber = "") {
     if (sandboxCodeId && sandboxCodeById[sandboxCodeId]) {
@@ -253,11 +279,13 @@ function toggleCommentOnSelectedLines(textarea) {
     textarea.selectionEnd = Math.max(0, selectionEnd + getPositionShift(selectionEnd));
 }
 
-
 export function initCodeBlocks() {
     document.querySelectorAll(".O_TutorialSingleCode").forEach((codeBlock) => {
         const codeBlockId = codeBlock.id;
-        const runtime = codeBlock.dataset.runtime;
+        const initialRuntime = codeBlock.classList.contains("O_TutorialSingleCode--Sandbox")
+            ? sandboxDefaultRuntime
+            : codeBlock.dataset.runtime;
+        let runtime = initialRuntime;
 
         const iframe = codeBlock.querySelector(".A_TutorialSingleCodeExecutionCanvas");
         const runStopButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonRunStop");
@@ -290,8 +318,58 @@ export function initCodeBlocks() {
         const isSandboxCodeBlock = codeBlock.classList.contains("O_TutorialSingleCode--Sandbox");
         const sandboxCodeId = codeBlock.dataset.sandboxCodeId || codeBlockId || "";
         const sandboxCodeNumber = codeBlock.dataset.sandboxCodeNumber || "";
-        const defaultCode = getDefaultCode(codeBlockId, runtime, isSandboxCodeBlock, sandboxCodeId, sandboxCodeNumber);
-        textarea.value = defaultCode;
+        const sandboxLibraryButtons = Array.from(
+            codeBlock.querySelectorAll(".A_TutorialSingleCodeTextHeaderLibraryButton")
+        );
+        const sandboxCodeByRuntimeDraft = {};
+
+        function getDefaultCodeForRuntime(nextRuntime) {
+            return getDefaultCode(codeBlockId, nextRuntime, isSandboxCodeBlock, sandboxCodeId, sandboxCodeNumber);
+        }
+
+        function getCodeForRuntime(nextRuntime) {
+            if (Object.prototype.hasOwnProperty.call(sandboxCodeByRuntimeDraft, nextRuntime)) {
+                return sandboxCodeByRuntimeDraft[nextRuntime];
+            }
+
+            return getDefaultCodeForRuntime(nextRuntime);
+        }
+
+        function saveCurrentSandboxCode() {
+            if (!isSandboxCodeBlock) return;
+            sandboxCodeByRuntimeDraft[runtime] = textarea.value;
+        }
+
+        function syncSandboxLibraryButtons() {
+            if (!isSandboxCodeBlock) return;
+
+            sandboxLibraryButtons.forEach((button) => {
+                button.classList.toggle("is-current", button.dataset.runtime === runtime);
+            });
+        }
+
+        function hasUnsavedSandboxChanges() {
+            if (!isSandboxCodeBlock) return false;
+            saveCurrentSandboxCode();
+
+            return sandboxRuntimeOrder.some((nextRuntime) => {
+                const code = getCodeForRuntime(nextRuntime);
+                return !isSandboxStandardCode(
+                    code,
+                    getDefaultCodeForRuntime(nextRuntime),
+                    getSandboxEmptyCode(nextRuntime)
+                );
+            });
+        }
+
+        if (isSandboxCodeBlock) {
+            codeBlock.dataset.runtime = runtime;
+            initSandboxBeforeUnload();
+            sandboxCodeStates.add({ hasUnsavedChanges });
+        }
+
+        textarea.value = getDefaultCodeForRuntime(runtime);
+        syncSandboxLibraryButtons();
 
         function autoResizeTextarea() {
             if (isSandboxCodeBlock) {
@@ -565,11 +643,46 @@ export function initCodeBlocks() {
         });
 
         resetButton.addEventListener("click", () => {
-            resetCode(textarea, defaultCode, codeBlock, iframe);
+            const nextCode = getDefaultCodeForRuntime(runtime);
+            resetCode(textarea, nextCode, codeBlock, iframe);
+            if (isSandboxCodeBlock) saveCurrentSandboxCode();
             autoResizeTextarea();
             syncHighlight();
             syncLineNumbers();
             syncActiveLineHighlight();
+        });
+
+        emptyButton?.addEventListener("click", () => {
+            textarea.value = isSandboxCodeBlock ? getSandboxEmptyCode(runtime) : "";
+            stopCode(codeBlock, iframe);
+            if (isSandboxCodeBlock) saveCurrentSandboxCode();
+            autoResizeTextarea();
+            syncHighlight();
+            syncLineNumbers();
+            syncActiveLineHighlight();
+        });
+
+        sandboxLibraryButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const nextRuntime = button.dataset.runtime;
+                if (!nextRuntime || nextRuntime === runtime) return;
+
+                saveCurrentSandboxCode();
+                runtime = nextRuntime;
+                codeBlock.dataset.runtime = runtime;
+                textarea.value = getCodeForRuntime(runtime);
+                syncSandboxLibraryButtons();
+                autoResizeTextarea();
+                syncHighlight();
+                syncLineNumbers();
+                syncActiveLineHighlight();
+
+                if (codeBlock.dataset.autostart === "true") {
+                    runCode(codeBlock, iframe, textarea, runtime);
+                } else {
+                    stopCode(codeBlock, iframe);
+                }
+            });
         });
 
         copyButton.addEventListener("click", async () => {
