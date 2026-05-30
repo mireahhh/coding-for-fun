@@ -270,10 +270,10 @@ export function initCodeBlocks() {
         highlight.classList.add("U_FontC2-Code");
         textLayers?.classList.add("U_FontC2-Code");
 
-        let lineNumbers = textAreaWrapper.querySelector(".A_TutorialSingleCodeLineNumbers");
+        let lineNumbers = textAreaWrapper.querySelector(".W_TutorialSingleCodeLineNumbers");
         if (!lineNumbers) {
             lineNumbers = document.createElement("pre");
-            lineNumbers.className = "U_FontC2-Code A_TutorialSingleCodeLineNumbers";
+            lineNumbers.className = "U_FontC2-Code W_TutorialSingleCodeLineNumbers";
             lineNumbers.setAttribute("aria-hidden", "true");
             textAreaBody.prepend(lineNumbers);
         }
@@ -390,6 +390,11 @@ export function initCodeBlocks() {
             lineNumbers.style.transform = `translateY(${-top}px)`;
         }
 
+        function syncLineNumbersHeight() {
+            lineNumbers.style.minHeight = `${textarea.clientHeight}px`;
+            lineNumbers.style.height = `${Math.max(textarea.scrollHeight, textarea.clientHeight)}px`;
+        }
+
         function syncLineNumbers() {
             const lineCount = getLineCount(textarea.value);
             const digits = getGutterDigits(lineCount);
@@ -397,6 +402,7 @@ export function initCodeBlocks() {
 
             textAreaWrapper.style.setProperty("--code-line-number-gutter-width", gutterWidth);
             lineNumbers.innerHTML = buildLineNumbersMarkup(lineCount, digits, getActiveLineIndex());
+            syncLineNumbersHeight();
             syncScrollOffsets();
         }
 
@@ -538,6 +544,7 @@ export function initCodeBlocks() {
 
         window.addEventListener("resize", () => {
             syncTypographyMetrics();
+            syncLineNumbersHeight();
             syncScrollOffsets();
             syncActiveLineHighlight();
         });

@@ -90,7 +90,7 @@
             }
 
             .A_TutorialSingleCodeTextHighlight,
-            .A_TutorialSingleCodeLineNumbers,
+            .W_TutorialSingleCodeLineNumbers,
             .W_TutorialSingleCodeTextRun {
                 font: inherit;
                 letter-spacing: inherit;
@@ -159,16 +159,18 @@
                             } */
             }
 
-            .A_TutorialSingleCodeLineNumbers {
+            .W_TutorialSingleCodeLineNumbers {
                 position: relative;
                 z-index: 1;
                 flex: 0 0 auto;
+                align-self: flex-start;
                 width: var(--code-line-number-gutter-width);
-                height: 100%;
+                min-height: 100%;
+                height: auto;
                 box-sizing: border-box;
                 margin: 0;
                 padding: var(--size-spacing-16) var(--code-line-number-gutter-padding);
-                overflow: hidden;
+                overflow: visible;
                 white-space: pre;
                 pointer-events: none;
                 text-align: right;

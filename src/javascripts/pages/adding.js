@@ -4,7 +4,7 @@ import { getStoredArray, setStoredArray } from "../utils/storageCache.js";
 import { getWorkPayloadChecksum } from "../utils/signatures.js";
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mgoqdjoq";
-const ADDING_FORM_SUBJECT = "Заявка на добавление работы";
+const ADDING_FORM_SUBJECT = "CFF - Добавление работы";
 const ADDING_FORM_FIELD_STORAGE_KEYS = {
   addingAuthor: "addingFormAuthor",
   addingTitle: "addingFormTitle",
