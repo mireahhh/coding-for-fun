@@ -1,4 +1,5 @@
-import "../code/code.js";
+import { copyText, highlightCode, initCodeBlocks, showCopyFeedback } from "../code/code.js";
+import { defaultCodeByRuntime, defaultCodeById } from "../code/tutorialsCodeDefaults.js";
 
 const heading = document.querySelector(".A_IntroHeadingTutorial");
 
@@ -340,6 +341,45 @@ function drawTutorialPartNavigation() {
   });
 }
 
+function initTutorialCodePreviewBlocks() {
+  document.querySelectorAll(".A_TutorialCopyText").forEach((block) => {
+    const rawHtml = block.innerHTML;
+
+    const normalized = rawHtml
+      .split(/<br\s*\/?>/gi)
+      .map((line) =>
+        line
+          .replace(/\n/g, "")
+          .replace(/\t/g, "")
+          .replace(/&nbsp;/g, "\u00A0")
+          .replace(/\s+$/g, ""),
+      )
+      .join("\n");
+
+    block.innerHTML = highlightCode(normalized).replace(/\n/g, "<br>");
+  });
+}
+
+function initTutorialCopyButtons() {
+  document.querySelectorAll(".A_TutorialCopyButton").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const text = button
+        .closest(".W_TutorialCopyItem")
+        .querySelector(".A_TutorialCopyText").innerText;
+
+      await copyText(text);
+      showCopyFeedback(button);
+    });
+  });
+}
+
+
+initCodeBlocks({
+  getDefaultCode: ({ codeBlockId, runtime }) =>
+    defaultCodeById[codeBlockId] || defaultCodeByRuntime[runtime] || "",
+});
+initTutorialCodePreviewBlocks();
+initTutorialCopyButtons();
 
 drawTutorialMeta();
 initTutorialTagSearchPrefill();

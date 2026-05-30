@@ -1,4 +1,3 @@
-import { defaultCodeByRuntime, defaultCodeById, sandboxCodeByRuntime, sandboxCodeById } from "./tutorialsCodeDefaults";
 import {
     getEmptyHtml,
     getUnknownRuntimeHtml,
@@ -25,63 +24,37 @@ export function highlightCode(code) {
     }
 
     html = html.replace(/\/\/[^\n]*/g, (match) => keep(match, "code-comment"));
-    html = html.replace(/("(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|`(?:\\.|[^`\\])*`)/g, (match) =>
-        keep(match, "code-string")
+    html = html.replace(
+        /("(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|`(?:\\.|[^`\\])*`)/g,
+        (match) => keep(match, "code-string"),
     );
 
     html = html.replace(
         /\b(const|let|var|if|else|for|while|do|function|return|class|new|try|catch|finally|throw|switch|case|break|continue|import|from|export|default|true|false|null|undefined)\b/g,
-        '<span class="code-keyword">$1</span>'
+        '<span class="code-keyword">$1</span>',
     );
 
     html = html.replace(
         /\b(const|let|var)\b(\s+)([A-Za-z_$][\w$]*)/g,
-        '<span class="code-keyword">$1</span>$2<span class="code-variable">$3</span>'
+        '<span class="code-keyword">$1</span>$2<span class="code-variable">$3</span>',
     );
 
     html = html.replace(
         /\b(\d+(\.\d+)?)\b/g,
-        '<span class="code-number">$1</span>'
+        '<span class="code-number">$1</span>',
     );
 
     html = html.replace(
         /\b([A-Za-z_$][\w$]*)(?=\s*\()/g,
-        '<span class="code-function">$1</span>'
+        '<span class="code-function">$1</span>',
     );
 
-    html = html.replace(/___TOKEN_(\d+)___/g, (_, index) => tokens[Number(index)]);
+    html = html.replace(
+        /___TOKEN_(\d+)___/g,
+        (_, index) => tokens[Number(index)],
+    );
 
     return html;
-}
-
-const defaultSandboxCodeIndex = 0;
-
-function getSandboxCode(runtime, sandboxCodeId = "", sandboxCodeNumber = "") {
-    if (sandboxCodeId && sandboxCodeById[sandboxCodeId]) {
-        return sandboxCodeById[sandboxCodeId];
-    }
-
-    const sandboxCode = sandboxCodeByRuntime[runtime];
-
-    if (typeof sandboxCode === "string") {
-        return sandboxCode;
-    }
-
-    const sandboxCodes = Array.isArray(sandboxCode) ? sandboxCode : [];
-    const requestedCodeNumber = Number(sandboxCodeNumber);
-    const requestedCodeIndex = Number.isInteger(requestedCodeNumber) && requestedCodeNumber > 0
-        ? requestedCodeNumber - 1
-        : defaultSandboxCodeIndex;
-
-    return sandboxCodes[requestedCodeIndex] || sandboxCodes[defaultSandboxCodeIndex] || sandboxCodes[0] || defaultCodeByRuntime[runtime] || "";
-}
-
-function getDefaultCode(blockId, runtime, isSandboxCodeBlock = false, sandboxCodeId = "", sandboxCodeNumber = "") {
-    if (isSandboxCodeBlock) {
-        return getSandboxCode(runtime, sandboxCodeId, sandboxCodeNumber);
-    }
-
-    return defaultCodeById[blockId] || defaultCodeByRuntime[runtime] || "";
 }
 
 function buildRuntimeHtml(runtime, code) {
@@ -124,7 +97,9 @@ function buildLineNumbersMarkup(lineCount, digits, activeLineIndex = null) {
         const className = isActive
             ? "A_TutorialSingleCodeLineNumber is-active"
             : "A_TutorialSingleCodeLineNumber";
-        rows.push(`<span class="${className}" data-line-number="${index}">${number}</span>`);
+        rows.push(
+            `<span class="${className}" data-line-number="${index}">${number}</span>`,
+        );
     }
     return rows.join("");
 }
@@ -143,7 +118,7 @@ function resetCode(textarea, defaultCode, codeBlock, iframe) {
     stopCode(codeBlock, iframe);
 }
 
-function showCopyFeedback(button) {
+export function showCopyFeedback(button) {
     button.classList.add("is-copied");
 
     setTimeout(() => {
@@ -151,7 +126,7 @@ function showCopyFeedback(button) {
     }, 800);
 }
 
-async function copyText(text, fallbackElement = null) {
+export async function copyText(text, fallbackElement = null) {
     try {
         await navigator.clipboard.writeText(text);
     } catch (error) {
@@ -186,7 +161,11 @@ function toggleCommentOnSelectedLines(textarea) {
     const lines = value.split("\n");
     const selectionStart = textarea.selectionStart || 0;
     const selectionEnd = textarea.selectionEnd || 0;
-    const { startLine, endLine } = getLineRangeBySelection(value, selectionStart, selectionEnd);
+    const { startLine, endLine } = getLineRangeBySelection(
+        value,
+        selectionStart,
+        selectionEnd,
+    );
 
     const selectedLineIndexes = [];
     for (let index = startLine; index <= endLine; index += 1) {
@@ -196,7 +175,9 @@ function toggleCommentOnSelectedLines(textarea) {
 
     if (selectedLineIndexes.length === 0) return;
 
-    const shouldUncomment = selectedLineIndexes.every((index) => /^[\t ]*\/\//.test(lines[index]));
+    const shouldUncomment = selectedLineIndexes.every((index) =>
+        /^[\t ]*\/\//.test(lines[index]),
+    );
     const lineDiffByIndex = new Map();
 
     selectedLineIndexes.forEach((index) => {
@@ -236,7 +217,10 @@ function toggleCommentOnSelectedLines(textarea) {
                 }
 
                 if (shouldUncomment && position > markerStart) {
-                    const removed = (value.split("\n")[index] || "").startsWith(`${" ".repeat(indentLength)}// `, indentLength)
+                    const removed = (value.split("\n")[index] || "").startsWith(
+                        `${" ".repeat(indentLength)}// `,
+                        indentLength,
+                    )
                         ? 3
                         : 2;
                     shift -= removed;
@@ -249,35 +233,79 @@ function toggleCommentOnSelectedLines(textarea) {
     }
 
     textarea.value = lines.join("\n");
-    textarea.selectionStart = Math.max(0, selectionStart + getPositionShift(selectionStart));
-    textarea.selectionEnd = Math.max(0, selectionEnd + getPositionShift(selectionEnd));
+    textarea.selectionStart = Math.max(
+        0,
+        selectionStart + getPositionShift(selectionStart),
+    );
+    textarea.selectionEnd = Math.max(
+        0,
+        selectionEnd + getPositionShift(selectionEnd),
+    );
 }
 
+export function initCodeBlocks(options = {}) {
+    const {
+        getInitialRuntime = (codeBlock) => codeBlock.dataset.runtime || "vanilla",
+        getDefaultCode = () => "",
+        getEmptyCode = () => "",
+        shouldStretchEditor = () => false,
+        onInitBlock = null,
+    } = options;
 
-export function initCodeBlocks() {
     document.querySelectorAll(".O_TutorialSingleCode").forEach((codeBlock) => {
         const codeBlockId = codeBlock.id;
-        const runtime = codeBlock.dataset.runtime;
+        let runtime = getInitialRuntime(codeBlock);
 
-        const iframe = codeBlock.querySelector(".A_TutorialSingleCodeExecutionCanvas");
-        const runStopButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonRunStop");
-        const resetButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonClean");
-        const emptyButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonEmpty");
-        const copyButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonCopy");
+        const iframe = codeBlock.querySelector(
+            ".A_TutorialSingleCodeExecutionCanvas",
+        );
+        const runStopButton = codeBlock.querySelector(
+            ".A_TutorialSingleCodeTextButtonRunStop",
+        );
+        const resetButton = codeBlock.querySelector(
+            ".A_TutorialSingleCodeTextButtonClean",
+        );
+        const emptyButton = codeBlock.querySelector(
+            ".A_TutorialSingleCodeTextButtonEmpty",
+        );
+        const copyButton = codeBlock.querySelector(
+            ".A_TutorialSingleCodeTextButtonCopy",
+        );
         const textarea = codeBlock.querySelector(".W_TutorialSingleCodeTextRun");
-        const highlight = codeBlock.querySelector(".A_TutorialSingleCodeTextHighlight");
-        const textLayers = codeBlock.querySelector(".W_TutorialSingleCodeTextLayers");
-        const textAreaWrapper = codeBlock.querySelector(".W_TutorialSingleCodeTextArea");
-        const textAreaBody = textAreaWrapper?.querySelector(".W_TutorialSingleCodeTextBody") || textAreaWrapper;
-        const textAreaHeader = textAreaWrapper?.querySelector(".W_TutorialSingleCodeTextHeader");
+        const highlight = codeBlock.querySelector(
+            ".A_TutorialSingleCodeTextHighlight",
+        );
+        const textLayers = codeBlock.querySelector(
+            ".W_TutorialSingleCodeTextLayers",
+        );
+        const textAreaWrapper = codeBlock.querySelector(
+            ".W_TutorialSingleCodeTextArea",
+        );
+        const textAreaBody =
+            textAreaWrapper?.querySelector(".W_TutorialSingleCodeTextBody") ||
+            textAreaWrapper;
+        const textAreaHeader = textAreaWrapper?.querySelector(
+            ".W_TutorialSingleCodeTextHeader",
+        );
 
-        if (!iframe || !runStopButton || !resetButton || !copyButton || !textarea || !highlight || !textAreaWrapper) return;
+        if (
+            !iframe ||
+            !runStopButton ||
+            !resetButton ||
+            !copyButton ||
+            !textarea ||
+            !highlight ||
+            !textAreaWrapper
+        )
+            return;
 
         textarea.classList.add("U_FontC2-Code");
         highlight.classList.add("U_FontC2-Code");
         textLayers?.classList.add("U_FontC2-Code");
 
-        let lineNumbers = textAreaWrapper.querySelector(".W_TutorialSingleCodeLineNumbers");
+        let lineNumbers = textAreaWrapper.querySelector(
+            ".W_TutorialSingleCodeLineNumbers",
+        );
         if (!lineNumbers) {
             lineNumbers = document.createElement("pre");
             lineNumbers.className = "U_FontC2-Code W_TutorialSingleCodeLineNumbers";
@@ -287,14 +315,21 @@ export function initCodeBlocks() {
 
         lineNumbers.classList.add("U_FontC2-Code");
 
-        const isSandboxCodeBlock = codeBlock.classList.contains("O_TutorialSingleCode--Sandbox");
-        const sandboxCodeId = codeBlock.dataset.sandboxCodeId || codeBlockId || "";
-        const sandboxCodeNumber = codeBlock.dataset.sandboxCodeNumber || "";
-        const defaultCode = getDefaultCode(codeBlockId, runtime, isSandboxCodeBlock, sandboxCodeId, sandboxCodeNumber);
-        textarea.value = defaultCode;
+        function getDefaultCodeForRuntime(nextRuntime = runtime) {
+            return getDefaultCode({ codeBlock, codeBlockId, runtime: nextRuntime });
+        }
+
+        function getEmptyCodeForRuntime(nextRuntime = runtime) {
+            return getEmptyCode({ codeBlock, codeBlockId, runtime: nextRuntime });
+        }
+
+        textarea.value = getDefaultCodeForRuntime(runtime);
+        codeBlock.dataset.runtime = runtime;
+
+        const isEditorStretched = shouldStretchEditor({ codeBlock, codeBlockId, runtime });
 
         function autoResizeTextarea() {
-            if (isSandboxCodeBlock) {
+            if (isEditorStretched) {
                 textAreaWrapper.style.height = "100%";
                 textarea.style.height = "100%";
                 highlight.style.height = "100%";
@@ -308,7 +343,10 @@ export function initCodeBlocks() {
             const minHeight = 272;
             const maxHeight = minHeight * 2;
             const headerHeight = textAreaHeader?.offsetHeight || 0;
-            const nextHeight = Math.min(Math.max(textarea.scrollHeight + headerHeight, minHeight), maxHeight);
+            const nextHeight = Math.min(
+                Math.max(textarea.scrollHeight + headerHeight, minHeight),
+                maxHeight,
+            );
 
             textAreaWrapper.style.height = `${nextHeight}px`;
             textarea.style.height = "100%";
@@ -350,10 +388,15 @@ export function initCodeBlocks() {
 
         function syncLineNumberActiveState() {
             const activeLineIndex = getActiveLineIndex();
-            lineNumbers.querySelectorAll(".A_TutorialSingleCodeLineNumber").forEach((lineNode) => {
-                const lineNumber = Number(lineNode.dataset.lineNumber) - 1;
-                lineNode.classList.toggle("is-active", lineNumber === activeLineIndex);
-            });
+            lineNumbers
+                .querySelectorAll(".A_TutorialSingleCodeLineNumber")
+                .forEach((lineNode) => {
+                    const lineNumber = Number(lineNode.dataset.lineNumber) - 1;
+                    lineNode.classList.toggle(
+                        "is-active",
+                        lineNumber === activeLineIndex,
+                    );
+                });
         }
 
         function syncActiveLineHighlight() {
@@ -373,19 +416,26 @@ export function initCodeBlocks() {
             const activeLineTop = paddingTop + lineIndex * lineHeight;
             const visibleActiveLineTop = activeLineTop - scrollTop;
 
-            highlight.style.setProperty("--active-line-top", `${visibleActiveLineTop}px`);
+            highlight.style.setProperty(
+                "--active-line-top",
+                `${visibleActiveLineTop}px`,
+            );
             highlight.style.setProperty("--active-line-height", `${lineHeight}px`);
         }
 
         function clearActiveLineHighlight() {
             highlight.style.setProperty("--active-line-height", "0px");
-            lineNumbers.querySelectorAll(".A_TutorialSingleCodeLineNumber.is-active").forEach((lineNode) => {
-                lineNode.classList.remove("is-active");
-            });
+            lineNumbers
+                .querySelectorAll(".A_TutorialSingleCodeLineNumber.is-active")
+                .forEach((lineNode) => {
+                    lineNode.classList.remove("is-active");
+                });
         }
 
         function syncHighlight() {
-            highlight.innerHTML = highlightCode(normalizeCodeForHighlight(textarea.value));
+            highlight.innerHTML = highlightCode(
+                normalizeCodeForHighlight(textarea.value),
+            );
             syncScrollOffsets();
         }
 
@@ -407,11 +457,68 @@ export function initCodeBlocks() {
             const digits = getGutterDigits(lineCount);
             const gutterWidth = `calc(${digits}ch + var(--size-spacing-20))`;
 
-            textAreaWrapper.style.setProperty("--code-line-number-gutter-width", gutterWidth);
-            lineNumbers.innerHTML = buildLineNumbersMarkup(lineCount, digits, getActiveLineIndex());
+            textAreaWrapper.style.setProperty(
+                "--code-line-number-gutter-width",
+                gutterWidth,
+            );
+            lineNumbers.innerHTML = buildLineNumbersMarkup(
+                lineCount,
+                digits,
+                getActiveLineIndex(),
+            );
             syncLineNumbersHeight();
             syncScrollOffsets();
         }
+
+        function syncEditor() {
+            autoResizeTextarea();
+            syncHighlight();
+            syncLineNumbers();
+            syncActiveLineHighlight();
+        }
+
+        const controller = {
+            codeBlock,
+            iframe,
+            textarea,
+            getRuntime: () => runtime,
+            getCode: () => textarea.value,
+            setCode(nextCode, { stop = false, run = false } = {}) {
+                textarea.value = nextCode;
+                syncEditor();
+                if (run) {
+                    runCode(codeBlock, iframe, textarea, runtime);
+                } else if (stop) {
+                    stopCode(codeBlock, iframe);
+                }
+
+            },
+            setRuntime(
+                nextRuntime,
+                { code = textarea.value, run = false, stop = false } = {},
+            ) {
+                runtime = nextRuntime;
+                codeBlock.dataset.runtime = runtime;
+                textarea.value = code;
+                syncEditor();
+                if (run) {
+                    runCode(codeBlock, iframe, textarea, runtime);
+                } else if (stop) {
+                    stopCode(codeBlock, iframe);
+                }
+            },
+            run() {
+                runCode(codeBlock, iframe, textarea, runtime);
+            },
+            stop() {
+                stopCode(codeBlock, iframe);
+            },
+            syncEditor,
+            getDefaultCode: getDefaultCodeForRuntime,
+            getEmptyCode: getEmptyCodeForRuntime,
+        };
+
+        onInitBlock?.(controller);
 
         textarea.addEventListener("input", () => {
             autoResizeTextarea();
@@ -432,13 +539,19 @@ export function initCodeBlocks() {
         textarea.addEventListener("keyup", scheduleCaretSync);
         textarea.addEventListener("keydown", scheduleCaretSync);
         textarea.addEventListener("keydown", (event) => {
-            if (event.key === "Tab" && !event.ctrlKey && !event.metaKey && !event.altKey) {
+            if (
+                event.key === "Tab" &&
+                !event.ctrlKey &&
+                !event.metaKey &&
+                !event.altKey
+            ) {
                 event.preventDefault();
 
                 const selectionStart = textarea.selectionStart || 0;
                 const selectionEnd = textarea.selectionEnd || 0;
                 const value = textarea.value;
-                const lineStart = value.lastIndexOf("\n", Math.max(0, selectionStart - 1)) + 1;
+                const lineStart =
+                    value.lastIndexOf("\n", Math.max(0, selectionStart - 1)) + 1;
                 const lineEndSearchIndex = selectionEnd;
                 let lineEnd = value.indexOf("\n", lineEndSearchIndex);
                 if (lineEnd === -1) lineEnd = value.length;
@@ -473,7 +586,10 @@ export function initCodeBlocks() {
                             }
 
                             if (index === 0) {
-                                removedBeforeSelectionStart = Math.min(removeLength, selectionStart - lineStart);
+                                removedBeforeSelectionStart = Math.min(
+                                    removeLength,
+                                    selectionStart - lineStart,
+                                );
                             }
 
                             removedTotal += removeLength;
@@ -483,8 +599,14 @@ export function initCodeBlocks() {
                         const updatedBlock = outdentedLines.join("\n");
                         textarea.value = `${value.slice(0, lineStart)}${updatedBlock}${value.slice(lineEnd)}`;
 
-                        textarea.selectionStart = Math.max(lineStart, selectionStart - removedBeforeSelectionStart);
-                        textarea.selectionEnd = Math.max(textarea.selectionStart, selectionEnd - removedTotal);
+                        textarea.selectionStart = Math.max(
+                            lineStart,
+                            selectionStart - removedBeforeSelectionStart,
+                        );
+                        textarea.selectionEnd = Math.max(
+                            textarea.selectionStart,
+                            selectionEnd - removedTotal,
+                        );
                     }
                 } else if (!event.shiftKey) {
                     const tabSpaces = "\t";
@@ -495,7 +617,8 @@ export function initCodeBlocks() {
                     textarea.selectionEnd = nextCursorPosition;
                 } else {
                     const currentLineEnd = value.indexOf("\n", selectionStart);
-                    const singleLineEnd = currentLineEnd === -1 ? value.length : currentLineEnd;
+                    const singleLineEnd =
+                        currentLineEnd === -1 ? value.length : currentLineEnd;
                     const lineText = value.slice(lineStart, singleLineEnd);
 
                     let removeLength = 0;
@@ -509,16 +632,15 @@ export function initCodeBlocks() {
 
                     if (removeLength > 0) {
                         textarea.value = `${value.slice(0, lineStart)}${lineText.slice(removeLength)}${value.slice(singleLineEnd)}`;
-                        const nextCursorPosition = Math.max(lineStart, selectionStart - removeLength);
+                        const nextCursorPosition = Math.max(
+                            lineStart,
+                            selectionStart - removeLength,
+                        );
                         textarea.selectionStart = nextCursorPosition;
                         textarea.selectionEnd = nextCursorPosition;
                     }
                 }
 
-                autoResizeTextarea();
-                syncHighlight();
-                syncLineNumbers();
-                syncActiveLineHighlight();
                 return;
             }
 
@@ -526,7 +648,11 @@ export function initCodeBlocks() {
             if (!isCtrlPressed || event.altKey) return;
 
             const isCommentShortcut = event.code === "Slash" || event.key === "/";
-            const isToggleShortcutByPeriod = event.code === "Period" || event.key === "." || event.key === "ю" || event.key === "Ю";
+            const isToggleShortcutByPeriod =
+                event.code === "Period" ||
+                event.key === "." ||
+                event.key === "ю" ||
+                event.key === "Ю";
 
             if (!isCommentShortcut && !isToggleShortcutByPeriod) return;
 
@@ -565,11 +691,15 @@ export function initCodeBlocks() {
         });
 
         resetButton.addEventListener("click", () => {
-            resetCode(textarea, defaultCode, codeBlock, iframe);
-            autoResizeTextarea();
-            syncHighlight();
-            syncLineNumbers();
-            syncActiveLineHighlight();
+            const nextCode = getDefaultCodeForRuntime(runtime);
+            resetCode(textarea, nextCode, codeBlock, iframe);
+            syncEditor();
+        });
+
+        emptyButton?.addEventListener("click", () => {
+            textarea.value = getEmptyCodeForRuntime(runtime);
+            stopCode(codeBlock, iframe);
+            syncEditor();
         });
 
         copyButton.addEventListener("click", async () => {
@@ -577,10 +707,7 @@ export function initCodeBlocks() {
         });
 
         syncTypographyMetrics();
-        autoResizeTextarea();
-        syncHighlight();
-        syncLineNumbers();
-        syncActiveLineHighlight();
+        syncEditor();
         clearFrame(iframe);
 
         if (codeBlock.dataset.autostart === "true") {
@@ -588,40 +715,3 @@ export function initCodeBlocks() {
         }
     });
 }
-
-export function initTutorialCodePreviewBlocks() {
-    document.querySelectorAll(".A_TutorialCopyText").forEach((block) => {
-        const rawHtml = block.innerHTML;
-
-        const normalized = rawHtml
-            .split(/<br\s*\/?>/gi)
-            .map((line) =>
-                line
-                    .replace(/\n/g, "")
-                    .replace(/\t/g, "")
-                    .replace(/&nbsp;/g, "\u00A0")
-                    .replace(/\s+$/g, "")
-            )
-            .join("\n");
-
-        block.innerHTML = highlightCode(normalized).replace(/\n/g, "<br>");
-    });
-}
-
-export function initTutorialCopyButtons() {
-    document.querySelectorAll(".A_TutorialCopyButton").forEach((button) => {
-        button.addEventListener("click", async () => {
-            const text = button
-                .closest(".W_TutorialCopyItem")
-                .querySelector(".A_TutorialCopyText")
-                .innerText;
-
-            await copyText(text);
-            showCopyFeedback(button);
-        });
-    });
-}
-
-initCodeBlocks();
-initTutorialCodePreviewBlocks();
-initTutorialCopyButtons();

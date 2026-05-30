@@ -289,6 +289,84 @@ return () => {
 };`,
 };
 
+export const sandboxEmptyCodeByRuntime = {
+  vanilla: `const app = document.getElementById("app");
+const canvas = document.createElement("canvas");
+const ctx = canvas.getContext("2d");
+
+app.innerHTML = "";
+app.style.width = "100%";
+app.style.height = "100%";
+app.style.background = "#ffffff";
+
+app.appendChild(canvas);
+
+function resize() {
+  canvas.width = app.clientWidth;
+  canvas.height = app.clientHeight;
+  draw();
+}
+
+function draw() {
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+window.addEventListener("resize", resize);
+resize();
+
+return () => {
+  window.removeEventListener("resize", resize);
+};`,
+
+  p5: `function setup() {
+  const app = document.getElementById("app");
+  createCanvas(app.clientWidth, app.clientHeight);
+}
+
+function windowResized() {
+  const app = document.getElementById("app");
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function draw() {
+  background(255);
+}`,
+
+  three: `const width = app.clientWidth;
+const height = app.clientHeight;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xffffff);
+
+const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+camera.position.z = 3;
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+function onResize() {
+  const width = app.clientWidth;
+  const height = app.clientHeight;
+
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+  renderer.setSize(width, height);
+}
+
+window.addEventListener("resize", onResize);
+renderer.render(scene, camera);
+
+return () => {
+  window.removeEventListener("resize", onResize);
+  renderer.dispose();
+};`,
+};
+
 export const sandboxCodeById = {
   sandboxTestWindowSize: `// Диагностика размеров в p5.
 // createCanvas(windowWidth, windowHeight) часто берёт размер iframe,
