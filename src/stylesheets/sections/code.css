@@ -397,12 +397,14 @@
             .W_TutorialSingleCodeTextHeader {
                 display: flex;
                 flex-direction: row;
+                flex-wrap: wrap;
                 width: 100%;
                 box-sizing: border-box;
                 height: var(--size-spacing-32);
                 height: min-content;
                 padding: var(--size-spacing-16);
-                gap: var(--size-spacing-36);
+                row-gap: var(--size-spacing-16);
+                column-gap: var(--size-spacing-36);
                 justify-content: space-between;
                 align-items: flex-start;
                 align-self: stretch;
@@ -444,7 +446,6 @@
 
                 .M_TutorialSingleCodeTextButtons {
                     position: static;
-                    flex-wrap: wrap;
                 }
             }
 

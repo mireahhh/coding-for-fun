@@ -240,16 +240,16 @@ app.appendChild(renderer.domElement);
 const group = new THREE.Group();
 scene.add(group);
 
-const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
+const cubeGeometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
 const cubeMaterial = new THREE.MeshNormalMaterial();
 const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-cube.position.x = -0.9;
+cube.position.x = -0.5;
 group.add(cube);
 
 const sphereGeometry = new THREE.SphereGeometry(0.55, 32, 32);
 const sphereMaterial = new THREE.MeshNormalMaterial();
 const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-sphere.position.x = 0.9;
+sphere.position.x = 0.5;
 group.add(sphere);
 
 function onResize() {
