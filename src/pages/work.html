@@ -307,14 +307,16 @@
             <p class="A_FooterSubscribeText2">
               Будь в&nbsp;курсе обновлений</p>
           </div>
-          <div class="M_FooterEmailAction">
+          <form id="footerSubscribeForm" class="M_FooterEmailAction" action="https://formspree.io/f/xlgvzyjn"
+            method="POST">
             <div class="A_FooterSubscribeBar">
-              <input id="footerSubscribeBar" class="U_FontC1" placeholder="Введи свой e-mail" />
+              <input id="footerSubscribeBar" class="U_FontC1" type="email" name="email" placeholder="Введи свой e-mail"
+                required />
             </div>
-            <button id="footerSubscribeButton" class="U_ButtonIcon" aria-label="Подписаться">
+            <button id="footerSubscribeButton" class="U_ButtonIcon" type="submit" aria-label="Подписаться">
               <p class="U_FontS3">Отправить</p>
             </button>
-          </div>
+          </form>
         </div>
         <div class="U_FontC1 W_FooterAuthor">
           <p class="A_FooterPeople">Проект авторства Евы&nbsp;Ливинской<br>под&nbsp;кураторством Захара&nbsp;Дня</p>

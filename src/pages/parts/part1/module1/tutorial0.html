@@ -443,11 +443,40 @@
                 </div>
               </div>
               <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
-                Здесь добавляется случайность. Вместо фиксированного размера каждый прямоугольник получает своё значение
-                через random(). Это&nbsp;превращает строгую сетку в&nbsp;вариативную систему. <a class="U_ALinkText"
-                  href="https://vk.com/digitalnaya" target="_blank" rel="noopener noreferrer"
-                  class="external-link">Алгоритм</a> остаётся
-                тем&nbsp;же, но&nbsp;результат становится&nbsp;живым.
+                Описание
+              </p>
+            </div>
+          </div>
+
+          <div class="O_TutorialSingleCode" data-runtime="three" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Описание
               </p>
             </div>
           </div>
@@ -781,14 +810,16 @@
             <p class="A_FooterSubscribeText2">
               Будь в&nbsp;курсе обновлений</p>
           </div>
-          <div class="M_FooterEmailAction">
+          <form id="footerSubscribeForm" class="M_FooterEmailAction" action="https://formspree.io/f/xlgvzyjn"
+            method="POST">
             <div class="A_FooterSubscribeBar">
-              <input id="footerSubscribeBar" class="U_FontC1" placeholder="Введи свой e-mail" />
+              <input id="footerSubscribeBar" class="U_FontC1" type="email" name="email" placeholder="Введи свой e-mail"
+                required />
             </div>
-            <button id="footerSubscribeButton" class="U_ButtonIcon" aria-label="Подписаться">
+            <button id="footerSubscribeButton" class="U_ButtonIcon" type="submit" aria-label="Подписаться">
               <p class="U_FontS3">Отправить</p>
             </button>
-          </div>
+          </form>
         </div>
         <div class="U_FontC1 W_FooterAuthor">
           <p class="A_FooterPeople">Проект авторства Евы&nbsp;Ливинской<br>под&nbsp;кураторством Захара&nbsp;Дня</p>

@@ -21,7 +21,7 @@ box.style.fontSize = "18px";
 app.appendChild(box);`,
 
   p5: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -315,13 +315,13 @@ function draw() {
   fill('#111827');
   noStroke();
   textLeading(22);
-  text(rows.join('\n'), 20, 32);
+  text(rows.join('\\n'), 20, 32);
 }`,
 };
 
 export const defaultCodeById = {
   patr1module1tutorial1code1: `function setup() {
-  createCanvas(windowWidth, windowHeight); // создаём холст размера окна
+  createCanvas(app.clientWidth, app.clientHeight); // создаём холст размера окна
   // но можно указывать просто числа
   noStroke();
 }
