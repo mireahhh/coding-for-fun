@@ -227,7 +227,7 @@ const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xffffff);
 
 const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
-camera.position.z = 4;
+camera.position.z = 4 * Math.max(width / height, height / width);
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(width, height);

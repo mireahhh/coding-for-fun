@@ -262,6 +262,7 @@ export function initCodeBlocks() {
         const iframe = codeBlock.querySelector(".A_TutorialSingleCodeExecutionCanvas");
         const runStopButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonRunStop");
         const resetButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonClean");
+        const emptyButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonEmpty");
         const copyButton = codeBlock.querySelector(".A_TutorialSingleCodeTextButtonCopy");
         const textarea = codeBlock.querySelector(".W_TutorialSingleCodeTextRun");
         const highlight = codeBlock.querySelector(".A_TutorialSingleCodeTextHighlight");
