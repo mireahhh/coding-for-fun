@@ -1,4 +1,4 @@
-import { defaultCodeByRuntime, defaultCodeById, sandboxCodeByRuntime } from "./tutorialsCodeDefaults";
+import { defaultCodeByRuntime, defaultCodeById, sandboxCodeByRuntime, sandboxCodeById } from "./tutorialsCodeDefaults";
 import {
     getEmptyHtml,
     getUnknownRuntimeHtml,
@@ -54,7 +54,7 @@ export function highlightCode(code) {
     return html;
 }
 
-const defaultSandboxCodeIndex = 3;
+const defaultSandboxCodeIndex = 0;
 
 function getSandboxCode(runtime, sandboxCodeId = "", sandboxCodeNumber = "") {
     if (sandboxCodeId && sandboxCodeById[sandboxCodeId]) {
@@ -281,7 +281,7 @@ export function initCodeBlocks() {
         lineNumbers.classList.add("U_FontC2-Code");
 
         const isSandboxCodeBlock = codeBlock.classList.contains("O_TutorialSingleCode--Sandbox");
-        const sandboxCodeId = codeBlock.dataset.sandboxCodeId || "";
+        const sandboxCodeId = codeBlock.dataset.sandboxCodeId || codeBlockId || "";
         const sandboxCodeNumber = codeBlock.dataset.sandboxCodeNumber || "";
         const defaultCode = getDefaultCode(codeBlockId, runtime, isSandboxCodeBlock, sandboxCodeId, sandboxCodeNumber);
         textarea.value = defaultCode;

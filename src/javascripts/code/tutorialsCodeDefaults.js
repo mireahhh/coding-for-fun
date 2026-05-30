@@ -175,40 +175,6 @@ return () => {
   cancelAnimationFrame(animationId);
   window.removeEventListener("resize", resize);
 };`,
-    `const app = document.getElementById("app");
-
-app.innerHTML = "";
-app.style.padding = "16px";
-app.style.overflow = "auto";
-app.style.fontFamily = "JetBrains Mono, Courier New, monospace";
-app.style.whiteSpace = "pre-wrap";
-app.style.background = "#ffffff";
-app.style.color = "#111827";
-
-function pair(title, width, height) {
-  return title + ": " + Math.round(width || 0) + " × " + Math.round(height || 0);
-}
-
-function render() {
-  const rect = app.getBoundingClientRect();
-  const root = document.documentElement;
-  const body = document.body;
-  const visual = window.visualViewport;
-
-  app.textContent = [
-    "Варианты размеров для создания окна:",
-    pair("app.clientWidth / app.clientHeight", app.clientWidth, app.clientHeight),
-    pair("app.getBoundingClientRect()", rect.width, rect.height),
-    pair("window.innerWidth / window.innerHeight", window.innerWidth, window.innerHeight),
-    pair("documentElement.clientWidth / clientHeight", root.clientWidth, root.clientHeight),
-    pair("body.clientWidth / body.clientHeight", body.clientWidth, body.clientHeight),
-    visual ? pair("visualViewport.width / height", visual.width, visual.height) : "visualViewport: нет",
-    pair("screen.width / screen.height", screen.width, screen.height)
-  ].join("\n");
-}
-
-window.addEventListener("resize", render);
-render();`,
   ],
 
   p5: [
@@ -244,63 +210,6 @@ function draw() {
   background(248);
   fill('#37e87a');
   ellipse(mouseX, mouseY, 80);
-}`,
-    `// Диагностика размеров в p5.
-// Попробуй заменить первую строку в setup на один из вариантов:
-// createCanvas(windowWidth, windowHeight);
-// createCanvas(window.innerWidth, window.innerHeight);
-// createCanvas(document.documentElement.clientWidth, document.documentElement.clientHeight);
-// createCanvas(document.getElementById("app").clientWidth, document.getElementById("app").clientHeight);
-// const rect = document.getElementById("app").getBoundingClientRect(); createCanvas(rect.width, rect.height);
-
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  textFont('monospace');
-  textSize(16);
-  noLoop();
-}
-
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-  redraw();
-}
-
-function formatSize(name, w, h) {
-  return name + ': ' + round(w || 0) + ' × ' + round(h || 0);
-}
-
-function draw() {
-  const app = document.getElementById('app');
-  const appRect = app.getBoundingClientRect();
-  const root = document.documentElement;
-  const body = document.body;
-  const visual = window.visualViewport;
-  const canvas = document.querySelector('canvas');
-
-  const rows = [
-    'Что p5 подставляет в createCanvas(windowWidth, windowHeight):',
-    formatSize('p5 windowWidth / windowHeight', windowWidth, windowHeight),
-    '',
-    'Варианты, на которые можно опираться:',
-    formatSize('window.innerWidth / window.innerHeight', window.innerWidth, window.innerHeight),
-    formatSize('documentElement.clientWidth / clientHeight', root.clientWidth, root.clientHeight),
-    formatSize('body.clientWidth / body.clientHeight', body.clientWidth, body.clientHeight),
-    formatSize('app.clientWidth / app.clientHeight', app.clientWidth, app.clientHeight),
-    formatSize('app.getBoundingClientRect()', appRect.width, appRect.height),
-    visual ? formatSize('visualViewport.width / height', visual.width, visual.height) : 'visualViewport: нет',
-    formatSize('screen.width / screen.height', screen.width, screen.height),
-    '',
-    'Фактический canvas после createCanvas:',
-    formatSize('p5 width / height', width, height),
-    canvas ? formatSize('canvas.width / canvas.height', canvas.width, canvas.height) : 'canvas: не найден',
-    canvas ? formatSize('canvas.clientWidth / canvas.clientHeight', canvas.clientWidth, canvas.clientHeight) : 'canvas.client: не найден'
-  ];
-
-  background(255);
-  fill('#111827');
-  noStroke();
-  textLeading(24);
-  text(rows.join('\n'), 24, 36);
 }`,
   ],
 
@@ -346,40 +255,68 @@ function animate() {
 }
 animate();
 return () => cancelAnimationFrame(animationId);`,
-    `app.innerHTML = "";
-app.style.padding = "16px";
-app.style.overflow = "auto";
-app.style.fontFamily = "JetBrains Mono, Courier New, monospace";
-app.style.whiteSpace = "pre-wrap";
-app.style.color = "#111827";
+  ],
+};
 
-function pair(title, width, height) {
-  return title + ": " + Math.round(width || 0) + " × " + Math.round(height || 0);
+export const sandboxCodeById = {
+  sandboxTestWindowSize: `// Диагностика размеров в p5.
+// createCanvas(windowWidth, windowHeight) часто берёт размер iframe,
+// а не размер видимой области песочницы. Этот скетч выводит
+// несколько вариантов, чтобы можно было выбрать подходящий. 
+
+function setup() {
+  const app = document.getElementById('app');
+  createCanvas(app.clientWidth, app.clientHeight);
+  textFont('monospace');
+  textSize(15);
+  noLoop();
 }
 
-function renderSizes() {
-  const rect = app.getBoundingClientRect();
+function windowResized() {
+  const app = document.getElementById('app');
+  resizeCanvas(app.clientWidth, app.clientHeight);
+  redraw();
+}
+
+function formatSize(name, w, h) {
+  return name + ': ' + round(w || 0) + ', ' + round(h || 0);
+}
+
+function draw() {
+  const app = document.getElementById('app');
+  const appRect = app.getBoundingClientRect();
+  const parent = app.parentElement;
+  const parentRect = parent ? parent.getBoundingClientRect() : null;
   const root = document.documentElement;
   const body = document.body;
   const visual = window.visualViewport;
+    const canvas = document.querySelector('canvas');
 
-  app.textContent = [
-    "Варианты размеров для Three.js renderer.setSize:",
-    pair("app.clientWidth / app.clientHeight", app.clientWidth, app.clientHeight),
-    pair("app.getBoundingClientRect()", rect.width, rect.height),
-    pair("window.innerWidth / window.innerHeight", window.innerWidth, window.innerHeight),
-    pair("documentElement.clientWidth / clientHeight", root.clientWidth, root.clientHeight),
-    pair("body.clientWidth / body.clientHeight", body.clientWidth, body.clientHeight),
-    visual ? pair("visualViewport.width / height", visual.width, visual.height) : "visualViewport: нет",
-    pair("screen.width / screen.height", screen.width, screen.height)
-  ].join("\n");
-}
+  const rows = [
+    'Проверь значения для createCanvas(width, height):',
+    formatSize('(windowWidth, windowHeight)', windowWidth, windowHeight),
+    formatSize('(window.innerWidth, window.innerHeight)', window.innerWidth, window.innerHeight),
+    formatSize('(document.documentElement.clientWidth, document.documentElement.clientHeight)', root.clientWidth, root.clientHeight),
+    formatSize('(document.body.clientWidth, document.body.clientHeight)', body.clientWidth, body.clientHeight),
+    formatSize('(app.clientWidth, app.clientHeight)', app.clientWidth, app.clientHeight),
+    formatSize('(app.offsetWidth, app.offsetHeight)', app.offsetWidth, app.offsetHeight),
+    formatSize('(app.getBoundingClientRect().width, app.getBoundingClientRect().height)', appRect.width, appRect.height),
+    parentRect ? formatSize('(app.parentElement rect width, height)', parentRect.width, parentRect.height) : 'app.parentElement: нет',
+    visual ? formatSize('(visualViewport.width, visualViewport.height)', visual.width, visual.height) : 'visualViewport: нет',
+    formatSize('(screen.width, screen.height)', screen.width, screen.height),
+    '',
+    'Фактический canvas сейчас:',
+    formatSize('(p5 width, height)', width, height),
+    canvas ? formatSize('(canvas.width, canvas.height)', canvas.width, canvas.height) : 'canvas: не найден',
+    canvas ? formatSize('(canvas.clientWidth, canvas.clientHeight)', canvas.clientWidth, canvas.clientHeight) : 'canvas.client: не найден'
+  ];
 
-window.addEventListener("resize", renderSizes);
-renderSizes();
-
-return () => window.removeEventListener("resize", renderSizes);`,
-  ],
+  background(255);
+  fill('#111827');
+  noStroke();
+  textLeading(22);
+  text(rows.join('\n'), 20, 32);
+}`,
 };
 
 export const defaultCodeById = {
