@@ -421,6 +421,7 @@
                         align-items: flex-start;
                         align-content: center;
                         gap: var(--size-spacing-12);
+                        padding-block: var(--size-spacing-1);
                         flex-wrap: wrap;
 
                         .A_TutorialSingleCodeTextHeaderLibraryButton {
