@@ -413,9 +413,8 @@ return () => {
 
 export const sandboxCodeById = {
   sandboxTestWindowSize: `// Диагностика размеров в p5.
-// createCanvas(windowWidth, windowHeight) часто берёт размер iframe,
-// а не размер видимой области песочницы. Этот скетч выводит
-// несколько вариантов, чтобы можно было выбрать подходящий. 
+// createCanvas(app.clientWidth, app.clientHeight) берёт размер видимой области песочницы.
+// Этот скетч выводит несколько вариантов, чтобы можно было проверить размеры.
 
 function setup() {
   const app = document.getElementById('app');
@@ -482,7 +481,7 @@ export const defaultCodeById = {
 function draw() {
   background(248);
 
-  let step = windowWidth / 6; // 6 шаров в сетке
+  let step = width  / 6; // 6 шаров в сетке
 
   for (let y = 0; y < height; y += step) {
     for (let x = 0; x < width; x += step) {
@@ -497,14 +496,14 @@ function draw() {
   noLoop();
 }`,
   patr1module1tutorial1code2: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
 function draw() {
   background(248);
 
-  let step = windowWidth / 6;
+  let step = width / 6;
 
   for (let y = 0; y < height; y += step) {
     for (let x = 0; x < width; x += step) {
@@ -520,14 +519,14 @@ function draw() {
   noLoop();
 }`,
   patr1module1tutorial1code3: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
 function draw() {
   background(248);
 
-  let step = windowWidth / 7;
+  let step = width / 7;
 
   for (let y = 0; y < height; y += step) {
     for (let x = 0; x < width; x += step) {
@@ -552,7 +551,7 @@ function draw() {
   patr1module1tutorial2code1: `let x = 0;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -568,7 +567,7 @@ function draw() {
 let speed = 7;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -584,7 +583,7 @@ function draw() {
 let speed = 2;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -607,7 +606,7 @@ function draw() {
   // speed = random(1, 5);
 }`,
   patr1module1tutorial3code1: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -627,7 +626,7 @@ function draw() {
   noLoop();
 }`,
   patr1module1tutorial3code2: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -652,7 +651,7 @@ function draw() {
   noLoop();
 }`,
   patr1module1tutorial3code3: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -730,7 +729,7 @@ for (let y = 0; y < canvas.height; y += step) {
   }
 }`,
   patr1module2tutorial1code3: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -806,7 +805,7 @@ for (let y = 0; y < canvas.height; y += step) {
   }
 }`,
   patr1module2tutorial2code1: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -825,7 +824,7 @@ function draw() {
   noLoop();
 }`,
   patr1module2tutorial2code2: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -845,7 +844,7 @@ function draw() {
   noLoop();
 }`,
   patr1module2tutorial2code3: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -876,14 +875,14 @@ function draw() {
   noLoop();
 }`,
   patr1module2tutorial3code1: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
 let items = [];
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
 
   for (let i = 0; i < 20; i++) {
     items.push({
@@ -907,7 +906,7 @@ function draw() {
   patr1module2tutorial3code2: `let items = [];
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 
   for (let i = 0; i < 25; i++) {
@@ -932,7 +931,7 @@ function draw() {
   patr1module2tutorial3code3: `let items = [];
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 
   for (let i = 0; i < 30; i++) {
@@ -962,7 +961,7 @@ function draw() {
   noLoop();
 }`,
   patr1module2tutorial4code1: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -984,7 +983,7 @@ function draw() {
   noLoop();
 }`,
   patr1module2tutorial4code2: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -1011,7 +1010,7 @@ function draw() {
   noLoop();
 }`,
   patr1module2tutorial4code3: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -1042,7 +1041,7 @@ function draw() {
   noLoop();
 }`,
   patr1module2tutorial4code4: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -1078,7 +1077,7 @@ function draw() {
   noLoop();
 }`,
   patr1module2tutorial5code1: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -1097,7 +1096,7 @@ function draw() {
   noLoop();
 }`,
   patr1module2tutorial5code2: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -1123,7 +1122,7 @@ function draw() {
   noLoop();
 }`,
   patr1module2tutorial5code3: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -1152,7 +1151,7 @@ function draw() {
   noLoop();
 }`,
   patr1module2tutorial5code4: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -1228,7 +1227,7 @@ setTimeout(() => {
 let timer = 0;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -1570,7 +1569,7 @@ for (let i = 0; i < cardsCount; i++) {
   });
 })();`,
   patr2module2tutorial1code1: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -1646,7 +1645,7 @@ function draw() {
   app.appendChild(ball);
 })();`,
   patr2module2tutorial1code4: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -1660,7 +1659,7 @@ function draw() {
   ellipse(x, y, 80);
 }`,
   patr2module2tutorial2code1: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -1675,7 +1674,7 @@ function draw() {
   patr2module2tutorial2code2: `let isDark = true;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -1692,7 +1691,7 @@ function keyPressed() {
   isDark = !isDark;
 }`,
   patr2module2tutorial2code3: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -1731,7 +1730,7 @@ function mousePressed() {
   // ellipse(mouseX, mouseY, 40);
 }`,
   patr2module2tutorial3code1: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -1756,7 +1755,7 @@ function draw() {
   }
 }`,
   patr2module2tutorial3code2: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -1778,7 +1777,7 @@ function draw() {
   }
 }`,
   patr2module2tutorial3code3: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -1802,7 +1801,7 @@ function draw() {
   }
 }`,
   patr2module2tutorial3code4: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -1830,7 +1829,7 @@ function draw() {
   }
 }`,
   patr2module2tutorial3code5: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -1876,7 +1875,7 @@ function draw() {
   }
 }`,
   patr2module2tutorial4code1: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -1947,7 +1946,7 @@ function draw() {
   app.appendChild(ball);
 })();`,
   patr2module2tutorial4code4: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -1978,7 +1977,7 @@ function draw() {
   patr2module2tutorial5code1: `let t = 0;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
@@ -1994,7 +1993,7 @@ function draw() {
   t += 0.01;
 }`,
   patr2module2tutorial5code2: `function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noFill();
   stroke(31);
   strokeWeight(3);
@@ -2015,7 +2014,7 @@ function draw() {
   patr2module2tutorial5code3: `let t = 0;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noFill();
   stroke(31);
   strokeWeight(3);
@@ -2038,7 +2037,7 @@ function draw() {
   patr2module2tutorial5code4: `let t = 0;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(app.clientWidth, app.clientHeight);
   noFill();
   stroke(31);
   strokeWeight(3);
