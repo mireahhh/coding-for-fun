@@ -131,7 +131,7 @@
         linear-gradient(0deg,
           var(--colors-neutrals-0-20) 0%,
           var(--colors-neutrals-0-20) 100%),
-        linear-gradient(90deg,
+        linear-gradient(270deg,
           var(--colors-brand-rainbow)),
         var(--colors-neutrals-150);
 

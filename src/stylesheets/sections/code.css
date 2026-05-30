@@ -388,18 +388,14 @@
         }
 
         .W_TutorialSingleCodeTextArea--WithHeader {
-            flex: 1;
+            flex: 1 1 0;
+            flex-direction: column;
 
             .W_TutorialSingleCodeTextHeader {
-                padding: 16px;
-                height: 32px;
                 flex: 0 0 auto;
+                height: var(--size-spacing-32);
+                padding: var(--size-spacing-16);
             }
-        }
-
-        .W_TutorialSingleCodeTextArea--WithHeader,
-        &:has(> .W_TutorialSingleCodeTextHeader) {
-            flex-direction: column;
 
             >.W_TutorialSingleCodeTextBody {
                 height: auto;
