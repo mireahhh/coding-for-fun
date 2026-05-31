@@ -18,6 +18,67 @@ function createGroup(tagsArray) {
     return group;
 }
 
+const landingTagsHoverTransitionDuration = 800;
+
+function easeInOutCubic(progress) {
+    return progress < 0.5
+        ? 4 * progress * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+}
+
+function setLandingTagsAnimationRate(animation, rate) {
+    if (typeof animation.updatePlaybackRate === "function") {
+        animation.updatePlaybackRate(rate);
+        return;
+    }
+
+    animation.playbackRate = rate;
+}
+
+function animateLandingTagsPlaybackRate(track, targetRate) {
+    const animation = track.getAnimations?.()[0];
+    if (!animation) return;
+
+    if (track.landingTagsHoverAnimationFrame) {
+        cancelAnimationFrame(track.landingTagsHoverAnimationFrame);
+    }
+
+    const startRate = animation.playbackRate;
+    const startTime = performance.now();
+
+    if (targetRate > 0 && animation.playState === "paused") {
+        animation.play();
+    }
+
+    const tick = (currentTime) => {
+        const progress = Math.min((currentTime - startTime) / landingTagsHoverTransitionDuration, 1);
+        const easedProgress = easeInOutCubic(progress);
+        const nextRate = startRate + (targetRate - startRate) * easedProgress;
+
+        setLandingTagsAnimationRate(animation, nextRate);
+
+        if (progress < 1) {
+            track.landingTagsHoverAnimationFrame = requestAnimationFrame(tick);
+            return;
+        }
+
+        setLandingTagsAnimationRate(animation, targetRate);
+        track.landingTagsHoverAnimationFrame = null;
+    };
+
+    track.landingTagsHoverAnimationFrame = requestAnimationFrame(tick);
+}
+
+function initLandingTagsSmoothHover(track) {
+    track.addEventListener("pointerenter", () => {
+        animateLandingTagsPlaybackRate(track, 0);
+    });
+
+    track.addEventListener("pointerleave", () => {
+        animateLandingTagsPlaybackRate(track, 1);
+    });
+}
+
 function buildLandingTagsMarquee() {
     const list = document.querySelector(".C_LandingCoverRunningTags");
     if (!list) return;
@@ -58,6 +119,8 @@ function buildLandingTagsMarquee() {
     const pxPerSecond = 80;
     const duration = shiftWidth / pxPerSecond;
     list.style.setProperty("--landing-tags-duration", `${duration}s`);
+
+    initLandingTagsSmoothHover(track);
 }
 
 let landingTagsResizeTimeout = null;
@@ -100,6 +163,7 @@ function initLandingLinkCarousel(card, images) {
 
     let currentIndex = 0;
     let timerId = null;
+    let dotsUpdateTimeoutId = null;
     let isAnimating = false;
     let pointerStartX = 0;
     let pointerStartY = 0;
@@ -141,7 +205,14 @@ function initLandingLinkCarousel(card, images) {
         nextImg.classList.toggle("is-from-left", fromLeft);
         wrapper.classList.add("is-sliding");
 
+        window.clearTimeout(dotsUpdateTimeoutId);
+        dotsUpdateTimeoutId = window.setTimeout(() => {
+            currentIndex = targetIndex;
+            updateDots();
+        }, slideDuration / 4);
+
         window.setTimeout(() => {
+            window.clearTimeout(dotsUpdateTimeoutId);
             currentIndex = targetIndex;
             currentImg.src = images[currentIndex];
             wrapper.classList.remove("is-sliding");

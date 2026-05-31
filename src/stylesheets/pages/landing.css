@@ -132,6 +132,10 @@
                         /* U_FontH0, U_FontH1 */
                         color: var(--colors-neutrals-900);
                     }
+
+                    .A_LandingIntroTitleText--Mobile {
+                        display: none;
+                    }
                 }
 
                 .M_LandingIntroButtons {
@@ -260,10 +264,6 @@
                 width: max-content;
                 will-change: transform;
                 animation: landingTagsMarquee var(--landing-tags-duration, 24s) linear infinite;
-            }
-
-            .C_LandingCoverRunningTagsTrack:hover {
-                animation-play-state: paused;
             }
 
             .C_LandingCoverRunningTagsGroup {
@@ -546,7 +546,7 @@
             max-width: var(--size-spacing-564);
             min-width: 0;
             align-items: flex-start;
-            gap: var(--size-spacing-40);
+            gap: var(--size-spacing-20);
 
             .A_LandingLinkImageWrapper {
                 position: relative;
@@ -594,8 +594,7 @@
                 justify-content: center;
                 align-items: center;
                 gap: var(--size-spacing-8);
-                align-self: stretch;
-                margin-top: calc(var(--size-spacing-40) * -0.5);
+                align-self: center;
             }
 
             .A_LandingLinkDot {
@@ -753,6 +752,16 @@
 /* m 2 -> 1 */
 @media (max-width: 904px) {
     .S_Landing {
+        .O_LandingCover .O_LandingIntro .W_LandingIntroTitleAndButtons .M_LandingIntroTitle {
+            .A_LandingIntroTitleText--Desktop {
+                display: none;
+            }
+
+            .A_LandingIntroTitleText--Mobile {
+                display: block;
+            }
+        }
+
         .O_LandingInfo .W_LandingInfo .C_LandingInfo {
             grid-template-columns: minmax(0, 1fr);
         }
