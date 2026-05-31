@@ -188,15 +188,18 @@
     align-items: flex-start;
     align-self: stretch;
     gap: 50px;
+    color: var(--colors-light-900-dark-50);
 
     .A_AboutH {
         flex: 0 0 clamp(200px, 33%, 400px);
+        color: var(--colors-light-900-dark-50);
     }
 
-    A_AboutT {
+    .A_AboutT {
         flex: 1;
-        min-width: 0;
         /* важно для переноса текста */
+        min-width: 0;
+        color: var(--colors-light-900-dark-50);
     }
 }
 

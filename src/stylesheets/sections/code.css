@@ -435,7 +435,7 @@
                             background: var(--colors-neutrals-50-01);
 
                             /* U_FontF2 */
-                            color: var(--colors-neutrals-900);
+                            color: var(--colors-light-900-dark-50);
 
                             &.is-current {
                                 border: var(--size-spacing-1-5) dashed var(--colors-light-900-dark-50);

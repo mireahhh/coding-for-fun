@@ -213,7 +213,7 @@ function initLandingLinkCarousel(card, images) {
         dotsUpdateTimeoutId = window.setTimeout(() => {
             currentIndex = targetIndex;
             updateDots();
-        }, slideDuration / 4);
+        }, slideDuration / 16);
 
         window.setTimeout(() => {
             window.clearTimeout(dotsUpdateTimeoutId);
