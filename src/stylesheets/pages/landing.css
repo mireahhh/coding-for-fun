@@ -467,8 +467,8 @@
     }
 
     .C_LandingBoring {
-        display: flex;
-        flex-direction: row;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         padding-top: var(--size-spacing-80);
         padding-inline: 5%;
         box-sizing: border-box;
@@ -476,19 +476,17 @@
         min-width: var(--min-width);
         max-width: var(--max-width);
         margin: auto;
-        justify-content: center;
+        justify-items: center;
         align-items: center;
-        align-content: center;
         gap: var(--size-spacing-86) var(--size-spacing-160);
-        flex-wrap: wrap;
 
         .W_LandingBoringCard {
             display: flex;
             flex-direction: row;
-            flex: 0 1 calc(50% - var(--size-spacing-80));
+            justify-self: center;
             align-items: flex-start;
             gap: var(--size-spacing-20);
-            min-width: 275px;
+            min-width: 0;
             width: 100%;
 
             .A_LandingBoringImage {
@@ -509,7 +507,7 @@
                 flex-direction: column;
                 justify-content: space-between;
                 align-items: flex-start;
-                min-width: 366px;
+                min-width: 0;
                 max-width: 572px;
                 width: 100%;
                 flex: 1;
@@ -627,14 +625,13 @@
         }
 
         .C_LandingBoring {
-            flex-direction: column;
-            flex-wrap: nowrap;
+            grid-template-columns: minmax(0, 1fr);
             gap: var(--size-spacing-48);
             width: 100%;
             margin: auto;
 
             .W_LandingBoringCard {
-                min-width: auto;
+                max-width: 708px;
                 width: 100%;
             }
         }
@@ -704,9 +701,14 @@
         .C_LandingBoring .W_LandingBoringCard {
             display: flex;
             flex-direction: column;
-            flex: auto;
+            max-width: 572px;
             width: 100%;
             gap: var(--size-spacing-20);
+
+            .A_LandingBoringImage {
+                width: 100%;
+                height: auto;
+            }
         }
 
         .C_LandingLinks {
@@ -804,14 +806,10 @@
             width: 100%;
 
             .W_LandingBoringCard {
-                display: flex;
-                flex-direction: column;
-                flex: auto;
+                max-width: none;
                 width: 100%;
-                gap: var(--size-spacing-20);
 
                 .A_LandingBoringImage {
-                    display: flex;
                     max-width: none;
                     min-width: 0;
                     width: 100%;
