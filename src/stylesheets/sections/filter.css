@@ -273,13 +273,11 @@
                 }
             }
 
-            .A_FilterResetButton {
-                .A_FilterResetText {
-                    padding-block: var(--size-spacing-2);
-                    text-decoration-line: underline;
+            .A_FilterResetButton .A_FilterResetText {
+                padding-block: var(--size-spacing-1);
+                text-decoration-line: underline;
 
-                    color: var(--colors-neutrals-450);
-                }
+                color: var(--colors-neutrals-450);
             }
         }
     }

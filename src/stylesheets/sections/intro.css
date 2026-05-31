@@ -8,7 +8,6 @@
   max-width: var(--max-width);
   margin: auto;
   padding-block: var(--size-spacing-56);
-  padding-top: var(--size-spacing-20);
   background-color: var(--colors-light-50-dark-900);
   align-items: flex-start;
   gap: var(--size-spacing-0);
@@ -152,6 +151,8 @@
 }
 
 .O_Intro--Tutorial {
+  border-bottom: var(--size-spacing-1-5) dashed var(--colors-light-900-dark-50);
+
   .O_IntroFooter {
     align-items: flex-start;
 

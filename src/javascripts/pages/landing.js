@@ -189,11 +189,15 @@ function initLandingLinkCarousel(card, images) {
 
     const resetNextImage = (targetIndex) => {
         nextImg.classList.remove("is-from-left");
+        currentImg.style.transition = "none";
         nextImg.style.transition = "none";
-        nextImg.style.transform = "translateX(100%)";
+        currentImg.style.transform = "translate3d(0, 0, 0)";
+        nextImg.style.transform = "translate3d(100%, 0, 0)";
         nextImg.src = images[targetIndex];
         void nextImg.offsetWidth;
+        currentImg.style.transition = "";
         nextImg.style.transition = "";
+        currentImg.style.transform = "";
         nextImg.style.transform = "";
     };
 

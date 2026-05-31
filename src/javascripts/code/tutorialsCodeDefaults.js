@@ -155,7 +155,7 @@ function animate(time) {
 
   const centerX = canvas.width / 2;
   const centerY = canvas.height / 2;
-  const orbit = Math.min(canvas.width, canvas.height) * 0.18;
+  const orbit = Math.min(canvas.width, canvas.height) * 0.25;
   const x = centerX + Math.cos(virtualTime * 0.002 + Math.PI) * orbit;
   const y = centerY + Math.sin(virtualTime * 0.002 + Math.PI) * orbit;
 
@@ -232,7 +232,7 @@ function draw() {
   background(248);
   drawGrid();
 
-  const orbit = min(width, height) * 0.18;
+  const orbit = min(width, height) * 0.25;
   const x = width / 2 + cos(virtualFrame * 0.03 + PI) * orbit;
   const y = height / 2 + sin(virtualFrame * 0.03 + PI) * orbit;
 
@@ -270,7 +270,7 @@ scene.add(group);
 const cubeGeometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
 const cubeMaterial = new THREE.MeshNormalMaterial();
 const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-cube.position.x = -0.5;
+cube.position.x = -0.9;
 group.add(cube);
 
 const sphereGeometry = new THREE.SphereGeometry(0.55, 32, 32);
