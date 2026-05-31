@@ -1,17 +1,5 @@
 import { tags } from "../json/otherJson.js";
 
-// Массивы для каруселей
-// 1я
-import history0 from "../../images/pages/landing/history0.png";
-import history1 from "../../images/pages/landing/history1.png";
-import history2 from "../../images/pages/landing/history2.png";
-// еще надо в массив запихнуть
-// 2я
-import book0 from "../../images/pages/landing/book0.png";
-import book1 from "../../images/pages/landing/book1.png";
-import book2 from "../../images/pages/landing/book2.png";
-// еще надо в массив запихнуть
-
 function createTagItem(tag) {
     const li = document.createElement("li");
     li.className = "A_LandingCoverRunningTag";
@@ -92,6 +80,8 @@ import history2 from "../../images/pages/landing/history2.png";
 import book0 from "../../images/pages/landing/book0.png";
 import book1 from "../../images/pages/landing/book1.png";
 import book2 from "../../images/pages/landing/book2.png";
+
+// Вот 2 массива для карусели
 
 const data = [
     [history0, history1, history2],
