@@ -81,62 +81,128 @@ import book0 from "../../images/pages/landing/book0.png";
 import book1 from "../../images/pages/landing/book1.png";
 import book2 from "../../images/pages/landing/book2.png";
 
-// Вот 2 массива для карусели
-
-const data = [
+const landingLinkCarousels = [
     [history0, history1, history2],
     [book0, book1, book2],
 ];
 
-document.querySelectorAll(".O_LandingLink").forEach((card, i) => {
-    return;
-  const wrapper = card.querySelector(".A_LandingLinkImageWrapper");
-  if (!wrapper) return;
+function initLandingLinkCarousel(card, images) {
+    const wrapper = card.querySelector(".A_LandingLinkImageWrapper");
+    const currentImg = wrapper?.querySelector(".A_LandingLinkImage--current");
+    const nextImg = wrapper?.querySelector(".A_LandingLinkImage--next");
+    const dotsContainer = card.querySelector(".C_LandingLinkDots");
 
-  const currentImg = wrapper.querySelector(".A_LandingLinkImage--current");
-  const nextImg = wrapper.querySelector(".A_LandingLinkImage--next");
+    if (!wrapper || !currentImg || !nextImg || !images || images.length < 2) return;
 
-  const images = data[i];
-  if (!images || images.length < 2) return;
+    const slideDuration = 800;
+    const autoplayDelay = 3000;
+    const swipeDistance = 40;
 
-  let index = 0;
+    let currentIndex = 0;
+    let timerId = null;
+    let isAnimating = false;
+    let pointerStartX = 0;
+    let pointerStartY = 0;
 
-  const DURATION = 800; // ← должно совпадать с CSS
+    currentImg.src = images[currentIndex];
+    nextImg.src = images[(currentIndex + 1) % images.length];
 
-  currentImg.src = images[index];
-  nextImg.src = images[(index + 1) % images.length];
+    const dots = images.map((_, index) => {
+        const dot = document.createElement("button");
+        dot.className = "A_LandingLinkDot";
+        dot.type = "button";
+        dot.setAttribute("aria-label", `Показать слайд ${index + 1}`);
+        dotsContainer?.appendChild(dot);
+        return dot;
+    });
 
-  const slide = () => {
-    // старт анимации
-    wrapper.classList.add("is-sliding");
+    const updateDots = () => {
+        dots.forEach((dot, index) => {
+            dot.classList.toggle("is-active", index === currentIndex);
+            dot.setAttribute("aria-current", index === currentIndex ? "true" : "false");
+        });
+    };
 
-    setTimeout(() => {
-      // 1. обновляем индекс
-      index = (index + 1) % images.length;
+    const resetNextImage = (targetIndex) => {
+        nextImg.classList.remove("is-from-left");
+        nextImg.style.transition = "none";
+        nextImg.style.transform = "translateX(100%)";
+        nextImg.src = images[targetIndex];
+        void nextImg.offsetWidth;
+        nextImg.style.transition = "";
+        nextImg.style.transform = "";
+    };
 
-      // 2. current получает новую картинку
-      currentImg.src = images[index];
+    const showSlide = (targetIndex, { fromLeft = false } = {}) => {
+        if (isAnimating || targetIndex === currentIndex) return;
 
-      // 3. next мгновенно уводим вправо
-      nextImg.style.transition = "none";
-      nextImg.style.transform = "translateX(100%)";
+        isAnimating = true;
+        nextImg.src = images[targetIndex];
+        nextImg.classList.toggle("is-from-left", fromLeft);
+        wrapper.classList.add("is-sliding");
 
-      // форсим перерисовку
-      void nextImg.offsetWidth;
+        window.setTimeout(() => {
+            currentIndex = targetIndex;
+            currentImg.src = images[currentIndex];
+            wrapper.classList.remove("is-sliding");
+            resetNextImage((currentIndex + 1) % images.length);
+            updateDots();
+            isAnimating = false;
+        }, slideDuration);
+    };
 
-      // 4. возвращаем transition
-      nextImg.style.transition = "";
+    const nextSlide = () => {
+        showSlide((currentIndex + 1) % images.length);
+    };
 
-      // 5. задаём следующую картинку
-      nextImg.src = images[(index + 1) % images.length];
+    const previousSlide = () => {
+        showSlide((currentIndex - 1 + images.length) % images.length, { fromLeft: true });
+    };
 
-      // 6. убираем класс
-      wrapper.classList.remove("is-sliding");
+    const startAutoplay = () => {
+        window.clearInterval(timerId);
+        timerId = window.setInterval(nextSlide, autoplayDelay);
+    };
 
-    }, DURATION);
-  };
+    dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+            const fromLeft = index < currentIndex;
+            showSlide(index, { fromLeft });
+            startAutoplay();
+        });
+    });
 
-  setInterval(slide, 3000);
-});
+    wrapper.addEventListener("pointerdown", (event) => {
+        pointerStartX = event.clientX;
+        pointerStartY = event.clientY;
+    });
 
+    wrapper.addEventListener("pointerup", (event) => {
+        const deltaX = event.clientX - pointerStartX;
+        const deltaY = event.clientY - pointerStartY;
+
+        if (Math.abs(deltaX) < swipeDistance || Math.abs(deltaX) < Math.abs(deltaY)) return;
+
+        if (deltaX < 0) {
+            nextSlide();
+        } else {
+            previousSlide();
+        }
+
+        startAutoplay();
+    });
+
+    wrapper.addEventListener("dragstart", (event) => event.preventDefault());
+
+    updateDots();
+    startAutoplay();
+}
+
+function initLandingLinkCarousels() {
+    document.querySelectorAll(".O_LandingLink").forEach((card, index) => {
+        initLandingLinkCarousel(card, landingLinkCarousels[index]);
+    });
+}
+
+initLandingLinkCarousels();
 initLandingTagsMarquee();

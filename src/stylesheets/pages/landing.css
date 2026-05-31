@@ -548,14 +548,71 @@
             align-items: flex-start;
             gap: var(--size-spacing-40);
 
-            .A_LandingLinkImage {
-                display: flex;
+            .A_LandingLinkImageWrapper {
+                position: relative;
+                display: block;
                 width: 100%;
                 aspect-ratio: 1/1;
-                object-fit: cover;
-
+                overflow: hidden;
                 border-radius: var(--size-radius-4);
                 border: var(--size-spacing-1) solid var(--colors-neutrals-200);
+                touch-action: pan-y;
+
+                .A_LandingLinkImage {
+                    position: absolute;
+                    inset: 0;
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    user-select: none;
+                }
+
+                .A_LandingLinkImage--current {
+                    z-index: 1;
+                }
+
+                .A_LandingLinkImage--next {
+                    z-index: 2;
+                    transform: translateX(100%);
+                    transition: transform 0.8s ease;
+                }
+
+                .A_LandingLinkImage--next.is-from-left {
+                    transform: translateX(-100%);
+                }
+
+                &.is-sliding {
+                    .A_LandingLinkImage--next {
+                        transform: translateX(0);
+                    }
+                }
+            }
+
+            .C_LandingLinkDots {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: var(--size-spacing-8);
+                align-self: stretch;
+                margin-top: calc(var(--size-spacing-40) * -0.5);
+            }
+
+            .A_LandingLinkDot {
+                width: var(--size-spacing-8);
+                height: var(--size-spacing-8);
+                padding: 0;
+                border: 0;
+                border-radius: 50%;
+                background: var(--colors-light-900-dark-50);
+                opacity: 0.28;
+                cursor: pointer;
+                transition: opacity 0.2s ease, transform 0.2s ease;
+            }
+
+            .A_LandingLinkDot.is-active {
+                opacity: 1;
+                transform: scale(1.25);
             }
 
             .W_LandingLinkTexts {
