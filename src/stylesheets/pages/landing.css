@@ -527,20 +527,17 @@
     }
 
     .C_LandingLinks {
-        display: flex;
-        flex-direction: row;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         padding-inline: 5%;
         box-sizing: border-box;
         width: 100%;
         min-width: var(--min-width);
         max-width: var(--max-width);
         margin: auto;
-        justify-content: space-between;
+        justify-items: center;
         align-items: center;
-        align-content: center;
-        column-gap: var(--size-spacing-32);
-        row-gap: var(--size-spacing-56);
-        flex-wrap: wrap;
+        gap: var(--size-spacing-86) var(--size-spacing-160);
 
         .O_LandingLink {
             display: flex;
@@ -688,6 +685,11 @@
                 min-width: var(--size-spacing-340);
             }
         }
+
+        .C_LandingLinks {
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--size-spacing-48);
+        }
     }
 }
 
@@ -708,14 +710,6 @@
             .A_LandingBoringImage {
                 width: 100%;
                 height: auto;
-            }
-        }
-
-        .C_LandingLinks {
-            flex-direction: column;
-
-            .O_LandingLink {
-                width: 100%;
             }
         }
     }
