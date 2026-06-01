@@ -3,14 +3,16 @@ import { previewCodeById } from "../code/tutorialsCodeDefaults.js";
 import { tags, galleryAllImages } from "../json/otherJson.js";
 
 const landingCoverCarouselSettings = {
-    baseSpeed: 0.000055 / 2.3,
-    hoverTransitionDuration: 900 * 2.5,
+    baseSpeed: 0.000022,
+    hoverTransitionDuration: 1800,
     poolSize: 8,
     minScale: 0.32,
     maxScale: 1.05,
     maxCardHeightRatio: 0.88,
     pathPower: 2,
     horizontalPaddingRatio: 0.18,
+    minOffset: 150,
+    minSize: 230,
 };
 
 function shuffleLandingCoverImages(images) {
@@ -59,14 +61,14 @@ function createLandingCoverCard(imageData) {
 function calcLandingCoverCardMetrics(container, position) {
     const width = container.clientWidth;
     const height = container.clientHeight;
-    const outsideOffset = width * landingCoverCarouselSettings.horizontalPaddingRatio;
+    const outsideOffset = Math.max(landingCoverCarouselSettings.minOffset, width * landingCoverCarouselSettings.horizontalPaddingRatio);
     const x = -outsideOffset + position * (width + outsideOffset * 2);
     const distanceFromCenter = Math.abs(position * 2 - 1);
     const centerProgress = 1 - Math.pow(distanceFromCenter, landingCoverCarouselSettings.pathPower) * 2;
     const scale = landingCoverCarouselSettings.minScale
         + (landingCoverCarouselSettings.maxScale - landingCoverCarouselSettings.minScale) * centerProgress;
     const maxCardHeight = height * landingCoverCarouselSettings.maxCardHeightRatio;
-    const baseCardSize = Math.min(maxCardHeight / landingCoverCarouselSettings.maxScale, width * 0.36);
+    const baseCardSize = Math.max(landingCoverCarouselSettings.minSize, Math.min(maxCardHeight / landingCoverCarouselSettings.maxScale, width * 0.36));
     const edgeY = height + baseCardSize * 0.42;
     const centerY = height * 0.46;
     const y = edgeY - (edgeY - centerY) * centerProgress;
