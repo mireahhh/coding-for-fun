@@ -103,7 +103,10 @@ const previewCodeVanilla = `const app = document.getElementById("app");
 const canvas = document.createElement("canvas");
 const ctx = canvas.getContext("2d");
 let animationId;
-let time = 0;
+let speedFactor = 0;
+let targetSpeedFactor = 0;
+let virtualTime = 0;
+let lastTime = 0;
 
 app.innerHTML = "";
 app.style.width = "100%";
@@ -115,8 +118,29 @@ function resize() {
   canvas.height = app.clientHeight;
 }
 
-function draw() {
-  time += 0.04;
+function playAnimation() {
+  targetSpeedFactor = 1;
+}
+
+function pauseAnimation() {
+  targetSpeedFactor = 0;
+}
+
+function handlePreviewHover(event) {
+  if (event.data?.type !== "coding-for-fun-preview-hover") return;
+  if (event.data.isHovered) {
+    playAnimation();
+  } else {
+    pauseAnimation();
+  }
+}
+
+function draw(time) {
+  const deltaTime = time - lastTime;
+  lastTime = time;
+
+  speedFactor += (targetSpeedFactor - speedFactor) * Math.min(deltaTime / 2000, 1);
+  virtualTime += deltaTime * speedFactor * 0.04;
 
   const width = canvas.width;
   const height = canvas.height;
@@ -126,7 +150,7 @@ function draw() {
   ctx.fillRect(0, 0, width, height);
 
   for (let i = 0; i < 9; i += 1) {
-    const angle = time + i * 0.7;
+    const angle = virtualTime + i * 0.7;
     const x = width / 2 + Math.cos(angle) * size * 1.4;
     const y = height / 2 + Math.sin(angle * 1.3) * size;
 
@@ -144,20 +168,48 @@ function draw() {
   animationId = requestAnimationFrame(draw);
 }
 
+window.addEventListener("message", handlePreviewHover);
+canvas.addEventListener("mouseenter", playAnimation);
+canvas.addEventListener("mouseleave", pauseAnimation);
 window.addEventListener("resize", resize);
 resize();
-draw();
+draw(0);
 
 return () => {
   cancelAnimationFrame(animationId);
+  window.removeEventListener("message", handlePreviewHover);
+  canvas.removeEventListener("mouseenter", playAnimation);
+  canvas.removeEventListener("mouseleave", pauseAnimation);
   window.removeEventListener("resize", resize);
 };`;
 
-const previewCodeP5 = `let t = 0;
+const previewCodeP5 = `let speedFactor = 0;
+let targetSpeedFactor = 0;
+let virtualTime = 0;
+
+function playAnimation() {
+  targetSpeedFactor = 1;
+}
+
+function pauseAnimation() {
+  targetSpeedFactor = 0;
+}
+
+function handlePreviewHover(event) {
+  if (event.data?.type !== "coding-for-fun-preview-hover") return;
+  if (event.data.isHovered) {
+    playAnimation();
+  } else {
+    pauseAnimation();
+  }
+}
 
 function setup() {
   const canvas = createCanvas(app.clientWidth, app.clientHeight);
   canvas.parent("app");
+  canvas.mouseOver(playAnimation);
+  canvas.mouseOut(pauseAnimation);
+  window.addEventListener("message", handlePreviewHover);
   noStroke();
 }
 
@@ -166,18 +218,19 @@ function windowResized() {
 }
 
 function draw() {
-  t += 0.035;
+  speedFactor += (targetSpeedFactor - speedFactor) * min(deltaTime / 2000, 1);
+  virtualTime += deltaTime * speedFactor * 0.035;
   background(248);
 
   const radius = min(width, height) * 0.28;
 
   for (let i = 0; i < 12; i += 1) {
-    const angle = t + i * TWO_PI / 12;
+    const angle = virtualTime + i * TWO_PI / 12;
     const x = width / 2 + cos(angle) * radius;
     const y = height / 2 + sin(angle * 1.6) * radius * 0.65;
 
     fill(i % 2 ? "#2fd3e6" : "#ff86db");
-    circle(x, y, 22 + sin(t * 2 + i) * 10);
+    circle(x, y, 22 + sin(virtualTime * 2 + i) * 10);
   }
 
   fill("#111827");
@@ -188,6 +241,10 @@ function draw() {
 
 const previewCodeThree = `const width = app.clientWidth;
 const height = app.clientHeight;
+
+let speedFactor = 0;
+let targetSpeedFactor = 0;
+let lastTime = 0;
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xf8f8f8);
@@ -223,23 +280,51 @@ function onResize() {
   renderer.setSize(width, height);
 }
 
+function playAnimation() {
+  targetSpeedFactor = 1;
+}
+
+function pauseAnimation() {
+  targetSpeedFactor = 0;
+}
+
+function handlePreviewHover(event) {
+  if (event.data?.type !== "coding-for-fun-preview-hover") return;
+  if (event.data.isHovered) {
+    playAnimation();
+  } else {
+    pauseAnimation();
+  }
+}
+
 let animationId;
 
-function animate() {
-  knot.rotation.x += 0.018;
-  knot.rotation.y += 0.026;
-  group.rotation.z += 0.006;
+function animate(time) {
+  const deltaTime = time - lastTime;
+  lastTime = time;
+
+  speedFactor += (targetSpeedFactor - speedFactor) * Math.min(deltaTime / 2000, 1);
+
+  knot.rotation.x += 0.018 * speedFactor;
+  knot.rotation.y += 0.026 * speedFactor;
+  group.rotation.z += 0.006 * speedFactor;
 
   renderer.render(scene, camera);
   animationId = requestAnimationFrame(animate);
 }
 
 window.addEventListener("resize", onResize);
-animate();
+window.addEventListener("message", handlePreviewHover);
+renderer.domElement.addEventListener("mouseenter", playAnimation);
+renderer.domElement.addEventListener("mouseleave", pauseAnimation);
+animate(0);
 
 return () => {
   cancelAnimationFrame(animationId);
   window.removeEventListener("resize", onResize);
+  window.removeEventListener("message", handlePreviewHover);
+  renderer.domElement.removeEventListener("mouseenter", playAnimation);
+  renderer.domElement.removeEventListener("mouseleave", pauseAnimation);
   geometry.dispose();
   material.dispose();
   renderer.dispose();

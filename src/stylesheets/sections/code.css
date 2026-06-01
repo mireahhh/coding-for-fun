@@ -478,45 +478,53 @@
         radial-gradient(circle at 25% 25%, rgba(47, 211, 230, 0.2), transparent 32%),
         radial-gradient(circle at 75% 70%, rgba(255, 134, 219, 0.22), transparent 34%),
         var(--colors-light-50-dark-900);
+    border-radius: 0;
+    border: none;
 
     .W_TutorialSingleCodeExecution {
         display: block;
         width: 100%;
         height: 100%;
         aspect-ratio: 1/1;
-    }
 
-    .A_TutorialSingleCodeExecutionCanvas {
-        display: block;
-        width: 100%;
-        height: 100%;
-        border: 0;
-        pointer-events: none;
-        background-color: transparent;
-    }
+        border-radius: 0;
+        border: none;
 
-    .A_TutorialSingleCodePreviewHint {
-        position: absolute;
-        right: var(--size-spacing-12);
-        bottom: var(--size-spacing-12);
-        z-index: 2;
-        display: inline-flex;
-        max-width: calc(100% - 2 * var(--size-spacing-12));
-        box-sizing: border-box;
-        padding: var(--size-spacing-4) var(--size-spacing-8);
-        border-radius: var(--size-radius-4);
-        border: var(--size-spacing-1) solid var(--colors-neutrals-200);
-        background: var(--colors-light-0-dark-950);
-        color: var(--colors-light-900-dark-50);
-        pointer-events: none;
-        transition:
-            opacity 0.2s ease,
-            transform 0.2s ease;
-    }
+        .A_TutorialSingleCodeExecutionCanvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-color: transparent;
+            border-radius: 0;
+            border: none;
+        }
 
-    &.is-running .A_TutorialSingleCodePreviewHint {
-        opacity: 0;
-        transform: translateY(var(--size-spacing-8));
+        .A_TutorialSingleCodePreviewHint {
+            position: absolute;
+            right: var(--size-spacing-12);
+            bottom: var(--size-spacing-12);
+            z-index: 2;
+            display: inline-flex;
+            max-width: calc(100% - 2 * var(--size-spacing-12));
+            box-sizing: border-box;
+            padding: var(--size-spacing-4) var(--size-spacing-8);
+
+            background: var(--colors-light-50-dark-900);
+            color: var(--colors-light-900-dark-50);
+            border-radius: 0;
+            border: none;
+
+            pointer-events: none;
+            transition:
+                opacity 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        &.is-running .A_TutorialSingleCodePreviewHint {
+            opacity: 0;
+            transform: translateY(var(--size-spacing-8));
+        }
     }
 }
 
@@ -568,6 +576,39 @@
             max-height: none;
             height: 80vh;
             width: 100%;
+        }
+    }
+
+    .O_TutorialSingleCode--Preview {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: auto;
+
+        border-radius: 0;
+        border: none;
+
+        .W_TutorialSingleCodeExecution {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            max-width: none;
+            flex: none;
+            aspect-ratio: auto;
+
+            border-radius: 0;
+            border: none;
+
+            .A_TutorialSingleCodeExecutionCanvas {
+                margin: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+                max-width: none;
+                aspect-ratio: auto;
+
+                border-radius: 0;
+                border: none;
+            }
         }
     }
 }

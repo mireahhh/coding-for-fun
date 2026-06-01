@@ -253,6 +253,16 @@ function runPreviewCode(codeBlock, iframe, code, runtime) {
     codeBlock.classList.add("is-running");
 }
 
+function sendPreviewHoverState(iframe, isHovered) {
+    iframe.contentWindow?.postMessage(
+        {
+            type: "coding-for-fun-preview-hover",
+            isHovered,
+        },
+        "*",
+    );
+}
+
 function stopPreviewCode(codeBlock, iframe) {
     clearFrame(iframe);
     codeBlock.classList.remove("is-running");
@@ -262,7 +272,7 @@ export function initCodePreviewBlocks(options = {}) {
     const {
         getInitialRuntime = (codeBlock) => getCodeBlockRuntime(codeBlock),
         getDefaultCode = () => "",
-        runOnHover = true,
+        runOnHover = false,
         stopOnLeave = false,
     } = options;
 
@@ -280,25 +290,46 @@ export function initCodePreviewBlocks(options = {}) {
         if (!code) return;
 
         codeBlock.dataset.runtime = runtime;
-        clearFrame(iframe);
+        let isHovered = false;
 
+        const notifyPreview = () => {
+            sendPreviewHoverState(iframe, isHovered);
+        };
         const run = () => {
             runPreviewCode(codeBlock, iframe, code, runtime);
+            notifyPreview();
         };
         const stop = () => {
             stopPreviewCode(codeBlock, iframe);
         };
+        const play = () => {
+            isHovered = true;
+            notifyPreview();
+        };
+        const pause = () => {
+            isHovered = false;
+            notifyPreview();
+        };
 
-        if (codeBlock.dataset.autostart === "true") {
-            run();
-        }
+        iframe.addEventListener("load", notifyPreview);
+        run();
 
         if (runOnHover) {
-            codeBlock.addEventListener("pointerenter", run);
+            codeBlock.addEventListener("pointerenter", () => {
+                isHovered = true;
+                run();
+            });
+        } else {
+            codeBlock.addEventListener("pointerenter", play);
         }
 
         if (stopOnLeave || codeBlock.dataset.stopOnLeave === "true") {
-            codeBlock.addEventListener("pointerleave", stop);
+            codeBlock.addEventListener("pointerleave", () => {
+                isHovered = false;
+                stop();
+            });
+        } else {
+            codeBlock.addEventListener("pointerleave", pause);
         }
     });
 }
