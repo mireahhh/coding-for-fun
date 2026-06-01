@@ -76,20 +76,21 @@
             .A_HeaderLogo {
                 height: 100%;
 
-                a {
+                .W_HeaderLogoPlaceholder {
                     display: flex;
+                    flex-direction: row;
                     align-items: center;
                     height: 100%;
-                }
 
-                img {
-                    height: 100%;
-                    width: auto;
-                    display: block;
-                }
+                    .A_HeaderLogoMin {
+                        display: none;
+                    }
 
-                .A_HeaderLogoMin {
-                    display: none;
+                    img {
+                        height: 100%;
+                        width: auto;
+                        display: block;
+                    }
                 }
             }
 
@@ -678,7 +679,7 @@
 
 /* mD 4 -> 3 */
 @media (max-width: 1532px) {
-    .S_Header .C_HeaderAll .O_HeaderNavigation .A_HeaderLogo {
+    .S_Header .C_HeaderAll .O_HeaderNavigation .A_HeaderLogo .W_HeaderLogoPlaceholder {
         .A_HeaderLogoText {
             display: none;
         }
@@ -806,14 +807,17 @@
                 align-items: center;
                 width: 100%;
 
-                .A_HeaderLogo {
+                .A_HeaderLogo .W_HeaderLogoPlaceholder {
 
                     /* height: clamp(var(--size-spacing-4), var(--size-spacing-32), 10%); */
                     width: 100%;
 
                     .A_HeaderLogoText {
                         display: block;
-                        width: 100%;
+
+                        img {
+                            width: 100%;
+                        }
                     }
 
                     .A_HeaderLogoMin {

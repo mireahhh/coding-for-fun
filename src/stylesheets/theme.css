@@ -1,18 +1,18 @@
 .ico-light-theme {
-    display: block;
+    display: block !important;
 }
 
 .ico-dark-theme {
-    display: none;
+    display: none !important;
 }
 
 :root[data-theme="dark"] {
     .ico-light-theme {
-        display: none;
+        display: none !important;
     }
 
     .ico-dark-theme {
-        display: block;
+        display: block !important;
     }
 
     --colors-light-50-dark-900: #1f1f1f;
