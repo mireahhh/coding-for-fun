@@ -191,44 +191,39 @@
             margin-top: var(--size-spacing-16);
             height: var(--size-spacing-558);
 
-            .A_LandingCoverIllustrationImage1,
-            .A_LandingCoverIllustrationImage2,
-            .A_LandingCoverIllustrationImage3,
-            .A_LandingCoverIllustrationImage4,
-            .A_LandingCoverIllustrationImage5 {
+            overflow: hidden;
+
+            .A_LandingCoverIllustrationCard {
+                --x: 50%;
+                --y: 50%;
+                --card-size: 30rem;
+                --path-scale: 1;
+
                 position: absolute;
-                bottom: 0;
-                transform: translateX(-50%);
+                top: 0;
+                left: 0;
+
+                display: block;
+                width: var(--card-size);
+                height: var(--card-size);
+
+                transform: translate3d(var(--x), var(--y), 0) translate3d(-50%, -50%, 0) scale(var(--path-scale));
+                will-change: transform, opacity;
+            }
+
+            .A_LandingCoverIllustrationImage {
+                display: block;
+                width: 100%;
+                height: 100%;
                 aspect-ratio: 1 / 1;
                 object-fit: cover;
                 border-radius: var(--size-spacing-8);
                 border: var(--size-spacing-1) solid var(--colors-neutrals-200);
+                transition: transform 0.35s ease;
             }
 
-            .A_LandingCoverIllustrationImage1 {
-                left: 12%;
-                height: 51%;
-            }
-
-            .A_LandingCoverIllustrationImage2 {
-                left: 28%;
-                height: 82%;
-            }
-
-            .A_LandingCoverIllustrationImage3 {
-                left: 50%;
-                height: 100%;
-            }
-
-            .A_LandingCoverIllustrationImage4 {
-                left: 72%;
-                height: 82%;
-
-            }
-
-            .A_LandingCoverIllustrationImage5 {
-                left: 88%;
-                height: 51%;
+            .A_LandingCoverIllustrationCard:hover .A_LandingCoverIllustrationImage {
+                transform: scale(1.06);
             }
         }
 

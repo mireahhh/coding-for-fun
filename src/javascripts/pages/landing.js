@@ -1,6 +1,155 @@
 import { initCodePreviewBlocks } from "../code/code.js";
 import { previewCodeById } from "../code/tutorialsCodeDefaults.js";
-import { tags } from "../json/otherJson.js";
+import { tags, galleryAllImages } from "../json/otherJson.js";
+
+const landingCoverCarouselSettings = {
+    baseSpeed: 0.000055,
+    hoverTransitionDuration: 900,
+    poolSize: 9,
+    minScale: 0.52,
+    maxScale: 1.05,
+    horizontalPaddingRatio: 0.18,
+};
+
+function shuffleLandingCoverImages(images) {
+    const shuffledImages = [...images];
+
+    for (let index = shuffledImages.length - 1; index > 0; index -= 1) {
+        const randomIndex = Math.floor(Math.random() * (index + 1));
+        [shuffledImages[index], shuffledImages[randomIndex]] = [shuffledImages[randomIndex], shuffledImages[index]];
+    }
+
+    return shuffledImages;
+}
+
+function setLandingCoverCardImage(card, { id, src }) {
+    const image = card.querySelector(".A_LandingCoverIllustrationImage");
+
+    card.href = `./pages/work.html?indexWork=${id}`;
+    card.dataset.indexWork = id;
+    card.setAttribute("aria-label", `Открыть работу ${Number(id) + 1}`);
+
+    if (image) {
+        image.src = src;
+    }
+}
+
+function createLandingCoverCard(imageData) {
+    const card = document.createElement("a");
+    card.className = "A_LandingCoverIllustrationCard";
+
+    card.addEventListener("click", () => {
+        sessionStorage.setItem("indexWork", card.dataset.indexWork);
+    });
+
+    const image = document.createElement("img");
+    image.className = "A_LandingCoverIllustrationImage";
+    image.alt = "";
+    image.loading = "eager";
+    image.decoding = "async";
+
+    card.appendChild(image);
+    setLandingCoverCardImage(card, imageData);
+
+    return card;
+}
+
+function calcLandingCoverCardMetrics(container, position) {
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+    const outsideOffset = width * landingCoverCarouselSettings.horizontalPaddingRatio;
+    const x = -outsideOffset + position * (width + outsideOffset * 2);
+    const centerProgress = Math.sin(Math.PI * position);
+    const scale = landingCoverCarouselSettings.minScale
+        + (landingCoverCarouselSettings.maxScale - landingCoverCarouselSettings.minScale) * centerProgress;
+    const baseCardSize = Math.min(height * 0.98, width * 0.36);
+    const edgeY = height + baseCardSize * 0.42;
+    const centerY = height * 0.46;
+    const y = edgeY - (edgeY - centerY) * centerProgress;
+
+    return { x, y, scale, size: baseCardSize };
+}
+
+function updateLandingCoverCardPosition(container, card) {
+    const metrics = calcLandingCoverCardMetrics(container, card.landingCoverProgress);
+
+    card.style.setProperty("--x", `${metrics.x}px`);
+    card.style.setProperty("--y", `${metrics.y}px`);
+    card.style.setProperty("--path-scale", metrics.scale.toFixed(4));
+    card.style.setProperty("--card-size", `${metrics.size}px`);
+    card.style.zIndex = String(Math.round(metrics.scale * 1000));
+    card.style.opacity = String(Math.min(1, Math.max(0.72, metrics.scale)));
+}
+
+function initLandingCoverIllustrationCarousel() {
+    const container = document.querySelector(".W_LandingCoverIllustration");
+
+    if (!container) return;
+
+    const images = shuffleLandingCoverImages(
+        Object.entries(galleryAllImages).map(([id, src]) => ({ id, src })),
+    );
+
+    if (!images.length) return;
+
+    container.innerHTML = "";
+
+    const poolSize = Math.min(images.length, landingCoverCarouselSettings.poolSize);
+    let nextImageIndex = poolSize;
+
+    const getNextImage = () => {
+        const imageData = images[nextImageIndex % images.length];
+        nextImageIndex += 1;
+        return imageData;
+    };
+
+    const cards = images.slice(0, poolSize).map((imageData, index) => {
+        const card = createLandingCoverCard(imageData);
+        const progress = index / poolSize;
+
+        card.landingCoverProgress = progress;
+        updateLandingCoverCardPosition(container, card);
+        container.appendChild(card);
+
+        return card;
+    });
+
+    let previousTime = performance.now();
+    let currentRate = 1;
+    let targetRate = 1;
+
+    const setTargetRate = (rate) => {
+        targetRate = rate;
+    };
+
+    container.addEventListener("pointerenter", () => setTargetRate(0));
+    container.addEventListener("pointerleave", () => setTargetRate(1));
+
+    const render = (currentTime) => {
+        const deltaTime = currentTime - previousTime;
+        previousTime = currentTime;
+
+        const rateEase = 1 - Math.exp(-deltaTime / landingCoverCarouselSettings.hoverTransitionDuration * 6);
+        currentRate += (targetRate - currentRate) * rateEase;
+
+        const progressShift = deltaTime * landingCoverCarouselSettings.baseSpeed * currentRate;
+
+        cards.forEach((card) => {
+            card.landingCoverProgress += progressShift;
+
+            while (card.landingCoverProgress >= 1) {
+                card.landingCoverProgress -= 1;
+                setLandingCoverCardImage(card, getNextImage());
+            }
+
+            updateLandingCoverCardPosition(container, card);
+        });
+
+        requestAnimationFrame(render);
+    };
+
+    requestAnimationFrame(render);
+}
 
 function createTagItem(tag) {
     const button = document.createElement("button");
@@ -307,6 +456,7 @@ function initLandingLinkCarousels() {
     });
 }
 
+initLandingCoverIllustrationCarousel();
 initLandingLinkCarousels();
 initLandingTagsMarquee();
 initLandingTagSearchPrefill();

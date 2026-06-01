@@ -3,11 +3,15 @@ import { galleryImages, galleryVideos, months, filtersName } from "../json/other
 import { works } from "../json/galleryJson.js";
 
 function getCurrentWork() {
-  let indexWork = sessionStorage.getItem("indexWork");
+  const params = new URLSearchParams(window.location.search);
+  const urlIndexWork = params.get("indexWork");
+  let indexWork = urlIndexWork ?? sessionStorage.getItem("indexWork") ?? 0;
 
-  if (!indexWork) {
+  if (!works[indexWork]) {
     indexWork = 0;
   }
+
+  sessionStorage.setItem("indexWork", indexWork);
 
   return works[indexWork];
 }
