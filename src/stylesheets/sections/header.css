@@ -581,6 +581,18 @@
                             opacity: 1;
                             transform: none;
                             box-shadow: none;
+
+                            .W_HeaderSearchTutorialHangle {
+
+                                .M_HeaderSearchTutorialSubtitle,
+                                .A_HeaderSearchTutorialTitle {
+                                    color: var(--colors-neutrals-900);
+                                }
+                            }
+
+                            .W_HeaderSearchTutorialAboute {
+                                color: var(--colors-neutrals-900);
+                            }
                         }
 
                         &:hover {
