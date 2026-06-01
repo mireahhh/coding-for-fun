@@ -530,17 +530,25 @@
                             background: var(--colors-neutrals-50-01);
                             color: var(--colors-light-900-dark-50);
 
-                            &.passive {
+                            img.passive {
                                 display: block;
                             }
 
-                            &.passive {
+                            img.active {
                                 display: none;
                             }
 
                             &.is-pressed {
                                 background: var(--colors-light-900-dark-50);
                                 color: var(--colors-light-50-dark-900);
+
+                                img.passive {
+                                    display: none;
+                                }
+
+                                img.active {
+                                    display: block;
+                                }
                             }
                         }
                     }

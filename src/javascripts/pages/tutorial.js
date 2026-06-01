@@ -61,6 +61,10 @@ function drawTutorialMeta() {
     headingAuthor.innerHTML = `Автор:&nbsp;<u>${tutorialData.author ?? ""}</u>`;
     headingAuthor.href = tutorialData.link;
   }
+  const raitingAuthor = document.querySelector(".A_TutorialRaitingMessageAuthor");
+  if (raitingAuthor) {
+    raitingAuthor.href = tutorialData.link;
+  }
 
   // Теги
   const tagsContainer = document.querySelector(".C_IntroTutorialTags");
@@ -215,6 +219,19 @@ function showTutorialShareFeedback(button) {
 }
 
 const TUTORIAL_SHARE_ORIGIN = "https://cff.adc.ac";
+const TUTORIAL_RAITING_STORAGE_KEY = "tutorialRaitingStates";
+const TUTORIAL_RAITING_STATES = ["passive", "like", "dislike"];
+
+function getTutorialShareUrl() {
+  const currentUrl = new URL(window.location.href);
+  const shareUrl = new URL(currentUrl.pathname + currentUrl.search + currentUrl.hash, TUTORIAL_SHARE_ORIGIN);
+
+  if (shareUrl.pathname.endsWith("/index.html")) {
+    shareUrl.pathname = shareUrl.pathname.replace(/\/index\.html$/, "/");
+  }
+
+  return shareUrl.toString();
+}
 
 function getTutorialAnchorUrl(anchorId) {
   const currentUrl = new URL(window.location.href);
@@ -265,6 +282,100 @@ function initTutorialAnchorShareButtons() {
 
     await copyTutorialAnchorLink(getTutorialAnchorUrl(title.id));
     showTutorialShareFeedback(button);
+  });
+}
+
+function loadTutorialRaitingStorage() {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(TUTORIAL_RAITING_STORAGE_KEY));
+
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveTutorialRaitingStorage(storage) {
+  localStorage.setItem(TUTORIAL_RAITING_STORAGE_KEY, JSON.stringify(storage));
+}
+
+function ensureTutorialRaitingArticle(storage) {
+  if (!Array.isArray(storage[part])) storage[part] = [];
+  if (!Array.isArray(storage[part][module])) storage[part][module] = [];
+  if (!TUTORIAL_RAITING_STATES.includes(storage[part][module][tutorial])) {
+    storage[part][module][tutorial] = "passive";
+  }
+
+  return storage[part][module][tutorial];
+}
+
+function getTutorialRaitingState() {
+  const storage = loadTutorialRaitingStorage();
+  const state = ensureTutorialRaitingArticle(storage);
+
+  saveTutorialRaitingStorage(storage);
+
+  return state;
+}
+
+function setTutorialRaitingState(state) {
+  const storage = loadTutorialRaitingStorage();
+
+  ensureTutorialRaitingArticle(storage);
+  storage[part][module][tutorial] = TUTORIAL_RAITING_STATES.includes(state) ? state : "passive";
+  saveTutorialRaitingStorage(storage);
+
+  return storage[part][module][tutorial];
+}
+
+function drawTutorialRaitingState(state) {
+  document.querySelectorAll(".M_TutorialRaitingMarkButton").forEach((button) => {
+    const isPressed = button.dataset.raitingValue === state && state !== "passive";
+
+    button.classList.toggle("is-pressed", isPressed);
+    button.setAttribute("aria-pressed", String(isPressed));
+  });
+}
+
+function initTutorialRaitingButtons(raiting) {
+  const defaultValues = ["like", "dislike"];
+
+  raiting.querySelectorAll(".M_TutorialRaitingMarkButton").forEach((button, index) => {
+    if (!button.dataset.raitingValue) {
+      button.dataset.raitingValue = defaultValues[index] ?? "passive";
+    }
+
+    button.setAttribute("aria-pressed", "false");
+  });
+}
+
+function initTutorialRaiting() {
+  const raiting = document.querySelector(".O_TutorialRaiting");
+  if (!raiting) return;
+
+  initTutorialRaitingButtons(raiting);
+  drawTutorialRaitingState(getTutorialRaitingState());
+
+  raiting.addEventListener("click", async (event) => {
+    const raitingButton = event.target.closest(".M_TutorialRaitingMarkButton");
+    const copyLinkButton = event.target.closest(".W_TutorialRaitingLink");
+
+    if (raitingButton && raiting.contains(raitingButton)) {
+      const currentState = getTutorialRaitingState();
+      const nextState = currentState === raitingButton.dataset.raitingValue
+        ? "passive"
+        : raitingButton.dataset.raitingValue;
+
+      drawTutorialRaitingState(setTutorialRaitingState(nextState));
+      return;
+    }
+
+    if (copyLinkButton && raiting.contains(copyLinkButton)) {
+      event.preventDefault();
+
+      await copyTutorialAnchorLink(getTutorialShareUrl());
+      showTutorialShareFeedback(copyLinkButton);
+    }
   });
 }
 
@@ -381,9 +492,11 @@ initCodeBlocks({
 initTutorialCodePreviewBlocks();
 initTutorialCopyButtons();
 
+
 drawTutorialMeta();
 initTutorialTagSearchPrefill();
 initTutorialPageNavigation();
 initTutorialAnchorShareButtons();
+initTutorialRaiting();
 drawTutorialPartNavigation();
 initTutorialButtonUp();
