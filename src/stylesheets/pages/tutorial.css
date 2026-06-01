@@ -538,7 +538,7 @@
                                 display: none;
                             }
 
-                            :root[data-theme="dark"] {
+                            :root[data-theme="dark"] & {
                                 img.passive {
                                     display: none;
                                 }
@@ -558,6 +558,16 @@
 
                                 img.active {
                                     display: block;
+                                }
+                            }
+
+                            :root[data-theme="dark"] &.is-pressed {
+                                img.passive {
+                                    display: block;
+                                }
+
+                                img.active {
+                                    display: none;
                                 }
                             }
                         }

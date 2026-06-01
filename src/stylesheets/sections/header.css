@@ -801,8 +801,8 @@
             .O_HeaderNavigation {
                 flex-direction: column;
                 row-gap: var(--size-spacing-16);
-                padding-block: var(--size-spacing-32);
-                height: min-content;
+                height: auto;
+                padding-top: var(--size-spacing-32);
                 align-items: center;
                 width: 100%;
 
