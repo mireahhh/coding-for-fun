@@ -153,3 +153,53 @@ export const galleryVideos = {
   27: vid27,
   30: vid30,
 };
+// Все изображения
+import img0 from "../../images/gallery/0.png";
+import img1 from "../../images/gallery/1.png";
+import img5 from "../../images/gallery/5.png";
+import img9 from "../../images/gallery/9.png";
+import img10 from "../../images/gallery/10.png";
+import img13 from "../../images/gallery/13.png";
+import img14 from "../../images/gallery/14.png";
+import img18 from "../../images/gallery/18.png";
+import img21 from "../../images/gallery/21.png";
+import img22 from "../../images/gallery/22.png";
+import img23 from "../../images/gallery/23.png";
+import img25 from "../../images/gallery/25.png";
+import img27 from "../../images/gallery/27.png";
+import img30 from "../../images/gallery/30.png";
+export const galleryAllImages = {
+  0: img0,
+  1: img1,
+  2: img2,
+  3: img3,
+  4: img4,
+  5: img5,
+  6: img6,
+  7: img7,
+  8: img8,
+  9: img9,
+  10: img10,
+  11: img11,
+  12: img12,
+  13: img13,
+  14: img14,
+  15: img15,
+  16: img16,
+  17: img17,
+  18: img18,
+  19: img19,
+  20: img20,
+  21: img21,
+  22: img22,
+  23: img23,
+  24: img24,
+  25: img25,
+  26: img26,
+  27: img27,
+  28: img28,
+  29: img29,
+  30: img30,
+  31: img31,
+  32: img32,
+};
