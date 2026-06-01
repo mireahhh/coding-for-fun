@@ -1,6 +1,7 @@
 import { tags, filtersName } from "../json/otherJson";
 import { tagsHandbook, forEachPartModuleTutorial, toArray } from "../json/tutorialsJson";
-import pointerIconSrc from "../../images/icons/arrow-right.svg";
+import pointerIconSrcLight from "../../images/light/icons/arrow-right.svg";
+import pointerIconSrcDark from "../../images/dark/icons/arrow-right.svg";
 
 // Сдвинуть на хедер
 // Не лендинг ли
@@ -255,7 +256,11 @@ const normalizedFilterLabels = new Set(Object.values(filtersName).map((value) =>
 function getHeaderPathPrefix() {
   if (headerSearchTutorialLink?.getAttribute("href")) {
     const handbookHref = headerSearchTutorialLink.getAttribute("href");
-    return handbookHref.replace(/pages\/handbook\.html$/, "");
+    const [handbookPath] = handbookHref.split(/[?#]/);
+
+    if (handbookPath.endsWith("pages/handbook.html")) {
+      return handbookPath.replace(/pages\/handbook\.html$/, "");
+    }
   }
 
   const globalPathLevel = document.documentElement?.dataset?.pathLevel ?? document.body?.dataset?.pathLevel ?? 0;
@@ -376,7 +381,8 @@ async function renderHeaderSearchTutorials(matchedTutorials) {
 
     const pointer = document.createElement("img");
     pointer.className = "U_ImgIcon M_HeaderSearchTutorialPointer";
-    pointer.src = pointerIconSrc;
+    pointer.src = pointerIconSrcLight;
+    // вот тут if надо
     pointer.alt = "Перейти к туториалу";
 
     const tutorialDescription = await getTutorialDescriptionByPath(tutorialPath);
