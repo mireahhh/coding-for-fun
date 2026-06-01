@@ -126,7 +126,8 @@
                     gap: var(--size-spacing-16);
                     align-self: stretch;
 
-                    .A_LandingIntroTitleText {
+                    .A_LandingIntroTitleText,
+                    .A_LandingIntroTitleText--Mobile {
                         text-align: center;
 
                         /* U_FontH0, U_FontH1 */
@@ -523,7 +524,7 @@
 
     .C_LandingLinks {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         padding-inline: 5%;
         box-sizing: border-box;
         width: 100%;
@@ -619,11 +620,16 @@
                 gap: var(--size-spacing-40);
                 align-self: stretch;
 
-                .A_LandingLinkHeading {
+                .A_LandingLinkHeading,
+                .A_LandingLinkHeading--Mobile {
                     text-align: center;
 
                     /* U_FontH1 */
                     color: var(--colors-light-900-dark-50);
+                }
+
+                .A_LandingLinkHeading--Mobile {
+                    display: none;
                 }
 
                 .A_LandingLinkButton {
@@ -759,7 +765,7 @@
             }
 
             .O_LandingIntro .W_LandingIntroTitleAndButtons .M_LandingIntroTitle {
-                .A_LandingIntroTitleText--Desktop {
+                .A_LandingIntroTitleText {
                     display: none;
                 }
 
@@ -788,6 +794,16 @@
 
         .C_LendingParts {
             grid-template-columns: 1fr;
+        }
+
+        .C_LandingLinks .O_LandingLink .W_LandingLinkTexts {
+            .A_LandingLinkHeading {
+                display: none;
+            }
+
+            .A_LandingLinkHeading--Mobile {
+                display: block;
+            }
         }
     }
 }

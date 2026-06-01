@@ -103,18 +103,12 @@
 
 .A_FullScreenText--Mobile {
     display: none;
-    padding-inline: 4%;
-    box-sizing: border-box;
-    width: 100%;
-    text-align: center;
-    text-align-last: center;
 }
 
 /* m 3 -> 2 */
 @media (max-width: 1152px) {
 
-    .A_FullScreenText,
-    .A_FullScreenText--Mobile {
+    .A_FullScreenText {
         /* U_FontH1 */
         font-family: var(--font-KairosSans);
         font-size: 4rem;
@@ -124,11 +118,9 @@
     }
 }
 
-/* m 1 -> 0 */
-@media (max-width: 428px) {
-
-    .A_FullScreenText,
-    .A_FullScreenText--Mobile {
+/* m 2 -> 1 */
+@media (max-width: 904px) {
+    .A_FullScreenText {
         /* U_FontH1-Mob */
         font-family: var(--font-KairosSans);
         font-size: 3.5rem;
@@ -143,8 +135,16 @@
 
     .A_FullScreenText--Mobile {
         display: inline;
+
+        padding-inline: 4%;
+        text-align: center;
+        text-align-last: center;
     }
 }
+
+/* m 1 -> 0 */
+@media (max-width: 428px) {}
+
 
 .C_FifthRainSquares {
     display: flex;
