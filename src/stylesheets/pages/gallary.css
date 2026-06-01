@@ -13,26 +13,22 @@
   height: min-content;
 
   .C_GalleryWorks {
-    display: flex;
-    flex-direction: row;
+    display: grid;
     width: 100%;
-    justify-content: center;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     align-items: flex-start;
     align-content: flex-start;
     gap: var(--size-spacing-88);
     align-self: stretch;
-    flex-wrap: wrap;
 
     .W_GalleryWork {
       display: none;
       width: 100%;
-      min-width: var(--size-spacing-268);
-      min-width: var(--size-spacing-344);
-      max-width: var(--size-spacing-416);
+      min-width: 0;
+      max-width: none;
       flex-direction: column;
       align-items: flex-start;
       gap: var(--size-spacing-20);
-      flex: 1 0 0;
 
       .M_GalleryWorkDescription {
         display: flex;
@@ -172,6 +168,7 @@
 @media (max-width: 1368px) {
   .O_GalleryWorks {
     .C_GalleryWorks {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       column-gap: var(--size-spacing-36);
     }
   }
@@ -183,6 +180,7 @@
     margin-top: var(--size-spacing-72);
 
     .C_GalleryWorks {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       column-gap: var(--size-spacing-20);
       row-gap: var(--size-spacing-72);
     }
@@ -194,24 +192,17 @@
 }
 
 /* m 2 -> 1 */
-@media (max-width: 904px) {}
+@media (max-width: 904px) {
+}
 
 /* m 1 -> 0 */
 @media (max-width: 428px) {
   .O_GalleryWorks {
     margin-top: var(--size-spacing-64);
+    gap: var(--size-spacing-64);
 
     .C_GalleryWorks {
-      flex-direction: column;
-      flex-wrap: nowrap;
-
-      .W_GalleryWork {
-        min-width: 0;
-      }
+      grid-template-columns: 1fr;
     }
-  }
-
-  .O_GalleryWorks {
-    gap: var(--size-spacing-64);
   }
 }
