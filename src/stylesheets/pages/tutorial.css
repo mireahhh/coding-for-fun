@@ -477,6 +477,39 @@
                 box-sizing: border-box;
                 width: 100%;
             }
+
+            .O_TutorialRaiting {
+                display: flex;
+                width: var(--size-spacing-800);
+                padding: var(--size-spacing-32) var(--size-spacing-64);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: var(--size-spacing-24);
+
+                .W_TutorialRaitingMark {
+                    display: flex;
+                    width: var(--size-spacing-264);
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: var(--size-spacing-12);
+                }
+
+                .M_TutorialRaitingMessage {
+                    display: inline;
+                    width: var(--size-spacing-348);
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+
+                    color: var(--colors-neutrals-450);
+                }
+            }
+        }
+
+        .O_TutorialSection--Last {
+            padding-bottom: 0;
+            border-bottom: none;
         }
     }
 
