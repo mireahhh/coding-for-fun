@@ -402,7 +402,7 @@ function updatePaginationUi() {
 }
 // Галерея вверх
 function scrollToGallery() {
-  const gallery = document.getElementById("gallery");
+  const gallery = document.getElementById("galleryList");
   if (gallery) {
     gallery.scrollIntoView({ behavior: "smooth", block: "start" });
   }
