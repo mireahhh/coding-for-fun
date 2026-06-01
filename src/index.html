@@ -207,14 +207,19 @@
       <div class="O_LandingIntro">
         <div class="W_LandingRainSquares W_LandingRainSquares--Black"></div>
         <div class="W_LandingIntroTitleAndButtons">
-          <div class="M_LandingIntroTitle">
-            <p class="U_FontH1 A_LandingIntroTitleText">console.log<wbr>("Привет,&nbsp;мир!");</p>
-            <p class="U_FontH1 A_LandingIntroTitleText A_LandingIntroTitleText--Mobile">console.log<wbr>("Привет,&nbsp;мир!");
+          <div class="M_LandingIntroTitle" aria-live="polite">
+            <p class="U_FontH1 A_LandingIntroTitleText" data-landing-intro-title-part="first">
+              console.log<wbr>("Привет,&nbsp;мир!");</p>
+            <p class="U_FontH1 A_LandingIntroTitleText A_LandingIntroTitleText--Mobile"
+              data-landing-intro-title-part="first">console.log<wbr>("Привет,&nbsp;мир!");</p>
+            <p class="U_FontH1 A_LandingIntroTitleCursorStep" data-landing-intro-cursor-step="small" aria-hidden="true">
             </p>
-            <h1 class="U_FontH0 A_LandingIntroTitleText">
+            <p class="A_LandingIntroTitleCursorStep A_LandingIntroTitleCursorStep--Intermediate"
+              data-landing-intro-cursor-step="middle" aria-hidden="true"></p>
+            <h1 class="U_FontH0 A_LandingIntroTitleText" data-landing-intro-title-part="second">
               /*&nbsp;Это креативный кодинг&nbsp;*/</h1>
-            <h1 class="U_FontH0 A_LandingIntroTitleText A_LandingIntroTitleText--Mobile">
-              Это креативный<br>/*&nbsp;кодинг&nbsp;*/</h1>
+            <h1 class="U_FontH0 A_LandingIntroTitleText A_LandingIntroTitleText--Mobile"
+              data-landing-intro-title-part="second">Это креативный<br>/*&nbsp;кодинг&nbsp;*/</h1>
           </div>
           <div class="M_LandingIntroButtons">
             <a class="U_ALink U_FontS3 A_LandingIntroButtonBlack" href="./pages/handbook.html#handbook">

@@ -125,6 +125,7 @@
                     align-items: center;
                     gap: var(--size-spacing-16);
                     align-self: stretch;
+                    height: var(--size-spacing-184);
 
                     .A_LandingIntroTitleText,
                     .A_LandingIntroTitleText--Mobile {
@@ -136,6 +137,37 @@
 
                     .A_LandingIntroTitleText--Mobile {
                         display: none;
+                    }
+
+                    .A_LandingIntroTitleCursorStep {
+                        display: none;
+                        min-height: 1em;
+                        color: var(--colors-neutrals-900);
+                        font-family: var(--font-KairosSans);
+                        font-size: 4rem;
+                        line-height: 100%;
+                        letter-spacing: -0.14rem;
+                        text-align: center;
+                        text-transform: uppercase;
+                    }
+
+                    .A_LandingIntroTitleCursorStep--Intermediate {
+                        font-size: 5.25rem;
+                        letter-spacing: -0.2325rem;
+                    }
+
+                    .A_LandingIntroTitleCursorStep.is-active {
+                        display: block;
+                    }
+
+                    .A_LandingIntroTypingCursor {
+                        display: inline-block;
+                        width: 0.08em;
+                        height: 0.9em;
+                        margin-left: 0.06em;
+                        background-color: currentColor;
+                        vertical-align: -0.08em;
+                        animation: landingIntroCursorBlink 0.9s steps(1, end) infinite;
                     }
                 }
 
@@ -644,6 +676,19 @@
     }
 }
 
+@keyframes landingIntroCursorBlink {
+
+    0%,
+    45% {
+        opacity: 1;
+    }
+
+    46%,
+    100% {
+        opacity: 0;
+    }
+}
+
 @keyframes landingRainbowFlow {
     from {
         background-position:
@@ -693,8 +738,14 @@
 
 /* m 3 -> 2 */
 @media (max-width: 1368px) {
-    .S_Landing .C_LendingParts {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    .S_Landing {
+        .C_LendingParts {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .O_LandingCover .O_LandingIntro .W_LandingIntroTitleAndButtons .M_LandingIntroTitle {
+            height: var(--size-spacing-288);
+        }
     }
 }
 
@@ -713,6 +764,15 @@
                             letter-spacing: -0.14rem;
                             text-transform: uppercase;
                         }
+
+                        .A_LandingIntroTitleCursorStep--Intermediate {
+                            font-size: 4rem;
+                            letter-spacing: -0.14rem;
+                        }
+                    }
+
+                    .M_LandingIntroTitle {
+                        height: var(--size-spacing-144);
                     }
                 }
             }
@@ -759,13 +819,19 @@
                 animation: landingRainbowFlow 3s linear infinite;
             }
 
-            .O_LandingIntro .W_LandingIntroTitleAndButtons .M_LandingIntroTitle {
-                .A_LandingIntroTitleText {
-                    display: none;
+            .O_LandingIntro .W_LandingIntroTitleAndButtons {
+                .M_LandingIntroTitle {
+                    height: var(--size-spacing-272);
                 }
 
-                .A_LandingIntroTitleText--Mobile {
-                    display: block;
+                .M_LandingIntroTitle {
+                    .A_LandingIntroTitleText {
+                        display: none;
+                    }
+
+                    .A_LandingIntroTitleText--Mobile {
+                        display: block;
+                    }
                 }
             }
         }
@@ -803,6 +869,12 @@
     }
 }
 
+@media (max-width: 484px) {
+    .S_Landing .O_LandingCover .O_LandingIntro .W_LandingIntroTitleAndButtons .M_LandingIntroTitle {
+        height: var(--size-spacing-336);
+    }
+}
+
 /* m 1 -> 0 */
 @media (max-width: 428px) {
     .S_Landing {
@@ -824,6 +896,16 @@
                             letter-spacing: -0.175rem;
                             text-transform: uppercase;
                         }
+
+                        .A_LandingIntroTitleCursorStep,
+                        .A_LandingIntroTitleCursorStep--Intermediate {
+                            font-size: 3.5rem;
+                            letter-spacing: -0.175rem;
+                        }
+                    }
+
+                    .M_LandingIntroTitle {
+                        height: calc(var(--size-spacing-16) + 2 * var(--size-spacing-112));
                     }
                 }
             }
@@ -914,5 +996,11 @@
             letter-spacing: -0.175rem;
             text-transform: uppercase;
         }
+    }
+}
+
+@media (max-width: 484px) {
+    .S_Landing .O_LandingCover .O_LandingIntro .W_LandingIntroTitleAndButtons .M_LandingIntroTitle {
+        height: var(--size-spacing-198);
     }
 }

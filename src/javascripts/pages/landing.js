@@ -156,6 +156,126 @@ function initLandingCoverIllustrationCarousel() {
     requestAnimationFrame(render);
 }
 
+const landingIntroTypingSettings = {
+    // minCharDelay: 34,
+    // maxCharDelay: 92,
+    // linePause: 520,
+    // cursorStepPause: 180,
+    minCharDelay: 14,
+    maxCharDelay: 56,
+    linePause: 320,
+    cursorStepPause: 120,
+};
+
+function getRandomLandingIntroDelay() {
+    const { minCharDelay, maxCharDelay } = landingIntroTypingSettings;
+    return minCharDelay + Math.random() * (maxCharDelay - minCharDelay);
+}
+
+function waitLandingIntroTyping(timeout) {
+    return new Promise((resolve) => {
+        window.setTimeout(resolve, timeout);
+    });
+}
+
+function isLandingIntroElementVisible(element) {
+    const style = window.getComputedStyle(element);
+    return style.display !== "none" && style.visibility !== "hidden";
+}
+
+function createLandingIntroCursor() {
+    const cursor = document.createElement("span");
+    cursor.className = "A_LandingIntroTypingCursor";
+    cursor.setAttribute("aria-hidden", "true");
+    return cursor;
+}
+
+function attachLandingIntroCursor(cursor, element) {
+    document.querySelectorAll(".A_LandingIntroTitleCursorStep.is-active").forEach((step) => {
+        step.classList.remove("is-active");
+    });
+
+    if (element.classList.contains("A_LandingIntroTitleCursorStep")) {
+        element.classList.add("is-active");
+    }
+
+    element.appendChild(cursor);
+}
+
+async function typeLandingIntroTextNodes(nodes, parent, cursor) {
+    for (const node of nodes) {
+        if (node.nodeType === Node.TEXT_NODE) {
+            for (const char of node.textContent) {
+                parent.insertBefore(document.createTextNode(char), cursor);
+                await waitLandingIntroTyping(getRandomLandingIntroDelay());
+            }
+            continue;
+        }
+
+        if (node.nodeType !== Node.ELEMENT_NODE) continue;
+
+        const clone = node.cloneNode(false);
+        parent.insertBefore(clone, cursor);
+
+        if (node.childNodes.length) {
+            await typeLandingIntroTextNodes([...node.childNodes], clone, cursor);
+        }
+    }
+}
+
+async function showLandingIntroCursorTransition(title, cursor) {
+    const transitionSteps = [...title.querySelectorAll(".A_LandingIntroTitleCursorStep")];
+
+    if (!transitionSteps.length) return;
+
+    await waitLandingIntroTyping(landingIntroTypingSettings.linePause);
+
+    for (const step of transitionSteps) {
+        attachLandingIntroCursor(cursor, step);
+        await waitLandingIntroTyping(landingIntroTypingSettings.cursorStepPause);
+    }
+}
+
+async function initLandingIntroTitleTyping() {
+    const title = document.querySelector(".M_LandingIntroTitle");
+
+    if (!title) return;
+
+    const titleTexts = [...title.querySelectorAll(".A_LandingIntroTitleText")];
+    const textTemplates = new Map(titleTexts.map((element) => [
+        element,
+        [...element.childNodes].map((node) => node.cloneNode(true)),
+    ]));
+    const visibleTexts = titleTexts
+        .filter(isLandingIntroElementVisible)
+        .sort((first, second) => {
+            const firstPart = first.dataset.landingIntroTitlePart === "second" ? 1 : 0;
+            const secondPart = second.dataset.landingIntroTitlePart === "second" ? 1 : 0;
+            return firstPart - secondPart;
+        });
+
+    visibleTexts.forEach((element) => {
+        element.style.minHeight = `${element.offsetHeight}px`;
+    });
+
+    visibleTexts.forEach((element) => {
+        element.textContent = "";
+    });
+
+    if (!visibleTexts.length) return;
+
+    const cursor = createLandingIntroCursor();
+
+    for (const [index, element] of visibleTexts.entries()) {
+        attachLandingIntroCursor(cursor, element);
+        await typeLandingIntroTextNodes(textTemplates.get(element), element, cursor);
+
+        if (index < visibleTexts.length - 1) {
+            await showLandingIntroCursorTransition(title, cursor);
+        }
+    }
+}
+
 function createTagItem(tag) {
     const button = document.createElement("button");
     button.type = "button";
@@ -462,6 +582,7 @@ function initLandingLinkCarousels() {
 }
 
 initLandingCoverIllustrationCarousel();
+initLandingIntroTitleTyping();
 initLandingLinkCarousels();
 initLandingTagsMarquee();
 initLandingTagSearchPrefill();

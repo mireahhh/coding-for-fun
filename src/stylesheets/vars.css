@@ -50,6 +50,7 @@
     --size-spacing-96: 6rem;
     --size-spacing-100: 6.25rem;
     --size-spacing-110: 6.875rem;
+    --size-spacing-112: 7rem;
     --size-spacing-120: 7.5rem;
     --size-spacing-128: 8rem;
     --size-spacing-132: 8.25rem;
@@ -57,7 +58,9 @@
     --size-spacing-152: 9.5rem;
     --size-spacing-160: 10rem;
     --size-spacing-168: 10.5rem;
+    --size-spacing-184: 11.5rem;
     --size-spacing-192: 12rem;
+    --size-spacing-198: 12.375rem;
     --size-spacing-208: 13rem;
     --size-spacing-212: 13.25rem;
     --size-spacing-220: 13.75rem;
@@ -71,6 +74,7 @@
     --size-spacing-276: 17.25rem;
     --size-spacing-288: 18rem;
     --size-spacing-312: 19.5rem;
+    --size-spacing-336: 21rem;
     --size-spacing-340: 21.25rem;
     --size-spacing-344: 21.5rem;
     --size-spacing-348: 21.75rem;
