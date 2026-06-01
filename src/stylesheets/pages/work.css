@@ -111,7 +111,7 @@
                     align-items: flex-start;
                     align-content: flex-start;
                     gap: var(--size-spacing-12);
-                    padding-bottom: var(--size-spacing-16);
+                    padding-block: var(--size-spacing-16);
                     align-self: stretch;
                     padding-right: 15%;
                     box-sizing: border-box;

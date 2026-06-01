@@ -3,11 +3,13 @@ import { previewCodeById } from "../code/tutorialsCodeDefaults.js";
 import { tags, galleryAllImages } from "../json/otherJson.js";
 
 const landingCoverCarouselSettings = {
-    baseSpeed: 0.000055,
-    hoverTransitionDuration: 900,
-    poolSize: 9,
-    minScale: 0.52,
+    baseSpeed: 0.000055 / 2.3,
+    hoverTransitionDuration: 900 * 2.5,
+    poolSize: 8,
+    minScale: 0.32,
     maxScale: 1.05,
+    maxCardHeightRatio: 0.88,
+    pathPower: 2,
     horizontalPaddingRatio: 0.18,
 };
 
@@ -59,10 +61,12 @@ function calcLandingCoverCardMetrics(container, position) {
     const height = container.clientHeight;
     const outsideOffset = width * landingCoverCarouselSettings.horizontalPaddingRatio;
     const x = -outsideOffset + position * (width + outsideOffset * 2);
-    const centerProgress = Math.sin(Math.PI * position);
+    const distanceFromCenter = Math.abs(position * 2 - 1);
+    const centerProgress = 1 - Math.pow(distanceFromCenter, landingCoverCarouselSettings.pathPower) * 2;
     const scale = landingCoverCarouselSettings.minScale
         + (landingCoverCarouselSettings.maxScale - landingCoverCarouselSettings.minScale) * centerProgress;
-    const baseCardSize = Math.min(height * 0.98, width * 0.36);
+    const maxCardHeight = height * landingCoverCarouselSettings.maxCardHeightRatio;
+    const baseCardSize = Math.min(maxCardHeight / landingCoverCarouselSettings.maxScale, width * 0.36);
     const edgeY = height + baseCardSize * 0.42;
     const centerY = height * 0.46;
     const y = edgeY - (edgeY - centerY) * centerProgress;
@@ -77,8 +81,7 @@ function updateLandingCoverCardPosition(container, card) {
     card.style.setProperty("--y", `${metrics.y}px`);
     card.style.setProperty("--path-scale", metrics.scale.toFixed(4));
     card.style.setProperty("--card-size", `${metrics.size}px`);
-    card.style.zIndex = String(Math.round(metrics.scale * 1000));
-    card.style.opacity = String(Math.min(1, Math.max(0.72, metrics.scale)));
+    card.style.zIndex = String(Math.round(card.landingCoverProgress * 1000));
 }
 
 function initLandingCoverIllustrationCarousel() {
