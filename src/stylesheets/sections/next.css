@@ -28,7 +28,9 @@
             align-self: stretch;
             width: var(--size-spacing-192);
             height: var(--size-spacing-42);
-            transform: translateY(var(--size-spacing-m8));
+            transform: translateY(calc(-1 * var(--size-spacing-8)));
+
+            color: var(--colors-light-900-dark-50);
         }
     }
 
@@ -110,10 +112,11 @@
 /* m 2 -> 1 */
 @media (max-width: 904px) {
     .W_Next {
+        margin-top: 0;
+        padding-block: var(--size-spacing-48);
         padding-inline: 4%;
         box-sizing: border-box;
         width: 100%;
-        margin-top: var(--size-spacing-64);
 
         .C_IntroRainSquaresBox .A_IntroRainSquares {
             width: 44%;
