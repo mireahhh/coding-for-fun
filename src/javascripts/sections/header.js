@@ -193,6 +193,20 @@ function updateThemeImages(theme) {
   });
 }
 
+function getHeaderSearchPointerIconSrc(theme) {
+  if (theme === THEMES.dark) {
+    return pointerIconSrcDark;
+  }
+
+  return pointerIconSrcLight;
+}
+
+function updateHeaderSearchPointerIcons(theme) {
+  document.querySelectorAll(".M_HeaderSearchTutorialPointer").forEach((pointer) => {
+    pointer.src = getHeaderSearchPointerIconSrc(theme);
+  });
+}
+
 const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
 const initialTheme = savedTheme && THEMES[savedTheme] ? savedTheme : THEMES.light;
 
@@ -220,6 +234,7 @@ function applyTheme(theme) {
   });
 
   updateThemeImages(nextTheme);
+  updateHeaderSearchPointerIcons(nextTheme);
 }
 
 let isHeaderSearchOpen = false;
@@ -381,8 +396,7 @@ async function renderHeaderSearchTutorials(matchedTutorials) {
 
     const pointer = document.createElement("img");
     pointer.className = "U_ImgIcon M_HeaderSearchTutorialPointer";
-    pointer.src = pointerIconSrcLight;
-    // вот тут if надо
+    pointer.src = getHeaderSearchPointerIconSrc(root.dataset.theme);
     pointer.alt = "Перейти к туториалу";
 
     const tutorialDescription = await getTutorialDescriptionByPath(tutorialPath);
