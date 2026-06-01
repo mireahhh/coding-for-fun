@@ -165,7 +165,7 @@
                         width: 0.08em;
                         height: 0.9em;
                         margin-left: 0.06em;
-                        background-color: currentColor;
+                        background-color: var(--colors-neutrals-900);
                         vertical-align: -0.08em;
                         animation: landingIntroCursorBlink 0.9s steps(1, end) infinite;
                     }

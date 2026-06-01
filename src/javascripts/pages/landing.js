@@ -1,6 +1,6 @@
 import { initCodePreviewBlocks } from "../code/code.js";
 import { previewCodeById } from "../code/tutorialsCodeDefaults.js";
-import { tags, galleryAllImages } from "../json/otherJson.js";
+import { tags, lendingImages } from "../json/otherJson.js";
 
 const landingCoverCarouselSettings = {
     baseSpeed: 0.000022,
@@ -92,7 +92,7 @@ function initLandingCoverIllustrationCarousel() {
     if (!container) return;
 
     const images = shuffleLandingCoverImages(
-        Object.entries(galleryAllImages).map(([id, src]) => ({ id, src })),
+        Object.entries(lendingImages).map(([id, src]) => ({ id, src })),
     );
 
     if (!images.length) return;
@@ -161,10 +161,10 @@ const landingIntroTypingSettings = {
     // maxCharDelay: 92,
     // linePause: 520,
     // cursorStepPause: 180,
-    minCharDelay: 14,
-    maxCharDelay: 56,
-    linePause: 320,
-    cursorStepPause: 120,
+    minCharDelay: 28,
+    maxCharDelay: 72,
+    linePause: 0,
+    cursorStepPause: 180,
 };
 
 function getRandomLandingIntroDelay() {
@@ -242,10 +242,6 @@ async function initLandingIntroTitleTyping() {
     if (!title) return;
 
     const titleTexts = [...title.querySelectorAll(".A_LandingIntroTitleText")];
-    const textTemplates = new Map(titleTexts.map((element) => [
-        element,
-        [...element.childNodes].map((node) => node.cloneNode(true)),
-    ]));
     const visibleTexts = titleTexts
         .filter(isLandingIntroElementVisible)
         .sort((first, second) => {
@@ -253,27 +249,43 @@ async function initLandingIntroTitleTyping() {
             const secondPart = second.dataset.landingIntroTitlePart === "second" ? 1 : 0;
             return firstPart - secondPart;
         });
+    const printableTexts = visibleTexts.filter((element) => (
+        element.classList.contains("A_LandingIntroTitleText--Print")
+    ));
+    const textTemplates = new Map(printableTexts.map((element) => [
+        element,
+        [...element.childNodes].map((node) => node.cloneNode(true)),
+    ]));
 
     visibleTexts.forEach((element) => {
         element.style.minHeight = `${element.offsetHeight}px`;
     });
 
-    visibleTexts.forEach((element) => {
+    printableTexts.forEach((element) => {
         element.textContent = "";
     });
 
-    if (!visibleTexts.length) return;
+    if (!printableTexts.length) return;
 
     const cursor = createLandingIntroCursor();
+    const firstPrintableTextIndex = visibleTexts.indexOf(printableTexts[0]);
+    const previousText = visibleTexts[firstPrintableTextIndex - 1];
 
-    for (const [index, element] of visibleTexts.entries()) {
+    if (previousText) {
+        attachLandingIntroCursor(cursor, previousText);
+        await showLandingIntroCursorTransition(title, cursor);
+    }
+
+    for (const [index, element] of printableTexts.entries()) {
         attachLandingIntroCursor(cursor, element);
         await typeLandingIntroTextNodes(textTemplates.get(element), element, cursor);
 
-        if (index < visibleTexts.length - 1) {
+        if (index < printableTexts.length - 1) {
             await showLandingIntroCursorTransition(title, cursor);
         }
     }
+
+    cursor.remove();
 }
 
 function createTagItem(tag) {

@@ -168,7 +168,24 @@ import img23 from "../../images/gallery/23.png";
 import img25 from "../../images/gallery/25.png";
 import img27 from "../../images/gallery/27.png";
 import img30 from "../../images/gallery/30.png";
-export const galleryAllImages = {
+export const lendingImages = {
+  1: img1,
+  2: img2,
+  4: img4,
+  5: img5,
+  6: img6,
+  7: img7,
+  8: img8,
+  9: img9,
+  10: img10,
+  13: img13,
+  15: img15,
+  16: img16,
+  17: img17,
+  21: img21,
+  32: img32,
+};
+export const gallaryAllImages = {
   0: img0,
   1: img1,
   2: img2,
