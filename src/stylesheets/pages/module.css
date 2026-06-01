@@ -149,6 +149,26 @@
       opacity: 1;
       transform: none;
       box-shadow: none;
+
+      .W_ModuleTutorialHangle {
+
+        .W_ModuleTutorialSubtitle,
+        .A_ModuleTutorialTitle {
+          color: var(--colors-neutrals-900);
+        }
+      }
+
+      .W_ModuleTutorialAboute {
+        .C_ModuleTutorialTags {
+          .A_ModuleTutorialTag {
+            color: var(--colors-neutrals-900);
+            border-color: var(--colors-neutrals-900);
+          }
+        }
+        .A_ModuleTutorialDescription {
+          color: var(--colors-neutrals-900);
+        }
+      }
     }
 
     &:hover {

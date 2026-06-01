@@ -193,18 +193,20 @@ function updateThemeImages(theme) {
   });
 }
 
-function getHeaderSearchPointerIconSrc(theme) {
-  if (theme === THEMES.dark) {
-    return pointerIconSrcDark;
-  }
+function createHeaderSearchPointerIcon(className, src, alt) {
+  const pointer = document.createElement("img");
+  pointer.className = `U_ImgIcon M_HeaderSearchTutorialPointer ${className}`;
+  pointer.src = src;
+  pointer.alt = alt;
 
-  return pointerIconSrcLight;
+  return pointer;
 }
 
-function updateHeaderSearchPointerIcons(theme) {
-  document.querySelectorAll(".M_HeaderSearchTutorialPointer").forEach((pointer) => {
-    pointer.src = getHeaderSearchPointerIconSrc(theme);
-  });
+function createHeaderSearchPointerIcons(alt) {
+  return [
+    createHeaderSearchPointerIcon("ico-light-theme", pointerIconSrcLight, alt),
+    createHeaderSearchPointerIcon("ico-dark-theme", pointerIconSrcDark, alt)
+  ];
 }
 
 const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
@@ -234,7 +236,6 @@ function applyTheme(theme) {
   });
 
   updateThemeImages(nextTheme);
-  updateHeaderSearchPointerIcons(nextTheme);
 }
 
 let isHeaderSearchOpen = false;
@@ -394,10 +395,8 @@ async function renderHeaderSearchTutorials(matchedTutorials) {
     const about = document.createElement("p");
     about.className = "U_FontB1 W_HeaderSearchTutorialAboute";
 
-    const pointer = document.createElement("img");
-    pointer.className = "U_ImgIcon M_HeaderSearchTutorialPointer";
-    pointer.src = getHeaderSearchPointerIconSrc(root.dataset.theme);
-    pointer.alt = "Перейти к туториалу";
+    const pointerAlt = "Перейти к туториалу";
+    const pointers = createHeaderSearchPointerIcons(pointerAlt);
 
     const tutorialDescription = await getTutorialDescriptionByPath(tutorialPath);
     about.innerHTML = tutorialDescription.html || "Урок в разработке";
@@ -407,10 +406,12 @@ async function renderHeaderSearchTutorials(matchedTutorials) {
       tutorialLink.removeAttribute("href");
       tutorialLink.setAttribute("aria-disabled", "true");
       tutorialLink.setAttribute("tabindex", "-1");
-      pointer.alt = "Туториал недоступен";
+      pointers.forEach((pointer) => {
+        pointer.alt = "Туториал недоступен";
+      });
     }
 
-    tutorialLink.append(hangle, about, pointer);
+    tutorialLink.append(hangle, about, ...pointers);
     listItem.appendChild(tutorialLink);
     return listItem;
   }));

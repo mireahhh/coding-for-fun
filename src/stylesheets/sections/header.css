@@ -34,7 +34,7 @@
         min-height: 100dvh;
 
         &::before {
-            background: var(--colors-light-50-dark-900);
+            background: var(--colors-light-50-dark-900) !important;
         }
 
         .C_HeaderAll {
@@ -592,6 +592,14 @@
 
                             .W_HeaderSearchTutorialAboute {
                                 color: var(--colors-neutrals-900);
+                            }
+
+                            .M_HeaderSearchTutorialPointer.ico-light-theme {
+                                display: block !important;
+                            }
+
+                            .M_HeaderSearchTutorialPointer.ico-dark-theme {
+                                display: none !important;
                             }
                         }
 
