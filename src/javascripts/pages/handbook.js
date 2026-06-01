@@ -1,3 +1,6 @@
+import { initCodePreviewBlocks } from "../code/code.js";
+import { previewCodeById } from "../code/tutorialsCodeDefaults.js";
+
 // Для отрисовки
 const handbookPart1Module1 = document.getElementById("handbookPart1Module1");
 const handbookPart1Module2 = document.getElementById("handbookPart1Module2");
@@ -609,3 +612,6 @@ applyingSorting();
 drawingParts();
 drawModuleDates();
 drawContTutorials();
+initCodePreviewBlocks({
+  getDefaultCode: ({ codeBlockId }) => previewCodeById[codeBlockId] || "",
+});

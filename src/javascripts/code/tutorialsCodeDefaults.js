@@ -99,6 +99,170 @@ return () => {
 };`,
 };
 
+const previewCodeVanilla = `const app = document.getElementById("app");
+const canvas = document.createElement("canvas");
+const ctx = canvas.getContext("2d");
+let animationId;
+let time = 0;
+
+app.innerHTML = "";
+app.style.width = "100%";
+app.style.height = "100%";
+app.appendChild(canvas);
+
+function resize() {
+  canvas.width = app.clientWidth;
+  canvas.height = app.clientHeight;
+}
+
+function draw() {
+  time += 0.04;
+
+  const width = canvas.width;
+  const height = canvas.height;
+  const size = Math.min(width, height) / 5;
+
+  ctx.fillStyle = "#f8f8f8";
+  ctx.fillRect(0, 0, width, height);
+
+  for (let i = 0; i < 9; i += 1) {
+    const angle = time + i * 0.7;
+    const x = width / 2 + Math.cos(angle) * size * 1.4;
+    const y = height / 2 + Math.sin(angle * 1.3) * size;
+
+    ctx.fillStyle = i % 2 ? "#ff86db" : "#2fd3e6";
+    ctx.beginPath();
+    ctx.arc(x, y, size * (0.28 + i * 0.025), 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  ctx.fillStyle = "#111827";
+  ctx.font = "600 14px sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillText("Vanilla запущен", width / 2, height - 22);
+
+  animationId = requestAnimationFrame(draw);
+}
+
+window.addEventListener("resize", resize);
+resize();
+draw();
+
+return () => {
+  cancelAnimationFrame(animationId);
+  window.removeEventListener("resize", resize);
+};`;
+
+const previewCodeP5 = `let t = 0;
+
+function setup() {
+  const canvas = createCanvas(app.clientWidth, app.clientHeight);
+  canvas.parent("app");
+  noStroke();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function draw() {
+  t += 0.035;
+  background(248);
+
+  const radius = min(width, height) * 0.28;
+
+  for (let i = 0; i < 12; i += 1) {
+    const angle = t + i * TWO_PI / 12;
+    const x = width / 2 + cos(angle) * radius;
+    const y = height / 2 + sin(angle * 1.6) * radius * 0.65;
+
+    fill(i % 2 ? "#2fd3e6" : "#ff86db");
+    circle(x, y, 22 + sin(t * 2 + i) * 10);
+  }
+
+  fill("#111827");
+  textAlign(CENTER, CENTER);
+  textSize(14);
+  text("p5.js запущен", width / 2, height - 24);
+}`;
+
+const previewCodeThree = `const width = app.clientWidth;
+const height = app.clientHeight;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf8f8f8);
+
+const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+camera.position.set(0, 0, 4);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+const group = new THREE.Group();
+scene.add(group);
+
+const geometry = new THREE.TorusKnotGeometry(0.7, 0.22, 96, 12);
+const material = new THREE.MeshNormalMaterial();
+const knot = new THREE.Mesh(geometry, material);
+group.add(knot);
+
+const light = new THREE.DirectionalLight(0xffffff, 1.2);
+light.position.set(2, 3, 4);
+scene.add(light);
+
+function onResize() {
+  const width = app.clientWidth;
+  const height = app.clientHeight;
+
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+  renderer.setSize(width, height);
+}
+
+let animationId;
+
+function animate() {
+  knot.rotation.x += 0.018;
+  knot.rotation.y += 0.026;
+  group.rotation.z += 0.006;
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+window.addEventListener("resize", onResize);
+animate();
+
+return () => {
+  cancelAnimationFrame(animationId);
+  window.removeEventListener("resize", onResize);
+  geometry.dispose();
+  material.dispose();
+  renderer.dispose();
+};`;
+
+export const previewCodeById = {
+  handbookPart1Module1Preview: previewCodeVanilla,
+  handbookPart1Module2Preview: previewCodeVanilla,
+  handbookPart2Module1Preview: previewCodeVanilla,
+  handbookPart2Module2Preview: previewCodeP5,
+  handbookPart2Module3Preview: previewCodeThree,
+  handbookPart3Module1Preview: previewCodeVanilla,
+  handbookPart3Module2Preview: previewCodeP5,
+  handbookPart3Module3Preview: previewCodeThree,
+  landingPart1Preview: previewCodeVanilla,
+  landingPart2Preview: previewCodeP5,
+  landingPart3Preview: previewCodeThree,
+  landingBoringPracticePreview: previewCodeVanilla,
+  landingBoringLibrariesPreview: previewCodeP5,
+  landingBoringPortfolioPreview: previewCodeThree,
+  landingBoringGalleryPreview: previewCodeVanilla,
+};
+
 export const sandboxCodeByRuntime = {
   vanilla: `const app = document.getElementById("app");
 const canvas = document.createElement("canvas");

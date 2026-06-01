@@ -1,3 +1,5 @@
+import { initCodePreviewBlocks } from "../code/code.js";
+import { previewCodeById } from "../code/tutorialsCodeDefaults.js";
 import { tags } from "../json/otherJson.js";
 
 function createTagItem(tag) {
@@ -281,3 +283,6 @@ function initLandingLinkCarousels() {
 
 initLandingLinkCarousels();
 initLandingTagsMarquee();
+initCodePreviewBlocks({
+    getDefaultCode: ({ codeBlockId }) => previewCodeById[codeBlockId] || "",
+});

@@ -243,6 +243,67 @@ function toggleCommentOnSelectedLines(textarea) {
     );
 }
 
+
+function getCodeBlockRuntime(codeBlock, fallbackRuntime = "vanilla") {
+    return codeBlock.dataset.runtime || fallbackRuntime;
+}
+
+function runPreviewCode(codeBlock, iframe, code, runtime) {
+    iframe.srcdoc = buildRuntimeHtml(runtime, code);
+    codeBlock.classList.add("is-running");
+}
+
+function stopPreviewCode(codeBlock, iframe) {
+    clearFrame(iframe);
+    codeBlock.classList.remove("is-running");
+}
+
+export function initCodePreviewBlocks(options = {}) {
+    const {
+        getInitialRuntime = (codeBlock) => getCodeBlockRuntime(codeBlock),
+        getDefaultCode = () => "",
+        runOnHover = true,
+        stopOnLeave = false,
+    } = options;
+
+    document.querySelectorAll(".O_TutorialSingleCode--Preview").forEach((codeBlock) => {
+        const codeBlockId = codeBlock.id;
+        const iframe = codeBlock.querySelector(
+            ".A_TutorialSingleCodeExecutionCanvas",
+        );
+
+        if (!iframe) return;
+
+        const runtime = getInitialRuntime(codeBlock);
+        const code = getDefaultCode({ codeBlock, codeBlockId, runtime });
+
+        if (!code) return;
+
+        codeBlock.dataset.runtime = runtime;
+        clearFrame(iframe);
+
+        const run = () => {
+            runPreviewCode(codeBlock, iframe, code, runtime);
+        };
+        const stop = () => {
+            stopPreviewCode(codeBlock, iframe);
+        };
+
+        if (codeBlock.dataset.autostart === "true") {
+            run();
+        }
+
+        if (runOnHover) {
+            codeBlock.addEventListener("pointerenter", run);
+        }
+
+        if (stopOnLeave || codeBlock.dataset.stopOnLeave === "true") {
+            codeBlock.addEventListener("pointerleave", stop);
+        }
+    });
+}
+
+
 export function initCodeBlocks(options = {}) {
     const {
         getInitialRuntime = (codeBlock) => codeBlock.dataset.runtime || "vanilla",
