@@ -55,14 +55,17 @@ const headerSearchBar = document.getElementById("headerSearchBar");
 const headerSearchButton = document.querySelector(".Q_HeaderSearchIcon");
 const headerSearchCrossButton = document.querySelector(".Q_HeaderCrossButton");
 const headerSearchElement = document.querySelector(".M_HeaderSearchBar");
+const HEADER_SEARCH_PLACEHOLDER_TAG_MAX_LENGTH = 16;
 
 function updateHeaderSearchPlaceholder() {
-  if (!tags.length) {
+  const placeholderTags = tags.filter((tag) => String(tag).length <= HEADER_SEARCH_PLACEHOLDER_TAG_MAX_LENGTH);
+
+  if (!placeholderTags.length) {
     return;
   }
 
-  const randomTagIndex = Math.floor(Math.random() * tags.length);
-  headerSearchBar.placeholder = tags[randomTagIndex];
+  const randomTagIndex = Math.floor(Math.random() * placeholderTags.length);
+  headerSearchBar.placeholder = placeholderTags[randomTagIndex];
 }
 
 headerSearchBar.addEventListener("input", () => {
@@ -72,7 +75,7 @@ headerSearchBar.addEventListener("input", () => {
 headerSearchBar.addEventListener("keydown", (event) => {
   const isTab = event.key === "Tab";
   const isShiftTab = isTab && event.shiftKey;
-  
+
   if (!isTab || isShiftTab || !headerSearchBar.placeholder || headerSearchBar.value !== "") {
     return;
   }

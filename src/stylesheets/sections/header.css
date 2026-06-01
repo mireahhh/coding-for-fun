@@ -668,12 +668,13 @@
     }
 }
 
-.S_Header--Landing {
+:root[data-theme="light"] .S_Header--Landing {
     &::before {
         background: none;
         backdrop-filter: blur(var(--size-spacing-inf));
     }
 }
+
 
 /* mD 4 -> 3 */
 @media (max-width: 1532px) {

@@ -538,6 +538,16 @@
                                 display: none;
                             }
 
+                            :root[data-theme="dark"] {
+                                img.passive {
+                                    display: none;
+                                }
+
+                                img.active {
+                                    display: block;
+                                }
+                            }
+
                             &.is-pressed {
                                 background: var(--colors-light-900-dark-50);
                                 color: var(--colors-light-50-dark-900);

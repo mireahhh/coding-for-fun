@@ -3,10 +3,11 @@ import { previewCodeById } from "../code/tutorialsCodeDefaults.js";
 import { tags } from "../json/otherJson.js";
 
 function createTagItem(tag) {
-    const li = document.createElement("li");
-    li.className = "A_LandingCoverRunningTag";
-    li.textContent = tag;
-    return li;
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "U_Button U_FontB2 A_LandingCoverRunningTag";
+    button.textContent = tag;
+    return button;
 }
 
 function createGroup(tagsArray) {
@@ -135,6 +136,31 @@ function initLandingTagsMarquee() {
         landingTagsResizeTimeout = setTimeout(() => {
             buildLandingTagsMarquee();
         }, 100);
+    });
+}
+
+function fillHeaderSearchFromLandingTag(tagText) {
+    const headerSearchBar = document.getElementById("headerSearchBar");
+
+    if (!headerSearchBar) return;
+
+    headerSearchBar.value = tagText;
+    headerSearchBar.focus();
+    headerSearchBar.setSelectionRange(headerSearchBar.value.length, headerSearchBar.value.length);
+    headerSearchBar.dispatchEvent(new Event("input", { bubbles: true }));
+}
+
+function initLandingTagSearchPrefill() {
+    const tagsContainer = document.querySelector(".C_LandingCoverRunningTags");
+
+    if (!tagsContainer) return;
+
+    tagsContainer.addEventListener("click", (event) => {
+        const tagButton = event.target.closest(".A_LandingCoverRunningTag");
+
+        if (!tagButton || !tagsContainer.contains(tagButton)) return;
+
+        fillHeaderSearchFromLandingTag(tagButton.textContent.trim());
     });
 }
 
@@ -283,6 +309,7 @@ function initLandingLinkCarousels() {
 
 initLandingLinkCarousels();
 initLandingTagsMarquee();
+initLandingTagSearchPrefill();
 initCodePreviewBlocks({
     getDefaultCode: ({ codeBlockId }) => previewCodeById[codeBlockId] || "",
 });

@@ -752,13 +752,19 @@
 /* m 2 -> 1 */
 @media (max-width: 904px) {
     .S_Landing {
-        .O_LandingCover .O_LandingIntro .W_LandingIntroTitleAndButtons .M_LandingIntroTitle {
-            .A_LandingIntroTitleText--Desktop {
-                display: none;
+        .O_LandingCover {
+            &::before {
+                animation: landingRainbowFlow 3s linear infinite;
             }
 
-            .A_LandingIntroTitleText--Mobile {
-                display: block;
+            .O_LandingIntro .W_LandingIntroTitleAndButtons .M_LandingIntroTitle {
+                .A_LandingIntroTitleText--Desktop {
+                    display: none;
+                }
+
+                .A_LandingIntroTitleText--Mobile {
+                    display: block;
+                }
             }
         }
 
