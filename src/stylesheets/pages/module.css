@@ -165,9 +165,18 @@
             border-color: var(--colors-neutrals-900);
           }
         }
+
         .A_ModuleTutorialDescription {
           color: var(--colors-neutrals-900);
         }
+      }
+
+      .A_ModuleTutorialArrow.ico-light-theme {
+        display: block !important;
+      }
+
+      .A_ModuleTutorialArrow.ico-dark-theme {
+        display: none !important;
       }
     }
 
