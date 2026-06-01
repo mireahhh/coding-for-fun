@@ -503,6 +503,7 @@
                 align-items: flex-start;
                 min-width: 0;
                 max-width: 572px;
+                gap: var(--size-spacing-4);
                 width: 100%;
                 flex: 1;
                 align-self: stretch;

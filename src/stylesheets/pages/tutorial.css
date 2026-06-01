@@ -5,10 +5,11 @@
     flex-direction: row;
     margin: auto;
     align-items: flex-start;
+    width: 100%;
     min-width: var(--min-width);
     max-width: var(--max-width);
     margin: auto;
-    width: 100%;
+
     background-color: var(--colors-light-50-dark-900);
 
     &::before {
@@ -693,7 +694,8 @@
         }
 
         .O_TutorialMain {
-            padding-inline: var(--size-spacing-48);
+            padding-inline: 5%;
+            box-sizing: border-box;
             width: 100%;
         }
     }
@@ -703,6 +705,7 @@
 @media (max-width: 904px) {
     .S_Tutorial {
         .O_TutorialMain {
+            padding-inline: 4%;
 
             .O_TutorialSection {
                 .A_TutorialSingleImage {

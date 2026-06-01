@@ -244,8 +244,6 @@
     box-sizing: border-box;
     width: 100%;
     padding-block: var(--size-spacing-24);
-    padding-top: var(--size-spacing-4);
-    margin-top: var(--size-spacing-0);
 
     .C_IntroRainSquares {
       color: var(--colors-neutrals-200);
