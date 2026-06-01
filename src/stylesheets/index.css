@@ -5,6 +5,7 @@
 @import 'layout.css';
 @import 'vars.css';
 @import 'utility.css';
+@import 'theme.css';
 /* sections */
 @import 'sections/components.css';
 @import 'sections/header.css';

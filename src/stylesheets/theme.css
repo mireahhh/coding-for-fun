@@ -1,0 +1,30 @@
+.ico-light-theme {
+    display: block;
+}
+
+.ico-dark-theme {
+    display: none;
+}
+
+:root[data-theme="dark"] {
+    .ico-light-theme {
+        display: none;
+    }
+
+    .ico-dark-theme {
+        display: block;
+    }
+
+    --colors-light-50-dark-900: #1f1f1f;
+    --colors-light-900-dark-50: #f8f8f8;
+    --colors-light-0-dark-1000: #000000;
+
+    --colors-light-900-20-dark-150-20: #d6d6d633;
+    --colors-light-0-dark-950: #171717;
+    --colors-light-200-dark-450: #858585;
+    --colors-light-450-dark-200: #cfcfcf;
+    --colors-light-450-dark-900: #1f1f1f;
+    --colors-light-50-01-dark-450-60: #85858599;
+    --colors-light-150-dark-650: #4a4a4a;
+    --colors-light-50-dark-200: #cfcfcf;
+}
