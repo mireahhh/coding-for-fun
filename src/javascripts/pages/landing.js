@@ -161,10 +161,10 @@ const landingIntroTypingSettings = {
     // maxCharDelay: 92,
     // linePause: 520,
     // cursorStepPause: 180,
-    minCharDelay: 28,
-    maxCharDelay: 72,
-    linePause: 0,
-    cursorStepPause: 180,
+    minCharDelay: 32,
+    maxCharDelay: 88,
+    linePause: 1060,
+    cursorStepPause: 190,
 };
 
 function getRandomLandingIntroDelay() {
@@ -228,9 +228,11 @@ async function showLandingIntroCursorTransition(title, cursor) {
 
     if (!transitionSteps.length) return;
 
+    const [firstStep, ...nextSteps] = transitionSteps;
+    attachLandingIntroCursor(cursor, firstStep);
     await waitLandingIntroTyping(landingIntroTypingSettings.linePause);
 
-    for (const step of transitionSteps) {
+    for (const step of nextSteps) {
         attachLandingIntroCursor(cursor, step);
         await waitLandingIntroTyping(landingIntroTypingSettings.cursorStepPause);
     }
@@ -272,7 +274,6 @@ async function initLandingIntroTitleTyping() {
     const previousText = visibleTexts[firstPrintableTextIndex - 1];
 
     if (previousText) {
-        attachLandingIntroCursor(cursor, previousText);
         await showLandingIntroCursorTransition(title, cursor);
     }
 
