@@ -163,7 +163,7 @@ const landingIntroTypingSettings = {
     // cursorStepPause: 180,
     minCharDelay: 32,
     maxCharDelay: 88,
-    linePause: 1060,
+    linePause: 260,
     cursorStepPause: 190,
 };
 
