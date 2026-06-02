@@ -4,7 +4,7 @@ import { tags, lendingImages } from "../json/otherJson.js";
 
 const landingCoverCarouselSettings = {
     baseSpeed: 0.000022,
-    hoverTransitionDuration: 1800,
+    hoverTransitionDuration: 2000,
     poolSize: 8,
     minScale: 0.32,
     maxScale: 1.05,
@@ -308,7 +308,7 @@ function createGroup(tagsArray) {
     return group;
 }
 
-const landingTagsHoverTransitionDuration = 800;
+const landingTagsHoverTransitionDuration = 1100;
 
 function easeInOutCubic(progress) {
     return progress < 0.5

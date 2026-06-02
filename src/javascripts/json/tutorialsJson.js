@@ -424,6 +424,17 @@ const tagsPart3Module1Tutorial3 = {
   title: "Распределения рандомных величин",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
+
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryP5js"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  tags: [
+    "Случайность",
+    "Процедурная генерация",
+    "Генеративная графика",
+    "Композиция"
+  ]
 };
 const tagsPart3Module1Tutorial4 = {
   date: ["20260324"],
