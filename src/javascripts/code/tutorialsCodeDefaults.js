@@ -330,13 +330,84 @@ return () => {
   renderer.dispose();
 };`;
 
+const handbookPart3Module1Preview = `const palette = ['#FFC300', '#FF86DB'];
+
+let t = 0;
+let speedFactor = 0;
+let targetSpeedFactor = 0;
+
+function playAnimation() {
+  targetSpeedFactor = 1;
+}
+
+function pauseAnimation() {
+  targetSpeedFactor = 0;
+}
+
+function handlePreviewHover(event) {
+  if (event.data?.type !== "coding-for-fun-preview-hover") return;
+
+  if (event.data.isHovered) {
+    playAnimation();
+  } else {
+    pauseAnimation();
+  }
+}
+
+function setup() {
+  const canvas = createCanvas(app.clientWidth, app.clientHeight);
+  canvas.parent("app");
+  canvas.mouseOver(playAnimation);
+  canvas.mouseOut(pauseAnimation);
+
+  rectMode(CENTER);
+  noStroke();
+  window.addEventListener("message", handlePreviewHover);
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function triangular() {
+  // Средние значения появляются чаще, чем края.
+  return (random() + random()) / 2;
+}
+
+function draw() {
+  speedFactor += (targetSpeedFactor - speedFactor) * min(deltaTime / 2000, 1);
+
+  background('#FFFFFF');
+  randomSeed(24);
+
+  const count = 140;
+  const centerX = width / 2;
+  const centerY = height / 2;
+  const maxRadius = min(width, height) * 0.38;
+
+  for (let i = 0; i < count; i += 1) {
+    const angle = (i / count) * TWO_PI;
+    const radius = triangular() * maxRadius;
+    const wave = sin(t + i * 0.18) * 8;
+    const x = centerX + cos(angle) * (radius + wave);
+    const y = centerY + sin(angle) * (radius + wave);
+    const size = map(radius, 0, maxRadius, 30, 8);
+
+    fill(palette[i % palette.length]);
+    circle(x, y, size);
+  }
+
+  t += 0.018 * speedFactor;
+}`;
+
+
 export const previewCodeById = {
   handbookPart1Module1Preview: previewCodeVanilla,
   handbookPart1Module2Preview: previewCodeVanilla,
   handbookPart2Module1Preview: previewCodeVanilla,
   handbookPart2Module2Preview: previewCodeP5,
   handbookPart2Module3Preview: previewCodeThree,
-  handbookPart3Module1Preview: previewCodeVanilla,
+  handbookPart3Module1Preview,
   handbookPart3Module2Preview: previewCodeP5,
   handbookPart3Module3Preview: previewCodeThree,
   landingPart1Preview: previewCodeVanilla,
