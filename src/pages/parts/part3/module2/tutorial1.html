@@ -308,20 +308,393 @@
 
       <div class="O_TutorialMain">
         <section class="U_FontB1 A_TutorialAnnotation">
-          <!-- тут краткое описание -->
+          В&nbsp;этом уроке рекурсия станет не&nbsp;абстрактной темой из&nbsp;алгоритмов, а&nbsp;способом строить
+          визуальные
+          системы: от&nbsp;плоского узора на&nbsp;Vanilla&nbsp;JS до&nbsp;p5.js-дерева форм и&nbsp;трёхмерного тоннеля,
+          в&nbsp;который
+          камера будто бесконечно приближается, но&nbsp;никогда не&nbsp;доходит до&nbsp;конца.
         </section>
         <section class="O_TutorialSection">
 
-          <!-- тут сами блоки 
-          делай в них такой отступ по строке, как здесь вот ща и везде в статьях
-          а между section отступ не делай-->
+          <h3 id="nav1" class="U_FontH3 A_TutorialTitle">
+            Теория
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p id="TutorialTextFirst" class="U_FontB1 A_TutorialText">
+            <span>Рекурсия</span>&nbsp;— это&nbsp;приём, при&nbsp;котором функция вызывает саму себя. В&nbsp;обычном
+            программировании рекурсию часто объясняют через&nbsp;математику: факториал, обход папок или&nbsp;поиск
+            в&nbsp;дереве. В&nbsp;креативном кодинге она&nbsp;интереснее как&nbsp;визуальное правило: форма создаёт
+            меньшую
+            версию себя, та&nbsp;создаёт ещё&nbsp;одну, и&nbsp;так&nbsp;до&nbsp;тех&nbsp;пор, пока&nbsp;система
+            не&nbsp;остановится.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Главное отличие рекурсии от&nbsp;цикла&nbsp;— в&nbsp;том, как&nbsp;мы&nbsp;думаем о&nbsp;структуре.
+            <span>Цикл</span>
+            повторяет действие рядом: клетка за&nbsp;клеткой, круг за&nbsp;кругом, кадр за&nbsp;кадром.
+            <span>Рекурсия</span>
+            повторяет действие внутри самого действия: круг содержит круги, ветка содержит ветки, портал содержит
+            следующий портал. Поэтому рекурсия хорошо подходит для&nbsp;изображений, где&nbsp;есть вложенность,
+            самоподобие и&nbsp;ощущение глубины.
+          </p>
+
+          <div class="M_TutorialQuote">
+            <p class="U_FontS2">
+              Рекурсивная композиция начинается с&nbsp;одного правила, но&nbsp;выглядит так, будто&nbsp;в&nbsp;ней
+              работает
+              целая система
+            </p>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            У&nbsp;каждой рекурсивной функции есть две&nbsp;обязательные части. Первая&nbsp;— <span>базовый
+              случай</span>:
+            условие, при&nbsp;котором функция перестаёт вызывать себя. Без&nbsp;него браузер продолжит углубляться
+            в&nbsp;вызовы, пока&nbsp;не&nbsp;получит ошибку. Вторая&nbsp;— <span>шаг рекурсии</span>: действие, которое
+            меняет
+            параметры следующего вызова. Обычно мы&nbsp;уменьшаем размер, глубину, яркость, радиус или&nbsp;расстояние,
+            чтобы&nbsp;каждый следующий слой был связан с&nbsp;предыдущим, но&nbsp;не&nbsp;повторял его буквально.
+          </p>
+
+          <div class="U_FontC2-Code W_TutorialCopyItem">
+            <p class="A_TutorialCopyText">
+              function drawRecursive(size, depth) {<br>
+              &nbsp;&nbsp;if (depth === 0 || size &lt; 4) return; // базовый случай<br>
+              &nbsp;&nbsp;drawShape(size);<br>
+              &nbsp;&nbsp;drawRecursive(size * 0.7, depth - 1); // шаг рекурсии<br>
+              }
+            </p>
+            <button class="U_ButtonIcon A_TutorialCopyButton">
+              <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+            </button>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;дизайне рекурсия работает особенно выразительно, если&nbsp;у&nbsp;каждого уровня есть
+            <span>поворот</span>,
+            <span>масштаб</span> и&nbsp;<span>смещение</span>. Эти&nbsp;три параметра дают ощущение роста: элементы
+            не&nbsp;просто уменьшаются, а&nbsp;собираются в&nbsp;ритм. Чем&nbsp;меньше коэффициент масштаба,
+            тем&nbsp;быстрее
+            композиция сжимается к&nbsp;центру. Чем&nbsp;больше поворот, тем&nbsp;сильнее появляется спираль.
+            А&nbsp;смещение
+            решает, будет&nbsp;ли система похожа на&nbsp;дерево, тоннель, розетку или&nbsp;модульный орнамент.
+          </p>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              Базовый случай защищает код от&nbsp;бесконечного вызова и&nbsp;задаёт финальную детализацию.
+            </li>
+            <li>
+              Шаг рекурсии меняет параметры: уменьшает размер, глубину, прозрачность, угол или&nbsp;дистанцию.
+            </li>
+            <li>
+              Визуальная сила рекурсии появляется из&nbsp;самоподобия: каждый уровень похож на&nbsp;предыдущий,
+              но&nbsp;чуть&nbsp;изменён.
+            </li>
+          </ol>
 
         </section>
         <section class="O_TutorialSection">
 
-          <!-- тут сами блоки 
-          делай в них такой отступ по строке, как здесь вот ща и везде в статьях
-          а между section отступ не делай-->
+          <h3 id="nav2" class="U_FontH3 A_TutorialTitle">
+            Практика: вариация
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Ниже&nbsp;одна идея показана тремя способами: на&nbsp;Vanilla&nbsp;JS, p5.js и&nbsp;Three.js. В&nbsp;каждом
+            примере
+            есть рекурсивная функция, базовый случай и&nbsp;параметры, которые становятся меньше или&nbsp;глубже
+            на&nbsp;каждом уровне. Визуально это&nbsp;разные работы, но&nbsp;логика у&nbsp;них общая: <span>форма
+              рождает
+              следующую форму</span>.
+          </p>
+
+          <div id="patr3module2tutorial1code1" class="O_TutorialSingleCode" data-runtime="vanilla"
+            data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Vanilla&nbsp;JS: Canvas рисует рекурсивную розетку. Каждый уровень уменьшает радиус, поворачивает
+                систему и&nbsp;запускает две&nbsp;новые ветви.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;Canvas API нам&nbsp;приходится самим управлять координатами, поворотом и&nbsp;очисткой кадра. Зато
+            хорошо видно, что&nbsp;рекурсия не&nbsp;зависит от&nbsp;библиотеки: это&nbsp;обычная функция, которая
+            получает
+            параметры текущего слоя и&nbsp;решает, нужно&nbsp;ли строить следующий.
+          </p>
+
+          <div id="patr3module2tutorial1code2" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                p5.js: та&nbsp;же идея становится пластичнее. translate(), rotate() и&nbsp;push()/pop() позволяют
+                описывать вложенность почти как&nbsp;сборку подвижного орнамента.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;p5.js рекурсивные структуры удобно строить через&nbsp;локальные системы координат. Мы&nbsp;переносим
+            начало координат в&nbsp;центр формы, поворачиваем сцену, рисуем уровень и&nbsp;вызываем функцию
+            ещё&nbsp;раз.
+            <span>push()</span> и&nbsp;<span>pop()</span> важны: они&nbsp;сохраняют состояние холста, чтобы&nbsp;поворот
+            одной ветки не&nbsp;сломал остальные.
+          </p>
+
+          <div id="patr3module2tutorial1code3" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="three" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Three.js: рекурсивный тоннель из&nbsp;порталов. Камера движется вперёд, а&nbsp;слои переиспользуются,
+                поэтому&nbsp;приближение кажется бесконечным.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;3D рекурсия легко превращается в&nbsp;иллюзию бесконечности. Мы&nbsp;строим серию вложенных порталов:
+            каждый следующий меньше, дальше и&nbsp;чуть&nbsp;повёрнут. Камера проходит сквозь слои, но&nbsp;когда
+            ближайший
+            портал остаётся позади, он&nbsp;переносится в&nbsp;конец последовательности. Так&nbsp;возникает ощущение,
+            что&nbsp;система постоянно приближается к&nbsp;своей копии.
+          </p>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav3" class="U_FontH3 A_TutorialTitle">
+            Вывод
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Рекурсия помогает мыслить не&nbsp;отдельными объектами, а&nbsp;<span>правилами роста</span>. Если&nbsp;цикл
+            отвечает за&nbsp;количество повторов, то&nbsp;рекурсия отвечает за&nbsp;отношения между уровнями:
+            что&nbsp;считать
+            родителем, что&nbsp;считать дочерней формой и&nbsp;как&nbsp;меняется масштаб при&nbsp;переходе вглубь.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;креативном кодинге рекурсию стоит использовать там, где&nbsp;нужны вложенность, ветвление,
+            самоподобие или&nbsp;ощущение бесконечного приближения. Но&nbsp;её&nbsp;важно контролировать: ограничивать
+            глубину, уменьшать размер и&nbsp;держать композицию в&nbsp;рамках выбранной сетки, палитры и&nbsp;ритма.
+          </p>
+
+          <ul class="U_FontC2-Code C_TutorialCopyList">
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                if (depth &lt;= 0) return; // базовый случай останавливает рекурсию
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                recursive(size * 0.72, depth - 1); // следующий уровень меньше и ближе к завершению
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                push(); // сохраняет текущие координаты в p5.js
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                pop(); // возвращает координаты после рекурсивной ветки
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                group.add(child); // добавляет вложенный объект в Three.js
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+          </ul>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav4" class="U_FontH3 A_TutorialTitle">
+            Задание
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Сделай собственную рекурсивную эмблему на&nbsp;p5.js. В&nbsp;коде уже&nbsp;есть несколько художественных
+            настроек: глубина, коэффициент масштаба, угол и&nbsp;режим формы. Меняй их&nbsp;по&nbsp;одному
+            и&nbsp;смотри,
+            как&nbsp;одна и&nbsp;та&nbsp;же функция превращается то&nbsp;в&nbsp;плотный знак, то&nbsp;в&nbsp;лёгкую
+            спираль,
+            то&nbsp;в&nbsp;почти архитектурный узор.
+          </p>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              Начни с&nbsp;<span>maxDepth</span>: уменьши значение до&nbsp;4, затем увеличь до&nbsp;8 и&nbsp;сравни
+              плотность
+              композиции.
+            </li>
+            <li>
+              Подстрой <span>scaleStep</span>: маленькое значение быстро собирает форму в&nbsp;центр, большое
+              оставляет больше воздуха между уровнями.
+            </li>
+            <li>
+              Измени <span>branchAngle</span> и&nbsp;проверь, когда система выглядит как&nbsp;орнамент,
+              а&nbsp;когда&nbsp;—
+              как&nbsp;движение.
+            </li>
+            <li>
+              В&nbsp;финале выбери один <span>shapeMode</span> и&nbsp;доведи работу до&nbsp;цельной графической серии:
+              сделай три версии с&nbsp;разной глубиной, но&nbsp;одной палитрой.
+            </li>
+          </ol>
+
+          <div id="patr3module2tutorial1code4" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="p5" data-autostart="false">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Задание: настрой рекурсивную эмблему. Код специально оставлен параметрическим, чтобы&nbsp;можно было
+                собрать несколько разных версий из&nbsp;одного правила.
+              </p>
+            </div>
+          </div>
 
         </section>
         <section class="O_TutorialSection O_TutorialSection--Last">

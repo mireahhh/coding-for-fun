@@ -461,6 +461,19 @@ const tagsPart3Module2Tutorial1 = {
   title: "Рекурсия",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
+
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryVanillajs", "filterLibraryP5js", "filterLibraryThreejs"],
+  format: ["filterFormatVariation", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  tags: [
+    "Рекурсия",
+    "Геометрические алгоритмы",
+    "Процедурная генерация",
+    "Генеративная графика",
+    "Алгоритмическая анимация",
+    "3D"
+  ]
 };
 const tagsPart3Module2Tutorial2 = {
   date: ["20260329"],

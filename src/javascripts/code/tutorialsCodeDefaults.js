@@ -333,32 +333,29 @@ return () => {
 const handbookPart3Module1Preview = `const palette = ['#FFC300', '#FF86DB'];
 
 let t = 0;
-let speedFactor = 0;
-let targetSpeedFactor = 0;
+let hoverAmount = 0;
+let isHovering = false;
 
-function playAnimation() {
-  targetSpeedFactor = 1;
-}
-
-function pauseAnimation() {
-  targetSpeedFactor = 0;
+function updateHoverState(value) {
+  isHovering = value;
 }
 
 function handlePreviewHover(event) {
   if (event.data?.type !== "coding-for-fun-preview-hover") return;
-
-  if (event.data.isHovered) {
-    playAnimation();
-  } else {
-    pauseAnimation();
-  }
+  updateHoverState(event.data.isHovered);
 }
 
 function setup() {
   const canvas = createCanvas(app.clientWidth, app.clientHeight);
   canvas.parent("app");
-  canvas.mouseOver(playAnimation);
-  canvas.mouseOut(pauseAnimation);
+
+  canvas.mouseOver(() => {
+    updateHoverState(true);
+  });
+
+  canvas.mouseOut(() => {
+    updateHoverState(false);
+  });
 
   rectMode(CENTER);
   noStroke();
@@ -375,10 +372,14 @@ function triangular() {
 }
 
 function draw() {
-  speedFactor += (targetSpeedFactor - speedFactor) * min(deltaTime / 2000, 1);
-
   background('#FFFFFF');
   randomSeed(24);
+
+  // 1 — мышь наведена, 0 — мышь убрали
+  const target = isHovering ? 1 : 0;
+
+  // Чем больше последний параметр, тем быстрее начинается движение
+  hoverAmount = lerp(hoverAmount, target, 0.1);
 
   const count = 140;
   const centerX = width / 2;
@@ -388,16 +389,20 @@ function draw() {
   for (let i = 0; i < count; i += 1) {
     const angle = (i / count) * TWO_PI;
     const radius = triangular() * maxRadius;
-    const wave = sin(t + i * 0.18) * 8;
+
+    const wave = sin(t + i * 0.18) * 8 * hoverAmount;
+
     const x = centerX + cos(angle) * (radius + wave);
     const y = centerY + sin(angle) * (radius + wave);
+
     const size = map(radius, 0, maxRadius, 30, 8);
 
     fill(palette[i % palette.length]);
     circle(x, y, size);
   }
 
-  t += 0.018 * speedFactor;
+  // Движение тоже плавно затухает
+  t += 0.018 * hoverAmount;
 }`;
 
 
@@ -5391,5 +5396,283 @@ function draw() {
   circle(width / 2, height / 2, 18 + sin(t * 2) * 3);
 
   t += 0.006;
+}`,
+patr3module2tutorial1code1: `const canvas = document.createElement('canvas');
+const ctx = canvas.getContext('2d');
+let animationId;
+let time = 0;
+
+app.innerHTML = '';
+app.style.width = '100%';
+app.style.height = '100%';
+app.style.background = '#FFFFFF';
+app.appendChild(canvas);
+
+function resize() {
+  canvas.width = app.clientWidth;
+  canvas.height = app.clientHeight;
+}
+
+function drawBranch(x, y, radius, angle, depth) {
+  // Базовый случай: мелкие уровни уже не рисуем.
+  if (depth <= 0 || radius < 5) return;
+
+  const colors = ['#FF86DB', '#2FD3E6'];
+  ctx.fillStyle = colors[depth % colors.length];
+  ctx.beginPath();
+  ctx.arc(x, y, radius, 0, Math.PI * 2);
+  ctx.fill();
+
+  const nextRadius = radius * 0.62;
+  const distance = radius * 1.18;
+  const turn = Math.sin(time + depth * 0.7) * 0.32;
+
+  for (let side = -1; side <= 1; side += 2) {
+    const nextAngle = angle + side * (0.82 + turn);
+    const nextX = x + Math.cos(nextAngle) * distance;
+    const nextY = y + Math.sin(nextAngle) * distance;
+    drawBranch(nextX, nextY, nextRadius, nextAngle, depth - 1);
+  }
+}
+
+function draw() {
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  const size = Math.min(canvas.width, canvas.height);
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
+  const startRadius = Math.max(28, size * 0.14);
+
+  // Четыре запуска одной рекурсивной функции создают розетку.
+  for (let i = 0; i < 4; i += 1) {
+    const angle = time * 0.25 + i * Math.PI / 2;
+    drawBranch(centerX, centerY, startRadius, angle, 6);
+  }
+
+  time += 0.018;
+  animationId = requestAnimationFrame(draw);
+}
+
+window.addEventListener('resize', resize);
+resize();
+draw();
+
+return () => {
+  cancelAnimationFrame(animationId);
+  window.removeEventListener('resize', resize);
+};`,
+  patr3module2tutorial1code2: `let t = 0;
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
+  noStroke();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function recursiveOrbit(size, depth) {
+  if (depth <= 0 || size < 6) return;
+
+  const palette = ['#FFC300', '#37E87A'];
+  fill(palette[depth % palette.length]);
+  circle(0, 0, size);
+
+  const branches = 3;
+  const nextSize = size * 0.58;
+  const distance = size * 0.56;
+
+  for (let i = 0; i < branches; i += 1) {
+    push();
+    rotate(t + i * TWO_PI / branches);
+    translate(distance, 0);
+    rotate(-t * 0.65);
+    recursiveOrbit(nextSize, depth - 1);
+    pop();
+  }
+}
+
+function draw() {
+  background('#FFFFFF');
+
+  const size = min(width, height);
+  translate(width / 2, height / 2);
+  rotate(t * 0.35);
+  recursiveOrbit(size * 0.32, 6);
+
+  t += 0.01;
+}`,
+  patr3module2tutorial1code3: `const width = app.clientWidth;
+const height = app.clientHeight;
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xffffff);
+
+const camera = new THREE.PerspectiveCamera(48, width / height, 0.1, 120);
+camera.position.set(0, 0, 7);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+app.innerHTML = '';
+app.appendChild(renderer.domElement);
+
+scene.add(new THREE.AmbientLight(0xffffff, 1.8));
+const light = new THREE.DirectionalLight(0xffffff, 2.2);
+light.position.set(3, 5, 6);
+scene.add(light);
+
+const tunnel = new THREE.Group();
+scene.add(tunnel);
+
+const pink = new THREE.MeshStandardMaterial({ color: 0xff86db, roughness: 0.46, metalness: 0.04 });
+const cyan = new THREE.MeshStandardMaterial({ color: 0x2fd3e6, roughness: 0.5, metalness: 0.04 });
+const yellow = new THREE.MeshStandardMaterial({ color: 0xffc300, roughness: 0.52, metalness: 0.02 });
+const materials = [pink, cyan, yellow];
+const boxGeometry = new THREE.BoxGeometry(1, 1, 0.18);
+const ringGeometry = new THREE.TorusGeometry(1, 0.035, 12, 80);
+const portals = [];
+
+function buildPortal(level, maxLevel, z) {
+  if (level >= maxLevel) return;
+
+  const group = new THREE.Group();
+  const scale = 3.7 * Math.pow(0.86, level % 9);
+  group.position.z = z - level * 2.4;
+  group.rotation.z = level * 0.34;
+  group.scale.setScalar(scale);
+
+  const ring = new THREE.Mesh(ringGeometry, materials[level % materials.length]);
+  group.add(ring);
+
+  // Четыре квадрата делают портал более графичным.
+  for (let i = 0; i < 4; i += 1) {
+    const tile = new THREE.Mesh(boxGeometry, materials[(level + i + 1) % materials.length]);
+    const angle = i * Math.PI / 2;
+    tile.position.set(Math.cos(angle), Math.sin(angle), 0);
+    tile.scale.set(0.18, 0.18, 1);
+    tile.rotation.z = angle;
+    group.add(tile);
+  }
+
+  tunnel.add(group);
+  portals.push(group);
+  buildPortal(level + 1, maxLevel, z);
+}
+
+buildPortal(0, 18, 0);
+
+function onResize() {
+  const nextWidth = app.clientWidth;
+  const nextHeight = app.clientHeight;
+  camera.aspect = nextWidth / nextHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(nextWidth, nextHeight);
+}
+
+let animationId;
+let time = 0;
+
+function animate() {
+  time += 0.016;
+  camera.position.z -= 0.035;
+  tunnel.rotation.z = time * 0.12;
+
+  portals.forEach((portal, index) => {
+    portal.rotation.z += 0.004 + index * 0.0004;
+
+    // Когда портал проходит за камерой, переносим его в глубину тоннеля.
+    if (portal.position.z > camera.position.z + 2) {
+      portal.position.z -= portals.length * 2.4;
+    }
+  });
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+window.addEventListener('resize', onResize);
+animate();
+
+return () => {
+  cancelAnimationFrame(animationId);
+  window.removeEventListener('resize', onResize);
+  boxGeometry.dispose();
+  ringGeometry.dispose();
+  materials.forEach((material) => material.dispose());
+  renderer.dispose();
+};`,
+  patr3module2tutorial1code4: `let t = 0;
+let maxDepth = 6;
+let scaleStep = 0.64;
+let branchAngle = 0.72;
+let shapeMode = 'mixed';
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
+  noStroke();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function drawRecursiveBadge(size, depth) {
+  if (depth <= 0 || size < 5) return;
+
+  const palette = ['#FF86DB', '#FFC300'];
+  fill(palette[depth % palette.length]);
+
+  if (shapeMode === 'squares') {
+    rect(0, 0, size, size, size * 0.16);
+  } else if (shapeMode === 'circles') {
+    circle(0, 0, size);
+  } else {
+    depth % 2 === 0 ? circle(0, 0, size) : rect(0, 0, size, size, size * 0.14);
+  }
+
+  const nextSize = size * scaleStep;
+  const distance = size * 0.48;
+  const branches = depth % 2 === 0 ? 4 : 3;
+
+  for (let i = 0; i < branches; i += 1) {
+    push();
+    rotate(i * TWO_PI / branches + branchAngle + sin(t + depth) * 0.08);
+    translate(distance, 0);
+    rotate(-branchAngle * 0.7);
+    drawRecursiveBadge(nextSize, depth - 1);
+    pop();
+  }
+}
+
+function draw() {
+  background('#FFFFFF');
+
+  // Эксперимент 1: глубина рекурсии.
+  // maxDepth = 4;
+  // maxDepth = 8;
+
+  // Эксперимент 2: скорость уменьшения.
+  // scaleStep = 0.54;
+  // scaleStep = 0.72;
+
+  // Эксперимент 3: угол ветвления.
+  // branchAngle = 0.35;
+  // branchAngle = 1.05;
+
+  // Эксперимент 4: тип формы.
+  // shapeMode = 'circles';
+  // shapeMode = 'squares';
+  // shapeMode = 'mixed';
+
+  const startSize = min(width, height) * 0.26;
+  translate(width / 2, height / 2);
+  rotate(t * 0.22);
+  drawRecursiveBadge(startSize, maxDepth);
+
+  t += 0.012;
 }`,
 };
