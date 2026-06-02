@@ -102,6 +102,7 @@ return () => {
 const previewCodeVanilla = `const app = document.getElementById("app");
 const canvas = document.createElement("canvas");
 const ctx = canvas.getContext("2d");
+
 let animationId;
 let speedFactor = 0;
 let targetSpeedFactor = 0;
@@ -128,6 +129,7 @@ function pauseAnimation() {
 
 function handlePreviewHover(event) {
   if (event.data?.type !== "coding-for-fun-preview-hover") return;
+
   if (event.data.isHovered) {
     playAnimation();
   } else {
@@ -146,7 +148,7 @@ function draw(time) {
   const height = canvas.height;
   const size = Math.min(width, height) / 5;
 
-  ctx.fillStyle = "#f8f8f8";
+  ctx.fillStyle = "#ffffff";
   ctx.fillRect(0, 0, width, height);
 
   for (let i = 0; i < 9; i += 1) {
@@ -160,11 +162,6 @@ function draw(time) {
     ctx.fill();
   }
 
-  ctx.fillStyle = "#111827";
-  ctx.font = "600 14px sans-serif";
-  ctx.textAlign = "center";
-  ctx.fillText("Vanilla запущен", width / 2, height - 22);
-
   animationId = requestAnimationFrame(draw);
 }
 
@@ -172,11 +169,13 @@ window.addEventListener("message", handlePreviewHover);
 canvas.addEventListener("mouseenter", playAnimation);
 canvas.addEventListener("mouseleave", pauseAnimation);
 window.addEventListener("resize", resize);
+
 resize();
 draw(0);
 
 return () => {
   cancelAnimationFrame(animationId);
+
   window.removeEventListener("message", handlePreviewHover);
   canvas.removeEventListener("mouseenter", playAnimation);
   canvas.removeEventListener("mouseleave", pauseAnimation);
@@ -1384,10 +1383,10 @@ const darkLineMaterial = new THREE.LineBasicMaterial({
 
 // 1. Сетка — Vanilla JS
 const gridGroup = new THREE.Group();
-gridGroup.position.x = -2.3;
+gridGroup.position.x = -1.55;
 group.add(gridGroup);
 
-const gridSize = 1.45;
+const gridSize = 1.35;
 const gridDivisions = 5;
 const gridStep = gridSize / gridDivisions;
 const gridPoints = [];
@@ -1406,7 +1405,7 @@ const gridGeometry = new THREE.BufferGeometry().setFromPoints(gridPoints);
 const grid = new THREE.LineSegments(gridGeometry, darkLineMaterial);
 gridGroup.add(grid);
 
-const cellGeometry = new THREE.BoxGeometry(0.16, 0.16, 0.08);
+const cellGeometry = new THREE.BoxGeometry(0.15, 0.15, 0.08);
 const gridCells = [];
 
 for (let i = 0; i < 9; i += 1) {
@@ -1433,7 +1432,7 @@ const circlesGroup = new THREE.Group();
 circlesGroup.position.x = 0;
 group.add(circlesGroup);
 
-const circleGeometry = new THREE.CircleGeometry(0.13, 32);
+const circleGeometry = new THREE.CircleGeometry(0.12, 32);
 const circles = [];
 
 for (let i = 0; i < 12; i += 1) {
@@ -1448,21 +1447,22 @@ for (let i = 0; i < 12; i += 1) {
 
 // 3. Куб — Three.js
 const cubeGroup = new THREE.Group();
-cubeGroup.position.x = 2.3;
+cubeGroup.position.x = 1.55;
 group.add(cubeGroup);
 
-const cubeGeometry = new THREE.BoxGeometry(1.05, 1.05, 1.05);
+const cubeGeometry = new THREE.BoxGeometry(0.95, 0.95, 0.95);
 const cube = new THREE.Mesh(cubeGeometry, pinkMaterial);
 cube.rotation.set(-0.35, 0.55, 0.12);
 cubeGroup.add(cube);
 
-const smallCubeGeometry = new THREE.BoxGeometry(0.28, 0.28, 0.28);
+const smallCubeGeometry = new THREE.BoxGeometry(0.24, 0.24, 0.24);
+
 const smallCubeA = new THREE.Mesh(smallCubeGeometry, cyanMaterial);
-smallCubeA.position.set(-0.85, -0.75, 0.2);
+smallCubeA.position.set(-0.72, -0.68, 0.2);
 cubeGroup.add(smallCubeA);
 
 const smallCubeB = new THREE.Mesh(smallCubeGeometry, greenMaterial);
-smallCubeB.position.set(0.85, 0.75, -0.15);
+smallCubeB.position.set(0.72, 0.68, -0.15);
 cubeGroup.add(smallCubeB);
 
 // resize
@@ -1501,50 +1501,52 @@ function animate(time) {
   const deltaTime = time - lastTime;
   lastTime = time;
 
-  const easing = targetSpeedFactor > speedFactor ? 0.18 : 0.055;
+  const easing = targetSpeedFactor > speedFactor ? 0.16 : 0.055;
   speedFactor += (targetSpeedFactor - speedFactor) * Math.min(deltaTime / 120, 1) * easing * 6;
 
-  t += 0.01 + speedFactor * 0.04;
+  // общий темп спокойнее
+  t += 0.007 + speedFactor * 0.018;
 
   // общая ленивость
-  group.position.y = Math.sin(t * 0.7) * 0.06;
-  group.rotation.z = Math.sin(t * 0.45) * (0.015 + speedFactor * 0.025);
+  group.position.y = Math.sin(t * 0.7) * 0.045;
+  group.rotation.z = Math.sin(t * 0.45) * (0.012 + speedFactor * 0.015);
 
   // сетка слегка качается
-  gridGroup.rotation.z = Math.sin(t * 0.8) * (0.08 + speedFactor * 0.12);
-  gridGroup.position.y = Math.sin(t * 0.9) * 0.06;
+  gridGroup.rotation.z = Math.sin(t * 0.8) * (0.055 + speedFactor * 0.06);
+  gridGroup.position.y = Math.sin(t * 0.9) * 0.04;
 
   for (let i = 0; i < gridCells.length; i += 1) {
     const cell = gridCells[i];
-    cell.position.z = 0.06 + Math.sin(t * 1.4 + i) * (0.02 + speedFactor * 0.08);
-    cell.rotation.z += 0.004 + speedFactor * 0.025;
+
+    cell.position.z = 0.06 + Math.sin(t * 1.2 + i) * (0.015 + speedFactor * 0.035);
+    cell.rotation.z += 0.0015 + speedFactor * 0.006;
   }
 
-  // кружки вращаются орбитой
+  // кружки двигаются спокойнее
   for (let i = 0; i < circles.length; i += 1) {
     const circle = circles[i];
-    const angle = t * (0.65 + speedFactor * 1.7) + i * Math.PI * 2 / circles.length;
-    const radius = 0.62 + Math.sin(t + i) * (0.03 + speedFactor * 0.08);
+    const angle = t * (0.35 + speedFactor * 0.55) + i * Math.PI * 2 / circles.length;
+    const radius = 0.56 + Math.sin(t + i) * (0.02 + speedFactor * 0.035);
 
     circle.position.x = Math.cos(angle) * radius;
-    circle.position.y = Math.sin(angle * 1.25) * radius * 0.78;
-    circle.scale.setScalar(1 + Math.sin(t * 1.8 + i) * (0.04 + speedFactor * 0.14));
+    circle.position.y = Math.sin(angle * 1.2) * radius * 0.72;
+    circle.scale.setScalar(1 + Math.sin(t * 1.5 + i) * (0.025 + speedFactor * 0.055));
   }
 
-  circlesGroup.rotation.z += 0.002 + speedFactor * 0.018;
+  circlesGroup.rotation.z += 0.0008 + speedFactor * 0.004;
 
-  // куб бодро крутится на ховере
-  cube.rotation.x += 0.004 + speedFactor * 0.028;
-  cube.rotation.y += 0.006 + speedFactor * 0.04;
+  // куб теперь крутится бодро, но не как бешеный
+  cube.rotation.x += 0.0018 + speedFactor * 0.01;
+  cube.rotation.y += 0.0024 + speedFactor * 0.014;
 
-  smallCubeA.rotation.x += 0.006 + speedFactor * 0.035;
-  smallCubeA.rotation.y += 0.004 + speedFactor * 0.02;
+  smallCubeA.rotation.x += 0.002 + speedFactor * 0.012;
+  smallCubeA.rotation.y += 0.0015 + speedFactor * 0.008;
 
-  smallCubeB.rotation.x -= 0.004 + speedFactor * 0.025;
-  smallCubeB.rotation.y += 0.006 + speedFactor * 0.03;
+  smallCubeB.rotation.x -= 0.0015 + speedFactor * 0.009;
+  smallCubeB.rotation.y += 0.002 + speedFactor * 0.011;
 
-  cubeGroup.position.y = Math.cos(t * 0.8) * 0.06;
-  cubeGroup.rotation.z = Math.sin(t * 0.5) * (0.06 + speedFactor * 0.08);
+  cubeGroup.position.y = Math.cos(t * 0.8) * 0.045;
+  cubeGroup.rotation.z = Math.sin(t * 0.5) * (0.04 + speedFactor * 0.035);
 
   renderer.render(scene, camera);
   animationId = requestAnimationFrame(animate);
