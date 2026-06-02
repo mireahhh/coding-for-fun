@@ -308,20 +308,377 @@
 
       <div class="O_TutorialMain">
         <section class="U_FontB1 A_TutorialAnnotation">
-          <!-- тут краткое описание -->
+          Шумовая текстура&nbsp;— это&nbsp;не&nbsp;картинка, а&nbsp;правило, которое можно масштабировать, анимировать
+          и&nbsp;переносить между 2D&nbsp;и&nbsp;3D. В&nbsp;уроке ты&nbsp;соберёшь несколько видов процедурных
+          поверхностей
+          на&nbsp;Vanilla&nbsp;JS, p5.js и&nbsp;Three.js, а&nbsp;в&nbsp;конце превратишь их&nbsp;в&nbsp;мини-сцену
+          с&nbsp;объектами.
         </section>
         <section class="O_TutorialSection">
 
-          <!-- тут сами блоки 
-          делай в них такой отступ по строке, как здесь вот ща и везде в статьях
-          а между section отступ не делай-->
+          <h3 id="nav1" class="U_FontH3 A_TutorialTitle">
+            Теория
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p id="TutorialTextFirst" class="U_FontB1 A_TutorialText">
+            <span>Шумовая текстура</span>&nbsp;— это&nbsp;поверхность, которую создаёт алгоритм. В&nbsp;обычной картинке
+            пиксели уже&nbsp;зафиксированы, а&nbsp;в&nbsp;процедурной текстуре они&nbsp;вычисляются: по&nbsp;координате,
+            времени, масштабу, палитре и&nbsp;правилу смешивания. Поэтому такую текстуру можно бесконечно менять
+            без&nbsp;поиска новых материалов: достаточно поменять несколько чисел в&nbsp;коде.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;дизайн-программировании шум чаще всего нужен не&nbsp;ради «грязи», а&nbsp;ради
+            <span>сложности</span>.
+            Он&nbsp;добавляет поверхности плотность, делает плоскую сетку похожей на&nbsp;ткань, рельеф, поток,
+            цифровой мрамор или&nbsp;зернистый плакат. При&nbsp;этом хороший шум остаётся управляемым: мы&nbsp;знаем,
+            где&nbsp;он&nbsp;крупный, где&nbsp;мелкий, какие цвета использует и&nbsp;как&nbsp;ведёт себя
+            при&nbsp;движении.
+          </p>
+
+          <div class="M_TutorialQuote">
+            <p class="U_FontS2">
+              Текстура начинается там, где одно значение шума начинает управлять не&nbsp;одной фигурой, а&nbsp;целой
+              системой признаков
+            </p>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;этом уроке мы&nbsp;будем постепенно усложнять результат. Сначала превратим координаты
+            в&nbsp;плотную пиксельную поверхность на&nbsp;Vanilla&nbsp;JS. Потом соберём изолинии на&nbsp;p5.js, добавим
+            <span>domain warp</span>&nbsp;— деформацию координат шумом&nbsp;— и&nbsp;перенесём текстуры в&nbsp;Three.js.
+            Финальная сцена покажет, что&nbsp;процедурный материал может жить не&nbsp;только как&nbsp;фон,
+            но&nbsp;и&nbsp;как
+            поверхность объекта.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Главные параметры шумовой текстуры&nbsp;— <span>scale</span>, <span>threshold</span>, <span>palette</span>
+            и&nbsp;<span>time</span>. Масштаб решает, насколько крупной будет волна. Порог превращает плавный шум
+            в&nbsp;пятна, полосы или&nbsp;маску. Палитра задаёт характер, а&nbsp;время делает текстуру живой. Если
+            менять эти&nbsp;параметры отдельно, код остаётся понятным, а&nbsp;результат быстро получает много вариантов.
+          </p>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              <span>Зерно</span> строится из&nbsp;маленьких ячеек: каждая ячейка получает значение и&nbsp;цвет.
+            </li>
+            <li>
+              <span>Изолинии</span> появляются, когда мы&nbsp;рисуем только те&nbsp;точки, где&nbsp;значение шума близко
+              к&nbsp;заданному уровню.
+            </li>
+            <li>
+              <span>Domain warp</span> сначала искажает координаты, а&nbsp;уже&nbsp;потом берёт по&nbsp;ним шум: так
+              поверхность становится более органичной и&nbsp;слоистой.
+            </li>
+          </ol>
 
         </section>
         <section class="O_TutorialSection">
 
-          <!-- тут сами блоки 
-          делай в них такой отступ по строке, как здесь вот ща и везде в статьях
-          а между section отступ не делай-->
+          <h3 id="nav2" class="U_FontH3 A_TutorialTitle">
+            Практика
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Начнём с&nbsp;простого варианта: canvas делится на&nbsp;клетки, а&nbsp;каждая клетка получает значение
+            псевдошума. В&nbsp;Vanilla&nbsp;JS нет&nbsp;готового <span>noise()</span>, поэтому мы&nbsp;собираем мягкую
+            функцию из&nbsp;нескольких синусов. Это&nbsp;не&nbsp;настоящий перлин-шум, но&nbsp;для&nbsp;текстурного
+            паттерна принцип тот&nbsp;же: соседние координаты дают похожие значения.
+          </p>
+
+          <div id="patr3module1tutorial4code1" class="O_TutorialSingleCode" data-runtime="vanilla"
+            data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Зернистая текстура на&nbsp;Vanilla&nbsp;JS: мягкая функция управляет размером и&nbsp;цветом ячеек.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Теперь используем p5.js и&nbsp;настоящий <span>noise()</span>. Вместо заливки каждой клетки рисуем
+            только точки на&nbsp;нескольких порогах. Получается карта линий: она похожа на&nbsp;топографию,
+            но&nbsp;остаётся абстрактной и&nbsp;плакатной за&nbsp;счёт двух фирменных цветов.
+          </p>
+
+          <div id="patr3module1tutorial4code2" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Изолинии: шум сравнивается с&nbsp;порогами, а&nbsp;рисуются только близкие к&nbsp;ним точки.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Следующий шаг&nbsp;— деформировать не&nbsp;фигуры, а&nbsp;координаты, по&nbsp;которым мы&nbsp;считываем шум.
+            Такой приём называется <span>domain warp</span>. Сначала один шум сдвигает координату, затем второй
+            шум строит по&nbsp;этой&nbsp;новой координате текстуру. Из-за этого поверхность выглядит глубже:
+            будто внутри одного паттерна появился другой.
+          </p>
+
+          <div id="patr3module1tutorial4code3" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Domain warp превращает ровную сетку шума в&nbsp;пластичную текстуру с&nbsp;волнами и&nbsp;пятнами.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Последний технический шаг&nbsp;— использовать текстуру как&nbsp;материал в&nbsp;Three.js. Мы&nbsp;создаём
+            несколько canvas-текстур, передаём их&nbsp;в&nbsp;<span>THREE.CanvasTexture</span> и&nbsp;накладываем
+            на&nbsp;разные геометрии. Так&nbsp;один алгоритм начинает работать как&nbsp;набор цифровых материалов
+            для&nbsp;мини-сцены.
+          </p>
+
+          <div id="patr3module1tutorial4code4" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="three" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Мини-сцена: несколько объектов используют процедурные текстуры, созданные прямо в&nbsp;коде.
+              </p>
+            </div>
+          </div>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav3" class="U_FontH3 A_TutorialTitle">
+            Вывод
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Шумовые текстуры строятся из&nbsp;простого принципа: координата превращается в&nbsp;значение,
+            а&nbsp;значение
+            управляет цветом, формой, прозрачностью, высотой или&nbsp;материалом. Чем&nbsp;лучше ты&nbsp;разделяешь
+            параметры, тем&nbsp;легче получать разные визуальные характеры из&nbsp;одного алгоритма.
+          </p>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              Начинай с&nbsp;крупного <span>scale</span>, чтобы увидеть общую структуру текстуры.
+            </li>
+            <li>
+              Добавляй <span>threshold</span>, если&nbsp;нужны пятна, линии, маски или&nbsp;резкие границы.
+            </li>
+            <li>
+              Используй <span>domain warp</span>, когда&nbsp;паттерн выглядит слишком ровным и&nbsp;предсказуемым.
+            </li>
+            <li>
+              Переноси готовый рисунок в&nbsp;<span>CanvasTexture</span>, если&nbsp;нужно превратить 2D-паттерн
+              в&nbsp;материал для&nbsp;3D-объекта.
+            </li>
+          </ol>
+
+          <ul class="U_FontC2-Code C_TutorialCopyList">
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                noise(x * scale, y * scale); // значение шума по координате
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                abs(n - level) &lt; threshold; // проверка близости к изолинии
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                const warpedX = x + noise(x, y) * power; // сдвиг координаты шумом
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                new THREE.CanvasTexture(canvas); // canvas как текстура для материала
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+          </ul>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav4" class="U_FontH3 A_TutorialTitle">
+            Задание
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Собери собственную серию шумовых текстур. В&nbsp;коде есть пресеты <span>softFabric</span>,
+            <span>electricMap</span> и&nbsp;<span>liquidPoster</span>. Выбери один из&nbsp;них, затем&nbsp;измени
+            масштаб,
+            количество уровней, силу искажения и&nbsp;палитру. Цель&nbsp;— получить не&nbsp;один красивый кадр,
+            а&nbsp;набор материалов, которые выглядят как&nbsp;части одной визуальной системы.
+          </p>
+
+          <div id="patr3module1tutorial4code5" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Задание: настрой пресет, добейся собственного характера текстуры и&nbsp;сохрани удачные параметры.
+              </p>
+            </div>
+          </div>
 
         </section>
         <section class="O_TutorialSection O_TutorialSection--Last">
