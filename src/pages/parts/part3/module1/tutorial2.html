@@ -308,20 +308,392 @@
 
       <div class="O_TutorialMain">
         <section class="U_FontB1 A_TutorialAnnotation">
-          <!-- тут краткое описание -->
+          В&nbsp;этом уроке случайность перестаёт быть одноразовым эффектом и&nbsp;становится управляемой системой.
+          Ты&nbsp;разберёшь, зачем генеративной работе нужен seed, как&nbsp;фиксировать результат
+          в&nbsp;Vanilla JS, p5.js и&nbsp;Three.js, а&nbsp;затем соберёшь серию композиций, где&nbsp;каждый вариант
+          можно точно повторить, показать преподавателю и&nbsp;доработать без&nbsp;потери удачной версии.
         </section>
         <section class="O_TutorialSection">
 
-          <!-- тут сами блоки 
-          делай в них такой отступ по строке, как здесь вот ща и везде в статьях
-          а между section отступ не делай-->
+          <h3 id="nav1" class="U_FontH3 A_TutorialTitle">
+            Теория
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p id="TutorialTextFirst" class="U_FontB1 A_TutorialText">
+            В&nbsp;генеративной графике случайность часто выглядит как&nbsp;магия: перезапустил скетч&nbsp;— получил
+            другую композицию. Но&nbsp;для&nbsp;дизайнерской работы этого мало. Если&nbsp;вариант получился сильным,
+            его&nbsp;нужно сохранить, повторить, сравнить с&nbsp;другими версиями и&nbsp;вернуться к&nbsp;нему после
+            правок. Для&nbsp;этого используется <span>seed</span>&nbsp;— начальное число, от&nbsp;которого зависит вся
+            последовательность случайных значений.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Важно понимать разницу между <span>настоящей неопределённостью</span>
+            и&nbsp;<span>псевдослучайностью</span>.
+            Компьютер не&nbsp;обязан каждый раз придумывать числа заново: он&nbsp;может брать одно стартовое значение
+            и&nbsp;по&nbsp;формуле строить длинную цепочку. Если&nbsp;старт одинаковый, цепочка тоже одинаковая.
+            Поэтому два запуска с&nbsp;одним seed дают один и&nbsp;тот&nbsp;же узор, а&nbsp;изменение seed превращается
+            в&nbsp;переключатель между версиями одной визуальной системы.
+          </p>
+
+          <div class="M_TutorialQuote">
+            <p class="U_FontS2">
+              Seed&nbsp;— это&nbsp;не&nbsp;способ убрать случайность, а&nbsp;способ сделать её&nbsp;архивируемой
+              и&nbsp;управляемой
+            </p>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Контроль повторяемости особенно полезен в&nbsp;учебнике и&nbsp;портфолио. Ты&nbsp;можешь показать
+            не&nbsp;один случайный кадр, а&nbsp;серию: seed 14&nbsp;— плотный ритм, seed 27&nbsp;— спокойная сетка,
+            seed 91&nbsp;— почти плакатная композиция. Тогда генеративная работа становится похожей
+            на&nbsp;дизайн-систему: у&nbsp;неё есть правила, диапазон вариантов и&nbsp;понятный способ вернуться
+            к&nbsp;любой версии.
+          </p>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li><span>Seed</span> фиксирует начальную точку случайной последовательности.</li>
+            <li><span>Повторяемость</span> помогает сравнивать варианты и&nbsp;не&nbsp;терять удачные решения.</li>
+            <li><span>Серия</span> появляется, когда один алгоритм запускается с&nbsp;разными seed, но&nbsp;сохраняет
+              общий визуальный язык.</li>
+          </ol>
+
+          <div class="U_FontC2-Code W_TutorialCopyItem">
+            <p class="A_TutorialCopyText">
+              seed = 42; // номер версии<br>
+              randomSeed(seed); // p5.js повторит random()<br>
+              noiseSeed(seed); // p5.js повторит noise()<br>
+              seededRandom(seed); // своя функция для Vanilla JS и Three.js
+            </p>
+            <button class="U_ButtonIcon A_TutorialCopyButton">
+              <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+            </button>
+          </div>
 
         </section>
         <section class="O_TutorialSection">
 
-          <!-- тут сами блоки 
-          делай в них такой отступ по строке, как здесь вот ща и везде в статьях
-          а между section отступ не делай-->
+          <h3 id="nav2" class="U_FontH3 A_TutorialTitle">
+            Практика
+            <button class="U_ButtonIcon"><img class="U_ImgIconSizeH ico-light-theme"
+                src="../../../../images/light/icons/tutorial-link.svg" alt="Поделиться"><img
+                class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться"></button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Построим одну идею разными способами: <span>фиксированная серия знаков</span>. В&nbsp;технике будет
+            три итерации, и&nbsp;каждая показывает сравнение или&nbsp;усложнение: сначала p5.js и&nbsp;Vanilla JS,
+            затем p5.js и&nbsp;Three.js, а&nbsp;в&nbsp;конце&nbsp;— один более плотный p5.js-скетч. Во&nbsp;всех случаях
+            seed выбирает версию, алгоритм собирает композицию, а&nbsp;результат можно повторить.
+          </p>
+
+          <h3 id="nav3" class="U_FontH3 A_TutorialTitle">
+            Сетка
+            <button class="U_ButtonIcon"><img class="U_ImgIconSizeH ico-light-theme"
+                src="../../../../images/light/icons/tutorial-link.svg" alt="Поделиться"><img
+                class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться"></button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Начнём с&nbsp;плоской сетки. В&nbsp;p5.js повторяемость включается двумя строками:
+            <span>randomSeed()</span> фиксирует случайные размеры и&nbsp;цвета, а&nbsp;<span>noiseSeed()</span>
+            фиксирует плавные смещения. Если&nbsp;поменять seed, получится новая версия; если&nbsp;вернуть число
+            обратно, рисунок восстановится.
+          </p>
+
+          <div id="patr3module1tutorial2code1" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution"><iframe class="A_TutorialSingleCodeExecutionCanvas"
+                title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer"></iframe></div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre><textarea
+                    class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons"><button
+                    class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop"><img class="Q_TutorialSingleCodeIconRun"
+                      src="../../../../images/icons/run.svg" alt="Запустить"><img class="Q_TutorialSingleCodeIconStop"
+                      src="../../../../images/icons/stop.svg" alt="Остановить"></button><button
+                    class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean"><img class="Q_TutorialSingleCodeIconClean"
+                      src="../../../../images/icons/reset.svg" alt="Очистить"></button><button
+                    class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy"><img class="Q_TutorialSingleCodeIconCopy"
+                      src="../../../../images/icons/copy.svg" alt="Копировать"></button></div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">p5.js: seed фиксирует random() и&nbsp;noise(),
+                поэтому сетка возвращается к&nbsp;той&nbsp;же версии.</p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;Vanilla JS такого встроенного метода нет, поэтому используем собственный <span>seededRandom()</span>.
+            Это&nbsp;та&nbsp;же идея, но&nbsp;без&nbsp;библиотек: генератор хранит внутреннее число и&nbsp;каждым
+            вызовом
+            выдаёт следующее значение цепочки.
+          </p>
+
+          <div id="patr3module1tutorial2code2" class="O_TutorialSingleCode" data-runtime="vanilla"
+            data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution"><iframe class="A_TutorialSingleCodeExecutionCanvas"
+                title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer"></iframe></div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre><textarea
+                    class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons"><button
+                    class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop"><img class="Q_TutorialSingleCodeIconRun"
+                      src="../../../../images/icons/run.svg" alt="Запустить"><img class="Q_TutorialSingleCodeIconStop"
+                      src="../../../../images/icons/stop.svg" alt="Остановить"></button><button
+                    class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean"><img class="Q_TutorialSingleCodeIconClean"
+                      src="../../../../images/icons/reset.svg" alt="Очистить"></button><button
+                    class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy"><img class="Q_TutorialSingleCodeIconCopy"
+                      src="../../../../images/icons/copy.svg" alt="Копировать"></button></div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">Vanilla JS: один и&nbsp;тот&nbsp;же seed повторяет
+                Canvas-композицию без&nbsp;сторонних библиотек.</p>
+            </div>
+          </div>
+
+          <h3 id="nav4" class="U_FontH3 A_TutorialTitle">
+            Движение
+            <button class="U_ButtonIcon"><img class="U_ImgIconSizeH ico-light-theme"
+                src="../../../../images/light/icons/tutorial-link.svg" alt="Поделиться"><img
+                class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться"></button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Теперь seed управляет уже&nbsp;не&nbsp;только положением элементов, но&nbsp;и&nbsp;ритмом движения.
+            В&nbsp;p5.js
+            мы&nbsp;сначала создаём повторяемую карту параметров, а&nbsp;затем анимируем её&nbsp;так,
+            чтобы&nbsp;структура
+            оставалась узнаваемой и&nbsp;не&nbsp;превращалась в&nbsp;хаос.
+          </p>
+
+          <div id="patr3module1tutorial2code5" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution"><iframe class="A_TutorialSingleCodeExecutionCanvas"
+                title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer"></iframe></div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre><textarea
+                    class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons"><button
+                    class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop"><img class="Q_TutorialSingleCodeIconRun"
+                      src="../../../../images/icons/run.svg" alt="Запустить"><img class="Q_TutorialSingleCodeIconStop"
+                      src="../../../../images/icons/stop.svg" alt="Остановить"></button><button
+                    class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean"><img class="Q_TutorialSingleCodeIconClean"
+                      src="../../../../images/icons/reset.svg" alt="Очистить"></button><button
+                    class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy"><img class="Q_TutorialSingleCodeIconCopy"
+                      src="../../../../images/icons/copy.svg" alt="Копировать"></button></div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">p5.js: seed создаёт постоянную карту ячеек,
+                а&nbsp;анимация двигает уже&nbsp;сохранённые параметры.</p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Та&nbsp;же логика работает в&nbsp;Three.js. Seed один раз выбирает высоту, форму, цвет и&nbsp;поворот
+            каждого объекта, а&nbsp;анимация только раскрывает готовую сцену. Поэтому 3D-работа выглядит живой,
+            но&nbsp;её&nbsp;базовая композиция остаётся повторяемой.
+          </p>
+
+          <div id="patr3module1tutorial2code3" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="three" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution"><iframe class="A_TutorialSingleCodeExecutionCanvas"
+                title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer"></iframe></div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre><textarea
+                    class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons"><button
+                    class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop"><img class="Q_TutorialSingleCodeIconRun"
+                      src="../../../../images/icons/run.svg" alt="Запустить"><img class="Q_TutorialSingleCodeIconStop"
+                      src="../../../../images/icons/stop.svg" alt="Остановить"></button><button
+                    class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean"><img class="Q_TutorialSingleCodeIconClean"
+                      src="../../../../images/icons/reset.svg" alt="Очистить"></button><button
+                    class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy"><img class="Q_TutorialSingleCodeIconCopy"
+                      src="../../../../images/icons/copy.svg" alt="Копировать"></button></div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">Three.js: seed фиксирует рельеф из&nbsp;объёмных
+                элементов, а&nbsp;камера показывает его как&nbsp;сохранённую 3D-версию.</p>
+            </div>
+          </div>
+
+          <h3 id="nav5" class="U_FontH3 A_TutorialTitle">
+            Орбиты
+            <button class="U_ButtonIcon"><img class="U_ImgIconSizeH ico-light-theme"
+                src="../../../../images/light/icons/tutorial-link.svg" alt="Поделиться"><img
+                class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться"></button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;третьей итерации оставим только p5.js и&nbsp;сделаем более насыщенный визуальный результат.
+            Здесь seed управляет серией из&nbsp;орбитальных колец: у&nbsp;каждого элемента есть постоянная форма,
+            радиус, цвет и&nbsp;фаза движения. Получается сложнее, но&nbsp;принцип тот&nbsp;же: красивая случайность
+            должна быть сохранённой.
+          </p>
+
+          <div id="patr3module1tutorial2code6" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution"><iframe class="A_TutorialSingleCodeExecutionCanvas"
+                title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer"></iframe></div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre><textarea
+                    class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons"><button
+                    class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop"><img class="Q_TutorialSingleCodeIconRun"
+                      src="../../../../images/icons/run.svg" alt="Запустить"><img class="Q_TutorialSingleCodeIconStop"
+                      src="../../../../images/icons/stop.svg" alt="Остановить"></button><button
+                    class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean"><img class="Q_TutorialSingleCodeIconClean"
+                      src="../../../../images/icons/reset.svg" alt="Очистить"></button><button
+                    class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy"><img class="Q_TutorialSingleCodeIconCopy"
+                      src="../../../../images/icons/copy.svg" alt="Копировать"></button></div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">p5.js: сложная повторяемая композиция,
+                где&nbsp;seed фиксирует орбиты, цвета и&nbsp;ритм движения.</p>
+            </div>
+          </div>
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav6" class="U_FontH3 A_TutorialTitle">
+            Вывод
+            <button class="U_ButtonIcon"><img class="U_ImgIconSizeH ico-light-theme"
+                src="../../../../images/light/icons/tutorial-link.svg" alt="Поделиться"><img
+                class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться"></button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Повторяемость делает генеративную работу профессиональнее. Без&nbsp;seed случайность подходит
+            для&nbsp;быстрого поиска, но&nbsp;плохо подходит для&nbsp;серии, правок и&nbsp;презентации. С&nbsp;seed
+            каждый запуск становится версией: её&nbsp;можно назвать, сохранить, развить и&nbsp;показать рядом
+            с&nbsp;другими версиями того&nbsp;же алгоритма.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;p5.js контроль уже встроен, а&nbsp;в&nbsp;Vanilla JS и&nbsp;Three.js его&nbsp;можно добавить своей
+            функцией. Важно не&nbsp;просто фиксировать числа, а&nbsp;использовать их&nbsp;как&nbsp;параметры
+            композиции: сетка, палитра, плотность, масштаб, направление движения и&nbsp;глубина могут зависеть
+            от&nbsp;одного seed и&nbsp;создавать узнаваемую серию.
+          </p>
+
+          <ul class="U_FontC2-Code C_TutorialCopyList">
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">randomSeed(seed); // фиксирует random() в p5.js</p><button
+                class="U_ButtonIcon A_TutorialCopyButton"><img class="Q_TutorialCopyIcon"
+                  src="../../../../images/icons/copy.svg" alt="Копировать"></button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">noiseSeed(seed); // фиксирует noise() в p5.js</p><button
+                class="U_ButtonIcon A_TutorialCopyButton"><img class="Q_TutorialCopyIcon"
+                  src="../../../../images/icons/copy.svg" alt="Копировать"></button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">const rnd = seededRandom(seed); // создаёт повторяемый генератор</p><button
+                class="U_ButtonIcon A_TutorialCopyButton"><img class="Q_TutorialCopyIcon"
+                  src="../../../../images/icons/copy.svg" alt="Копировать"></button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">const value = rnd(); // каждый вызов даёт следующее число цепочки</p><button
+                class="U_ButtonIcon A_TutorialCopyButton"><img class="Q_TutorialCopyIcon"
+                  src="../../../../images/icons/copy.svg" alt="Копировать"></button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">const version = { seed, palette, step }; // сохраняет параметры серии</p>
+              <button class="U_ButtonIcon A_TutorialCopyButton"><img class="Q_TutorialCopyIcon"
+                  src="../../../../images/icons/copy.svg" alt="Копировать"></button>
+            </li>
+          </ul>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav7" class="U_FontH3 A_TutorialTitle">
+            Задание
+            <button class="U_ButtonIcon"><img class="U_ImgIconSizeH ico-light-theme"
+                src="../../../../images/light/icons/tutorial-link.svg" alt="Поделиться"><img
+                class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться"></button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Сделай серию из&nbsp;трёх постеров на&nbsp;одном алгоритме. Не&nbsp;пытайся «поймать удачу» бесконечными
+            перезапусками: выбери seed как&nbsp;номер версии и&nbsp;сознательно меняй параметры системы.
+            В&nbsp;шаблоне уже&nbsp;подготовлены пресеты, которые меняют характер композиции через палитру,
+            плотность сетки, масштаб шума и&nbsp;режим движения.
+          </p>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>Начни с&nbsp;<span>posterSeed</span>: подбери три числа и&nbsp;запиши, чем&nbsp;отличается каждая
+              версия.</li>
+            <li>Затем измени <span>preset</span>: сравни спокойный, плотный и&nbsp;контрастный режимы одной системы.
+            </li>
+            <li>После этого настрой <span>motionMode</span>, чтобы&nbsp;решить, должна&nbsp;ли серия быть почти
+              статичной
+              или&nbsp;медленно двигаться как&nbsp;живой плакат.</li>
+            <li>В&nbsp;финале сохрани лучший seed и&nbsp;проверь, что&nbsp;после перезапуска работа возвращается
+              к&nbsp;той&nbsp;же композиции.</li>
+          </ol>
+
+          <div id="patr3module1tutorial2code4" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="p5" data-autostart="false">
+            <div class="W_TutorialSingleCodeExecution"><iframe class="A_TutorialSingleCodeExecutionCanvas"
+                title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer"></iframe></div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre><textarea
+                    class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons"><button
+                    class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop"><img class="Q_TutorialSingleCodeIconRun"
+                      src="../../../../images/icons/run.svg" alt="Запустить"><img class="Q_TutorialSingleCodeIconStop"
+                      src="../../../../images/icons/stop.svg" alt="Остановить"></button><button
+                    class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean"><img class="Q_TutorialSingleCodeIconClean"
+                      src="../../../../images/icons/reset.svg" alt="Очистить"></button><button
+                    class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy"><img class="Q_TutorialSingleCodeIconCopy"
+                      src="../../../../images/icons/copy.svg" alt="Копировать"></button></div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">Финальный шаблон: меняй seed и&nbsp;пресеты так,
+                чтобы собрать повторяемую серию из&nbsp;одного алгоритма.</p>
+            </div>
+          </div>
 
         </section>
         <section class="O_TutorialSection O_TutorialSection--Last">

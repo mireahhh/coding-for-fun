@@ -4121,4 +4121,498 @@ function draw() {
 
   t += 0.008;
 }`,
+patr3module1tutorial2code1: `// Seed — номер сохранённой версии.
+// Поменяй 38 на другое число и перезапусти скетч.
+const seed = 38;
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
+  noStroke();
+  noLoop();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+  redraw();
+}
+
+function centeredGrid(step, padding) {
+  const cols = floor((width - padding * 2) / step) + 1;
+  const rows = floor((height - padding * 2) / step) + 1;
+  return {
+    cols,
+    rows,
+    startX: (width - (cols - 1) * step) / 2,
+    startY: (height - (rows - 1) * step) / 2,
+  };
+}
+
+function draw() {
+  background('#FFFFFF');
+
+  // Эти строки делают random() и noise() повторяемыми.
+  randomSeed(seed);
+  noiseSeed(seed);
+
+  const step = 48;
+  const grid = centeredGrid(step, 32);
+
+  for (let row = 0; row < grid.rows; row += 1) {
+    for (let col = 0; col < grid.cols; col += 1) {
+      const x = grid.startX + col * step;
+      const y = grid.startY + row * step;
+      // noise() даёт плавное поле, а random() выбирает детали ячейки.
+      const n = noise(col * 0.32, row * 0.32);
+      const size = random(step * 0.28, step * 0.86) * (0.72 + n * 0.36);
+      const shift = (n - 0.5) * step * 0.42;
+      const color = random() > 0.46 ? '#FFC300' : '#2FD3E6';
+
+      push();
+      translate(x + shift, y - shift * 0.5);
+      rotate(random(-0.8, 0.8));
+      fill(color);
+
+      if (random() > 0.58) {
+        rect(0, 0, size, size, step * 0.14);
+      } else {
+        circle(0, 0, size);
+      }
+      pop();
+    }
+  }
+}`,
+  patr3module1tutorial2code2: `// Vanilla JS: своего randomSeed() нет, поэтому создаём генератор сами.
+const canvas = document.createElement('canvas');
+const ctx = canvas.getContext('2d');
+app.innerHTML = '';
+app.appendChild(canvas);
+
+function seededRandom(seed) {
+  // value хранит состояние генератора между вызовами rnd().
+  let value = seed;
+  return function () {
+    value = (value * 1664525 + 1013904223) % 4294967296;
+    return value / 4294967296;
+  };
+}
+
+function resize() {
+  canvas.width = app.clientWidth * window.devicePixelRatio;
+  canvas.height = app.clientHeight * window.devicePixelRatio;
+  canvas.style.width = app.clientWidth + 'px';
+  canvas.style.height = app.clientHeight + 'px';
+  ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
+  draw();
+}
+
+function drawBlob(cx, cy, radius, turns, color) {
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.rotate(turns);
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  for (let i = 0; i < 10; i += 1) {
+    const angle = (Math.PI * 2 * i) / 10;
+    const r = radius * (i % 2 === 0 ? 1 : 0.58);
+    const x = Math.cos(angle) * r;
+    const y = Math.sin(angle) * r;
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+}
+
+function draw() {
+  const width = app.clientWidth;
+  const height = app.clientHeight;
+  // Каждый draw() начинается с одного seed, поэтому рисунок повторяется.
+  const rnd = seededRandom(124);
+  const step = 48;
+  const padding = 32;
+  const cols = Math.floor((width - padding * 2) / step) + 1;
+  const rows = Math.floor((height - padding * 2) / step) + 1;
+  const startX = (width - (cols - 1) * step) / 2;
+  const startY = (height - (rows - 1) * step) / 2;
+
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillRect(0, 0, width, height);
+
+  for (let row = 0; row < rows; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const x = startX + col * step;
+      const y = startY + row * step;
+      // rnd() заменяет Math.random(): значения случайные, но повторяемые.
+      const wave = Math.sin(col * 0.9 + row * 0.6 + rnd() * 2.4);
+      const size = step * (0.24 + rnd() * 0.54);
+      const dx = wave * 8;
+      const dy = Math.cos(row * 0.8 + rnd()) * 8;
+      const color = rnd() > 0.5 ? '#FF86DB' : '#37E87A';
+
+      if (rnd() > 0.68) {
+        drawBlob(x + dx, y + dy, size * 0.55, rnd() * Math.PI, color);
+      } else {
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(x + dx, y + dy, size * 0.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+  }
+}
+
+resize();
+window.addEventListener('resize', resize);
+
+return () => {
+  window.removeEventListener('resize', resize);
+};`,
+  patr3module1tutorial2code3: `// Three.js: seed один раз собирает рельеф сцены.
+const width = app.clientWidth;
+const height = app.clientHeight;
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xffffff);
+
+const camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 1000);
+camera.position.set(0, 7.5, 9.5);
+camera.lookAt(0, 0, 0);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+app.innerHTML = '';
+app.appendChild(renderer.domElement);
+
+scene.add(new THREE.AmbientLight(0xffffff, 1.8));
+const light = new THREE.DirectionalLight(0xffffff, 2.5);
+light.position.set(3, 7, 6);
+scene.add(light);
+
+function seededRandom(seed) {
+  let value = seed;
+  return function () {
+    value = (value * 1664525 + 1013904223) % 4294967296;
+    return value / 4294967296;
+  };
+}
+
+// Вся 3D-сетка будет зависеть от этого числа.
+const rnd = seededRandom(72);
+const group = new THREE.Group();
+scene.add(group);
+
+const cyan = new THREE.MeshStandardMaterial({ color: 0x2fd3e6, roughness: 0.5 });
+const yellow = new THREE.MeshStandardMaterial({ color: 0xffc300, roughness: 0.55 });
+const box = new THREE.BoxGeometry(0.58, 0.58, 0.58);
+const cylinder = new THREE.CylinderGeometry(0.34, 0.34, 0.52, 40);
+const cells = [];
+const cols = 9;
+const rows = 7;
+const gap = 0.82;
+
+for (let row = 0; row < rows; row += 1) {
+  for (let col = 0; col < cols; col += 1) {
+    // Seed выбирает форму, цвет, высоту и поворот каждого объекта.
+    const isCylinder = rnd() > 0.42;
+    const material = rnd() > 0.5 ? cyan : yellow;
+    const mesh = new THREE.Mesh(isCylinder ? cylinder : box, material);
+    const wave = Math.sin(col * 0.7 + row * 0.9 + rnd() * 2);
+    const height = 0.45 + rnd() * 1.55;
+
+    mesh.position.set((col - (cols - 1) / 2) * gap, height * 0.28 + wave * 0.14, (row - (rows - 1) / 2) * gap);
+    mesh.scale.set(0.72 + rnd() * 0.48, height, 0.72 + rnd() * 0.48);
+    mesh.rotation.y = rnd() * Math.PI;
+    group.add(mesh);
+    cells.push({ mesh, baseY: mesh.position.y, phase: rnd() * Math.PI * 2, spin: rnd() * 0.018 + 0.004 });
+  }
+}
+
+function resize() {
+  const nextWidth = app.clientWidth;
+  const nextHeight = app.clientHeight;
+  camera.aspect = nextWidth / nextHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(nextWidth, nextHeight);
+}
+
+window.addEventListener('resize', resize);
+let animationId;
+let time = 0;
+
+function animate() {
+  time += 0.016;
+
+  // Анимация не пересоздаёт random, а двигает сохранённые параметры.
+  cells.forEach(({ mesh, baseY, phase, spin }) => {
+    mesh.position.y = baseY + Math.sin(time + phase) * 0.12;
+    mesh.rotation.y += spin;
+  });
+  group.rotation.y = Math.sin(time * 0.3) * 0.22;
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+animate();
+
+return () => {
+  cancelAnimationFrame(animationId);
+  window.removeEventListener('resize', resize);
+  box.dispose();
+  cylinder.dispose();
+  cyan.dispose();
+  yellow.dispose();
+  renderer.dispose();
+};`,
+  patr3module1tutorial2code4: `// Задание: собери серию постеров на одном алгоритме.
+let posterSeed = 58;
+let preset = 'balanced';
+let motionMode = 'slow';
+let t = 0;
+
+// Пресеты меняют характер работы, но seed всё равно сохраняет версию.
+const presets = {
+  calm: { step: 56, scale: 0.009, colors: ['#2FD3E6', '#37E87A'], density: 0.58 },
+  balanced: { step: 48, scale: 0.014, colors: ['#FF86DB', '#FFC300'], density: 0.72 },
+  contrast: { step: 40, scale: 0.02, colors: ['#FF86DB', '#2FD3E6'], density: 0.86 },
+};
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
+  noStroke();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function centeredGrid(step, padding) {
+  const cols = floor((width - padding * 2) / step) + 1;
+  const rows = floor((height - padding * 2) / step) + 1;
+  return {
+    cols,
+    rows,
+    startX: (width - (cols - 1) * step) / 2,
+    startY: (height - (rows - 1) * step) / 2,
+  };
+}
+
+function draw() {
+  // Версии серии.
+  // posterSeed = 19;
+  // posterSeed = 58;
+  // posterSeed = 143;
+
+  // Пресеты характера.
+  // preset = 'calm';
+  // preset = 'balanced';
+  // preset = 'contrast';
+
+  // Режим движения.
+  // motionMode = 'still';
+  // motionMode = 'slow';
+
+  const settings = presets[preset];
+
+  // Сначала фиксируем генераторы, потом рисуем композицию.
+  randomSeed(posterSeed);
+  noiseSeed(posterSeed);
+  background('#FFFFFF');
+
+  const grid = centeredGrid(settings.step, 32);
+  const time = motionMode === 'still' ? 0 : t;
+
+  for (let row = 0; row < grid.rows; row += 1) {
+    for (let col = 0; col < grid.cols; col += 1) {
+      const x = grid.startX + col * settings.step;
+      const y = grid.startY + row * settings.step;
+      // noise() отвечает за плавное движение и размер, random() — за отбор ячеек.
+      const n = noise(col * settings.scale * 42, row * settings.scale * 42, time * 0.35);
+      const shouldDraw = random() < settings.density;
+      if (!shouldDraw) continue;
+
+      const size = settings.step * (0.18 + n * 0.72);
+      const drift = map(n, 0, 1, -settings.step * 0.22, settings.step * 0.22);
+      const color = settings.colors[random() > 0.5 ? 0 : 1];
+
+      push();
+      translate(x + drift, y - drift * 0.5);
+      rotate(n * PI + time * 0.28);
+      fill(color);
+
+      if ((row + col + floor(random(0, 3))) % 3 === 0) {
+        rect(0, 0, size, size, settings.step * 0.16);
+      } else {
+        circle(0, 0, size);
+      }
+      pop();
+    }
+  }
+
+  t += 0.008;
+}`,
+  patr3module1tutorial2code5: `// Движение: сначала сохраняем параметры, потом анимируем их.
+const seed = 91;
+let t = 0;
+const cells = [];
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
+  noStroke();
+  buildCells();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+  buildCells();
+}
+
+function centeredGrid(step, padding) {
+  const cols = floor((width - padding * 2) / step) + 1;
+  const rows = floor((height - padding * 2) / step) + 1;
+  return {
+    cols,
+    rows,
+    startX: (width - (cols - 1) * step) / 2,
+    startY: (height - (rows - 1) * step) / 2,
+  };
+}
+
+function buildCells() {
+  // Пересобираем массив при старте и ресайзе, но с тем же seed.
+  cells.length = 0;
+  randomSeed(seed);
+  noiseSeed(seed);
+
+  const step = 48;
+  const grid = centeredGrid(step, 32);
+
+  for (let row = 0; row < grid.rows; row += 1) {
+    for (let col = 0; col < grid.cols; col += 1) {
+      const x = grid.startX + col * step;
+      const y = grid.startY + row * step;
+      const field = noise(col * 0.25, row * 0.25);
+      // В массив записываем постоянные параметры ячейки.
+      cells.push({
+        x,
+        y,
+        step,
+        phase: random(TWO_PI),
+        size: step * random(0.32, 0.78),
+        color: random() > 0.5 ? '#FF86DB' : '#37E87A',
+        square: random() > 0.62,
+        drift: map(field, 0, 1, -step * 0.24, step * 0.24),
+      });
+    }
+  }
+}
+
+function draw() {
+  background('#FFFFFF');
+
+  cells.forEach((cell) => {
+    // Движение меняется во времени, но cell.phase и cell.size уже сохранены.
+    const wave = sin(t + cell.phase);
+    const lift = cos(t * 0.7 + cell.phase) * 6;
+
+    push();
+    translate(cell.x + cell.drift * wave, cell.y - cell.drift * 0.5 + lift);
+    rotate(cell.phase * 0.3 + wave * 0.45);
+    fill(cell.color);
+
+    if (cell.square) {
+      rect(0, 0, cell.size, cell.size, cell.step * 0.14);
+    } else {
+      circle(0, 0, cell.size);
+    }
+    pop();
+  });
+
+  t += 0.012;
+}`,
+  patr3module1tutorial2code6: `// Орбиты: плотная, но контролируемая композиция.
+const seed = 214;
+let t = 0;
+let rings = [];
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
+  noStroke();
+  buildRings();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+  buildRings();
+}
+
+function buildRings() {
+  // Один seed фиксирует количество элементов, их размер, фазу и цвет.
+  randomSeed(seed);
+  noiseSeed(seed);
+  rings = [];
+
+  const centerX = width / 2;
+  const centerY = height / 2;
+  const maxRadius = min(width, height) * 0.37;
+
+  for (let ring = 0; ring < 6; ring += 1) {
+    // Радиусы разведены, но элементов больше: композиция плотная без сильных наложений.
+    const radius = map(ring, 0, 5, maxRadius * 0.24, maxRadius);
+    const count = 8 + ring * 4;
+
+    for (let i = 0; i < count; i += 1) {
+      const angle = (TWO_PI * i) / count;
+      const n = noise(ring * 0.45, i * 0.12);
+
+      rings.push({
+        radius,
+        angle,
+        phase: random(TWO_PI),
+        // Размер подобран средним: элементы заметные, но не перекрывают всю орбиту.
+        size: map(n, 0, 1, 9, 21),
+        color: ring % 2 === 0 ? '#2FD3E6' : '#FFC300',
+        centerX,
+        centerY,
+        speed: random(0.12, 0.34),
+        square: random() > 0.55,
+      });
+    }
+  }
+}
+
+function draw() {
+  background('#FFFFFF');
+
+  rings.forEach((item) => {
+    // Анимация двигает элементы мягко: seed не пересоздаётся в draw().
+    const pulse = sin(t * item.speed + item.phase);
+    const direction = item.radius % 2 === 0 ? 1 : -1;
+    const orbit = item.angle + t * 0.09 * direction;
+    const radius = item.radius + pulse * 5;
+    const x = item.centerX + cos(orbit) * radius;
+    const y = item.centerY + sin(orbit) * radius;
+
+    push();
+    translate(x, y);
+    rotate(orbit + pulse * 0.35);
+    fill(item.color);
+
+    if (item.square) {
+      rect(0, 0, item.size, item.size, 5);
+    } else {
+      circle(0, 0, item.size * 1.12);
+    }
+    pop();
+  });
+
+  fill('#FF86DB');
+  circle(width / 2, height / 2, 24 + sin(t) * 4);
+
+  t += 0.014;
+}`,
 };
