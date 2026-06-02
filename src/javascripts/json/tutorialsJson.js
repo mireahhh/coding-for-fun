@@ -499,6 +499,19 @@ const tagsPart3Module2Tutorial3 = {
   title: "Мозаики и\u00A0сетки",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
+  // TODO не то снизу
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryVanillajs", "filterLibraryP5js", "filterLibraryThreejs"],
+  format: ["filterFormatTechnique", "filterFormatVariation", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  tags: [
+    "Паттерны",
+    "Композиция",
+    "Геометрические алгоритмы",
+    "Процедурная генерация",
+    "Генеративная графика",
+    "3D"
+  ]
 };
 const tagsPart3Module2Tutorial4 = {
   date: ["20260401"],
@@ -524,7 +537,7 @@ const tagsPart3Module2Tutorial5 = {
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
 };
-const tagsPart3Module2 = [tagsPart3Module2Tutorial1, tagsPart3Module2Tutorial2, tagsPart3Module2Tutorial3, tagsPart3Module2Tutorial4, tagsPart3Module2Tutorial5];
+const tagsPart3Module2 = [tagsPart3Module2Tutorial1, tagsPart3Module2Tutorial2, tagsPart3Module2Tutorial3, tagsPart3Module2Tutorial4]; // tagsPart3Module2Tutorial5
 // p3 m3
 const tagsPart3Module3Tutorial1 = {
   date: ["20260405"],

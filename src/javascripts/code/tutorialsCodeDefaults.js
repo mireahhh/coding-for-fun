@@ -9395,4 +9395,401 @@ function draw() {
 
   t += motionSpeed;
 }`,
+  patr3module2tutorial4code1: `let t = 0;
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  noFill();
+  strokeCap(ROUND);
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function centeredGrid(step, padding) {
+  const cols = floor((width - padding * 2) / step) + 1;
+  const rows = floor((height - padding * 2) / step) + 1;
+  return {
+    cols,
+    rows,
+    startX: (width - (cols - 1) * step) / 2,
+    startY: (height - (rows - 1) * step) / 2,
+  };
+}
+
+function drawArrow(x, y, angle, length, color) {
+  push();
+  translate(x, y);
+  rotate(angle);
+  stroke(color);
+  strokeWeight(4);
+  line(-length * 0.45, 0, length * 0.45, 0);
+  // маленькая круглая головка вместо декоративной стрелки
+  noStroke();
+  fill(color);
+  circle(length * 0.48, 0, 7);
+  pop();
+}
+
+function draw() {
+  background('#FFFFFF');
+
+  const step = 40;
+  const grid = centeredGrid(step, 32);
+
+  for (let row = 0; row < grid.rows; row += 1) {
+    for (let col = 0; col < grid.cols; col += 1) {
+      const x = grid.startX + col * step;
+      const y = grid.startY + row * step;
+      const n = noise(col * 0.12, row * 0.12, t);
+      const angle = n * TWO_PI * 2 + sin(t + row * 0.4) * 0.4;
+      const length = step * (0.42 + n * 0.28);
+      const color = (row + col) % 2 === 0 ? '#2FD3E6' : '#FF86DB';
+
+      drawArrow(x, y, angle, length, color);
+    }
+  }
+
+  t += 0.008;
+}`,
+  patr3module2tutorial4code2: `const width = app.clientWidth;
+const height = app.clientHeight;
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xffffff);
+
+const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 1000);
+camera.position.set(0, 7.5, 9);
+camera.lookAt(0, 0, 0);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+app.innerHTML = '';
+app.appendChild(renderer.domElement);
+
+scene.add(new THREE.AmbientLight(0xffffff, 1.8));
+const light = new THREE.DirectionalLight(0xffffff, 2.4);
+light.position.set(4, 7, 5);
+scene.add(light);
+
+const group = new THREE.Group();
+scene.add(group);
+
+const cyan = new THREE.MeshStandardMaterial({ color: 0x2fd3e6, roughness: 0.5 });
+const pink = new THREE.MeshStandardMaterial({ color: 0xff86db, roughness: 0.5 });
+const materials = [cyan, pink];
+const boxGeometry = new THREE.BoxGeometry(0.68, 0.12, 0.12);
+const headGeometry = new THREE.SphereGeometry(0.12, 18, 18);
+const arrows = [];
+const cols = 11;
+const rows = 8;
+const gap = 0.72;
+
+for (let row = 0; row < rows; row += 1) {
+  for (let col = 0; col < cols; col += 1) {
+    const arrow = new THREE.Group();
+    const material = materials[(row + col) % materials.length];
+    const body = new THREE.Mesh(boxGeometry, material);
+    const head = new THREE.Mesh(headGeometry, material);
+    head.position.x = 0.4;
+    arrow.add(body, head);
+    arrow.position.x = (col - (cols - 1) / 2) * gap;
+    arrow.position.z = (row - (rows - 1) / 2) * gap;
+    group.add(arrow);
+    arrows.push({ arrow, row, col });
+  }
+}
+
+function fieldAngle(col, row, time) {
+  return Math.sin(col * 0.55 + time) + Math.cos(row * 0.5 - time * 0.8);
+}
+
+function onResize() {
+  const nextWidth = app.clientWidth;
+  const nextHeight = app.clientHeight;
+  camera.aspect = nextWidth / nextHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(nextWidth, nextHeight);
+}
+
+let animationId;
+let time = 0;
+
+function animate() {
+  time += 0.015;
+
+  arrows.forEach(({ arrow, row, col }) => {
+    const angle = fieldAngle(col, row, time);
+    const lift = Math.sin(time + row * 0.4 + col * 0.25) * 0.35;
+    arrow.rotation.y = angle;
+    arrow.rotation.z = Math.sin(angle) * 0.45;
+    arrow.position.y = lift;
+    arrow.scale.setScalar(0.85 + Math.cos(angle) * 0.18);
+  });
+
+  group.rotation.y = Math.sin(time * 0.35) * 0.2;
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+window.addEventListener('resize', onResize);
+animate();
+
+return () => {
+  cancelAnimationFrame(animationId);
+  window.removeEventListener('resize', onResize);
+  boxGeometry.dispose();
+  headGeometry.dispose();
+  materials.forEach((material) => material.dispose());
+  renderer.dispose();
+};`,
+  patr3module2tutorial4code3: `let particles = [];
+let t = 0;
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  resetParticles();
+  background('#FFFFFF');
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+  resetParticles();
+  background('#FFFFFF');
+}
+
+function resetParticles() {
+  particles = [];
+  const count = 420;
+  for (let i = 0; i < count; i += 1) {
+    const start = createVector(random(width), random(height));
+    particles.push({
+      position: start.copy(),
+      previous: start.copy(),
+      color: i % 2 === 0 ? '#FFC300' : '#37E87A',
+      speed: random(1.2, 2.4),
+    });
+  }
+}
+
+function fieldAt(position) {
+  const scale = 0.0048;
+  const center = createVector(width / 2, height / 2);
+  const toCenter = p5.Vector.sub(center, position);
+  const swirl = atan2(toCenter.y, toCenter.x) + HALF_PI;
+  const n = noise(position.x * scale, position.y * scale, t) * TWO_PI * 3;
+  const angle = lerp(swirl, n, 0.62);
+  return p5.Vector.fromAngle(angle);
+}
+
+function wrapParticle(particle) {
+  if (particle.position.x < 24 || particle.position.x > width - 24 || particle.position.y < 24 || particle.position.y > height - 24) {
+    particle.position.set(random(32, width - 32), random(32, height - 32));
+    particle.previous.set(particle.position);
+  }
+}
+
+function draw() {
+  // Полупрозрачный белый слой постепенно стирает старые следы.
+  noStroke();
+  fill(255, 24);
+  rect(0, 0, width, height);
+
+  particles.forEach((particle, index) => {
+    const direction = fieldAt(particle.position).mult(particle.speed);
+    particle.previous.set(particle.position);
+    particle.position.add(direction);
+
+    stroke(particle.color);
+    strokeWeight(index % 3 === 0 ? 2.4 : 1.4);
+    line(particle.previous.x, particle.previous.y, particle.position.x, particle.position.y);
+    wrapParticle(particle);
+  });
+
+  t += 0.006;
+}`,
+  patr3module2tutorial4code4: `const width = app.clientWidth;
+const height = app.clientHeight;
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xffffff);
+
+const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+camera.position.set(0, 6.8, 10.5);
+camera.lookAt(0, 0, 0);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+app.innerHTML = '';
+app.appendChild(renderer.domElement);
+
+scene.add(new THREE.AmbientLight(0xffffff, 1.7));
+const light = new THREE.DirectionalLight(0xffffff, 2.5);
+light.position.set(4, 8, 6);
+scene.add(light);
+
+const group = new THREE.Group();
+scene.add(group);
+
+const cyan = new THREE.MeshStandardMaterial({ color: 0x2fd3e6, roughness: 0.42 });
+const yellow = new THREE.MeshStandardMaterial({ color: 0xffc300, roughness: 0.5 });
+const pink = new THREE.MeshStandardMaterial({ color: 0xff86db, roughness: 0.48 });
+const materials = [cyan, yellow, pink];
+const segmentGeometry = new THREE.BoxGeometry(0.08, 0.08, 0.72);
+const diskGeometry = new THREE.CylinderGeometry(0.16, 0.16, 0.08, 36);
+const elements = [];
+const layers = 5;
+const cols = 10;
+const rows = 7;
+const gap = 0.72;
+
+for (let layer = 0; layer < layers; layer += 1) {
+  for (let row = 0; row < rows; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const useDisk = (row + col + layer) % 5 === 0;
+      const mesh = new THREE.Mesh(useDisk ? diskGeometry : segmentGeometry, materials[(row + layer) % materials.length]);
+      mesh.position.x = (col - (cols - 1) / 2) * gap;
+      mesh.position.y = (layer - (layers - 1) / 2) * 0.44;
+      mesh.position.z = (row - (rows - 1) / 2) * gap;
+      group.add(mesh);
+      elements.push({ mesh, row, col, layer, useDisk });
+    }
+  }
+}
+
+function onResize() {
+  const nextWidth = app.clientWidth;
+  const nextHeight = app.clientHeight;
+  camera.aspect = nextWidth / nextHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(nextWidth, nextHeight);
+}
+
+let animationId;
+let time = 0;
+
+function animate() {
+  time += 0.012;
+
+  elements.forEach(({ mesh, row, col, layer, useDisk }) => {
+    const wave = Math.sin(time + col * 0.38 + row * 0.5 + layer * 0.7);
+    const twist = Math.cos(time * 0.8 + col * 0.3 - row * 0.35);
+    mesh.rotation.x = wave * 0.7;
+    mesh.rotation.y = twist * 0.8 + layer * 0.22;
+    mesh.rotation.z = (wave + twist) * 0.35;
+    mesh.scale.setScalar(useDisk ? 0.78 + wave * 0.18 : 0.9 + twist * 0.2);
+    mesh.position.y += Math.sin(time + row + col + layer) * 0.0008;
+  });
+
+  group.rotation.y = Math.sin(time * 0.28) * 0.28;
+  group.rotation.x = Math.cos(time * 0.22) * 0.12;
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+window.addEventListener('resize', onResize);
+animate();
+
+return () => {
+  cancelAnimationFrame(animationId);
+  window.removeEventListener('resize', onResize);
+  segmentGeometry.dispose();
+  diskGeometry.dispose();
+  materials.forEach((material) => material.dispose());
+  renderer.dispose();
+};`,
+  patr3module2tutorial4code5: `let particles = [];
+let t = 0;
+let fieldScale = 0.005;
+let particleCount = 360;
+let trailAlpha = 28;
+let paletteMode = 'mixed';
+let centerPull = 0.42;
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  resetSketch();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+  resetSketch();
+}
+
+function resetSketch() {
+  background('#FFFFFF');
+  particles = [];
+  for (let i = 0; i < particleCount; i += 1) {
+    const angle = random(TWO_PI);
+    const radius = random(min(width, height) * 0.42);
+    const start = createVector(width / 2 + cos(angle) * radius, height / 2 + sin(angle) * radius);
+    particles.push({
+      position: start.copy(),
+      previous: start.copy(),
+      speed: random(1.1, 2.3),
+      offset: random(1000),
+    });
+  }
+}
+
+function pickColor(index) {
+  if (paletteMode === 'cold') return index % 2 === 0 ? '#2FD3E6' : '#37E87A';
+  if (paletteMode === 'warm') return index % 2 === 0 ? '#FF86DB' : '#FFC300';
+  return ['#FF86DB', '#FFC300', '#37E87A', '#2FD3E6'][index % 4];
+}
+
+function flowDirection(position, particle) {
+  const n = noise(position.x * fieldScale, position.y * fieldScale, particle.offset + t);
+  const noiseAngle = n * TWO_PI * 3;
+  const center = createVector(width / 2, height / 2);
+  const toCenter = p5.Vector.sub(center, position);
+  const centerAngle = atan2(toCenter.y, toCenter.x) + HALF_PI;
+  return p5.Vector.fromAngle(lerp(noiseAngle, centerAngle, centerPull));
+}
+
+function draw() {
+  // Эксперимент 1: масштаб поля.
+  // fieldScale = 0.0025;
+  // fieldScale = 0.012;
+
+  // Эксперимент 2: плотность и след.
+  // particleCount = 180; // затем перезапусти скетч
+  // particleCount = 620; // затем перезапусти скетч
+  // trailAlpha = 12;
+  // trailAlpha = 44;
+
+  // Эксперимент 3: палитра.
+  // paletteMode = 'cold';
+  // paletteMode = 'warm';
+  // paletteMode = 'mixed';
+
+  // Эксперимент 4: притяжение к центру.
+  // centerPull = 0.12;
+  // centerPull = 0.7;
+
+  noStroke();
+  fill(255, trailAlpha);
+  rect(0, 0, width, height);
+
+  particles.forEach((particle, index) => {
+    const direction = flowDirection(particle.position, particle).mult(particle.speed);
+    particle.previous.set(particle.position);
+    particle.position.add(direction);
+
+    stroke(pickColor(index));
+    strokeWeight(index % 4 === 0 ? 2.2 : 1.2);
+    line(particle.previous.x, particle.previous.y, particle.position.x, particle.position.y);
+
+    const outside = particle.position.x < 24 || particle.position.x > width - 24 || particle.position.y < 24 || particle.position.y > height - 24;
+    if (outside) {
+      const angle = random(TWO_PI);
+      const radius = random(min(width, height) * 0.36);
+      particle.position.set(width / 2 + cos(angle) * radius, height / 2 + sin(angle) * radius);
+      particle.previous.set(particle.position);
+    }
+  });
+
+  t += 0.004;
+}`,
 };

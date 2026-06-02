@@ -308,20 +308,418 @@
 
       <div class="O_TutorialMain">
         <section class="U_FontB1 A_TutorialAnnotation">
-          <!-- тут краткое описание -->
+          Векторное поле превращает координаты в&nbsp;направление: каждая точка пространства знает,
+          куда&nbsp;ей&nbsp;двигаться.
+          В&nbsp;этом уроке ты&nbsp;соберёшь поля потоков на&nbsp;p5.js и&nbsp;Three.js&nbsp;— от&nbsp;понятных стрелок
+          и&nbsp;3D-решёток
+          до&nbsp;сложных красивых систем, где&nbsp;частицы и&nbsp;объёмные линии движутся как&nbsp;единый живой
+          орнамент.
+
         </section>
         <section class="O_TutorialSection">
 
-          <!-- тут сами блоки 
-          делай в них такой отступ по строке, как здесь вот ща и везде в статьях
-          а между section отступ не делай-->
+          <h3 id="nav1" class="U_FontH3 A_TutorialTitle">
+            Теория
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p id="TutorialTextFirst" class="U_FontB1 A_TutorialText">
+            <span>Вектор</span>&nbsp;— это&nbsp;значение с&nbsp;направлением и&nbsp;длиной. Если&nbsp;обычное число
+            говорит
+            «сколько», то&nbsp;вектор говорит «куда и&nbsp;насколько сильно». <span>Векторное поле</span>&nbsp;—
+            это&nbsp;набор
+            таких направлений для&nbsp;многих точек: в&nbsp;каждой ячейке сетки, в&nbsp;каждой позиции частицы
+            или&nbsp;в&nbsp;каждой
+            точке 3D-пространства можно вычислить свой угол движения.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;креативном кодинге поле удобно воспринимать как&nbsp;невидимую карту ветра. Мы&nbsp;не&nbsp;рисуем
+            ветер
+            напрямую, но&nbsp;рисуем то, что&nbsp;он&nbsp;делает с&nbsp;формами: поворачивает стрелки, вытягивает линии,
+            заставляет частицы обходить центр, закручивает поток или&nbsp;создаёт мягкую турбулентность. Поэтому
+            поле часто используется для&nbsp;постеров, генеративных текстур, систем частиц и&nbsp;абстрактной
+            3D-графики.
+          </p>
+
+          <div class="M_TutorialQuote">
+            <p class="U_FontS2">
+              Векторное поле не&nbsp;обязательно видно само по&nbsp;себе: его&nbsp;становится видно через&nbsp;следы,
+              повороты и&nbsp;поведение объектов
+            </p>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Самый простой способ построить поле&nbsp;— взять координаты <span>x</span> и&nbsp;<span>y</span>, подставить
+            их&nbsp;в&nbsp;формулу и&nbsp;получить угол. Например, <span>sin()</span> и&nbsp;<span>cos()</span> дают
+            волновое поле,
+            расстояние до&nbsp;центра даёт радиальное поле, а&nbsp;<span>noise()</span> даёт органичное поле
+            без&nbsp;резких
+            скачков. В&nbsp;3D к&nbsp;этому добавляется координата <span>z</span>, поэтому направление может зависеть
+            не&nbsp;только от&nbsp;плоскости, но&nbsp;и&nbsp;от&nbsp;глубины.
+          </p>
+
+          <div class="U_FontC2-Code W_TutorialCopyItem">
+            <p class="A_TutorialCopyText">
+              const angle = noise(x * scale, y * scale, time) * TWO_PI * 2;<br>
+              const vx = cos(angle); // направление по x<br>
+              const vy = sin(angle); // направление по y<br>
+              position.add(createVector(vx, vy).mult(speed));
+            </p>
+            <button class="U_ButtonIcon A_TutorialCopyButton">
+              <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+            </button>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            У&nbsp;поля есть несколько дизайнерских параметров. <span>scale</span> управляет крупностью: маленький
+            масштаб создаёт широкие спокойные потоки, большой&nbsp;— дробную турбулентность. <span>time</span> делает
+            поле живым. <span>strength</span> решает, насколько сильно объект слушается направления. А&nbsp;правило
+            отображения решает, что&nbsp;мы&nbsp;видим: стрелки, следы частиц, линии, плитки или&nbsp;объёмные элементы.
+          </p>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>Поле вычисляет направление из&nbsp;координат, а&nbsp;не&nbsp;хранит каждую стрелку вручную.</li>
+            <li>Частица читает направление в&nbsp;своей позиции и&nbsp;делает небольшой шаг по&nbsp;этому вектору.</li>
+            <li>Красота поля зависит от&nbsp;баланса: слишком слабое поле не&nbsp;видно, слишком сильное разрушает
+              композицию.</li>
+          </ol>
 
         </section>
         <section class="O_TutorialSection">
 
-          <!-- тут сами блоки 
-          делай в них такой отступ по строке, как здесь вот ща и везде в статьях
-          а между section отступ не делай-->
+          <h3 id="nav2" class="U_FontH3 A_TutorialTitle">
+            Практика
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Сначала сделаем два&nbsp;средних примера: один показывает поле на&nbsp;плоскости через&nbsp;стрелки p5.js,
+            второй переносит ту&nbsp;же идею в&nbsp;Three.js и&nbsp;собирает 3D-решётку направлений. Здесь важнее
+            увидеть
+            структуру: поле&nbsp;— это&nbsp;не&nbsp;случайные повороты, а&nbsp;формула, которая повторяется
+            во&nbsp;многих точках.
+          </p>
+
+          <div id="patr3module2tutorial4code1" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                p5.js: среднее поле стрелок. Каждая ячейка получает угол из&nbsp;noise(), поэтому сетка выглядит
+                как&nbsp;карта мягкого ветра.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;этом скетче поле видно напрямую: каждая короткая линия показывает локальное направление. Такой
+            режим полезен как&nbsp;диагностика: прежде чем&nbsp;запускать частицы, можно проверить,
+            куда&nbsp;их&nbsp;понесёт.
+          </p>
+
+          <div id="patr3module2tutorial4code2" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="three" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Three.js: среднее объёмное поле. Кубы и&nbsp;диски стоят в&nbsp;решётке, но&nbsp;каждый элемент
+                поворачивается и&nbsp;поднимается по&nbsp;своему вектору.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;3D поле можно читать не&nbsp;только как&nbsp;угол, но&nbsp;и&nbsp;как&nbsp;высоту, масштаб
+            или&nbsp;поворот объекта.
+            Так&nbsp;поле становится не&nbsp;линией поверх изображения, а&nbsp;самой геометрией сцены.
+          </p>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav3" class="U_FontH3 A_TutorialTitle">
+            Практика: сложная
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Теперь усложним визуальный результат. Вместо того чтобы&nbsp;просто показывать поле, дадим
+            ему&nbsp;материал:
+            частицы будут оставлять следы на&nbsp;p5.js, а&nbsp;в&nbsp;Three.js поле соберётся в&nbsp;слои объёмных
+            линий
+            и&nbsp;плиток. Код становится плотнее, но&nbsp;принцип остаётся тем&nbsp;же: точка читает направление
+            и&nbsp;двигается.
+          </p>
+
+          <div id="patr3module2tutorial4code3" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                p5.js: сложное поле частиц. Сотни точек читают noise-поле, оставляют следы и&nbsp;собирают живую
+                графическую текстуру.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Частицы делают поле видимым через&nbsp;траекторию. Если&nbsp;стрелка показывает только одно направление
+            в&nbsp;одной точке, то&nbsp;след частицы показывает, как&nbsp;направления связаны между собой
+            во&nbsp;времени.
+          </p>
+
+          <div id="patr3module2tutorial4code4" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="three" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Three.js: сложное 3D-поле из&nbsp;слоёв. Линии, диски и&nbsp;глубина работают вместе, создавая ощущение
+                объёмного потока.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;объёмной версии поле становится почти архитектурой: элементы не&nbsp;только поворачиваются,
+            но&nbsp;и&nbsp;распределяются по&nbsp;глубине. Это&nbsp;хороший приём для&nbsp;сцен, где&nbsp;нужно показать
+            движение
+            без&nbsp;реалистичной симуляции жидкости.
+          </p>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav4" class="U_FontH3 A_TutorialTitle">
+            Вывод
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Векторное поле&nbsp;— это&nbsp;способ отделить поведение от&nbsp;формы. Сначала мы&nbsp;задаём невидимое
+            правило
+            направления, а&nbsp;потом решаем, чем&nbsp;его&nbsp;проявить: стрелками, частицами, плитками, линиями
+            или&nbsp;3D-объектами.
+            Поэтому одно и&nbsp;то&nbsp;же поле может выглядеть как&nbsp;инфографика, текстура, постер
+            или&nbsp;пространственная сцена.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Самые выразительные поля обычно не&nbsp;самые хаотичные. Они&nbsp;сохраняют композиционный контроль:
+            белый фон, понятные поля, ограниченную палитру, центр или&nbsp;направление движения. Сложность появляется
+            не&nbsp;из&nbsp;бесконечного количества параметров, а&nbsp;из&nbsp;того, что&nbsp;несколько параметров
+            связаны между собой.
+          </p>
+
+          <ul class="U_FontC2-Code C_TutorialCopyList">
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">createVector(x, y); // создаёт вектор в p5.js</p>
+              <button class="U_ButtonIcon A_TutorialCopyButton"><img class="Q_TutorialCopyIcon"
+                  src="../../../../images/icons/copy.svg" alt="Копировать"></button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">p5.Vector.fromAngle(angle); // вектор направления из угла</p>
+              <button class="U_ButtonIcon A_TutorialCopyButton"><img class="Q_TutorialCopyIcon"
+                  src="../../../../images/icons/copy.svg" alt="Копировать"></button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">noise(x * scale, y * scale, t); // плавное значение поля</p>
+              <button class="U_ButtonIcon A_TutorialCopyButton"><img class="Q_TutorialCopyIcon"
+                  src="../../../../images/icons/copy.svg" alt="Копировать"></button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">position.add(velocity); // частица делает шаг по вектору</p>
+              <button class="U_ButtonIcon A_TutorialCopyButton"><img class="Q_TutorialCopyIcon"
+                  src="../../../../images/icons/copy.svg" alt="Копировать"></button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">new THREE.Vector3(x, y, z); // вектор в Three.js</p>
+              <button class="U_ButtonIcon A_TutorialCopyButton"><img class="Q_TutorialCopyIcon"
+                  src="../../../../images/icons/copy.svg" alt="Копировать"></button>
+            </li>
+          </ul>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav5" class="U_FontH3 A_TutorialTitle">
+            Задание
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Собери свою серию flow-field постеров на&nbsp;p5.js. В&nbsp;коде подготовлены параметры поля, частиц
+            и&nbsp;визуального следа. Меняй их&nbsp;по&nbsp;одному: так&nbsp;будет понятно, какой параметр отвечает
+            за&nbsp;масштаб
+            потока, какой&nbsp;— за&nbsp;плотность, а&nbsp;какой&nbsp;— за&nbsp;настроение изображения.
+          </p>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>Начни с&nbsp;<span>fieldScale</span>: сделай крупный спокойный поток и&nbsp;дробную турбулентную версию.
+            </li>
+            <li>Затем настрой <span>particleCount</span> и&nbsp;<span>trailAlpha</span>, чтобы&nbsp;сравнить лёгкую
+              и&nbsp;плотную графику.</li>
+            <li>После этого выбери <span>paletteMode</span>: холодный, тёплый или&nbsp;смешанный вариант фирменной
+              палитры.</li>
+            <li>В&nbsp;финале измени <span>centerPull</span> и&nbsp;найди баланс между свободным потоком
+              и&nbsp;композицией вокруг центра.</li>
+          </ol>
+
+          <div id="patr3module2tutorial4code5" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="p5" data-autostart="false">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Задание: p5.js flow-field постер. Управляй масштабом поля, количеством частиц, прозрачностью следа,
+                палитрой и&nbsp;силой центра.
+              </p>
+            </div>
+          </div>
+
 
         </section>
         <section class="O_TutorialSection O_TutorialSection--Last">
