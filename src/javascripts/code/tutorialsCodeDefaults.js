@@ -1920,6 +1920,68 @@ let targetSpeedFactor = 1;
 let virtualTime = 0;
 let lastTime = 0;
 
+// ===============================
+// ПРЕСЕТЫ ДЛЯ ЭКСПЕРИМЕНТОВ
+// ===============================
+
+// Фирменные цвета
+const DepthRose = "#ff86db";
+const FlowCyan = "#2fd3e6";
+const SeedGreen = "#37e87a";
+const CoreSun = "#ffc300";
+
+// Основные настройки
+let circleColor = FlowCyan;
+let squareColor = DepthRose;
+let backgroundColor = "#f8f8f8";
+let gridColor = "#e5e7eb";
+
+let circleSize = 72;
+let squareSize = 72;
+let orbitPower = 0.25;
+let animationSpeed = 0.002;
+let gridStep = 32;
+
+// ===============================
+// ПОПРОБУЙ РАСКОММЕНТИРОВАТЬ
+// ===============================
+
+// 1. Поменять цвета фигур
+// circleColor = CoreSun;
+// squareColor = SeedGreen;
+
+// 2. Сделать фон фирменным
+// backgroundColor = "#fff7d6";
+// gridColor = "#ffc300";
+
+// 3. Сделать фигуры крупнее
+// circleSize = 96;
+// squareSize = 96;
+
+// 4. Сделать движение шире
+// orbitPower = 0.35;
+
+// 5. Сделать движение быстрее
+// animationSpeed = 0.004;
+
+// 6. Сделать сетку плотнее
+// gridStep = 16;
+
+// 7. Сделать сетку крупнее
+// gridStep = 48;
+
+// 8. Сделать квадрат маленьким спутником
+// squareSize = 40;
+// orbitPower = 0.32;
+
+// 9. Сделать почти статичную спокойную анимацию
+// animationSpeed = 0.0008;
+// orbitPower = 0.18;
+
+// 10. Инвертировать роли цветов
+// circleColor = DepthRose;
+// squareColor = FlowCyan;
+
 app.innerHTML = "";
 app.style.width = "100%";
 app.style.height = "100%";
@@ -1933,20 +1995,20 @@ function resize() {
 }
 
 function drawBackground() {
-  ctx.fillStyle = "#f8f8f8";
+  ctx.fillStyle = backgroundColor;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  ctx.strokeStyle = "#e5e7eb";
+  ctx.strokeStyle = gridColor;
   ctx.lineWidth = 1;
 
-  for (let x = 0; x < canvas.width; x += 32) {
+  for (let x = 0; x < canvas.width; x += gridStep) {
     ctx.beginPath();
     ctx.moveTo(x, 0);
     ctx.lineTo(x, canvas.height);
     ctx.stroke();
   }
 
-  for (let y = 0; y < canvas.height; y += 32) {
+  for (let y = 0; y < canvas.height; y += gridStep) {
     ctx.beginPath();
     ctx.moveTo(0, y);
     ctx.lineTo(canvas.width, y);
@@ -1965,17 +2027,23 @@ function animate(time) {
 
   const centerX = canvas.width / 2;
   const centerY = canvas.height / 2;
-  const orbit = Math.min(canvas.width, canvas.height) * 0.25;
-  const x = centerX + Math.cos(virtualTime * 0.002 + Math.PI) * orbit;
-  const y = centerY + Math.sin(virtualTime * 0.002 + Math.PI) * orbit;
+  const orbit = Math.min(canvas.width, canvas.height) * orbitPower;
 
-  ctx.fillStyle = "#2fd3e6";
+  const x = centerX + Math.cos(virtualTime * animationSpeed + Math.PI) * orbit;
+  const y = centerY + Math.sin(virtualTime * animationSpeed + Math.PI) * orbit;
+
+  ctx.fillStyle = circleColor;
   ctx.beginPath();
-  ctx.arc(centerX, centerY, 72, 0, Math.PI * 2);
+  ctx.arc(centerX, centerY, circleSize, 0, Math.PI * 2);
   ctx.fill();
 
-  ctx.fillStyle = "#ff86db";
-  ctx.fillRect(x - 36, y - 36, 72, 72);
+  ctx.fillStyle = squareColor;
+  ctx.fillRect(
+    x - squareSize / 2,
+    y - squareSize / 2,
+    squareSize,
+    squareSize
+  );
 
   animationId = requestAnimationFrame(animate);
 }
@@ -2006,9 +2074,76 @@ return () => {
 let targetSpeedFactor = 1;
 let virtualFrame = 0;
 
+// ===============================
+// ПРЕСЕТЫ ДЛЯ ЭКСПЕРИМЕНТОВ
+// ===============================
+
+// Фирменные цвета
+const DepthRose = "#ff86db";
+const FlowCyan = "#2fd3e6";
+const SeedGreen = "#37e87a";
+const CoreSun = "#ffc300";
+
+// Основные настройки
+let circleColor = FlowCyan;
+let squareColor = DepthRose;
+let gridColor = "#e5e7eb";
+
+let circleSize = 144;
+let squareSize = 72;
+let cornerRadius = 16;
+
+let orbitPower = 0.25;
+let animationSpeed = 0.03;
+let gridStep = 32;
+
+// ===============================
+// ПОПРОБУЙ РАСКОММЕНТИРОВАТЬ
+// ===============================
+
+// 1. Поменять цвета фигур
+// circleColor = CoreSun;
+// squareColor = SeedGreen;
+
+// 2. Поменять цвета местами
+// circleColor = DepthRose;
+// squareColor = FlowCyan;
+
+// 3. Сделать фигуры крупнее
+// circleSize = 192;
+// squareSize = 96;
+
+// 4. Сделать квадрат маленьким
+// squareSize = 40;
+
+// 5. Увеличить радиус движения
+// orbitPower = 0.35;
+
+// 6. Уменьшить радиус движения
+// orbitPower = 0.15;
+
+// 7. Сделать анимацию быстрее
+// animationSpeed = 0.06;
+
+// 8. Сделать анимацию медленнее
+// animationSpeed = 0.01;
+
+// 9. Сделать сетку плотнее
+// gridStep = 16;
+
+// 10. Сделать сетку крупнее
+// gridStep = 48;
+
+// 11. Сделать квадрат острым
+// cornerRadius = 0;
+
+// 12. Сделать квадрат очень скруглённым
+// cornerRadius = 36;
+
 function setup() {
   const app = document.getElementById("app");
   const canvas = createCanvas(app.clientWidth, app.clientHeight);
+
   canvas.mouseOver(() => targetSpeedFactor = 0);
   canvas.mouseOut(() => targetSpeedFactor = 1);
 
@@ -2021,14 +2156,14 @@ function windowResized() {
 }
 
 function drawGrid() {
-  stroke("#e5e7eb");
+  stroke(gridColor);
   strokeWeight(1);
 
-  for (let x = 0; x < width; x += 32) {
+  for (let x = 0; x < width; x += gridStep) {
     line(x, 0, x, height);
   }
 
-  for (let y = 0; y < height; y += 32) {
+  for (let y = 0; y < height; y += gridStep) {
     line(0, y, width, y);
   }
 
@@ -2042,16 +2177,17 @@ function draw() {
   background("#FFFFFF");
   drawGrid();
 
-  const orbit = min(width, height) * 0.25;
-  const x = width / 2 + cos(virtualFrame * 0.03 + PI) * orbit;
-  const y = height / 2 + sin(virtualFrame * 0.03 + PI) * orbit;
+  const orbit = min(width, height) * orbitPower;
 
-  fill("#2fd3e6");
-  ellipse(width / 2, height / 2, 144);
+  const x = width / 2 + cos(virtualFrame * animationSpeed + PI) * orbit;
+  const y = height / 2 + sin(virtualFrame * animationSpeed + PI) * orbit;
 
-  fill("#ff86db");
+  fill(circleColor);
+  ellipse(width / 2, height / 2, circleSize);
+
+  fill(squareColor);
   rectMode(CENTER);
-  rect(x, y, 72, 72, 16);
+  rect(x, y, squareSize, squareSize, cornerRadius);
 }`,
 
   three: `const width = app.clientWidth;
@@ -2061,11 +2197,133 @@ let speedFactor = 1;
 let targetSpeedFactor = 1;
 let lastTime = 0;
 
+// ===============================
+// ПРЕСЕТЫ ДЛЯ ЭКСПЕРИМЕНТОВ
+// ===============================
+
+// Фирменные цвета
+const DepthRose = "#ff86db";
+const FlowCyan = "#2fd3e6";
+const SeedGreen = "#37e87a";
+const CoreSun = "#ffc300";
+
+// Основные настройки сцены
+let backgroundColor = "#ffffff";
+
+let cubeColor = DepthRose;
+let sphereColor = FlowCyan;
+
+let cubeSize = 0.5;
+let sphereSize = 0.55;
+
+let cubeX = -0.9;
+let sphereX = 0.5;
+
+let cameraDistance = 4;
+
+// Настройки материала
+let materialRoughness = 0.35;
+let materialMetalness = 0.05;
+
+// Настройки света
+let ambientLightColor = "#ffffff";
+let ambientLightPower = 0.6;
+
+let mainLightColor = "#ffffff";
+let mainLightPower = 2.2;
+let mainLightX = 2;
+let mainLightY = 3;
+let mainLightZ = 4;
+
+let sideLightColor = DepthRose;
+let sideLightPower = 0.8;
+let sideLightX = -3;
+let sideLightY = -1;
+let sideLightZ = 2;
+
+// Настройки вращения
+let cubeRotationX = 0.01;
+let cubeRotationY = 0.02;
+let sphereRotationY = -0.015;
+let groupRotationY = 0.006;
+
+// ===============================
+// ПОПРОБУЙ РАСКОММЕНТИРОВАТЬ
+// ===============================
+
+// 1. Поменять цвета фигур
+// cubeColor = CoreSun;
+// sphereColor = SeedGreen;
+
+// 2. Поменять цвета местами
+// cubeColor = FlowCyan;
+// sphereColor = DepthRose;
+
+// 3. Сделать фон мягким фирменным
+// backgroundColor = "#fff7d6";
+
+// 4. Сделать фигуры крупнее
+// cubeSize = 0.75;
+// sphereSize = 0.75;
+
+// 5. Разнести фигуры дальше друг от друга
+// cubeX = -1.25;
+// sphereX = 1.0;
+
+// 6. Отдалить камеру
+// cameraDistance = 5.5;
+
+// 7. Сделать материал более глянцевым
+// materialRoughness = 0.12;
+// materialMetalness = 0.15;
+
+// 8. Сделать материал мягким и матовым
+// materialRoughness = 0.8;
+// materialMetalness = 0;
+
+// 9. Сделать сцену ярче
+// ambientLightPower = 0.9;
+// mainLightPower = 3;
+
+// 10. Сделать сцену драматичнее
+// ambientLightPower = 0.25;
+// mainLightPower = 3.5;
+// sideLightPower = 1.4;
+
+// 11. Сделать розовый боковой свет сильнее
+// sideLightColor = DepthRose;
+// sideLightPower = 2;
+
+// 12. Сделать жёлтый тёплый свет
+// mainLightColor = CoreSun;
+// mainLightPower = 2.8;
+
+// 13. Сделать зелёный контровой свет
+// sideLightColor = SeedGreen;
+// sideLightPower = 1.6;
+
+// 14. Переместить главный свет слева направо
+// mainLightX = -2;
+// mainLightY = 4;
+// mainLightZ = 3;
+
+// 15. Сделать вращение быстрее
+// cubeRotationX = 0.025;
+// cubeRotationY = 0.04;
+// sphereRotationY = -0.03;
+// groupRotationY = 0.014;
+
+// 16. Сделать вращение спокойнее
+// cubeRotationX = 0.003;
+// cubeRotationY = 0.006;
+// sphereRotationY = -0.004;
+// groupRotationY = 0.002;
+
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xffffff);
+scene.background = new THREE.Color(backgroundColor);
 
 const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
-camera.position.z = 4 * Math.max(width / height, height / width);
+camera.position.z = cameraDistance * Math.max(width / height, height / width);
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(width, height);
@@ -2077,16 +2335,38 @@ app.appendChild(renderer.domElement);
 const group = new THREE.Group();
 scene.add(group);
 
-const cubeGeometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
-const cubeMaterial = new THREE.MeshNormalMaterial();
+// Свет, который мягко подсвечивает всю сцену
+const ambientLight = new THREE.AmbientLight(ambientLightColor, ambientLightPower);
+scene.add(ambientLight);
+
+// Главный направленный свет
+const mainLight = new THREE.DirectionalLight(mainLightColor, mainLightPower);
+mainLight.position.set(mainLightX, mainLightY, mainLightZ);
+scene.add(mainLight);
+
+// Боковой акцентный свет
+const sideLight = new THREE.PointLight(sideLightColor, sideLightPower);
+sideLight.position.set(sideLightX, sideLightY, sideLightZ);
+scene.add(sideLight);
+
+const cubeGeometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
+const cubeMaterial = new THREE.MeshStandardMaterial({
+  color: cubeColor,
+  roughness: materialRoughness,
+  metalness: materialMetalness
+});
 const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-cube.position.x = -0.9;
+cube.position.x = cubeX;
 group.add(cube);
 
-const sphereGeometry = new THREE.SphereGeometry(0.55, 32, 32);
-const sphereMaterial = new THREE.MeshNormalMaterial();
+const sphereGeometry = new THREE.SphereGeometry(sphereSize, 32, 32);
+const sphereMaterial = new THREE.MeshStandardMaterial({
+  color: sphereColor,
+  roughness: materialRoughness,
+  metalness: materialMetalness
+});
 const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-sphere.position.x = 0.5;
+sphere.position.x = sphereX;
 group.add(sphere);
 
 function onResize() {
@@ -2118,10 +2398,10 @@ function animate(time) {
 
   speedFactor += (targetSpeedFactor - speedFactor) * Math.min(deltaTime / 2000, 1);
 
-  cube.rotation.x += 0.01 * speedFactor;
-  cube.rotation.y += 0.02 * speedFactor;
-  sphere.rotation.y -= 0.015 * speedFactor;
-  group.rotation.y += 0.006 * speedFactor;
+  cube.rotation.x += cubeRotationX * speedFactor;
+  cube.rotation.y += cubeRotationY * speedFactor;
+  sphere.rotation.y += sphereRotationY * speedFactor;
+  group.rotation.y += groupRotationY * speedFactor;
 
   renderer.render(scene, camera);
   animationId = requestAnimationFrame(animate);
@@ -2139,6 +2419,7 @@ return () => {
   cubeMaterial.dispose();
   sphereGeometry.dispose();
   sphereMaterial.dispose();
+
   renderer.dispose();
 };`,
 };
