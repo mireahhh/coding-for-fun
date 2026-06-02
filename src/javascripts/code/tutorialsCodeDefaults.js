@@ -4221,11 +4221,14 @@ function draw() {
     circle(x, y, 16 + (i % 4) * 4);
   }
 }`,
-  patr2module2tutorial5code1: `let t = 0;
+  patr2module2tutorial5code1: `const particles = [];
 
 function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
-  noFill();
+  noStroke();
+  for (let i = 0; i < 58; i += 1) {
+    particles.push({ angle: 2 * i * TWO_PI / 36, radius: 42 + (i % 8) * 16 });
+  }
 }
 
 function windowResized() {
@@ -4235,28 +4238,15 @@ function windowResized() {
 function draw() {
   background("#FFFFFF");
 
-  stroke("#2FD3E6");
-  strokeWeight(4);
-  beginShape();
-  for (let i = 0; i <= 96; i += 1) {
-    const x = map(i, 0, 96, 32, width - 32);
-    const n = noise(i * 0.06, t);
-    const y = height / 2 + map(n, 0, 1, -96, 96);
-    curveVertex(x, y);
-  }
-  endShape();
+  for (let i = 0; i < particles.length; i += 1) {
+    const p = particles[i];
+    p.angle += 0.012 + (i % 5) * 0.002;
+    const x = width / 2 + cos(p.angle) * p.radius;
+    const y = height / 2 + sin(p.angle * 1.4) * p.radius;
 
-  stroke("#FF86DB");
-  strokeWeight(2);
-  beginShape();
-  for (let i = 0; i <= 96; i += 1) {
-    const x = map(i, 0, 96, 32, width - 32);
-    const y = height / 2 + sin(i * 0.28 + t * 5) * 48;
-    curveVertex(x, y);
+    fill(i % 2 === 0 ? "#FFC300" : "#FF86DB");
+    circle(x, y, 16 + (i % 4) * 4);
   }
-  endShape();
-
-  t += 0.008;
 }`,
   patr2module2tutorial5code2: `function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
@@ -4316,11 +4306,14 @@ function draw() {
     circle(x, y, 16 + (i % 4) * 4);
   }
 }`,
-  patr2module2tutorial5code4: `let t = 0;
+  patr2module2tutorial5code4: `const particles = [];
 
 function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
-  noFill();
+  noStroke();
+  for (let i = 0; i < 58; i += 1) {
+    particles.push({ angle: 2 * i * TWO_PI / 36, radius: 42 + (i % 8) * 16 });
+  }
 }
 
 function windowResized() {
@@ -4330,29 +4323,15 @@ function windowResized() {
 function draw() {
   background("#FFFFFF");
 
-  stroke("#2FD3E6");
-  strokeWeight(4);
-  beginShape();
+  for (let i = 0; i < particles.length; i += 1) {
+    const p = particles[i];
+    p.angle += 0.012 + (i % 5) * 0.002;
+    const x = width / 2 + cos(p.angle) * p.radius;
+    const y = height / 2 + sin(p.angle * 1.4) * p.radius;
 
-  for (let i = 0; i <= 96; i += 1) {
-    const x = map(i, 0, 96, 32, width - 32);
-    const n = noise(i * 0.06, t);
-    const y = height / 2 + map(n, 0, 1, -96, 96);
-    curveVertex(x, y);
+    fill(i % 2 === 0 ? "#FFC300" : "#FF86DB");
+    circle(x, y, 16 + (i % 4) * 4);
   }
-  endShape();
-
-  stroke("#FF86DB");
-  strokeWeight(2);
-  beginShape();
-  for (let i = 0; i <= 96; i += 1) {
-    const x = map(i, 0, 96, 32, width - 32);
-    const y = height / 2 + sin(i * 0.28 + t * 5) * 48;
-    curveVertex(x, y);
-  }
-  endShape();
-  
-  t += 0.008;
 }`,
   patr2module3tutorial1code1: `const width = app.clientWidth;
 const height = app.clientHeight;
