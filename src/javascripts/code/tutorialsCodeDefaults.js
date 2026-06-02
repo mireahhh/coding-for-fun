@@ -1076,372 +1076,553 @@ function draw() {
 };
 
 export const defaultCodeById = {
-  patr1module1tutorial1code1: `function setup() {
-  createCanvas(app.clientWidth, app.clientHeight); // создаём холст размера окна
-  // но можно указывать просто числа
-  noStroke();
-}
-
-function draw() {
-  background(248);
-
-  let step = width  / 6; // 6 шаров в сетке
-
-  for (let y = 0; y < height; y += step) {
-    for (let x = 0; x < width; x += step) {
-
-      fill('#2fd3e6');
-      // ellipse(x, y, step); // это рисовало бы без сдвига
-      ellipse(x + step / 2, y + step / 2, step);
-
-    }
-  }
-
-  noLoop();
-}`,
-  patr1module1tutorial1code2: `function setup() {
-  createCanvas(app.clientWidth, app.clientHeight);
-  noStroke();
-}
-
-function draw() {
-  background(248);
-
-  let step = width / 6;
-
-  for (let y = 0; y < height; y += step) {
-    for (let x = 0; x < width; x += step) {
-
-      let size = step + random(-10, 10);
-
-      fill('#ff86db');
-      ellipse(x + step / 2, y + step / 2, size);
-
-    }
-  }
-
-  noLoop();
-}`,
-  patr1module1tutorial1code3: `function setup() {
-  createCanvas(app.clientWidth, app.clientHeight);
-  noStroke();
-}
-
-function draw() {
-  background(248);
-
-  let step = width / 7;
-
-  for (let y = 0; y < height; y += step) {
-    for (let x = 0; x < width; x += step) {
-
-      // базовый вариант
-      let size = step;
-
-      // попробуй раскомментировать:
-      // size = step * (x / width);
-      // size = step * (y / height);
-      // size = step * (x / width) * (y / height);
-      // size = step * random();
-
-      fill('#37e87a');
-      ellipse(x + step / 2, y + step / 2, size);
-
-    }
-  }
-
-  noLoop();
-}`,
-  patr1module1tutorial2code1: `let x = 0;
+  patr1module1tutorial1code1: `const palette = ["#2FD3E6", "#37E87A"];
 
 function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  fill('#2fd3e6');
-  ellipse(x, height / 2, 80);
+  const padding = 32;
+  const cols = 5;
+  const step = (min(width, height) - padding * 2) / cols;
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (cols - 1) * step / 2;
 
-  x += 2;
+  for (let row = 0; row < cols; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const x = startX + col * step;
+      const y = startY + row * step;
+      const wave = sin(0 + row * 0.7 + col * 0.4) * step * 0.12;
+      const size = step * 0.52 + wave;
+
+      fill(palette[(row + col) % palette.length]);
+      circle(x, y, size);
+    }
+  }
+
+  noLoop();
 }`,
-  patr1module1tutorial2code2: `let x = 0;
-let speed = 7;
+  patr1module1tutorial1code2: `const palette = ["#FF86DB", "#FFC300"];
 
 function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  fill('#ff86db');
-  ellipse(x, height / 2, 80);
+  const padding = 32;
+  const cols = 5;
+  const step = (min(width, height) - padding * 2) / cols;
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (cols - 1) * step / 2;
 
-  x += speed;
+  for (let row = 0; row < cols; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const x = startX + col * step;
+      const y = startY + row * step;
+      const wave = sin(frameCount * 0.02 + row * 0.7 + col * 0.4) * step * 0.12;
+      const size = step * 0.52 + wave;
+
+      fill(palette[(row + col) % palette.length]);
+      circle(x, y, size);
+    }
+  }
+
+  noLoop();
 }`,
-  patr1module1tutorial2code3: `let x = 0;
-let speed = 2;
+  patr1module1tutorial1code3: `const palette = ["#37E87A", "#2FD3E6"];
 
 function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  let y = height / 2;
+  const padding = 32;
+  const cols = 6;
+  const step = (min(width, height) - padding * 2) / cols;
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (cols - 1) * step / 2;
 
-  // попробуй раскомментировать:
-  // y = mouseY;
-  // y = height / 2 + sin(frameCount * 0.05) * 100;
+  for (let row = 0; row < cols; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const x = startX + col * step;
+      const y = startY + row * step;
+      const wave = sin(0 + row * 0.7 + col * 0.4) * step * 0.12;
+      const size = step * 0.52 + wave;
 
-  fill('#37e87a');
-  ellipse(x, y, 80);
+      fill(palette[(row + col) % palette.length]);
+      circle(x, y, size);
+    }
+  }
 
-  x += speed;
-
-  // попробуй:
-  // speed = 1;
-  // speed = random(1, 5);
+  // Измени cols или множитель size, чтобы получить другой ритм.
+  noLoop();
 }`,
-  patr1module1tutorial3code1: `function setup() {
+  patr1module1tutorial2code1: `function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
 function draw() {
-  background(248);
+  background("#FFFFFF");
+  const radius = min(width, height) * 0.28;
+  const angle = frameCount * 0.035;
 
-  let step = min(width, height) / 6;
-  let size = step * 0.72;
+  fill("#FF86DB");
+  circle(width / 2, height / 2, radius * 1.15);
 
-  for (let y = 0; y < height; y += step) {
-    for (let x = 0; x < width; x += step) {
-      fill('#ffc300');
-      ellipse(x + step / 2, y + step / 2, size);
+  fill("#2FD3E6");
+  circle(width / 2 + cos(angle) * radius, height / 2 + sin(angle) * radius, 64);
+
+  fill("#FFC300");
+  circle(width / 2 + cos(angle + PI) * radius, height / 2 + sin(angle + PI) * radius, 40);
+}`,
+  patr1module1tutorial2code2: `function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  noStroke();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function draw() {
+  background("#FFFFFF");
+  const padding = 40;
+  const count = 11;
+  const step = (width - padding * 2) / (count - 1);
+
+  for (let i = 0; i < count; i += 1) {
+    const x = padding + i * step;
+    const y = height / 2 + sin(frameCount * 0.04 + i * 0.65) * 56;
+    const size = 34 + cos(frameCount * 0.04 + i) * 10;
+
+    fill(i % 2 === 0 ? "#FF86DB" : "#FFC300");
+    circle(x, y, size);
+  }
+}`,
+  patr1module1tutorial2code3: `function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  noStroke();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function draw() {
+  background("#FFFFFF");
+  const padding = 40;
+  const count = 11;
+  const step = (width - padding * 2) / (count - 1);
+
+  for (let i = 0; i < count; i += 1) {
+    const x = padding + i * step;
+    const y = height / 2 + sin(frameCount * 0.04 + i * 0.65) * 56;
+    const size = 34 + cos(frameCount * 0.04 + i) * 10;
+
+    fill(i % 2 === 0 ? "#37E87A" : "#2FD3E6");
+    circle(x, y, size);
+  }
+}`,
+  patr1module1tutorial3code1: `const palette = ["#FFC300", "#FF86DB"];
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  noStroke();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function draw() {
+  background("#FFFFFF");
+
+  const padding = 32;
+  const cols = 5;
+  const step = (min(width, height) - padding * 2) / cols;
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (cols - 1) * step / 2;
+
+  for (let row = 0; row < cols; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const x = startX + col * step;
+      const y = startY + row * step;
+      const wave = sin(0 + row * 0.7 + col * 0.4) * step * 0.12;
+      const size = step * 0.52 + wave;
+
+      fill(palette[(row + col) % palette.length]);
+      circle(x, y, size);
     }
   }
 
   noLoop();
 }`,
-  patr1module1tutorial3code2: `function setup() {
+  patr1module1tutorial3code2: `const palette = ["#2FD3E6", "#37E87A"];
+
+function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  let step = min(width, height) / 6;
+  const padding = 32;
+  const cols = 5;
+  const step = (min(width, height) - padding * 2) / cols;
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (cols - 1) * step / 2;
 
-  for (let y = 0; y < height; y += step) {
-    for (let x = 0; x < width; x += step) {
-      let cx = x + step / 2;
-      let cy = y + step / 2;
+  for (let row = 0; row < cols; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const x = startX + col * step;
+      const y = startY + row * step;
+      const wave = sin(0 + row * 0.7 + col * 0.4) * step * 0.12;
+      const size = step * 0.52 + wave;
 
-      fill('#cfcfcf'); // светло-серый фон формы
-      rect(cx - step * 0.28, cy - step * 0.28, step * 0.56, step * 0.56);
-
-      fill('#4a4a4a'); // тёмный акцент
-      ellipse(cx, cy, step * 0.42);
+      fill(palette[(row + col) % palette.length]);
+      rectMode(CENTER);
+      square(x, y, size);
     }
   }
 
   noLoop();
 }`,
-  patr1module1tutorial3code3: `function setup() {
+  patr1module1tutorial3code3: `const palette = ["#FF86DB", "#FFC300"];
+
+function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  let step = min(width, height) / 6;
-  let size = step * 0.55;
+  const padding = 32;
+  const cols = 6;
+  const step = (min(width, height) - padding * 2) / cols;
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (cols - 1) * step / 2;
 
-  for (let y = 0; y < height; y += step) {
-    for (let x = 0; x < width; x += step) {
-      let cx = x + step / 2;
-      let cy = y + step / 2;
+  for (let row = 0; row < cols; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const x = startX + col * step;
+      const y = startY + row * step;
+      const wave = sin(row * 0.45 + col * 0.2 + row * 0.7 + col * 0.4) * step * 0.12;
+      const size = step * 0.52 + wave;
 
-      fill('#37e87a');
-
-      // базовый вариант
-      ellipse(cx, cy, size);
-
-      // попробуй раскомментировать:
-      // rect(cx - size / 2, cy - size / 2, size, size);
-      // ellipse(cx, cy, size * (x / width));
-      // ellipse(cx, cy, size * (y / height));
-      // fill('#ff86db');
+      fill(palette[(row + col) % palette.length]);
+      circle(x, y, size);
     }
   }
 
+  // Попробуй заменить square на circle и сравнить характер композиции.
   noLoop();
 }`,
   patr1module2tutorial1code1: `const app = document.getElementById("app");
-app.innerHTML = "";
-
 const canvas = document.createElement("canvas");
 const ctx = canvas.getContext("2d");
 
-canvas.width = app.clientWidth;
-canvas.height = app.clientHeight;
-app.appendChild(canvas);
-
-let step = canvas.width / 6;
-let size = step * 0.6;
-
-for (let y = 0; y < canvas.height; y += step) {
-  for (let x = 0; x < canvas.width; x += step) {
-    ctx.fillStyle = "#2c2c2c";
-    ctx.beginPath();
-    ctx.arc(x + step / 2, y + step / 2, size / 2, 0, Math.PI * 2);
-    ctx.fill();
-  }
-}`,
-  patr1module2tutorial1code2: `const app = document.getElementById("app");
 app.innerHTML = "";
-
-const canvas = document.createElement("canvas");
-const ctx = canvas.getContext("2d");
-
-canvas.width = app.clientWidth;
-canvas.height = app.clientHeight;
+app.style.background = "#FFFFFF";
 app.appendChild(canvas);
 
-let step = canvas.width / 6;
-let size = step * 0.6;
+function resize() {
+  canvas.width = app.clientWidth;
+  canvas.height = app.clientHeight;
+  draw();
+}
 
-for (let y = 0; y < canvas.height; y += step) {
-  for (let x = 0; x < canvas.width; x += step) {
-    if (x < canvas.width / 2) {
-      ctx.fillStyle = "#bdbdbd";
-    } else {
-      ctx.fillStyle = "#2c2c2c";
+function draw() {
+  const width = canvas.width;
+  const height = canvas.height;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillRect(0, 0, width, height);
+
+  const padding = 32;
+  const cols = 6;
+  const step = (Math.min(width, height) - padding * 2) / cols;
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (cols - 1) * step / 2;
+
+  for (let row = 0; row < cols; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const x = startX + col * step;
+      const y = startY + row * step;
+      const size = step * (0.36 + (col + row) * 0.015);
+
+      ctx.fillStyle = (row + col) % 2 === 0 ? "#2FD3E6" : "#37E87A";
+      ctx.beginPath();
+      ctx.arc(x, y, size / 2, 0, Math.PI * 2);
+      ctx.fill();
     }
-
-    ctx.beginPath();
-    ctx.arc(x + step / 2, y + step / 2, size / 2, 0, Math.PI * 2);
-    ctx.fill();
   }
-}`,
-  patr1module2tutorial1code3: `function setup() {
+}
+
+window.addEventListener("resize", resize);
+resize();
+
+return () => {
+  window.removeEventListener("resize", resize);
+};`,
+  patr1module2tutorial1code2: `const app = document.getElementById("app");
+const canvas = document.createElement("canvas");
+const ctx = canvas.getContext("2d");
+
+app.innerHTML = "";
+app.style.background = "#FFFFFF";
+app.appendChild(canvas);
+
+function resize() {
+  canvas.width = app.clientWidth;
+  canvas.height = app.clientHeight;
+  draw();
+}
+
+function draw() {
+  const width = canvas.width;
+  const height = canvas.height;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillRect(0, 0, width, height);
+
+  const padding = 32;
+  const cols = 6;
+  const step = (Math.min(width, height) - padding * 2) / cols;
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (cols - 1) * step / 2;
+
+  for (let row = 0; row < cols; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const x = startX + col * step;
+      const y = startY + row * step;
+      const size = step * (0.36 + (col + row) * 0.015);
+
+      ctx.fillStyle = (row + col) % 2 === 0 ? "#FF86DB" : "#FFC300";
+      ctx.beginPath();
+      ctx.arc(x, y, size / 2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+}
+
+window.addEventListener("resize", resize);
+resize();
+
+return () => {
+  window.removeEventListener("resize", resize);
+};`,
+  patr1module2tutorial1code3: `const palette = ["#2FD3E6", "#FF86DB"];
+
+function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  let step = width / 6;
+  const padding = 32;
+  const cols = 5;
+  const step = (min(width, height) - padding * 2) / cols;
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (cols - 1) * step / 2;
 
-  for (let y = 0; y < height; y += step) {
-    for (let x = 0; x < width; x += step) {
-      fill('#2c2c2c');
-      ellipse(x + step / 2, y + step / 2, step * 0.6);
+  for (let row = 0; row < cols; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const x = startX + col * step;
+      const y = startY + row * step;
+      const wave = sin(0 + row * 0.7 + col * 0.4) * step * 0.12;
+      const size = step * 0.52 + wave;
+
+      fill(palette[(row + col) % palette.length]);
+      circle(x, y, size);
     }
   }
 
   noLoop();
 }`,
   patr1module2tutorial1code4: `const app = document.getElementById("app");
-app.innerHTML = "";
-
 const canvas = document.createElement("canvas");
 const ctx = canvas.getContext("2d");
 
-canvas.width = app.clientWidth;
-canvas.height = app.clientHeight;
+app.innerHTML = "";
+app.style.background = "#FFFFFF";
 app.appendChild(canvas);
 
-let step = canvas.width / 6;
+function resize() {
+  canvas.width = app.clientWidth;
+  canvas.height = app.clientHeight;
+  draw();
+}
 
-for (let y = 0; y < canvas.height; y += step) {
-  for (let x = 0; x < canvas.width; x += step) {
-    ctx.fillStyle = "#2c2c2c";
-    ctx.beginPath();
-    ctx.arc(x + step / 2, y + step / 2, (step * 0.6) / 2, 0, Math.PI * 2);
-    ctx.fill();
+function draw() {
+  const width = canvas.width;
+  const height = canvas.height;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillRect(0, 0, width, height);
+
+  const padding = 32;
+  const cols = 6;
+  const step = (Math.min(width, height) - padding * 2) / cols;
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (cols - 1) * step / 2;
+
+  for (let row = 0; row < cols; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const x = startX + col * step;
+      const y = startY + row * step;
+      const size = step * (0.36 + (col + row) * 0.015);
+
+      ctx.fillStyle = (row + col) % 2 === 0 ? "#37E87A" : "#2FD3E6";
+      ctx.fillRect(x - size / 2, y - size / 2, size, size);
+    }
   }
-}`,
+}
+
+window.addEventListener("resize", resize);
+resize();
+
+return () => {
+  window.removeEventListener("resize", resize);
+};`,
   patr1module2tutorial1code5: `const app = document.getElementById("app");
-app.innerHTML = "";
-
 const canvas = document.createElement("canvas");
 const ctx = canvas.getContext("2d");
 
-canvas.width = app.clientWidth;
-canvas.height = app.clientHeight;
+app.innerHTML = "";
+app.style.background = "#FFFFFF";
 app.appendChild(canvas);
 
-let step = canvas.width / 6;
-let baseSize = step * 0.6;
+function resize() {
+  canvas.width = app.clientWidth;
+  canvas.height = app.clientHeight;
+  draw();
+}
 
-for (let y = 0; y < canvas.height; y += step) {
-  for (let x = 0; x < canvas.width; x += step) {
-    let size = baseSize;
-    ctx.fillStyle = "#2c2c2c";
+function draw() {
+  const width = canvas.width;
+  const height = canvas.height;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillRect(0, 0, width, height);
 
-    // попробуй раскомментировать:
+  const padding = 32;
+  const cols = 6;
+  const step = (Math.min(width, height) - padding * 2) / cols;
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (cols - 1) * step / 2;
 
-    // if (y < canvas.height / 2) {
-    //   ctx.fillStyle = "#858585";
-    // }
+  for (let row = 0; row < cols; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const x = startX + col * step;
+      const y = startY + row * step;
+      const size = step * (0.36 + (col + row) * 0.015);
 
-    // if ((x + y) % (step * 2) === 0) {
-    //   ctx.fillStyle = "#cfcfcf";
-    // }
-
-    // if (x > canvas.width / 2) {
-    //   size = step * 0.3;
-    // }
-
-    ctx.beginPath();
-    ctx.arc(x + step / 2, y + step / 2, size / 2, 0, Math.PI * 2);
-    ctx.fill();
+      ctx.fillStyle = (row + col) % 2 === 0 ? "#FFC300" : "#FF86DB";
+      ctx.beginPath();
+      ctx.arc(x, y, size / 2, 0, Math.PI * 2);
+      ctx.fill();
+    }
   }
-}`,
+}
+
+window.addEventListener("resize", resize);
+resize();
+
+return () => {
+  window.removeEventListener("resize", resize);
+};`,
   patr1module2tutorial2code1: `function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
 function draw() {
-  background(248);
+  background("#FFFFFF");
+  const padding = 40;
+  const count = 11;
+  const step = (width - padding * 2) / (count - 1);
 
-  let step = width / 6;
-  let size = step * 0.65;
-  let y = height / 2;
+  for (let i = 0; i < count; i += 1) {
+    const x = padding + i * step;
+    const y = height / 2 + sin(frameCount * 0.04 + i * 0.65) * 56;
+    const size = 34 + cos(frameCount * 0.04 + i) * 10;
 
-  for (let x = 0; x < width; x += step) {
-    fill('#2fd3e6');
-    ellipse(x + step / 2, y, size);
+    fill(i % 2 === 0 ? "#2FD3E6" : "#37E87A");
+    circle(x, y, size);
   }
-
-  noLoop();
 }`,
-  patr1module2tutorial2code2: `function setup() {
+  patr1module2tutorial2code2: `const palette = ["#FFC300", "#FF86DB"];
+
+function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  let step = min(width, height) / 6;
-  let size = step * 0.62;
+  const padding = 32;
+  const cols = 6;
+  const step = (min(width, height) - padding * 2) / cols;
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (cols - 1) * step / 2;
 
-  for (let y = 0; y < height; y += step) {
-    for (let x = 0; x < width; x += step) {
-      fill('#1f1f1f');
-      ellipse(x + step / 2, y + step / 2, size);
+  for (let row = 0; row < cols; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const x = startX + col * step;
+      const y = startY + row * step;
+      const wave = sin(0 + row * 0.7 + col * 0.4) * step * 0.12;
+      const size = step * 0.52 + wave;
+
+      fill(palette[(row + col) % palette.length]);
+      circle(x, y, size);
     }
   }
 
@@ -1449,139 +1630,158 @@ function draw() {
 }`,
   patr1module2tutorial2code3: `function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
   noStroke();
 }
 
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  let step = min(width, height) / 6;
-  let size = step * 0.62;
+  const step = 48;
+  const cols = floor((width - 64) / step);
+  const rows = floor((height - 64) / step);
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (rows - 1) * step / 2;
 
-  // попробуй раскомментировать:
-  // step = width / 8;
-  // size = step * 0.4;
+  for (let row = 0; row < rows; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const shift = sin(frameCount * 0.025 + row * 0.8 + col * 0.45) * step * 0.2;
+      const x = startX + col * step + shift;
+      const y = startY + row * step;
+      const size = 24 + ((row + col) % 3) * 4;
 
-  for (let y = 0; y < height; y += step) {
-    for (let x = 0; x < width; x += step) {
-      let currentSize = size;
+      fill((row + col) % 2 === 0 ? "#37E87A" : "#2FD3E6");
+      circle(x, y, size);
+    }
+  }
+}`,
+  patr1module2tutorial3code1: `const palette = ["#2FD3E6", "#FF86DB"];
 
-      // попробуй раскомментировать:
-      // if (x > width / 2) {
-      //   currentSize = step * 0.28;
-      // }
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  noStroke();
+}
 
-      fill('#858585');
-      ellipse(x + step / 2, y + step / 2, currentSize);
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function draw() {
+  background("#FFFFFF");
+
+  const padding = 32;
+  const cols = 5;
+  const step = (min(width, height) - padding * 2) / cols;
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (cols - 1) * step / 2;
+
+  for (let row = 0; row < cols; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const x = startX + col * step;
+      const y = startY + row * step;
+      const wave = sin(0 + row * 0.7 + col * 0.4) * step * 0.12;
+      const size = step * 0.52 + wave;
+
+      fill(palette[(row + col) % palette.length]);
+      circle(x, y, size);
     }
   }
 
   noLoop();
 }`,
-  patr1module2tutorial3code1: `function setup() {
+  patr1module2tutorial3code2: `const palette = ["#37E87A", "#FFC300"];
+
+function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
-let items = [];
-
-function setup() {
-  createCanvas(app.clientWidth, app.clientHeight);
-
-  for (let i = 0; i < 20; i++) {
-    items.push({
-      x: random(width),
-      y: random(height),
-      size: 40
-    });
-  }
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
 }
 
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  for (let item of items) {
-    fill('#2c2c2c');
-    ellipse(item.x, item.y, item.size);
+  const padding = 32;
+  const cols = 5;
+  const step = (min(width, height) - padding * 2) / cols;
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (cols - 1) * step / 2;
+
+  for (let row = 0; row < cols; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const x = startX + col * step;
+      const y = startY + row * step;
+      const wave = sin(0 + row * 0.7 + col * 0.4) * step * 0.12;
+      const size = step * 0.52 + wave;
+
+      fill(palette[(row + col) % palette.length]);
+      rectMode(CENTER);
+      square(x, y, size);
+    }
   }
 
   noLoop();
 }`,
-  patr1module2tutorial3code2: `let items = [];
+  patr1module2tutorial3code3: `const particles = [];
 
 function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
-
-  for (let i = 0; i < 25; i++) {
-    items.push({
-      x: random(width),
-      y: random(height),
-      size: random(20, 80)
-    });
+  for (let i = 0; i < 36; i += 1) {
+    particles.push({ angle: i * TWO_PI / 36, radius: 32 + (i % 6) * 16 });
   }
 }
 
-function draw() {
-  background(248);
-
-  for (let item of items) {
-    fill('#858585');
-    ellipse(item.x, item.y, item.size);
-  }
-
-  noLoop();
-}`,
-  patr1module2tutorial3code3: `let items = [];
-
-function setup() {
-  createCanvas(app.clientWidth, app.clientHeight);
-  noStroke();
-
-  for (let i = 0; i < 30; i++) {
-    items.push({
-      x: random(width),
-      y: random(height),
-      size: random(20, 60),
-      color: '#2c2c2c'
-    });
-  }
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
 }
 
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  for (let item of items) {
+  for (let i = 0; i < particles.length; i += 1) {
+    const p = particles[i];
+    p.angle += 0.012 + (i % 5) * 0.002;
+    const x = width / 2 + cos(p.angle) * p.radius;
+    const y = height / 2 + sin(p.angle * 1.4) * p.radius;
 
-    // попробуй раскомментировать:
-
-    // item.size = random(10, 80);
-    // item.color = random(['#2c2c2c', '#858585', '#cfcfcf']);
-
-    fill(item.color);
-    ellipse(item.x, item.y, item.size);
+    fill(i % 2 === 0 ? "#FFC300" : "#FF86DB");
+    circle(x, y, 16 + (i % 4) * 4);
   }
-
-  noLoop();
 }`,
   patr1module2tutorial4code1: `function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
+  randomSeed(42); // фиксируем случайность, чтобы композиция не прыгала
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
 }
 
 function draw() {
-  background(248);
+  background("#FFFFFF");
+  randomSeed(42);
 
-  let step = width / 6;
+  const centerX = width / 2;
+  const centerY = height / 2;
+  const maxRadius = min(width, height) * 0.38;
 
-  for (let y = 0; y < height; y += step) {
-    for (let x = 0; x < width; x += step) {
+  for (let i = 0; i < 72; i += 1) {
+    const angle = (i / 72) * TWO_PI;
+    const radius = random(maxRadius * 0.2, maxRadius);
+    const x = centerX + cos(angle) * radius;
+    const y = centerY + sin(angle) * radius;
+    const size = random(14, 34);
 
-      let size = random(step * 0.3, step * 0.9);
-
-      fill('#2c2c2c');
-      ellipse(x + step / 2, y + step / 2, size);
-    }
+    fill(i % 2 === 0 ? "#FFC300" : "#FF86DB");
+    circle(x, y, size);
   }
 
   noLoop();
@@ -1589,166 +1789,202 @@ function draw() {
   patr1module2tutorial4code2: `function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
+  randomSeed(42); // фиксируем случайность, чтобы композиция не прыгала
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
 }
 
 function draw() {
-  background(248);
+  background("#FFFFFF");
+  randomSeed(42);
 
-  let step = width / 6;
+  const centerX = width / 2;
+  const centerY = height / 2;
+  const maxRadius = min(width, height) * 0.38;
 
-  for (let y = 0; y < height; y += step) {
-    for (let x = 0; x < width; x += step) {
+  for (let i = 0; i < 72; i += 1) {
+    const angle = (i / 72) * TWO_PI;
+    const radius = random(maxRadius * 0.2, maxRadius);
+    const x = centerX + cos(angle) * radius;
+    const y = centerY + sin(angle) * radius;
+    const size = random(14, 34);
 
-      let offsetX = random(-step * 0.3, step * 0.3);
-      let offsetY = random(-step * 0.3, step * 0.3);
-
-      fill('#858585');
-      ellipse(
-        x + step / 2 + offsetX,
-        y + step / 2 + offsetY,
-        step * 0.6
-      );
-    }
+    fill(i % 2 === 0 ? "#FFC300" : "#FF86DB");
+    circle(x, y, size);
   }
 
   noLoop();
 }`,
-  patr1module2tutorial4code3: `function setup() {
-  createCanvas(app.clientWidth, app.clientHeight);
-  noStroke();
+  patr1module2tutorial4code3: `let t = 0;
+
+function setup() {
+  const canvas = createCanvas(app.clientWidth, app.clientHeight);
+  canvas.parent("app");
+
+  noFill();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
 }
 
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  let step = width / 6;
+  stroke("#2FD3E6");
+  strokeWeight(4);
+  beginShape();
 
-  for (let y = 0; y < height; y += step) {
-    for (let x = 0; x < width; x += step) {
+  for (let i = 0; i <= 96; i += 1) {
+    const x = map(i, 0, 96, 32, width - 32);
+    const n = noise(i * 0.06, t);
+    const y = height / 2 + map(n, 0, 1, -96, 96);
 
-      if (random() > 0.5) {
-        fill('#2c2c2c');
-        ellipse(x + step / 2, y + step / 2, step * 0.6);
-      } else {
-        fill('#cfcfcf');
-        rect(
-          x + step * 0.2,
-          y + step * 0.2,
-          step * 0.6,
-          step * 0.6
-        );
-      }
-
-    }
+    curveVertex(x, y);
   }
 
-  noLoop();
+  endShape();
+
+  stroke("#FF86DB");
+  strokeWeight(2);
+  beginShape();
+
+  for (let i = 0; i <= 96; i += 1) {
+    const x = map(i, 0, 96, 32, width - 32);
+    const y = height / 2 + sin(i * 0.28 + t * 5) * 48;
+
+    curveVertex(x, y);
+  }
+
+  endShape();
+
+  t += 0.008;
 }`,
   patr1module2tutorial4code4: `function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
+  randomSeed(42); // фиксируем случайность, чтобы композиция не прыгала
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
 }
 
 function draw() {
-  background(248);
+  background("#FFFFFF");
+  randomSeed(42);
 
-  let step = width / 6;
+  const centerX = width / 2;
+  const centerY = height / 2;
+  const maxRadius = min(width, height) * 0.38;
 
-  for (let y = 0; y < height; y += step) {
-    for (let x = 0; x < width; x += step) {
+  for (let i = 0; i < 72; i += 1) {
+    const angle = (i / 72) * TWO_PI;
+    const radius = random(maxRadius * 0.2, maxRadius);
+    const x = centerX + cos(angle) * radius;
+    const y = centerY + sin(angle) * radius;
+    const size = random(14, 34);
 
-      let size = step * 0.6;
-
-      // попробуй раскомментировать:
-
-      // size = random(step * 0.3, step * 0.9);
-
-      // let offset = random(-20, 20);
-      // x += offset;
-      // y += offset;
-
-      // if (random() > 0.5) {
-      //   fill('#2c2c2c');
-      // } else {
-      //   fill('#cfcfcf');
-      // }
-
-      fill('#2c2c2c');
-      ellipse(x + step / 2, y + step / 2, size);
-    }
+    fill(i % 2 === 0 ? "#FFC300" : "#FF86DB");
+    circle(x, y, size);
   }
 
   noLoop();
 }`,
   patr1module2tutorial5code1: `function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
   noStroke();
 }
 
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  let step = width / 8;
+  const step = 48;
+  const cols = floor((width - 64) / step);
+  const rows = floor((height - 64) / step);
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (rows - 1) * step / 2;
 
-  for (let y = 0; y < height; y += step) {
-    for (let x = 0; x < width; x += step) {
-      fill('#d9d9d9');
-      ellipse(x + step / 2, y + step / 2, step * 0.5);
+  for (let row = 0; row < rows; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const shift = 0;
+      const x = startX + col * step + shift;
+      const y = startY + row * step;
+      const size = 24 + ((row + col) % 3) * 4;
+
+      fill((row + col) % 2 === 0 ? "#37E87A" : "#2FD3E6");
+      square(x, y, size);
     }
   }
-
-  noLoop();
 }`,
   patr1module2tutorial5code2: `function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
   noStroke();
 }
 
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  let step = width / 8;
+  const step = 48;
+  const cols = floor((width - 64) / step);
+  const rows = floor((height - 64) / step);
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (rows - 1) * step / 2;
 
-  for (let y = 0; y < height; y += step) {
-    for (let x = 0; x < width; x += step) {
+  for (let row = 0; row < rows; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const shift = sin(frameCount * 0.025 + row * 0.8 + col * 0.45) * step * 0.2;
+      const x = startX + col * step + shift;
+      const y = startY + row * step;
+      const size = 24 + ((row + col) % 3) * 4;
 
-      let cx = x + step / 2;
-      let cy = y + step / 2;
-
-      fill('#e6e6e6');
-      rect(cx - step * 0.25, cy - step * 0.25, step * 0.5, step * 0.5);
-
-      fill('#2c2c2c');
-      ellipse(cx, cy, step * 0.3);
+      fill((row + col) % 2 === 0 ? "#37E87A" : "#2FD3E6");
+      circle(x, y, size);
     }
   }
-
-  noLoop();
 }`,
-  patr1module2tutorial5code3: `function setup() {
+  patr1module2tutorial5code3: `const palette = ["#FF86DB", "#FFC300"];
+
+function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  let step = width / 8;
+  const padding = 32;
+  const cols = 6;
+  const step = (min(width, height) - padding * 2) / cols;
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (cols - 1) * step / 2;
 
-  for (let y = 0; y < height; y += step) {
-    for (let x = 0; x < width; x += step) {
+  for (let row = 0; row < cols; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const x = startX + col * step;
+      const y = startY + row * step;
+      const wave = sin(0 + row * 0.7 + col * 0.4) * step * 0.12;
+      const size = step * 0.52 + wave;
 
-      let cx = x + step / 2;
-      let cy = y + step / 2;
-
-      if ((x + y) % (step * 2) === 0) {
-        fill('#2c2c2c');
-        ellipse(cx, cy, step * 0.5);
-      } else {
-        fill('#bdbdbd');
-        rect(cx - step * 0.25, cy - step * 0.25, step * 0.5, step * 0.5);
-      }
-
+      fill(palette[(row + col) % palette.length]);
+      rectMode(CENTER);
+      square(x, y, size);
     }
   }
 
@@ -1756,930 +1992,1169 @@ function draw() {
 }`,
   patr1module2tutorial5code4: `function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
   noStroke();
 }
 
-function draw() {
-  background(248);
-
-  let step = width / 8;
-
-  for (let y = 0; y < height; y += step) {
-    for (let x = 0; x < width; x += step) {
-
-      let cx = x + step / 2;
-      let cy = y + step / 2;
-
-      // попробуй раскомментировать:
-
-      // if (x % (step * 2) === 0) {
-      //   fill('#2c2c2c');
-      // } else {
-      //   fill('#cfcfcf');
-      // }
-
-      // if (y % (step * 2) === 0) {
-      //   ellipse(cx, cy, step * 0.5);
-      // } else {
-      //   rect(cx - step * 0.25, cy - step * 0.25, step * 0.5, step * 0.5);
-      // }
-
-      fill('#858585');
-      ellipse(cx, cy, step * 0.5);
-
-    }
-  }
-
-  noLoop();
-}`,
-  patr2module1tutorial1code1: `const app = document.getElementById("app");
-app.innerHTML = "";
-app.style.position = "relative";
-app.style.background = "#f8f8f8";
-app.style.overflow = "hidden";
-
-const count = 8;
-const blocks = [];
-
-for (let i = 0; i < count; i++) {
-  const block = document.createElement("div");
-  block.style.position = "absolute";
-  block.style.width = "48px";
-  block.style.height = "48px";
-  block.style.borderRadius = "999px";
-  block.style.background = i % 2 === 0 ? "#1f1f1f" : "#cfcfcf";
-  block.style.left = 40 + i * 56 + "px";
-  block.style.top = "50%";
-  block.style.transform = "translateY(-50%)";
-  block.style.transition = "opacity 0.4s ease";
-  app.appendChild(block);
-  blocks.push(block);
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
 }
 
-setTimeout(() => {
-  for (const block of blocks) {
-    block.style.opacity = "0";
-  }
-}, 700);
+function draw() {
+  background("#FFFFFF");
 
-setTimeout(() => {
-  for (const block of blocks) {
-    block.remove();
+  const step = 48;
+  const cols = floor((width - 64) / step);
+  const rows = floor((height - 64) / step);
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (rows - 1) * step / 2;
+
+  for (let row = 0; row < rows; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const shift = sin(frameCount * 0.025 + row * 0.8 + col * 0.45) * step * 0.2;
+      const x = startX + col * step + shift;
+      const y = startY + row * step;
+      const size = 24 + ((row + col) % 3) * 4;
+
+      fill((row + col) % 2 === 0 ? "#37E87A" : "#2FD3E6");
+      circle(x, y, size);
+    }
   }
-}, 1200);`,
-  patr2module1tutorial1code2: `let circles = [];
-let timer = 0;
+}`,
+    patr2module1tutorial1code1: `const app = document.getElementById("app");
+app.innerHTML = "";
+app.style.position = "relative";
+app.style.overflow = "hidden";
+app.style.background = "#FFFFFF";
+
+const colors = ["#37E87A", "#2FD3E6"];
+const count = 9;
+const gap = 48;
+const startX = app.clientWidth / 2 - (count - 1) * gap / 2;
+
+for (let i = 0; i < count; i += 1) {
+  const dot = document.createElement("div");
+  dot.style.position = "absolute";
+  dot.style.left = startX + i * gap - 20 + "px";
+  dot.style.top = app.clientHeight / 2 + Math.sin(i * 0.7) * 40 - 20 + "px";
+  dot.style.width = "40px";
+  dot.style.height = "40px";
+  dot.style.borderRadius = "50%";
+  dot.style.background = colors[i % colors.length];
+  dot.style.transition = "transform 0.35s ease, opacity 0.35s ease";
+  app.appendChild(dot);
+
+  setTimeout(() => {
+    dot.style.transform = "scale(0.62)";
+    dot.style.opacity = "0.35";
+  }, 500 + i * 45);
+}`,
+  patr2module1tutorial1code2: `function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  noStroke();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function draw() {
+  background("#FFFFFF");
+  const padding = 40;
+  const count = 11;
+  const step = (width - padding * 2) / (count - 1);
+
+  for (let i = 0; i < count; i += 1) {
+    const x = padding + i * step;
+    const y = height / 2 + sin(frameCount * 0.04 + i * 0.65) * 56;
+    const size = 34 + cos(frameCount * 0.04 + i) * 10;
+
+    fill(i % 2 === 0 ? "#37E87A" : "#2FD3E6");
+    circle(x, y, size);
+  }
+}`,
+  patr2module1tutorial1code3: `const app = document.getElementById("app");
+app.innerHTML = "";
+app.style.position = "relative";
+app.style.overflow = "hidden";
+app.style.background = "#FFFFFF";
+
+const colors = ["#37E87A", "#2FD3E6"];
+const count = 9;
+const gap = 48;
+const startX = app.clientWidth / 2 - (count - 1) * gap / 2;
+
+for (let i = 0; i < count; i += 1) {
+  const dot = document.createElement("div");
+  dot.style.position = "absolute";
+  dot.style.left = startX + i * gap - 20 + "px";
+  dot.style.top = app.clientHeight / 2 + Math.sin(i * 0.7) * 40 - 20 + "px";
+  dot.style.width = "40px";
+  dot.style.height = "40px";
+  dot.style.borderRadius = "50%";
+  dot.style.background = colors[i % colors.length];
+  dot.style.transition = "transform 0.35s ease, opacity 0.35s ease";
+  app.appendChild(dot);
+
+  setTimeout(() => {
+    dot.style.transform = "scale(0.62)";
+    dot.style.opacity = "0.35";
+  }, 500 + i * 45);
+}`,
+  patr2module1tutorial2code1: `const width = app.clientWidth;
+const height = app.clientHeight;
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xffffff);
+
+const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+camera.position.set(0, 0, 5);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+const group = new THREE.Group();
+scene.add(group);
+
+const colors = [0xff86db, 0x2fd3e6];
+const geometry = new THREE.BoxGeometry(0.42, 0.42, 0.42);
+const materials = colors.map((color) => new THREE.MeshStandardMaterial({ color, roughness: 0.55 }));
+
+for (let x = -2; x <= 2; x += 1) {
+  for (let y = -1; y <= 1; y += 1) {
+    const cube = new THREE.Mesh(geometry, materials[(x + y + 4) % 2]);
+    cube.position.set(x * 0.64, y * 0.64, 0);
+    group.add(cube);
+  }
+}
+
+const light = new THREE.DirectionalLight(0xffffff, 2);
+light.position.set(2, 3, 4);
+scene.add(light);
+scene.add(new THREE.AmbientLight(0xffffff, 1.2));
+
+function onResize() {
+  const width = app.clientWidth;
+  const height = app.clientHeight;
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+  renderer.setSize(width, height);
+}
+
+let animationId;
+function animate() {
+  group.rotation.x += 0.006;
+  group.rotation.y += 0.012;
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+window.addEventListener("resize", onResize);
+animate();
+
+return () => {
+  cancelAnimationFrame(animationId);
+  window.removeEventListener("resize", onResize);
+  geometry.dispose();
+  materials.forEach((material) => material.dispose());
+  renderer.dispose();
+};`,
+  patr2module1tutorial2code2: `const app = document.getElementById("app");
+app.innerHTML = "";
+app.style.position = "relative";
+app.style.overflow = "hidden";
+app.style.background = "#FFFFFF";
+
+const colors = ["#FF86DB", "#2FD3E6"];
+const count = 5;
+const gap = 56;
+const cardWidth = 104;
+const startX = app.clientWidth / 2 - ((count - 1) * gap + cardWidth) / 2;
+
+for (let i = 0; i < count; i += 1) {
+  const card = document.createElement("div");
+
+  card.style.position = "absolute";
+  card.style.left = startX + i * gap + "px";
+  card.style.top = "50%";
+  card.style.width = cardWidth + "px";
+  card.style.height = "136px";
+  card.style.borderRadius = "28px";
+  card.style.background = colors[i % colors.length];
+  card.style.transform = "translateY(-50%) rotate(" + ((i - 2) * 6) + "deg)";
+  card.style.transition = "transform 0.3s ease";
+
+  card.addEventListener("mouseenter", () => {
+    card.style.transform = "translateY(-58%) rotate(" + ((i - 2) * 6) + "deg)";
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = "translateY(-50%) rotate(" + ((i - 2) * 6) + "deg)";
+  });
+
+  app.appendChild(card);
+}`,
+  patr2module1tutorial2code3: `const app = document.getElementById("app");
+const canvas = document.createElement("canvas");
+const ctx = canvas.getContext("2d");
+
+app.innerHTML = "";
+app.style.background = "#FFFFFF";
+app.appendChild(canvas);
+
+function resize() {
+  canvas.width = app.clientWidth;
+  canvas.height = app.clientHeight;
+  draw();
+}
+
+function draw() {
+  const width = canvas.width;
+  const height = canvas.height;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillRect(0, 0, width, height);
+
+  const padding = 32;
+  const cols = 6;
+  const step = (Math.min(width, height) - padding * 2) / cols;
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (cols - 1) * step / 2;
+
+  for (let row = 0; row < cols; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const x = startX + col * step;
+      const y = startY + row * step;
+      const size = step * (0.36 + (col + row) * 0.015);
+
+      ctx.fillStyle = (row + col) % 2 === 0 ? "#FF86DB" : "#2FD3E6";
+      ctx.fillRect(x - size / 2, y - size / 2, size, size);
+    }
+  }
+}
+
+window.addEventListener("resize", resize);
+resize();
+
+return () => {
+  window.removeEventListener("resize", resize);
+};`,
+  patr2module1tutorial2code4: `const app = document.getElementById("app");
+app.innerHTML = "";
+app.style.position = "relative";
+app.style.overflow = "hidden";
+app.style.background = "#FFFFFF";
+
+const colors = ["#FF86DB", "#2FD3E6"];
+const count = 5;
+const gap = 56;
+const cardWidth = 104;
+const startX = app.clientWidth / 2 - ((count - 1) * gap + cardWidth) / 2;
+
+for (let i = 0; i < count; i += 1) {
+  const card = document.createElement("div");
+  card.style.position = "absolute";
+  card.style.left = startX + i * gap + "px";
+  card.style.top = "50%";
+  card.style.width = cardWidth + "px";
+  card.style.height = "136px";
+  card.style.borderRadius = "28px";
+  card.style.background = colors[i % colors.length];
+  card.style.transform = "translateY(-50%) rotate(" + ((i - 2) * 6) + "deg)";
+  card.style.transition = "transform 0.3s ease";
+
+  card.addEventListener("mouseenter", () => {
+    card.style.transform = "translateY(-58%) rotate(" + ((i - 2) * 6) + "deg)";
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = "translateY(-50%) rotate(" + ((i - 2) * 6) + "deg)";
+  });
+
+  app.appendChild(card);
+}`,
+  patr2module1tutorial2code5: `const app = document.getElementById("app");
+const canvas = document.createElement("canvas");
+const ctx = canvas.getContext("2d");
+let animationId;
+let t = 0;
+let pointerX = 0.5;
+
+app.innerHTML = "";
+app.style.background = "#FFFFFF";
+app.appendChild(canvas);
+
+function resize() {
+  canvas.width = app.clientWidth;
+  canvas.height = app.clientHeight;
+}
+
+function onPointerMove(event) {
+  const rect = canvas.getBoundingClientRect();
+  pointerX = (event.clientX - rect.left) / rect.width;
+}
+
+function draw() {
+  const width = canvas.width;
+  const height = canvas.height;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillRect(0, 0, width, height);
+
+  const count = 10;
+  const padding = 40;
+  const step = (width - padding * 2) / (count - 1);
+
+  for (let i = 0; i < count; i += 1) {
+    const x = padding + i * step;
+    const y = height / 2 + Math.sin(t + i * 0.6) * (24 + pointerX * 56);
+    const size = 28 + Math.cos(t + i) * 8;
+
+    ctx.fillStyle = i % 2 === 0 ? "#FFC300" : "#FF86DB";
+    ctx.beginPath();
+    ctx.arc(x, y, size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  t += 0.04;
+  animationId = requestAnimationFrame(draw);
+}
+
+canvas.addEventListener("pointermove", onPointerMove);
+window.addEventListener("resize", resize);
+resize();
+draw();
+
+return () => {
+  cancelAnimationFrame(animationId);
+  canvas.removeEventListener("pointermove", onPointerMove);
+  window.removeEventListener("resize", resize);
+};`,
+  patr2module1tutorial3code1: `const app = document.getElementById("app");
+const canvas = document.createElement("canvas");
+const ctx = canvas.getContext("2d");
+let animationId;
+let t = 0;
+let pointerX = 0.5;
+
+app.innerHTML = "";
+app.style.background = "#FFFFFF";
+app.appendChild(canvas);
+
+function resize() {
+  canvas.width = app.clientWidth;
+  canvas.height = app.clientHeight;
+}
+
+function onPointerMove(event) {
+  const rect = canvas.getBoundingClientRect();
+  pointerX = (event.clientX - rect.left) / rect.width;
+}
+
+    ball.style.left = x + "px";
+    ball.style.top = y + "px";
+    ball.style.background = "#1f1f1f";
+    ball.style.transform = "translate(-50%, -50%) scale(1.18)";
+function draw() {
+  const width = canvas.width;
+  const height = canvas.height;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillRect(0, 0, width, height);
+
+  const count = 10;
+  const padding = 40;
+  const step = (width - padding * 2) / (count - 1);
+
+  for (let i = 0; i < count; i += 1) {
+    const x = padding + i * step;
+    const y = height / 2 + Math.sin(t + i * 0.6) * (24 + pointerX * 56);
+    const size = 28 + Math.cos(t + i) * 8;
+
+    ctx.fillStyle = i % 2 === 0 ? "#FFC300" : "#FF86DB";
+    ctx.beginPath();
+    ctx.arc(x, y, size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  t += 0.04;
+  animationId = requestAnimationFrame(draw);
+}
+
+canvas.addEventListener("pointermove", onPointerMove);
+window.addEventListener("resize", resize);
+resize();
+draw();
+
+return () => {
+  cancelAnimationFrame(animationId);
+  canvas.removeEventListener("pointermove", onPointerMove);
+  window.removeEventListener("resize", resize);
+};`,
+  patr2module1tutorial3code2: `const app = document.getElementById("app");
+app.innerHTML = "";
+app.style.position = "relative";
+app.style.overflow = "hidden";
+app.style.background = "#FFFFFF";
+
+const colors = ["#37E87A", "#2FD3E6"];
+const count = 9;
+const gap = 48;
+const startX = app.clientWidth / 2 - (count - 1) * gap / 2;
+
+for (let i = 0; i < count; i += 1) {
+  const dot = document.createElement("div");
+  dot.style.position = "absolute";
+  dot.style.left = startX + i * gap - 20 + "px";
+  dot.style.top = app.clientHeight / 2 + Math.sin(i * 0.7) * 40 - 20 + "px";
+  dot.style.width = "40px";
+  dot.style.height = "40px";
+  dot.style.borderRadius = "50%";
+  dot.style.background = colors[i % colors.length];
+  dot.style.transition = "transform 0.35s ease, opacity 0.35s ease";
+  app.appendChild(dot);
+
+  setTimeout(() => {
+    dot.style.transform = "scale(0.62)";
+    dot.style.opacity = "0.35";
+  }, 500 + i * 45);
+}`,
+  patr2module1tutorial3code3: `const app = document.getElementById("app");
+const canvas = document.createElement("canvas");
+const ctx = canvas.getContext("2d");
+let animationId;
+let t = 0;
+let pointerX = 0.5;
+
+app.innerHTML = "";
+app.style.background = "#FFFFFF";
+app.appendChild(canvas);
+
+function resize() {
+  canvas.width = app.clientWidth;
+  canvas.height = app.clientHeight;
+}
+
+function onPointerMove(event) {
+  const rect = canvas.getBoundingClientRect();
+  pointerX = (event.clientX - rect.left) / rect.width;
+}
+
+function draw() {
+  const width = canvas.width;
+  const height = canvas.height;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillRect(0, 0, width, height);
+
+  const count = 10;
+  const padding = 40;
+  const step = (width - padding * 2) / (count - 1);
+
+  for (let i = 0; i < count; i += 1) {
+    const x = padding + i * step;
+    const y = height / 2 + Math.sin(t + i * 0.6) * (24 + pointerX * 56);
+    const size = 28 + Math.cos(t + i) * 8;
+
+    ctx.fillStyle = i % 2 === 0 ? "#FFC300" : "#FF86DB";
+    ctx.beginPath();
+    ctx.arc(x, y, size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  t += 0.04;
+  animationId = requestAnimationFrame(draw);
+}
+
+canvas.addEventListener("pointermove", onPointerMove);
+window.addEventListener("resize", resize);
+resize();
+draw();
+
+return () => {
+  cancelAnimationFrame(animationId);
+  canvas.removeEventListener("pointermove", onPointerMove);
+  window.removeEventListener("resize", resize);
+};`,
+  patr2module2tutorial1code1: `const palette = ["#2FD3E6", "#FF86DB"];
 
 function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
-function draw() {
-  background(248);
-
-  if (frameCount % 12 === 0 && circles.length < 12) {
-    circles.push({
-      x: 60 + circles.length * 56,
-      y: height / 2,
-      size: 42
-    });
-  }
-
-  for (let circle of circles) {
-    fill('#1f1f1f');
-    ellipse(circle.x, circle.y, circle.size);
-  }
-
-  timer++;
-
-  if (timer > 120) {
-    circles = [];
-    timer = 0;
-  }
-}`,
-  patr2module1tutorial1code3: `const app = document.getElementById("app");
-app.innerHTML = "";
-app.style.position = "relative";
-app.style.background = "#f8f8f8";
-app.style.overflow = "hidden";
-
-const count = 7;
-// попробуй раскомментировать:
-// const count = 12;
-
-const blocks = [];
-
-for (let i = 0; i < count; i++) {
-  const block = document.createElement("div");
-  block.style.position = "absolute";
-  block.style.width = "44px";
-  block.style.height = "44px";
-  block.style.borderRadius = "12px";
-  block.style.background = "#858585";
-
-  // попробуй раскомментировать:
-  // block.style.borderRadius = "999px";
-  // block.style.background = i % 2 === 0 ? "#1f1f1f" : "#d6d6d6";
-
-  block.style.left = 36 + i * 52 + "px";
-  block.style.top = "50%";
-  block.style.transform = "translateY(-50%)";
-
-  app.appendChild(block);
-  blocks.push(block);
-}
-
-setTimeout(() => {
-  for (const block of blocks) {
-    // попробуй раскомментировать:
-    // block.style.transform = "translateY(-50%) scale(0.6)";
-    block.style.opacity = "0";
-  }
-}, 700);
-
-setTimeout(() => {
-  app.innerHTML = "";
-}, 1200);`,
-  patr2module1tutorial2code1: `(function () {
-  const app = document.getElementById("app");
-  app.innerHTML = "";
-  app.style.position = "relative";
-  app.style.background = "#f8f8f8";
-  app.style.overflow = "hidden";
-
-  const cardsCount = 5;
-
-  for (let i = 0; i < cardsCount; i++) {
-    const card = document.createElement("div");
-
-    const offsetX = i * 36 - 72;
-    const offsetY = i * 8;
-    const angle = i * 6 - 12;
-
-    card.style.position = "absolute";
-    card.style.width = "140px";
-    card.style.height = "180px";
-    card.style.left = "50%";
-    card.style.top = "50%";
-    card.style.borderRadius = "24px";
-    card.style.background = i % 2 === 0 ? "#ffffff" : "#d6d6d6";
-    card.style.boxShadow = "0 12px 32px rgba(31, 31, 31, 0.12)";
-    card.style.transform =
-      "translate(calc(-50% + " + offsetX + "px), calc(-50% + " + offsetY + "px)) rotate(" + angle + "deg)";
-    card.style.transition = "transform 0.3s ease";
-
-    card.addEventListener("mouseenter", () => {
-      card.style.transform =
-        "translate(calc(-50% + " + offsetX + "px), calc(-50% + " + offsetY + "px)) rotate(" + angle + "deg) scale(1.05)";
-    });
-
-    card.addEventListener("mouseleave", () => {
-      card.style.transform =
-        "translate(calc(-50% + " + offsetX + "px), calc(-50% + " + offsetY + "px)) rotate(" + angle + "deg)";
-    });
-
-    app.appendChild(card);
-  }
-})()`,
-  patr2module1tutorial2code2: `const app = document.getElementById("app");
-app.innerHTML = "";
-app.style.position = "relative";
-app.style.background = "#f8f8f8";
-
-const card = document.createElement("div");
-card.style.position = "absolute";
-card.style.width = "140px";
-card.style.height = "180px";
-card.style.left = "50%";
-card.style.top = "50%";
-card.style.transform = "translate(-50%, -50%)";
-card.style.borderRadius = "24px";
-card.style.background = "#ffffff";
-card.style.boxShadow = "0 12px 32px rgba(31, 31, 31, 0.12)";
-
-app.appendChild(card);`,
-  patr2module1tutorial2code3: `const app = document.getElementById("app");
-app.innerHTML = "";
-app.style.position = "relative";
-app.style.background = "#f8f8f8";
-app.style.overflow = "hidden";
-
-const cardsCount = 5;
-
-for (let i = 0; i < cardsCount; i++) {
-  const card = document.createElement("div");
-
-  card.style.position = "absolute";
-  card.style.width = "140px";
-  card.style.height = "180px";
-  card.style.left = "50%";
-  card.style.top = "50%";
-  card.style.boxShadow = "0 12px 32px rgba(31, 31, 31, 0.12)";
-  card.style.borderRadius = "24px";
-  card.style.background = "#d6d6d6";
-  card.style.transform = \`translate(calc(-50% + \${i * 36 - 72}px), calc(-50% + \${i * 8}px))\`;
-
-  app.appendChild(card);
-}`,
-  patr2module1tutorial2code4: `const app = document.getElementById("app");
-app.innerHTML = "";
-app.style.position = "relative";
-app.style.background = "#f8f8f8";
-app.style.overflow = "hidden";
-
-const cardsCount = 5;
-
-for (let i = 0; i < cardsCount; i++) {
-  const card = document.createElement("div");
-
-  card.style.position = "absolute";
-  card.style.width = "140px";
-  card.style.height = "180px";
-  card.style.left = "50%";
-  card.style.top = "50%";
-  card.style.borderRadius = "24px";
-  card.style.background = i % 2 === 0 ? "#ffffff" : "#d6d6d6";
-  card.style.boxShadow = "0 12px 32px rgba(31, 31, 31, 0.12)";
-  card.style.transform = \`translate(calc(-50% + \${i * 36 - 72}px), calc(-50% + \${i * 8}px)) rotate(\${i * 6 - 12}deg)\`;
-  card.style.transition = "transform 0.3s ease";
-
-  card.addEventListener("mouseenter", () => {
-    card.style.transform = \`translate(calc(-50% + \${i * 36 - 72}px), calc(-50% + \${i * 8}px)) rotate(\${i * 6 - 12}deg) scale(1.05)\`;
-  });
-
-  card.addEventListener("mouseleave", () => {
-    card.style.transform = \`translate(calc(-50% + \${i * 36 - 72}px), calc(-50% + \${i * 8}px)) rotate(\${i * 6 - 12}deg)\`;
-  });
-
-  app.appendChild(card);
-}`,
-  patr2module1tutorial2code5: `(function () {
-  const app = document.getElementById("app");
-  app.innerHTML = "";
-  app.style.position = "relative";
-  app.style.background = "#f8f8f8";
-  app.style.overflow = "hidden";
-
-  const cardsCount = 5;
-
-  for (let i = 0; i < cardsCount; i++) {
-    const card = document.createElement("div");
-
-    card.style.position = "absolute";
-    card.style.width = "140px";
-    card.style.height = "180px";
-    card.style.left = "50%";
-    card.style.top = "50%";
-    card.style.borderRadius = "24px";
-    card.style.background = "#858585";
-    card.style.boxShadow = "0 12px 32px rgba(31, 31, 31, 0.12)";
-    card.style.transition = "transform 0.3s ease, background 0.3s ease";
-
-    let offsetX = i * 32 - 64;
-    let offsetY = i * 10;
-    let angle = i * 5 - 10;
-
-    // попробуй раскомментировать:
-    // angle = i * 10 - 20;
-    // offsetX = i * 24 - 48;
-    // card.style.background = i % 2 === 0 ? "#ffffff" : "#f8f8f8";
-
-    card.style.transform = \`translate(calc(-50% + \${offsetX}px), calc(-50% + \${offsetY}px)) rotate(\${angle}deg)\`;
-
-    card.addEventListener("mouseenter", () => {
-      // попробуй раскомментировать:
-      // card.style.background = "#ffffff";
-      // card.style.transform = \`translate(calc(-50% + \${offsetX}px), calc(-50% + \${offsetY}px)) rotate(\${angle}deg) scale(1.08)\`;
-    });
-
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = \`translate(calc(-50% + \${offsetX}px), calc(-50% + \${offsetY}px)) rotate(\${angle}deg)\`;
-    });
-
-    app.appendChild(card);
-  }
-})()`,
-  patr2module1tutorial3code1: `(function () {
-  const app = document.getElementById("app");
-  app.innerHTML = "";
-  app.style.position = "relative";
-  app.style.background = "#f8f8f8";
-  app.style.overflow = "hidden";
-  app.style.cursor = "pointer";
-
-  const ball = document.createElement("div");
-  ball.style.position = "absolute";
-  ball.style.width = "64px";
-  ball.style.height = "64px";
-  ball.style.left = "50%";
-  ball.style.top = "50%";
-  ball.style.borderRadius = "999px";
-  ball.style.background = "#1f1f1f";
-  ball.style.transform = "translate(-50%, -50%)";
-  ball.style.transition = "left 0.4s ease, top 0.4s ease";
-
-  app.appendChild(ball);
-
-  app.addEventListener("click", (event) => {
-    const rect = app.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-
-    ball.style.left = x + "px";
-    ball.style.top = y + "px";
-  });
-})();`,
-  patr2module1tutorial3code2: `(function () {
-  const app = document.getElementById("app");
-  app.innerHTML = "";
-  app.style.position = "relative";
-  app.style.background = "#f8f8f8";
-  app.style.overflow = "hidden";
-  app.style.cursor = "pointer";
-
-  const ball = document.createElement("div");
-  ball.style.position = "absolute";
-  ball.style.width = "64px";
-  ball.style.height = "64px";
-  ball.style.left = "50%";
-  ball.style.top = "50%";
-  ball.style.borderRadius = "999px";
-  ball.style.background = "#858585";
-  ball.style.transform = "translate(-50%, -50%) scale(1)";
-  ball.style.transition = "left 0.45s ease, top 0.45s ease, transform 0.25s ease, background 0.25s ease";
-
-  app.appendChild(ball);
-
-  app.addEventListener("click", (event) => {
-    const rect = app.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-
-    ball.style.left = x + "px";
-    ball.style.top = y + "px";
-    ball.style.background = "#1f1f1f";
-    ball.style.transform = "translate(-50%, -50%) scale(1.18)";
-
-    setTimeout(() => {
-      ball.style.background = "#858585";
-      ball.style.transform = "translate(-50%, -50%) scale(1)";
-    }, 220);
-  });
-})();`,
-  patr2module1tutorial3code3: `(function () {
-  const app = document.getElementById("app");
-  app.innerHTML = "";
-  app.style.position = "relative";
-  app.style.background = "#f8f8f8";
-  app.style.overflow = "hidden";
-  app.style.cursor = "pointer";
-
-  const ball = document.createElement("div");
-  ball.style.position = "absolute";
-  ball.style.width = "64px";
-  ball.style.height = "64px";
-  ball.style.left = "50%";
-  ball.style.top = "50%";
-  ball.style.borderRadius = "999px";
-  ball.style.background = "#858585";
-  ball.style.transform = "translate(-50%, -50%) scale(1)";
-  ball.style.transition = "left 0.45s ease, top 0.45s ease, transform 0.25s ease, background 0.25s ease";
-
-  // попробуй раскомментировать:
-  // ball.style.transition = "left 0.2s ease, top 0.2s ease, transform 0.2s ease, background 0.2s ease";
-  // ball.style.borderRadius = "18px";
-
-  app.appendChild(ball);
-
-  app.addEventListener("click", (event) => {
-    const rect = app.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-
-    ball.style.left = x + "px";
-    ball.style.top = y + "px";
-    ball.style.background = "#1f1f1f";
-    ball.style.transform = "translate(-50%, -50%) scale(1.18)";
-
-    // попробуй раскомментировать:
-    // ball.style.transform = "translate(-50%, -50%) rotate(18deg) scale(1.12)";
-    // ball.style.background = "#d6d6d6";
-
-    setTimeout(() => {
-      ball.style.background = "#858585";
-      ball.style.transform = "translate(-50%, -50%) scale(1)";
-    }, 220);
-  });
-})();`,
-  patr2module2tutorial1code1: `function setup() {
-  createCanvas(app.clientWidth, app.clientHeight);
-  noStroke();
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
 }
 
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  let x = width / 2 + sin(frameCount * 0.05) * 90;
-  let y = height / 2;
+  const padding = 32;
+  const cols = 5;
+  const step = (min(width, height) - padding * 2) / cols;
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (cols - 1) * step / 2;
 
-  fill(30);
-  ellipse(x, y, 80);
-}`,
-  patr2module2tutorial1code2: `(function () {
-  const app = document.getElementById("app");
-  app.innerHTML = "";
-  app.style.position = "relative";
-  app.style.background = "#f8f8f8";
-  app.style.overflow = "hidden";
+  for (let row = 0; row < cols; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const x = startX + col * step;
+      const y = startY + row * step;
+      const wave = sin(0 + row * 0.7 + col * 0.4) * step * 0.12;
+      const size = step * 0.52 + wave;
 
-  const ball = document.createElement("div");
-  ball.style.position = "absolute";
-  ball.style.width = "80px";
-  ball.style.height = "80px";
-  ball.style.borderRadius = "999px";
-  ball.style.background = "#1f1f1f";
-
-  app.appendChild(ball);
-
-  let t = 0;
-
-  function draw() {
-    const x = app.clientWidth / 2 + Math.sin(t) * 90;
-    const y = app.clientHeight / 2;
-
-    ball.style.left = x + "px";
-    ball.style.top = y + "px";
-    ball.style.transform = "translate(-50%, -50%)";
-
-    t += 0.05;
-
-    requestAnimationFrame(draw);
-  }
-
-  draw();
-})();`,
-  patr2module2tutorial1code3: `(function () {
-  const app = document.getElementById("app");
-  app.innerHTML = "";
-  app.style.position = "relative";
-  app.style.background = "#f8f8f8";
-  app.style.overflow = "hidden";
-
-  const style = document.createElement("style");
-  style.innerHTML = \`
-    @keyframes move {
-      0% { transform: translate(-50%, -50%) translateX(-90px); }
-      50% { transform: translate(-50%, -50%) translateX(90px); }
-      100% { transform: translate(-50%, -50%) translateX(-90px); }
+      fill(palette[(row + col) % palette.length]);
+      circle(x, y, size);
     }
-  \`;
-  document.head.appendChild(style);
+  }
 
-  const ball = document.createElement("div");
-  ball.style.position = "absolute";
-  ball.style.left = "50%";
-  ball.style.top = "50%";
-  ball.style.width = "80px";
-  ball.style.height = "80px";
-  ball.style.borderRadius = "999px";
-  ball.style.background = "#1f1f1f";
-  ball.style.animation = "move 2s ease-in-out infinite";
+  noLoop();
+}`,
+  patr2module2tutorial1code2: `const app = document.getElementById("app");
+const canvas = document.createElement("canvas");
+const ctx = canvas.getContext("2d");
 
-  app.appendChild(ball);
-})();`,
-  patr2module2tutorial1code4: `function setup() {
+app.innerHTML = "";
+app.style.background = "#FFFFFF";
+app.appendChild(canvas);
+
+function resize() {
+  canvas.width = app.clientWidth;
+  canvas.height = app.clientHeight;
+  draw();
+}
+
+function draw() {
+  const width = canvas.width;
+  const height = canvas.height;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillRect(0, 0, width, height);
+
+  const padding = 32;
+  const cols = 6;
+  const step = (Math.min(width, height) - padding * 2) / cols;
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (cols - 1) * step / 2;
+
+  for (let row = 0; row < cols; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const x = startX + col * step;
+      const y = startY + row * step;
+      const size = step * (0.36 + (col + row) * 0.015);
+
+      ctx.fillStyle = (row + col) % 2 === 0 ? "#37E87A" : "#2FD3E6";
+      ctx.beginPath();
+      ctx.arc(x, y, size / 2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+}
+
+window.addEventListener("resize", resize);
+resize();
+
+return () => {
+  window.removeEventListener("resize", resize);
+};`,
+  patr2module2tutorial1code3: `const app = document.getElementById("app");
+const canvas = document.createElement("canvas");
+const ctx = canvas.getContext("2d");
+
+app.innerHTML = "";
+app.style.background = "#FFFFFF";
+app.appendChild(canvas);
+
+function resize() {
+  canvas.width = app.clientWidth;
+  canvas.height = app.clientHeight;
+  draw();
+}
+
+function draw() {
+  const width = canvas.width;
+  const height = canvas.height;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillRect(0, 0, width, height);
+
+  const padding = 32;
+  const cols = 6;
+  const step = (Math.min(width, height) - padding * 2) / cols;
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (cols - 1) * step / 2;
+
+  for (let row = 0; row < cols; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const x = startX + col * step;
+      const y = startY + row * step;
+      const size = step * (0.36 + (col + row) * 0.015);
+
+      ctx.fillStyle = (row + col) % 2 === 0 ? "#FFC300" : "#FF86DB";
+      ctx.fillRect(x - size / 2, y - size / 2, size, size);
+    }
+  }
+}
+
+window.addEventListener("resize", resize);
+resize();
+
+return () => {
+  window.removeEventListener("resize", resize);
+};`,
+  patr2module2tutorial1code4: `const palette = ["#2FD3E6", "#37E87A"];
+
+function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  let x = width / 2 + sin(frameCount * 0.05) * 90;
-  let y = height / 2;
+  const padding = 32;
+  const cols = 6;
+  const step = (min(width, height) - padding * 2) / cols;
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (cols - 1) * step / 2;
 
-  fill(30);
-  ellipse(x, y, 80);
+  for (let row = 0; row < cols; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const x = startX + col * step;
+      const y = startY + row * step;
+      const wave = sin(frameCount * 0.025 + row * 0.7 + col * 0.4) * step * 0.12;
+      const size = step * 0.52 + wave;
+
+      fill(palette[(row + col) % palette.length]);
+      circle(x, y, size);
+    }
+  }
+
+  noLoop();
 }`,
   patr2module2tutorial2code1: `function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  let size = map(mouseX, 0, width, 20, 200);
+  const centerX = constrain(mouseX, 40, width - 40);
+  const centerY = constrain(mouseY, 40, height - 40);
+  const radius = min(width, height) * 0.22;
 
-  fill(30);
-  ellipse(mouseX, mouseY, size);
+  fill("#2FD3E6");
+  circle(width / 2, height / 2, radius * 1.5);
+
+  fill("#FF86DB");
+  circle(centerX, centerY, radius * 0.65);
+
+  fill("#FFC300");
+  circle(width - centerX, height - centerY, radius * 0.38);
 }`,
-  patr2module2tutorial2code2: `let isDark = true;
-
-function setup() {
+  patr2module2tutorial2code2: `function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
-function draw() {
-  background(248);
-
-  let size = map(mouseX, 0, width, 20, 200);
-
-  fill(isDark ? 30 : 180);
-  ellipse(mouseX, mouseY, size);
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
 }
 
-function keyPressed() {
-  isDark = !isDark;
+function draw() {
+  background("#FFFFFF");
+  const padding = 40;
+  const count = 11;
+  const step = (width - padding * 2) / (count - 1);
+
+  for (let i = 0; i < count; i += 1) {
+    const x = padding + i * step;
+    const y = height / 2 + sin(frameCount * 0.04 + i * 0.65) * 56;
+    const size = 34 + cos(frameCount * 0.04 + i) * 10;
+
+    fill(i % 2 === 0 ? "#FF86DB" : "#FFC300");
+    circle(x, y, size);
+  }
 }`,
   patr2module2tutorial2code3: `function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
-let isDark = true;
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
 
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  let size = map(mouseX, 0, width, 20, 200);
+  const centerX = constrain(mouseX, 40, width - 40);
+  const centerY = constrain(mouseY, 40, height - 40);
+  const radius = min(width, height) * 0.22;
 
-  // базовый цвет
-  fill(30);
+  fill("#2FD3E6");
+  circle(width / 2, height / 2, radius * 1.5);
 
-  // попробуй раскомментировать:
+  fill("#FF86DB");
+  circle(centerX, centerY, radius * 0.65);
 
-  // цвет зависит от позиции мыши
-  // fill(mouseX / width * 255, mouseY / height * 255, 150);
-
-  // цвет меняется по клавише
-  // fill(isDark ? 30 : 180);
-
-  ellipse(mouseX, mouseY, size);
-
-  // эффект "следа"
-  // background(248, 20);
-}
-
-function keyPressed() {
-  // переключение цвета
-  isDark = !isDark;
-}
-
-function mousePressed() {
-  // при клике появляется круг фиксированного размера
-  // fill(255, 100, 100);
-  // ellipse(mouseX, mouseY, 40);
+  fill("#FFC300");
+  circle(width - centerX, height - centerY, radius * 0.38);
 }`,
   patr2module2tutorial3code1: `function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
   noStroke();
 }
 
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  let step = min(width, height) / 10;
-  let size = step * 0.42;
+  const step = 48;
+  const cols = floor((width - 64) / step);
+  const rows = floor((height - 64) / step);
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (rows - 1) * step / 2;
 
-  for (let y = 0; y < height; y += step) {
-    for (let x = 0; x < width; x += step) {
-      let offsetX = sin(y * 0.04 + frameCount * 0.04) * step * 0.35;
-      let offsetY = cos(x * 0.04 + frameCount * 0.03) * step * 0.2;
+  for (let row = 0; row < rows; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const shift = 0;
+      const x = startX + col * step + shift;
+      const y = startY + row * step;
+      const size = 24 + ((row + col) % 3) * 4;
 
-      fill(31);
-      ellipse(
-        x + step / 2 + offsetX,
-        y + step / 2 + offsetY,
-        size
-      );
+      fill((row + col) % 2 === 0 ? "#37E87A" : "#2FD3E6");
+      square(x, y, size);
     }
   }
 }`,
   patr2module2tutorial3code2: `function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
   noStroke();
 }
 
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  let step = min(width, height) / 10;
-  let size = step * 0.42;
+  const step = 48;
+  const cols = floor((width - 64) / step);
+  const rows = floor((height - 64) / step);
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (rows - 1) * step / 2;
 
-  for (let y = 0; y < height; y += step) {
-    for (let x = 0; x < width; x += step) {
-      fill(140);
-      ellipse(
-        x + step / 2,
-        y + step / 2,
-        size
-      );
+  for (let row = 0; row < rows; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const shift = sin(frameCount * 0.025 + row * 0.8 + col * 0.45) * step * 0.2;
+      const x = startX + col * step + shift;
+      const y = startY + row * step;
+      const size = 24 + ((row + col) % 3) * 4;
+
+      fill((row + col) % 2 === 0 ? "#37E87A" : "#2FD3E6");
+      circle(x, y, size);
     }
   }
 }`,
-  patr2module2tutorial3code3: `function setup() {
+  patr2module2tutorial3code3: `const palette = ["#37E87A", "#2FD3E6"];
+
+function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
   let step = min(width, height) / 10;
   let size = step * 0.42;
+  const padding = 32;
+  const cols = 6;
+  const step = (min(width, height) - padding * 2) / cols;
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (cols - 1) * step / 2;
 
-  for (let y = 0; y < height; y += step) {
-    let offsetX = sin(y * 0.04 + frameCount * 0.04) * step * 0.35;
+  for (let row = 0; row < cols; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const x = startX + col * step;
+      const y = startY + row * step;
+      const wave = sin(0 + row * 0.7 + col * 0.4) * step * 0.12;
+      const size = step * 0.52 + wave;
 
-    for (let x = 0; x < width; x += step) {
-      fill(90);
-      ellipse(
-        x + step / 2 + offsetX,
-        y + step / 2,
-        size
-      );
+      fill(palette[(row + col) % palette.length]);
+      rectMode(CENTER);
+      square(x, y, size);
     }
   }
+
+  noLoop();
 }`,
   patr2module2tutorial3code4: `function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
   noStroke();
 }
 
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  let step = min(width, height) / 10;
-  let size = step * 0.42;
+  const step = 48;
+  const cols = floor((width - 64) / step);
+  const rows = floor((height - 64) / step);
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (rows - 1) * step / 2;
 
-  for (let y = 0; y < height; y += step) {
-    for (let x = 0; x < width; x += step) {
-      // сначала смещаем строку по горизонтали
-      let offsetX = sin(y * 0.04 + frameCount * 0.04) * step * 0.35;
+  for (let row = 0; row < rows; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const shift = sin(frameCount * 0.025 + row * 0.8 + col * 0.45) * step * 0.2;
+      const x = startX + col * step + shift;
+      const y = startY + row * step;
+      const size = 24 + ((row + col) % 3) * 4;
 
-      // потом добавляем более тонкое смещение по вертикали
-      let offsetY = cos(x * 0.04 + frameCount * 0.03) * step * 0.2;
-
-      fill(50);
-      ellipse(
-        x + step / 2 + offsetX,
-        y + step / 2 + offsetY,
-        size
-      );
+      fill((row + col) % 2 === 0 ? "#37E87A" : "#2FD3E6");
+      circle(x, y, size);
     }
   }
 }`,
   patr2module2tutorial3code5: `function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
   noStroke();
 }
 
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  let step = min(width, height) / 10;
-  let size = step * 0.42;
+  const step = 48;
+  const cols = floor((width - 64) / step);
+  const rows = floor((height - 64) / step);
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (rows - 1) * step / 2;
 
-  for (let y = 0; y < height; y += step) {
-    for (let x = 0; x < width; x += step) {
-      let offsetX = sin(y * 0.04 + frameCount * 0.04) * step * 0.35;
-      let offsetY = cos(x * 0.04 + frameCount * 0.03) * step * 0.2;
-      let currentSize = size;
+  for (let row = 0; row < rows; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const shift = sin(frameCount * 0.025 + row * 0.8 + col * 0.45) * step * 0.2;
+      const x = startX + col * step + shift;
+      const y = startY + row * step;
+      const size = 24 + ((row + col) % 3) * 4;
 
-      // попробуй раскомментировать:
-
-      // сделать вертикальное смещение сильнее
-      // offsetY = cos(x * 0.04 + frameCount * 0.03) * step * 0.35;
-
-      // менять размер элементов
-      // currentSize = map(sin(x * 0.03 + frameCount * 0.05), -1, 1, step * 0.2, step * 0.6);
-
-      // заменить круги на квадраты
-      // rectMode(CENTER);
-
-      fill(31);
-
-      // для квадратов:
-      // rect(
-      //   x + step / 2 + offsetX,
-      //   y + step / 2 + offsetY,
-      //   currentSize,
-      //   currentSize
-      // );
-
-      ellipse(
-        x + step / 2 + offsetX,
-        y + step / 2 + offsetY,
-        currentSize
-      );
+      fill((row + col) % 2 === 0 ? "#37E87A" : "#2FD3E6");
+      circle(x, y, size);
     }
   }
 }`,
-  patr2module2tutorial4code1: `function setup() {
+  patr2module2tutorial4code1: `let t = 0;
+
+function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
 }
 
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  let x = width / 2 + sin(frameCount * 0.05) * 85;
-  let y = height / 2;
+  const count = 14;
+  const radius = min(width, height) * 0.28;
+  for (let i = count - 1; i >= 0; i -= 1) {
+    const a = t - i * 0.18;
+    const x = width / 2 + cos(a) * radius;
+    const y = height / 2 + sin(a * 1.3) * radius * 0.72;
+    const size = 56 - i * 2;
 
-  fill(31);
-  ellipse(x, y, 84);
-}`,
-  patr2module2tutorial4code2: `(function () {
-  const app = document.getElementById("app");
-  app.innerHTML = "";
-  app.style.position = "relative";
-  app.style.background = "#f8f8f8";
-  app.style.overflow = "hidden";
-
-  const ball = document.createElement("div");
-  ball.style.position = "absolute";
-  ball.style.width = "84px";
-  ball.style.height = "84px";
-  ball.style.borderRadius = "999px";
-  ball.style.background = "#1f1f1f";
-  ball.style.top = "50%";
-  ball.style.transform = "translate(-50%, -50%)";
-
-  app.appendChild(ball);
-
-  let t = 0;
-
-  function animate() {
-    const x = app.clientWidth / 2 + Math.sin(t) * 85;
-    ball.style.left = x + "px";
-
-    t += 0.05;
-    requestAnimationFrame(animate);
+    fill(i % 2 === 0 ? "#2FD3E6" : "#37E87A");
+    circle(x, y, size);
   }
 
-  animate();
-})();`,
-  patr2module2tutorial4code3: `(function () {
-  const app = document.getElementById("app");
-  app.innerHTML = "";
-  app.style.position = "relative";
-  app.style.background = "#f8f8f8";
-  app.style.overflow = "hidden";
+  t += 0.035;
+}`,
+  patr2module2tutorial4code2: `const app = document.getElementById("app");
+const canvas = document.createElement("canvas");
+const ctx = canvas.getContext("2d");
+let animationId;
+let t = 0;
+let pointerX = 0.5;
 
-  const style = document.createElement("style");
-  style.innerHTML = "@keyframes sway {" +
-    "0% { transform: translate(-50%, -50%) translateX(-85px); }" +
-    "50% { transform: translate(-50%, -50%) translateX(85px); }" +
-    "100% { transform: translate(-50%, -50%) translateX(-85px); }" +
-  "}";
-  document.head.appendChild(style);
+app.innerHTML = "";
+app.style.background = "#FFFFFF";
+app.appendChild(canvas);
 
-  const ball = document.createElement("div");
-  ball.style.position = "absolute";
-  ball.style.left = "50%";
-  ball.style.top = "50%";
-  ball.style.width = "84px";
-  ball.style.height = "84px";
-  ball.style.borderRadius = "999px";
-  ball.style.background = "#1f1f1f";
-  ball.style.animation = "sway 2.4s ease-in-out infinite";
+function resize() {
+  canvas.width = app.clientWidth;
+  canvas.height = app.clientHeight;
+}
 
-  app.appendChild(ball);
-})();`,
-  patr2module2tutorial4code4: `function setup() {
-  createCanvas(app.clientWidth, app.clientHeight);
-  noStroke();
+function onPointerMove(event) {
+  const rect = canvas.getBoundingClientRect();
+  pointerX = (event.clientX - rect.left) / rect.width;
 }
 
 function draw() {
-  background(248);
+  const width = canvas.width;
+  const height = canvas.height;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillRect(0, 0, width, height);
 
-  let x = width / 2 + sin(frameCount * 0.05) * 130;
-  let y = height / 2;
-  let size = 84;
+  const count = 10;
+  const padding = 40;
+  const step = (width - padding * 2) / (count - 1);
 
-  // попробуй раскомментировать:
+  for (let i = 0; i < count; i += 1) {
+    const x = padding + i * step;
+    const y = height / 2 + Math.sin(t + i * 0.6) * (24 + pointerX * 56);
+    const size = 28 + Math.cos(t + i) * 8;
 
-  // сделать движение спокойнее
-  // x = width / 2 + sin(frameCount * 0.03) * 90;
+    ctx.fillStyle = i % 2 === 0 ? "#FFC300" : "#FF86DB";
+    ctx.beginPath();
+    ctx.arc(x, y, size, 0, Math.PI * 2);
+    ctx.fill();
+  }
 
-  // сделать движение резче
-  // x = width / 2 + sin(frameCount * 0.08) * 180;
+  t += 0.04;
+  animationId = requestAnimationFrame(draw);
+}
 
-  // добавить изменение размера
-  // size = 84 + sin(frameCount * 0.06) * 28;
+canvas.addEventListener("pointermove", onPointerMove);
+window.addEventListener("resize", resize);
+resize();
+draw();
 
-  // добавить вертикальное движение
-  // y = height / 2 + cos(frameCount * 0.04) * 60;
+return () => {
+  cancelAnimationFrame(animationId);
+  canvas.removeEventListener("pointermove", onPointerMove);
+  window.removeEventListener("resize", resize);
+};`,
+  patr2module2tutorial4code3: `const app = document.getElementById("app");
+const canvas = document.createElement("canvas");
+const ctx = canvas.getContext("2d");
 
-  fill(31);
-  ellipse(x, y, size);
+app.innerHTML = "";
+app.style.background = "#FFFFFF";
+app.appendChild(canvas);
+
+function resize() {
+  canvas.width = app.clientWidth;
+  canvas.height = app.clientHeight;
+  draw();
+}
+
+function draw() {
+  const width = canvas.width;
+  const height = canvas.height;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillRect(0, 0, width, height);
+
+  const padding = 32;
+  const cols = 6;
+  const step = (Math.min(width, height) - padding * 2) / cols;
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (cols - 1) * step / 2;
+
+  for (let row = 0; row < cols; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const x = startX + col * step;
+      const y = startY + row * step;
+      const size = step * (0.36 + (col + row) * 0.015);
+
+      ctx.fillStyle = (row + col) % 2 === 0 ? "#2FD3E6" : "#37E87A";
+      ctx.beginPath();
+      ctx.arc(x, y, size / 2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+}
+
+window.addEventListener("resize", resize);
+resize();
+
+return () => {
+  window.removeEventListener("resize", resize);
+};`,
+  patr2module2tutorial4code4: `const particles = [];
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  noStroke();
+  for (let i = 0; i < 36; i += 1) {
+    particles.push({ angle: i * TWO_PI / 36, radius: 32 + (i % 6) * 16 });
+  }
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function draw() {
+  background("#FFFFFF");
+
+  for (let i = 0; i < particles.length; i += 1) {
+    const p = particles[i];
+    p.angle += 0.012 + (i % 5) * 0.002;
+    const x = width / 2 + cos(p.angle) * p.radius;
+    const y = height / 2 + sin(p.angle * 1.4) * p.radius;
+
+    fill(i % 2 === 0 ? "#FFC300" : "#FF86DB");
+    circle(x, y, 16 + (i % 4) * 4);
+  }
 }`,
   patr2module2tutorial5code1: `let t = 0;
 
 function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
-  noStroke();
+  noFill();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
 }
 
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  let x = noise(t) * width;
-  let y = height / 2;
+  stroke("#2FD3E6");
+  strokeWeight(4);
+  beginShape();
+  for (let i = 0; i <= 96; i += 1) {
+    const x = map(i, 0, 96, 32, width - 32);
+    const n = noise(i * 0.06, t);
+    const y = height / 2 + map(n, 0, 1, -96, 96);
+    curveVertex(x, y);
+  }
+  endShape();
 
-  fill(31);
-  ellipse(x, y, 84);
+  stroke("#FF86DB");
+  strokeWeight(2);
+  beginShape();
+  for (let i = 0; i <= 96; i += 1) {
+    const x = map(i, 0, 96, 32, width - 32);
+    const y = height / 2 + sin(i * 0.28 + t * 5) * 48;
+    curveVertex(x, y);
+  }
+  endShape();
 
-  t += 0.01;
+  t += 0.008;
 }`,
   patr2module2tutorial5code2: `function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
-  noFill();
-  stroke(31);
-  strokeWeight(3);
+  noStroke();
+  randomSeed(42); // фиксируем случайность, чтобы композиция не прыгала
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
 }
 
 function draw() {
-  background(248);
+  background("#FFFFFF");
+  randomSeed(42);
 
-  beginShape();
+  const centerX = width / 2;
+  const centerY = height / 2;
+  const maxRadius = min(width, height) * 0.38;
 
-  for (let x = 0; x <= width; x += 24) {
-    let y = height / 2 + noise(x * 0.01) * 180 - 90;
-    vertex(x, y);
+  for (let i = 0; i < 72; i += 1) {
+    const angle = (i / 72) * TWO_PI;
+    const radius = random(maxRadius * 0.2, maxRadius);
+    const x = centerX + cos(angle) * radius;
+    const y = centerY + sin(angle) * radius;
+    const size = random(14, 34);
+
+    fill(i % 2 === 0 ? "#FFC300" : "#FF86DB");
+    circle(x, y, size);
   }
 
-  endShape();
+  noLoop();
 }`,
-  patr2module2tutorial5code3: `let t = 0;
+  patr2module2tutorial5code3: `const particles = [];
 
 function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
-  noFill();
-  stroke(31);
-  strokeWeight(3);
+  noStroke();
+  for (let i = 0; i < 36; i += 1) {
+    particles.push({ angle: i * TWO_PI / 36, radius: 32 + (i % 6) * 16 });
+  }
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
 }
 
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  beginShape();
+  for (let i = 0; i < particles.length; i += 1) {
+    const p = particles[i];
+    p.angle += 0.012 + (i % 5) * 0.002;
+    const x = width / 2 + cos(p.angle) * p.radius;
+    const y = height / 2 + sin(p.angle * 1.4) * p.radius;
 
-  for (let x = 0; x <= width; x += 24) {
-    let y = height / 2 + noise(x * 0.01, t) * 180 - 90;
-    vertex(x, y);
+    fill(i % 2 === 0 ? "#FFC300" : "#FF86DB");
+    circle(x, y, 16 + (i % 4) * 4);
   }
-
-  endShape();
-
-  t += 0.01;
 }`,
   patr2module2tutorial5code4: `let t = 0;
 
 function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
   noFill();
-  stroke(31);
-  strokeWeight(3);
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
 }
 
 function draw() {
-  background(248);
+  background("#FFFFFF");
 
-  let step = 24;
-  let amplitude = 180;
-
-  // попробуй раскомментировать:
-
-  // сделать линию плотнее
-  // step = 12;
-
-  // увеличить амплитуду
-  // amplitude = 260;
-
+  stroke("#2FD3E6");
+  strokeWeight(4);
   beginShape();
 
-  // попробуй раскомментировать:
-  // fill(31, 31, 31, 30);
-
-  for (let x = 0; x <= width; x += step) {
-    let y = height / 2 + noise(x * 0.01, t) * amplitude - amplitude / 2;
-    vertex(x, y);
+  for (let i = 0; i <= 96; i += 1) {
+    const x = map(i, 0, 96, 32, width - 32);
+    const n = noise(i * 0.06, t);
+    const y = height / 2 + map(n, 0, 1, -96, 96);
+    curveVertex(x, y);
   }
-
-  // попробуй раскомментировать:
-  // vertex(width, height);
-  // vertex(0, height);
-
   endShape();
 
-  // попробуй изменить скорость:
-  // t += 0.02;
-  t += 0.01;
+  stroke("#FF86DB");
+  strokeWeight(2);
+  beginShape();
+  for (let i = 0; i <= 96; i += 1) {
+    const x = map(i, 0, 96, 32, width - 32);
+    const y = height / 2 + sin(i * 0.28 + t * 5) * 48;
+    curveVertex(x, y);
+  }
+  endShape();
+  
+  t += 0.008;
 }`,
   patr2module3tutorial1code1: `const width = app.clientWidth;
 const height = app.clientHeight;
