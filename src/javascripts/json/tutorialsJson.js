@@ -394,8 +394,8 @@ const tagsPart3Module1Tutorial1 = {
   link: "https://web.telegram.org/k/#@digitalnaya",
 
   complexity: "filterComplexityAdvanced",
-  library: ["filterLibraryP5js"],
-  format: ["filterFormatTechnique"],
+  library: ["filterLibraryVanillajs", "filterLibraryP5js", "filterLibraryThreejs"],
+  format: ["filterFormatTask", "filterFormatVariation"],
   verification: "filterVerificationExpert",
   tags: [
     "Шум",

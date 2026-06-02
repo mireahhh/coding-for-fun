@@ -308,20 +308,552 @@
 
       <div class="O_TutorialMain">
         <section class="U_FontB1 A_TutorialAnnotation">
-          <!-- тут краткое описание -->
-        </section>
-        <section class="O_TutorialSection">
 
-          <!-- тут сами блоки 
-          делай в них такой отступ по строке, как здесь вот ща и везде в статьях
-          а между section отступ не делай-->
+          В&nbsp;этом уроке случайность перестаёт быть просто хаосом: ты&nbsp;соберёшь управляемый шумовой узор,
+          разберёшь, чем&nbsp;резкий random() отличается от&nbsp;плавного noise(), а&nbsp;потом повторишь одну
+          визуальную
+          систему на&nbsp;Vanilla&nbsp;JS, p5.js и&nbsp;Three.js.
 
         </section>
         <section class="O_TutorialSection">
 
-          <!-- тут сами блоки 
-          делай в них такой отступ по строке, как здесь вот ща и везде в статьях
-          а между section отступ не делай-->
+          <h3 id="nav1" class="U_FontH3 A_TutorialTitle">
+            Теория: случайность как материал
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p id="TutorialTextFirst" class="U_FontB1 A_TutorialText">
+            В&nbsp;первых уроках <span>random()</span> обычно воспринимается как&nbsp;кнопка «сделай непредсказуемо».
+            В&nbsp;продвинутой практике важнее другой вопрос: как&nbsp;сделать случайность дизайнерской,
+            то&nbsp;есть&nbsp;ограниченной, ритмичной и&nbsp;визуально убедительной. Случайное число само по&nbsp;себе
+            не&nbsp;создаёт композицию. Композицию создаёт правило, которое решает, где&nbsp;случайность разрешена,
+            а&nbsp;где&nbsp;она должна подчиняться сетке, радиусу, палитре или&nbsp;общему движению.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            <span>random()</span> каждый раз возвращает новое независимое значение. Если&nbsp;подставить его
+            в&nbsp;координаты, элементы будут резко перескакивать. Это&nbsp;полезно для&nbsp;рассыпания, выбора,
+            генерации множества разных объектов. <span>noise()</span> работает иначе: соседние значения похожи
+            друг на&nbsp;друга, поэтому шум даёт плавное поле. Его удобно использовать для&nbsp;волн, потоков,
+            рельефа, мягких смещений и&nbsp;узоров, которые выглядят живыми, но&nbsp;не&nbsp;случайными.
+          </p>
+
+          <div class="M_TutorialQuote">
+            <p class="U_FontS2">
+              Random выбирает точку. Noise строит поверхность, по&nbsp;которой точка может двигаться
+            </p>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;этом уроке мы&nbsp;будем собирать одну визуальную систему: белый фон, фирменные цвета,
+            круги и&nbsp;квадраты, расположенные по&nbsp;строгой сетке. Случайность будет отвечать не&nbsp;за&nbsp;хаос,
+            а&nbsp;за&nbsp;акценты: размер, поворот, смещение и&nbsp;глубину. Так&nbsp;один и&nbsp;тот&nbsp;же мотив
+            можно
+            превратить в&nbsp;плоский орнамент, canvas-композицию и&nbsp;3D-рельеф.
+          </p>
+          <p class="U_FontB1 A_TutorialText">
+            Ещё один важный параметр&nbsp;— масштаб. В&nbsp;шуме мы&nbsp;обычно умножаем координаты на&nbsp;маленькое
+            число:
+            <span>x&nbsp;*&nbsp;0.01</span>, <span>y&nbsp;*&nbsp;0.01</span>. Если&nbsp;число меньше, волна получается
+            крупнее
+            и&nbsp;спокойнее: много соседних ячеек ведут себя почти одинаково. Если&nbsp;число больше, поле становится
+            дробным, напряжённым и&nbsp;более декоративным. Поэтому масштаб шума похож на&nbsp;регулятор характера
+            всей композиции.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;анимации появляется третья координата шума&nbsp;— время. Когда мы&nbsp;передаём
+            <span>noise(x, y, t)</span> и&nbsp;медленно увеличиваем <span>t</span>, узор не&nbsp;перегенерируется
+            заново,
+            а&nbsp;как&nbsp;будто течёт. Это&nbsp;отличает шум от&nbsp;обычного <span>random()</span>: random каждый
+            кадр
+            может дать новый разрыв, а&nbsp;noise сохраняет связь между предыдущим и&nbsp;следующим состоянием.
+          </p>
+
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              <span>random()</span> даёт независимые значения и&nbsp;хорошо подходит для&nbsp;выбора вариантов.
+            </li>
+            <li>
+              <span>noise()</span> даёт связные значения и&nbsp;хорошо подходит для&nbsp;плавных деформаций.
+            </li>
+            <li>
+              Красивый генеративный результат появляется, когда случайность ограничена системой: сеткой,
+              палитрой, шагом и&nbsp;диапазоном.
+            </li>
+          </ol>
+
+          <div class="U_FontC2-Code W_TutorialCopyItem">
+            <p class="A_TutorialCopyText">
+              let jitter = random(-12, 12); // резкое независимое смещение<br>
+              let wave = noise(x * 0.01, y * 0.01); // плавное значение поля<br>
+              let size = map(wave, 0, 1, 16, 64); // перевод шума в размер
+            </p>
+            <button class="U_ButtonIcon A_TutorialCopyButton">
+              <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+            </button>
+          </div>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav2" class="U_FontH3 A_TutorialTitle">
+            Практика: задача
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Задача: собрать плотный шумовой узор из&nbsp;геометрических элементов. Сначала посмотри на&nbsp;финальную
+            цель: это&nbsp;не&nbsp;просто сетка, а&nbsp;поле, где&nbsp;каждая ячейка немного повёрнута, смещена
+            и&nbsp;масштабирована шумом. После этого мы&nbsp;разберём путь к&nbsp;ней через несколько итераций.
+          </p>
+
+          <div id="patr3module1tutorial1code1" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Целевой узор: шум управляет размером, поворотом и&nbsp;чередованием кругов с&nbsp;квадратами.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Теперь упростим задачу до&nbsp;основы. Первая итерация&nbsp;— это&nbsp;регулярная сетка. Она нужна,
+            чтобы&nbsp;у&nbsp;случайности была опора: каждый элемент знает свою ячейку, а&nbsp;значит даже сильные
+            изменения не&nbsp;разваливают композицию.
+          </p>
+
+          <div id="patr3module1tutorial1code2" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Сетка без&nbsp;шума: все&nbsp;ячейки равны, поэтому хорошо виден будущий каркас узора.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Во&nbsp;второй итерации добавим <span>random()</span>. Он&nbsp;быстро делает изображение живее,
+            но&nbsp;каждая ячейка меняется независимо. Если&nbsp;диапазон слишком большой, узор становится похож
+            на&nbsp;набор случайных пятен. Поэтому мы&nbsp;ограничиваем смещение и&nbsp;оставляем шаг сетки неизменным.
+          </p>
+
+          <div id="patr3module1tutorial1code3" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Random добавляет вариативность, но&nbsp;пока не&nbsp;создаёт плавных связей между соседними ячейками.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Третья итерация заменяет независимый разброс на&nbsp;шумовое поле. Значение зависит от&nbsp;координат
+            ячейки, поэтому соседние элементы меняются похоже. Узор начинает выглядеть так, будто&nbsp;его
+            деформирует невидимая волна.
+          </p>
+
+          <div id="patr3module1tutorial1code4" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Финальная версия задачи: шумовая волна проходит по&nbsp;сетке и&nbsp;собирает плотный фирменный
+                орнамент.
+              </p>
+            </div>
+          </div>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav3" class="U_FontH3 A_TutorialTitle">
+            Практика: вариация
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Теперь повторим тот&nbsp;же мотив на&nbsp;разных инструментах. Вариация показывает, что&nbsp;идея важнее
+            синтаксиса: у&nbsp;нас остаются белый фон, сетка, два фирменных цвета и&nbsp;шумовая деформация,
+            но&nbsp;каждая среда выражает это&nbsp;по-своему.
+          </p>
+
+          <div id="patr3module1tutorial1code5" class="O_TutorialSingleCode" data-runtime="vanilla"
+            data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Vanilla JS: canvas, собственная функция шума и&nbsp;ручное рисование каждого элемента.
+              </p>
+            </div>
+          </div>
+
+          <div id="patr3module1tutorial1code6" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                p5.js: тот&nbsp;же рисунок короче, потому&nbsp;что noise(), map(), circle() и&nbsp;rect() уже есть
+                в&nbsp;библиотеке.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;Vanilla мы&nbsp;пишем больше инфраструктуры: создаём canvas, считаем размеры, делаем собственный
+            плавный шум. В&nbsp;p5.js всё&nbsp;это спрятано в&nbsp;готовые функции, поэтому код ближе к&nbsp;эскизу.
+            В&nbsp;Three.js этот&nbsp;же принцип можно перенести в&nbsp;пространство: шум станет высотой плиток,
+            а&nbsp;плоский узор превратится в&nbsp;рельеф.
+          </p>
+
+          <div id="patr3module1tutorial1code7" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="three" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Three.js: похожий шумовой узор становится 3D-полем из&nbsp;экструдированных плиток и&nbsp;сфер.
+              </p>
+            </div>
+          </div>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav4" class="U_FontH3 A_TutorialTitle">
+            Вывод и&nbsp;синтаксис
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;этом уроке случайность стала не&nbsp;эффектом, а&nbsp;системой управления. В&nbsp;задаче
+            <span>noise()</span> связывал соседние ячейки и&nbsp;делал орнамент цельным. В&nbsp;вариации та&nbsp;же
+            идея переносилась между средами: в&nbsp;Canvas мы&nbsp;сами описывали инфраструктуру, в&nbsp;p5.js
+            работали ближе к&nbsp;эскизу, а&nbsp;в&nbsp;Three.js использовали шум как&nbsp;высоту и&nbsp;масштаб
+            3D-плиток.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Главный вывод: <span>random()</span> хорошо подходит для&nbsp;выбора и&nbsp;разовых отличий,
+            а&nbsp;<span>noise()</span>&nbsp;— для&nbsp;поля, движения и&nbsp;плавной связи между элементами.
+            Если&nbsp;ограничить
+            диапазон, палитру, шаг сетки и&nbsp;формы, даже сложный генеративный код будет выглядеть не&nbsp;случайным,
+            а&nbsp;спроектированным.
+          </p>
+
+          <ul class="U_FontC2-Code C_TutorialCopyList">
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                random(min, max); // независимое случайное число
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                noise(x, y, t); // плавное поле: координаты + время
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                map(value, 0, 1, minValue, maxValue); // переводит шум в нужный диапазон
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                ctx.arc(x, y, radius, 0, Math.PI * 2); // круг в Canvas API
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                circle(x, y, size); // круг в p5.js
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                new THREE.BoxGeometry(w, h, d); // объёмная плитка в Three.js
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+          </ul>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav5" class="U_FontH3 A_TutorialTitle">
+            Задание
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Собери свою версию шумового постера. Не&nbsp;меняй всё&nbsp;сразу: выбери один художественный параметр
+            и&nbsp;сделай три варианта одного узора. В&nbsp;коде уже&nbsp;подготовлены группы экспериментов:
+            включай их&nbsp;по&nbsp;одной, запускай скетч и&nbsp;сравнивай, как&nbsp;меняется характер композиции.
+          </p>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              Сначала измени только масштаб шума: найди <span>noiseScale</span> и&nbsp;проверь спокойное,
+              среднее и&nbsp;дробное поле.
+            </li>
+            <li>
+              Затем включи одну из&nbsp;строк в&nbsp;блоке формы: сделай узор только из&nbsp;кругов, только
+              из&nbsp;квадратов
+              или&nbsp;из&nbsp;смешанных элементов.
+            </li>
+            <li>
+              После этого включи строку с&nbsp;<span>random()</span> и&nbsp;сравни её&nbsp;с&nbsp;вариантом
+              на&nbsp;<span>noise()</span>:
+              где&nbsp;композиция выглядит собраннее, а&nbsp;где&nbsp;хаотичнее?
+            </li>
+            <li>
+              В&nbsp;финале оставь один лучший набор настроек и&nbsp;подстрой <span>step</span>,
+              чтобы&nbsp;у&nbsp;работы
+              появился нужный ритм и&nbsp;плотность.
+            </li>
+          </ol>
+
+          <div id="patr3module1tutorial1code8" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="p5" data-autostart="false">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Экспериментальный шаблон: включай строки в&nbsp;комментариях и&nbsp;собирай собственный вариант постера.
+              </p>
+            </div>
+          </div>
 
         </section>
         <section class="O_TutorialSection O_TutorialSection--Last">

@@ -3619,4 +3619,506 @@ return () => {
 
   renderer.dispose();
 };`,
+  patr3module1tutorial1code1: `let t = 0;
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
+  noStroke();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function getCenteredGrid(step, padding) {
+  const cols = floor((width - padding * 2) / step) + 1;
+  const rows = floor((height - padding * 2) / step) + 1;
+
+  return {
+    cols,
+    rows,
+    startX: (width - (cols - 1) * step) / 2,
+    startY: (height - (rows - 1) * step) / 2,
+  };
+}
+
+function drawCell(cx, cy, step, value, index) {
+  const wave = sin(t + value * TWO_PI);
+  const size = map(value, 0, 1, step * 0.28, step * 0.86);
+  const shift = wave * step * 0.18;
+
+  push();
+  translate(cx + shift, cy - shift * 0.5);
+  rotate(value * PI + t * 0.15);
+
+  fill(index % 2 === 0 ? '#FF86DB' : '#2FD3E6');
+  if (value > 0.52) {
+    circle(0, 0, size);
+  } else {
+    rect(0, 0, size, size, step * 0.16);
+  }
+
+  pop();
+}
+
+function draw() {
+  background('#FFFFFF');
+
+  const step = 48;
+  const grid = getCenteredGrid(step, 32);
+  let index = 0;
+
+  for (let row = 0; row < grid.rows; row += 1) {
+    for (let col = 0; col < grid.cols; col += 1) {
+      const x = grid.startX + col * step;
+      const y = grid.startY + row * step;
+      const n = noise(x * 0.009, y * 0.009, t * 0.25);
+      drawCell(x, y, step, n, index);
+      index += 1;
+    }
+  }
+
+  t += 0.01;
+}`,
+  patr3module1tutorial1code2: `function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
+  noStroke();
+  noLoop();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+  redraw();
+}
+
+function getCenteredGrid(step, padding) {
+  const cols = floor((width - padding * 2) / step) + 1;
+  const rows = floor((height - padding * 2) / step) + 1;
+
+  return {
+    cols,
+    rows,
+    startX: (width - (cols - 1) * step) / 2,
+    startY: (height - (rows - 1) * step) / 2,
+  };
+}
+
+function draw() {
+  background('#FFFFFF');
+
+  const step = 48;
+  const grid = getCenteredGrid(step, 32);
+
+  for (let row = 0; row < grid.rows; row += 1) {
+    for (let col = 0; col < grid.cols; col += 1) {
+      const x = grid.startX + col * step;
+      const y = grid.startY + row * step;
+
+      fill('#2FD3E6');
+      circle(x, y, step * 0.62);
+    }
+  }
+}`,
+  patr3module1tutorial1code3: `function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
+  noStroke();
+  noLoop();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+  redraw();
+}
+
+function getCenteredGrid(step, padding) {
+  const cols = floor((width - padding * 2) / step) + 1;
+  const rows = floor((height - padding * 2) / step) + 1;
+
+  return {
+    cols,
+    rows,
+    startX: (width - (cols - 1) * step) / 2,
+    startY: (height - (rows - 1) * step) / 2,
+  };
+}
+
+function draw() {
+  background('#FFFFFF');
+
+  const step = 48;
+  const grid = getCenteredGrid(step, 32);
+
+  for (let row = 0; row < grid.rows; row += 1) {
+    for (let col = 0; col < grid.cols; col += 1) {
+      const x = grid.startX + col * step;
+      const y = grid.startY + row * step;
+      const jitterX = random(-8, 8);
+      const jitterY = random(-8, 8);
+      const size = random(step * 0.36, step * 0.78);
+
+      fill(random() > 0.5 ? '#FF86DB' : '#2FD3E6');
+      if (random() > 0.5) {
+        circle(x + jitterX, y + jitterY, size);
+      } else {
+        rect(x + jitterX, y + jitterY, size, size, step * 0.12);
+      }
+    }
+  }
+}`,
+  patr3module1tutorial1code4: `let t = 0;
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
+  noStroke();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function getCenteredGrid(step, padding) {
+  const cols = floor((width - padding * 2) / step) + 1;
+  const rows = floor((height - padding * 2) / step) + 1;
+
+  return {
+    cols,
+    rows,
+    startX: (width - (cols - 1) * step) / 2,
+    startY: (height - (rows - 1) * step) / 2,
+  };
+}
+
+function draw() {
+  background('#FFFFFF');
+
+  const step = 40;
+  const grid = getCenteredGrid(step, 32);
+
+  for (let row = 0; row < grid.rows; row += 1) {
+    for (let col = 0; col < grid.cols; col += 1) {
+      const x = grid.startX + col * step;
+      const y = grid.startY + row * step;
+      const field = noise(x * 0.012, y * 0.012, t);
+      const direction = noise(x * 0.006 + 20, y * 0.006 + 20, t) * TWO_PI;
+      const size = map(field, 0, 1, step * 0.18, step * 0.88);
+      const offset = map(field, 0, 1, -10, 10);
+
+      push();
+      translate(x + cos(direction) * offset, y + sin(direction) * offset);
+      rotate(direction * 0.35);
+      fill(field > 0.5 ? '#FF86DB' : '#2FD3E6');
+
+      if ((col + row) % 3 === 0) {
+        rect(0, 0, size, size, step * 0.14);
+      } else {
+        circle(0, 0, size);
+      }
+      pop();
+    }
+  }
+
+  t += 0.006;
+}`,
+  patr3module1tutorial1code5: `const app = document.getElementById('app');
+const canvas = document.createElement('canvas');
+const ctx = canvas.getContext('2d');
+let animationId;
+let time = 0;
+
+app.innerHTML = '';
+app.style.width = '100%';
+app.style.height = '100%';
+app.appendChild(canvas);
+
+function resize() {
+  canvas.width = app.clientWidth;
+  canvas.height = app.clientHeight;
+}
+
+function getCenteredGrid(step, padding) {
+  const cols = Math.floor((canvas.width - padding * 2) / step) + 1;
+  const rows = Math.floor((canvas.height - padding * 2) / step) + 1;
+
+  return {
+    cols,
+    rows,
+    startX: (canvas.width - (cols - 1) * step) / 2,
+    startY: (canvas.height - (rows - 1) * step) / 2,
+  };
+}
+
+function smoothNoise(x, y, t) {
+  return (Math.sin(x * 1.7 + t) + Math.sin(y * 1.35 - t * 1.2) + Math.sin((x + y) * 0.9 + t * 0.7)) / 6 + 0.5;
+}
+
+function roundedRect(x, y, size, radius) {
+  ctx.beginPath();
+  ctx.roundRect(x - size / 2, y - size / 2, size, size, radius);
+  ctx.fill();
+}
+
+function draw() {
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  const step = 48;
+  const grid = getCenteredGrid(step, 32);
+
+  for (let row = 0; row < grid.rows; row += 1) {
+    for (let col = 0; col < grid.cols; col += 1) {
+      const x = grid.startX + col * step;
+      const y = grid.startY + row * step;
+      const n = smoothNoise(x * 0.018, y * 0.018, time);
+      const size = step * (0.24 + n * 0.56);
+      const shift = (n - 0.5) * 18;
+
+      ctx.save();
+      ctx.translate(x + shift, y - shift * 0.5);
+      ctx.rotate(n * Math.PI + time * 0.2);
+      ctx.fillStyle = n > 0.5 ? '#FF86DB' : '#2FD3E6';
+
+      if ((col + row) % 3 === 0) {
+        roundedRect(0, 0, size, step * 0.14);
+      } else {
+        ctx.beginPath();
+        ctx.arc(0, 0, size / 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      ctx.restore();
+    }
+  }
+
+  time += 0.012;
+  animationId = requestAnimationFrame(draw);
+}
+
+window.addEventListener('resize', resize);
+resize();
+draw();
+
+return () => {
+  cancelAnimationFrame(animationId);
+  window.removeEventListener('resize', resize);
+};`,
+  patr3module1tutorial1code6: `let t = 0;
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
+  noStroke();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function getCenteredGrid(step, padding) {
+  const cols = floor((width - padding * 2) / step) + 1;
+  const rows = floor((height - padding * 2) / step) + 1;
+
+  return {
+    cols,
+    rows,
+    startX: (width - (cols - 1) * step) / 2,
+    startY: (height - (rows - 1) * step) / 2,
+  };
+}
+
+function draw() {
+  background('#FFFFFF');
+
+  const step = 48;
+  const grid = getCenteredGrid(step, 32);
+
+  for (let row = 0; row < grid.rows; row += 1) {
+    for (let col = 0; col < grid.cols; col += 1) {
+      const x = grid.startX + col * step;
+      const y = grid.startY + row * step;
+      const n = noise(x * 0.018, y * 0.018, t);
+      const size = step * (0.24 + n * 0.56);
+      const shift = (n - 0.5) * 18;
+
+      push();
+      translate(x + shift, y - shift * 0.5);
+      rotate(n * PI + t * 0.8);
+      fill(n > 0.5 ? '#FF86DB' : '#2FD3E6');
+
+      if ((col + row) % 3 === 0) {
+        rect(0, 0, size, size, step * 0.14);
+      } else {
+        circle(0, 0, size);
+      }
+
+      pop();
+    }
+  }
+
+  t += 0.01;
+}`,
+  patr3module1tutorial1code7: `const width = app.clientWidth;
+const height = app.clientHeight;
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xffffff);
+
+const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 1000);
+camera.position.set(0, 6.5, 8.5);
+camera.lookAt(0, 0, 0);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+app.innerHTML = '';
+app.appendChild(renderer.domElement);
+
+const light = new THREE.DirectionalLight(0xffffff, 2.4);
+light.position.set(3, 7, 5);
+scene.add(light);
+scene.add(new THREE.AmbientLight(0xffffff, 1.8));
+
+const group = new THREE.Group();
+scene.add(group);
+
+function smoothNoise(x, y, t) {
+  return (Math.sin(x * 1.7 + t) + Math.sin(y * 1.35 - t * 1.2) + Math.sin((x + y) * 0.9 + t * 0.7)) / 6 + 0.5;
+}
+
+const pink = new THREE.MeshStandardMaterial({ color: 0xff86db, roughness: 0.55 });
+const cyan = new THREE.MeshStandardMaterial({ color: 0x2fd3e6, roughness: 0.55 });
+const squareGeometry = new THREE.BoxGeometry(0.62, 0.62, 0.18);
+const circleGeometry = new THREE.CylinderGeometry(0.34, 0.34, 0.2, 40);
+const cells = [];
+const cols = 9;
+const rows = 7;
+const gap = 0.82;
+
+for (let j = 0; j < rows; j += 1) {
+  for (let i = 0; i < cols; i += 1) {
+    const useSquare = (i + j) % 3 === 0;
+    const mesh = new THREE.Mesh(useSquare ? squareGeometry : circleGeometry, (i + j) % 2 === 0 ? pink : cyan);
+    mesh.position.x = (i - (cols - 1) / 2) * gap;
+    mesh.position.z = (j - (rows - 1) / 2) * gap;
+    group.add(mesh);
+    cells.push({ mesh, i, j, useSquare });
+  }
+}
+
+function onResize() {
+  const nextWidth = app.clientWidth;
+  const nextHeight = app.clientHeight;
+  camera.aspect = nextWidth / nextHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(nextWidth, nextHeight);
+}
+
+window.addEventListener('resize', onResize);
+let animationId;
+let time = 0;
+
+function animate() {
+  time += 0.012;
+
+  cells.forEach(({ mesh, i, j }) => {
+    const n = smoothNoise(i * 0.55, j * 0.55, time);
+    mesh.position.y = (n - 0.5) * 1.3;
+    mesh.scale.setScalar(0.7 + n * 0.8);
+    mesh.rotation.y = n * Math.PI + time * 0.3;
+  });
+
+  group.rotation.y = Math.sin(time * 0.35) * 0.18;
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+animate();
+
+return () => {
+  cancelAnimationFrame(animationId);
+  window.removeEventListener('resize', onResize);
+  squareGeometry.dispose();
+  circleGeometry.dispose();
+  pink.dispose();
+  cyan.dispose();
+  renderer.dispose();
+};`,
+  patr3module1tutorial1code8: `let t = 0;
+let noiseScale = 0.012;
+let step = 48;
+let shapeMode = 'mixed';
+let useRandomGlitch = false;
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
+  noStroke();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function getCenteredGrid(step, padding) {
+  const cols = floor((width - padding * 2) / step) + 1;
+  const rows = floor((height - padding * 2) / step) + 1;
+
+  return {
+    cols,
+    rows,
+    startX: (width - (cols - 1) * step) / 2,
+    startY: (height - (rows - 1) * step) / 2,
+  };
+}
+
+function draw() {
+  background('#FFFFFF');
+
+  // Эксперимент 1: масштаб шума.
+  // noiseScale = 0.006; // крупные спокойные волны
+  // noiseScale = 0.02;  // дробный декоративный шум
+
+  // Эксперимент 2: плотность сетки.
+  // step = 40;
+  // step = 56;
+
+  // Эксперимент 3: логика формы.
+  // shapeMode = 'circles';
+  // shapeMode = 'squares';
+  // shapeMode = 'mixed';
+
+  // Эксперимент 4: сравнение с резкой случайностью.
+  // useRandomGlitch = true;
+
+  const grid = getCenteredGrid(step, 32);
+
+  for (let row = 0; row < grid.rows; row += 1) {
+    for (let col = 0; col < grid.cols; col += 1) {
+      const x = grid.startX + col * step;
+      const y = grid.startY + row * step;
+      const n = noise(x * noiseScale, y * noiseScale, t);
+      const randomOffset = useRandomGlitch ? random(-12, 12) : 0;
+      const size = map(n, 0, 1, step * 0.18, step * 0.84);
+      const shift = map(n, 0, 1, -step * 0.18, step * 0.18) + randomOffset;
+      const shouldDrawSquare = shapeMode === 'squares' || (shapeMode === 'mixed' && (row + col) % 3 === 0);
+
+      push();
+      translate(x + shift, y - shift * 0.5);
+      rotate(n * PI + t * 0.45);
+      fill(n > 0.5 ? '#FF86DB' : '#2FD3E6');
+
+      if (shapeMode === 'circles' || !shouldDrawSquare) {
+        circle(0, 0, size);
+      } else {
+        rect(0, 0, size, size, step * 0.14);
+      }
+
+      pop();
+    }
+  }
+
+  t += 0.008;
+}`,
 };
