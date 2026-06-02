@@ -3552,13 +3552,10 @@ function onPointerMove(event) {
   pointerX = (event.clientX - rect.left) / rect.width;
 }
 
-    ball.style.left = x + "px";
-    ball.style.top = y + "px";
-    ball.style.background = "#1f1f1f";
-    ball.style.transform = "translate(-50%, -50%) scale(1.18)";
 function draw() {
   const width = canvas.width;
   const height = canvas.height;
+
   ctx.fillStyle = "#FFFFFF";
   ctx.fillRect(0, 0, width, height);
 
@@ -3583,6 +3580,7 @@ function draw() {
 
 canvas.addEventListener("pointermove", onPointerMove);
 window.addEventListener("resize", resize);
+
 resize();
 draw();
 
