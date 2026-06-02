@@ -1820,9 +1820,7 @@ function draw() {
   patr1module2tutorial4code3: `let t = 0;
 
 function setup() {
-  const canvas = createCanvas(app.clientWidth, app.clientHeight);
-  canvas.parent("app");
-
+  createCanvas(app.clientWidth, app.clientHeight);
   noFill();
 }
 
@@ -1836,28 +1834,22 @@ function draw() {
   stroke("#2FD3E6");
   strokeWeight(4);
   beginShape();
-
   for (let i = 0; i <= 96; i += 1) {
     const x = map(i, 0, 96, 32, width - 32);
     const n = noise(i * 0.06, t);
     const y = height / 2 + map(n, 0, 1, -96, 96);
-
     curveVertex(x, y);
   }
-
   endShape();
 
   stroke("#FF86DB");
   strokeWeight(2);
   beginShape();
-
   for (let i = 0; i <= 96; i += 1) {
     const x = map(i, 0, 96, 32, width - 32);
     const y = height / 2 + sin(i * 0.28 + t * 5) * 48;
-
     curveVertex(x, y);
   }
-
   endShape();
 
   t += 0.008;
