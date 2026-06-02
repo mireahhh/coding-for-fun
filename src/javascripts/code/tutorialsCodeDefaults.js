@@ -4121,7 +4121,7 @@ function draw() {
 
   t += 0.008;
 }`,
-patr3module1tutorial2code1: `// Seed — номер сохранённой версии.
+  patr3module1tutorial2code1: `// Seed — номер сохранённой версии.
 // Поменяй 38 на другое число и перезапусти скетч.
 const seed = 38;
 
@@ -4614,5 +4614,711 @@ function draw() {
   circle(width / 2, height / 2, 24 + sin(t) * 4);
 
   t += 0.014;
+}`,
+  patr3module1tutorial3code1: `const palette = ['#FF86DB', '#2FD3E6'];
+const step = 48;
+const padding = 32;
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  noStroke();
+  noLoop();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+  redraw();
+}
+
+function centeredGrid() {
+  const cols = floor((width - padding * 2) / step);
+  const rows = floor((height - padding * 2) / step);
+
+  return {
+    cols,
+    rows,
+    startX: (width - (cols - 1) * step) / 2,
+    startY: (height - (rows - 1) * step) / 2,
+  };
+}
+
+function draw() {
+  background('#FFFFFF');
+  randomSeed(12);
+
+  const grid = centeredGrid();
+
+  for (let row = 0; row < grid.rows; row += 1) {
+    for (let col = 0; col < grid.cols; col += 1) {
+      const x = grid.startX + col * step + random(-12, 12);
+      const y = grid.startY + row * step + random(-12, 12);
+      const size = random(10, 30);
+
+      fill(palette[(row + col) % palette.length]);
+      circle(x, y, size);
+    }
+  }
+}`,
+  patr3module1tutorial3code2: `const palette = ['#FFC300', '#FF86DB'];
+let t = 0;
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
+  noStroke();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function triangular() {
+  // Средние значения появляются чаще, чем края.
+  return (random() + random()) / 2;
+}
+
+function draw() {
+  background('#FFFFFF');
+  randomSeed(24);
+
+  const count = 140;
+  const centerX = width / 2;
+  const centerY = height / 2;
+  const maxRadius = min(width, height) * 0.38;
+
+  for (let i = 0; i < count; i += 1) {
+    const angle = (i / count) * TWO_PI;
+    const radius = triangular() * maxRadius;
+    const wave = sin(t + i * 0.18) * 8;
+    const x = centerX + cos(angle) * (radius + wave);
+    const y = centerY + sin(angle) * (radius + wave);
+    const size = map(radius, 0, maxRadius, 30, 8);
+
+    fill(palette[i % 2]);
+    circle(x, y, size);
+  }
+
+  t += 0.018;
+}`,
+  patr3module1tutorial3code3: `const palette = ['#37E87A', '#2FD3E6'];
+let particles = [];
+let t = 0;
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  noStroke();
+  createCloud();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+  createCloud();
+}
+
+function createCloud() {
+  randomSeed(42);
+  particles = [];
+
+  const deviation = min(width, height) * 0.16;
+
+  for (let i = 0; i < 220; i += 1) {
+    particles.push({
+      x: randomGaussian(width / 2, deviation),
+      y: randomGaussian(height / 2, deviation),
+      r: randomGaussian(16, 4),
+      phase: random(TWO_PI),
+      color: random(1) < 0.72 ? palette[0] : palette[1],
+    });
+  }
+}
+
+function draw() {
+  background('#FFFFFF');
+
+  for (const p of particles) {
+    const orbit = sin(t + p.phase) * 10;
+    const angle = atan2(p.y - height / 2, p.x - width / 2);
+    const x = p.x + cos(angle + HALF_PI) * orbit;
+    const y = p.y + sin(angle + HALF_PI) * orbit;
+    const size = constrain(p.r, 6, 28);
+
+    fill(p.color);
+    circle(x, y, size);
+  }
+
+  t += 0.02;
+}`,
+  patr3module1tutorial3code4: `const variants = [
+  { color: '#2FD3E6', shape: 'circle', weight: 0.62 },
+  { color: '#FF86DB', shape: 'square', weight: 0.28 },
+  { color: '#FFC300', shape: 'triangle', weight: 0.10 },
+];
+const step = 40;
+const padding = 32;
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
+  noStroke();
+  noLoop();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+  redraw();
+}
+
+function weightedChoice(items) {
+  let cursor = random(1);
+
+  for (const item of items) {
+    cursor -= item.weight;
+    if (cursor <= 0) return item;
+  }
+
+  return items[items.length - 1];
+}
+
+function drawShape(item, x, y, size) {
+  fill(item.color);
+
+  if (item.shape === 'circle') {
+    circle(x, y, size);
+  } else if (item.shape === 'square') {
+    rect(x, y, size, size, size * 0.18);
+  } else {
+    triangle(x, y - size * 0.5, x - size * 0.45, y + size * 0.38, x + size * 0.45, y + size * 0.38);
+  }
+}
+
+function draw() {
+  background('#FFFFFF');
+  randomSeed(64);
+
+  const cols = floor((width - padding * 2) / step);
+  const rows = floor((height - padding * 2) / step);
+  const startX = (width - (cols - 1) * step) / 2;
+  const startY = (height - (rows - 1) * step) / 2;
+
+  for (let row = 0; row < rows; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const item = weightedChoice(variants);
+      const x = startX + col * step;
+      const y = startY + row * step;
+      const size = item.shape === 'triangle' ? 28 : random(12, 26);
+
+      drawShape(item, x, y, size);
+    }
+  }
+}`,
+  patr3module1tutorial3code5: `const paletteA = ['#FF86DB', '#2FD3E6'];
+const paletteB = ['#FFC300', '#37E87A'];
+let palette = paletteA;
+let mode = 'cloud';
+let t = 0;
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
+  noStroke();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function weightedColor() {
+  return random(1) < 0.78 ? palette[0] : palette[1];
+}
+
+function boundedGaussian(mean, deviation, minValue, maxValue) {
+  return constrain(randomGaussian(mean, deviation), minValue, maxValue);
+}
+
+function drawPosterPoint(i, count) {
+  const centerX = width / 2;
+  const centerY = height / 2;
+  const safeW = width / 2 - 32;
+  const safeH = height / 2 - 32;
+
+  let x = boundedGaussian(centerX, safeW * 0.32, 32, width - 32);
+  let y = boundedGaussian(centerY, safeH * 0.32, 32, height - 32);
+
+  // Попробуй другие режимы распределения.
+  // mode = 'stripe';
+  // mode = 'orbit';
+  // palette = paletteB;
+
+  if (mode === 'stripe') {
+    x = map(i, 0, count - 1, 32, width - 32);
+    y = boundedGaussian(centerY, safeH * 0.22, 32, height - 32);
+  }
+
+  if (mode === 'orbit') {
+    const angle = (i / count) * TWO_PI * 3;
+    const radius = boundedGaussian(min(safeW, safeH) * 0.45, 42, 24, min(safeW, safeH));
+    x = centerX + cos(angle + t * 0.5) * radius;
+    y = centerY + sin(angle + t * 0.5) * radius;
+  }
+
+  const distance = dist(x, y, centerX, centerY);
+  const maxDistance = min(width, height) * 0.48;
+  const size = map(constrain(distance, 0, maxDistance), 0, maxDistance, 30, 8);
+  const spin = noise(i * 0.08, t) * TWO_PI;
+
+  push();
+  translate(x, y);
+  rotate(spin);
+  fill(weightedColor());
+
+  if (random(1) < 0.18) {
+    rect(0, 0, size, size, size * 0.2);
+  } else {
+    circle(0, 0, size);
+  }
+
+  pop();
+}
+
+function draw() {
+  background('#FFFFFF');
+  randomSeed(108);
+
+  const count = 260;
+
+  for (let i = 0; i < count; i += 1) {
+    drawPosterPoint(i, count);
+  }
+
+  t += 0.012;
+}`,
+  patr3module1tutorial4code1: `const canvas = document.createElement('canvas');
+const ctx = canvas.getContext('2d');
+let animationId;
+let time = 0;
+
+app.innerHTML = '';
+app.appendChild(canvas);
+
+function resize() {
+  canvas.width = app.clientWidth;
+  canvas.height = app.clientHeight;
+}
+
+function smoothNoise(x, y, t) {
+  const a = Math.sin(x * 2.1 + t);
+  const b = Math.sin(y * 1.7 - t * 0.8);
+  const c = Math.sin((x + y) * 1.15 + t * 0.55);
+  return (a + b + c) / 6 + 0.5;
+}
+
+function getCenteredGrid(step, padding) {
+  const cols = Math.floor((canvas.width - padding * 2) / step) + 1;
+  const rows = Math.floor((canvas.height - padding * 2) / step) + 1;
+
+  return {
+    cols,
+    rows,
+    startX: (canvas.width - (cols - 1) * step) / 2,
+    startY: (canvas.height - (rows - 1) * step) / 2,
+  };
+}
+
+function drawCell(x, y, size, n, row, col) {
+  const radius = size * (0.22 + n * 0.42);
+  const isAccent = n > 0.58;
+
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate((n - 0.5) * 0.8);
+  ctx.fillStyle = isAccent ? '#FF86DB' : '#FFC300';
+
+  if ((row + col) % 4 === 0) {
+    ctx.fillRect(-radius / 2, -radius / 2, radius, radius);
+  } else {
+    ctx.beginPath();
+    ctx.arc(0, 0, radius / 2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  ctx.restore();
+}
+
+function draw() {
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  const step = 24;
+  const grid = getCenteredGrid(step, 32);
+
+  for (let row = 0; row < grid.rows; row += 1) {
+    for (let col = 0; col < grid.cols; col += 1) {
+      const x = grid.startX + col * step;
+      const y = grid.startY + row * step;
+      const n = smoothNoise(x * 0.018, y * 0.018, time);
+      const shift = (n - 0.5) * 10;
+      drawCell(x + shift, y - shift, step, n, row, col);
+    }
+  }
+
+  time += 0.018;
+  animationId = requestAnimationFrame(draw);
+}
+
+resize();
+window.addEventListener('resize', resize);
+draw();
+
+return () => {
+  cancelAnimationFrame(animationId);
+  window.removeEventListener('resize', resize);
+};`,
+  patr3module1tutorial4code2: `let t = 0;
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  pixelDensity(1);
+  noStroke();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function getCenteredBounds(padding) {
+  return {
+    left: padding,
+    top: padding,
+    right: width - padding,
+    bottom: height - padding,
+  };
+}
+
+function draw() {
+  background('#FFFFFF');
+
+  const bounds = getCenteredBounds(32);
+  const step = 8;
+  const levels = [0.34, 0.48, 0.62];
+
+  for (let y = bounds.top; y <= bounds.bottom; y += step) {
+    for (let x = bounds.left; x <= bounds.right; x += step) {
+      const n = noise(x * 0.012, y * 0.012, t);
+
+      levels.forEach((level, index) => {
+        if (abs(n - level) < 0.018) {
+          fill(index % 2 === 0 ? '#2FD3E6' : '#37E87A');
+          const size = index === 1 ? 6 : 4;
+          circle(x, y, size);
+        }
+      });
+    }
+  }
+
+  // Центральный знак помогает композиции не распадаться на фон.
+  fill('#2FD3E6');
+  circle(width / 2, height / 2, 24 + sin(t * 3) * 4);
+
+  t += 0.008;
+}`,
+  patr3module1tutorial4code3: `let t = 0;
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
+  noStroke();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function getCenteredGrid(step, padding) {
+  const cols = floor((width - padding * 2) / step) + 1;
+  const rows = floor((height - padding * 2) / step) + 1;
+
+  return {
+    cols,
+    rows,
+    startX: (width - (cols - 1) * step) / 2,
+    startY: (height - (rows - 1) * step) / 2,
+  };
+}
+
+function warpedNoise(x, y, scale, power) {
+  const warpX = noise(x * scale, y * scale, t) * power;
+  const warpY = noise(x * scale + 30, y * scale - 30, t) * power;
+  return noise((x + warpX) * scale, (y + warpY) * scale, t * 0.7);
+}
+
+function draw() {
+  background('#FFFFFF');
+
+  const step = 32;
+  const grid = getCenteredGrid(step, 32);
+
+  for (let row = 0; row < grid.rows; row += 1) {
+    for (let col = 0; col < grid.cols; col += 1) {
+      const x = grid.startX + col * step;
+      const y = grid.startY + row * step;
+      const n = warpedNoise(x, y, 0.011, 72);
+      const band = floor(n * 5);
+      const size = step * (0.22 + n * 0.72);
+      const offset = map(n, 0, 1, -10, 10);
+
+      push();
+      translate(x + offset, y - offset * 0.5);
+      rotate(n * TWO_PI + t * 0.4);
+      fill(band % 2 === 0 ? '#FF86DB' : '#FFC300');
+
+      if (band === 0 || band === 4) {
+        triangle(-size / 2, size / 2, 0, -size / 2, size / 2, size / 2);
+      } else if (band === 2) {
+        rect(0, 0, size, size, step * 0.16);
+      } else {
+        circle(0, 0, size);
+      }
+
+      pop();
+    }
+  }
+
+  t += 0.006;
+}`,
+  patr3module1tutorial4code4: `const width = app.clientWidth;
+const height = app.clientHeight;
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xffffff);
+
+const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
+camera.position.set(0, 3.6, 7.2);
+camera.lookAt(0, 0.4, 0);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(width, height);
+app.innerHTML = '';
+app.appendChild(renderer.domElement);
+
+scene.add(new THREE.AmbientLight(0xffffff, 1.8));
+const light = new THREE.DirectionalLight(0xffffff, 2.2);
+light.position.set(3, 5, 4);
+scene.add(light);
+
+function waveValue(x, y, seed) {
+  const a = Math.sin(x * 0.09 + seed);
+  const b = Math.sin(y * 0.11 - seed * 0.7);
+  const c = Math.sin((x + y) * 0.055 + seed * 1.4);
+  return (a + b + c) / 6 + 0.5;
+}
+
+function createNoiseTexture(colorA, colorB, seed, mode) {
+  const size = 256;
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = size;
+  canvas.height = size;
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillRect(0, 0, size, size);
+
+  for (let y = 16; y < size - 16; y += 8) {
+    for (let x = 16; x < size - 16; x += 8) {
+      const n = waveValue(x, y, seed);
+      const nearLine = Math.abs(n - 0.52) < 0.055;
+      const radius = mode === 'grain' ? 2 + n * 5 : 3 + n * 7;
+      ctx.fillStyle = nearLine ? colorA : colorB;
+
+      if (mode === 'squares' && n > 0.46) {
+        ctx.fillRect(x - radius / 2, y - radius / 2, radius, radius);
+      } else if (nearLine || mode === 'grain') {
+        ctx.beginPath();
+        ctx.arc(x, y, radius / 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+  }
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(1.6, 1.6);
+  return texture;
+}
+
+const textures = [
+  createNoiseTexture('#FF86DB', '#FFC300', 1.2, 'grain'),
+  createNoiseTexture('#2FD3E6', '#37E87A', 3.4, 'squares'),
+  createNoiseTexture('#FF86DB', '#2FD3E6', 5.8, 'lines'),
+];
+
+const materials = textures.map((map) => new THREE.MeshStandardMaterial({
+  map,
+  roughness: 0.72,
+  metalness: 0.02,
+}));
+
+const objects = [];
+const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.95, 48, 32), materials[0]);
+sphere.position.set(-2.1, 0.4, 0);
+scene.add(sphere);
+objects.push(sphere);
+
+const box = new THREE.Mesh(new THREE.BoxGeometry(1.45, 1.45, 1.45, 12, 12, 12), materials[1]);
+box.position.set(0, 0.25, 0);
+scene.add(box);
+objects.push(box);
+
+const torus = new THREE.Mesh(new THREE.TorusGeometry(0.82, 0.25, 28, 80), materials[2]);
+torus.position.set(2.15, 0.35, 0);
+scene.add(torus);
+objects.push(torus);
+
+const floorGeometry = new THREE.PlaneGeometry(5.8, 0.18);
+const floorMaterial = new THREE.MeshBasicMaterial({ color: 0x37e87a });
+const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+floor.position.y = -1.18;
+scene.add(floor);
+
+function onResize() {
+  const nextWidth = app.clientWidth;
+  const nextHeight = app.clientHeight;
+  camera.aspect = nextWidth / nextHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(nextWidth, nextHeight);
+}
+
+window.addEventListener('resize', onResize);
+let animationId;
+let time = 0;
+
+function animate() {
+  time += 0.012;
+
+  objects.forEach((object, index) => {
+    object.rotation.x += 0.006 + index * 0.002;
+    object.rotation.y += 0.012 + index * 0.003;
+    object.position.y = 0.28 + Math.sin(time + index) * 0.12;
+  });
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+animate();
+
+return () => {
+  cancelAnimationFrame(animationId);
+  window.removeEventListener('resize', onResize);
+  textures.forEach((texture) => texture.dispose());
+  materials.forEach((material) => material.dispose());
+  objects.forEach((object) => object.geometry.dispose());
+  floorGeometry.dispose();
+  floorMaterial.dispose();
+  renderer.dispose();
+};`,
+  patr3module1tutorial4code5: `let t = 0;
+let activePreset = 'electricMap';
+
+const presets = {
+  softFabric: {
+    scale: 0.008,
+    warp: 44,
+    step: 24,
+    levels: 4,
+    colors: ['#FF86DB', '#FFC300'],
+  },
+  electricMap: {
+    scale: 0.014,
+    warp: 86,
+    step: 16,
+    levels: 6,
+    colors: ['#2FD3E6', '#37E87A'],
+  },
+  liquidPoster: {
+    scale: 0.011,
+    warp: 118,
+    step: 20,
+    levels: 5,
+    colors: ['#FF86DB', '#2FD3E6'],
+  },
+};
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
+  noStroke();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function centeredGrid(step, padding) {
+  const cols = floor((width - padding * 2) / step) + 1;
+  const rows = floor((height - padding * 2) / step) + 1;
+  return {
+    cols,
+    rows,
+    startX: (width - (cols - 1) * step) / 2,
+    startY: (height - (rows - 1) * step) / 2,
+  };
+}
+
+function sampleTexture(x, y, preset) {
+  const wx = noise(x * preset.scale, y * preset.scale, t) * preset.warp;
+  const wy = noise(x * preset.scale + 70, y * preset.scale - 40, t) * preset.warp;
+  return noise((x + wx) * preset.scale, (y + wy) * preset.scale, t * 0.6);
+}
+
+function draw() {
+  background('#FFFFFF');
+
+  // Выбери стартовый характер серии.
+  // activePreset = 'softFabric';
+  // activePreset = 'electricMap';
+  // activePreset = 'liquidPoster';
+
+  const preset = presets[activePreset];
+
+  // Тонкая настройка: меняй числа и смотри, как меняется материал.
+  // preset.scale = 0.006; // крупнее и спокойнее
+  // preset.scale = 0.018; // мельче и напряжённее
+  // preset.warp = 140;    // сильнее деформация координат
+  // preset.levels = 8;    // больше цветовых ступеней
+
+  const grid = centeredGrid(preset.step, 32);
+
+  for (let row = 0; row < grid.rows; row += 1) {
+    for (let col = 0; col < grid.cols; col += 1) {
+      const x = grid.startX + col * preset.step;
+      const y = grid.startY + row * preset.step;
+      const n = sampleTexture(x, y, preset);
+      const level = floor(n * preset.levels);
+      const size = preset.step * (0.22 + n * 0.74);
+      const color = preset.colors[level % preset.colors.length];
+
+      push();
+      translate(x, y);
+      rotate(n * TWO_PI + t * 0.3);
+      fill(color);
+
+      if (level % 3 === 0) {
+        rect(0, 0, size, size, preset.step * 0.12);
+      } else if (level % 3 === 1) {
+        circle(0, 0, size);
+      } else {
+        triangle(-size / 2, size / 2, 0, -size / 2, size / 2, size / 2);
+      }
+
+      pop();
+    }
+  }
+
+  // Небольшой маркер показывает, что это серия, а не случайный фон.
+  fill(preset.colors[0]);
+  circle(width / 2, height / 2, 18 + sin(t * 2) * 3);
+
+  t += 0.006;
 }`,
 };

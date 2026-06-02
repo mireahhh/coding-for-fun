@@ -441,6 +441,18 @@ const tagsPart3Module1Tutorial4 = {
   title: "Шумовые текстуры",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
+
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryVanillajs", "filterLibraryP5js", "filterLibraryThreejs"],
+  format: ["filterFormatTechnique", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  tags: [
+    "Шум",
+    "Текстуры",
+    "Процедурная генерация",
+    "Генеративная графика",
+    "3D"
+  ]
 };
 const tagsPart3Module1 = [tagsPart3Module1Tutorial1, tagsPart3Module1Tutorial2, tagsPart3Module1Tutorial3, tagsPart3Module1Tutorial4];
 // p3 m2

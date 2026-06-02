@@ -309,12 +309,274 @@
       <div class="O_TutorialMain">
         <section class="U_FontB1 A_TutorialAnnotation">
           <!-- тут краткое описание -->
+
+          В&nbsp;этом уроке случайность станет не&nbsp;одинаковой, а&nbsp;настроенной: ты&nbsp;сравнишь равномерное,
+          треугольное, гауссово и&nbsp;взвешенное распределения, а&nbsp;затем соберёшь постер, где вероятность управляет
+          плотностью, цветом и&nbsp;ритмом композиции.
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav1" class="U_FontH3 A_TutorialTitle">
+            Теория
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p id="TutorialTextFirst" class="U_FontB1 A_TutorialText">
+            Когда мы&nbsp;пишем <span>random()</span>, кажется, что&nbsp;все случайные значения ведут себя одинаково:
+            число просто появляется в&nbsp;диапазоне. Но&nbsp;для&nbsp;дизайна важен не&nbsp;только диапазон, а&nbsp;то,
+            <span>как&nbsp;часто</span> появляются разные значения внутри него. Одно распределение создаёт ровную
+            россыпь, другое&nbsp;— сгущение около центра, третье&nbsp;— редкие экстремальные выбросы. Это&nbsp;похоже
+            на&nbsp;настройку кисти: сама форма может быть кругом или&nbsp;квадратом, но&nbsp;характер изображения
+            рождается из&nbsp;плотности, повторяемости и&nbsp;вероятности.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            <span>Распределение</span>&nbsp;— это&nbsp;правило, которое описывает вероятность результата.
+            Если&nbsp;бросать
+            точку полностью равномерно, каждая позиция получает одинаковый шанс. Если&nbsp;усреднить несколько
+            случайных чисел, значения начнут чаще собираться около середины. Если&nbsp;использовать нормальное
+            распределение, большинство точек окажется рядом с&nbsp;центром, а&nbsp;края станут редкими, но&nbsp;важными
+            акцентами. В&nbsp;креативном коде это&nbsp;позволяет управлять не&nbsp;одним объектом, а&nbsp;целой
+            <span>визуальной статистикой</span> композиции.
+          </p>
+
+          <div class="M_TutorialQuote">
+            <p class="U_FontS2">
+              Распределение превращает случайность из&nbsp;хаоса в&nbsp;режиссуру: мы&nbsp;не&nbsp;знаем точный
+              результат,
+              но&nbsp;знаем его&nbsp;поведение
+            </p>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;этом уроке мы&nbsp;будем смотреть на&nbsp;распределения как&nbsp;на&nbsp;композиционный инструмент.
+            Равномерная случайность подойдёт для&nbsp;нейтрального фона и&nbsp;честной сетки. Треугольная&nbsp;—
+            для&nbsp;мягкого сжатия к&nbsp;середине. Гауссова&nbsp;— для&nbsp;облаков, скоплений, орбит и&nbsp;живых
+            масс. Взвешенный выбор&nbsp;— для&nbsp;палитры, где&nbsp;один цвет работает как&nbsp;основной, а&nbsp;другой
+            появляется как&nbsp;акцент. Важно, что&nbsp;распределение можно применять не&nbsp;только к&nbsp;координатам:
+            оно&nbsp;управляет размером, цветом, прозрачностью, углом поворота, плотностью рядов и&nbsp;даже выбором
+            формы.
+          </p>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              <span>Равномерное распределение</span> даёт всем значениям одинаковый шанс и&nbsp;хорошо показывает
+              «чистую» случайность.
+            </li>
+            <li>
+              <span>Сумма случайностей</span> смещает результат к&nbsp;центру: крайние значения становятся реже.
+            </li>
+            <li>
+              <span>Взвешенный выбор</span> позволяет управлять вероятностью цвета, формы или&nbsp;состояния
+              без&nbsp;сложной математики.
+            </li>
+          </ol>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav2" class="U_FontH3 A_TutorialTitle">
+            Практика: техника
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Начнём с&nbsp;<span>равномерного распределения</span>. Здесь каждый круг получает случайное смещение внутри
+            своей ячейки, но&nbsp;сама сетка остаётся центрированной. Такой приём полезен, когда нужно сохранить
+            модульную структуру и&nbsp;добавить ей&nbsp;живости: элементы не&nbsp;разваливаются, потому
+            что&nbsp;случайность
+            ограничена рамкой ячейки.
+          </p>
+
+          <div id="patr3module1tutorial3code1" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Равномерное распределение: точки свободно двигаются внутри одинаковых модулей, но&nbsp;композиция
+                остаётся собранной.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Теперь изменим не&nbsp;диапазон, а&nbsp;саму вероятность. Если&nbsp;сложить два&nbsp;случайных числа
+            и&nbsp;разделить результат пополам, значения около середины будут появляться чаще. Это&nbsp;называют
+            <span>треугольным распределением</span>: оно&nbsp;простое, быстрое и&nbsp;очень дизайнерское, потому что
+            мягко собирает элементы вокруг выбранной оси.
+          </p>
+
+          <div id="patr3module1tutorial3code2" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Треугольное распределение: средние значения встречаются чаще, поэтому паттерн уплотняется
+                в&nbsp;центральной зоне.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Для&nbsp;ещё более выразительного сгущения используем <span>гауссово распределение</span>. В&nbsp;p5.js
+            для&nbsp;этого есть функция <span>randomGaussian()</span>. Она&nbsp;возвращает значения вокруг среднего:
+            чаще рядом с&nbsp;ним и&nbsp;реже далеко от&nbsp;него. В&nbsp;визуальной системе это&nbsp;похоже
+            на&nbsp;облако, пятно внимания или&nbsp;центр тяжести. Мы&nbsp;не&nbsp;расставляем точки вручную,
+            но&nbsp;задаём им&nbsp;вероятностный портрет.
+          </p>
+
+          <div id="patr3module1tutorial3code3" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Гауссово распределение: большинство частиц остаётся около центра, а&nbsp;редкие выбросы создают
+                напряжение по&nbsp;краям.
+              </p>
+            </div>
+          </div>
+
         </section>
         <section class="O_TutorialSection">
 
           <!-- тут сами блоки 
           делай в них такой отступ по строке, как здесь вот ща и везде в статьях
           а между section отступ не делай-->
+          <h3 id="nav3" class="U_FontH3 A_TutorialTitle">
+            Вывод и&nbsp;синтаксис
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Распределения помогают проектировать случайность не&nbsp;как&nbsp;набор сюрпризов, а&nbsp;как&nbsp;систему.
+            <span>Равномерное распределение</span> подходит для&nbsp;ровной вариативности, <span>треугольное</span>
+            мягко собирает значения около середины, <span>гауссово</span> создаёт плотные облака с&nbsp;редкими
+            выбросами, а&nbsp;<span>взвешенный выбор</span> управляет частотой цветов и&nbsp;форм. В&nbsp;генеративной
+            графике это&nbsp;почти то&nbsp;же самое, что&nbsp;композиционные правила в&nbsp;плакате: где&nbsp;должно
+            быть
+            много, где&nbsp;мало, где&nbsp;ритм, а&nbsp;где&nbsp;акцент.
+          </p>
+
+          <ul class="U_FontC2-Code C_TutorialCopyList">
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                random(min, max); // равномерное случайное число
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                (random() + random()) / 2; // простое треугольное распределение
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                randomGaussian(mean, deviation); // нормальное распределение вокруг среднего
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                if (random(1) &lt; probability) { ... } // событие с заданной вероятностью
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+          </ul>
 
         </section>
         <section class="O_TutorialSection">
@@ -322,6 +584,98 @@
           <!-- тут сами блоки 
           делай в них такой отступ по строке, как здесь вот ща и везде в статьях
           а между section отступ не делай-->
+          <h3 id="nav4" class="U_FontH3 A_TutorialTitle">
+            Задание
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Координаты&nbsp;— не&nbsp;единственное место, где&nbsp;нужны распределения. Часто важнее решить, какой цвет
+            будет основным, какой станет редким акцентом, а&nbsp;какая форма появится только в&nbsp;особых местах.
+            Для&nbsp;этого подходит <span>взвешенный выбор</span>: мы&nbsp;задаём варианты и&nbsp;их&nbsp;веса,
+            а&nbsp;алгоритм выбирает результат с&nbsp;нужной частотой.
+          </p>
+
+          <div id="patr3module1tutorial3code4" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Взвешенный выбор: большинство модулей остаётся спокойным, а&nbsp;яркие формы появляются
+                как&nbsp;акценты.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Финальное задание собирает все идеи в&nbsp;один генеративный постер. Здесь есть гауссовое облако,
+            взвешенная палитра, распределение размера и&nbsp;режимы движения. Попробуй менять настройки так,
+            чтобы&nbsp;получить не&nbsp;просто другую картинку, а&nbsp;другой характер вероятности: более спокойный,
+            более плотный, более резкий или&nbsp;почти орбитальный.
+          </p>
+
+          <div id="patr3module1tutorial3code5" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Задание: настрой вероятностный постер, где&nbsp;разные распределения управляют позицией, размером,
+                цветом и&nbsp;движением.
+              </p>
+            </div>
+          </div>
 
         </section>
         <section class="O_TutorialSection O_TutorialSection--Last">
