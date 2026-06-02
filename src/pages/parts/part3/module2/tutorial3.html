@@ -308,20 +308,531 @@
 
       <div class="O_TutorialMain">
         <section class="U_FontB1 A_TutorialAnnotation">
-          <!-- тут краткое описание -->
+          Мозаика начинается с&nbsp;сетки, но&nbsp;не&nbsp;обязана выглядеть сухо: в&nbsp;этом уроке ты&nbsp;соберёшь
+          управляемые модульные композиции на&nbsp;Vanilla&nbsp;JS, p5.js и&nbsp;Three.js, а&nbsp;затем пройдёшь три
+          итерации сложной p5.js-мозаики&nbsp;— от&nbsp;ровных плиток к&nbsp;живому орнаменту с&nbsp;ритмом, смещением
+          и&nbsp;контрастом.
         </section>
         <section class="O_TutorialSection">
 
-          <!-- тут сами блоки 
-          делай в них такой отступ по строке, как здесь вот ща и везде в статьях
-          а между section отступ не делай-->
+          <h3 id="nav1" class="U_FontH3 A_TutorialTitle">
+            Теория
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p id="TutorialTextFirst" class="U_FontB1 A_TutorialText">
+            <span>Сетка</span>&nbsp;— это&nbsp;система координат для&nbsp;дизайна. Она&nbsp;делит плоскость
+            на&nbsp;понятные
+            места: строку, колонку, ячейку, шаг и&nbsp;отступ. <span>Мозаика</span> появляется тогда, когда
+            каждая ячейка получает своё локальное решение: форму, поворот, цвет, масштаб или&nbsp;пустоту.
+            Поэтому мозаика удобна для&nbsp;креативного кода: общий порядок задаёт сетка, а&nbsp;характер создают
+            правила внутри плиток.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Простая сетка может быть скучной, если&nbsp;все элементы одинаковые. Но&nbsp;достаточно добавить
+            <span>чередование</span>, <span>смещение</span> и&nbsp;<span>локальную вариативность</span>, чтобы&nbsp;она
+            стала похожа на&nbsp;постер, ткань, интерфейсный паттерн или&nbsp;архитектурный фасад. Важно,
+            что&nbsp;вариативность
+            не&nbsp;должна разрушать систему: если&nbsp;каждая плитка делает что&nbsp;угодно, композиция превращается
+            в&nbsp;шум. Если&nbsp;каждая плитка меняется по&nbsp;ограниченному правилу, появляется дизайнерский ритм.
+          </p>
+
+          <div class="M_TutorialQuote">
+            <p class="U_FontS2">
+              Сетка даёт дисциплину, а&nbsp;мозаика показывает, как&nbsp;много разных решений может жить внутри
+              одной дисциплины
+            </p>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Для&nbsp;мозаики почти всегда нужны четыре параметра. <span>step</span> задаёт расстояние между
+            центрами плиток. <span>padding</span> удерживает композицию от&nbsp;краёв фрейма. <span>row</span>
+            и&nbsp;<span>col</span> дают каждой ячейке адрес. А&nbsp;дальше этот адрес можно превратить в&nbsp;графику:
+            например, поворачивать элементы через&nbsp;<span>(row + col) % 2</span>, менять цвет по&nbsp;диагонали,
+            увеличивать размер к&nbsp;центру или&nbsp;создавать шахматный ритм.
+          </p>
+
+          <div class="U_FontC2-Code W_TutorialCopyItem">
+            <p class="A_TutorialCopyText">
+              for (let row = 0; row &lt; rows; row++) {<br>
+              &nbsp;&nbsp;for (let col = 0; col &lt; cols; col++) {<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;let x = startX + col * step;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;let y = startY + row * step;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;drawTile(x, y, row, col);<br>
+              &nbsp;&nbsp;}<br>
+              }
+            </p>
+            <button class="U_ButtonIcon A_TutorialCopyButton">
+              <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+            </button>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;продвинутой практике сетка редко остаётся абсолютно прямой. Её&nbsp;можно деформировать,
+            но&nbsp;лучше делать это&nbsp;не&nbsp;случайным сдвигом, а&nbsp;с&nbsp;понятной логикой: от&nbsp;центра,
+            по&nbsp;волне,
+            по&nbsp;диагонали, по&nbsp;шумовому полю или&nbsp;по&nbsp;реакции на&nbsp;курсор. Тогда зритель видит
+            не&nbsp;набор
+            случайных плиток, а&nbsp;систему, у&nbsp;которой есть внутреннее напряжение.
+          </p>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>Сначала проектируется модуль: что&nbsp;может происходить внутри одной ячейки.</li>
+            <li>Затем проектируется правило повторения: как&nbsp;модуль меняется от&nbsp;строки к&nbsp;строке
+              и&nbsp;от&nbsp;колонки к&nbsp;колонке.</li>
+            <li>В&nbsp;финале настраивается композиция: поля, плотность, палитра, центр тяжести и&nbsp;степень хаоса.
+            </li>
+          </ol>
 
         </section>
         <section class="O_TutorialSection">
 
-          <!-- тут сами блоки 
-          делай в них такой отступ по строке, как здесь вот ща и везде в статьях
-          а между section отступ не делай-->
+          <h3 id="nav2" class="U_FontH3 A_TutorialTitle">
+            Практика: техника и&nbsp;вариация
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Начнём с&nbsp;трёх вариантов одной идеи: мозаика строится из&nbsp;плиток, а&nbsp;плитка меняет поведение
+            в&nbsp;зависимости от&nbsp;своего адреса в&nbsp;сетке. Vanilla&nbsp;JS показывает базовую геометрию, p5.js
+            добавляет плавное движение, а&nbsp;Three.js превращает сетку в&nbsp;объёмный рельеф.
+          </p>
+
+          <div id="patr3module2tutorial3code1" class="O_TutorialSingleCode" data-runtime="vanilla"
+            data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Vanilla&nbsp;JS: средне-простая мозаика на&nbsp;Canvas. Чередование строки и&nbsp;колонки управляет
+                формой, цветом и&nbsp;поворотом плитки.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;первом примере почти нет&nbsp;случайности: композиция держится на&nbsp;адресе ячейки. Это&nbsp;важный
+            приём для&nbsp;мозаик: <span>row</span> и&nbsp;<span>col</span> уже&nbsp;являются данными. Их&nbsp;можно
+            складывать,
+            сравнивать, брать остаток от&nbsp;деления и&nbsp;получать ритм без&nbsp;дополнительных массивов.
+          </p>
+
+          <div id="patr3module2tutorial3code2" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                p5.js: средняя мозаика с&nbsp;волной. Плитки остаются на&nbsp;сетке, но&nbsp;их&nbsp;размер
+                и&nbsp;поворот мягко меняются по&nbsp;диагонали.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Во&nbsp;втором примере сетка становится временной системой. Мы&nbsp;не&nbsp;ломаем координаты, а&nbsp;меняем
+            параметры внутри ячейки: поэтому композиция движется, но&nbsp;не&nbsp;разваливается. Такой подход хорошо
+            работает для&nbsp;заставок, интерактивных фонов и&nbsp;динамических плакатов.
+          </p>
+
+          <div id="patr3module2tutorial3code3" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="three" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Three.js: мозаика превращается в&nbsp;3D-рельеф. Каждая плитка получает высоту, цвет и&nbsp;лёгкое
+                вращение, а&nbsp;камера показывает сетку как&nbsp;объект.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;Three.js та&nbsp;же логика становится пространственной: строка и&nbsp;колонка задают положение
+            по&nbsp;осям <span>x</span> и&nbsp;<span>z</span>, а&nbsp;дополнительная формула управляет высотой
+            по&nbsp;оси
+            <span>y</span>. Так&nbsp;обычная сетка превращается в&nbsp;рельефную мозаичную поверхность.
+          </p>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav3" class="U_FontH3 A_TutorialTitle">
+            Практика: задача
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Теперь задача: собрать сложную p5.js-мозаику, где&nbsp;сетку видно, но&nbsp;она не&nbsp;выглядит
+            механической.
+            Сначала посмотрим на&nbsp;финальную цель, а&nbsp;потом придём к&nbsp;ней за&nbsp;три итерации: модуль,
+            вариативность и&nbsp;композиционное поле.
+          </p>
+
+          <div id="patr3module2tutorial3code4" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Финальная цель: плотная мозаика с&nbsp;диагональным ритмом, мягким полем размера и&nbsp;двумя типами
+                плиток. Дальше разберём, как&nbsp;она собирается.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;первой итерации строим только каркас: центрированную сетку и&nbsp;один понятный модуль.
+            Это&nbsp;самый
+            важный шаг, потому&nbsp;что&nbsp;без&nbsp;ровного каркаса любые красивые эффекты будут выглядеть случайной
+            грязью.
+          </p>
+
+          <div id="patr3module2tutorial3code5" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Итерация&nbsp;1: чистая сетка. Все плитки одинаковые, зато&nbsp;понятно, где&nbsp;находится композиция
+                и&nbsp;какой у&nbsp;неё шаг.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            Во&nbsp;второй итерации добавляем локальные различия. Плитка всё&nbsp;ещё&nbsp;остаётся в&nbsp;ячейке,
+            но&nbsp;её&nbsp;форма,
+            цвет и&nbsp;угол зависят от&nbsp;адреса. Это&nbsp;создаёт ритм без&nbsp;потери структуры.
+          </p>
+
+          <div id="patr3module2tutorial3code6" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Итерация&nbsp;2: адрес ячейки управляет вариантом плитки. Чередование создаёт диагонали, а&nbsp;поворот
+                добавляет движение.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В&nbsp;третьей итерации вводим поле: размер и&nbsp;сдвиг зависят от&nbsp;расстояния до&nbsp;центра
+            и&nbsp;плавной
+            волны. Сетка остаётся основой, но&nbsp;появляется ощущение глубины и&nbsp;направленного движения.
+          </p>
+
+          <div id="patr3module2tutorial3code7" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Итерация&nbsp;3: поле меняет масштаб и&nbsp;лёгкий сдвиг плиток. Так&nbsp;мозаика становится сложнее,
+                но&nbsp;сохраняет читаемый порядок.
+              </p>
+            </div>
+          </div>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav4" class="U_FontH3 A_TutorialTitle">
+            Вывод
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Мозаики и&nbsp;сетки полезны тем, что&nbsp;соединяют алгоритм и&nbsp;композицию. Сетка даёт контроль:
+            одинаковый шаг, поля, ряды и&nbsp;колонки. Мозаика даёт выразительность: вариативные плитки,
+            диагонали, пустоты, рельеф и&nbsp;пульсацию. Чем&nbsp;точнее правило, тем&nbsp;смелее можно делать
+            визуальный
+            результат.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Для&nbsp;сложной работы не&nbsp;нужно сразу писать сложный код. Надёжнее идти слоями: сначала центрированная
+            сетка, затем модуль, потом вариативность, потом поле или&nbsp;анимация. Так&nbsp;каждая итерация улучшает
+            композицию, а&nbsp;не&nbsp;заменяет её&nbsp;новым хаосом.
+          </p>
+
+          <ul class="U_FontC2-Code C_TutorialCopyList">
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">const cols = floor((width - padding * 2) / step); // количество колонок</p>
+              <button class="U_ButtonIcon A_TutorialCopyButton"><img class="Q_TutorialCopyIcon"
+                  src="../../../../images/icons/copy.svg" alt="Копировать"></button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">const rows = floor((height - padding * 2) / step); // количество строк</p>
+              <button class="U_ButtonIcon A_TutorialCopyButton"><img class="Q_TutorialCopyIcon"
+                  src="../../../../images/icons/copy.svg" alt="Копировать"></button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">const x = startX + col * step; // центр плитки по горизонтали</p>
+              <button class="U_ButtonIcon A_TutorialCopyButton"><img class="Q_TutorialCopyIcon"
+                  src="../../../../images/icons/copy.svg" alt="Копировать"></button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">const y = startY + row * step; // центр плитки по вертикали</p>
+              <button class="U_ButtonIcon A_TutorialCopyButton"><img class="Q_TutorialCopyIcon"
+                  src="../../../../images/icons/copy.svg" alt="Копировать"></button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">const isEven = (row + col) % 2 === 0; // шахматное чередование</p>
+              <button class="U_ButtonIcon A_TutorialCopyButton"><img class="Q_TutorialCopyIcon"
+                  src="../../../../images/icons/copy.svg" alt="Копировать"></button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">const d = dist(x, y, width / 2, height / 2); // расстояние до центра</p>
+              <button class="U_ButtonIcon A_TutorialCopyButton"><img class="Q_TutorialCopyIcon"
+                  src="../../../../images/icons/copy.svg" alt="Копировать"></button>
+            </li>
+          </ul>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav5" class="U_FontH3 A_TutorialTitle">
+            Задание
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Собери серию из&nbsp;трёх мозаичных постеров. Не&nbsp;меняй весь код сразу: выбери один параметрический
+            маршрут и&nbsp;проведи его&nbsp;через&nbsp;несколько запусков. В&nbsp;финале у&nbsp;тебя должна получиться
+            серия,
+            где&nbsp;работы разные, но&nbsp;видно, что&nbsp;они&nbsp;построены на&nbsp;одной системе.
+          </p>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>Начни с&nbsp;<span>step</span>: сделай плотную, среднюю и&nbsp;воздушную версию сетки.</li>
+            <li>Затем настрой <span>fieldPower</span>: проверь, когда поле почти незаметно, а&nbsp;когда начинает вести
+              всю композицию.</li>
+            <li>После этого выбери <span>tileMode</span>: только круги, только квадраты или&nbsp;смешанную систему.</li>
+            <li>В&nbsp;финале зафиксируй лучшую палитру и&nbsp;подбери <span>motionSpeed</span>, чтобы&nbsp;анимация
+              была частью рисунка, а&nbsp;не&nbsp;просто эффектом поверх него.</li>
+          </ol>
+
+          <div id="patr3module2tutorial3code8" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="p5" data-autostart="false">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Задание: параметрическая p5.js-мозаика для&nbsp;серии. Меняй шаг, силу поля, режим плиток
+                и&nbsp;скорость движения, сохраняя общий визуальный язык.
+              </p>
+            </div>
+          </div>
 
         </section>
         <section class="O_TutorialSection O_TutorialSection--Last">

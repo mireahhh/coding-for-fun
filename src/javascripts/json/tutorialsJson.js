@@ -480,6 +480,19 @@ const tagsPart3Module2Tutorial2 = {
   title: "Фракталы и\u00A0L-системы",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
+
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryVanillajs", "filterLibraryP5js", "filterLibraryThreejs"],
+  format: ["filterFormatTechnique", "filterFormatVariation", "filterFormatTask"],
+  verification: "filterVerificationExpert",
+  tags: [
+    "Паттерны",
+    "Композиция",
+    "Геометрические алгоритмы",
+    "Процедурная генерация",
+    "Генеративная графика",
+    "3D"
+  ]
 };
 const tagsPart3Module2Tutorial3 = {
   date: ["20260330"],

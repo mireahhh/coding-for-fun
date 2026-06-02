@@ -330,6 +330,146 @@ return () => {
   renderer.dispose();
 };`;
 
+const handbookPart2Module3Preview = `const width = app.clientWidth;
+const height = app.clientHeight;
+
+let speedFactor = 0;
+let targetSpeedFactor = 0;
+let lastTime = 0;
+let t = 0;
+
+// сцена
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf8f8f8);
+
+// камера
+const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+camera.position.set(0, 0, 4);
+camera.lookAt(0, 0, 0);
+
+// рендерер
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+// группа
+const group = new THREE.Group();
+scene.add(group);
+
+// куб
+const geometry = new THREE.BoxGeometry(1.35, 1.35, 1.35);
+
+const material = new THREE.MeshStandardMaterial({
+  color: 0xff86db,
+  roughness: 0.42,
+  metalness: 0.08,
+});
+
+const cube = new THREE.Mesh(geometry, material);
+cube.rotation.set(-0.35, 0.55, 0.12);
+group.add(cube);
+
+// свет
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.55);
+scene.add(ambientLight);
+
+const mainLight = new THREE.DirectionalLight(0xffffff, 1.7);
+mainLight.position.set(2.5, 3, 4);
+scene.add(mainLight);
+
+const fillLight = new THREE.DirectionalLight(0xff86db, 0.45);
+fillLight.position.set(-3, -1, 2);
+scene.add(fillLight);
+
+// resize
+function onResize() {
+  const width = app.clientWidth;
+  const height = app.clientHeight;
+
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+  renderer.setSize(width, height);
+}
+
+// hover-анимация
+function playAnimation() {
+  targetSpeedFactor = 1;
+}
+
+function pauseAnimation() {
+  targetSpeedFactor = 0;
+}
+
+function handlePreviewHover(event) {
+  if (event.data?.type !== "coding-for-fun-preview-hover") return;
+
+  if (event.data.isHovered) {
+    playAnimation();
+  } else {
+    pauseAnimation();
+  }
+}
+
+// анимация
+let animationId;
+
+function animate(time) {
+  const deltaTime = time - lastTime;
+  lastTime = time;
+
+  // На ховере куб быстро разгоняется, без ховера — мягко успокаивается
+  const easing = targetSpeedFactor > speedFactor ? 0.18 : 0.045;
+  speedFactor += (targetSpeedFactor - speedFactor) * easing;
+
+  // Время всегда идёт: без ховера медленно, на ховере быстрее
+  t += 0.012 + speedFactor * 0.035;
+
+  // Ленивое плавание в невесомости
+  group.position.x = Math.sin(t * 0.65) * 0.12;
+  group.position.y = Math.cos(t * 0.82) * 0.10;
+  group.position.z = Math.sin(t * 0.5) * 0.08;
+
+  // Лёгкое покачивание всегда есть
+  group.rotation.x = Math.sin(t * 0.45) * 0.08;
+  group.rotation.y = Math.cos(t * 0.38) * 0.08;
+  group.rotation.z += 0.0015 + speedFactor * 0.01;
+
+  // Без ховера куб еле крутится, на ховере бодро ускоряется
+  cube.rotation.x += 0.002 + speedFactor * 0.026;
+  cube.rotation.y += 0.003 + speedFactor * 0.038;
+  cube.rotation.z += 0.001 + speedFactor * 0.014;
+
+  // Лёгкий “желейный” акцент при разгоне
+  const jelly = 1 + Math.sin(t * 2.4) * speedFactor * 0.035;
+  cube.scale.set(jelly, 1 / jelly, 1);
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+window.addEventListener("resize", onResize);
+window.addEventListener("message", handlePreviewHover);
+renderer.domElement.addEventListener("mouseenter", playAnimation);
+renderer.domElement.addEventListener("mouseleave", pauseAnimation);
+
+animate(0);
+
+return () => {
+  cancelAnimationFrame(animationId);
+
+  window.removeEventListener("resize", onResize);
+  window.removeEventListener("message", handlePreviewHover);
+  renderer.domElement.removeEventListener("mouseenter", playAnimation);
+  renderer.domElement.removeEventListener("mouseleave", pauseAnimation);
+
+  geometry.dispose();
+  material.dispose();
+  renderer.dispose();
+};`;
+
 const handbookPart3Module1Preview = `const palette = ['#FFC300', '#FF86DB'];
 
 let t = 0;
@@ -405,15 +545,154 @@ function draw() {
   t += 0.018 * hoverAmount;
 }`;
 
+const handbookPart3Module2Preview = `const palette = {
+  pink: "#FF86DB",
+  cyan: "#2FD3E6",
+};
+
+let t = 0;
+let hoverAmount = 0;
+let isHovering = false;
+
+function updateHoverState(value) {
+  isHovering = value;
+}
+
+function handlePreviewHover(event) {
+  if (event.data?.type !== "coding-for-fun-preview-hover") return;
+  updateHoverState(event.data.isHovered);
+}
+
+function setup() {
+  const canvas = createCanvas(app.clientWidth, app.clientHeight);
+  canvas.parent("app");
+
+  angleMode(RADIANS);
+  rectMode(CENTER);
+
+  canvas.mouseOver(() => {
+    updateHoverState(true);
+  });
+
+  canvas.mouseOut(() => {
+    updateHoverState(false);
+  });
+
+  window.addEventListener("message", handlePreviewHover);
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function draw() {
+  background("#FFFFFF");
+
+  hoverAmount = lerp(hoverAmount, isHovering ? 1 : 0, 0.08);
+
+  const size = min(width, height);
+  const centerX = width / 2;
+  const centerY = height / 2;
+
+  // Чуть сильнее движение на ховере
+  const timeSpeed = 0.012 + hoverAmount * 0.02;
+  t += timeSpeed;
+
+  // Размер и плотность
+  const baseLength = size * 0.16;
+  const branches = 8;
+
+  push();
+  translate(centerX, centerY);
+
+  // Общее "дыхание"
+  const breathing = 1 + sin(t * 1.5) * (0.02 + hoverAmount * 0.035);
+  scale(breathing);
+
+  // Лёгкое вращение всей системы
+  rotate(sin(t * 0.55) * (0.03 + hoverAmount * 0.08));
+
+  // Центральное ядро
+  noStroke();
+  fill(palette.pink);
+  circle(0, 0, size * 0.05);
+
+  fill(palette.cyan);
+  circle(0, 0, size * 0.022);
+
+  // Радиальные фрактальные ветви
+  for (let i = 0; i < branches; i++) {
+    push();
+
+    const angle = (TWO_PI / branches) * i;
+    rotate(angle + sin(t * 0.9 + i * 0.4) * (0.02 + hoverAmount * 0.05));
+
+    drawFractalBranch(baseLength, 6, i);
+
+    pop();
+  }
+
+  pop();
+}
+
+function drawFractalBranch(length, depth, index) {
+  if (depth <= 0 || length < 5) return;
+
+  const progress = depth / 6;
+  const colorMix = index % 2 === 0 ? palette.pink : palette.cyan;
+
+  stroke(colorMix);
+  strokeWeight(0.9 + progress * 2.2);
+  strokeCap(ROUND);
+
+  // Основная ветвь
+  line(0, 0, 0, -length);
+
+  // Узел
+  noStroke();
+  fill(colorMix);
+  circle(0, -length, length * 0.16);
+
+  fill("#FFFFFF");
+  circle(0, -length, length * 0.06);
+
+  translate(0, -length);
+
+  // На ховере размах ветвей сильнее
+  const baseAngle = 0.48 + hoverAmount * 0.16;
+  const animatedAngle = baseAngle + sin(t * 1.3 + depth * 0.7 + index * 0.3) * (0.06 + hoverAmount * 0.08);
+  const nextLength = length * 0.67;
+
+  // Левая ветвь
+  push();
+  rotate(-animatedAngle);
+  drawFractalBranch(nextLength, depth - 1, index + 1);
+  pop();
+
+  // Правая ветвь
+  push();
+  rotate(animatedAngle);
+  drawFractalBranch(nextLength, depth - 1, index + 2);
+  pop();
+
+  // Средняя ветвь — усиливает ощущение фрактала
+  if (depth > 2) {
+    push();
+    rotate(sin(t * 0.8 + index * 0.5) * (0.08 + hoverAmount * 0.06));
+    drawFractalBranch(nextLength * 0.72, depth - 2, index + 3);
+    pop();
+  }
+}`;
+
 
 export const previewCodeById = {
   handbookPart1Module1Preview: previewCodeVanilla,
   handbookPart1Module2Preview: previewCodeVanilla,
   handbookPart2Module1Preview: previewCodeVanilla,
   handbookPart2Module2Preview: previewCodeP5,
-  handbookPart2Module3Preview: previewCodeThree,
+  handbookPart2Module3Preview,
   handbookPart3Module1Preview,
-  handbookPart3Module2Preview: previewCodeP5,
+  handbookPart3Module2Preview,
   handbookPart3Module3Preview: previewCodeThree,
   landingPart1Preview: previewCodeVanilla,
   landingPart2Preview: previewCodeP5,
@@ -2777,8 +3056,8 @@ let geometry = new THREE.BoxGeometry(1, 1, 1);
 let material = new THREE.MeshBasicMaterial({ color: 0x1f1f1f });
 
 // попробуй раскомментировать:
-// material = new THREE.MeshBasicMaterial({ color: 0xbdbdbd });
-// material = new THREE.MeshBasicMaterial({ color: 0x1f1f1f, wireframe: true });
+// material.color.set(0xbdbdbd);
+// material.color.set(0xff86db);
 
 const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
@@ -6949,5 +7228,496 @@ function draw() {
   drawCore();
 
   pop();
+}`,
+  patr3module2tutorial3code1: `const canvas = document.createElement('canvas');
+const ctx = canvas.getContext('2d');
+let animationId;
+let t = 0;
+
+app.innerHTML = '';
+app.style.width = '100%';
+app.style.height = '100%';
+app.style.background = '#FFFFFF';
+app.appendChild(canvas);
+
+function resize() {
+  canvas.width = app.clientWidth;
+  canvas.height = app.clientHeight;
+}
+
+function drawTile(x, y, size, row, col) {
+  const even = (row + col) % 2 === 0;
+  const wave = Math.sin(t + row * 0.55 + col * 0.35);
+  const tileSize = size * (0.58 + wave * 0.1);
+
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate((even ? 1 : -1) * (Math.PI / 4 + wave * 0.18));
+  ctx.fillStyle = even ? '#FF86DB' : '#2FD3E6';
+
+  if (col % 3 === 0) {
+    ctx.fillRect(-tileSize / 2, -tileSize / 2, tileSize, tileSize);
+  } else {
+    ctx.beginPath();
+    ctx.arc(0, 0, tileSize / 2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  ctx.restore();
+}
+
+function draw() {
+  const width = canvas.width;
+  const height = canvas.height;
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillRect(0, 0, width, height);
+
+  const step = 48;
+  const padding = 32;
+  const cols = Math.floor((width - padding * 2) / step) + 1;
+  const rows = Math.floor((height - padding * 2) / step) + 1;
+  const startX = (width - (cols - 1) * step) / 2;
+  const startY = (height - (rows - 1) * step) / 2;
+
+  for (let row = 0; row < rows; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      drawTile(startX + col * step, startY + row * step, step, row, col);
+    }
+  }
+
+  t += 0.018;
+  animationId = requestAnimationFrame(draw);
+}
+
+window.addEventListener('resize', resize);
+resize();
+draw();
+
+return () => {
+  cancelAnimationFrame(animationId);
+  window.removeEventListener('resize', resize);
+};`,
+  patr3module2tutorial3code2: `let t = 0;
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
+  noStroke();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function centeredGrid(step, padding) {
+  const cols = floor((width - padding * 2) / step) + 1;
+  const rows = floor((height - padding * 2) / step) + 1;
+  return {
+    cols,
+    rows,
+    startX: (width - (cols - 1) * step) / 2,
+    startY: (height - (rows - 1) * step) / 2,
+  };
+}
+
+function draw() {
+  background('#FFFFFF');
+
+  const step = 44;
+  const grid = centeredGrid(step, 32);
+
+  for (let row = 0; row < grid.rows; row += 1) {
+    for (let col = 0; col < grid.cols; col += 1) {
+      const x = grid.startX + col * step;
+      const y = grid.startY + row * step;
+      const wave = sin(t + row * 0.48 + col * 0.42);
+      const diagonal = (row + col) % 4;
+      const size = step * (0.42 + (wave + 1) * 0.18);
+
+      push();
+      translate(x, y);
+      rotate(wave * 0.55 + diagonal * HALF_PI / 2);
+      fill(diagonal < 2 ? '#FFC300' : '#37E87A');
+
+      if (diagonal === 0 || diagonal === 3) {
+        rect(0, 0, size, size, step * 0.12);
+      } else {
+        circle(0, 0, size);
+      }
+      pop();
+    }
+  }
+
+  t += 0.012;
+}`,
+  patr3module2tutorial3code3: `const width = app.clientWidth;
+const height = app.clientHeight;
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xffffff);
+
+const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 1000);
+camera.position.set(0, 7.5, 9);
+camera.lookAt(0, 0, 0);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+app.innerHTML = '';
+app.appendChild(renderer.domElement);
+
+scene.add(new THREE.AmbientLight(0xffffff, 1.7));
+const light = new THREE.DirectionalLight(0xffffff, 2.5);
+light.position.set(4, 7, 5);
+scene.add(light);
+
+const group = new THREE.Group();
+scene.add(group);
+
+const pink = new THREE.MeshStandardMaterial({ color: 0xff86db, roughness: 0.52 });
+const cyan = new THREE.MeshStandardMaterial({ color: 0x2fd3e6, roughness: 0.5 });
+const yellow = new THREE.MeshStandardMaterial({ color: 0xffc300, roughness: 0.54 });
+const materials = [pink, cyan, yellow];
+const boxGeometry = new THREE.BoxGeometry(0.72, 0.72, 0.22);
+const cylinderGeometry = new THREE.CylinderGeometry(0.38, 0.38, 0.24, 40);
+const tiles = [];
+const cols = 10;
+const rows = 8;
+const gap = 0.82;
+
+for (let row = 0; row < rows; row += 1) {
+  for (let col = 0; col < cols; col += 1) {
+    const useBox = (row + col) % 3 !== 0;
+    const mesh = new THREE.Mesh(useBox ? boxGeometry : cylinderGeometry, materials[(row + col) % materials.length]);
+    mesh.position.x = (col - (cols - 1) / 2) * gap;
+    mesh.position.z = (row - (rows - 1) / 2) * gap;
+    group.add(mesh);
+    tiles.push({ mesh, row, col });
+  }
+}
+
+function onResize() {
+  const nextWidth = app.clientWidth;
+  const nextHeight = app.clientHeight;
+  camera.aspect = nextWidth / nextHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(nextWidth, nextHeight);
+}
+
+let animationId;
+let time = 0;
+
+function animate() {
+  time += 0.014;
+
+  tiles.forEach(({ mesh, row, col }) => {
+    const wave = Math.sin(time + row * 0.55 + col * 0.42);
+    const height = 0.2 + (wave + 1) * 0.55;
+    mesh.position.y = height * 0.45;
+    mesh.scale.y = height;
+    mesh.rotation.y = wave * 0.35;
+    mesh.rotation.z = ((row + col) % 2 === 0 ? 1 : -1) * 0.2;
+  });
+
+  group.rotation.y = Math.sin(time * 0.35) * 0.18;
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+window.addEventListener('resize', onResize);
+animate();
+
+return () => {
+  cancelAnimationFrame(animationId);
+  window.removeEventListener('resize', onResize);
+  boxGeometry.dispose();
+  cylinderGeometry.dispose();
+  materials.forEach((material) => material.dispose());
+  renderer.dispose();
+};`,
+  patr3module2tutorial3code4: `let t = 0;
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
+  noStroke();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function centeredGrid(step, padding) {
+  const cols = floor((width - padding * 2) / step) + 1;
+  const rows = floor((height - padding * 2) / step) + 1;
+  return {
+    cols,
+    rows,
+    startX: (width - (cols - 1) * step) / 2,
+    startY: (height - (rows - 1) * step) / 2,
+  };
+}
+
+function drawTile(x, y, row, col, step) {
+  const centerDistance = dist(x, y, width / 2, height / 2);
+  const maxDistance = dist(0, 0, width / 2, height / 2);
+  const field = 1 - centerDistance / maxDistance;
+  const wave = sin(t + row * 0.45 + col * 0.4);
+  const size = step * (0.28 + field * 0.5 + wave * 0.08);
+  const shift = wave * step * 0.12;
+  const diagonal = (row + col) % 5;
+
+  push();
+  translate(x + shift, y - shift);
+  rotate(diagonal * PI / 4 + wave * 0.45);
+  fill(diagonal < 3 ? '#FF86DB' : '#2FD3E6');
+
+  if (diagonal === 0 || diagonal === 4) {
+    rect(0, 0, size, size, step * 0.14);
+  } else {
+    circle(0, 0, size);
+  }
+  pop();
+}
+
+function draw() {
+  background('#FFFFFF');
+
+  const step = 40;
+  const grid = centeredGrid(step, 32);
+
+  for (let row = 0; row < grid.rows; row += 1) {
+    for (let col = 0; col < grid.cols; col += 1) {
+      drawTile(grid.startX + col * step, grid.startY + row * step, row, col, step);
+    }
+  }
+
+  t += 0.012;
+}`,
+  patr3module2tutorial3code5: `function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
+  noStroke();
+  noLoop();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+  redraw();
+}
+
+function centeredGrid(step, padding) {
+  const cols = floor((width - padding * 2) / step) + 1;
+  const rows = floor((height - padding * 2) / step) + 1;
+  return {
+    cols,
+    rows,
+    startX: (width - (cols - 1) * step) / 2,
+    startY: (height - (rows - 1) * step) / 2,
+  };
+}
+
+function draw() {
+  background('#FFFFFF');
+
+  const step = 48;
+  const grid = centeredGrid(step, 32);
+
+  for (let row = 0; row < grid.rows; row += 1) {
+    for (let col = 0; col < grid.cols; col += 1) {
+      const x = grid.startX + col * step;
+      const y = grid.startY + row * step;
+      fill('#2FD3E6');
+      rect(x, y, step * 0.58, step * 0.58, step * 0.12);
+    }
+  }
+}`,
+  patr3module2tutorial3code6: `function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
+  noStroke();
+  noLoop();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+  redraw();
+}
+
+function centeredGrid(step, padding) {
+  const cols = floor((width - padding * 2) / step) + 1;
+  const rows = floor((height - padding * 2) / step) + 1;
+  return {
+    cols,
+    rows,
+    startX: (width - (cols - 1) * step) / 2,
+    startY: (height - (rows - 1) * step) / 2,
+  };
+}
+
+function draw() {
+  background('#FFFFFF');
+
+  const step = 48;
+  const grid = centeredGrid(step, 32);
+
+  for (let row = 0; row < grid.rows; row += 1) {
+    for (let col = 0; col < grid.cols; col += 1) {
+      const x = grid.startX + col * step;
+      const y = grid.startY + row * step;
+      const variant = (row + col) % 4;
+      const size = variant < 2 ? step * 0.66 : step * 0.46;
+
+      push();
+      translate(x, y);
+      rotate(variant * HALF_PI / 2);
+      fill(variant % 2 === 0 ? '#FF86DB' : '#2FD3E6');
+
+      if (variant === 1 || variant === 3) {
+        circle(0, 0, size);
+      } else {
+        rect(0, 0, size, size, step * 0.12);
+      }
+      pop();
+    }
+  }
+}`,
+  patr3module2tutorial3code7: `let t = 0;
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
+  noStroke();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function centeredGrid(step, padding) {
+  const cols = floor((width - padding * 2) / step) + 1;
+  const rows = floor((height - padding * 2) / step) + 1;
+  return {
+    cols,
+    rows,
+    startX: (width - (cols - 1) * step) / 2,
+    startY: (height - (rows - 1) * step) / 2,
+  };
+}
+
+function draw() {
+  background('#FFFFFF');
+
+  const step = 44;
+  const grid = centeredGrid(step, 32);
+
+  for (let row = 0; row < grid.rows; row += 1) {
+    for (let col = 0; col < grid.cols; col += 1) {
+      const x = grid.startX + col * step;
+      const y = grid.startY + row * step;
+      const d = dist(x, y, width / 2, height / 2);
+      const field = map(d, 0, dist(0, 0, width / 2, height / 2), 1, 0);
+      const wave = sin(t + row * 0.42 + col * 0.36);
+      const size = step * (0.28 + field * 0.48 + wave * 0.08);
+      const shift = wave * step * 0.12;
+      const variant = (row + col) % 4;
+
+      push();
+      translate(x + shift, y - shift);
+      rotate(variant * HALF_PI / 2 + wave * 0.35);
+      fill(variant % 2 === 0 ? '#FF86DB' : '#2FD3E6');
+
+      if (variant === 1 || variant === 3) {
+        circle(0, 0, size);
+      } else {
+        rect(0, 0, size, size, step * 0.12);
+      }
+      pop();
+    }
+  }
+
+  t += 0.012;
+}`,
+  patr3module2tutorial3code8: `let t = 0;
+let step = 42;
+let fieldPower = 0.55;
+let tileMode = 'mixed';
+let motionSpeed = 0.012;
+
+function setup() {
+  createCanvas(app.clientWidth, app.clientHeight);
+  rectMode(CENTER);
+  noStroke();
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function centeredGrid(step, padding) {
+  const cols = floor((width - padding * 2) / step) + 1;
+  const rows = floor((height - padding * 2) / step) + 1;
+  return {
+    cols,
+    rows,
+    startX: (width - (cols - 1) * step) / 2,
+    startY: (height - (rows - 1) * step) / 2,
+  };
+}
+
+function shouldDrawCircle(mode, row, col) {
+  if (mode === 'circles') return true;
+  if (mode === 'squares') return false;
+  return (row + col) % 5 > 1;
+}
+
+function draw() {
+  background('#FFFFFF');
+
+  // Эксперимент 1: плотность сетки.
+  // step = 34;
+  // step = 54;
+
+  // Эксперимент 2: сила композиционного поля.
+  // fieldPower = 0.2;
+  // fieldPower = 0.85;
+
+  // Эксперимент 3: режим формы.
+  // tileMode = 'circles';
+  // tileMode = 'squares';
+  // tileMode = 'mixed';
+
+  // Эксперимент 4: скорость анимации.
+  // motionSpeed = 0.004;
+  // motionSpeed = 0.02;
+
+  const grid = centeredGrid(step, 32);
+  const maxD = dist(0, 0, width / 2, height / 2);
+
+  for (let row = 0; row < grid.rows; row += 1) {
+    for (let col = 0; col < grid.cols; col += 1) {
+      const x = grid.startX + col * step;
+      const y = grid.startY + row * step;
+      const d = dist(x, y, width / 2, height / 2);
+      const field = pow(1 - d / maxD, 1.4) * fieldPower;
+      const wave = sin(t + row * 0.45 + col * 0.38);
+      const diagonal = (row + col) % 6;
+      const size = step * (0.22 + field + (wave + 1) * 0.08);
+      const shift = wave * step * 0.1;
+
+      push();
+      translate(x + shift, y - shift);
+      rotate(diagonal * PI / 6 + wave * 0.42);
+      fill(diagonal < 3 ? '#FFC300' : '#37E87A');
+
+      if (shouldDrawCircle(tileMode, row, col)) {
+        circle(0, 0, size);
+      } else {
+        rect(0, 0, size, size, step * 0.14);
+      }
+      pop();
+    }
+  }
+
+  t += motionSpeed;
 }`,
 };
