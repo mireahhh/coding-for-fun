@@ -84,10 +84,16 @@
                 .A_HeaderLogoMin {
                     height: 100%;
                     width: var(--size-spacing-34);
+                    background-image: url("../../images/light/brand/A_LogoMin.svg");
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
 
-                    img {
+                    :is(img, video) {
+                        display: block;
                         height: 100%;
                         width: auto;
+                        object-fit: contain;
                     }
                 }
 
@@ -841,9 +847,11 @@
                         width: 9%;
                         height: auto;
 
-                        img {
+                        :is(img, video) {
+                            display: block;
                             height: auto;
                             width: 100%;
+                            object-fit: contain;
                         }
                     }
 

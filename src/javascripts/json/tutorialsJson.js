@@ -408,6 +408,16 @@ const tagsPart3Module1Tutorial2 = {
   title: "Контроль повторяемости",
   author: "digitalnaya",
   link: "https://web.telegram.org/k/#@digitalnaya",
+
+  complexity: "filterComplexityAdvanced",
+  library: ["filterLibraryVanillajs", "filterLibraryP5js", "filterLibraryThreejs"],
+  format: ["filterFormatTechnique", "filterFormatVariation"],
+  verification: "filterVerificationExpert",
+  tags: [
+    "Случайность",
+    "Процедурная генерация",
+    "Генеративная графика"
+  ]
 };
 const tagsPart3Module1Tutorial3 = {
   date: ["20260321"],

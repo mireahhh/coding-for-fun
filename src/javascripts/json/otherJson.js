@@ -29,21 +29,25 @@ export const filtersName = {
 
 // Задание фильтров
 // Список доступных фильтров
+// Только одна
 const filtersComplexity = [
   "filterComplexityInitial",
   "filterComplexityMiddle",
   "filterComplexityAdvanced",
 ];
+// Модет быть несколько
 const filtersLibrary = [
   "filterLibraryVanillajs",
   "filterLibraryP5js",
   "filterLibraryThreejs",
 ];
+// Модет быть несколько
 const filtersFormat = [
   "filterFormatTechnique",
   "filterFormatTask",
   "filterFormatVariation",
 ];
+// Только одна, сейчас все экспертные, типо я писала
 const filtersVerification = [
   "filterVerificationAuthorial",
   "filterVerificationExpert",
