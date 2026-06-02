@@ -370,6 +370,78 @@ function draw() {
   const easing = isHovering ? 0.18 : 0.055;
   hoverAmount = lerp(hoverAmount, target, easing);
 
+  // без ховера — еле движется, на ховере — бодрее
+  t += 0.01 + hoverAmount * 0.035;
+
+  const centerX = width / 2;
+  const centerY = height / 2;
+  const radius = min(width, height) * 0.28;
+
+  // лёгкое дыхание большой формы
+  const basePulse = 1 + sin(t * 0.8) * (0.015 + hoverAmount * 0.03);
+  const orbitRadius = radius * (1 + sin(t * 0.6) * hoverAmount * 0.05);
+
+  // орбита ускоряется на ховере
+  const angle = t * (0.7 + hoverAmount * 1.8);
+
+  fill("#FF86DB");
+  circle(centerX, centerY, radius * 1.15 * basePulse);
+
+  fill("#2FD3E6");
+  circle(
+    centerX + cos(angle) * orbitRadius,
+    centerY + sin(angle) * orbitRadius,
+    64 + sin(t * 1.4) * hoverAmount * 6
+  );
+
+  fill("#FFC300");
+  circle(
+    centerX + cos(angle + PI) * orbitRadius,
+    centerY + sin(angle + PI) * orbitRadius,
+    40 + cos(t * 1.2) * hoverAmount * 4
+  );
+}`;
+
+const handbookPart1Module2Preview = `let t = 0;
+let hoverAmount = 0;
+let isHovering = false;
+
+function updateHoverState(value) {
+  isHovering = value;
+}
+
+function handlePreviewHover(event) {
+  if (event.data?.type !== "coding-for-fun-preview-hover") return;
+  updateHoverState(event.data.isHovered);
+}
+
+function setup() {
+  const canvas = createCanvas(app.clientWidth, app.clientHeight);
+  canvas.parent("app");
+
+  canvas.mouseOver(() => {
+    updateHoverState(true);
+  });
+
+  canvas.mouseOut(() => {
+    updateHoverState(false);
+  });
+
+  noStroke();
+  window.addEventListener("message", handlePreviewHover);
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function draw() {
+  background("#FFFFFF");
+
+  const target = isHovering ? 1 : 0;
+  const easing = isHovering ? 0.18 : 0.055;
+  hoverAmount = lerp(hoverAmount, target, easing);
+
   // Без ховера движение почти незаметное, на ховере — быстрее
   t += 0.006 + hoverAmount * 0.035;
 
@@ -388,6 +460,191 @@ function draw() {
     const size = 34 + cos(t + i) * sizePulse;
 
     fill(i % 2 === 0 ? "#FF86DB" : "#FFC300");
+    circle(x, y, size);
+  }
+}`;
+
+const handbookPart2Module1Preview = `const width = app.clientWidth;
+const height = app.clientHeight;
+
+let speedFactor = 0;
+let targetSpeedFactor = 0;
+let lastTime = 0;
+let t = 0;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xffffff);
+
+const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+camera.position.set(0, 0, 5);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+const group = new THREE.Group();
+scene.add(group);
+
+const colors = [0xff86db, 0x2fd3e6];
+const geometry = new THREE.BoxGeometry(0.42, 0.42, 0.42);
+const materials = colors.map(
+  (color) => new THREE.MeshStandardMaterial({ color, roughness: 0.55 })
+);
+
+for (let x = -2; x <= 2; x += 1) {
+  for (let y = -1; y <= 1; y += 1) {
+    const cube = new THREE.Mesh(geometry, materials[(x + y + 4) % 2]);
+    cube.position.set(x * 0.64, y * 0.64, 0);
+    group.add(cube);
+  }
+}
+
+const light = new THREE.DirectionalLight(0xffffff, 2);
+light.position.set(2, 3, 4);
+scene.add(light);
+
+scene.add(new THREE.AmbientLight(0xffffff, 1.2));
+
+function onResize() {
+  const width = app.clientWidth;
+  const height = app.clientHeight;
+
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+  renderer.setSize(width, height);
+}
+
+function playAnimation() {
+  targetSpeedFactor = 1;
+}
+
+function pauseAnimation() {
+  targetSpeedFactor = 0;
+}
+
+function handlePreviewHover(event) {
+  if (event.data?.type !== "coding-for-fun-preview-hover") return;
+
+  if (event.data.isHovered) {
+    playAnimation();
+  } else {
+    pauseAnimation();
+  }
+}
+
+let animationId;
+
+function animate(time) {
+  const deltaTime = time - lastTime;
+  lastTime = time;
+
+  const easing = targetSpeedFactor > speedFactor ? 0.18 : 0.06;
+  speedFactor += (targetSpeedFactor - speedFactor) * Math.min(deltaTime / 120, 1) * easing * 6;
+
+  t += 0.01 + speedFactor * 0.03;
+
+  // лёгкое "плавание" без ховера
+  group.position.x = Math.sin(t * 0.8) * 0.06;
+  group.position.y = Math.cos(t * 0.95) * 0.05;
+
+  // спокойное вращение в покое + ускорение на ховере
+  group.rotation.x += 0.002 + speedFactor * 0.008;
+  group.rotation.y += 0.004 + speedFactor * 0.014;
+  group.rotation.z = Math.sin(t * 0.6) * 0.06;
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+window.addEventListener("resize", onResize);
+window.addEventListener("message", handlePreviewHover);
+renderer.domElement.addEventListener("mouseenter", playAnimation);
+renderer.domElement.addEventListener("mouseleave", pauseAnimation);
+
+animate(0);
+
+return () => {
+  cancelAnimationFrame(animationId);
+  window.removeEventListener("resize", onResize);
+  window.removeEventListener("message", handlePreviewHover);
+  renderer.domElement.removeEventListener("mouseenter", playAnimation);
+  renderer.domElement.removeEventListener("mouseleave", pauseAnimation);
+
+  geometry.dispose();
+  materials.forEach((material) => material.dispose());
+  renderer.dispose();
+};`;
+
+const handbookPart2Module2Preview = `const particles = [];
+
+let t = 0;
+let hoverAmount = 0;
+let isHovering = false;
+
+function updateHoverState(value) {
+  isHovering = value;
+}
+
+function handlePreviewHover(event) {
+  if (event.data?.type !== "coding-for-fun-preview-hover") return;
+  updateHoverState(event.data.isHovered);
+}
+
+function setup() {
+  const canvas = createCanvas(app.clientWidth, app.clientHeight);
+  canvas.parent("app");
+
+  canvas.mouseOver(() => {
+    updateHoverState(true);
+  });
+
+  canvas.mouseOut(() => {
+    updateHoverState(false);
+  });
+
+  noStroke();
+
+  for (let i = 0; i < 36; i += 1) {
+    particles.push({
+      angle: (i * TWO_PI) / 36,
+      radius: 32 + (i % 6) * 16,
+    });
+  }
+
+  window.addEventListener("message", handlePreviewHover);
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function draw() {
+  background("#FFFFFF");
+
+  const target = isHovering ? 1 : 0;
+  const easing = isHovering ? 0.18 : 0.055;
+  hoverAmount = lerp(hoverAmount, target, easing);
+
+  t += 0.008 + hoverAmount * 0.025;
+
+  for (let i = 0; i < particles.length; i += 1) {
+    const p = particles[i];
+
+    // Без ховера — еле шевелится, на ховере — бодрее
+    p.angle += 0.003 + (i % 5) * 0.0008 + hoverAmount * (0.012 + (i % 5) * 0.002);
+
+    const animatedRadius =
+      p.radius * (1 + sin(t * 1.2 + i * 0.35) * (0.02 + hoverAmount * 0.06));
+
+    const x = width / 2 + cos(p.angle) * animatedRadius;
+    const y = height / 2 + sin(p.angle * 1.4) * animatedRadius;
+
+    const size = 16 + (i % 4) * 4 + sin(t * 1.6 + i) * hoverAmount * 1.8;
+
+    fill(i % 2 === 0 ? "#FFC300" : "#FF86DB");
     circle(x, y, size);
   }
 }`;
@@ -746,22 +1003,908 @@ function drawFractalBranch(length, depth, index) {
   }
 }`;
 
+const landingPart1Preview = `let t = 0;
+let hoverAmount = 0;
+let isHovering = false;
+
+function updateHoverState(value) {
+  isHovering = value;
+}
+
+function handlePreviewHover(event) {
+  if (event.data?.type !== "coding-for-fun-preview-hover") return;
+  updateHoverState(event.data.isHovered);
+}
+
+function setup() {
+  const canvas = createCanvas(app.clientWidth, app.clientHeight);
+  canvas.parent("app");
+
+  canvas.mouseOver(() => {
+    updateHoverState(true);
+  });
+
+  canvas.mouseOut(() => {
+    updateHoverState(false);
+  });
+
+  rectMode(CENTER);
+  noStroke();
+
+  window.addEventListener("message", handlePreviewHover);
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function draw() {
+  background("#FFFFFF");
+
+  const target = isHovering ? 1 : 0;
+  const easing = isHovering ? 0.18 : 0.055;
+  hoverAmount = lerp(hoverAmount, target, easing);
+
+  // В покое — ленивое движение, на ховере — бодрее
+  t += 0.008 + hoverAmount * 0.035;
+
+  const step = 48;
+  const cols = floor((width - 64) / step);
+  const rows = floor((height - 64) / step);
+  const startX = width / 2 - ((cols - 1) * step) / 2;
+  const startY = height / 2 - ((rows - 1) * step) / 2;
+
+  for (let row = 0; row < rows; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const wave = sin(t + row * 0.8 + col * 0.45);
+
+      // Без ховера сдвиг маленький, на ховере заметнее
+      const shiftAmount = step * (0.06 + hoverAmount * 0.18);
+      const shift = wave * shiftAmount;
+
+      const x = startX + col * step + shift;
+      const y = startY + row * step;
+
+      // Лёгкое дыхание размера на ховере
+      const sizePulse = cos(t * 1.2 + row + col) * hoverAmount * 3;
+      const size = 24 + ((row + col) % 3) * 4 + sizePulse;
+
+      fill((row + col) % 2 === 0 ? "#37E87A" : "#2FD3E6");
+      circle(x, y, size);
+    }
+  }
+}`;
+
+const landingPart2Preview = `let t = 0;
+let hoverAmount = 0;
+let isHovering = false;
+
+function updateHoverState(value) {
+  isHovering = value;
+}
+
+function handlePreviewHover(event) {
+  if (event.data?.type !== "coding-for-fun-preview-hover") return;
+  updateHoverState(event.data.isHovered);
+}
+
+function setup() {
+  const canvas = createCanvas(app.clientWidth, app.clientHeight);
+  canvas.parent("app");
+
+  canvas.mouseOver(() => {
+    updateHoverState(true);
+  });
+
+  canvas.mouseOut(() => {
+    updateHoverState(false);
+  });
+
+  noStroke();
+  window.addEventListener("message", handlePreviewHover);
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function draw() {
+  background("#FFFFFF");
+
+  const target = isHovering ? 1 : 0;
+  const easing = isHovering ? 0.16 : 0.05;
+  hoverAmount = lerp(hoverAmount, target, easing);
+
+  const count = 34;
+  const radius = min(width, height) * 0.28;
+  const trailStep = 0.11;
+
+  for (let i = count - 1; i >= 0; i -= 1) {
+    const a = t - i * trailStep;
+
+    const x = width / 2 + cos(a) * radius;
+    const y = height / 2 + sin(a * 1.3) * radius * 0.72;
+
+    // у головы круг большой, в хвосте — очень маленький
+    const headProgress = 1 - i / (count - 1);
+    const size = lerp(3, 56, pow(headProgress, 1.8));
+
+    fill(i % 2 === 0 ? "#2FD3E6" : "#37E87A");
+    circle(x, y, size);
+  }
+
+  // без ховера спокойно, на ховере заметно бодрее
+  t += 0.012 + hoverAmount * 0.045;
+}`;
+
+const landingPart3Preview = `const width = app.clientWidth;
+const height = app.clientHeight;
+
+let speedFactor = 0;
+let targetSpeedFactor = 0;
+let lastTime = 0;
+let t = 0;
+
+// сцена
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xffffff);
+
+// камера
+const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+camera.position.set(3.2, 2.4, 5.2);
+camera.lookAt(0, 0.8, 0);
+
+// рендерер
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+// свет
+const light = new THREE.DirectionalLight(0xffffff, 1.4);
+light.position.set(3, 4, 5);
+scene.add(light);
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.45);
+scene.add(ambientLight);
+
+// группа — составной объект
+const group = new THREE.Group();
+group.position.y = 0.35;
+scene.add(group);
+
+// тело
+const bodyGeometry = new THREE.BoxGeometry(1.5, 2, 1);
+const bodyMaterial = new THREE.MeshStandardMaterial({ color: 0x2fd3e6 });
+const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+body.position.y = 0;
+group.add(body);
+
+// голова
+const headGeometry = new THREE.BoxGeometry(1, 1, 1);
+const headMaterial = new THREE.MeshStandardMaterial({ color: 0x9a9a9a });
+const head = new THREE.Mesh(headGeometry, headMaterial);
+head.position.y = 1.5;
+group.add(head);
+
+// руки
+const armGeometry = new THREE.BoxGeometry(0.35, 1.5, 0.35);
+const armMaterial = new THREE.MeshStandardMaterial({ color: 0x666666 });
+
+const armLeft = new THREE.Mesh(armGeometry, armMaterial);
+armLeft.position.x = -1.1;
+armLeft.position.y = 0.2;
+group.add(armLeft);
+
+const armRight = new THREE.Mesh(armGeometry, armMaterial);
+armRight.position.x = 1.1;
+armRight.position.y = 0.2;
+group.add(armRight);
+
+// ноги / штаны
+const bodyHeight = 2;
+const headHeight = 1;
+const legHeight = 1.25; // ноги = 3/5 от всей высоты персонажа
+
+const legGeometry = new THREE.BoxGeometry(0.45, legHeight, 0.45);
+const legMaterial = new THREE.MeshStandardMaterial({ color: 0x37e87a });
+
+const bodyBottomY = -bodyHeight / 2;
+const legCenterY = bodyBottomY - legHeight / 2;
+
+const legLeft = new THREE.Mesh(legGeometry, legMaterial);
+legLeft.position.x = -0.4;
+legLeft.position.y = legCenterY;
+group.add(legLeft);
+
+const legRight = new THREE.Mesh(legGeometry, legMaterial);
+legRight.position.x = 0.4;
+legRight.position.y = legCenterY;
+group.add(legRight);
+
+// небольшой верхний элемент
+const hatGeometry = new THREE.ConeGeometry(0.6, 0.7, 4);
+const hatMaterial = new THREE.MeshStandardMaterial({ color: 0x555555 });
+const hat = new THREE.Mesh(hatGeometry, hatMaterial);
+hat.position.y = 2.35;
+// group.add(hat);
+
+function onResize() {
+  const width = app.clientWidth;
+  const height = app.clientHeight;
+
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+  renderer.setSize(width, height);
+}
+
+function playAnimation() {
+  targetSpeedFactor = 1;
+}
+
+function pauseAnimation() {
+  targetSpeedFactor = 0;
+}
+
+function handlePreviewHover(event) {
+  if (event.data?.type !== "coding-for-fun-preview-hover") return;
+
+  if (event.data.isHovered) {
+    playAnimation();
+  } else {
+    pauseAnimation();
+  }
+}
+
+// анимация
+let animationId;
+
+function animate(time) {
+  const deltaTime = time - lastTime;
+  lastTime = time;
+
+  const easing = targetSpeedFactor > speedFactor ? 0.16 : 0.05;
+  speedFactor += (targetSpeedFactor - speedFactor) * Math.min(deltaTime / 120, 1) * easing * 6;
+
+  t += 0.01 + speedFactor * 0.035;
+
+  // без ховера — ленивое покачивание
+  group.position.y = 0.35 + Math.sin(t * 1.2) * 0.08;
+  group.rotation.x = Math.sin(t * 0.7) * 0.03;
+  group.rotation.y += 0.004 + speedFactor * 0.035;
+
+  // лёгкое движение рук
+  armLeft.rotation.z = Math.sin(t * 1.4) * (0.08 + speedFactor * 0.12);
+  armRight.rotation.z = -Math.sin(t * 1.4) * (0.08 + speedFactor * 0.12);
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+window.addEventListener("resize", onResize);
+window.addEventListener("message", handlePreviewHover);
+renderer.domElement.addEventListener("mouseenter", playAnimation);
+renderer.domElement.addEventListener("mouseleave", pauseAnimation);
+
+animate(0);
+
+// cleanup
+return () => {
+  cancelAnimationFrame(animationId);
+
+  window.removeEventListener("resize", onResize);
+  window.removeEventListener("message", handlePreviewHover);
+  renderer.domElement.removeEventListener("mouseenter", playAnimation);
+  renderer.domElement.removeEventListener("mouseleave", pauseAnimation);
+
+  bodyGeometry.dispose();
+  bodyMaterial.dispose();
+
+  headGeometry.dispose();
+  headMaterial.dispose();
+
+  armGeometry.dispose();
+  armMaterial.dispose();
+
+  legGeometry.dispose();
+  legMaterial.dispose();
+
+  hatGeometry.dispose();
+  hatMaterial.dispose();
+
+  renderer.dispose();
+};`;
+
+const landingBoringLibrariesPreview = `const width = app.clientWidth;
+const height = app.clientHeight;
+
+let speedFactor = 0;
+let targetSpeedFactor = 0;
+let lastTime = 0;
+let t = 0;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xffffff);
+
+const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+camera.position.set(0, 0, 7);
+camera.lookAt(0, 0, 0);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+// свет
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+scene.add(ambientLight);
+
+const mainLight = new THREE.DirectionalLight(0xffffff, 1.4);
+mainLight.position.set(3, 4, 5);
+scene.add(mainLight);
+
+// общая группа
+const group = new THREE.Group();
+scene.add(group);
+
+// материалы
+const pinkMaterial = new THREE.MeshStandardMaterial({
+  color: 0xff86db,
+  roughness: 0.45,
+  metalness: 0.05,
+});
+
+const cyanMaterial = new THREE.MeshStandardMaterial({
+  color: 0x2fd3e6,
+  roughness: 0.45,
+  metalness: 0.05,
+});
+
+const greenMaterial = new THREE.MeshStandardMaterial({
+  color: 0x37e87a,
+  roughness: 0.5,
+  metalness: 0.04,
+});
+
+const yellowMaterial = new THREE.MeshStandardMaterial({
+  color: 0xffc300,
+  roughness: 0.5,
+  metalness: 0.04,
+});
+
+const darkLineMaterial = new THREE.LineBasicMaterial({
+  color: 0x1f1f1f,
+  transparent: true,
+  opacity: 0.5,
+});
+
+// 1. Сетка — Vanilla JS
+const gridGroup = new THREE.Group();
+gridGroup.position.x = -2.3;
+group.add(gridGroup);
+
+const gridSize = 1.45;
+const gridDivisions = 5;
+const gridStep = gridSize / gridDivisions;
+const gridPoints = [];
+
+for (let i = 0; i <= gridDivisions; i += 1) {
+  const p = -gridSize / 2 + i * gridStep;
+
+  gridPoints.push(new THREE.Vector3(-gridSize / 2, p, 0));
+  gridPoints.push(new THREE.Vector3(gridSize / 2, p, 0));
+
+  gridPoints.push(new THREE.Vector3(p, -gridSize / 2, 0));
+  gridPoints.push(new THREE.Vector3(p, gridSize / 2, 0));
+}
+
+const gridGeometry = new THREE.BufferGeometry().setFromPoints(gridPoints);
+const grid = new THREE.LineSegments(gridGeometry, darkLineMaterial);
+gridGroup.add(grid);
+
+const cellGeometry = new THREE.BoxGeometry(0.16, 0.16, 0.08);
+const gridCells = [];
+
+for (let i = 0; i < 9; i += 1) {
+  const col = i % 3;
+  const row = Math.floor(i / 3);
+
+  const cell = new THREE.Mesh(
+    cellGeometry,
+    i % 2 === 0 ? greenMaterial : yellowMaterial
+  );
+
+  cell.position.set(
+    -gridStep + col * gridStep,
+    -gridStep + row * gridStep,
+    0.06
+  );
+
+  gridCells.push(cell);
+  gridGroup.add(cell);
+}
+
+// 2. Кружки — p5.js
+const circlesGroup = new THREE.Group();
+circlesGroup.position.x = 0;
+group.add(circlesGroup);
+
+const circleGeometry = new THREE.CircleGeometry(0.13, 32);
+const circles = [];
+
+for (let i = 0; i < 12; i += 1) {
+  const circle = new THREE.Mesh(
+    circleGeometry,
+    i % 2 === 0 ? pinkMaterial : cyanMaterial
+  );
+
+  circles.push(circle);
+  circlesGroup.add(circle);
+}
+
+// 3. Куб — Three.js
+const cubeGroup = new THREE.Group();
+cubeGroup.position.x = 2.3;
+group.add(cubeGroup);
+
+const cubeGeometry = new THREE.BoxGeometry(1.05, 1.05, 1.05);
+const cube = new THREE.Mesh(cubeGeometry, pinkMaterial);
+cube.rotation.set(-0.35, 0.55, 0.12);
+cubeGroup.add(cube);
+
+const smallCubeGeometry = new THREE.BoxGeometry(0.28, 0.28, 0.28);
+const smallCubeA = new THREE.Mesh(smallCubeGeometry, cyanMaterial);
+smallCubeA.position.set(-0.85, -0.75, 0.2);
+cubeGroup.add(smallCubeA);
+
+const smallCubeB = new THREE.Mesh(smallCubeGeometry, greenMaterial);
+smallCubeB.position.set(0.85, 0.75, -0.15);
+cubeGroup.add(smallCubeB);
+
+// resize
+function onResize() {
+  const width = app.clientWidth;
+  const height = app.clientHeight;
+
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+  renderer.setSize(width, height);
+}
+
+// hover
+function playAnimation() {
+  targetSpeedFactor = 1;
+}
+
+function pauseAnimation() {
+  targetSpeedFactor = 0;
+}
+
+function handlePreviewHover(event) {
+  if (event.data?.type !== "coding-for-fun-preview-hover") return;
+
+  if (event.data.isHovered) {
+    playAnimation();
+  } else {
+    pauseAnimation();
+  }
+}
+
+// анимация
+let animationId;
+
+function animate(time) {
+  const deltaTime = time - lastTime;
+  lastTime = time;
+
+  const easing = targetSpeedFactor > speedFactor ? 0.18 : 0.055;
+  speedFactor += (targetSpeedFactor - speedFactor) * Math.min(deltaTime / 120, 1) * easing * 6;
+
+  t += 0.01 + speedFactor * 0.04;
+
+  // общая ленивость
+  group.position.y = Math.sin(t * 0.7) * 0.06;
+  group.rotation.z = Math.sin(t * 0.45) * (0.015 + speedFactor * 0.025);
+
+  // сетка слегка качается
+  gridGroup.rotation.z = Math.sin(t * 0.8) * (0.08 + speedFactor * 0.12);
+  gridGroup.position.y = Math.sin(t * 0.9) * 0.06;
+
+  for (let i = 0; i < gridCells.length; i += 1) {
+    const cell = gridCells[i];
+    cell.position.z = 0.06 + Math.sin(t * 1.4 + i) * (0.02 + speedFactor * 0.08);
+    cell.rotation.z += 0.004 + speedFactor * 0.025;
+  }
+
+  // кружки вращаются орбитой
+  for (let i = 0; i < circles.length; i += 1) {
+    const circle = circles[i];
+    const angle = t * (0.65 + speedFactor * 1.7) + i * Math.PI * 2 / circles.length;
+    const radius = 0.62 + Math.sin(t + i) * (0.03 + speedFactor * 0.08);
+
+    circle.position.x = Math.cos(angle) * radius;
+    circle.position.y = Math.sin(angle * 1.25) * radius * 0.78;
+    circle.scale.setScalar(1 + Math.sin(t * 1.8 + i) * (0.04 + speedFactor * 0.14));
+  }
+
+  circlesGroup.rotation.z += 0.002 + speedFactor * 0.018;
+
+  // куб бодро крутится на ховере
+  cube.rotation.x += 0.004 + speedFactor * 0.028;
+  cube.rotation.y += 0.006 + speedFactor * 0.04;
+
+  smallCubeA.rotation.x += 0.006 + speedFactor * 0.035;
+  smallCubeA.rotation.y += 0.004 + speedFactor * 0.02;
+
+  smallCubeB.rotation.x -= 0.004 + speedFactor * 0.025;
+  smallCubeB.rotation.y += 0.006 + speedFactor * 0.03;
+
+  cubeGroup.position.y = Math.cos(t * 0.8) * 0.06;
+  cubeGroup.rotation.z = Math.sin(t * 0.5) * (0.06 + speedFactor * 0.08);
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+window.addEventListener("resize", onResize);
+window.addEventListener("message", handlePreviewHover);
+renderer.domElement.addEventListener("mouseenter", playAnimation);
+renderer.domElement.addEventListener("mouseleave", pauseAnimation);
+
+animate(0);
+
+return () => {
+  cancelAnimationFrame(animationId);
+
+  window.removeEventListener("resize", onResize);
+  window.removeEventListener("message", handlePreviewHover);
+  renderer.domElement.removeEventListener("mouseenter", playAnimation);
+  renderer.domElement.removeEventListener("mouseleave", pauseAnimation);
+
+  gridGeometry.dispose();
+  cellGeometry.dispose();
+  circleGeometry.dispose();
+  cubeGeometry.dispose();
+  smallCubeGeometry.dispose();
+
+  pinkMaterial.dispose();
+  cyanMaterial.dispose();
+  greenMaterial.dispose();
+  yellowMaterial.dispose();
+  darkLineMaterial.dispose();
+
+  renderer.dispose();
+};`;
+
+const landingBoringPortfolioPreview = `const width = app.clientWidth; 
+const height = app.clientHeight;
+
+let speedFactor = 0;
+let targetSpeedFactor = 0;
+let lastTime = 0;
+let t = 0;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xffffff);
+
+const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+camera.position.set(0, 0, 4);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+app.innerHTML = "";
+app.appendChild(renderer.domElement);
+
+const group = new THREE.Group();
+scene.add(group);
+
+const geometry = new THREE.TorusKnotGeometry(0.7, 0.22, 96, 12);
+const material = new THREE.MeshNormalMaterial();
+const knot = new THREE.Mesh(geometry, material);
+group.add(knot);
+
+const light = new THREE.DirectionalLight(0xffffff, 1.2);
+light.position.set(2, 3, 4);
+scene.add(light);
+
+function onResize() {
+  const width = app.clientWidth;
+  const height = app.clientHeight;
+
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+  renderer.setSize(width, height);
+}
+
+function playAnimation() {
+  targetSpeedFactor = 1;
+}
+
+function pauseAnimation() {
+  targetSpeedFactor = 0;
+}
+
+function handlePreviewHover(event) {
+  if (event.data?.type !== "coding-for-fun-preview-hover") return;
+
+  if (event.data.isHovered) {
+    playAnimation();
+  } else {
+    pauseAnimation();
+  }
+}
+
+let animationId;
+
+function animate(time) {
+  const deltaTime = time - lastTime;
+  lastTime = time;
+
+  // Быстрее разгоняется, мягче успокаивается
+  const easing = targetSpeedFactor > speedFactor ? 0.16 : 0.05;
+  speedFactor += (targetSpeedFactor - speedFactor) * Math.min(deltaTime / 120, 1) * easing * 6;
+
+  // Время всегда идет, но на ховере заметно быстрее
+  t += 0.01 + speedFactor * 0.03;
+
+  // Ленивое плавание без ховера
+  group.position.x = Math.sin(t * 0.7) * 0.08;
+  group.position.y = Math.cos(t * 0.9) * 0.06;
+  group.rotation.z = Math.sin(t * 0.5) * 0.08 + speedFactor * 0.12;
+
+  // Легкое вращение всегда есть
+  knot.rotation.x += 0.003 + speedFactor * 0.02;
+  knot.rotation.y += 0.004 + speedFactor * 0.03;
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+window.addEventListener("resize", onResize);
+window.addEventListener("message", handlePreviewHover);
+renderer.domElement.addEventListener("mouseenter", playAnimation);
+renderer.domElement.addEventListener("mouseleave", pauseAnimation);
+
+animate(0);
+
+return () => {
+  cancelAnimationFrame(animationId);
+  window.removeEventListener("resize", onResize);
+  window.removeEventListener("message", handlePreviewHover);
+  renderer.domElement.removeEventListener("mouseenter", playAnimation);
+  renderer.domElement.removeEventListener("mouseleave", pauseAnimation);
+  geometry.dispose();
+  material.dispose();
+  renderer.dispose();
+};`;
+
+const landingBoringGalleryPreview = `let sandProgress = 0;
+let hoverAmount = 0;
+let isHovering = false;
+let t = 0;
+
+let isFlipping = false;
+let flipAmount = 0;
+let side = 1;
+
+function updateHoverState(value) {
+  isHovering = value;
+}
+
+function handlePreviewHover(event) {
+  if (event.data?.type !== "coding-for-fun-preview-hover") return;
+  updateHoverState(event.data.isHovered);
+}
+
+function setup() {
+  const canvas = createCanvas(app.clientWidth, app.clientHeight);
+  canvas.parent("app");
+
+  canvas.mouseOver(() => {
+    updateHoverState(true);
+  });
+
+  canvas.mouseOut(() => {
+    updateHoverState(false);
+  });
+
+  noStroke();
+  window.addEventListener("message", handlePreviewHover);
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function easeInOutCubic(x) {
+  if (x < 0.5) {
+    return 4 * x * x * x;
+  }
+
+  return 1 - pow(-2 * x + 2, 3) / 2;
+}
+
+function drawHourglassFrame(glassW, glassH, neckW) {
+  stroke("#2FD3E6");
+  strokeWeight(4);
+  noFill();
+
+  beginShape();
+  vertex(-glassW, -glassH);
+  vertex(glassW, -glassH);
+  vertex(neckW, 0);
+  vertex(-neckW, 0);
+  endShape(CLOSE);
+
+  beginShape();
+  vertex(-neckW, 0);
+  vertex(neckW, 0);
+  vertex(glassW, glassH);
+  vertex(-glassW, glassH);
+  endShape(CLOSE);
+
+  stroke("#FF86DB");
+  strokeWeight(5);
+
+  line(-glassW - 10, -glassH - 14, -glassW - 10, glassH + 14);
+  line(glassW + 10, -glassH - 14, glassW + 10, glassH + 14);
+
+  line(-glassW - 18, -glassH - 18, glassW + 18, -glassH - 18);
+  line(-glassW - 18, glassH + 18, glassW + 18, glassH + 18);
+}
+
+function drawSourceSand(glassW, glassH, neckW, progress, side) {
+  fill("#FFC300");
+  noStroke();
+
+  if (side === 1) {
+    const ySurface = lerp(-glassH, 0, progress);
+    const halfW = lerp(glassW, neckW, progress);
+
+    beginShape();
+    vertex(-halfW, ySurface);
+    vertex(halfW, ySurface);
+    vertex(neckW, 0);
+    vertex(-neckW, 0);
+    endShape(CLOSE);
+  } else {
+    const ySurface = lerp(glassH, 0, progress);
+    const halfW = lerp(glassW, neckW, progress);
+
+    beginShape();
+    vertex(-neckW, 0);
+    vertex(neckW, 0);
+    vertex(halfW, ySurface);
+    vertex(-halfW, ySurface);
+    endShape(CLOSE);
+  }
+}
+
+function drawTargetSand(glassW, glassH, neckW, progress, side) {
+  const pileHeight = lerp(0, glassH * 0.88, progress);
+  const halfW = lerp(neckW, glassW * 0.94, progress);
+
+  fill("#FFC300");
+  noStroke();
+
+  if (side === 1) {
+    beginShape();
+    vertex(-neckW, 0);
+    vertex(0, -8 * (1 - progress));
+    vertex(neckW, 0);
+    vertex(halfW, pileHeight);
+    vertex(-halfW, pileHeight);
+    endShape(CLOSE);
+  } else {
+    beginShape();
+    vertex(-neckW, 0);
+    vertex(0, 8 * (1 - progress));
+    vertex(neckW, 0);
+    vertex(halfW, -pileHeight);
+    vertex(-halfW, -pileHeight);
+    endShape(CLOSE);
+  }
+}
+
+function drawSandStream(side, hoverAmount) {
+  if (isFlipping) return;
+
+  const grains = 16;
+  const streamHeight = 92 * 0.8;
+  const speed = 1.2 + hoverAmount * 2.4;
+
+  for (let i = 0; i < grains; i += 1) {
+    const offset = (t * speed + i * 0.22) % 1;
+
+    const y =
+      side === 1
+        ? map(offset, 0, 1, -8, streamHeight)
+        : map(offset, 0, 1, 8, -streamHeight);
+
+    const size = max(3.6 - i * 0.08, 1.7);
+
+    fill(i % 2 === 0 ? "#FFC300" : "#37E87A");
+    circle(sin(t * 2 + i) * 0.6, y, size);
+  }
+}
+
+function draw() {
+  background("#FFFFFF");
+
+  const target = isHovering ? 1 : 0;
+  const easing = isHovering ? 0.18 : 0.05;
+  hoverAmount = lerp(hoverAmount, target, easing);
+
+  t += 0.012 + hoverAmount * 0.04;
+
+  if (!isFlipping) {
+    sandProgress += 0.0022 + hoverAmount * 0.012;
+
+    if (sandProgress >= 1) {
+      sandProgress = 1;
+      isFlipping = true;
+      flipAmount = 0;
+    }
+  } else {
+    flipAmount += 0.028 + hoverAmount * 0.045;
+
+    if (flipAmount >= 1) {
+      flipAmount = 0;
+      isFlipping = false;
+      sandProgress = 0;
+      side *= -1;
+    }
+  }
+
+  const cx = width / 2;
+  const cy = height / 2;
+
+  const glassW = min(width, height) * 0.16;
+  const glassH = min(width, height) * 0.22;
+  const neckW = glassW * 0.18;
+
+  push();
+  translate(cx, cy);
+
+  const idleTilt = sin(t * 0.7) * 0.04;
+  const hoverTilt = -hoverAmount * 0.24;
+  const baseRotation = side === 1 ? 0 : PI;
+  const flipRotation = isFlipping ? easeInOutCubic(flipAmount) * PI : 0;
+
+  rotate(baseRotation + flipRotation + idleTilt + hoverTilt);
+
+  translate(sin(t * 0.9) * 4, cos(t * 0.8) * 3);
+
+  drawSourceSand(glassW, glassH, neckW, sandProgress, side);
+  drawTargetSand(glassW, glassH, neckW, sandProgress, side);
+  drawSandStream(side, hoverAmount);
+  drawHourglassFrame(glassW, glassH, neckW);
+
+  pop();
+}`;
+
 export const previewCodeById = {
   handbookPart1Module1Preview,
-  handbookPart1Module2Preview: previewCodeVanilla,
-  handbookPart2Module1Preview: previewCodeVanilla,
-  handbookPart2Module2Preview: previewCodeP5,
+  handbookPart1Module2Preview,
+  handbookPart2Module1Preview,
+  handbookPart2Module2Preview,
   handbookPart2Module3Preview,
   handbookPart3Module1Preview,
   handbookPart3Module2Preview,
   handbookPart3Module3Preview: previewCodeThree,
-  landingPart1Preview: previewCodeVanilla,
-  landingPart2Preview: previewCodeP5,
-  landingPart3Preview: previewCodeThree,
+  landingPart1Preview,
+  landingPart2Preview,
+  landingPart3Preview,
   landingBoringPracticePreview: previewCodeVanilla,
-  landingBoringLibrariesPreview: previewCodeP5,
-  landingBoringPortfolioPreview: previewCodeThree,
-  landingBoringGalleryPreview: previewCodeVanilla,
+  landingBoringLibrariesPreview,
+  landingBoringPortfolioPreview,
+  landingBoringGalleryPreview,
 };
 
 export const sandboxCodeByRuntime = {
