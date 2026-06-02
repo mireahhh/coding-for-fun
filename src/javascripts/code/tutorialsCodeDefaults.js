@@ -369,8 +369,8 @@ function draw() {
   const easing = isHovering ? 0.18 : 0.055;
   hoverAmount = lerp(hoverAmount, target, easing);
 
-  // без ховера — еле движется, на ховере — бодрее
-  t += 0.01 + hoverAmount * 0.035;
+  // без ховера — почти статично, на ховере — плавное движение
+  t += 0.004 + hoverAmount * 0.012;
 
   const centerX = width / 2;
   const centerY = height / 2;
@@ -380,8 +380,8 @@ function draw() {
   const basePulse = 1 + sin(t * 0.8) * (0.015 + hoverAmount * 0.03);
   const orbitRadius = radius * (1 + sin(t * 0.6) * hoverAmount * 0.05);
 
-  // орбита ускоряется на ховере
-  const angle = t * (0.7 + hoverAmount * 1.8);
+  // орбита мягко ускоряется на ховере
+  const angle = t * (0.45 + hoverAmount * 0.7);
 
   fill("#FF86DB");
   circle(centerX, centerY, radius * 1.15 * basePulse);
