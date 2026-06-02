@@ -7,7 +7,7 @@ app.style.height = "100%";
 app.style.display = "flex";
 app.style.alignItems = "center";
 app.style.justifyContent = "center";
-app.style.background = "#F3F4F6";
+app.style.background = "#FFFFFF";
 
 const box = document.createElement("div");
 box.textContent = "Vanilla JS works";
@@ -26,7 +26,7 @@ app.appendChild(box);`,
 }
 
 function draw() {
-  background(255);
+  background("#FFFFFF");
 
   let step = 40;
 
@@ -220,7 +220,7 @@ function windowResized() {
 function draw() {
   speedFactor += (targetSpeedFactor - speedFactor) * min(deltaTime / 2000, 1);
   virtualTime += deltaTime * speedFactor * 0.035;
-  background(248);
+  background("#FFFFFF");
 
   const radius = min(width, height) * 0.28;
 
@@ -247,7 +247,7 @@ let targetSpeedFactor = 0;
 let lastTime = 0;
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf8f8f8);
+scene.background = new THREE.Color(0xffffff);
 
 const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
 camera.position.set(0, 0, 4);
@@ -330,6 +330,68 @@ return () => {
   renderer.dispose();
 };`;
 
+const handbookPart1Module1Preview = `let t = 0;
+let hoverAmount = 0;
+let isHovering = false;
+
+function updateHoverState(value) {
+  isHovering = value;
+}
+
+function handlePreviewHover(event) {
+  if (event.data?.type !== "coding-for-fun-preview-hover") return;
+  updateHoverState(event.data.isHovered);
+}
+
+function setup() {
+  const canvas = createCanvas(app.clientWidth, app.clientHeight);
+  canvas.parent("app");
+
+  canvas.mouseOver(() => {
+    updateHoverState(true);
+  });
+
+  canvas.mouseOut(() => {
+    updateHoverState(false);
+  });
+
+  noStroke();
+  window.addEventListener("message", handlePreviewHover);
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function draw() {
+  background("#FFFFFF");
+
+  const target = isHovering ? 1 : 0;
+  const easing = isHovering ? 0.18 : 0.055;
+  hoverAmount = lerp(hoverAmount, target, easing);
+
+  // Без ховера движение почти незаметное, на ховере — быстрее
+  t += 0.006 + hoverAmount * 0.035;
+
+  const padding = 40;
+  const count = 11;
+  const step = (width - padding * 2) / (count - 1);
+
+  for (let i = 0; i < count; i += 1) {
+    const x = padding + i * step;
+
+    // Еле заметное движение в покое, бодрое на ховере
+    const waveHeight = 10 + hoverAmount * 52;
+    const sizePulse = 2 + hoverAmount * 10;
+
+    const y = height / 2 + sin(t + i * 0.65) * waveHeight;
+    const size = 34 + cos(t + i) * sizePulse;
+
+    fill(i % 2 === 0 ? "#FF86DB" : "#FFC300");
+    circle(x, y, size);
+  }
+}`;
+
 const handbookPart2Module3Preview = `const width = app.clientWidth;
 const height = app.clientHeight;
 
@@ -340,7 +402,7 @@ let t = 0;
 
 // сцена
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf8f8f8);
+scene.background = new THREE.Color(0xffffff);
 
 // камера
 const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
@@ -684,9 +746,8 @@ function drawFractalBranch(length, depth, index) {
   }
 }`;
 
-
 export const previewCodeById = {
-  handbookPart1Module1Preview: previewCodeVanilla,
+  handbookPart1Module1Preview,
   handbookPart1Module2Preview: previewCodeVanilla,
   handbookPart2Module1Preview: previewCodeVanilla,
   handbookPart2Module2Preview: previewCodeP5,
@@ -717,7 +778,7 @@ let lastTime = 0;
 app.innerHTML = "";
 app.style.width = "100%";
 app.style.height = "100%";
-app.style.background = "#ffffff";
+app.style.background = "#FFFFFF";
 
 app.appendChild(canvas);
 
@@ -833,7 +894,7 @@ function draw() {
   speedFactor += (targetSpeedFactor - speedFactor) * (deltaTime / 2000);
   virtualFrame += speedFactor;
 
-  background(248);
+  background("#FFFFFF");
   drawGrid();
 
   const orbit = min(width, height) * 0.25;
@@ -945,7 +1006,7 @@ const ctx = canvas.getContext("2d");
 app.innerHTML = "";
 app.style.width = "100%";
 app.style.height = "100%";
-app.style.background = "#ffffff";
+app.style.background = "#FFFFFF";
 
 app.appendChild(canvas);
 
@@ -956,7 +1017,7 @@ function resize() {
 }
 
 function draw() {
-  ctx.fillStyle = "#ffffff";
+app.style.background = "#FFFFFF";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
@@ -978,7 +1039,7 @@ function windowResized() {
 }
 
 function draw() {
-  background(255);
+  background("#FFFFFF");
 }`,
 
   three: `const width = app.clientWidth;
@@ -1067,7 +1128,7 @@ function draw() {
     canvas ? formatSize('(canvas.clientWidth, canvas.clientHeight)', canvas.clientWidth, canvas.clientHeight) : 'canvas.client: не найден'
   ];
 
-  background(255);
+  background("#FFFFFF");
   fill('#111827');
   noStroke();
   textLeading(22);
@@ -1800,28 +1861,32 @@ function draw() {
   background("#FFFFFF");
   randomSeed(42);
 
-  const centerX = width / 2;
-  const centerY = height / 2;
-  const maxRadius = min(width, height) * 0.38;
+  const cols = 7;
+  const rows = 5;
+  const step = min(width / (cols + 1), height / (rows + 1));
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (rows - 1) * step / 2;
 
-  for (let i = 0; i < 72; i += 1) {
-    const angle = (i / 72) * TWO_PI;
-    const radius = random(maxRadius * 0.2, maxRadius);
-    const x = centerX + cos(angle) * radius;
-    const y = centerY + sin(angle) * radius;
-    const size = random(14, 34);
+  for (let row = 0; row < rows; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const baseX = startX + col * step;
+      const baseY = startY + row * step;
+      const x = baseX + random(-step * 0.24, step * 0.24);
+      const y = baseY + random(-step * 0.24, step * 0.24);
+      const size = step * 0.42;
 
-    fill(i % 2 === 0 ? "#FFC300" : "#FF86DB");
-    circle(x, y, size);
+      fill((row + col) % 2 === 0 ? "#37E87A" : "#2FD3E6");
+      circle(x, y, size);
+    }
   }
 
   noLoop();
 }`,
-  patr1module2tutorial4code3: `let t = 0;
-
-function setup() {
+  patr1module2tutorial4code3: `function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
-  noFill();
+  noStroke();
+  rectMode(CENTER);
+  randomSeed(42); // фиксируем случайность, чтобы композиция не прыгала
 }
 
 function windowResized() {
@@ -1830,29 +1895,29 @@ function windowResized() {
 
 function draw() {
   background("#FFFFFF");
+  randomSeed(42);
 
-  stroke("#2FD3E6");
-  strokeWeight(4);
-  beginShape();
-  for (let i = 0; i <= 96; i += 1) {
-    const x = map(i, 0, 96, 32, width - 32);
-    const n = noise(i * 0.06, t);
-    const y = height / 2 + map(n, 0, 1, -96, 96);
-    curveVertex(x, y);
+  const cols = 7;
+  const rows = 5;
+  const step = min(width / (cols + 1), height / (rows + 1));
+  const startX = width / 2 - (cols - 1) * step / 2;
+  const startY = height / 2 - (rows - 1) * step / 2;
+
+  for (let row = 0; row < rows; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      const x = startX + col * step;
+      const y = startY + row * step;
+      const size = random(step * 0.28, step * 0.58);
+
+      fill(random(["#37E87A", "#2FD3E6", "#FFC300", "#FF86DB"]));
+      if (random() > 0.5) {
+        circle(x, y, size);
+      } else {
+        square(x, y, size);
+      }
+    }
   }
-  endShape();
-
-  stroke("#FF86DB");
-  strokeWeight(2);
-  beginShape();
-  for (let i = 0; i <= 96; i += 1) {
-    const x = map(i, 0, 96, 32, width - 32);
-    const y = height / 2 + sin(i * 0.28 + t * 5) * 48;
-    curveVertex(x, y);
-  }
-  endShape();
-
-  t += 0.008;
+  noLoop();
 }`,
   patr1module2tutorial4code4: `function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
@@ -2013,7 +2078,7 @@ function draw() {
     }
   }
 }`,
-    patr2module1tutorial1code1: `const app = document.getElementById("app");
+  patr2module1tutorial1code1: `const app = document.getElementById("app");
 app.innerHTML = "";
 app.style.position = "relative";
 app.style.overflow = "hidden";
@@ -2764,6 +2829,7 @@ function draw() {
 function setup() {
   createCanvas(app.clientWidth, app.clientHeight);
   noStroke();
+  rectMode(CENTER);
 }
 
 function windowResized() {
@@ -2773,23 +2839,20 @@ function windowResized() {
 function draw() {
   background("#FFFFFF");
 
-  let step = min(width, height) / 10;
-  let size = step * 0.42;
   const padding = 32;
   const cols = 6;
-  const step = (min(width, height) - padding * 2) / cols;
-  const startX = width / 2 - (cols - 1) * step / 2;
-  const startY = height / 2 - (cols - 1) * step / 2;
+  const cellStep = (min(width, height) - padding * 2) / cols;
+  const startX = width / 2 - (cols - 1) * cellStep / 2;
+  const startY = height / 2 - (cols - 1) * cellStep / 2;
 
   for (let row = 0; row < cols; row += 1) {
     for (let col = 0; col < cols; col += 1) {
-      const x = startX + col * step;
-      const y = startY + row * step;
-      const wave = sin(0 + row * 0.7 + col * 0.4) * step * 0.12;
-      const size = step * 0.52 + wave;
+      const x = startX + col * cellStep;
+      const y = startY + row * cellStep;
+      const wave = sin(row * 0.7 + col * 0.4) * cellStep * 0.12;
+      const size = cellStep * 0.52 + wave;
 
       fill(palette[(row + col) % palette.length]);
-      rectMode(CENTER);
       square(x, y, size);
     }
   }
@@ -3153,7 +3216,7 @@ const height = app.clientHeight;
 
 // сцена
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf8f8f8);
+scene.background = new THREE.Color(0xffffff);
 
 // камера
 const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
@@ -3213,7 +3276,7 @@ return () => {
 const height = app.clientHeight; // высота области вывода
 
 const scene = new THREE.Scene(); // создаём 3D-сцену
-scene.background = new THREE.Color(0xf8f8f8); // задаём цвет фона
+scene.background = new THREE.Color(0xffffff); // задаём цвет фона
 
 const camera = new THREE.PerspectiveCamera(
   50, // угол обзора
@@ -3234,7 +3297,7 @@ const height = app.clientHeight;
 
 // сцена
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf8f8f8);
+scene.background = new THREE.Color(0xffffff);
 
 // камера
 const camera = new THREE.PerspectiveCamera(
@@ -3262,7 +3325,7 @@ const height = app.clientHeight;
 
 // сцена
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf8f8f8);
+scene.background = new THREE.Color(0xffffff);
 
 // камера
 const camera = new THREE.PerspectiveCamera(
@@ -3296,7 +3359,7 @@ const height = app.clientHeight;
 
 // сцена
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf8f8f8);
+scene.background = new THREE.Color(0xffffff);
 
 // попробуй раскомментировать:
 // scene.background = new THREE.Color(0xe9e9e9);
@@ -3375,7 +3438,7 @@ const height = app.clientHeight;
 
 // сцена
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf8f8f8);
+scene.background = new THREE.Color(0xffffff);
 
 // камера
 const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
@@ -3416,7 +3479,7 @@ const height = app.clientHeight;
 
 // сцена
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf8f8f8);
+scene.background = new THREE.Color(0xffffff);
 
 // камера
 const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
@@ -3457,7 +3520,7 @@ const height = app.clientHeight;
 
 // сцена
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf8f8f8);
+scene.background = new THREE.Color(0xffffff);
 
 // камера
 const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
@@ -3498,7 +3561,7 @@ const height = app.clientHeight;
 
 // сцена
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf8f8f8);
+scene.background = new THREE.Color(0xffffff);
 
 // камера
 const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
@@ -3549,7 +3612,7 @@ const height = app.clientHeight;
 
 // сцена
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf8f8f8);
+scene.background = new THREE.Color(0xffffff);
 
 // камера
 const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
@@ -3604,7 +3667,7 @@ const height = app.clientHeight;
 
 // сцена
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf8f8f8);
+scene.background = new THREE.Color(0xffffff);
 
 // камера
 const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
@@ -3651,7 +3714,7 @@ return () => {
     const height = app.clientHeight;<br>
     <br>
     const scene = new THREE.Scene();<br>
-    scene.background = new THREE.Color(0xf8f8f8);<br>
+    scene.background = new THREE.Color(0xffffff);<br>
     <br>
     const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);<br>
     camera.position.z = 3;<br>
@@ -3681,7 +3744,7 @@ const height = app.clientHeight;
 
 // сцена
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf8f8f8);
+scene.background = new THREE.Color(0xffffff);
 
 // камера
 const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
@@ -3732,7 +3795,7 @@ const height = app.clientHeight;
 
 // сцена
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf8f8f8);
+scene.background = new THREE.Color(0xffffff);
 
 // попробуй раскомментировать:
 // scene.background = new THREE.Color(0xe9e9e9);
@@ -3803,7 +3866,7 @@ const height = app.clientHeight;
 
 // сцена
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf8f8f8);
+scene.background = new THREE.Color(0xffffff);
 
 // камера
 const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
@@ -3871,7 +3934,7 @@ const height = app.clientHeight;
 
 // сцена
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf8f8f8);
+scene.background = new THREE.Color(0xffffff);
 
 // камера
 const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
@@ -3941,7 +4004,7 @@ const height = app.clientHeight;
 
 // сцена
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf8f8f8);
+scene.background = new THREE.Color(0xffffff);
 
 // камера
 const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
@@ -4011,7 +4074,7 @@ return () => {
 const height = app.clientHeight;
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf8f8f8);
+scene.background = new THREE.Color(0xffffff);
 
 const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
 camera.position.set(2.2, 2.2, 4.4);
@@ -4072,7 +4135,7 @@ return () => {
 const height = app.clientHeight;
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf8f8f8);
+scene.background = new THREE.Color(0xffffff);
 
 const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
 
@@ -4135,7 +4198,7 @@ const height = app.clientHeight;
 
 // сцена
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf8f8f8);
+scene.background = new THREE.Color(0xffffff);
 
 // камера
 const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
@@ -4229,7 +4292,7 @@ const height = app.clientHeight;
 
 // сцена
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf8f8f8);
+scene.background = new THREE.Color(0xffffff);
 
 // камера
 const camera = new THREE.PerspectiveCamera(65, width / height, 0.1, 1000);
@@ -4321,7 +4384,7 @@ const height = app.clientHeight;
 
 // сцена
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf8f8f8);
+scene.background = new THREE.Color(0xffffff);
 
 // камера
 const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
