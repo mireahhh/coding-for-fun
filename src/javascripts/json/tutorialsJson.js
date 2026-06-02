@@ -593,7 +593,7 @@ export const tagsHandbook = [
   buildPart("Продвинутая практика", [
     buildModule("Рандомизация и\u00A0шум", tagsPart3Module1, "module1"),
     buildModule("Сложные алгоритмы", tagsPart3Module2, "module2"),
-    buildModule("Экосистема", tagsPart3Module3, "module3"),
+    // buildModule("Экосистема", tagsPart3Module3, "module3"), TODO
   ], "part3"),
 ];
 
