@@ -5397,7 +5397,7 @@ function draw() {
 
   t += 0.006;
 }`,
-patr3module2tutorial1code1: `const canvas = document.createElement('canvas');
+  patr3module2tutorial1code1: `const canvas = document.createElement('canvas');
 const ctx = canvas.getContext('2d');
 let animationId;
 let time = 0;
@@ -5674,5 +5674,1280 @@ function draw() {
   drawRecursiveBadge(startSize, maxDepth);
 
   t += 0.012;
+}`,
+  patr3module2tutorial2code1: `const palette = {
+  pink: "#FF86DB",
+  cyan: "#2FD3E6",
+};
+
+let t = 0;
+
+function setup() {
+  const canvas = createCanvas(app.clientWidth, app.clientHeight);
+  canvas.parent("app");
+
+  angleMode(RADIANS);
+  rectMode(CENTER);
+}
+
+function windowResized() {
+  resizeCanvas(app.clientWidth, app.clientHeight);
+}
+
+function draw() {
+  background("#FFFFFF");
+
+  const size = min(width, height);
+  const centerX = width / 2;
+  const centerY = height / 2;
+
+  // Общий масштаб ограничивает фрактал внутри превью
+  const baseLength = size * 0.18;
+  const branches = 10;
+
+  t += 0.012;
+
+  translate(centerX, centerY);
+
+  // Небольшое дыхание всей эмблемы
+  const breathing = 1 + sin(t * 1.4) * 0.025;
+  scale(breathing);
+
+  // Центральный знак, чтобы композиция собиралась в плотное ядро
+  noStroke();
+  fill(palette.pink);
+  circle(0, 0, size * 0.055);
+
+  fill(palette.cyan);
+  circle(0, 0, size * 0.028);
+
+  // Радиальные фрактальные ветви
+  for (let i = 0; i < branches; i++) {
+    push();
+
+    const angle = (TWO_PI / branches) * i;
+    rotate(angle + sin(t * 0.8) * 0.025);
+
+    drawFractalBranch(baseLength, 5, i);
+
+    pop();
+  }
+}
+
+function drawFractalBranch(length, depth, index) {
+  if (depth <= 0 || length < 6) return;
+
+  const progress = depth / 5;
+  const colorMix = index % 2 === 0 ? palette.pink : palette.cyan;
+
+  stroke(colorMix);
+  strokeWeight(1.2 + progress * 2.4);
+  strokeCap(ROUND);
+
+  // Основная линия ветви
+  line(0, 0, 0, -length);
+
+  // Узел на конце ветви
+  noStroke();
+  fill(colorMix);
+  circle(0, -length, length * 0.18);
+
+  // Маленький внутренний круг добавляет ощущение логотипа
+  fill("#FFFFFF");
+  circle(0, -length, length * 0.08);
+
+  translate(0, -length);
+
+  const animatedAngle = 0.42 + sin(t + depth * 0.6) * 0.08;
+  const nextLength = length * 0.64;
+
+  // Левая дочерняя ветвь
+  push();
+  rotate(-animatedAngle);
+  drawFractalBranch(nextLength, depth - 1, index + 1);
+  pop();
+
+  // Правая дочерняя ветвь
+  push();
+  rotate(animatedAngle);
+  drawFractalBranch(nextLength, depth - 1, index + 2);
+  pop();
+
+  // Средняя короткая ветвь уплотняет знак, но не ломает симметрию
+  if (depth > 2) {
+    push();
+    rotate(sin(t * 0.7 + index) * 0.08);
+    drawFractalBranch(nextLength * 0.72, depth - 2, index + 3);
+    pop();
+  }
+}`,
+  patr3module2tutorial2code2: `const app = document.getElementById("app");
+const canvas = document.createElement("canvas");
+const ctx = canvas.getContext("2d");
+
+let animationId;
+let t = 0;
+
+const palette = {
+  pink: "#FF86DB",
+  yellow: "#FFC300",
+};
+
+app.innerHTML = "";
+app.style.width = "100%";
+app.style.height = "100%";
+app.style.background = "#FFFFFF";
+app.appendChild(canvas);
+
+function resize() {
+  const dpr = window.devicePixelRatio || 1;
+
+  canvas.style.width = app.clientWidth + "px";
+  canvas.style.height = app.clientHeight + "px";
+
+  canvas.width = app.clientWidth * dpr;
+  canvas.height = app.clientHeight * dpr;
+
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+
+function drawCircle(x, y, size, color) {
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.arc(x, y, size / 2, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function drawSquare(x, y, size, angle, color) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate(angle);
+
+  ctx.fillStyle = color;
+  ctx.fillRect(-size / 2, -size / 2, size, size);
+
+  ctx.restore();
+}
+
+function drawRosetteLayer(radius, shapeSize, depth, rotation) {
+  if (depth <= 0 || radius < 8 || shapeSize < 3) return;
+
+  const count = 8 + depth * 2;
+  const color = depth % 2 === 0 ? palette.pink : palette.yellow;
+
+  for (let i = 0; i < count; i++) {
+    const angle = rotation + (Math.PI * 2 / count) * i;
+
+    const x = Math.cos(angle) * radius;
+    const y = Math.sin(angle) * radius;
+
+    // Чередуем круги и квадраты, чтобы знак был плотнее и ритмичнее
+    if (i % 2 === 0) {
+      drawCircle(x, y, shapeSize, color);
+    } else {
+      drawSquare(x, y, shapeSize * 0.82, angle + t * 0.4, color);
+    }
+
+    // Маленькая внутренняя точка добавляет фрактальную детализацию
+    if (depth > 2) {
+      const innerX = x * 0.72;
+      const innerY = y * 0.72;
+      const innerColor = depth % 2 === 0 ? palette.yellow : palette.pink;
+
+      drawCircle(innerX, innerY, shapeSize * 0.28, innerColor);
+    }
+  }
+
+  // Следующий уровень уходит внутрь композиции
+  drawRosetteLayer(
+    radius * 0.66,
+    shapeSize * 0.74,
+    depth - 1,
+    rotation - 0.28 + Math.sin(t + depth) * 0.035
+  );
+}
+
+function draw() {
+  const width = app.clientWidth;
+  const height = app.clientHeight;
+  const size = Math.min(width, height);
+
+  ctx.clearRect(0, 0, width, height);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillRect(0, 0, width, height);
+
+  t += 0.012;
+
+  const centerX = width / 2;
+  const centerY = height / 2;
+
+  // Размер подобран так, чтобы сохранялся аккуратный padding
+  const outerRadius = size * 0.34;
+  const baseShapeSize = size * 0.07;
+
+  ctx.save();
+  ctx.translate(centerX, centerY);
+
+  // Очень лёгкая анимация: знак будто дышит, но не распадается
+  const breathing = 1 + Math.sin(t * 1.5) * 0.018;
+  ctx.scale(breathing, breathing);
+  ctx.rotate(Math.sin(t * 0.7) * 0.035);
+
+  drawRosetteLayer(outerRadius, baseShapeSize, 5, t * 0.18);
+
+  // Центральное ядро собирает все уровни в один знак
+  drawCircle(0, 0, size * 0.105, palette.pink);
+  drawSquare(0, 0, size * 0.06, Math.PI / 4 + t * 0.25, palette.yellow);
+  drawCircle(0, 0, size * 0.034, "#FFFFFF");
+
+  ctx.restore();
+
+  animationId = requestAnimationFrame(draw);
+}
+
+resize();
+draw();
+
+window.addEventListener("resize", resize);`,
+  patr3module2tutorial2code3: `const palette = {
+  pink: "#FF86DB",
+  cyan: "#2FD3E6",
+};
+
+let sentence = "";
+let segments = [];
+let nodes = [];
+
+let reveal = 0;
+let revealSpeed = 1.8;
+
+let drawingScale = 1;
+let drawingOffsetX = 0;
+let drawingOffsetY = 0;
+
+function setup() {
+  const canvasWidth = Math.max(app.clientWidth, 320);
+  const canvasHeight = Math.max(app.clientHeight, 240);
+
+  const canvas = createCanvas(canvasWidth, canvasHeight);
+  canvas.parent("app");
+
+  angleMode(RADIANS);
+
+  createLSystem();
+  createGeometry();
+}
+
+function windowResized() {
+  const canvasWidth = Math.max(app.clientWidth, 320);
+  const canvasHeight = Math.max(app.clientHeight, 240);
+
+  resizeCanvas(canvasWidth, canvasHeight);
+  createGeometry();
+}
+
+function createLSystem() {
+  sentence = "X";
+
+  const iterations = 4;
+
+  for (let i = 0; i < iterations; i++) {
+    let next = "";
+
+    for (let j = 0; j < sentence.length; j++) {
+      const char = sentence.charAt(j);
+
+      if (char === "X") {
+        next += "F[+X]F[-X]+X";
+      } else if (char === "F") {
+        next += "FF";
+      } else {
+        next += char;
+      }
+    }
+
+    sentence = next;
+  }
+}
+
+function createGeometry() {
+  segments = [];
+  nodes = [];
+
+  const step = 12;
+  const angleStep = Math.PI / 5.4;
+
+  let x = 0;
+  let y = 0;
+  let angle = -Math.PI / 2;
+
+  const stack = [];
+
+  let minX = 0;
+  let maxX = 0;
+  let minY = 0;
+  let maxY = 0;
+
+  for (let i = 0; i < sentence.length; i++) {
+    const char = sentence.charAt(i);
+
+    if (char === "F") {
+      const nextX = x + Math.cos(angle) * step;
+      const nextY = y + Math.sin(angle) * step;
+
+      segments.push({
+        x1: x,
+        y1: y,
+        x2: nextX,
+        y2: nextY,
+        depth: stack.length,
+      });
+
+      nodes.push({
+        x: nextX,
+        y: nextY,
+        depth: stack.length,
+      });
+
+      x = nextX;
+      y = nextY;
+    }
+
+    if (char === "+") {
+      angle += angleStep;
+    }
+
+    if (char === "-") {
+      angle -= angleStep;
+    }
+
+    if (char === "[") {
+      stack.push({
+        x: x,
+        y: y,
+        angle: angle,
+      });
+
+      nodes.push({
+        x: x,
+        y: y,
+        depth: stack.length,
+      });
+    }
+
+    if (char === "]") {
+      const state = stack.pop();
+
+      if (state) {
+        x = state.x;
+        y = state.y;
+        angle = state.angle;
+      }
+    }
+
+    minX = Math.min(minX, x);
+    maxX = Math.max(maxX, x);
+    minY = Math.min(minY, y);
+    maxY = Math.max(maxY, y);
+  }
+
+  const drawingWidth = Math.max(maxX - minX, 1);
+  const drawingHeight = Math.max(maxY - minY, 1);
+
+  const padding = 40;
+  const availableWidth = Math.max(width - padding * 2, 1);
+  const availableHeight = Math.max(height - padding * 2, 1);
+
+  drawingScale = Math.min(
+    availableWidth / drawingWidth,
+    availableHeight / drawingHeight
+  );
+
+  // Ограничиваем масштаб, чтобы знак не становился слишком огромным
+  drawingScale = Math.min(drawingScale, 1.7);
+
+  drawingOffsetX = width / 2 - ((minX + maxX) / 2) * drawingScale;
+  drawingOffsetY = height / 2 - ((minY + maxY) / 2) * drawingScale;
+
+  reveal = 0;
+}
+
+function drawSegment(segment, index) {
+  const color = index % 3 === 0 ? palette.cyan : palette.pink;
+  const depth = Math.min(segment.depth, 6);
+
+  stroke(color);
+  strokeWeight(Math.max(1.2, 3.4 - depth * 0.35));
+  strokeCap(ROUND);
+
+  line(segment.x1, segment.y1, segment.x2, segment.y2);
+}
+
+function drawNode(node, index) {
+  const color = index % 2 === 0 ? palette.pink : palette.cyan;
+  const size = Math.max(3.2, 7 - node.depth * 0.65);
+
+  noStroke();
+  fill(color);
+  circle(node.x, node.y, size);
+
+  fill("#FFFFFF");
+  circle(node.x, node.y, size * 0.42);
+}
+
+function draw() {
+  background("#FFFFFF");
+
+  if (segments.length === 0) return;
+
+  reveal += revealSpeed;
+
+  if (reveal > segments.length + 70) {
+    reveal = 0;
+  }
+
+  const visibleSegments = Math.min(Math.floor(reveal), segments.length);
+
+  push();
+
+  translate(drawingOffsetX, drawingOffsetY);
+
+  const breathing = 1 + Math.sin(frameCount * 0.025) * 0.012;
+  scale(drawingScale * breathing);
+
+  for (let i = 0; i < visibleSegments; i++) {
+    drawSegment(segments[i], i);
+  }
+
+  const visibleNodes = Math.min(visibleSegments, nodes.length);
+
+  for (let i = 0; i < visibleNodes; i++) {
+    drawNode(nodes[i], i);
+  }
+
+  // Стартовая точка, чтобы знак визуально собирался из центра
+  noStroke();
+  fill(palette.pink);
+  circle(0, 0, 9);
+
+  fill(palette.cyan);
+  circle(0, 0, 4.5);
+
+  pop();
+}`,
+  patr3module2tutorial2code4: `const app = document.getElementById("app");
+const canvas = document.createElement("canvas");
+const ctx = canvas.getContext("2d");
+
+const palette = {
+  pink: "#FF86DB",
+  cyan: "#2FD3E6",
+};
+
+let sentence = "";
+let segments = [];
+let nodes = [];
+
+app.innerHTML = "";
+app.style.width = "100%";
+app.style.height = "100%";
+app.style.background = "#FFFFFF";
+app.appendChild(canvas);
+
+function resize() {
+  const dpr = window.devicePixelRatio || 1;
+  const canvasWidth = Math.max(app.clientWidth, 320);
+  const canvasHeight = Math.max(app.clientHeight, 240);
+
+  canvas.style.width = canvasWidth + "px";
+  canvas.style.height = canvasHeight + "px";
+
+  canvas.width = canvasWidth * dpr;
+  canvas.height = canvasHeight * dpr;
+
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  buildPoster();
+}
+
+function buildLSystem() {
+  sentence = "X";
+
+  const iterations = 4;
+
+  for (let i = 0; i < iterations; i++) {
+    let next = "";
+
+    for (let j = 0; j < sentence.length; j++) {
+      const char = sentence.charAt(j);
+
+      if (char === "X") {
+        next += "F[+X]F[-X]+FX";
+      } else if (char === "F") {
+        next += "FF";
+      } else {
+        next += char;
+      }
+    }
+
+    sentence = next;
+  }
+}
+
+function buildGeometry() {
+  segments = [];
+  nodes = [];
+
+  const step = 12;
+  const angleStep = Math.PI / 5.5;
+
+  let x = 0;
+  let y = 0;
+  let angle = -Math.PI / 2;
+
+  const stack = [];
+
+  let minX = 0;
+  let maxX = 0;
+  let minY = 0;
+  let maxY = 0;
+
+  for (let i = 0; i < sentence.length; i++) {
+    const char = sentence.charAt(i);
+
+    if (char === "F") {
+      const nextX = x + Math.cos(angle) * step;
+      const nextY = y + Math.sin(angle) * step;
+
+      segments.push({
+        x1: x,
+        y1: y,
+        x2: nextX,
+        y2: nextY,
+        depth: stack.length,
+      });
+
+      nodes.push({
+        x: nextX,
+        y: nextY,
+        depth: stack.length,
+      });
+
+      x = nextX;
+      y = nextY;
+    }
+
+    if (char === "+") {
+      angle += angleStep;
+    }
+
+    if (char === "-") {
+      angle -= angleStep;
+    }
+
+    if (char === "[") {
+      stack.push({
+        x: x,
+        y: y,
+        angle: angle,
+      });
+
+      nodes.push({
+        x: x,
+        y: y,
+        depth: stack.length,
+      });
+    }
+
+    if (char === "]") {
+      const state = stack.pop();
+
+      if (state) {
+        x = state.x;
+        y = state.y;
+        angle = state.angle;
+      }
+    }
+
+    minX = Math.min(minX, x);
+    maxX = Math.max(maxX, x);
+    minY = Math.min(minY, y);
+    maxY = Math.max(maxY, y);
+  }
+
+  return {
+    minX: minX,
+    maxX: maxX,
+    minY: minY,
+    maxY: maxY,
+  };
+}
+
+function drawSegment(segment, color, scaleValue) {
+  const depth = Math.min(segment.depth, 6);
+
+  ctx.strokeStyle = color;
+  ctx.lineWidth = Math.max(1.1, 3.2 - depth * 0.34) / scaleValue;
+  ctx.lineCap = "round";
+
+  ctx.beginPath();
+  ctx.moveTo(segment.x1, segment.y1);
+  ctx.lineTo(segment.x2, segment.y2);
+  ctx.stroke();
+}
+
+function drawNode(node, color, scaleValue) {
+  const depth = Math.min(node.depth, 6);
+  const radius = Math.max(2.2, 5.8 - depth * 0.5) / scaleValue;
+
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Белая точка внутри делает узлы более графичными
+  ctx.fillStyle = "#FFFFFF";
+  ctx.beginPath();
+  ctx.arc(node.x, node.y, radius * 0.42, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function drawMotif(scaleValue) {
+  // Линии сначала, узлы сверху
+  for (let i = 0; i < segments.length; i++) {
+    const color = i % 3 === 0 ? palette.cyan : palette.pink;
+    drawSegment(segments[i], color, scaleValue);
+  }
+
+  for (let i = 0; i < nodes.length; i += 2) {
+    const color = i % 4 === 0 ? palette.pink : palette.cyan;
+    drawNode(nodes[i], color, scaleValue);
+  }
+}
+
+function buildPoster() {
+  const width = Math.max(app.clientWidth, 320);
+  const height = Math.max(app.clientHeight, 240);
+  const size = Math.min(width, height);
+
+  ctx.clearRect(0, 0, width, height);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillRect(0, 0, width, height);
+
+  buildLSystem();
+  const bounds = buildGeometry();
+
+  const drawingWidth = Math.max(bounds.maxX - bounds.minX, 1);
+  const drawingHeight = Math.max(bounds.maxY - bounds.minY, 1);
+
+  // Белое поле вокруг плаката
+  const padding = 42;
+  const availableSize = Math.max(size - padding * 2, 1);
+
+  // Мотив повторяется по кругу, поэтому масштаб делаем спокойнее
+  let scaleValue = availableSize / Math.max(drawingWidth, drawingHeight * 1.35);
+  scaleValue = Math.min(scaleValue, 1.42);
+
+  const centerX = width / 2;
+  const centerY = height / 2;
+
+  ctx.save();
+  ctx.translate(centerX, centerY);
+
+  // Несколько копий одной L-системы собирают её в орнаментальный знак
+  const copies = 6;
+
+  for (let i = 0; i < copies; i++) {
+    ctx.save();
+
+    const angle = (Math.PI * 2 / copies) * i;
+    ctx.rotate(angle);
+
+    ctx.scale(scaleValue, scaleValue);
+
+    // Центрируем отдельную ветвь относительно своей оси
+    const branchCenterX = (bounds.minX + bounds.maxX) / 2;
+    ctx.translate(-branchCenterX, size * -0.045);
+
+    drawMotif(scaleValue);
+
+    ctx.restore();
+  }
+
+  // Центральное ядро связывает все ветви в один плакатный знак
+  ctx.fillStyle = palette.pink;
+  ctx.beginPath();
+  ctx.arc(0, 0, size * 0.045, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.fillStyle = palette.cyan;
+  ctx.beginPath();
+  ctx.arc(0, 0, size * 0.023, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.fillStyle = "#FFFFFF";
+  ctx.beginPath();
+  ctx.arc(0, 0, size * 0.011, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.restore();
+}
+
+resize();
+
+window.addEventListener("resize", resize);`,
+  patr3module2tutorial2code5: `const width = Math.max(app.clientWidth, 320);
+const height = Math.max(app.clientHeight, 240);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xffffff);
+
+const camera = new THREE.PerspectiveCamera(35, width / height, 0.1, 1000);
+camera.position.set(0, 4.8, 8.5);
+camera.lookAt(0, 1, 0);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+app.innerHTML = "";
+app.style.background = "#FFFFFF";
+app.appendChild(renderer.domElement);
+
+const light = new THREE.DirectionalLight(0xffffff, 2.2);
+light.position.set(4, 7, 5);
+scene.add(light);
+scene.add(new THREE.AmbientLight(0xffffff, 1.8));
+
+const group = new THREE.Group();
+scene.add(group);
+
+const pink = new THREE.MeshStandardMaterial({
+  color: 0xff86db,
+  roughness: 0.62,
+  metalness: 0,
+  flatShading: true,
+});
+
+const cyan = new THREE.MeshStandardMaterial({
+  color: 0x2fd3e6,
+  roughness: 0.62,
+  metalness: 0,
+  flatShading: true,
+});
+
+const white = new THREE.MeshBasicMaterial({
+  color: 0xffffff,
+});
+
+const branchGeometries = [];
+const nodeGeometry = new THREE.SphereGeometry(0.09, 12, 12);
+const smallNodeGeometry = new THREE.SphereGeometry(0.04, 10, 10);
+const cubeGeometry = new THREE.BoxGeometry(0.13, 0.13, 0.13);
+
+function buildLSystem() {
+  let sentence = "X";
+  const iterations = 3;
+
+  for (let i = 0; i < iterations; i += 1) {
+    let next = "";
+
+    for (let j = 0; j < sentence.length; j += 1) {
+      const char = sentence.charAt(j);
+
+      if (char === "X") {
+        next += "F[+X][-X][&X][^X]FX";
+      } else if (char === "F") {
+        next += "FF";
+      } else {
+        next += char;
+      }
+    }
+
+    sentence = next;
+  }
+
+  return sentence;
+}
+
+function addBranch(start, end, radius, material) {
+  const direction = new THREE.Vector3().subVectors(end, start);
+  const length = direction.length();
+
+  if (length < 0.001) return;
+
+  const geometry = new THREE.CylinderGeometry(
+    radius * 0.72,
+    radius,
+    length,
+    8,
+    1,
+    false
+  );
+
+  branchGeometries.push(geometry);
+
+  const mesh = new THREE.Mesh(geometry, material);
+
+  mesh.position.copy(start).add(end).multiplyScalar(0.5);
+  mesh.quaternion.setFromUnitVectors(
+    new THREE.Vector3(0, 1, 0),
+    direction.clone().normalize()
+  );
+
+  group.add(mesh);
+}
+
+function addNode(position, size, material, withInnerDot) {
+  const node = new THREE.Mesh(nodeGeometry, material);
+  node.position.copy(position);
+  node.scale.setScalar(size / 0.09);
+  group.add(node);
+
+  if (withInnerDot) {
+    const inner = new THREE.Mesh(smallNodeGeometry, white);
+    inner.position.copy(position);
+    inner.scale.setScalar(size / 0.09);
+    group.add(inner);
+  }
+}
+
+function addCube(position, size, material, seed) {
+  const cube = new THREE.Mesh(cubeGeometry, material);
+  cube.position.copy(position);
+  cube.scale.setScalar(size / 0.13);
+
+  cube.rotation.x = seed * 0.7;
+  cube.rotation.y = seed * 1.1;
+  cube.rotation.z = seed * 0.4;
+
+  group.add(cube);
+}
+
+function generateFractal() {
+  const sentence = buildLSystem();
+
+  const step = 0.52;
+  const angleStep = Math.PI / 5.7;
+
+  let position = new THREE.Vector3(0, 0, 0);
+  let rotation = new THREE.Quaternion();
+
+  const stack = [];
+  const up = new THREE.Vector3(0, 1, 0);
+
+  addNode(position.clone(), 0.16, pink, false);
+
+  for (let i = 0; i < sentence.length; i += 1) {
+    const char = sentence.charAt(i);
+    const depth = stack.length;
+
+    if (char === "F") {
+      const direction = up.clone().applyQuaternion(rotation).normalize();
+      const nextPosition = position.clone().add(direction.multiplyScalar(step));
+
+      const branchMaterial = depth % 2 === 0 ? pink : cyan;
+      const nodeMaterial = depth % 2 === 0 ? cyan : pink;
+
+      const branchRadius = Math.max(0.025, 0.085 - depth * 0.011);
+      const nodeSize = Math.max(0.045, 0.105 - depth * 0.01);
+
+      addBranch(position, nextPosition, branchRadius, branchMaterial);
+      addNode(nextPosition, nodeSize, nodeMaterial, true);
+
+      position = nextPosition;
+    }
+
+    if (char === "+") {
+      const q = new THREE.Quaternion();
+      q.setFromAxisAngle(new THREE.Vector3(0, 0, 1), angleStep);
+      rotation.multiply(q);
+    }
+
+    if (char === "-") {
+      const q = new THREE.Quaternion();
+      q.setFromAxisAngle(new THREE.Vector3(0, 0, 1), -angleStep);
+      rotation.multiply(q);
+    }
+
+    if (char === "&") {
+      const q = new THREE.Quaternion();
+      q.setFromAxisAngle(new THREE.Vector3(1, 0, 0), angleStep);
+      rotation.multiply(q);
+    }
+
+    if (char === "^") {
+      const q = new THREE.Quaternion();
+      q.setFromAxisAngle(new THREE.Vector3(1, 0, 0), -angleStep);
+      rotation.multiply(q);
+    }
+
+    if (char === "[") {
+      stack.push({
+        position: position.clone(),
+        rotation: rotation.clone(),
+      });
+    }
+
+    if (char === "]") {
+      const state = stack.pop();
+
+      if (state) {
+        const cubeMaterial = depth % 2 === 0 ? pink : cyan;
+        addCube(position.clone(), Math.max(0.06, 0.12 - depth * 0.01), cubeMaterial, i * 0.12);
+
+        position = state.position.clone();
+        rotation = state.rotation.clone();
+      }
+    }
+  }
+
+  // Центрируем объект, чтобы снизу и сверху были нормальные отступы
+  const box = new THREE.Box3().setFromObject(group);
+  const center = new THREE.Vector3();
+  const size = new THREE.Vector3();
+
+  box.getCenter(center);
+  box.getSize(size);
+
+  group.position.sub(center);
+
+  const maxSize = Math.max(size.x, size.y, size.z, 1);
+  const scale = 4.6 / maxSize;
+  group.scale.setScalar(scale);
+
+  group.position.y = 0.15;
+}
+
+generateFractal();
+
+function onResize() {
+  const nextWidth = Math.max(app.clientWidth, 320);
+  const nextHeight = Math.max(app.clientHeight, 240);
+
+  camera.aspect = nextWidth / nextHeight;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(nextWidth, nextHeight);
+}
+
+window.addEventListener("resize", onResize);
+
+let animationId;
+let time = 0;
+
+function animate() {
+  time += 0.01;
+
+  camera.position.x = Math.cos(time * 0.45) * 10;
+  camera.position.z = Math.sin(time * 0.45) * 10;
+  camera.position.y = 7.2 + Math.sin(time * 0.6) * 0.35;
+  camera.lookAt(0, 1.4, 0);
+
+  group.rotation.y += 0.003;
+  group.rotation.x = Math.sin(time * 0.35) * 0.08;
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
+}
+
+animate();
+
+return () => {
+  cancelAnimationFrame(animationId);
+  window.removeEventListener("resize", onResize);
+
+  branchGeometries.forEach((geometry) => {
+    geometry.dispose();
+  });
+
+  nodeGeometry.dispose();
+  smallNodeGeometry.dispose();
+  cubeGeometry.dispose();
+
+  pink.dispose();
+  cyan.dispose();
+  white.dispose();
+
+  renderer.dispose();
+};`,
+  patr3module2tutorial2code6: `const palettes = [
+  {
+    first: "#FF86DB",
+    second: "#2FD3E6",
+  },
+  {
+    first: "#FFC300",
+    second: "#37E87A",
+  },
+  {
+    first: "#FF86DB",
+    second: "#FFC300",
+  },
+];
+
+// Меняй пресет: 0, 1 или 2
+let activePreset = 0;
+
+const presets = [
+  {
+    iterations: 4,
+    angle: 24,
+    copies: 8,
+    step: 13,
+    palette: 0,
+    shapeMode: "botanic",
+  },
+  {
+    iterations: 4,
+    angle: 32,
+    copies: 10,
+    step: 11,
+    palette: 1,
+    shapeMode: "crystal",
+  },
+  {
+    iterations: 5,
+    angle: 18,
+    copies: 6,
+    step: 9,
+    palette: 2,
+    shapeMode: "emblem",
+  },
+];
+
+let sentence = "";
+let totalDrawSteps = 0;
+let reveal = 0;
+let t = 0;
+
+function setup() {
+  const canvasWidth = Math.max(app.clientWidth, 320);
+  const canvasHeight = Math.max(app.clientHeight, 240);
+
+  const canvas = createCanvas(canvasWidth, canvasHeight);
+  canvas.parent("app");
+
+  angleMode(RADIANS);
+  rectMode(CENTER);
+  strokeCap(ROUND);
+
+  buildLSystem();
+}
+
+function windowResized() {
+  const canvasWidth = Math.max(app.clientWidth, 320);
+  const canvasHeight = Math.max(app.clientHeight, 240);
+
+  resizeCanvas(canvasWidth, canvasHeight);
+}
+
+function getPreset() {
+  return presets[activePreset];
+}
+
+function getPalette() {
+  return palettes[getPreset().palette];
+}
+
+function buildLSystem() {
+  const preset = getPreset();
+
+  sentence = "X";
+
+  for (let i = 0; i < preset.iterations; i += 1) {
+    let next = "";
+
+    for (let j = 0; j < sentence.length; j += 1) {
+      const char = sentence.charAt(j);
+
+      if (char === "X") {
+        next += "F[+X][-X]F[+FX]-X";
+      } else if (char === "F") {
+        next += "FF";
+      } else {
+        next += char;
+      }
+    }
+
+    sentence = next;
+  }
+
+  totalDrawSteps = 0;
+
+  for (let i = 0; i < sentence.length; i += 1) {
+    if (sentence.charAt(i) === "F") {
+      totalDrawSteps += 1;
+    }
+  }
+
+  reveal = 0;
+}
+
+function drawNode(x, y, size, index, depth) {
+  const preset = getPreset();
+  const palette = getPalette();
+
+  const color = index % 2 === 0 ? palette.first : palette.second;
+
+  noStroke();
+
+  if (preset.shapeMode === "crystal") {
+    push();
+    translate(x, y);
+    rotate(PI / 4 + t * 0.4 + index * 0.08);
+
+    fill(color);
+    rect(0, 0, size * 0.85, size * 0.85);
+
+    pop();
+  } else {
+    fill(color);
+    circle(x, y, size);
+
+    if (depth < 4) {
+      fill("#FFFFFF");
+      circle(x, y, size * 0.42);
+    }
+  }
+}
+
+function drawLSystemBranch(copyIndex) {
+  const preset = getPreset();
+  const palette = getPalette();
+
+  const angleStep = radians(preset.angle);
+  const stack = [];
+
+  let visibleLimit = reveal - copyIndex * 10;
+  let drawnSteps = 0;
+
+  for (let i = 0; i < sentence.length; i += 1) {
+    const char = sentence.charAt(i);
+    const depth = stack.length;
+
+    if (char === "F") {
+      drawnSteps += 1;
+
+      if (drawnSteps > visibleLimit) {
+        break;
+      }
+
+      const depthFactor = Math.min(depth, 7);
+      const lineColor = drawnSteps % 3 === 0 ? palette.second : palette.first;
+      const nodeColorIndex = drawnSteps + copyIndex;
+
+      const weight = Math.max(1.1, 3.8 - depthFactor * 0.42);
+      const nodeSize = Math.max(3.2, 8.2 - depthFactor * 0.7);
+
+      stroke(lineColor);
+      strokeWeight(weight);
+
+      line(0, 0, 0, -preset.step);
+
+      translate(0, -preset.step);
+
+      if (drawnSteps % 2 === 0 || depth < 2) {
+        drawNode(0, 0, nodeSize, nodeColorIndex, depth);
+      }
+    }
+
+    if (char === "+") {
+      rotate(angleStep);
+    }
+
+    if (char === "-") {
+      rotate(-angleStep);
+    }
+
+    if (char === "[") {
+      push();
+      stack.push(1);
+    }
+
+    if (char === "]") {
+      if (stack.length > 0) {
+        stack.pop();
+        pop();
+      }
+    }
+  }
+
+  // На всякий случай закрываем незакрытые push(), если рост оборвался посередине
+  while (stack.length > 0) {
+    stack.pop();
+    pop();
+  }
+}
+
+function drawCore() {
+  const preset = getPreset();
+  const palette = getPalette();
+  const size = Math.min(width, height);
+
+  noStroke();
+
+  fill(palette.first);
+  circle(0, 0, size * 0.075);
+
+  if (preset.shapeMode === "crystal") {
+    push();
+    rotate(PI / 4 + t * 0.35);
+    fill(palette.second);
+    rect(0, 0, size * 0.048, size * 0.048);
+    pop();
+  } else {
+    fill(palette.second);
+    circle(0, 0, size * 0.04);
+  }
+
+  fill("#FFFFFF");
+  circle(0, 0, size * 0.018);
+}
+
+function draw() {
+  background("#FFFFFF");
+
+  const preset = getPreset();
+  const size = Math.min(width, height);
+
+  t += 0.012;
+  reveal += 2.5;
+
+  const maxReveal = totalDrawSteps + preset.copies * 10 + 90;
+
+  if (reveal > maxReveal) {
+    reveal = 0;
+  }
+
+  push();
+
+  translate(width / 2, height / 2);
+
+  // Масштаб фиксированный и предсказуемый:
+  // знак всегда остаётся внутри превью
+  const scaleValue = size / 730;
+  const breathing = 1 + Math.sin(t * 1.7) * 0.018;
+
+  scale(scaleValue * breathing);
+
+  rotate(Math.sin(t * 0.5) * 0.035);
+
+  for (let i = 0; i < preset.copies; i += 1) {
+    push();
+
+    rotate((TWO_PI / preset.copies) * i);
+
+    // Небольшой отступ от центра, чтобы ветви не слипались в кашу
+    translate(0, -10);
+
+    drawLSystemBranch(i);
+
+    pop();
+  }
+
+  drawCore();
+
+  pop();
 }`,
 };

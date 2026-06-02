@@ -308,20 +308,548 @@
 
       <div class="O_TutorialMain">
         <section class="U_FontB1 A_TutorialAnnotation">
-          <!-- тут краткое описание -->
+          В этом уроке фракталы и L-системы станут не страшной математикой, а способом собирать сложные визуальные формы
+          из коротких правил. Мы разберём, как самоподобие превращает простую фигуру в узор, как строка команд может
+          вырасти в растение, и как одну идею можно по-разному показать на Vanilla JS, p5.js и Three.js.
         </section>
         <section class="O_TutorialSection">
 
-          <!-- тут сами блоки 
-          делай в них такой отступ по строке, как здесь вот ща и везде в статьях
-          а между section отступ не делай-->
+          <h3 id="nav1" class="U_FontH3 A_TutorialTitle">
+            Теория
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Фрактал — это структура, в которой часть похожа на целое. Если приближаться к такой форме, внутри неё снова
+            появляются похожие ветки, разломы, треугольники, линии или пустоты. В природе это напоминает кроны деревьев,
+            снежинки, молнии, кораллы и очертания береговой линии. В креативном кодинге фрактал интересен не точной
+            научной моделью, а визуальным ощущением роста: маленькое правило начинает выглядеть как сложная система.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Фракталы часто строятся через рекурсию: функция рисует форму, затем вызывает себя для меньшей формы, потом
+            ещё раз и ещё раз. Но в этом уроке важен второй подход — L-системы. Это способ описывать рост через строку
+            символов. Мы задаём начальное состояние, правила замены и количество повторений. После нескольких итераций
+            короткая строка превращается в длинную инструкцию для рисования.</p>
+
+          <div class="M_TutorialQuote">
+            <p class="U_FontS2">
+              Фрактал показывает, как сложность появляется не из большого количества идей, а из многократного применения
+              одного правила
+            </p>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            L-систему можно представить как алфавит для рисующей черепахи. Один символ говорит: «иди вперёд», другой —
+            «поверни направо», третий — «сохрани позицию», четвёртый — «вернись назад». На первых шагах это почти ничего
+            не значит: линия, угол, ещё одна линия. Но когда правило применяется несколько раз, строка начинает
+            ветвиться, уплотняться и создавать форму, похожую на растение, снежинку, кристалл или орнамент.</p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Для дизайна здесь важны три вещи: правило, масштаб и ограничение. Правило отвечает за то, как форма растёт.
+            Масштаб решает, насколько быстро детали становятся меньше. Ограничение удерживает работу от хаоса: мы задаём
+            палитру, толщину линий, глубину, отступы и композиционный центр. Без ограничений фрактал легко становится
+            просто шумной картинкой. С ограничениями он превращается в графическую систему.</p>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              Фрактал — форма, где части повторяют логику целого.
+            </li>
+            <li>
+              L-система — набор правил, который постепенно превращает короткую строку в сложную инструкцию.
+            </li>
+            <li>
+              Итерация — один шаг применения правил. Чем больше итераций, тем подробнее становится изображение.
+            </li>
+            <li>
+              Черепашья графика — способ рисования, где форма создаётся движением: вперёд, поворот, сохранение позиции,
+              возврат.
+            </li>
+            <li>
+              Ограничение глубины нужно не только для производительности, но и для визуальной чистоты.
+            </li>
+          </ol>
+
+          <p class="U_FontB1 A_TutorialText">
+            В этом уроке код может быть сложнее, чем в предыдущих темах. Но главная цель — не выучить все математические
+            определения, а понять художественный принцип: можно создать впечатляющую композицию, если научиться
+            управлять несколькими параметрами роста. Поэтому дальше мы будем смотреть не только на алгоритм, но и на то,
+            как он выглядит как плакат, знак, паттерн или пространственная сцена.
+          </p>
 
         </section>
         <section class="O_TutorialSection">
 
-          <!-- тут сами блоки 
-          делай в них такой отступ по строке, как здесь вот ща и везде в статьях
-          а между section отступ не делай-->
+          <h3 id="nav2" class="U_FontH3 A_TutorialTitle">
+            Практика: техника
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Начнём с техники: построим фрактальную форму как систему повторяющихся ветвей. Идея простая: есть одна
+            основная линия, на её конце появляются две или три новые линии, а затем каждая из них повторяет тот же
+            принцип. Чтобы композиция не разваливалась, каждый следующий уровень будет короче, тоньше и чуть иначе
+            повернут.
+          </p>
+
+          <div id="patr3module2tutorial2code1" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                p5.js показывает фрактал как живую эмблему на белом фоне. Из центра вырастает симметричная структура из
+                линий и кругов: ветви расходятся по радиусу, уменьшаются на каждом уровне и собираются в плотный знак.
+                Визуально это должно выглядеть как смесь растения, снежинки и логотипа: чистая геометрия, фирменные
+                цвета, аккуратные отступы и без лишнего шума.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В p5.js удобно работать с такими структурами, потому что можно двигать и поворачивать систему координат. Мы
+            не пересчитываем каждую точку вручную, а переносим начало координат в конец ветки, поворачиваем холст и
+            запускаем следующий уровень. Получается не просто набор линий, а логика роста: каждый фрагмент знает, где он
+            начался, куда он повернул и насколько уменьшился.
+          </p>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              depth задаёт количество уровней и контролирует детализацию.
+            </li>
+            <li>
+              length отвечает за длину первой ветви и общий размер композиции.
+            </li>
+            <li>
+              scaleStep уменьшает каждое следующее поколение.
+            </li>
+            <li>
+              branchAngle меняет характер формы: от строгой снежинки до живого растения.
+            </li>
+            <li>
+              palette удерживает работу внутри единой визуальной системы.
+            </li>
+          </ol>
+
+          <div id="patr3module2tutorial2code2" class="O_TutorialSingleCode" data-runtime="vanilla"
+            data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Vanilla JS показывает похожий принцип через Canvas API, но в более плакатной форме. Вместо органического
+                дерева здесь будет фрактальная розетка: круги или квадраты повторяются по кольцу, каждый следующий
+                уровень становится меньше и уходит внутрь композиции. Работа должна выглядеть как сложный декоративный
+                знак, но оставаться собранной: белый фон, два фирменных цвета, геометрический ритм и чёткое
+                центрирование.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В Vanilla JS лучше видно, из чего на самом деле состоит алгоритм. Мы сами создаём canvas, сами очищаем кадр,
+            сами считаем центр и сами передаём параметры в следующий уровень. Это менее «магично», чем p5.js, зато очень
+            полезно: становится понятно, что фрактал — это не готовая функция библиотеки, а способ организовать
+            повторение.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            На этом этапе важно не пытаться сделать максимально сложную форму. Лучше собрать такую систему, где каждый
+            параметр читается визуально. Увеличился угол — форма стала более спиральной. Уменьшился масштаб — центр стал
+            плотнее. Добавился дополнительный поворот — знак перестал быть статичным. Так фрактал становится
+            инструментом композиции, а не просто демонстрацией алгоритма.
+          </p>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav3" class="U_FontH3 A_TutorialTitle">
+            Практика: вариация
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Теперь возьмём одну идею и покажем её как вариацию в разных средах. Основа будет одинаковой: короткая
+            L-система, которая растёт из строки правил. Но визуальный результат будет разным. В p5.js это станет
+            рисующей системой, в Vanilla JS — графическим постером, а в Three.js — пространственным фрактальным
+            объектом.
+          </p>
+
+          <div id="patr3module2tutorial2code3" class="O_TutorialSingleCode" data-runtime="p5" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                p5.js: L-система рисует «растущий знак». На каждой итерации строка становится длиннее, а черепашья
+                графика превращает её в ветвящуюся композицию. В превью форма может плавно проявляться по сегментам, как
+                будто система рисует себя прямо сейчас. Визуально это должно быть не натуралистичное дерево, а
+                абстрактная ботаника: чистые линии, круглые узлы, два фирменных цвета и много воздуха вокруг.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В p5.js L-система особенно хорошо читается как процесс. Можно показать не только финальную форму, но и её
+            разворачивание во времени: сначала короткий стебель, потом развилка, потом плотная сеть ветвей. Это важно
+            для учебника, потому что алгоритм перестаёт быть невидимым. Пользователь видит, как строка команд постепенно
+            становится изображением.
+          </p>
+
+          <div id="patr3module2tutorial2code4" class="O_TutorialSingleCode" data-runtime="vanilla"
+            data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Описание кодового блока:
+                Vanilla JS: та же L-система собирается как статичный генеративный плакат. Canvas рисует итоговую форму
+                сразу, но делает акцент на композиции: фрактальный мотив располагается в центре, вокруг остаётся белое
+                поле, а сегменты складываются в орнаментальную структуру. Это может быть похоже на схему роста, карту
+                маршрутов или абстрактный гербарий.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В Vanilla JS можно жёстче контролировать финальный вид: заранее посчитать масштаб, отцентрировать форму и
+            подстроить её под размер превью. Такой подход подходит для работ, которые должны выглядеть как готовая
+            графика, а не как анимационный эксперимент. Здесь L-система становится инструментом верстки изображения:
+            правило создаёт сложность, а canvas удерживает её в рамке.
+          </p>
+
+          <div id="patr3module2tutorial2code5" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="three" data-autostart="true">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Three.js: L-система превращается в трёхмерный фрактальный объект. Вместо плоских линий появляются
+                цилиндры, кубы или сферы, которые растут в пространстве и образуют кристаллическое дерево. Камера
+                медленно вращается вокруг системы, чтобы было видно глубину, но композиция остаётся графичной: белый
+                фон, фирменная палитра, простые геометрические формы и без реалистичных материалов.
+              </p>
+            </div>
+          </div>
+
+          <p class="U_FontB1 A_TutorialText">
+            В Three.js та же логика начинает работать как скульптура. У ветки появляется не только длина и угол, но и
+            глубина. Можно повернуть следующий уровень не только влево или вправо, но и вперёд, назад, вверх. Поэтому
+            L-система превращается в объект, который хочется рассматривать со стороны. Это хороший пример того, как один
+            алгоритм меняет характер при переходе из 2D в 3D.
+          </p>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              В p5.js L-система лучше показывает процесс рисования.
+            </li>
+            <li>
+              В Vanilla JS удобнее контролировать финальную композицию.
+            </li>
+            <li>
+              В Three.js та же грамматика становится пространственным объектом.
+            </li>
+            <li>
+              Алгоритм один, но визуальный смысл меняется из-за среды, камеры, масштаба и материалов.
+            </li>
+          </ol>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav4" class="U_FontH3 A_TutorialTitle">
+            Выводы и синтаксис
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Фракталы и L-системы помогают создавать сложные изображения без ручного рисования каждой детали. Мы задаём
+            не конечную форму, а правила поведения: как элемент растёт, куда поворачивает, когда останавливается и как
+            связан со следующим уровнем. Поэтому такие алгоритмы особенно полезны для визуальных систем, где нужны
+            вариативность, плотность и ощущение живой структуры.
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            Главная опасность продвинутых алгоритмов — сделать сложно, но не красиво. Фрактал может быстро превратиться
+            в перегруженную сетку, если не контролировать глубину, масштаб, толщину, цвет и отступы. В дизайнерской
+            работе алгоритм должен не заменять композицию, а усиливать её. Поэтому перед тем как добавлять новые ветви и
+            итерации, стоит спросить: форма стала выразительнее или просто подробнее?
+          </p>
+
+          <p class="U_FontB1 A_TutorialText">
+            В синтаксисе L-системы важны не конкретные команды языка, а роли элементов. Их можно реализовать на p5.js,
+            Vanilla JS или Three.js, но логика останется той же: есть стартовая строка, правила замены, количество
+            итераций и интерпретатор, который превращает символы в рисунок.
+          </p>
+
+          <ul class="U_FontC2-Code C_TutorialCopyList">
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                axiom // стартовая строка, с которой начинается рост системы.
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                rule // правило замены: какой символ во что превращается на следующей итерации.
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                iterations // количество повторений правила; чем их больше, тем сложнее форма.
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                angle // угол поворота, который задаёт характер ветвления.
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                step // длина одного движения вперёд.
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                stack // сохранение и возврат позиции, чтобы ветви могли расходиться из одной точки.
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+            <li class="W_TutorialCopyItem">
+              <p class="A_TutorialCopyText">
+                turtle // условный рисующий объект, который читает строку и превращает символы в движение.
+              </p>
+              <button class="U_ButtonIcon A_TutorialCopyButton">
+                <img class="Q_TutorialCopyIcon" src="../../../../images/icons/copy.svg" alt="Копировать">
+              </button>
+            </li>
+          </ul>
+
+        </section>
+        <section class="O_TutorialSection">
+
+          <h3 id="nav5" class="U_FontH3 A_TutorialTitle">
+            Задание
+            <button class="U_ButtonIcon">
+              <img class="U_ImgIconSizeH ico-light-theme" src="../../../../images/light/icons/tutorial-link.svg"
+                alt="Поделиться">
+              <img class="U_ImgIconSizeH ico-dark-theme" src="../../../../images/dark/icons/tutorial-link.svg"
+                alt="Поделиться">
+            </button>
+          </h3>
+
+          <p class="U_FontB1 A_TutorialText">
+            Собери собственную L-систему как графический объект для галереи. Не старайся сделать её максимально
+            реалистичной: задача — получить красивую абстрактную форму, которая выглядит как часть единой визуальной
+            системы учебника. Пусть это будет не дерево «из природы», а знак роста: фрактальный цветок, кристалл,
+            маршрут, вспышка или сложная эмблема.
+          </p>
+
+          <ol class="U_FontB1 C_TutorialTextList">
+            <li>
+              Начни с iterations: найди момент, когда форма уже интересная, но ещё не перегруженная.
+            </li>
+            <li>
+              Измени angle: маленький угол сделает структуру плотной, большой — более раскрытой и ломаной.
+            </li>
+            <li>
+              Подстрой step и scale, чтобы фрактал помещался в превью с равными отступами со всех сторон.
+            </li>
+            <li>
+              Оставь одну или две пары фирменных цветов и проверь, где цвет действительно помогает читать уровни.
+            </li>
+            <li>
+              Сделай три версии одной системы: спокойную, плотную и динамичную. Сравни, как меняется характер формы при
+              тех же правилах.
+            </li>
+          </ol>
+
+          <div id="patr3module2tutorial2code6" class="O_TutorialSingleCode O_TutorialSingleCode--Large"
+            data-runtime="p5" data-autostart="false">
+            <div class="W_TutorialSingleCodeExecution">
+              <iframe class="A_TutorialSingleCodeExecutionCanvas" title="Результат выполнения" sandbox="allow-scripts"
+                allow="accelerometer; gyroscope; magnetometer">
+              </iframe>
+            </div>
+            <div class="O_TutorialSingleCodeTexts">
+              <div class="W_TutorialSingleCodeTextArea">
+                <pre class="U_FontC2-Code W_TutorialSingleCodeLineNumbers" aria-hidden="true"></pre>
+                <div class="W_TutorialSingleCodeTextLayers">
+                  <pre class="U_FontC2-Code A_TutorialSingleCodeTextHighlight" aria-hidden="true"></pre>
+                  <textarea class="U_FontC2-Code W_TutorialSingleCodeTextRun" spellcheck="false"
+                    aria-label="Поле кода"></textarea>
+                </div>
+                <div class="M_TutorialSingleCodeTextButtons">
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonRunStop">
+                    <img class="Q_TutorialSingleCodeIconRun" src="../../../../images/icons/run.svg" alt="Запустить">
+                    <img class="Q_TutorialSingleCodeIconStop" src="../../../../images/icons/stop.svg" alt="Остановить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonClean">
+                    <img class="Q_TutorialSingleCodeIconClean" src="../../../../images/icons/reset.svg" alt="Очистить">
+                  </button>
+                  <button class="U_ButtonIcon A_TutorialSingleCodeTextButtonCopy">
+                    <img class="Q_TutorialSingleCodeIconCopy" src="../../../../images/icons/copy.svg" alt="Копировать">
+                  </button>
+                </div>
+              </div>
+              <p class="U_FontB1 A_TutorialSingleCodeTextDescription">
+                Задание: параметрическая L-система на p5.js. В коде будут настройки для количества итераций, угла,
+                масштаба, режима формы и палитры. Пользователь сможет менять пресеты и собирать разные версии одной
+                графической системы: от тонкой ветвящейся линии до плотной фрактальной эмблемы. Превью должно быть самым
+                эффектным в статье: белый фон, сильная центральная композиция, фирменные цвета и ощущение, что алгоритм
+                действительно «вырастил» изображение.
+              </p>
+            </div>
+          </div>
 
         </section>
         <section class="O_TutorialSection O_TutorialSection--Last">
